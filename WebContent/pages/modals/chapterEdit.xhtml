@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:a4j="http://richfaces.org/a4j"
+   xmlns:rich="http://richfaces.org/rich"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:c="http://java.sun.com/jstl/core"
+   xmlns:ccmp="http://www.myc2i.com/jsf/commoncmp">
+  <ui:composition>
+    <rich:panel id="idChapterEditContainer" styleClass="default_edit">
+	 <rich:spacer width="100%" height="20"/>
+	 <c:set var="currentEBean" value="#{chapterViewHandler.currentChapter}"></c:set>
+	 <h:panelGrid columns="3" id="idChapterEditPanelGroup" border="0" columnClasses="prompt,data,errprompt"
+      rowClasses="rowinput" width="100%">
+	     <h:panelGroup>
+        <h:outputText value="#{bundle.chapter_chapter_name}" />
+        <span class="required_field">*</span>
+       </h:panelGroup>
+       <h:inputText styleClass="short_text" value="#{currentEBean.chapterName}" id="chapterName">
+        <rich:ajaxValidator event="onblur" />
+       </h:inputText>
+       <rich:message for="chapterName" />
+       
+              <h:panelGroup>
+        <h:outputText value="#{bundle.chapter_street_address}" />
+        <span class="required_field">&#160;</span>
+       </h:panelGroup>
+       <h:inputText styleClass="name" value="#{currentEBean.chapterStreetAddress}" id="chapterStreetAddress">
+        <rich:ajaxValidator event="onblur" />
+       </h:inputText>
+       <rich:message for="chapterStreetAddress" />        
+       
+       <h:panelGroup>
+        <h:outputText value="#{bundle.chapter_city}" />
+        <span class="required_field">&#160;</span>
+       </h:panelGroup>
+       <h:inputText styleClass="short_text" value="#{currentEBean.chapterCity}" id="chapterCity">
+        <rich:ajaxValidator event="onblur" />
+       </h:inputText>
+       <rich:message for="chapterCity" />
+        
+       <h:panelGroup>
+        <h:outputText value="#{bundle.chapter_state}" />
+        <span class="required_field">&#160;</span>
+       </h:panelGroup>
+       <h:inputText styleClass="short_text" value="#{currentEBean.chapterState}" id="chapterState">
+        <rich:ajaxValidator event="onblur" />
+       </h:inputText>
+       <rich:message for="chapterState" />
+       
+       <h:panelGroup>
+        <h:outputText value="#{bundle.chapter_zip}" />
+        <span class="required_field">&#160;</span>
+       </h:panelGroup>
+       <h:inputText styleClass="short_text" value="#{currentEBean.chapterZip}" id="chapterZip">
+        <rich:ajaxValidator event="onblur" />
+       </h:inputText>
+       <rich:message for="chapterZip" />   
+       
+       <h:panelGroup>
+        <h:outputText value="#{bundle.chapter_country}" />
+        <span class="required_field">*</span>
+       </h:panelGroup>
+       <h:inputText styleClass="short_text" value="#{currentEBean.chapterCountry}" id="chapterCountry">
+        <rich:ajaxValidator event="onblur" />
+       </h:inputText>
+       <rich:message for="chapterCountry" /> 
+        
+       <h:panelGroup>
+        <h:outputText value="#{bundle.chapter_phone}" />
+        <span class="required_field">&#160;</span>
+       </h:panelGroup>
+       <h:inputText styleClass="short_text" value="#{currentEBean.chapterPhone}" id="chapterPhone">
+        <rich:ajaxValidator event="onblur" />
+       </h:inputText>
+       <rich:message for="chapterPhone" />   
+       
+       <h:panelGroup>
+        <h:outputText value="#{bundle.chapter_email_address}" />
+        <span class="required_field">&#160;</span>
+       </h:panelGroup>
+       <h:inputText styleClass="short_text" value="#{currentEBean.chapterEmailAddress}" id="chapterEmailAddress">
+        <rich:ajaxValidator event="onblur" />
+       </h:inputText>
+       <rich:message for="chapterEmailAddress" /> 
+       
+       <h:panelGroup>
+        <h:outputText value="#{bundle.chapter_url}" />
+        <span class="required_field">&#160;</span>
+       </h:panelGroup>
+       <h:inputText styleClass="short_text" value="#{currentEBean.chapterUrl}" id="chapterUrl">
+        <rich:ajaxValidator event="onblur" />
+       </h:inputText>
+       <rich:message for="chapterUrl" />   
+       
+		</h:panelGrid>
+
+    <rich:spacer width="100%" height="15"/>
+    <ccmp:secactcmp controlBean="#{chapterViewHandler}" modalId="idChapterEdit" 
+      actionType="#{chapterViewHandler.actionType}"
+      addAction = "addChapter" updateAction = "updateChapter"  reloadAction = "preUpdateMaster"
+      reRenderIds="#{chapterViewHandler.reRenderIds}"/>
+    <rich:spacer width="100%" height="5"/>
+    </rich:panel>
+  </ui:composition>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:a4j="http://richfaces.org/a4j"
+   xmlns:rich="http://richfaces.org/rich"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:c="http://java.sun.com/jstl/core"
+   xmlns:ccmp="http://www.myc2i.com/jsf/commoncmp">
+  <ui:composition>
+    <rich:panel id="idDocumentEditContainer" styleClass="default_edit">
+	 <rich:spacer width="100%" height="20"/>
+	 <c:set var="currentEBean" value="#{documentViewHandler.currentDocument}"></c:set>	 
+   <h:panelGrid columns="3" id="idDocumentEditPanelGroup" border="0" columnClasses="prompt,data,errprompt"
+      rowClasses="rowinput" width="100%">
+       <h:panelGroup>
+        <h:outputText value="#{bundle.document_name}" />
+        <span class="required_field">*</span>
+       </h:panelGroup>
+       <h:inputText styleClass="medium_text" value="#{currentEBean.documentName}" id="documentName">
+        <rich:ajaxValidator event="onblur" />
+       </h:inputText>
+       <rich:message for="documentName" />       
+       
+       <h:panelGroup>
+        <h:outputText value="#{bundle.document_audio}" />
+        <span class="required_field">*</span>
+       </h:panelGroup>
+       <h:panelGroup id="idAudioFile">
+         <h:inputText styleClass="name,readonly" disabled="true" style="color:gray;background:#DFDFDF;" 
+            value="#{documentViewHandler.audioPath}"/>        
+         <ccmp:uploadlink prompt="" uploadModalId="idAudioUpload" imgTitle="#{bundle.common_upload_audio}"/>
+       </h:panelGroup>
+       <rich:message for="documentIntroAudio" />
+       
+       <h:panelGroup>
+        <h:outputText value="#{bundle.document_video}" />
+        <span class="required_field">*</span>
+       </h:panelGroup>
+       <h:panelGroup id="idVideoFile">
+         <h:inputText styleClass="name,readonly" disabled="true" style="color:gray;background:#DFDFDF;"
+            value="#{documentViewHandler.videoPath}"/>        
+         <ccmp:uploadlink prompt="" uploadModalId="idVideoUpload" imgTitle="#{bundle.common_upload_video}"/>
+       </h:panelGroup>
+       <rich:message for="documentIntroVideo" />
+       
+		</h:panelGrid>
+
+    <rich:spacer width="100%" height="15"/>
+    <ccmp:secactcmp controlBean="#{documentViewHandler}" modalId="idDocumentEdit" 
+      actionType="#{documentViewHandler.actionType}"
+      addAction = "addDocument" updateAction = "updateDocument"  reloadAction = "preUpdateMaster"
+      reRenderIds="#{documentViewHandler.reRenderIds}"/>
+    <rich:spacer width="100%" height="5"/>
+    </rich:panel>
+  </ui:composition>
+</html>

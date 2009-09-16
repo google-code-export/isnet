@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- 
+ * @author Mithun 2009/08/07 Created.
+ * @version $Revision: 1.0
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+	 xmlns:ui="http://java.sun.com/jsf/facelets"
+	 xmlns:h="http://java.sun.com/jsf/html"
+	 xmlns:f="http://java.sun.com/jsf/core"
+	 xmlns:a4j="http://richfaces.org/a4j"
+   xmlns:rowBar="http://www.myc2i.com/jsf/rowToolBar"
+   xmlns:ccmp="http://www.myc2i.com/jsf/commoncmp"
+ 	 xmlns:c="http://java.sun.com/jstl/core"
+ 	 xmlns:rich="http://richfaces.org/rich">
+
+<ui:composition template="/templates/maintmpl.xhtml">
+	<ui:param name="moduleTitle" value="Home >> Dashboard"></ui:param>
+  <ui:param name="userType" value="A"></ui:param>
+  <ui:param name="moduleType" value="AM"></ui:param>
+  <ui:param name="headerText" value="#{bundle.left_navigation_tutorial_qa}"></ui:param>
+	<ui:param name="refManageBean" value="#{questionAnsViewHandler}"></ui:param>
+  <ui:param name="uploadBean" value="#{questionAnsViewHandler.fileUploadBean}"></ui:param>
+ <ui:define name="commonInfo">
+	</ui:define>
+	<ui:define name="js">
+		<script></script>
+	</ui:define>
+  <ui:define name="body">    
+    <h:panelGroup id="idSectionsCon">
+      <rich:spacer width="100%" height="10"/>
+      <h:panelGroup id="idTopCon">
+          <table border="0" cellspacing="0" cellpadding="0" width="100%">
+           <tr>
+            <td style="width: 40%;" align="center">
+              <h:outputText value="#{bundle.vendor_select_module}"/>
+            </td>            
+            <td style="width: 200px;" align="left">
+              <h:selectOneMenu styleClass="dropdown" id="idSelectModule"
+                value="#{questionAnsViewHandler.modulesId}" >
+                <f:selectItems value="#{questionAnsViewHandler.modulesList}"/>
+                <a4j:support event="onchange" action="#{questionAnsViewHandler.getQuestionAnsByCategory}"
+                  reRender="RECORD_LINES"/>
+              </h:selectOneMenu>              
+            </td>            
+           </tr>
+          </table>
+      </h:panelGroup>
+      <rich:spacer width="100%" height="20"/>
+      <h:panelGrid columns="1" id="idAddNew" border="0" widht="100%" columnClasses="prompt"
+          rowClasses="rowinput" width="100%">
+          <ccmp:cuslink controlBean="#{questionAnsViewHandler}" 
+                prompt="#{bundle.common_add_new}" modalPanelId="idQuestionAnsEdit" 
+                aAddRecord = "preAddQuestionAns" />
+      </h:panelGrid>
+      <h:panelGroup id="RECORD_LINES">
+        <rich:dataTable styleClass="listcontainer" headerClass="listheader" rowClasses="odd-row,even-row"
+          id="idQuesAnsLines" value="#{questionAnsViewHandler.questionAnsLines}" var="questionAns"
+          rows="7" cellpadding="0" cellspacing="0">
+          <f:facet name="header">
+            <rich:columnGroup>
+              <rich:column width="45px" style="text-align:left;" valign="top">
+                <h:outputText value="#{bundle.tutorial_qa_page_number}" />
+              </rich:column>
+              <rich:column width="125px" style="text-align:left;" valign="top">
+                <h:outputText value="#{bundle.tutorial_qa_page_text}" />
+              </rich:column>              
+              <rich:column width="20px" style="text-align:center;" valign="top">
+                <h:outputText value="#{bundle.common_action}" />
+              </rich:column>
+          </rich:columnGroup>
+          </f:facet>
+         <rich:column>
+          <h:outputText escape="false" value="#{questionAns.pageNumber}" />
+         </rich:column>
+         <rich:column>
+           <h:outputText escape="false" value="#{questionAns.pageText}" />
+         </rich:column>         
+         <rich:column style="text-align:center;vertical-align:middle;">
+           <rowBar:rowToolBar recordId="#{questionAns.questionAnsId}"
+           sectionId="RECORD_LINES" modalPanelId="idQuestionAnsEdit" parentComp="secRECORD_LINES"
+           aUpdateRecord="preUpdateQuestionAns" aDeleteRecord="deleteQuestionAns"/>
+         </rich:column>
+        </rich:dataTable>
+        <rich:datascroller id="idDataScroller" align="center"  for="idQuesAnsLines" maxPages="7" />
+        
+        <rich:jQuery selector="#idQuesAnsLines tr" query="mouseover(function(){jQuery(this).addClass('active-row')})"/>
+        <rich:jQuery selector="#idQuesAnsLines tr" query="mouseout(function(){jQuery(this).removeClass('active-row')})"/>
+      </h:panelGroup>
+    </h:panelGroup>    
+  </ui:define>
+  <ui:define name="modalPanels">
+    <a4j:region>
+      <ui:include src="/templates/modaltmpl.xhtml">
+        <ui:param name="modalPanelId" value="idQuestionAnsEdit"/>
+        <ui:param name="moduleName" value="questionAnsEdit"/>
+      </ui:include>
+    </a4j:region>
+    <a4j:region>
+      <ui:include src="/templates/uploadtmpl.xhtml">
+        <ui:param name="uploadModalId" value="idVideoUpload"/>
+        <ui:param name="action" value="uploadVideo"/>
+        <ui:param name="reRenderIds" value="idVideoFile"/>
+        <ui:param name="fileExtentions" value="#{bundle.common_supported_video_ext}"/>        
+      </ui:include>
+    </a4j:region>
+    <a4j:region>
+      <ui:include src="/templates/uploadtmpl.xhtml">
+        <ui:param name="uploadModalId" value="idAudioUpload"/>
+        <ui:param name="action" value="uploadAudio"/>
+        <ui:param name="reRenderIds" value="idAudioFile"/>
+        <ui:param name="fileExtentions" value="#{bundle.common_supported_audio_ext}"/>          
+      </ui:include>
+    </a4j:region>
+  </ui:define>
+</ui:composition>
+</html>

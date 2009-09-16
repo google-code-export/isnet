@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- 
+ * @author Mithun 2009/08/07 Created.
+ * @version $Revision: 1.0
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+	 xmlns:ui="http://java.sun.com/jsf/facelets"
+	 xmlns:h="http://java.sun.com/jsf/html"
+	 xmlns:f="http://java.sun.com/jsf/core"
+	 xmlns:a4j="http://richfaces.org/a4j"
+   xmlns:rowBar="http://www.myc2i.com/jsf/rowToolBar"
+   xmlns:ccmp="http://www.myc2i.com/jsf/commoncmp"
+ 	 xmlns:c="http://java.sun.com/jstl/core"
+ 	 xmlns:rich="http://richfaces.org/rich">
+
+<ui:composition template="/templates/maintmpl.xhtml">
+ <ui:param name="moduleTitle" value="Home >> Dashboard"></ui:param>
+ <ui:param name="userType" value="A"></ui:param>
+ <ui:param name="moduleType" value="RM"></ui:param>
+ <ui:param name="headerText" value="#{bundle.chapter_manage_chapter}"></ui:param>
+	<ui:param name="refManageBean" value="#{chapterViewHandler}"></ui:param>
+ <ui:define name="commonInfo">
+	</ui:define>
+	<ui:define name="js">
+		<script></script>
+	</ui:define>
+  <ui:define name="body">    
+    <h:panelGroup id="idSectionsCon">
+      <rich:spacer width="100%" height="10"/>
+      <h:panelGroup id="idTopCon">
+        <c:set var="searchBean" value="#{chapterViewHandler.searchBean}"></c:set>
+        <h:panelGrid columns="2" id="idSearchCon" border="0" columnClasses="prompt,data"
+          rowClasses="rowinput" width="100%" rows="7" cellpadding="0" cellspacing="0">
+          <h:outputText value="#{bundle.chapter_chapter_name}"/>
+          <h:inputText id="idEmail" styleClass="medium_text" value="#{searchBean.chapterName}"/>
+          
+          <h:outputText value="#{bundle.chapter_chapter_leader}"/>
+          <h:inputText id="ifFirstName" styleClass="medium_text" value="#{searchBean.chapterLeader}"/>
+          
+          <h:outputText value="#{bundle.chapter_city}"/>
+          <h:inputText id="idLastName" styleClass="medium_text" value="#{searchBean.city}"/>
+          
+          <h:outputText value="#{bundle.chapter_state}"/>
+          <h:inputText id="idState" styleClass="name" value="#{searchBean.state}"/>
+          
+          <h:outputText value=""/>
+          <a4j:commandButton value="#{bundle.chapter_search}" styleClass="ibutton" style="background:#F8F3D3;"
+            action="#{chapterViewHandler.loadChapterByCriteria}" reRender="CHAPTER_LINES"
+            onclick="forceSBlockUI(ajaxProcessMsg);" oncomplete="forceSUnblockUI();"/>
+        </h:panelGrid>       
+      </h:panelGroup>
+              
+      <rich:spacer width="100%" height="20"/>
+      <h:panelGrid columns="1" id="idAddNew" border="0" widht="100%" columnClasses="prompt"
+          rowClasses="rowinput" width="100%">
+          <ccmp:cuslink controlBean="#{chapterViewHandler}" prompt="#{bundle.chapter_add_new_chapter}"
+             modalPanelId="idChapterEdit" aAddRecord = "preAddChapter"/>    
+        </h:panelGrid>
+      <h:panelGroup id="CHAPTER_LINES">        
+        <rich:dataTable styleClass="listcontainer" headerClass="listheader" rowClasses="odd-row,even-row"
+          id="idChaptersLines" value="#{chapterViewHandler.chapterLines}" var="chapter">
+          <f:facet name="header">
+            <rich:columnGroup>
+              <rich:column width="125px" style="text-align:left;" valign="top">
+                <h:outputText value="#{bundle.chapter_chapter_name}" />
+              </rich:column>
+              <rich:column width="65px" style="text-align:left;" valign="top">
+                <h:outputText value="#{bundle.chapter_street_address}" />
+              </rich:column>
+              <rich:column width="40px" style="text-align:left;" valign="top">
+                <h:outputText value="#{bundle.chapter_city}" />
+              </rich:column>
+              <rich:column width="40px" style="text-align:left;" valign="top">
+                <h:outputText value="#{bundle.chapter_state}" />
+              </rich:column>
+              <rich:column width="40px" style="text-align:left;" valign="top">
+                <h:outputText value="#{bundle.chapter_zip}" />
+              </rich:column>
+              <rich:column width="40px" style="text-align:left;" valign="top">
+                <h:outputText value="#{bundle.chapter_country}" />
+              </rich:column>
+              <rich:column width="35px" style="text-align:left;" valign="top">
+                <h:outputText value="#{bundle.chapter_phone}" />
+              </rich:column>              
+              <rich:column width="20px" style="text-align:center;" valign="top">
+                <h:outputText value="#{bundle.common_action}" />
+              </rich:column>
+          </rich:columnGroup>
+          </f:facet>
+         <rich:column>
+          <h:outputText escape="false" value="#{chapter.chapterName}" />
+         </rich:column>
+         <rich:column>
+           <h:outputText escape="false" value="#{chapter.chapterStreetAddress}" />
+         </rich:column>
+         <rich:column>
+           <h:outputText escape="false" value="#{chapter.chapterCity}" />
+         </rich:column>
+         <rich:column>
+           <h:outputText escape="false" value="#{chapter.chapterState}" />
+         </rich:column>
+         <rich:column>
+           <h:outputText escape="false" value="#{chapter.chapterZip}" />
+         </rich:column>         
+         <rich:column>
+           <h:outputText escape="false" value="#{chapter.chapterCountry}" />
+         </rich:column>
+         <rich:column>
+           <h:outputText escape="false" value="#{chapter.chapterPhone}" />
+         </rich:column>         
+         <rich:column style="text-align:center;vertical-align:middle;">
+           <rowBar:rowToolBar recordId="#{chapter.chapterId}"
+           sectionId="CHAPTER_LINES" modalPanelId="idChapterEdit" parentComp="secCHAPTER_LINES"
+           aUpdateRecord="preUpdateChapter" aDeleteRecord="deleteChapter"/>
+         </rich:column>
+        </rich:dataTable>
+        <rich:datascroller id="idDataScroller" align="center"  for="idChaptersLines" maxPages="7" />
+        
+        <rich:jQuery selector="#idChaptersLines tr" query="mouseover(function(){jQuery(this).addClass('active-row')})"/>
+        <rich:jQuery selector="#idChaptersLines tr" query="mouseout(function(){jQuery(this).removeClass('active-row')})"/>  
+      </h:panelGroup>
+    </h:panelGroup>    
+  </ui:define>
+  <ui:define name="modalPanels">
+    <a4j:region>
+      <ui:include src="/templates/modaltmpl.xhtml">
+        <ui:param name="modalPanelId" value="idChapterEdit"/>
+        <ui:param name="moduleName" value="chapterEdit"/>
+      </ui:include>
+    </a4j:region>
+  </ui:define>
+</ui:composition>
+</html>

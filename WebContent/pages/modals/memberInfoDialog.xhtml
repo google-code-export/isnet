@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:a4j="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:c="http://java.sun.com/jstl/core">
+	<ui:composition>
+
+		<rich:modalPanel id="idmemberInfoDialog" minHeight="420" minWidth="450" >
+			<f:facet name="header"><h:outputText value="#{bundle.protege_profile_protege_info}"/></f:facet>
+			<f:facet name="controls">
+              	<h:graphicImage value="/images/close.png" style="cursor:pointer" onclick="Richfaces.hideModalPanel('idmemberInfoDialog')" />
+       		</f:facet>
+
+            <a4j:form id="memberInfoForm">
+				<rich:panel styleClass="popup_window_outer_panel_style" id="idPopupPanel">
+
+	<rich:tabPanel switchType="client">
+        <rich:tab label="Basic Information">
+					<h:panelGrid columns="2" id="gridMemberLog" width="100%">
+
+				    					    					
+						<h:outputLabel >
+							  <h:outputText value="#{bundle.member_first_name}"/>
+						</h:outputLabel>	
+						<h:inputText readonly="true"  id="idFirstName" value="#{protegeProfileViewHandler.currentMember.firstName}" styleClass="form_input_text_medium "/>
+						
+						<h:outputLabel >
+							  <h:outputText value="#{bundle.member_last_name}"/>
+						</h:outputLabel>	
+						<h:inputText readonly="true" id="idLastName" value="#{protegeProfileViewHandler.currentMember.lastName}" styleClass="form_input_text_medium "/>
+						<h:outputLabel >
+							  <h:outputText value="#{bundle.member_address}"/>
+						</h:outputLabel>	
+						<h:inputText  readonly="true" id="idStreetAddress" value="#{protegeProfileViewHandler.currentMember.streetAddress}" styleClass="form_input_text_medium "/>
+
+						<h:outputLabel >
+							  <h:outputText value="#{bundle.member_state}"/>
+						</h:outputLabel>
+						<h:selectOneMenu disabled="true" readonly="true" value="#{protegeProfileViewHandler.currentMember.state}"  styleClass="form_input_text_medium "> 
+							<f:selectItems value="#{memberViewHandler.statesList}"/>
+						</h:selectOneMenu>	
+						
+						<h:outputLabel >
+							  <h:outputText value="#{bundle.member_city}"/>
+						</h:outputLabel>	
+						<h:inputText   readonly="true" id="idCity" value="#{protegeProfileViewHandler.currentMember.city}" styleClass="form_input_text_medium"/>
+						
+						<h:outputLabel >
+							  <h:outputText value="#{bundle.member_zip}"/>
+						</h:outputLabel>	
+						<h:inputText   readonly="true" id="idStreetZip" value="#{protegeProfileViewHandler.currentMember.zip}" styleClass="form_input_text_medium"/>
+						
+
+						<h:outputLabel >
+							  <h:outputText value="#{bundle.member_country}"/>
+						</h:outputLabel>
+						<h:selectOneMenu disabled="true" value="#{protegeProfileViewHandler.currentMember.country}"  styleClass="form_input_text_medium"> 
+							<f:selectItems value="#{memberViewHandler.countryList}"/>
+						</h:selectOneMenu>
+						
+							<h:outputLabel >
+								  <h:outputText value="#{bundle.member_home_phone}"/>
+							</h:outputLabel>	
+							<h:inputText  readonly="true" id="idHomePhone" value="#{protegeProfileViewHandler.currentMember.homePhoneNumber}" styleClass="form_input_text_medium"/>
+							
+
+							<h:outputLabel >
+								  <h:outputText value="#{bundle.member_work_phone}"/>
+							</h:outputLabel>	
+							<h:inputText  readonly="true" id="idWorkPhone" value="#{protegeProfileViewHandler.currentMember.workPhoneNumber}" styleClass="form_input_text_medium"/>
+							
+							<h:outputLabel >
+								  <h:outputText value="#{bundle.member_cell_phone}"/>
+							</h:outputLabel>	
+							<h:inputText  readonly="true" id="idCellPhone" value="#{protegeProfileViewHandler.currentMember.cellPhoneNumber}" styleClass="form_input_text_medium"/>
+																											
+							<h:outputLabel >
+							<h:outputText value="#{bundle.member_email_id}"/>
+							</h:outputLabel>	
+							<h:inputText  readonly="true" id="idEmail" value="#{protegeProfileViewHandler.currentMember.email}" styleClass="form_input_text_medium"/>
+													
+							<h:outputLabel >
+							<h:outputText readonly="true" value="#{bundle.member_linked_in_URL}"/><h:outputText styleClass="required_field" value="" />
+							</h:outputLabel>	
+							<h:inputText  id="idLinkedInURL" value="#{protegeProfileViewHandler.currentMember.linkedInURL}" styleClass="form_input_text_medium"/>
+			
+					</h:panelGrid>
+        </rich:tab>
+        <rich:tab label="Details Information">
+					<h:panelGrid columns="2" id="gridProtegeDetails" width="100%">
+
+							<h:outputLabel>
+								  <h:outputText value="#{bundle.member_ethinicity}"/>
+							</h:outputLabel>
+							<h:selectOneMenu disabled="true" value="#{protegeProfileViewHandler.currentMember.ethinicity}"  styleClass="form_input_text_medium"> 
+								<f:selectItems value="#{memberViewHandler.ethinicityList}"/>
+							</h:selectOneMenu>
+							
+							<h:outputLabel>
+								  <h:outputText value="#{bundle.member_marital_status}"/><h:outputText styleClass="required_field" value="*" />
+							</h:outputLabel>
+							<h:selectOneMenu disabled="true" value="#{protegeProfileViewHandler.currentMember.maritalStatus}"  styleClass="form_input_text_medium"> 
+								<f:selectItems value="#{memberViewHandler.martialStatusList}"/>
+							</h:selectOneMenu>	
+							
+							
+							<h:outputLabel>
+								  <h:outputText value="#{bundle.member_gender}" />
+							</h:outputLabel>							
+							<h:selectOneRadio disabled="true" id="idGenderIndicator" style="width: 150px;" value="#{protegeProfileViewHandler.currentMember.genderInd}">
+							  <f:selectItem  itemLabel="#{bundle.member_gender_male}" itemValue="Y"  />
+							  <f:selectItem  itemLabel="#{bundle.member_gender_female}" itemValue="N"  />
+							</h:selectOneRadio>	
+
+							<h:outputLabel>
+								  <h:outputText value="#{bundle.member_birth_year}"/>
+							</h:outputLabel>
+							<h:selectOneMenu disabled="true" value="#{protegeProfileViewHandler.currentMember.birthYear}"  styleClass="form_input_text_medium"> 
+								<f:selectItems value="#{memberViewHandler.birthYearlist}"/>
+							</h:selectOneMenu>	
+																											
+							<h:outputLabel>
+								  <h:outputText value="#{bundle.member_children_ind}" />
+							</h:outputLabel>							
+							<h:selectOneRadio disabled="true" style="width: 150px;" value="#{protegeProfileViewHandler.currentMember.childrenInd}">
+							  <f:selectItem  itemLabel="#{bundle.yes_label}" itemValue="Y" />
+							  <f:selectItem  itemLabel="#{bundle.no_label}" itemValue="N" />
+							</h:selectOneRadio>
+
+							<h:outputLabel>
+								  <h:outputText value="#{bundle.member_profession}"/>
+							</h:outputLabel>
+							<h:selectOneMenu disabled="true" value="#{protegeProfileViewHandler.currentMember.profession}"  styleClass="form_input_text_medium"> 
+								<f:selectItems value="#{memberViewHandler.professionList}"/>
+							</h:selectOneMenu>	
+							
+							<h:outputLabel >
+							<h:outputText value="#{bundle.member_company_name}"/>
+							</h:outputLabel>	
+							<h:inputText readonly="true"  id="idCompanyName" value="#{protegeProfileViewHandler.currentMember.company}" styleClass="form_input_text_medium"/>
+																						
+							<h:outputLabel>
+								  <h:outputText value="#{bundle.member_madhab}"/><h:outputText styleClass="required_field" value="*" />
+							</h:outputLabel>
+							<h:selectOneMenu  disabled="true" value="#{protegeProfileViewHandler.currentMember.mazhab}"  styleClass="form_input_text_medium"> 
+								<f:selectItems value="#{memberViewHandler.madhabList}"/>
+							</h:selectOneMenu>
+
+					</h:panelGrid>
+        </rich:tab>
+        
+	        <h:panelGrid columns="1" width="100%" columnClasses="column_class_center">
+	        <a4j:commandButton value="#{bundle.button_close_label}" onclick="Richfaces.hideModalPanel('idmemberInfoDialog')" />
+	        </h:panelGrid>
+	        
+    </rich:tabPanel>
+															
+
+				</rich:panel>
+			</a4j:form>							
+		</rich:modalPanel>
+	
+	</ui:composition>
+</html>

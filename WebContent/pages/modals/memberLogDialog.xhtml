@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:a4j="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:c="http://java.sun.com/jstl/core">
+	<ui:composition>
+
+		<rich:modalPanel id="idmemberLogDialog" minHeight="300" minWidth="450" >
+			<f:facet name="header"><h:outputText value="#{bundle.activity_log_activity_title}"/></f:facet>
+			<f:facet name="controls">
+              	<h:graphicImage value="/images/close.png" style="cursor:pointer" onclick="Richfaces.hideModalPanel('idmemberLogDialog')" />
+       		</f:facet>
+
+            <a4j:form id="memberLogForm">
+				<h:inputHidden value="#{memberLogViewHandler.hasError}" id="errorCount"/>
+				<rich:panel styleClass="popup_window_outer_panel_style" id="idPopupPanel">
+
+					<h:dataTable rendered="#{memberLogViewHandler.hasError}" value="#{memberLogViewHandler.errMsgs}" var="msg" width="100%" columnClasses="error_panel_left_col,error_panel_right_col">
+					   <f:facet name="header"><h:outputText  value="#{bundle.member_validation_header}"/> </f:facet>
+						<h:column >
+							<h:graphicImage value="/images/error2.png" boder="0" style="margin-top: 3px;"/>					
+						</h:column>
+						<h:column >
+						 <h:outputText  value="#{msg}"/>
+						</h:column>
+					
+					</h:dataTable>
+															
+					<h:panelGrid columns="2" id="gridMemberLog" width="100%">
+						<h:outputText value="#{bundle.activity_log_mentor_list}" />
+						<h:selectOneMenu id="idMemberList"  value="#{memberLogViewHandler.currentLog.id.memberId}" styleClass="form_input_select_medium">
+					     <f:selectItems value="#{memberLogViewHandler.viewDataProvider.memberList}" />
+					    </h:selectOneMenu> 	
+				    					    					
+						<h:outputText value="#{bundle.activity_type}" />
+
+					    <h:selectOneMenu id="idActivityType"  value="#{memberLogViewHandler.currentLog.id.memberActivityType}" styleClass="form_input_select_medium">
+					     <f:selectItems value="#{memberLogViewHandler.viewDataProvider.activityList}" />
+					    </h:selectOneMenu> 	
+
+						<h:outputText value="#{bundle.activity_log_subject}" />
+						<h:inputText id="idTopic" value="#{memberLogViewHandler.currentLog.topic}" styleClass="form_input_text_medium"></h:inputText> 
+						
+						<h:outputText value="#{bundle.activity_log_body}" />						    
+					    <h:inputTextarea id="idBody" rows="6"  value="#{memberLogViewHandler.currentLog.memberLogEntryDescription}" styleClass="form_input_text_medium"></h:inputTextarea>
+											
+						<h:outputText value=""/>
+						<h:panelGroup>
+							<a4j:commandButton action="#{memberLogViewHandler.saveMemberLog}"  value="#{bundle.button_submit_label}" oncomplete="ModalHelper.validateModal('memberLogForm','idmemberLogDialog')"  reRender="idDataGrid,idDataScroller,errorCount,idPopupPanel" />
+							<a4j:commandButton value="#{bundle.button_close_label}" onclick="Richfaces.hideModalPanel('idmemberLogDialog')" />		
+						</h:panelGroup>				
+					</h:panelGrid>
+				</rich:panel>
+			</a4j:form>							
+		</rich:modalPanel>
+	
+	</ui:composition>
+</html>
