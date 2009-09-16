@@ -1,0 +1,252 @@
+.form {
+    margin-top: 0px;
+}
+.formHead {
+    text-align: left;
+    background: #FFFCEF url(../images/2.jpg) 0 0 repeat-x;
+    font-weight: bold;
+    color: #000;
+    padding-left: 13px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-top: 1px solid #FFFABF;
+    border-left: 1px solid #EFDC0E;
+    border-right: 1px solid #EFDC0E;
+    text-align:center;
+}
+
+.formFields {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: #f5f5f5;
+}
+
+.formBorder {
+    border-left: 1px solid #DFD999;
+    border-right: 1px solid #DFD999;
+}
+
+.formControls {
+    background-color: #EFEFEF;
+    border: 1px solid #EFEFEF;
+    padding: 4px;
+}
+.input_label_column
+{
+	text-align:right;
+	padding-left: 5px;
+	padding-right: 10px;
+}
+.form_input_text_small
+{
+	width: 150px;
+	border: 1px solid #C3D2DF;
+	margin: 1px 0px 1px 0px;
+}
+.form_input_text_medium
+{
+	width: 200px;
+	border: 1px solid #C3D2DF;
+	margin: 1px 0px 1px 0px;
+}
+.form_input_select_medium
+{
+	width: 201px;
+	border: 1px solid #C3D2DF;
+	margin: 1px 0px 1px 0px;
+}
+.form_input_text_large
+{
+	width: 350px;
+	border: 1px solid #C3D2DF;
+	margin: 1px 0px 1px 0px;
+}
+
+
+.wideLabels .entry .multiLineInput {
+    margin-left: 240px;
+}
+
+.wideEntry {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.wideEntry .label {
+    color: #000000;
+    font-weight:bold;
+    vertical-align: top;
+    padding-right: 10px;
+    padding-top: 10px;
+    white-space: nowrap;
+}
+
+.wideEntry .output {
+    padding-top: 10px;
+}
+
+.wideEntry .output .inlineWikiText .wikiPara:first-child {
+    display: inline;
+}
+.edit_image
+{
+	background-image: url(../images/dashboard.png);
+	border: 0;
+}
+.menu_image_style
+{
+	margin-left:10px;
+}
+
+.borderL{ border-left: #bdc9d4 1px solid;}
+.borderR{ border-right: #bdc9d4 1px solid;}
+.borderT{ border-top: #bdc9d4 1px solid;}
+.borderB{ border-bottom: #bdc9d4 1px solid;}
+
+tr.toprowinput{
+  height: 20px;
+}
+
+tr.toprowinput td{
+  padding-top: 12px;
+  padding-bottom: 1px;
+}
+
+tr.rowinput {
+  height: 19px;
+}
+
+tr.rowinput td{
+
+}
+
+table.toprowinput {
+
+}
+
+td.rowinput, table.rowinput, div.rowinput{
+
+}
+
+.leftprompt {
+
+  font-size: 9pt;
+  text-indent: 6px;
+  font-weight:500;
+}
+
+.data {
+  font-size: 9pt;
+}
+
+.leftdata {
+  font-size: 9pt;
+  text-indent: 6px;
+}
+
+.control1 {
+  background-color:#FFFFFF;
+  color: #000000;
+  border-right: #7aa2c6 1px solid;
+  border-top: #7aa2c6 1px solid;
+  border-left: #7aa2c6 1px solid;
+  border-bottom: #7aa2c6 1px solid;
+  font-size: 11px;
+  text-indent:1px;
+}
+
+.control2 {
+  background-color: #f4f9ff;
+  color: #00388c;
+  border-right: #7aa2c6 1px solid;
+  border-top: #7aa2c6 1px solid;
+  border-left: #7aa2c6 1px solid;
+  border-bottom: #7aa2c6 1px solid;
+  font-size: 10px;
+}
+ .button_right{
+    margin-left: 10px;
+ }
+
+
+tr.d0 td {
+	background-color: #FCFFEF;
+    color: black;
+}
+tr.d1 td {
+	background-color: #EFEFE0;
+    color: black;
+}
+
+.table_header{
+
+}
+
+
+
+/** Added my Shamim 14-08-09*/
+	.top_panel_psep  { 
+		color: #666666; 
+		padding: 0px 5px 0px 5px; 
+		font-size: x-small;
+		font-weight: bolder	
+	}
+	.top_nav_col{
+		width: 318px;
+		text-align: right;
+	}
+	.column_class_center{
+		text-align: center;
+	}
+	.content_div{
+		border-left: 1px solid #F4EDBF;
+		border-right: 1px solid #F4EDBF;
+	}
+	.panel_content_body{
+	/*#FFFBEF #FFFEEF*/
+		background-color: #F5F5F5;
+	}
+	
+	.panel_header{
+	    background: #FFFCEF url(../images/2.jpg) 0 0 repeat-x;	
+	    height: 30px;
+	    text-align: center;
+	    font-size: 1.1em;
+	    vertical-align:bottom;
+	    padding:1px 0;
+	    border: none;
+		}
+	.content_panel{
+			border-left: 1px solid #F4EDBF;
+			border-right: 1px solid #F4EDBF;
+			border-top: none;
+			
+		}
+	.internal_content_grid_column1{
+		text-align: right;	
+		padding-right: 10px;
+		}
+	.internal_content_grid_column2{
+		text-align: left;
+		}
+	
+	.required_field
+	{
+		color: Red;
+		margin-left: 5px;
+	}		
+	.orange_link{
+	 	color:#783F00;
+	}
+	.error_panel_left_col{
+		width: 50px;
+		text-align: right;
+	}
+	.error_panel_right_col{
+		width: 120px;
+		color: red;
+		font-weight: bold;
+		vertical-align: top;
+		padding-left: 10px;
+	}

@@ -1,0 +1,226 @@
+.form_input_text_small
+{
+	width: 150px;
+	border: 1px solid #C3D2DF;
+	margin: 1px 0px 1px 0px;
+}
+.form_input_text_medium
+{
+	width: 200px;
+	border: 1px solid #C3D2DF;
+	margin: 1px 0px 1px 0px;
+}
+.form_input_select_medium
+{
+	width: 201px;
+	border: 1px solid #C3D2DF;
+	margin: 1px 0px 1px 0px;
+}
+.form_input_text_medium_large
+{
+	width: 300px;
+	border: 1px solid #C3D2DF;
+	margin: 1px 0px 1px 0px;
+}
+.form_input_text_large
+{
+	width: 350px;
+	border: 1px solid #C3D2DF;
+	margin: 1px 0px 1px 0px;
+}
+	
+	
+	.error_message{
+		color: red;
+	}
+	.center_align_col{
+		text-align: center;
+	}
+	.top_panel_psep  { 
+		color: #666666; 
+		padding: 0px 5px 0px 5px; 
+		font-size: x-small;
+		font-weight: bolder	
+	}
+	.top_nav_col{
+		width: 318px;
+		text-align: right;
+	}
+	.column_class_center{
+		text-align: center;
+	}
+	.column_class_left{
+		text-align: left;
+	}	
+	.content_div{
+		border-left: 1px solid #F4EDBF;
+		border-right: 1px solid #F4EDBF;
+	}
+	.panel_content_body{
+	/*#FFFBEF #FFFEEF*/
+		background-color: #F5F5F5;
+	}
+	
+	.panel_header{
+	    background: #FFFCEF url(../images/2.jpg) 0 0 repeat-x;	
+	    height: 30px;
+	    text-align: center;
+	    font-size: 1.1em;
+	    vertical-align:bottom;
+	    padding:1px 0;
+	    border: none;
+		}
+	.content_panel{
+			border-left: 1px solid #F4EDBF;
+			border-right: 1px solid #F4EDBF;
+			border-top: none;
+			
+		}
+	.internal_content_grid_column1{
+		text-align: right;	
+		padding-right: 10px;
+		}
+	.internal_content_grid_column2{
+		text-align: left;
+		}
+	
+	.required_field
+	{
+		color: Red;
+		margin-left: 5px;
+	}		
+	.orange_link{
+	 	color:#000000;
+	}
+	#idPublicNav a:hover{
+		color: red;
+	}
+	.error_panel_left_col{
+		width: 50px;
+		text-align: right;
+	}
+	.error_panel_right_col{
+		width: 120px;
+		color: red;
+		font-weight: bold;
+		vertical-align: top;
+		padding-left: 10px;
+	}
+	.login_page_column1{
+		width: 22%;
+		border:0;
+		margin:0;
+
+	}
+	.login_page_column2{
+		width: 56%;
+		text-align: center;
+		vertical-align: top;
+	}
+	.login_page_column3{
+		width: 22%;
+		padding: 0;
+
+	}
+	.reg_page_column1{
+		width: 10%;
+
+	}
+	.reg_page_column2{
+		width:80%;
+	}
+	.reg_page_column3{
+		width: 10%;
+	}
+		
+	.login_box_panel_header{
+	 	background-image : url();
+	    border:0;
+        height:15px;
+        text-align:center;
+        vertical-align:middle;
+        color:black;
+        padding:4px 0;
+		background-color:#BFAB77;
+		font-weight:bold;
+		font-size: 9pt;
+	        
+	
+	}
+	.container_box_panel_header{
+	 	background-image : url();
+	    border:0;
+        height:15px;
+        text-align:center;
+        vertical-align:middle;
+        color:black;
+        padding:5px 0;
+		background-color:#BFAB77;
+		font-weight:bold;
+		font-size: 9pt;
+	        
+	
+	}
+	.login_box_panel{
+	margin-bottom:0px;
+	border:1px solid #CFCAB5;
+	background-color:#EFECE0;
+    /*
+    1. #EDEFE0
+    2. #EFECE0
+    3. #FFFBF0
+    4. #FFFBF0
+    5. #EFEFEF
+    */
+    color: black;	
+	}
+	.container_body_style{
+	margin-bottom:0px;
+	border:1px solid #CFCAB5;
+	background-color:#EFECE0;
+	padding: 0;
+    /*
+    1. #EDEFE0
+    2. #EFECE0
+    3. #FFFBF0
+    4. #FFFBF0
+    5. #EFEFEF
+    */
+    color: black;	
+	}
+	.col_1{
+		text-align: center;
+	}
+	.col_2{
+		text-align: right;
+
+	}
+	.login_box_input{
+	  width: 100px;
+	}
+.table_control_normal_style{
+ 		color: #337ACF;
+		text-decoration: none;
+		font-weight: bolder;
+ }
+ 
+ .tooltips_span_style{
+	 white-space:nowrap;
+	 color: black;
+	 text-decoration:none;
+ 
+ } 
+ .tooltips_style{
+	   border-width:2px;
+	   padding:10px;
+	   background-color: #FFFFFF;
+	    text-decoration:none;
+ }
+ .table_column_style{
+ 	color: black;
+ 	text-align: left;
+ 	background-color: #EFE4C2;
+ }
+ .container_even_row_style{
+	background-color: #EFE8D1;
+}
