@@ -1,0 +1,135 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+<ui:composition>
+   <div id="idLeftSide" style="border:0;">
+    <div id="sidebar" >
+      <h:panelGroup id="ltop_mdbsectionM" rendered="${userType eq 'M'}">
+      	<!-- Mentor Home Menu -->
+        <h:panelGroup id="idMentorDashboardPanel" rendered="${moduleType eq 'MH'}">
+          <ul class="sidemenu">
+            <li>
+              <h:outputLink styleClass="menu_item_clink" 
+                value="#{controllerBean.contextPath}/pages/secure/mentorDashboard.faces">
+                <h:outputText value="#{bundle.left_navigation_mentor_dashboard}"/>
+              </h:outputLink>
+            </li>
+            <li>
+              <h:outputLink styleClass="menu_item_clink" 
+                value="#{controllerBean.contextPath}/pages/secure/memberProtegeProfile.faces">
+                <h:outputText value="#{bundle.page_header_protege_profile}"/>
+              </h:outputLink>
+            </li>              
+            <li>
+              <h:outputLink styleClass="menu_item_clink" 
+                value="#{controllerBean.contextPath}/pages/secure/memberLog.faces">
+                <h:outputText value="#{bundle.left_navigation_mentor_activity_log}"/>
+              </h:outputLink>
+            </li>   
+            <li>
+              <h:outputLink styleClass="menu_item_clink" 
+                value="#{controllerBean.contextPath}/pages/secure/memberStory.faces">
+                <h:outputText value="#{bundle.left_navigation_mentor_success_story}"/>
+              </h:outputLink>
+            </li>                      
+         </ul>
+        </h:panelGroup>
+        
+	    </h:panelGroup>
+	    
+	    <h:panelGroup id="ltop_gdbsectionG" rendered="${userType eq 'G'}">
+	     <ul class="sidemenu">
+          <li><a href="guest_site_dashboard.htm">Dashboard</a></li>
+          <li><a href="guest_site_mentor_profile.htm">Mentor Profile</a></li>
+          <li><a href="guest_site_mentor_search.htm">Mentor Search</a></li>
+          <li><a href="guest_site_protege_viewpoint.htm">Protege's Viewpoint</a></li>
+          <li><a href="guest_site_activity_logs.htm">Protege's Activity Log</a></li>
+          <li><a href="guest_online_tutorial.htm">Tutorial</a></li>
+       </ul>
+      </h:panelGroup>
+      <h:panelGroup id="ltop_gdbsectionA" rendered="${userType eq 'A'}">
+        <h:panelGroup id="idAppManagePanel" rendered="${moduleType eq 'AM'}">
+          <ul class="sidemenu">            
+            <li>
+              <h:outputLink styleClass="menu_item_clink" 
+                value="#{controllerBean.contextPath}/pages/secure/udValueView.faces">
+                <h:outputText value="#{bundle.left_navigation_user_defined_values}"/>
+              </h:outputLink>
+            </li>
+            <li>
+              <h:outputLink styleClass="menu_item_clink" 
+                value="#{controllerBean.contextPath}/pages/secure/vendorView.faces">
+                <h:outputText value="#{bundle.left_navigation_item_vendor}"/>
+              </h:outputLink>
+            </li>
+            <li>
+              <h:outputLink styleClass="menu_item_clink" 
+                value="#{controllerBean.contextPath}/pages/secure/trainingItemView.faces">
+                <h:outputText value="#{bundle.left_navigation_training_material}"/>
+              </h:outputLink>
+            </li>            
+            <li>
+              <h:outputLink styleClass="menu_item_clink" 
+                value="#{controllerBean.contextPath}/pages/secure/documentView.faces">
+                <h:outputText value="#{bundle.left_navigation_document_manage}"/>
+              </h:outputLink>
+            </li>            
+            <li>
+              <h:outputLink styleClass="menu_item_clink"
+                value="#{controllerBean.contextPath}/pages/secure/modulesView.faces">
+                <h:outputText value="#{bundle.left_navigation_tutorial_modules}"/>
+              </h:outputLink>
+            </li>
+            <li>
+              <h:outputLink styleClass="menu_item_clink"
+                value="#{controllerBean.contextPath}/pages/secure/qustionAnsView.faces">
+                <h:outputText value="#{bundle.left_navigation_tutorial_qa}"/>
+              </h:outputLink>
+            </li>
+         </ul>
+        </h:panelGroup>
+        <h:panelGroup id="idUserManagePanel" rendered="${moduleType eq 'UM'}">
+          <ul class="sidemenu">
+            <li>
+              <h:outputLink styleClass="menu_item_clink" 
+                value="#{controllerBean.contextPath}/pages/secure/manageUsersView.faces">
+                <h:outputText value="#{bundle.left_navigation_manage_user}"/>
+              </h:outputLink>
+            </li>
+            <li>
+              <h:outputLink styleClass="menu_item_clink" 
+                value="#{controllerBean.contextPath}/pages/secure/resetUserPasswordView.faces">
+                <h:outputText value="#{bundle.left_navigation_reset_user_password}"/>
+              </h:outputLink>
+            </li>
+            <li>
+              <h:outputLink styleClass="menu_item_clink">
+                <h:outputText value="#{bundle.left_navigation_update_payment}"/>
+              </h:outputLink>
+            </li>
+         </ul>
+        </h:panelGroup>
+        <h:panelGroup id="idReletionManagePanel" rendered="${moduleType eq 'RM'}">
+          <ul class="sidemenu">
+            <li>
+              <h:outputLink styleClass="menu_item_clink" 
+                value="#{controllerBean.contextPath}/pages/secure/chapterView.faces">
+                <h:outputText value="#{bundle.left_chapter_manage_chapter}"/>
+              </h:outputLink>
+            </li>
+            <li>
+              <h:outputLink styleClass="menu_item_clink" 
+                value="#{controllerBean.contextPath}/pages/secure/protegeWithoutMentor.faces">
+                <h:outputText value="#{bundle.left_chapter_proteges_without_mentor}"/>
+              </h:outputLink>
+            </li>
+         </ul>
+        </h:panelGroup>
+      </h:panelGroup>
+    </div>
+  </div>
+</ui:composition>
+</html>
