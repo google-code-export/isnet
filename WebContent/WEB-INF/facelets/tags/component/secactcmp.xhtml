@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:a4j="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:c="http://java.sun.com/jstl/core">
+  <ui:composition>    
+      <rich:panel styleClass="action_panel" id="${modalId}Ctrl">              
+        <h:panelGroup>
+          <a4j:commandButton rendered="${controlBean.reloadBean}" id="${modalId}Reload" value="Reload"
+            action="${controlBean[reloadAction]}" reRender="${modalId}Ctrl,${modalId}ErrPan,${modalId}Container"
+            onclick="forceSBlockUI(ajaxProcessMsg);" oncomplete="forceSUnblockUI();"
+            styleClass="ibutton" style="background:#F8F3D3;"/>
+            
+          <a4j:commandButton rendered="${actionType eq 'A'}" id="${modalId}Add" value="Add" action="${controlBean[addAction]}"
+            oncomplete="forceSUnblockUI(),Common.closeModalPanel('${controlBean.errorMessage}', '${modalId}');"
+            onclick="forceSBlockUI(ajaxProcessMsg);" reRender="${modalId}Ctrl,${modalId}ErrPan,${reRenderIds}"
+            styleClass="ibutton" style="background:#F8F3D3;"/>
+        
+          <a4j:commandButton rendered="${actionType eq 'U'}" id="${modalId}Update" value="Update"  action="${controlBean[updateAction]}"
+            oncomplete="forceSUnblockUI(),Common.closeModalPanel('${controlBean.errorMessage}', '${modalId}');"
+            onclick="forceSBlockUI(ajaxProcessMsg);" reRender="${modalId}Ctrl,${modalId}ErrPan,${reRenderIds}"
+            styleClass="ibutton" style="background:#F8F3D3;"/>
+           
+           &#160; 
+           <a4j:commandButton id="${modalId}Close" onclick="Richfaces.hideModalPanel('${modalId}')" 
+            ajaxSingle="true" value="Close" styleClass="ibutton" style="background:#F8F3D3;"/>
+        </h:panelGroup>
+    </rich:panel>
+  </ui:composition>
+</html>
