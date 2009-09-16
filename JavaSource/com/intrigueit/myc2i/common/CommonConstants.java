@@ -1,0 +1,34 @@
+package com.intrigueit.myc2i.common;
+
+public class CommonConstants {
+
+	public static final String CURRENT_MEMMBER_ID = "CURRENT_MEMBER_ID";
+
+	public static final String CURRENT_MEMMBER = "CURRENT_MEMBER";
+
+	/** User session object key. */
+    public static final String SESSION_MEMBER_KEY = "LOGIN_USER";
+    
+    /** User name session object key. */
+    public static final String SESSION_MEMBER_EMAIL = "USER_EMAIL";	
+    
+    public enum ACTIVITY_STATUS { PENDING ,ACCEPTED };
+    
+    public enum STATUS { Yes, No };
+     
+    public static final String ADD = "ADD";
+    public static final String EDIT = "EDIT";
+    public static final String DELETE = "DELETE";
+    
+    public static final Long MENTOR = 15L;
+    public static final Long LEAD_MENTOR = 16L;
+    public static final Long PROTEGE = 17L;
+    public static final Long ADMIN = 18L;
+    
+    public static final Long ROLE_ADMINISTRATOR = 19L;
+    public static final Long ROLE_SUPERVISOR = 20L;
+    public static final Long ROLE_OPERATOR = 21L;
+    public static final Long ROLE_GUEST = 22L;
+    
+    	
+}
