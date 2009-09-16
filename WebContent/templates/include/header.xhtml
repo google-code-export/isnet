@@ -1,0 +1,61 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+  xmlns:rich="http://richfaces.org/rich">  
+<ui:composition>
+  <div id="header">
+    <div class="top"></div>
+    <div class="spacer"></div>
+    <div class="logo" style="border: 0px solid red;">
+      
+			 <table width="100%" border="0" cellpadding="0" cellspacing="0" >
+			    <tr>
+			      <td height="87px" class="banner">
+				  <table width="96%" border="0" style="margin-top: 15px;">
+				  <tr>
+				  	<td></td>
+				  	<td align="right" >
+
+			          <h:panelGroup>
+				            <h:commandLink action="#{authenticationViewHandler.logOutUser}" value="#{bundle.top_navigation_sign_out}"  rendered="#{authenticationViewHandler.isLogged}">
+				            </h:commandLink>
+							 <h:outputLabel styleClass="top_panel_psep" rendered="#{authenticationViewHandler.isLogged}">
+								  <h:outputText
+								    value="|"/>
+							</h:outputLabel>
+				     		<h:outputLabel style="text-decoration:none;" rendered="#{authenticationViewHandler.isLogged}">
+								<h:outputText 
+									    value="#{authenticationViewHandler.userEmailId}"/>
+							</h:outputLabel>
+			
+							 <h:outputLabel styleClass="top_panel_psep" rendered="#{authenticationViewHandler.isLogged}">
+								  <h:outputText
+								    value="|"/>
+							</h:outputLabel>            
+							  <h:commandLink  styleClass=""  style="text-decoration:none;">
+								  <h:outputText id="idPrivacyPolicy" 
+								    value="#{bundle.top_navigation_privacy_policy}"/>
+							</h:commandLink>							
+							 <h:outputLabel styleClass="top_panel_psep">
+								  <h:outputText
+								    value="|"/>
+							</h:outputLabel>
+							  <h:commandLink  styleClass=""  style="text-decoration:none;">
+								  <h:outputText id="idContactus" 
+								    value="#{bundle.top_navigation_contact_us}"/>
+							</h:commandLink>
+							
+			          </h:panelGroup>
+				  	</td>
+				  </tr>
+				  </table>
+				  </td>
+			    </tr>
+			  </table>
+    </div>
+  </div>
+
+</ui:composition>
+</html>
