@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:a4j="http://richfaces.org/a4j"
+   xmlns:rich="http://richfaces.org/rich"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:c="http://java.sun.com/jstl/core"
+   xmlns:ccmp="http://www.myc2i.com/jsf/commoncmp">
+  <ui:composition>
+    <rich:panel id="idUDValueEditContainer" styleClass="default_edit">
+	 <rich:spacer width="100%" height="20"/>
+	 <c:set var="currentEBean" value="#{udvViewHandler.currentUDValues}"></c:set>
+	 <h:panelGrid columns="3" id="idUDValueEditPanelGroup" border="0" columnClasses="prompt,data,errprompt"
+    rowClasses="rowinput" width="100%">
+	   <h:panelGroup>
+       <h:outputText value="#{bundle.user_define_values_category_name}"/><span class="required_field">*</span>
+       </h:panelGroup>
+       <h:inputText styleClass="short_text" value="#{currentEBean.udValuesCategory}" id="CategoryName">
+        <rich:ajaxValidator event="onblur" />
+     </h:inputText>
+     <rich:message for="CategoryName" />
+     <h:panelGroup>
+       <h:outputText value="#{bundle.user_define_values_code}"/><span class="required_field">*</span>
+       </h:panelGroup>
+       <h:inputText styleClass="short_text" value="#{currentEBean.udValuesValue}" id="Code">
+        <rich:ajaxValidator event="onblur" />
+     </h:inputText>
+     <rich:message for="Code" />
+	   
+      <h:panelGroup>
+        <h:outputText value="#{bundle.user_define_values_desc}"/>
+        <span class="required_field">&#160;</span>
+      </h:panelGroup>
+			<h:inputText id="Description" styleClass="medium_text" value="#{currentEBean.udValuesDesc}"
+        label="Description">
+        <rich:ajaxValidator event="onblur" />
+      </h:inputText>
+      <rich:message for="Description" />  
+		</h:panelGrid>
+
+    <rich:spacer width="100%" height="15"/>
+    <ccmp:secactcmp controlBean="#{udvViewHandler}" modalId="idUDValueEdit" 
+      actionType="#{udvViewHandler.actionType}"
+      addAction = "addUDValues" updateAction = "updateUDValues"  reloadAction = "preUpdateMaster"
+      reRenderIds="#{udvViewHandler.reRenderIds}"/>
+    <rich:spacer width="100%" height="5"/>
+    </rich:panel>
+  </ui:composition>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:a4j="http://richfaces.org/a4j"
+   xmlns:rich="http://richfaces.org/rich"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:c="http://java.sun.com/jstl/core"
+   xmlns:ccmp="http://www.myc2i.com/jsf/commoncmp">
+  <ui:composition>
+    <rich:panel id="idVendorEditContainer" styleClass="default_edit">
+	 <rich:spacer width="100%" height="20"/>
+	 <c:set var="currentEBean" value="#{vendorViewHandler.currentVendor}"></c:set>
+	 <h:panelGrid columns="3" id="idVendorEditPanelGroup" border="0" columnClasses="prompt,data,errprompt"
+      rowClasses="rowinput" width="100%">
+       <h:panelGroup>
+        <h:outputText value="#{bundle.training_materials_vendor_name}" />
+        <span class="required_field">*</span>
+       </h:panelGroup>
+       <h:inputText styleClass="short_text" value="#{currentEBean.vendorName}" id="vendorName">
+        <rich:ajaxValidator event="onblur" />
+       </h:inputText>
+       <rich:message for="vendorName" />
+       
+       <h:panelGroup>
+        <h:outputText value="#{bundle.training_materials_vendor_email}" />
+        <span class="required_field">*</span>
+       </h:panelGroup>
+       <h:inputText styleClass="medium_text" value="#{currentEBean.vendorEmail}" id="vendorEmail">
+        <rich:ajaxValidator event="onblur" />
+       </h:inputText>
+       <rich:message for="vendorEmail" />
+       
+       <h:panelGroup>
+        <h:outputText value="#{bundle.training_materials_vendor_address}" />
+        <span class="required_field">*</span>
+       </h:panelGroup>
+       <h:inputText styleClass="medium_text" value="#{currentEBean.vendorAddress}" id="vendorAddress">
+        <rich:ajaxValidator event="onblur" />
+       </h:inputText>
+       <rich:message for="vendorAddress" />
+       
+       <h:panelGroup>
+        <h:outputText value="#{bundle.training_materials_vendor_phone}" />
+        <span class="required_field">&#160;</span>
+       </h:panelGroup>
+       <h:inputText styleClass="short_text" value="#{currentEBean.vendorPhone}" id="vendorPhone"
+        label="Vendor phone">
+        <f:convertNumber type="number"/>
+        <rich:ajaxValidator event="onblur" />
+       </h:inputText>
+       <rich:message for="vendorPhone" />
+       
+		</h:panelGrid>
+
+    <rich:spacer width="100%" height="15"/>
+    <ccmp:secactcmp controlBean="#{vendorViewHandler}" modalId="idVendorEdit" 
+      actionType="#{vendorViewHandler.actionType}"
+      addAction = "addVendor" updateAction = "updateVendor"  reloadAction = "preUpdateMaster"
+      reRenderIds="#{vendorViewHandler.reRenderIds}"/>
+    <rich:spacer width="100%" height="5"/>
+    </rich:panel>
+  </ui:composition>
+</html>

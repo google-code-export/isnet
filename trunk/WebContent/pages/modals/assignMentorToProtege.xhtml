@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:a4j="http://richfaces.org/a4j"
+   xmlns:rich="http://richfaces.org/rich"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:c="http://java.sun.com/jstl/core"
+   xmlns:ccmp="http://www.myc2i.com/jsf/commoncmp">
+  <ui:composition>
+   <rich:panel id="idAssignProtegeContainer" styleClass="default_edit">
+	 <rich:spacer width="100%" height="20"/>
+	 <c:set var="currentEBean" value="#{protegeViewHandler.currentProtege}"></c:set>
+	 <h:panelGrid columns="2" id="idAssignProtegePanelGroup" border="0" columnClasses="prompt,data"
+    rowClasses="rowinput" width="100%">
+	   <h:outputText value="#{bundle.protege_name} : "/>
+     <h:outputText value="#{currentEBean.firstName}"/>
+     
+     <h:outputText value="#{bundle.select_mentor} : "/>
+     <h:selectOneMenu styleClass="dropdown" id="idMentorList"
+        value="#{protegeViewHandler.mentorId}" >
+        <f:selectItems value="#{protegeViewHandler.mentorList}"/>
+    </h:selectOneMenu>
+    
+    <h:outputText value=""/>
+       
+		</h:panelGrid>
+
+    <rich:spacer width="100%" height="15"/>    
+    <rich:panel styleClass="action_panel">
+      <h:panelGrid border="0" width="100%" cellpadding="1" rowClasses="secf_rowcalss"
+        styleClass="text_align_center">
+      <a4j:commandButton value="#{bundle.protege_assign_mentor}" action="#{protegeViewHandler.assignedMentor}" 
+        onclick="forceSBlockUI(ajaxProcessMsg);" styleClass="ibutton" style="background:#F8F3D3;" 
+        oncomplete="forceSUnblockUI(),Common.closeModalPanel('#{protegeViewHandler.errorMessage}', 'idAssignProtege');"
+        reRender="idAssignProtegeCtrl,idAssignProtegeErrPan,#{protegeViewHandler.reRenderIds}"/>
+      </h:panelGrid>  
+    </rich:panel>    
+    <rich:spacer width="100%" height="5"/>
+    </rich:panel>
+  </ui:composition>
+</html>

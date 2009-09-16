@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- 
+ * @author Mithun 2009/08/07 Created.
+ * @version $Revision: 1.0
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+	 xmlns:ui="http://java.sun.com/jsf/facelets"
+	 xmlns:h="http://java.sun.com/jsf/html"
+	 xmlns:f="http://java.sun.com/jsf/core"
+	 xmlns:a4j="http://richfaces.org/a4j"
+   xmlns:rowBar="http://www.myc2i.com/jsf/rowToolBar"
+   xmlns:ccmp="http://www.myc2i.com/jsf/commoncmp"
+ 	 xmlns:c="http://java.sun.com/jstl/core"
+ 	 xmlns:rich="http://richfaces.org/rich">
+
+<ui:composition template="/templates/maintmpl.xhtml">
+	<ui:param name="moduleTitle" value="Home >> Dashboard"></ui:param>
+  <ui:param name="userType" value="A"></ui:param>
+  <ui:param name="moduleType" value="AM"></ui:param>
+  <ui:param name="headerText" value="#{bundle.document_management}"></ui:param>
+	<ui:param name="refManageBean" value="#{documentViewHandler}"></ui:param>
+  <ui:param name="uploadBean" value="#{documentViewHandler.fileUploadBean}"></ui:param>
+ <ui:define name="commonInfo">
+	</ui:define>
+	<ui:define name="js">
+		<script></script>
+	</ui:define>
+  <ui:define name="body">    
+    <h:panelGroup id="idSectionsCon">
+      <rich:spacer width="100%" height="20"/>
+      <h:panelGrid columns="1" id="idAddNew" border="0" widht="100%" columnClasses="prompt"
+          rowClasses="rowinput" width="100%">
+          <ccmp:cuslink controlBean="#{documentViewHandler}" prompt="#{bundle.document_add_new}"
+             modalPanelId="idDocumentEdit" aAddRecord = "preAddDocument"/>    
+      </h:panelGrid>
+      <h:panelGroup id="DOCUMENT_LINES">        
+        <rich:dataTable styleClass="listcontainer" headerClass="listheader" rowClasses="odd-row,even-row"
+          id="idDocumentLines" value="#{documentViewHandler.documentLines}" var="document"
+          rows="7" cellpadding="0" cellspacing="0">
+          <f:facet name="header">
+            <rich:columnGroup>
+              <rich:column width="400px" style="text-align:left;" valign="top">
+                <h:outputText value="#{bundle.document_name}" />
+              </rich:column>                            
+              <rich:column width="20px" style="text-align:center;" valign="top">
+                <h:outputText value="#{bundle.common_action}" />
+              </rich:column>
+          </rich:columnGroup>
+          </f:facet>
+         <rich:column>
+          <h:outputText escape="false" value="#{document.documentName}" />
+         </rich:column>                  
+         <rich:column style="text-align:center;vertical-align:middle;">
+           <rowBar:rowToolBar recordId="#{document.documentId}"
+           sectionId="DOCUMENT_LINES" modalPanelId="idDocumentEdit" parentComp="secDOCUMENT_LINES"
+           aUpdateRecord="preUpdateDocument" aDeleteRecord="deleteDocument"/>
+         </rich:column>
+        </rich:dataTable>
+        <rich:datascroller id="idDataScroller" align="center"  for="idDocumentLines" maxPages="7" />
+        
+        <rich:jQuery selector="#idDocumentLines tr" query="mouseover(function(){jQuery(this).addClass('active-row')})"/>
+        <rich:jQuery selector="#idDocumentLines tr" query="mouseout(function(){jQuery(this).removeClass('active-row')})"/>
+      </h:panelGroup>
+    </h:panelGroup>    
+  </ui:define>
+  <ui:define name="modalPanels">
+    <a4j:region>
+      <ui:include src="/templates/modaltmpl.xhtml">
+        <ui:param name="modalPanelId" value="idDocumentEdit"/>
+        <ui:param name="moduleName" value="documentEdit"/>
+      </ui:include>
+    </a4j:region>
+    <a4j:region>
+      <ui:include src="/templates/uploadtmpl.xhtml">
+        <ui:param name="uploadModalId" value="idVideoUpload"/>
+        <ui:param name="action" value="uploadVideo"/>
+        <ui:param name="reRenderIds" value="idVideoFile"/>
+        <ui:param name="fileExtentions" value="#{bundle.common_supported_video_ext}"/>            
+      </ui:include>
+    </a4j:region>
+    <a4j:region>
+      <ui:include src="/templates/uploadtmpl.xhtml">
+        <ui:param name="uploadModalId" value="idAudioUpload"/>
+        <ui:param name="action" value="uploadAudio"/>
+        <ui:param name="reRenderIds" value="idAudioFile"/>
+        <ui:param name="fileExtentions" value="#{bundle.common_supported_audio_ext}"/>            
+      </ui:include>
+    </a4j:region>
+  </ui:define>
+</ui:composition>
+</html>

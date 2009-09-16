@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:a4j="http://richfaces.org/a4j"
+   xmlns:rich="http://richfaces.org/rich"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:c="http://java.sun.com/jstl/core"
+   xmlns:ccmp="http://www.myc2i.com/jsf/commoncmp">
+  <ui:composition>
+   <rich:panel id="idTrainingItemEditContainer" styleClass="default_edit">
+  	 <rich:spacer width="100%" height="20"/>
+  	 <c:set var="currentEBean" value="#{trainingItemViewHandler.currentTrainingItem}"></c:set>
+  	 <h:panelGrid columns="3" id="idTrainingItemEditPanelGroup" border="0" columnClasses="prompt,data ,errprompt"
+      rowClasses="rowinput" width="100%">
+	     <h:panelGroup>
+        <h:outputText value="#{bundle.training_materials_eindicator}" />
+        <span class="required_field">*</span>
+       </h:panelGroup>
+       <h:inputText styleClass="short_text" value="#{currentEBean.itemEIndicator}" id="itemEIndicator">
+        <rich:ajaxValidator event="onblur" />
+       </h:inputText>
+       <rich:message for="itemEIndicator" />
+       
+       <h:panelGroup>
+        <h:outputText value="#{bundle.training_materials_item_desc}" />
+        <span class="required_field">*</span>
+       </h:panelGroup>
+       <h:inputText styleClass="name" value="#{currentEBean.itemDescription}" id="desc">
+        <rich:ajaxValidator event="onblur" />
+       </h:inputText>
+       <rich:message for="desc" />        
+       
+       <h:panelGroup>
+        <h:outputText value="#{bundle.training_materials_estorage_loc}" />
+        <span class="required_field">*</span>
+       </h:panelGroup>
+       <h:inputText styleClass="short_text" value="#{currentEBean.itemEStorageLocati}" id="itemEStorageLocati">
+        <rich:ajaxValidator event="onblur" />
+       </h:inputText>
+       <rich:message for="itemEStorageLocati" />
+        
+       <h:panelGroup>
+        <h:outputText value="#{bundle.training_materials_sub_ind}" />
+        <span class="required_field">*</span>
+       </h:panelGroup>
+       <h:inputText styleClass="short_text" value="#{currentEBean.itemSubscriptionInd}" id="itemSubscriptionInd">
+        <rich:ajaxValidator event="onblur" />
+       </h:inputText>
+       <rich:message for="itemSubscriptionInd"/>
+       
+       <h:panelGroup>
+        <h:outputText value="#{bundle.training_materials_purchase_cost}" />
+        <span class="required_field">&#160;</span>
+       </h:panelGroup>
+       <h:inputText styleClass="money" value="#{currentEBean.itemPurchaseCost}" id="itemPurchaseCost"
+        label="Purchase Cost">
+        <f:convertNumber type="number"/>
+        <rich:ajaxValidator event="onblur"/>
+       </h:inputText>
+       <rich:message for="itemPurchaseCost" title="Must be a numnber"/>   
+       
+       <h:panelGroup>
+        <h:outputText value="#{bundle.training_materials_sales_price}" />
+        <span class="required_field">&#160;</span>
+       </h:panelGroup>
+       <h:inputText styleClass="money" value="#{currentEBean.itemSalesPrice}" id="itemSalesPrice"
+        label="Sales price">
+        <f:convertNumber type="number"/>
+        <rich:ajaxValidator event="onblur" />
+       </h:inputText>
+       <rich:message for="itemSalesPrice" title="Must be a numnber"/> 
+        
+       <h:panelGroup>
+        <h:outputText value="#{bundle.training_materials_version}" />
+        <span class="required_field">*</span>
+       </h:panelGroup>
+       <h:inputText styleClass="tinynumber" value="#{currentEBean.itemVersion}" id="itemVersion">
+        <rich:ajaxValidator event="onblur" />
+       </h:inputText>
+       <rich:message for="itemVersion" />
+       
+       <h:panelGroup>
+        <h:outputText value="#{bundle.training_materials_language}" />
+        <span class="required_field">*</span>
+       </h:panelGroup>
+       <h:inputText styleClass="short_text" value="#{currentEBean.itemLanguage}" id="itemLanguage">
+        <rich:ajaxValidator event="onblur" />
+       </h:inputText>
+       <rich:message for="itemLanguage" />
+       
+       <h:panelGroup>
+        <h:outputText value="#{bundle.training_materials_item_image}" />
+        <span class="required_field">&#160;</span>
+       </h:panelGroup>
+       <h:panelGroup id="idImageFile" style="vertical-align:top;">
+          <h:inputText styleClass="short_text,readonly" disabled="true" style="color:gray;background:#DFDFDF;"
+          value="#{trainingItemViewHandler.imagePath}"/>
+          <ccmp:uploadlink prompt="" uploadModalId="idImageUpload" 
+          imgTitle="#{bundle.common_upload_image}"/>
+       </h:panelGroup>
+       <rich:message for="imageUpload" />
+       
+       <h:panelGroup>
+        <h:outputText value="#{bundle.training_materials_available}" />
+        <span class="required_field">*</span>
+       </h:panelGroup>       
+       <h:panelGroup valign="top">
+          <h:selectOneRadio  value="${currentEBean.itemAvailability}">
+            <f:selectItem  itemLabel="#{bundle.common_yes}" itemValue="Y" />
+            <f:selectItem  itemLabel="#{bundle.common_no}" itemValue="N" />
+          </h:selectOneRadio>
+       </h:panelGroup>
+       <rich:message for="itemAvailability" />
+		</h:panelGrid>
+
+    <rich:spacer width="100%" height="15"/>
+    <ccmp:secactcmp controlBean="#{trainingItemViewHandler}" modalId="idTrainingItemEdit" 
+      actionType="#{trainingItemViewHandler.actionType}"
+      addAction = "addTrainingItem" updateAction = "updateTrainingItem"  reloadAction = "preUpdateMaster"
+      reRenderIds="#{trainingItemViewHandler.reRenderIds}"/>
+    <rich:spacer width="100%" height="5"/>
+    </rich:panel>
+  </ui:composition>
+</html>

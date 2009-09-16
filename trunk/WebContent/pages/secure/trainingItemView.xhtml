@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- 
+ * @author Mithun 2009/08/07 Created.
+ * @version $Revision: 1.0
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+	 xmlns:ui="http://java.sun.com/jsf/facelets"
+	 xmlns:h="http://java.sun.com/jsf/html"
+	 xmlns:f="http://java.sun.com/jsf/core"
+	 xmlns:a4j="http://richfaces.org/a4j"
+   xmlns:rowBar="http://www.myc2i.com/jsf/rowToolBar"
+   xmlns:ccmp="http://www.myc2i.com/jsf/commoncmp"
+ 	 xmlns:c="http://java.sun.com/jstl/core"
+ 	 xmlns:rich="http://richfaces.org/rich">
+
+<ui:composition template="/templates/maintmpl.xhtml">
+	<ui:param name="moduleTitle" value="Home >> Dashboard"></ui:param>
+  <ui:param name="userType" value="A"></ui:param>
+  <ui:param name="moduleType" value="AM"></ui:param>
+  <ui:param name="headerText" value="#{bundle.manage_training_materials}"></ui:param>
+	<ui:param name="refManageBean" value="#{trainingItemViewHandler}"></ui:param>
+  <ui:param name="uploadBean" value="#{trainingItemViewHandler.fileUploadBean}"></ui:param>
+ <ui:define name="commonInfo">
+	</ui:define>
+	<ui:define name="js">
+		<script></script>
+	</ui:define>
+  <ui:define name="body">    
+    <h:panelGroup id="idSectionsCon">
+      <rich:spacer width="100%" height="10"/>
+      <h:panelGroup id="idTopCon">
+          <table border="0" cellspacing="0" cellpadding="0" width="100%">
+           <tr>
+            <td style="width: 40%;" align="center">
+              <h:outputText value="#{bundle.vendor_select_vendor}"/>
+            </td>            
+            <td style="width: 200px;" align="left">
+              <h:selectOneMenu styleClass="dropdown" id="idSelectVendor"
+                value="#{trainingItemViewHandler.vendorId}" >
+                <f:selectItems value="#{trainingItemViewHandler.vendorList}"/>
+                <a4j:support event="onchange" action="#{trainingItemViewHandler.getTrainingItemsByCategory}"
+                  reRender="RECORD_LINES"/>
+              </h:selectOneMenu>              
+            </td>            
+           </tr>
+           <tr>
+            <td style="width: 40%;" align="center">
+              <h:outputText value="#{bundle.training_materials_item_category}"/>
+            </td>            
+            <td style="width: 200px;" align="left">
+              <h:selectOneMenu styleClass="dropdown" id="categoryName"
+                value="#{trainingItemViewHandler.categoryName}" >
+                <f:selectItems value="#{trainingItemViewHandler.categoryList}"/>
+                <a4j:support event="onchange" action="#{trainingItemViewHandler.getTrainingItemsByCategory}"
+                  reRender="RECORD_LINES"/>
+              </h:selectOneMenu>              
+            </td>            
+           </tr>
+          </table>
+      </h:panelGroup>
+      <rich:spacer width="100%" height="20"/>
+      <h:panelGrid columns="1" id="idAddNew" border="0" widht="100%" columnClasses="prompt"
+          rowClasses="rowinput" width="100%">
+          <ccmp:cuslink controlBean="#{trainingItemViewHandler}" 
+                prompt="#{bundle.common_add_new}" modalPanelId="idTrainingItemEdit" 
+                aAddRecord = "preAddTrainingItem" />
+      </h:panelGrid>
+      <h:panelGroup id="RECORD_LINES">
+        <rich:dataTable styleClass="listcontainer" headerClass="listheader" rowClasses="odd-row,even-row"
+          id="idTrainingItemsLines" value="#{trainingItemViewHandler.trainingItemLines}" var="trainingItem"
+          rows="7" cellpadding="0" cellspacing="0">
+          <f:facet name="header">
+            <rich:columnGroup>
+              <rich:column width="125px" style="text-align:left;" valign="top">
+                <h:outputText value="#{bundle.training_materials_item_desc}" />
+              </rich:column>
+              <rich:column width="45px" style="text-align:left;" valign="top">
+                <h:outputText value="#{bundle.training_materials_eindicator}" />
+              </rich:column>
+              <rich:column width="55px" style="text-align:left;" valign="top">
+                <h:outputText value="#{bundle.training_materials_estorage_loc}" />
+              </rich:column>
+              <rich:column width="45px" style="text-align:left;" valign="top">
+                <h:outputText value="#{bundle.training_materials_sub_ind}" />
+              </rich:column>
+              <rich:column width="40px" style="text-align:left;" valign="top">
+                <h:outputText value="#{bundle.training_materials_purchase_cost}" />
+              </rich:column>
+              <rich:column width="40px" style="text-align:left;" valign="top">
+                <h:outputText value="#{bundle.training_materials_sales_price}" />
+              </rich:column>
+              <rich:column width="35px" style="text-align:left;" valign="top">
+                <h:outputText value="#{bundle.training_materials_version}" />
+              </rich:column>
+              <rich:column width="45px" style="text-align:left;" valign="top">
+                <h:outputText value="#{bundle.training_materials_language}" />
+              </rich:column>  
+              <rich:column width="45px" style="text-align:left;" valign="top">
+                <h:outputText value="#{bundle.training_materials_available}" />
+              </rich:column>
+              <rich:column width="20px" style="text-align:center;" valign="top">
+                <h:outputText value="#{bundle.common_action}" />
+              </rich:column>
+          </rich:columnGroup>
+          </f:facet>
+         <rich:column>
+          <h:outputText escape="false" value="#{trainingItem.itemDescription}" />
+         </rich:column>
+         <rich:column>
+           <h:outputText escape="false" value="#{trainingItem.itemEIndicator}" />
+         </rich:column>
+         <rich:column>
+           <h:outputText escape="false" value="#{trainingItem.itemEStorageLocati}" />
+         </rich:column>
+         <rich:column>
+           <h:outputText escape="false" value="#{trainingItem.itemSubscriptionInd}" />
+         </rich:column>
+         <rich:column>
+           <h:outputText escape="false" value="#{trainingItem.itemPurchaseCost}" />
+         </rich:column>         
+         <rich:column>
+           <h:outputText escape="false" value="#{trainingItem.itemSalesPrice}" />
+         </rich:column>
+         <rich:column>
+           <h:outputText escape="false" value="#{trainingItem.itemVersion}" />
+         </rich:column>
+         <rich:column>
+           <h:outputText escape="false" value="#{trainingItem.itemLanguage}" />
+         </rich:column>
+         <rich:column>
+           <h:outputText escape="false" value="#{trainingItem.itemAvailability}" />
+         </rich:column>
+         <rich:column style="text-align:center;vertical-align:middle;">
+           <rowBar:rowToolBar recordId="#{trainingItem.itemId}"
+           sectionId="RECORD_LINES" modalPanelId="idTrainingItemEdit" parentComp="secRECORD_LINES"
+           aUpdateRecord="preUpdateTrainingItem" aDeleteRecord="deleteTrainingItem"/>
+         </rich:column>
+        </rich:dataTable>
+        <rich:datascroller id="idDataScroller" align="center"  for="idTrainingItemsLines" maxPages="7" />
+        
+        <rich:jQuery selector="#idTrainingItemsLines tr" query="mouseover(function(){jQuery(this).addClass('active-row')})"/>
+        <rich:jQuery selector="#idTrainingItemsLines tr" query="mouseout(function(){jQuery(this).removeClass('active-row')})"/>
+      </h:panelGroup>
+    </h:panelGroup>    
+  </ui:define>
+  <ui:define name="modalPanels">
+    <a4j:region>
+      <ui:include src="/templates/modaltmpl.xhtml">
+        <ui:param name="modalPanelId" value="idTrainingItemEdit"/>
+        <ui:param name="moduleName" value="trainingItemEdit"/>
+      </ui:include>
+    </a4j:region>
+    <a4j:region>
+      <ui:include src="/templates/uploadtmpl.xhtml">
+        <ui:param name="uploadModalId" value="idImageUpload"/>
+        <ui:param name="action" value="uploadImage"/>
+        <ui:param name="reRenderIds" value="idImageFile"/>
+        <ui:param name="fileExtentions" value="#{bundle.common_supported_image_ext}"/>        
+      </ui:include>
+    </a4j:region>
+  </ui:define>
+</ui:composition>
+</html>
