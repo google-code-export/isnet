@@ -1,46 +1,30 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+	 xmlns:ui="http://java.sun.com/jsf/facelets"
+	 xmlns:h="http://java.sun.com/jsf/html"
+	 xmlns:f="http://java.sun.com/jsf/core"
+	 xmlns:a4j="http://richfaces.org/a4j"
+ 	xmlns:c="http://java.sun.com/jstl/core"
+ 	xmlns:rich="http://richfaces.org/rich">
 
 	<ui:composition template="/templates/basictemplate.xhtml">
-	<ui:param name="moduleTitle" value="Dashboard"></ui:param>
- 		<ui:param name="userType" value="M">
- 	</ui:param>
-
+	<ui:param name="moduleTitle" value="#{bundle.dashboard_mentor_page_title}"></ui:param>
+ 		<ui:param name="userType" value="M"/>
+ 		<ui:param name="moduleType" value="MH"/>
 	<ui:define name="body">
-	   Mithun is not here.. LOL
-	   <br/>
-	   <br/>
-	   <br/>
-	   <br/>
-	   <br/>
-	   <br/>
-	   <br/>
-	   <br/>
-	   <br/>
-	   <br/>
-	   <br/>
-	   <br/>
-	   <br/>
-	   <br/>
-	   <br/>
-	   <br/>
-	   <br/>
-	   <br/>
-	   <br/>
-	   <br/>
-	   <br/>
-	   <br/>
-	   <br/>
-	   <br/>
-	   <br/>
-	   <br/>
-	   <br/>
-	   <br/>
-	   <br/>
-	   <br/>	   
+		<h:panelGrid columns="2" cellpadding="0" cellspacing="0" border="0" columnClasses="dashboard_page_column1,dashboard_page_column2" width="100%">
+			
+			<ui:include src="./sections/mentor_dashboard_left.xhtml" />
+								
+			<h:panelGrid columns="1" width="100%" cellpadding="0" cellspacing="0">
+				<rich:panel style="width:'auto';margin-top: 3px;" headerClass="container_silver_header"  bodyClass="container_body_style" >
+					<f:facet name="header"><h:outputText value="#{bundle.dashboard_mentor_greeting} #{dashboardViewHandler.member.firstName} #{dashboardViewHandler.member.lastName}" /></f:facet>			
+				</rich:panel>
+				
+				
+			</h:panelGrid>	
+				
+	</h:panelGrid>	 	   
   </ui:define>
    	
 	</ui:composition>
