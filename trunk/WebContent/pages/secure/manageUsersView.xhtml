@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- 
+ * @author Mithun 2009/08/07 Created.
+ * @version $Revision: 1.0
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+	 xmlns:ui="http://java.sun.com/jsf/facelets"
+	 xmlns:h="http://java.sun.com/jsf/html"
+	 xmlns:f="http://java.sun.com/jsf/core"
+	 xmlns:a4j="http://richfaces.org/a4j"
+   xmlns:rowBar="http://www.myc2i.com/jsf/rowToolBar"
+   xmlns:ccmp="http://www.myc2i.com/jsf/commoncmp"
+ 	 xmlns:c="http://java.sun.com/jstl/core"
+ 	 xmlns:rich="http://richfaces.org/rich">
+
+<ui:composition template="/templates/maintmpl.xhtml">
+ <ui:param name="moduleTitle" value="Home >> Dashboard"></ui:param>
+ <ui:param name="userType" value="A"></ui:param>
+ <ui:param name="moduleType" value="UM"></ui:param>
+ <ui:param name="headerText" value="#{bundle.user_management}"></ui:param>
+	<ui:param name="refManageBean" value="#{userManageViewHandler}"></ui:param>
+ <ui:define name="commonInfo">
+	</ui:define>
+	<ui:define name="js">
+		<script></script>
+	</ui:define>
+  <ui:define name="body">    
+    <h:panelGroup id="idSectionsCon">
+      <rich:spacer width="100%" height="10"/>
+      <h:panelGroup id="idTopCon">
+        <c:set var="searchBean" value="#{userManageViewHandler.searchBean}"></c:set>
+        <h:panelGrid columns="2" id="idSearchCon" border="0" columnClasses="prompt,data"
+          rowClasses="rowinput" width="100%">
+          <h:outputText value="#{bundle.member_type}"/>
+          <h:panelGroup>
+            <h:selectOneMenu styleClass="dropdown" id="userType"
+              value="#{searchBean.recordId}" >
+              <f:selectItems value="#{userManageViewHandler.usersList}"/>
+            </h:selectOneMenu>
+          </h:panelGroup>           
+            
+          <h:outputText value="#{bundle.member_email_address}"/>
+          <h:inputText id="idEmail" styleClass="medium_text" value="#{searchBean.email}"/>
+          
+          <h:outputText value="#{bundle.member_first_name}"/>
+          <h:inputText id="ifFirstName" styleClass="medium_text" value="#{searchBean.firstName}"/>
+          
+          <h:outputText value="#{bundle.member_last_name}"/>
+          <h:inputText id="idLastName" styleClass="medium_text" value="#{searchBean.lastName}"/>
+          
+          <h:outputText value="#{bundle.member_state}"/>
+          <h:inputText id="idState" styleClass="name" value="#{searchBean.state}"/>
+          
+          <h:outputText value="#{bundle.member_city}"/>
+          <h:inputText id="idCity" styleClass="name" value="#{searchBean.city}"/>
+          
+          <h:outputText value=""/>
+          <a4j:commandButton value="#{bundle.common_search}" styleClass="ibutton" style="background:#F8F3D3;"
+            action="#{userManageViewHandler.loadMembersByCriteria}" reRender="MEMBER_LINES"
+            onclick="forceSBlockUI(ajaxProcessMsg);" oncomplete="forceSUnblockUI();"/>
+              
+        </h:panelGrid>
+      </h:panelGroup>
+      
+      <rich:spacer width="100%" height="20"/>
+      <h:panelGrid columns="1" id="idAddNew" border="0" widht="100%" columnClasses="prompt"
+          rowClasses="rowinput" width="100%">
+          <h:panelGroup>
+          <ccmp:cuslink controlBean="#{userManageViewHandler}" prompt="#{bundle.user_management_add_mentor}" 
+            modalPanelId="idUserEdit" aAddRecord = "preAddUser" showIcon="N" recordType="MENTOR"/>
+          <h:outputText value="|"/>
+          <ccmp:cuslink controlBean="#{userManageViewHandler}" prompt="#{bundle.user_management_add_protege}" 
+            modalPanelId="idUserEdit" aAddRecord = "preAddUser" showIcon="N" recordType="PROTEGE"/>
+          <h:outputText value="|"/>
+          <ccmp:cuslink controlBean="#{userManageViewHandler}" prompt="#{bundle.user_management_add_admin}" 
+            modalPanelId="idUserEdit" aAddRecord = "preAddUser" showIcon="N" recordType="ADMIN"/>
+         </h:panelGroup>
+       </h:panelGrid>      
+      <h:panelGroup id="MEMBER_LINES">        
+        <rich:dataTable styleClass="listcontainer" headerClass="listheader" rowClasses="odd-row,even-row"
+          id="idMemberLines" value="#{userManageViewHandler.memberLines}" var="member"
+          rows="7" cellpadding="0" cellspacing="0">
+          <f:facet name="header">
+            <rich:columnGroup>
+              <rich:column width="65px" style="text-align:left;" valign="top">
+                <h:outputText value="#{bundle.member_first_name}" />
+              </rich:column>
+              <rich:column width="65px" style="text-align:left;" valign="top">
+                <h:outputText value="#{bundle.member_last_name}" />
+              </rich:column>
+              <rich:column width="85px" style="text-align:left;" valign="top">
+                <h:outputText value="#{bundle.member_address}" />
+              </rich:column>
+              <rich:column width="45px" style="text-align:left;" valign="top">
+                <h:outputText value="#{bundle.member_city}" />
+              </rich:column>
+              <rich:column width="45px" style="text-align:left;" valign="top">
+                <h:outputText value="#{bundle.member_state}" />
+              </rich:column>
+              <rich:column width="35px" style="text-align:left;" valign="top">
+                <h:outputText value="#{bundle.member_zip}" />
+              </rich:column>
+              <rich:column width="35px" style="text-align:left;" valign="top">
+                <h:outputText value="#{bundle.member_email}" />
+              </rich:column>
+              <rich:column width="35px" style="text-align:left;" valign="top">
+                <h:outputText value="#{bundle.member_admin_yn}" />
+              </rich:column>              
+              <rich:column width="20px" style="text-align:center;" valign="top">
+                <h:outputText value="#{bundle.common_action}" />
+              </rich:column>
+          </rich:columnGroup>
+          </f:facet>
+         <rich:column>
+          <h:outputText escape="false" value="#{member.firstName}" />
+         </rich:column>
+         <rich:column>
+           <h:outputText escape="false" value="#{member.lastName}" />
+         </rich:column>
+         <rich:column>
+           <h:outputText escape="false" value="#{member.streetAddress}" />
+         </rich:column>
+         <rich:column>
+           <h:outputText escape="false" value="#{member.city}" />
+         </rich:column>
+         <rich:column>
+           <h:outputText escape="false" value="#{member.state}" />
+         </rich:column>         
+         <rich:column>
+           <h:outputText escape="false" value="#{member.zip}" />
+         </rich:column>
+         <rich:column>
+           <h:outputText escape="false" value="#{member.email}" />
+         </rich:column>
+         <rich:column>
+           <h:outputText escape="false" value="#{member.typeId}" />
+         </rich:column>         
+         <rich:column style="text-align:center;vertical-align:middle;">
+           <rowBar:rowToolBar recordId="#{member.memberId}" recordType="#{member.typeId}"
+            sectionId="MEMBER_LINES" modalPanelId="idUserEdit" parentComp="secMEMBER_LINES"
+            aUpdateRecord="preUpdateUser" aDeleteRecord="deleteUser"/>
+         </rich:column>
+        </rich:dataTable>
+        <rich:datascroller id="idDataScroller" align="center"  for="idMemberLines" maxPages="7" />
+        
+        <rich:jQuery selector="#idMemberLines tr" query="mouseover(function(){jQuery(this).addClass('active-row')})"/>
+        <rich:jQuery selector="#idMemberLines tr" query="mouseout(function(){jQuery(this).removeClass('active-row')})"/>  
+      </h:panelGroup>
+    </h:panelGroup>    
+  </ui:define>
+  <ui:define name="modalPanels">
+    <a4j:region>
+      <ui:include src="/templates/modaltmpl.xhtml">
+        <ui:param name="modalPanelId" value="idUserEdit"/>
+        <ui:param name="moduleName" value="manageUsersEdit"/>
+      </ui:include>
+    </a4j:region>
+  </ui:define>
+</ui:composition>
+</html>
