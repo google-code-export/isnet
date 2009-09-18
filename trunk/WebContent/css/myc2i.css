@@ -30,7 +30,7 @@ a:hover {
 .ibutton{ border: 1px solid #152a4d; background-color: #c6d3dc; font-size: 9pt; font-weight: bold;
           color: #11358B; padding-top:2px; padding-bottom:2px; padding-left:5px; padding-right:5px}
 .viewcontainer {
-  width:870px;
+  width:950px;
   padding:0px;
   margin-left:auto;
   margin-right:auto;
@@ -148,8 +148,8 @@ a:hover {
 #header .logo {
   top:6px;
   left:12px;
-  width:845;
-  height:88;
+  width:950px;
+  height:88px;
   z-index: 100;
   /* background:url(../images/banner.jpg) no-repeat top;*/
   position: absolute;
@@ -457,5 +457,4 @@ div#content {
 
 .banner{
     background:  url(../images/banner.jpg) no-repeat;   
-    width: 875px;
   }
