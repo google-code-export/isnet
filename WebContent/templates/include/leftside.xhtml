@@ -9,35 +9,7 @@
     <div id="sidebar" >
       <h:panelGroup id="ltop_mdbsectionM" rendered="${userType eq 'M'}">
       	<!-- Mentor Home Menu -->
-        <h:panelGroup id="idMentorDashboardPanel" rendered="${moduleType eq 'MH'}">
-          <ul class="sidemenu">
-            <li>
-              <h:outputLink styleClass="menu_item_clink" 
-                value="#{controllerBean.contextPath}/pages/secure/mentorDashboard.faces">
-                <h:outputText value="#{bundle.left_navigation_mentor_dashboard}"/>
-              </h:outputLink>
-            </li>
-            <li>
-              <h:outputLink styleClass="menu_item_clink" 
-                value="#{controllerBean.contextPath}/pages/secure/memberProtegeProfile.faces">
-                <h:outputText value="#{bundle.page_header_protege_profile}"/>
-              </h:outputLink>
-            </li>              
-            <li>
-              <h:outputLink styleClass="menu_item_clink" 
-                value="#{controllerBean.contextPath}/pages/secure/memberLog.faces">
-                <h:outputText value="#{bundle.left_navigation_mentor_activity_log}"/>
-              </h:outputLink>
-            </li>   
-            <li>
-              <h:outputLink styleClass="menu_item_clink" 
-                value="#{controllerBean.contextPath}/pages/secure/memberStory.faces">
-                <h:outputText value="#{bundle.left_navigation_mentor_success_story}"/>
-              </h:outputLink>
-            </li>                      
-         </ul>
-        </h:panelGroup>
-        
+			<ui:include src="/templates/include/mentorMenu.xhtml" />       
 	    </h:panelGroup>
 	    
 	    <h:panelGroup id="ltop_gdbsectionG" rendered="${userType eq 'G'}">
