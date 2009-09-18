@@ -122,6 +122,18 @@
 		padding: 0;
 
 	}
+	.dashboard_page_column1{
+		width: 20%;
+		vertical-align: top;
+
+	}
+	.dashboard_page_column2{
+		width:80%;
+		vertical-align: top;
+	}
+	.dashboard_page_column3{
+		width: 10%;
+	}	
 	.reg_page_column1{
 		width: 10%;
 
@@ -158,9 +170,30 @@
 		background-color:#BFAB77;
 		font-weight:bold;
 		font-size: 9pt;
-	        
-	
 	}
+	.container_silver_header{
+	 	background-image : url();
+	    border:0;
+        height:18px;
+        text-align:center;
+        vertical-align:middle;
+        color:black;
+ 		padding:0px 0;
+		background-color:#BFAB00;
+		font-weight:bold;
+	}
+	.container_gold_header{
+	 	background-image : url();
+	    border:0;
+        height:18px;
+        text-align:center;
+        vertical-align:middle;
+        color:black;
+ 		padding:0px 0;
+		background-color:#BFAB00;
+		font-weight:bold;
+	}	
+
 	.login_box_panel{
 	margin-bottom:0px;
 	border:1px solid #CFCAB5;
