@@ -152,11 +152,11 @@ public class myProfileViewHandler extends BasePage implements Serializable {
     setErrorMessage("");
     try {
       if(validate()) {         
-        if (validationPhase2()) {         
+        //if (validationPhase2()) {         
           this.memberService.update(this.currentMember);    
           logger.debug("Member updated: "+ this.currentMember.getMemberId());
           setErrorMessage(this.getText("update_success_message"));
-        }
+        //}
       }
     } catch (Exception e) {
       setErrorMessage(this.getText("common_system_error"));
