@@ -1,6 +1,7 @@
 package com.intrigueit.myc2i.common.view;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 
 import javax.faces.model.SelectItem;
@@ -33,14 +34,9 @@ public class ViewDataProvider extends BasePage {
 	private List<SelectItem> madhabList;
 	private List<SelectItem> ethinicityList;
 	private ArrayList<SelectItem> userTypes;
+	private Hashtable<String, String> memberTypeHash;
 	
-		/**
-   * @param userTypes the userTypes to set
-   */
-  public void setUserTypes(ArrayList<SelectItem> userTypes) {
-    this.userTypes = userTypes;
-  }
-  /**
+	/**
      * @return the userTypes
      */
     public ArrayList<SelectItem> getUserTypes() {
@@ -50,7 +46,8 @@ public class ViewDataProvider extends BasePage {
       return this.userTypes;
     }
 
-  public void loadUserTypes(){
+  
+    public void loadUserTypes(){
     this.userTypes = new ArrayList<SelectItem>();
     userTypes.add(new SelectItem("",""));
     List<UserDefinedValues> udvList = this.udService.findByProperty("udValuesCategory", "MEMBER_TYPE");
@@ -58,8 +55,27 @@ public class ViewDataProvider extends BasePage {
       userTypes.add(new SelectItem(userDefinedValues.getUdValuesId()+"",userDefinedValues.getUdValuesValue().toString()));
     }   
   }
-	
-	public List<SelectItem> getStateList(){
+  
+    /**
+     * @return the memberType
+     */
+    public Hashtable<String, String> getMemberTypeHash() {
+      if (memberTypeHash == null) {
+        loadMemberTypeHash();
+        
+      }
+      return memberTypeHash;
+    }
+    public void loadMemberTypeHash(){
+      this.memberTypeHash = new Hashtable<String, String>();
+      List<UserDefinedValues> udvList = this.udService.findByProperty("udValuesCategory", "MEMBER_TYPE");
+      for (UserDefinedValues userDefinedValues : udvList) {
+        this.memberTypeHash.put(""+userDefinedValues.getUdValuesValue(), ""+userDefinedValues.getUdValuesId());
+      }   
+    }  
+  
+  
+   public List<SelectItem> getStateList(){
 		if(this.stateList == null){
 			this.loadStateList();
 		}
