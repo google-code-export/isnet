@@ -17,4 +17,8 @@
       <tag-name>uploadlink</tag-name>
       <source>uploadlink.xhtml</source>
     </tag>
+    <tag>
+      <tag-name>actioncmp</tag-name>
+      <source>actioncmp.xhtml</source>
+    </tag>
 </facelet-taglib>
