@@ -13,6 +13,7 @@
             oncomplete="forceUnblockUI(),Common.openModalPanel('${modalPanelId}');" styleClass="menu_item_clink"
             reRender="idErrorPanel,${modalPanelId}Header,${modalPanelId}ErrPan,${modalPanelId}Ctrl,${modalPanelId}Container">
           <f:param value="${recordId}" name="recordId"/>
+          <f:param value="${recordType}" name="recordType"/>
           <h:panelGroup>
             <h:graphicImage title="Edit" value="${imagesPath}/edit.png"
               styleClass="row_toolbar_icon"/>
@@ -24,6 +25,7 @@
             action="#{refManageBean[aDeleteRecord]}"
             oncomplete="forceUnblockUI();" reRender="${sectionId},idErrorPanel" styleClass="menu_item_clink">
             <f:param name="recordId" value="${recordId}"/>
+            <f:param value="${recordType}" name="recordType"/>
             <h:panelGroup>
               <h:graphicImage title="Delete" value="${imagesPath}/delete.png"
                 styleClass="row_toolbar_icon" />

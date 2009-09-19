@@ -12,6 +12,7 @@
       oncomplete="forceUnblockUI(),Common.openModalPanel('${modalPanelId}','${refManageBean.errorMessage}');" styleClass="menu_item_clink"
       reRender="idErrorPanel,${modalPanelId}Header,${modalPanelId}ErrPan,${modalPanelId}Ctrl,${modalPanelId}Container">
       <f:param value="${recordId}" name="recordId"/>
+      <f:param value="${recordType}" name="recordType"/>
       <h:panelGroup>
         <h:graphicImage title="Add" value="${imagesPath}/new.png" rendered="${showIcon ne 'N'}"
           styleClass="row_toolbar_icon"/> &#160; 
