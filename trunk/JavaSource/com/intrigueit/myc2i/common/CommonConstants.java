@@ -12,7 +12,7 @@ public class CommonConstants {
     /** User name session object key. */
     public static final String SESSION_MEMBER_EMAIL = "USER_EMAIL";	
     
-    public enum ACTIVITY_STATUS { PENDING ,ACCEPTED };
+    public enum ACTIVITY_STATUS { PENDING ,ACCEPTED,REJECTED };
     
     public enum STATUS { Yes, No };
      
