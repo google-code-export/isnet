@@ -158,6 +158,9 @@ public class Member implements java.io.Serializable{
 	@Column(name = "ADMIN_USER_INDICATOR",length = 20)
 	private String adminUserIndicator;
 	
+	@Column(name = "MEMBER_MEMBERSHIP_EXPIRY_DATE")
+	private Date memberShipExpiryDate;
+	
 	/*
 	@Column(name = "MEMBER_LINKED_IN_LINK_URL", length = 20)
 	private String linkedInLinkUrl;
@@ -523,6 +526,14 @@ public class Member implements java.io.Serializable{
 
 	public void setAdminUserIndicator(String adminUserIndicator) {
 		this.adminUserIndicator = adminUserIndicator;
+	}
+
+	public Date getMemberShipExpiryDate() {
+		return memberShipExpiryDate;
+	}
+
+	public void setMemberShipExpiryDate(Date memberShipExpiryDate) {
+		this.memberShipExpiryDate = memberShipExpiryDate;
 	}
 	
 	
