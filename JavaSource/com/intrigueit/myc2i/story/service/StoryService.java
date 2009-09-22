@@ -17,4 +17,10 @@ public interface StoryService {
 	public List<MemberStory> findAll();
 	
 	public List<MemberStory> findMyAllStories(Long memberId);
+	
+	public List<MemberStory> findTopTenStories();
+	
+	public MemberStory getMostVotedStory();
+	
+	public MemberStory getWiningStory();
 }
