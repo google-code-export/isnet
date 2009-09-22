@@ -19,7 +19,19 @@
            value="#{controllerBean.contextPath}/pages/secure/memberProtegeProfile.faces">
            <h:outputText value="#{bundle.page_header_protege_profile}"/>
          </h:outputLink>
-       </li>              
+       </li>  
+       <li>
+         <h:outputLink styleClass="menu_item_clink" 
+           value="#{controllerBean.contextPath}/pages/secure/protegeSearch.faces">
+           <h:outputText value="#{bundle.page_header_protege_search}"/>
+         </h:outputLink>
+       </li> 
+       <li>
+         <h:outputLink styleClass="menu_item_clink" 
+           value="#{controllerBean.contextPath}/pages/secure/leadMentorSearch.faces">
+           <h:outputText value="#{bundle.page_header_lead_mentor_search}"/>
+         </h:outputLink>
+       </li>                            
        <li>
          <h:outputLink styleClass="menu_item_clink" 
            value="#{controllerBean.contextPath}/pages/secure/memberLog.faces">
@@ -34,6 +46,28 @@
        </li>                      
     </ul>
    </h:panelGroup>
-       
+   <h:panelGroup id="idMentorAccountPanel" rendered="${moduleType eq 'MA'}">
+     <ul class="sidemenu">
+       <li>
+         <h:outputLink styleClass="menu_item_clink" 
+           value="#{controllerBean.contextPath}/pages/secure/mentorProfile.faces">
+           <h:outputText value="#{bundle.page_header_myaccount_profile}"/>
+         </h:outputLink>
+       </li>
+       <li>
+         <h:outputLink styleClass="menu_item_clink" 
+           value="#{controllerBean.contextPath}/pages/secure/mentorChangePassword.faces">
+           <h:outputText value="#{bundle.page_header_myaccount_change_password}"/>
+         </h:outputLink>
+       </li>  
+       <li>
+         <h:outputLink styleClass="menu_item_clink" 
+           value="#{controllerBean.contextPath}/pages/secure/mentorPayment.faces">
+           <h:outputText value="#{bundle.page_header_myaccount_payment}"/>
+         </h:outputLink>
+       </li> 
+                     
+    </ul>
+   </h:panelGroup>       
 </ui:composition>
 </html>
