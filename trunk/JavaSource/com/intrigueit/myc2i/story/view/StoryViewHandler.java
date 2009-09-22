@@ -92,8 +92,8 @@ public class StoryViewHandler extends BasePage implements Serializable{
 		this.currentStory.setMemberStoryDate( new java.sql.Timestamp(dt.getTime()));
 		this.currentStory.setRecordCreatedDate(new java.sql.Timestamp(dt.getTime()));
 		this.currentStory.setRecordLastUpdatedDate(new java.sql.Timestamp(dt.getTime()));
-		this.currentStory.setRecordCreatorId(this.getMember().getMemberId());
-		this.currentStory.setRecordLastUpdaterId(this.getMember().getMemberId());
+		this.currentStory.setRecordCreatorId(this.getMember().getMemberId().toString());
+		this.currentStory.setRecordLastUpdaterId(this.getMember().getMemberId().toString());
 		
 		this.currentStory.setMember(this.getMember());
 	}
