@@ -31,13 +31,13 @@
 															
 					<h:panelGrid columns="2" id="gridMemberLog" width="100%">
 						<h:outputText value="#{bundle.activity_log_mentor_list}" />
-						<h:selectOneMenu id="idMemberList"  value="#{memberLogViewHandler.currentLog.id.memberId}" styleClass="form_input_select_medium">
+						<h:selectOneMenu id="idMemberList"  value="#{memberLogViewHandler.currentLog.memberId}" styleClass="form_input_select_medium">
 					     <f:selectItems value="#{memberLogViewHandler.viewDataProvider.memberList}" />
 					    </h:selectOneMenu> 	
 				    					    					
 						<h:outputText value="#{bundle.activity_type}" />
 
-					    <h:selectOneMenu id="idActivityType"  value="#{memberLogViewHandler.currentLog.id.memberActivityType}" styleClass="form_input_select_medium">
+					    <h:selectOneMenu id="idActivityType"  value="#{memberLogViewHandler.currentLog.memberActivityType}" styleClass="form_input_select_medium">
 					     <f:selectItems value="#{memberLogViewHandler.viewDataProvider.activityList}" />
 					    </h:selectOneMenu> 	
 
