@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	 xmlns:ui="http://java.sun.com/jsf/facelets"
+	 xmlns:h="http://java.sun.com/jsf/html"
+	 xmlns:f="http://java.sun.com/jsf/core"
+	 xmlns:a4j="http://richfaces.org/a4j"
+ 	 xmlns:c="http://java.sun.com/jstl/core"
+ 	 xmlns:rich="http://richfaces.org/rich">
+
+<ui:composition template="/templates/paymenttmpl.xhtml">
+ <ui:param name="moduleTitle" value="#{bundle.page_title_myaccount_donate}"></ui:param>
+ <ui:param name="userType" value="SC"></ui:param>
+ <ui:param name="headerText" value="#{bundle.page_title_donate}"></ui:param>
+  <ui:param name="refManageBean" value="#{udvViewHandler}"></ui:param>
+ 
+  <ui:define name="body">    
+
+	<h:panelGrid columns="1">
+       	<h:outputText value="#{bundle.mentor_payment_text1}" />
+       	<h:outputText value="#{bundle.mentor_payment_text2}" />
+       	<h:outputText value="#{bundle.mentor_payment_text3}" />
+       	<h:outputText value="#{bundle.mentor_payment_text4}" />
+       	<f:verbatim>
+			<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+			<input type="hidden" name="cmd" value="_xclick-subscriptions"/>
+			<input type="hidden" name="business" value="shamim_1253334443_biz@yahoo.com"/>
+			<input type="hidden" name="lc" value="US"/>
+			<input type="hidden" name="item_name" value="YEARLY_MENTOR_SUBSCRIPTION"/>
+			<input type="hidden" name="no_note" value="1"/>
+			<input type="hidden" name="a3" value="77.00"/>
+			<input type="hidden" name="currency_code" value="USD"/>
+			<input type="hidden" name="src" value="1"/>
+			<input type="hidden" name="p3" value="12"/>
+			<input type="hidden" name="t3" value="M"/>
+			<input type="hidden" name="sra" value="1"/>
+			<input type="hidden" name="bn" value="PP-SubscriptionsBF:btn_subscribe_LG.gif:NonHostedGuest"/>
+			<input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_subscribe_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!"/>
+			<img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1"/>
+			</form>       	
+       	</f:verbatim>
+       	<!-- 
+		<h:form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+			<h:inputHidden name="cmd" value="_xclick-subscriptions" />
+			<h:inputHidden name="business" value="shamim_1253334443_biz@yahoo.com" />
+			<h:inputHidden name="lc" value="us" />
+			<h:inputHidden name="item_name" value="YEARLY_MENTOR_SUBSCRIPTION" />
+			<h:inputHidden name="no_note" value="1" />
+			<h:selectOneRadio name="a3" >
+	  			<f:selectItem  itemLabel="#{bundle.mentor_payment_35}" itemValue="35" />
+	  			<f:selectItem  itemLabel="#{bundle.mentor_payment_45}" itemValue="45"  />
+	  			<f:selectItem  itemLabel="#{bundle.mentor_payment_55}" itemValue="55"  />
+	  			<f:selectItem  itemLabel="#{bundle.mentor_payment_75}" itemValue="75"  />
+	  			<f:selectItem  itemLabel="#{bundle.mentor_payment_125}" itemValue="125"  />
+	  			<f:selectItem  itemLabel="#{bundle.mentor_payment_175}" itemValue="175"  />
+	  			<f:selectItem  itemLabel="#{bundle.mentor_payment_225}" itemValue="225"  />
+	  			<f:selectItem  itemLabel="#{bundle.mentor_payment_275}" itemValue="275"  />				  							  
+			</h:selectOneRadio>
+			<h:inputHidden name="currency_code" value="USD" />
+			<h:inputHidden name="src" value="1" />
+			<h:inputHidden name="p3" value="12" />
+			<h:inputHidden name="t3" value="M" />
+			<h:inputHidden name="sra" value="1" />
+			<h:inputHidden name="bn" value="PP-SubscriptionsBF:btn_subscribe_LG.gif:NonHostedGuest" />
+			<h:inputHidden name="bn" value="PP-SubscriptionsBF:btn_subscribe_LG.gif:NonHostedGuest" />	
+			<h:commandButton type="image" name="submit" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_subscribe_LG.gif" />
+		</h:form>
+		 -->
+       	      	
+          
+	</h:panelGrid>
+  
+  </ui:define>
+  
+
+</ui:composition>
+</html>
