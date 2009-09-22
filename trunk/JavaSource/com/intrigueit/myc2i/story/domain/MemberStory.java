@@ -1,6 +1,5 @@
 package com.intrigueit.myc2i.story.domain;
 
-import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -9,7 +8,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -20,25 +18,22 @@ import com.intrigueit.myc2i.member.domain.Member;
 @Entity
 @Table(name = "MEMBER_STORY")
 public class MemberStory implements java.io.Serializable {
-
-
-
 	private Long memberStoryId;
 	private Member member;
-	private Timestamp memberStoryDate;
+	private Date memberStoryDate;
 	private String memberStoryDescription;
 	private String memberStoryAudioVideo;
 	private String deletedByAdminUserInd;
-	private Long screenedByMemberId;
+	private String screenedByMemberId;
 	private String approvedForPublishInd;
 	private String memberPermissionToPublish;
 	private Date approvalDate;
 	private Long numberOfVotesReceived;
 	private Date weekWinnerIndicator;
-	private Long recordCreatorId;
-	private Timestamp recordCreatedDate;
-	private Long recordLastUpdaterId;
-	private Timestamp recordLastUpdatedDate;
+	private String recordCreatorId;
+	private Date recordCreatedDate;
+	private String recordLastUpdaterId;
+	private Date recordLastUpdatedDate;
 	private String storyTitle;
 	
 	private static final long serialVersionUID = 1L;
@@ -66,11 +61,11 @@ public class MemberStory implements java.io.Serializable {
 	}
 
 	@Column(name = "MEMBER_STORY_DATE", nullable = false)
-	public Timestamp getMemberStoryDate() {
+	public Date getMemberStoryDate() {
 		return this.memberStoryDate;
 	}
 
-	public void setMemberStoryDate(Timestamp memberStoryDate) {
+	public void setMemberStoryDate(Date memberStoryDate) {
 		this.memberStoryDate = memberStoryDate;
 	}
 
@@ -103,11 +98,11 @@ public class MemberStory implements java.io.Serializable {
 	}
 
 	@Column(name = "SCREENED_BY_MEMBER_ID", precision = 22, scale = 0)
-	public Long getScreenedByMemberId() {
+	public String getScreenedByMemberId() {
 		return this.screenedByMemberId;
 	}
 
-	public void setScreenedByMemberId(Long screenedByMemberId) {
+	public void setScreenedByMemberId(String screenedByMemberId) {
 		this.screenedByMemberId = screenedByMemberId;
 	}
 
@@ -157,39 +152,39 @@ public class MemberStory implements java.io.Serializable {
 	}
 
 	@Column(name = "RECORD_CREATOR_ID", nullable = false)
-	public Long getRecordCreatorId() {
+	public String getRecordCreatorId() {
 		return this.recordCreatorId;
 	}
 
-	public void setRecordCreatorId(Long recordCreatorId) {
+	public void setRecordCreatorId(String recordCreatorId) {
 		this.recordCreatorId = recordCreatorId;
 	}
 
-	@Column(name = "RECORD_CREATED_DATE", nullable = false)
-	public Timestamp getRecordCreatedDate() {
+	@Column(name = "RECORD_CREATE_DATE", nullable = false)
+	public Date getRecordCreatedDate() {
 		return this.recordCreatedDate;
 	}
 
-	public void setRecordCreatedDate(Timestamp recordCreatedDate) {
+	public void setRecordCreatedDate(Date recordCreatedDate) {
 		this.recordCreatedDate = recordCreatedDate;
 	}
 
 	@Column(name = "RECORD_LAST_UPDATER_ID", nullable = false)
-	public Long getRecordLastUpdaterId() {
+	public String getRecordLastUpdaterId() {
 		return this.recordLastUpdaterId;
 	}
 
-	public void setRecordLastUpdaterId(Long recordLastUpdaterId) {
+	public void setRecordLastUpdaterId(String recordLastUpdaterId) {
 		this.recordLastUpdaterId = recordLastUpdaterId;
 	}
 
 
 	@Column(name = "RECORD_LAST_UPDATED_DATE", nullable = false)
-	public Timestamp getRecordLastUpdatedDate() {
+	public Date getRecordLastUpdatedDate() {
 		return this.recordLastUpdatedDate;
 	}
 
-	public void setRecordLastUpdatedDate(Timestamp recordLastUpdatedDate) {
+	public void setRecordLastUpdatedDate(Date recordLastUpdatedDate) {
 		this.recordLastUpdatedDate = recordLastUpdatedDate;
 	}
 	@Column( name = "STORY_TITLE")
