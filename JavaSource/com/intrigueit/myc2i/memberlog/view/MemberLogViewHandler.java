@@ -18,7 +18,6 @@ import com.intrigueit.myc2i.common.view.CommonValidator;
 import com.intrigueit.myc2i.common.view.ViewDataProvider;
 import com.intrigueit.myc2i.member.service.MemberService;
 import com.intrigueit.myc2i.memberlog.domain.MemberLog;
-import com.intrigueit.myc2i.memberlog.domain.MemberLogPK;
 import com.intrigueit.myc2i.memberlog.service.MemberLogService;
 import com.intrigueit.myc2i.utility.Emailer;
 
@@ -51,15 +50,7 @@ public class MemberLogViewHandler extends BasePage implements Serializable{
 	}
 	
 	public void initMemberLog(){
-		MemberLogPK pk = new MemberLogPK();
-		pk.setMemberActivityType(-1L);
-		pk.setMemberId(-1L);
-		Date d = new Date();
-		pk.setMemberLogDateTime(new java.sql.Timestamp(d.getTime()));
-		
 		this.currentLog = new MemberLog();
-
-		this.currentLog.setId(pk);
 		this.errMsgs.clear();
 		this.hasError = false;
 		
@@ -73,23 +64,24 @@ public class MemberLogViewHandler extends BasePage implements Serializable{
 				return;
 			}
 			/** Set audit fields */
-			this.currentLog.setRecordCreatorId(this.getMember().getMemberId().toString());
+			this.currentLog.setRecordCreatorId(this.getMember().getMemberId());
 			this.currentLog.setRecordCreatedDate(new Date());
 			this.currentLog.setRecordLastUpdatedDate(new Date());
-			this.currentLog.setRecordLastUpdaterId(this.getMember().getMemberId().toString());
+			this.currentLog.setRecordLastUpdaterId(this.getMember().getMemberId());
 			this.currentLog.setStatus(CommonConstants.ACTIVITY_STATUS.PENDING.toString());
+			Date dt = new Date();
+			this.currentLog.setMemberLogDateTime(new Timestamp(dt.getTime()));
 			
 			this.memberLogService.save(this.currentLog);
 			
-			MemberLog lg = this.memberLogService.findById(this.currentLog.getId());
+			MemberLog lg = this.memberLogService.findById(this.currentLog.getMemberLogId());
 			//log.debug("Sending email notification");
 			//this.sendConfirmationEmail(this.currentLog.getUserDefinedValues().getUdValuesValue(), this.currentLog.getMember().getEmail());
 			
-			log.debug("member id: "+lg.getId().getMemberId()+" member id: "+lg.getId().getMemberActivityType());
+			log.debug("member id: "+lg.getMember().getMemberId()+" type id: "+lg.getMemberActivityType());
 		}
 		catch(Exception ex){
 			this.errMsgs.add(this.getText("common_error_system_level"));
-			//log.error(ex.getStackTrace());
 			ex.printStackTrace();
 		}
 		this.resetMessage();
