@@ -30,17 +30,7 @@
 	      	</h:panelGrid>
       </h:panelGroup>
       <h:panelGroup rendered="${userType eq 'M'}">
-        <ul>
-          <li><a href="guest_site_dashboard.htm">Home</a></li>
-          <li><a href="" >|</a></li>
-          <li ><a href="guest_myaccount_myprofile.htm">My Account</a></li>
-          <li><a href="" >|</a></li>
-          <li><a href="guest_site_myresource.htm">My Resources</a></li>
-          <li><a href="" >|</a></li>
-          <li><a href="guest_site_Ask_A_Question.htm">Ask a Question</a></li>
-          <li><a href="" >|</a></li>
-          <li><a href="guest_site_donate.htm">Donation</a></li>
-        </ul>
+		<ui:include src="/templates/include/mentorTopNavigation.xhtml" />
       </h:panelGroup>
       <h:panelGroup rendered="${userType eq 'A'}">
         <ul>
