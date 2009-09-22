@@ -1,0 +1,47 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+<ui:composition>
+ 	<!-- Mentor Top navigation Menu -->
+        <ul>
+          <li>
+            <h:outputLink styleClass="menu_item_clink" 
+              value="#{controllerBean.contextPath}/pages/secure/mentorDashboard.faces">
+              <h:outputText value="#{bundle.top_navigation_home}"/>
+            </h:outputLink>
+          </li>
+          <li><a href="" >|</a></li>
+          <li>
+            <h:outputLink styleClass="menu_item_clink" 
+              value="#{controllerBean.contextPath}/pages/secure/mentorProfile.faces">
+              <h:outputText value="#{bundle.top_navigation_mentor_account}"/>
+            </h:outputLink>
+          </li>
+          <li><a href="" >|</a></li>
+          <li>
+            <h:outputLink styleClass="menu_item_clink" 
+              value="#{controllerBean.contextPath}/pages/secure/mentorResources.faces">
+              <h:outputText value="#{bundle.top_navigation_mentor_resource}"/>
+            </h:outputLink>
+          </li>
+          <li><a href="" >|</a></li>
+          <li>
+            <h:outputLink styleClass="menu_item_clink" 
+              value="#{controllerBean.contextPath}/pages/secure/mentorAskAQuestion.faces">
+              <h:outputText value="#{bundle.top_navigation_mentor_ask_question}"/>
+            </h:outputLink>
+          </li> 
+          <li><a href="" >|</a></li>
+          <li>
+            <h:outputLink styleClass="menu_item_clink" 
+              value="#{controllerBean.contextPath}/pages/secure/mentorDonate.faces">
+              <h:outputText value="#{bundle.top_navigation_mentor_donate}"/>
+            </h:outputLink>
+          </li>                    
+        </ul>
+       
+</ui:composition>
+</html>
