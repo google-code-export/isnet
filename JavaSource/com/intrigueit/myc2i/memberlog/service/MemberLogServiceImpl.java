@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.intrigueit.myc2i.common.CommonConstants;
 import com.intrigueit.myc2i.memberlog.dao.MemberLogDao;
 import com.intrigueit.myc2i.memberlog.domain.MemberLog;
-import com.intrigueit.myc2i.memberlog.domain.MemberLogPK;
 
 @Service
 public class MemberLogServiceImpl implements MemberLogService{
@@ -27,7 +26,7 @@ public class MemberLogServiceImpl implements MemberLogService{
 	}
 
 
-	public MemberLog findById(MemberLogPK id) {
+	public MemberLog findById(Long id) {
 		return memberLogDao.loadById(id);
 	}
 
@@ -60,6 +59,12 @@ public class MemberLogServiceImpl implements MemberLogService{
 	public List<MemberLog> getAllCompletedLog() {
 		String clause = " upper(t.status) <> ?1 ";
 		return memberLogDao.loadByClause(clause, new Object[]{CommonConstants.ACTIVITY_STATUS.PENDING.toString()});
+	}
+
+
+	@Override
+	public List<MemberLog> getAllPendingLog(Long memberId) {
+		return this.getAllCompletedLog();
 	}
 
 }

@@ -3,7 +3,6 @@ package com.intrigueit.myc2i.memberlog.service;
 import java.util.List;
 
 import com.intrigueit.myc2i.memberlog.domain.MemberLog;
-import com.intrigueit.myc2i.memberlog.domain.MemberLogPK;
 
 public interface MemberLogService {
 	
@@ -13,11 +12,13 @@ public interface MemberLogService {
 
 	public MemberLog update(MemberLog entity);
 	
-	public MemberLog findById( MemberLogPK id);
+	public MemberLog findById(Long id);
 
 	public List<MemberLog> findByProperty(String propertyName, Object value);
 	
 	public List<MemberLog> getAllPendingLog();
+	
+	public List<MemberLog> getAllPendingLog(Long memberId);
 	
 	public List<MemberLog> getAllCompletedLog();
 	
