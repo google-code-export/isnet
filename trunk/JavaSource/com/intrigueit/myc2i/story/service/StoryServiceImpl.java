@@ -51,4 +51,19 @@ public class StoryServiceImpl implements StoryService{
 		return stroyDao.loadByClause(clause, new Object[]{memberId});
 	}
 
+	@Override
+	public List<MemberStory> findTopTenStories() {
+		return this.stroyDao.loadAll();
+	}
+
+	@Override
+	public MemberStory getMostVotedStory() {
+		return this.stroyDao.loadById(7L);
+	}
+
+	@Override
+	public MemberStory getWiningStory() {
+		return this.stroyDao.loadById(9L);
+	}
+
 }
