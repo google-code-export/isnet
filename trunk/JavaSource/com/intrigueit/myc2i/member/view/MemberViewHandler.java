@@ -126,8 +126,11 @@ public class MemberViewHandler extends BasePage implements Serializable{
 			Date dt = new Date();
 			this.currentMember.setRecordCreate(dt);
 			this.currentMember.setLastUpdated(dt);
+			this.currentMember.setRecordCreatorId("-1");
+			this.currentMember.setRecordUpdaterId("-1");
 			this.currentMember.setTypeId(CommonConstants.PROTEGE);
-			this.currentMember.setMemberId(null);
+			this.currentMember.setMemberRoleId(CommonConstants.ROLE_GUEST);
+			this.currentMember.setAdminUserIndicator(CommonConstants.STATUS.No.toString());
 			
 			this.memberService.save(this.currentMember);
 			//this.sendConfirmationEmail(this.currentMember.getEmail(), plainPassword);
