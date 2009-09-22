@@ -1,0 +1,39 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+<ui:composition>
+ 	<!-- Mentor Home Menu -->
+   <h:panelGroup id="idMentorDashboardPanel" rendered="${moduleType eq 'MH'}">
+     <ul class="sidemenu">
+       <li>
+         <h:outputLink styleClass="menu_item_clink" 
+           value="#{controllerBean.contextPath}/pages/secure/mentorDashboard.faces">
+           <h:outputText value="#{bundle.left_navigation_mentor_dashboard}"/>
+         </h:outputLink>
+       </li>
+       <li>
+         <h:outputLink styleClass="menu_item_clink" 
+           value="#{controllerBean.contextPath}/pages/secure/memberProtegeProfile.faces">
+           <h:outputText value="#{bundle.page_header_protege_profile}"/>
+         </h:outputLink>
+       </li>              
+       <li>
+         <h:outputLink styleClass="menu_item_clink" 
+           value="#{controllerBean.contextPath}/pages/secure/memberLog.faces">
+           <h:outputText value="#{bundle.left_navigation_mentor_activity_log}"/>
+         </h:outputLink>
+       </li>   
+       <li>
+         <h:outputLink styleClass="menu_item_clink" 
+           value="#{controllerBean.contextPath}/pages/secure/memberStory.faces">
+           <h:outputText value="#{bundle.left_navigation_mentor_success_story}"/>
+         </h:outputLink>
+       </li>                      
+    </ul>
+   </h:panelGroup>
+       
+</ui:composition>
+</html>
