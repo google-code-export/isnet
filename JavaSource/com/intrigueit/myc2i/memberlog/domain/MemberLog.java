@@ -1,13 +1,17 @@
 package com.intrigueit.myc2i.memberlog.domain;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.intrigueit.myc2i.member.domain.Member;
@@ -19,36 +23,70 @@ import com.intrigueit.myc2i.udvalues.domain.UserDefinedValues;
 public class MemberLog implements java.io.Serializable {
 
 	private static final long serialVersionUID = -6795838491539131542L;
-	private MemberLogPK id;
+	private Long memberLogId;
+	
+	private Timestamp memberLogDateTime;
+	private Long memberId;
+	private Long memberActivityType;	
+	
 	private UserDefinedValues userDefinedValues;
 	private Member member;
 	private String memberLogEntryDescription;
 	private String topic;
 	private String status;
 	
-	private String recordCreatorId;
+	private Long recordCreatorId;
+	private Member recordCreator;
 	private Date recordCreatedDate;
-	private String recordLastUpdaterId;
+	private Long recordLastUpdaterId;
+	private Member recordLastUpdater;
 	private Date recordLastUpdatedDate;
 	private Long eventDuration;
-
-	// Constructors
-
-
 
 	/** default constructor */
 	public MemberLog() {
 	}
-
-	// Property accessors
-	@EmbeddedId
-	public MemberLogPK getId() {
-		return this.id;
+	
+	@Id 
+	@Column(name = "MEMBER_LOG_ID")
+	@GeneratedValue(generator="MemberLogSeq")
+	@SequenceGenerator(name="MemberLogSeq",sequenceName="MEMBER_LOG_ID_SEQ", allocationSize=1,initialValue=1)	
+	public Long getMemberLogId() {
+		return memberLogId;
 	}
 
-	public void setId(MemberLogPK id) {
-		this.id = id;
+
+	public void setMemberLogId(Long memberLogId) {
+		this.memberLogId = memberLogId;
 	}
+	
+	@Column(name = "MEMBER_LOG_DATE_TIME", nullable = false)
+	public Date getMemberLogDateTime() {
+		return this.memberLogDateTime;
+	}
+
+	public void setMemberLogDateTime(Timestamp memberLogDateTime) {
+		this.memberLogDateTime = memberLogDateTime;
+	}
+
+	@Column(name = "MEMBER_ID", nullable = false, precision = 22, scale = 0)
+	public Long getMemberId() {
+		return this.memberId;
+	}
+
+	public void setMemberId(Long memberId) {
+		this.memberId = memberId;
+	}
+
+	@Column(name = "MEMBER_LOG_TYPE_ID", nullable = false, precision = 22, scale = 0)
+	public Long getMemberActivityType() {
+		return memberActivityType;
+	}
+
+	public void setMemberActivityType(Long memberActivityType) {
+		this.memberActivityType = memberActivityType;
+	}
+	
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "MEMBER_LOG_TYPE_ID", nullable = false,insertable = false,updatable = false)
@@ -87,13 +125,14 @@ public class MemberLog implements java.io.Serializable {
 		this.topic = topic;
 	}
 
-	@Column(name = "RECORD_CREATOR_ID")
-	public String getRecordCreatorId() {
-		return this.recordCreatorId;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "RECORD_CREATOR_ID", nullable = false,insertable = false,updatable = false)	
+	public Member getRecordCreator() {
+		return this.recordCreator;
 	}
 
-	public void setRecordCreatorId(String recordCreatorId) {
-		this.recordCreatorId = recordCreatorId;
+	public void setRecordCreator(Member recordCreator) {
+		this.recordCreator = recordCreator;
 	}
 
 	@Column(name = "RECORD_CREATED_DATE")
@@ -105,13 +144,14 @@ public class MemberLog implements java.io.Serializable {
 		this.recordCreatedDate = recordCreatedDate;
 	}
 
-	@Column(name = "RECORD_LAST_UPDATER_ID")
-	public String getRecordLastUpdaterId() {
-		return this.recordLastUpdaterId;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "RECORD_LAST_UPDATER_ID", nullable = false,insertable = false,updatable = false)
+	public Member getRecordLastUpdater() {
+		return this.recordLastUpdater;
 	}
 
-	public void setRecordLastUpdaterId(String recordLastUpdaterId) {
-		this.recordLastUpdaterId = recordLastUpdaterId;
+	public void setRecordLastUpdater(Member recordLastUpdater) {
+		this.recordLastUpdater = recordLastUpdater;
 	}
 
 	@Column(name = "RECORD_LAST_UPDATED_DATE")
@@ -139,6 +179,22 @@ public class MemberLog implements java.io.Serializable {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	@Column( name = "RECORD_CREATOR_ID")
+	public Long getRecordCreatorId() {
+		return recordCreatorId;
+	}
+
+	public void setRecordCreatorId(Long recordCreatorId) {
+		this.recordCreatorId = recordCreatorId;
+	}
+	@Column( name = "RECORD_LAST_UPDATER_ID")
+	public Long getRecordLastUpdaterId() {
+		return recordLastUpdaterId;
+	}
+
+	public void setRecordLastUpdaterId(Long recordLastUpdaterId) {
+		this.recordLastUpdaterId = recordLastUpdaterId;
 	}
 
 }
