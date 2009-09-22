@@ -14,8 +14,11 @@
   		</title>
    
 		<a4j:outputPanel id="idStyleClass">
-		  <link rel="STYLESHEET" type="text/css" href="#{controllerBean.contextPath}/#{controllerBean.cssPath}/myc2i.css"/>
-		  <link rel="STYLESHEET" type="text/css" href="#{controllerBean.contextPath}/#{controllerBean.cssPath}/common.css"/>
+		
+      	<link rel="STYLESHEET" type="text/css" href="#{controllerBean.contextPath}/#{controllerBean.cssPath}/myc2i.css"/>
+      	<link rel="STYLESHEET" type="text/css" href="#{controllerBean.contextPath}/#{controllerBean.cssPath}/menu_style.css"/>
+       	<link rel="STYLESHEET" type="text/css" href="#{controllerBean.contextPath}/#{controllerBean.cssPath}/common.css"/>
+       	
 		</a4j:outputPanel>
 
 		<ui:insert name="js"></ui:insert>
@@ -43,7 +46,7 @@
   			  
   			  <div id="inner-container" class="clearfix" style="border: 0px solid red;">
 			        <div id="content" style="border: 0px solid red;">
-				          <h:panelGrid width="99%" styleClass="body_content" style="margin-left: 3px;"  columns="1" border="0" cellpadding="0" cellspacing="0">
+				          <h:panelGrid width="99%" styleClass="body_content" style="margin-left: 1px;"  columns="1" border="0" cellpadding="0" cellspacing="0">
 					                <ui:insert name="body">Body</ui:insert>
 				          </h:panelGrid>
 			        </div>
