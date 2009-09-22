@@ -71,16 +71,18 @@ public class ChangePasswordViewHandler extends BasePage  implements Serializable
 			}			
 			Member dbMember = this.memberService.findById(member.getMemberId());
 			this.modifyMember(dbMember);
-			this.sendConfirmationEmail(dbMember.getEmail(), newPassword);
+			//this.sendConfirmationEmail(dbMember.getEmail(), newPassword);
 			return ViewConstant.PASSWORD_CHANGE_TO_HOME;
 		}
 		catch(Myc2iException ex){
 			this.errMsgs.add(ex.getMessage());
 			log.error(ex.getMessage());
+			ex.printStackTrace();
 		}		
 		catch(Exception ex){
 			this.errMsgs.add(this.getText("change_password_unable_to_update"));
-			log.error(ex.getStackTrace());
+			log.error(ex.getMessage());
+			ex.printStackTrace();
 		}
 		return "";
 	}
