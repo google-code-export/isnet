@@ -50,6 +50,11 @@ public class PayPalLogServiceImpl implements PayPalLogService{
 		 return entity;
 	}
 
+	@Override
+	public Boolean IsTxnExist(String txnId, String payerEmail) {
+		return payPalLogDao.IsTxnExist(txnId,payerEmail);
+	}
+
 
 
 
