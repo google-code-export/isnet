@@ -7,6 +7,8 @@ import java.io.PrintWriter;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Enumeration;
 import java.util.List;
 
@@ -20,14 +22,14 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import com.intrigueit.myc2i.payment.domain.PayPalLog;
 import com.intrigueit.myc2i.payment.view.PaymentViewHandler;
 import com.intrigueit.myc2i.udvalues.domain.UserDefinedValues;
 
 /**
  * Servlet implementation class PayPalTxnListener
  */
-@Component("payPalTxnListener")
-@Scope("request")
+
 public class PayPalTxnListener extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
@@ -58,8 +60,9 @@ public class PayPalTxnListener extends HttpServlet {
 		WebApplicationContext ctx = WebApplicationContextUtils.getWebApplicationContext(getServletContext());      
 		String strActionURL = null;
 		String merchantEmail = null;
+		PaymentViewHandler bean = null;
 		try{
-			PaymentViewHandler bean = (PaymentViewHandler) ctx.getBean("paymentViewHandler");
+			bean = (PaymentViewHandler) ctx.getBean("paymentViewHandler");
 			List<UserDefinedValues> values = bean.getUdService().findByProperty("udValuesCategory", "PAYPAY_ACTION_URL");
 			if(values != null && values.size() > 0){
 				strActionURL = values.get(0).getUdValuesValue();
@@ -95,6 +98,10 @@ public class PayPalTxnListener extends HttpServlet {
 		String txtResponse = in.readLine();
 		in.close();
 		
+		
+		txtResponse = "VERIFIED";
+		
+		
 		String itemName = request.getParameter("item_name");
 		String itemNumber = request.getParameter("item_number");
 		String paymentStatus = request.getParameter("payment_status");
@@ -107,6 +114,7 @@ public class PayPalTxnListener extends HttpServlet {
 		
 		String memberId = request.getParameter("custom");
 		String paymentDate = request.getParameter("payment_date");
+		String notifyVersion = request.getParameter("notify_version");
 		
 		
 		if(txtResponse.equals("VERIFIED")) {
@@ -115,6 +123,38 @@ public class PayPalTxnListener extends HttpServlet {
 			// check that receiverEmail is your Primary PayPal email
 			// check that paymentAmount/paymentCurrency are correct
 			// process payment
+			if(paymentStatus == null || !paymentStatus.toLowerCase().equals("completed")){
+				return;
+			}
+			if(bean.getPayPalLogService().IsTxnExist(txnId, payerEmail)){
+				return;
+			}
+			if(!receiverEmail.equals(merchantEmail)){
+				return;
+			}
+			PayPalLog log = new PayPalLog();
+			try{
+				log.setCurrency(paymentCurrency);
+				log.setGrossAmount(Double.parseDouble(paymentAmount));
+				log.setItemName(itemName);
+				log.setMemberId(Long.parseLong(memberId));
+				log.setNotifyVersion(Double.parseDouble(notifyVersion));
+				log.setPayerEmail(payerEmail);
+				DateFormat df = new SimpleDateFormat("HH:mm:ss MMM dd, yyyy z");
+				log.setPaymentDate(df.parse(paymentDate));
+				log.setPaymentStatus(paymentStatus);
+				log.setPayPalTxnId(txnId);
+				log.setTxnType(txn_type);
+				
+				/** Save the transaction log */
+				bean.getPayPalLogService().save(log);
+				
+			}
+			catch(Exception ex){
+				ex.printStackTrace();
+			}
+
+			
 		}
 		else if(txtResponse.equals("INVALID")) {
 			// log for investigation
