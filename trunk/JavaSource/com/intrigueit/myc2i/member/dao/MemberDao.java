@@ -13,4 +13,6 @@ public interface MemberDao extends GenericDao<Member,Long>{
 	public Boolean isMemberExist(String email);
 	
 	public List<Member> getMentorProteges(Long mentorId);
+	
+	public List<Member> findByDynamicHsql(String clause);
 }
