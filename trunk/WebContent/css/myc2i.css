@@ -375,6 +375,12 @@ div#content {
 .errorhead_icon {vertical-align: top;}
 .errormsg_text {cellpadding:0px;cellspacing:0px;text-align: left; width: 100%;color: #FF000A;vertical-align: top;}
 .errormsg_icon {cellpadding:0px;cellspacing:0px;vertical-align: top;}
+
+.infohead_text {text-align: left; width: 100%;color: #375e9f;font-weight: bold;}
+.infohead_icon {vertical-align: top;}
+.infomsg_text {cellpadding:0px;cellspacing:0px;text-align: left; width: 100%;color: #375e9f;vertical-align: top;}
+.infomsg_icon {cellpadding:0px;cellspacing:0px;vertical-align: top;}
+
 .sec_toolbar_icon {
   border: 0px;
   margin:0px;
@@ -418,6 +424,31 @@ div#content {
   text-align: left;
   padding: 0px;
 }
+
+ .onecolumn_edit {
+  float: left;
+  width: 100%;
+  height: auto;
+  text-align: left;
+  padding-left: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  background-color: #F7F7F7;
+}
+.onecolumn_edit td[class="prompt"]{
+  width: 140px;
+  border: 0px solid red;
+  vertical-align: top;
+}
+.onecolumn_edit table.itext{
+  display: inline;
+  border: 0px solid white;
+}
+.onecolumn_edit table.itext td{
+  text-align: left;
+  padding: 0px;
+}
+
 .section_header {
   width: 100%;
   height: 1px;
