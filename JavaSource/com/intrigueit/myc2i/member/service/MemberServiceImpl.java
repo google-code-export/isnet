@@ -54,4 +54,10 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.getMentorProteges(mentorId);
 	}
 
+	@Override
+	public List<Member> getMemberByDynamicHsql(String hsql) {
+		return memberDao.loadByClause(hsql, new Object[]{});
+	}
+
+
 }
