@@ -1,0 +1,224 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- 
+ * @author Mithun 2009/08/07 Created.
+ * @version $Revision: 1.0
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+	 xmlns:ui="http://java.sun.com/jsf/facelets"
+	 xmlns:h="http://java.sun.com/jsf/html"
+	 xmlns:f="http://java.sun.com/jsf/core"
+	 xmlns:a4j="http://richfaces.org/a4j"
+   xmlns:rowBar="http://www.myc2i.com/jsf/rowToolBar"
+   xmlns:ccmp="http://www.myc2i.com/jsf/commoncmp"
+ 	 xmlns:c="http://java.sun.com/jstl/core"
+ 	 xmlns:rich="http://richfaces.org/rich">
+<ui:composition>
+   <h:panelGroup id="idSectionsCon">
+   <c:set var="currentEBean" value="#{myProfileViewHandler.currentMember}"></c:set>  
+   <h:panelGroup id="idUserEditPanelGroup">
+      <rich:tabPanel switchType="client">
+        <rich:tab label="Basic Information">
+        <h:panelGrid columns="2" id="idBasicInfo" border="0" columnClasses="prompt,data,errprompt"
+          rowClasses="rowinput" width="100%">
+          <h:outputLabel>
+            <h:outputText value="#{bundle.member_first_name}"/>
+            <h:outputText styleClass="required_field" value="*" />
+          </h:outputLabel>  
+          <h:inputText id="idFirstName" value="#{currentEBean.firstName}" styleClass="form_input_text_medium "/>
+            
+          <h:outputLabel>
+            <h:outputText value="#{bundle.member_last_name}"/>
+            <h:outputText styleClass="required_field" value="*" />
+          </h:outputLabel>  
+          <h:inputText id="idLastName" value="#{currentEBean.lastName}" styleClass="form_input_text_medium "/>
+          
+          <h:outputLabel >
+            <h:outputText value="#{bundle.member_address}"/>
+          </h:outputLabel>  
+          <h:inputText id="idStreetAddress" value="#{currentEBean.streetAddress}" styleClass="form_input_text_medium "/>
+          
+          <h:outputLabel >
+             <h:outputText value="#{bundle.member_state}"/>
+             <h:outputText styleClass="required_field" value="*" />
+           </h:outputLabel>
+           <h:selectOneMenu id="idState" value="#{currentEBean.state}"  styleClass="form_input_text_medium "> 
+             <f:selectItems value="#{myProfileViewHandler.statesList}"/>             
+           </h:selectOneMenu>  
+            
+           <h:outputLabel >
+            <h:outputText value="#{bundle.member_city}"/>
+            <h:outputText styleClass="required_field" value="*" />
+           </h:outputLabel>  
+           <h:inputText   id="idCity" value="#{currentEBean.city}" styleClass="form_input_text_medium"/>
+            
+           <h:outputLabel >
+            <h:outputText value="#{bundle.member_zip}"/>
+            <h:outputText styleClass="required_field" value="*" />
+           </h:outputLabel>  
+           <h:inputText   id="idStreetZip" value="#{currentEBean.zip}" styleClass="form_input_text_medium"/>
+          
+           <h:outputLabel >
+              <h:outputText value="#{bundle.member_country}"/>
+           </h:outputLabel>
+           <h:selectOneMenu id="idCountry" value="#{currentEBean.country}"  styleClass="form_input_text_medium"> 
+            <f:selectItems value="#{myProfileViewHandler.countryList}"/>
+           </h:selectOneMenu>
+              
+           <h:outputLabel >
+            <h:outputText value="#{bundle.member_home_phone}"/>
+           </h:outputLabel>  
+           <h:inputText  id="idHomePhone" value="#{currentEBean.homePhoneNumber}" styleClass="form_input_text_medium"/>
+           
+           <h:outputLabel >
+                <h:outputText value="#{bundle.member_work_phone}"/>
+           </h:outputLabel>  
+           <h:inputText  id="idWorkPhone" value="#{currentEBean.workPhoneNumber}" styleClass="form_input_text_medium"/>
+              
+           <h:outputLabel >
+            <h:outputText value="#{bundle.member_cell_phone}"/>
+           </h:outputLabel>  
+           <h:inputText  id="idCellPhone" value="#{currentEBean.cellPhoneNumber}" styleClass="form_input_text_medium"/>
+                            
+           <h:outputLabel >
+            <h:outputText value="#{bundle.member_linked_in_URL}"/><h:outputText styleClass="required_field" value="" />
+            </h:outputLabel>  
+            <h:inputText  id="idLinkedInURL" value="#{currentEBean.linkedInURL}" styleClass="form_input_text_medium"/>
+            
+            <h:outputLabel >  
+              <h:outputText value="#{bundle.member_privacy_ind}"></h:outputText><h:outputText styleClass="required_field" value="" />
+            </h:outputLabel>            
+            <h:panelGroup >
+              <h:selectBooleanCheckbox id="idPrivacyInd" value="#{currentEBean.dontEmail}"  >
+                    </h:selectBooleanCheckbox>
+              <rich:spacer width="5"></rich:spacer>                   
+              <h:outputText  value="#{bundle.member_privacy_dont_email}"/>
+            </h:panelGroup>
+            
+            <h:outputText value=""></h:outputText>            
+            <h:panelGroup >
+              <h:selectBooleanCheckbox id="idDontCall" value="#{currentEBean.dontCall}"  >
+                    </h:selectBooleanCheckbox>
+              <rich:spacer width="5"></rich:spacer>                   
+              <h:outputText  value="#{bundle.member_privacy_dont_phone}"/>
+            </h:panelGroup>
+           
+           <h:outputText value=""/>         
+           <h:outputText id="idURLLabel1" value="#{bundle.member_introduction_url_label1}"/>
+           
+           <h:outputText id="idURLLabel2" value=""/>
+           <h:outputText value="#{bundle.member_introduction_url_label2}"/>         
+          
+          <h:outputText value="#{bundle.member_online_profile}"/>
+          <h:inputText  id="idOnlineProfile" value="#{myProfileViewHandler.currentMember.introductionUrl}" styleClass="form_input_text_medium"/>
+                
+          <h:outputLabel>
+            <h:outputText value="#{bundle.member_ethinicity}"/>
+            <h:outputText styleClass="required_field" value="*" />
+          </h:outputLabel>
+          <h:selectOneMenu id="idEthinicity" value="#{currentEBean.ethinicity}"  styleClass="form_input_text_medium"> 
+            <f:selectItems value="#{myProfileViewHandler.ethinicityList}"/>
+          </h:selectOneMenu>
+          
+          <h:outputLabel>
+            <h:outputText value="#{bundle.member_marital_status}"/>
+            <h:outputText styleClass="required_field" value="*" />
+          </h:outputLabel>
+          <h:selectOneMenu id="idMaritalStatus" value="#{currentEBean.maritalStatus}"  styleClass="form_input_text_medium"> 
+            <f:selectItems value="#{myProfileViewHandler.martialStatusList}"/>
+          </h:selectOneMenu>  
+          
+          <h:outputLabel>
+            <h:outputText value="#{bundle.member_gender}" />
+            <h:outputText styleClass="required_field" value="*" />
+          </h:outputLabel>              
+          <h:selectOneRadio id="idGenderIndicator" style="width: 150px;" value="#{currentEBean.genderInd}">
+            <f:selectItem  itemLabel="#{bundle.member_gender_male}" itemValue="Y"  />
+            <f:selectItem  itemLabel="#{bundle.member_gender_female}" itemValue="N"  />
+          </h:selectOneRadio> 
+          
+          <h:outputLabel>
+              <h:outputText value="#{bundle.member_birth_year}"/>
+              <h:outputText styleClass="required_field" value="*" />
+          </h:outputLabel>
+          <h:selectOneMenu id="idBirthYear" value="#{currentEBean.birthYear}"  styleClass="form_input_text_medium"> 
+            <f:selectItems value="#{myProfileViewHandler.birthYearlist}"/>
+          </h:selectOneMenu>  
+                                                  
+          <h:outputLabel>
+              <h:outputText value="#{bundle.member_children_ind}" />
+          </h:outputLabel>              
+          <h:selectOneRadio id="idChildrenInd" style="width: 150px;" value="#{currentEBean.childrenInd}">
+            <f:selectItem  itemLabel="#{bundle.yes_label}" itemValue="Y" />
+            <f:selectItem  itemLabel="#{bundle.no_label}" itemValue="N" />
+          </h:selectOneRadio>
+          
+           <h:outputLabel>
+              <h:outputText value="#{bundle.member_profession}"/>
+              <h:outputText styleClass="required_field" value="*" />
+          </h:outputLabel>
+          <h:selectOneMenu id="idProfession" value="#{currentEBean.profession}"  styleClass="form_input_text_medium"> 
+            <f:selectItems value="#{myProfileViewHandler.professionList}"/>
+          </h:selectOneMenu>  
+          
+          <h:outputLabel >
+          <h:outputText value="#{bundle.member_company_name}"/>
+          </h:outputLabel>  
+          <h:inputText id="idCompanyName" value="#{currentEBean.company}" styleClass="form_input_text_medium"/>
+                                        
+          <h:outputLabel>
+              <h:outputText value="#{bundle.member_madhab}"/>
+              <h:outputText styleClass="required_field" value="*" />
+          </h:outputLabel>
+          <h:selectOneMenu id="idMazhab" value="#{currentEBean.mazhab}"  styleClass="form_input_text_medium"> 
+            <f:selectItems value="#{myProfileViewHandler.madhabList}"/>
+          </h:selectOneMenu>
+          
+          <h:outputLabel>
+            <h:outputText styleClass="required_field" value="*" />
+          </h:outputLabel>
+          <h:panelGroup >
+            <h:selectBooleanCheckbox id="idEmailNotify" title=""   >
+                  </h:selectBooleanCheckbox>
+            <rich:spacer width="5"></rich:spacer>                   
+            <h:outputText  value="#{bundle.member_new_email_notify}"/>
+          </h:panelGroup>          
+        </h:panelGrid>
+        </rich:tab>
+        <rich:tab label="Ssecurity Question">
+          <h:panelGrid columns="2" id="idSsecurityQuestion" border="0" columnClasses="prompt,data,errprompt"
+          rowClasses="rowinput" width="100%">
+              <h:outputLabel>
+                <h:outputText value="#{bundle.password_recovery_question1}"/><h:outputText styleClass="required_field" value="*" />
+              </h:outputLabel>
+              <h:selectOneMenu value="#{currentEBean.securityQuestion1}"  styleClass="form_input_text_medium"> 
+                <f:selectItems value="#{myProfileViewHandler.question1List}"/>
+              </h:selectOneMenu>  
+                              
+              <h:outputLabel >
+                  <h:outputText value="#{bundle.password_recovery_question1_ans}"/><h:outputText styleClass="required_field" value="*" />
+              </h:outputLabel>
+              <h:inputText  id="idQestionAns1" value="#{currentEBean.securityQuestionAns1}" styleClass="form_input_text_medium"/>
+              
+              <h:outputLabel>
+                  <h:outputText value="#{bundle.password_recovery_question2}"/><h:outputText styleClass="required_field" value="*" />
+              </h:outputLabel>                            
+              <h:selectOneMenu value="#{currentEBean.securityQuestion2}"  styleClass="form_input_text_medium"> 
+                <f:selectItems value="#{myProfileViewHandler.question2List}"/>
+              </h:selectOneMenu>
+              
+              <h:outputLabel>
+                  <h:outputText value="#{bundle.password_recovery_question2_ans}"/><h:outputText styleClass="required_field" value="*" />
+              </h:outputLabel>
+              <h:inputText  id="idQestionAns2" value="#{currentEBean.securityQuestionAns2}" styleClass="form_input_text_medium"/>
+            
+          </h:panelGrid>
+        </rich:tab>
+       </rich:tabPanel>
+  </h:panelGroup>
+    <rich:spacer width="100%" height="15"/>
+    <ccmp:actioncmp controlBean="#{myProfileViewHandler}" updateAction="updateUser"  
+      cancelAction="reloadUser" reRenderIds="idSectionsCon"/>
+    <rich:spacer width="100%" height="5"/>
+    </h:panelGroup>
+</ui:composition>
+</html>
