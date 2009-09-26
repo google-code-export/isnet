@@ -5,47 +5,32 @@
    xmlns:a4j="http://richfaces.org/a4j"
    xmlns:rich="http://richfaces.org/rich">
 <ui:composition>
-	<rich:panel>
-	<h:panelGrid columns="1">
-       	<h:outputText value="#{bundle.mentor_payment_text1}" />
-       	<h:outputText value="#{bundle.mentor_payment_text2}" />
-       	<h:outputText value="#{bundle.mentor_payment_text3}" />
-       	<h:outputText value="#{bundle.mentor_payment_text4}" />
-
-		
-
        	<f:verbatim>
 			<form action="#{paymentViewHandler.payPalActionURL}" method="post">
-			<input type="hidden" name="cmd" value="_xclick-subscriptions"/>
+			<input type="hidden" name="cmd" value="_xclick"/>
 			<input type="hidden" name="business" value="#{paymentViewHandler.merchantEmailAccount}"/>
-			<input type="hidden" name="lc" value="US"/>
-			<input type="hidden" name="item_name" value="MYC2I YEARLY SUBSCRIPTION"/>
-			<input type="hidden" name="no_note" value="1"/>
-			<table >		
-			<tr><td><input  type="radio" name="a3" value="35.00" checked="checked"/>&#160;$35 (My registration and 0 guest)</td></tr>
-			<tr><td><input  type="radio" name="a3" value="45.00"  />&#160;$45 (My registration and 1 guests)</td></tr>		
-			<tr><td><input  type="radio" name="a3" value="55.00"  />&#160;$55 (My registration and 2 guests)</td></tr>		
-			<tr><td><input  type="radio" name="a3" value="75.00"  />&#160;$75 (My registration and 3 guests)</td></tr>		
-			<tr><td><input  type="radio" name="a3" value="125.00" />&#160;$125 (My registration and 5 guests)</td></tr>		
-			<tr><td><input  type="radio" name="a3" value="175.00"  />&#160;$175 (My registration and 10 guests</td></tr>		
-			<tr><td><input  type="radio" name="a3" value="225.00"  />&#160;$225 (My registration and 15 guests)</td></tr>		
-			<tr><td><input  type="radio" name="a3" value="275.00"  />&#160;$275 (My registration and 20 guests)</td></tr>
-			</table>
+			<input type="hidden" name="item_name" value="MYC2I DONATION"/>
 			<input type="hidden" name="currency_code" value="USD"/>
-			<input type="hidden" name="src" value="1"/>
-			<input type="hidden" name="p3" value="12"/>
-			<input type="hidden" name="t3" value="M"/>
-			<input type="hidden" name="sra" value="1"/>
-			<input type="hidden" name="bn" value="PP-SubscriptionsBF:btn_subscribe_LG.gif:NonHostedGuest"/>
-			<input type="image" src="https://www.paypal.com/en_US/i/btn/btn_subscribe_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!"/>
+			<input type="hidden" name="custom" value="#{paymentViewHandler.member.memberId}"/>
+			<table >		
+			<tr>
+			<td><input  type="radio" name="amount" value="10.00" checked="checked"/>&#160;$10</td>
+			<td><input  type="radio" name="amount" value="25.00"  />&#160;$25</td>		
+			<td><input  type="radio" name="amount" value="50.00"  />&#160;$50</td>
+			<td><input  type="radio" name="amount" value="100.00"  />&#160;$100</td>
+			</tr>
+					
+			<tr>
+			<td><input  type="radio" name="amount" value="250.00"  />&#160;$250</td>	
+			<td><input  type="radio" name="amount" value="500.00" />&#160;$500</td>	
+			<td><input  type="radio" name="amount" value="1000.00"  />&#160;$1000</td>
+			<td><input  type="radio" name="amount" value="5000.00"  />&#160;$5000</td>		
+			</tr>
+			
+			</table>
+			<input type="image" src="http://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="Make payments with PayPal - it's fast, free and secure!"/>
 			<img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1"/>
 			</form>       	
        	</f:verbatim>
-     	
-          
-	</h:panelGrid>	
-	
-	</rich:panel>
-
 </ui:composition>
 </html>
