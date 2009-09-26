@@ -12,6 +12,11 @@
    <value>default</value>
   </managed-property>
  </managed-bean>
+ <managed-bean>
+  <managed-bean-name>calendarManageBean</managed-bean-name>
+  <managed-bean-class>com.intrigueit.myc2i.common.utility.CalendarManageBean</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
  <navigation-rule>
   <from-view-id>/guestRegister.xhtml</from-view-id>
   <navigation-case>
