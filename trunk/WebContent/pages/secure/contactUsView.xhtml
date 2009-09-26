@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- 
+ * @author Mithun 2009/08/07 Created.
+ * @version $Revision: 1.0
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:a4j="http://richfaces.org/a4j"
+   xmlns:rowBar="http://www.myc2i.com/jsf/rowToolBar"
+   xmlns:ccmp="http://www.myc2i.com/jsf/commoncmp"
+   xmlns:c="http://java.sun.com/jstl/core"
+   xmlns:rich="http://richfaces.org/rich">
+
+<ui:composition template="/templates/maintmpl.xhtml">
+  <ui:param name="moduleTitle" value="Home >> Dashboard"></ui:param>
+  <ui:param name="userType" value="A"></ui:param>
+  <ui:param name="moduleType" value="CU"></ui:param>
+  <ui:param name="headerText" value="#{bundle.contact_us_message_details}"></ui:param>
+  <ui:param name="refManageBean" value="#{contactUsViewHandler}"></ui:param>
+ <ui:define name="commonInfo">
+  </ui:define>
+  <ui:define name="js">
+    <script></script>
+  </ui:define>
+  <ui:define name="body">    
+    <h:panelGroup id="idSectionsCon">
+      <rich:spacer width="100%" height="10"/>
+        <h:panelGroup id="idTopCon">
+          <h:panelGrid columns="1" id="idSearch" border="0" widht="100%" columnClasses="prompt text_align_center" width="100%">          
+            <h:panelGroup id="idSearchCon">
+              <h:outputText value="#{bundle.contact_us_show_message_between}" />
+              &#160;
+              <a4j:outputPanel id="idStartDate">
+                <rich:calendar value="#{contactUsViewHandler.fromDate}"
+                  locale="#{calendarManageBean.locale}"
+                  popup="#{calendarManageBean.popup}"
+                  datePattern="#{calendarManageBean.pattern}" required="true"
+                  label="Date valid from"/>
+              </a4j:outputPanel>
+              &#160;
+              <h:outputText value="#{bundle.contact_us_and}" />
+              &#160;
+              <a4j:outputPanel id="idEndDate">
+              <rich:calendar value="#{contactUsViewHandler.toDate}"
+                locale="#{calendarManageBean.locale}"
+                popup="#{calendarManageBean.popup}"
+                datePattern="#{calendarManageBean.pattern}" required="true"
+                label="End date"/>
+            </a4j:outputPanel>
+            &#160;
+            <a4j:commandButton value="#{bundle.contact_us_search}" styleClass="ibutton" 
+              style="background:#F8F3D3;"
+              action="#{contactUsViewHandler.loadMessagesByCriteria}" reRender="MESSAGE_LINES"
+              onclick="forceSBlockUI(ajaxProcessMsg);" oncomplete="forceSUnblockUI();"/>             
+           </h:panelGroup>
+          </h:panelGrid>
+        </h:panelGroup>      
+      <rich:spacer width="100%" height="20"/>
+      <h:panelGroup id="MESSAGE_LINES">        
+        <rich:dataTable styleClass="listcontainer" headerClass="listheader" rowClasses="odd-row,even-row"
+          id="idMessageLines" value="#{contactUsViewHandler.messageLines}" var="message"
+          rows="7" cellpadding="0" cellspacing="0">
+          <f:facet name="header">
+            <rich:columnGroup>
+              <rich:column width="45px" style="text-align:left;" valign="top">
+                <h:outputText value="#{bundle.contact_us_from}" />
+              </rich:column>
+              <rich:column width="65px" style="text-align:left;" valign="top">
+                <h:outputText value="#{bundle.contact_us_subject}" />
+              </rich:column>
+              <rich:column width="100px" style="text-align:left;" valign="top">
+                <h:outputText value="#{bundle.contact_us_details}" />
+              </rich:column>                            
+              <rich:column width="20px" style="text-align:center;" valign="top">
+                <h:outputText value="#{bundle.common_action}" />
+              </rich:column>
+          </rich:columnGroup>
+          </f:facet>
+         <rich:column>
+          <h:outputText escape="false" value="#{message.member.firstName}" />
+         </rich:column>
+         <rich:column>
+          <h:outputText escape="false" value="#{message.topic}" />
+         </rich:column>
+         <rich:column>
+          <h:outputText escape="false" value="#{message.memberLogEntryDescription}" />
+         </rich:column>                  
+         <rich:column style="text-align:center;vertical-align:middle;">
+           <rowBar:rowToolBar recordId="#{message.id}"
+           sectionId="MESSAGE_LINES" modalPanelId="idmemberLogDialog" parentComp="secMESSAGE_LINES"
+           aUpdateRecord="preReplay" aDeleteRecord="deleteDocument" editTitle="Reply"/>
+         </rich:column>
+        </rich:dataTable>
+        <rich:datascroller id="idDataScroller" align="center"  for="idMessageLines" maxPages="7" />
+        
+        <rich:jQuery selector="#idMessageLines tr" query="mouseover(function(){jQuery(this).addClass('active-row')})"/>
+        <rich:jQuery selector="#idMessageLines tr" query="mouseout(function(){jQuery(this).removeClass('active-row')})"/>
+      </h:panelGroup>
+    </h:panelGroup>    
+  </ui:define>
+  <ui:define name="modalPanels">
+    <a4j:region>
+      <ui:include src="../modals/memberLogDialog.xhtml">
+      </ui:include>
+    </a4j:region>      
+  </ui:define>
+</ui:composition>
+</html>
