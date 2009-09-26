@@ -7,6 +7,11 @@
     xmlns:rich="http://richfaces.org/rich"
     xmlns:ui="http://java.sun.com/jsf/facelets">
   <ui:composition>
+    <c:set var="titleEdit" value="Edit" />
+    <c:if test="${not empty editTitle}">
+      <c:set var="titleEdit" value="${editTitle}" />
+    </c:if>      
+      
     <h:panelGroup>
       <h:panelGroup>
     		  <a4j:commandLink onclick="forceBlockUI(ajaxLoadingMsg);" action="#{refManageBean[aUpdateRecord]}"
@@ -15,7 +20,7 @@
           <f:param value="${recordId}" name="recordId"/>
           <f:param value="${recordType}" name="recordType"/>
           <h:panelGroup>
-            <h:graphicImage title="Edit" value="${imagesPath}/edit.png"
+            <h:graphicImage title="${titleEdit}" value="${imagesPath}/edit.png"
               styleClass="row_toolbar_icon"/>
           </h:panelGroup>
         </a4j:commandLink>
