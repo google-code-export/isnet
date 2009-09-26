@@ -30,21 +30,21 @@
             		<h:outputText value="#{bundle.protege_search_distance}" />
 	      		</td>
 	      		<td>
-					<h:selectOneRadio id="idDistance">
-			  			<f:selectItem  itemLabel="#{bundle.protege_search_distance_five}" itemValue="5"  />
-			  			<f:selectItem  itemLabel="#{bundle.protege_search_distance_ten}" itemValue="10"  />
-			  			<f:selectItem  itemLabel="#{bundle.protege_search_distance_fifteen}" itemValue="15"  />
-			  			<f:selectItem  itemLabel="#{bundle.protege_search_distance_twenty}" itemValue="20"  />				  
+					<h:selectOneRadio id="idDistance"  value="#{memberSearchViewHandler.dist}">
+			  			<f:selectItem  itemLabel="#{bundle.protege_search_distance_five}" itemValue="5.00"  />
+			  			<f:selectItem  itemLabel="#{bundle.protege_search_distance_ten}" itemValue="10.00"  />
+			  			<f:selectItem  itemLabel="#{bundle.protege_search_distance_fifteen}" itemValue="15.00"  />
+			  			<f:selectItem  itemLabel="#{bundle.protege_search_distance_twenty}" itemValue="20.00"  />				  
 					</h:selectOneRadio>		      
 	      		</td>
 	      		<td>
 					<h:outputText value="#{bundle.protege_search_distance1}" />	      
 	      		</td>
 				<td>
-					<h:inputText value="" />
+					<h:inputText value="#{memberSearchViewHandler.srcZipCode}" />
 				</td>	
 				<td>
-					<a4j:commandButton  value="Search" />
+					<a4j:commandButton  value="#{bundle.button_label_search}" action="#{memberSearchViewHandler.executeSearch}" reRender="idResultPanel"/>
 				</td>
 				<td width="25%"></td>							      
            </tr>
@@ -54,13 +54,13 @@
 	      		</td>
 	      		<td colspan="5">
 	      			<rich:spacer width="5"/>
-					<h:selectBooleanCheckbox ></h:selectBooleanCheckbox><h:outputText value="#{bundle.protege_search_profession}" />	
+					<h:selectBooleanCheckbox value="#{memberSearchViewHandler.search.isProfession}"></h:selectBooleanCheckbox><h:outputText value="#{bundle.protege_search_profession}" />	
 					<rich:spacer width="5"/>      
-					<h:selectBooleanCheckbox ></h:selectBooleanCheckbox><h:outputText value="#{bundle.protege_search_ethnicity}" />	      
+					<h:selectBooleanCheckbox value="#{memberSearchViewHandler.search.isEhinicity}"></h:selectBooleanCheckbox><h:outputText value="#{bundle.protege_search_ethnicity}" />	      
 					<rich:spacer width="5"/>
-					<h:selectBooleanCheckbox ></h:selectBooleanCheckbox><h:outputText value="#{bundle.protege_search_marital_status}" />	      
+					<h:selectBooleanCheckbox value="#{memberSearchViewHandler.search.isMaritalStatus}"></h:selectBooleanCheckbox><h:outputText value="#{bundle.protege_search_marital_status}" />	      
 					<rich:spacer width="5"/>
-					<h:selectBooleanCheckbox ></h:selectBooleanCheckbox><h:outputText value="#{bundle.protege_search_year_of_birth}" />
+					<h:selectBooleanCheckbox value="#{memberSearchViewHandler.search.isYearOfBirth}"></h:selectBooleanCheckbox><h:outputText value="#{bundle.protege_search_year_of_birth}" />
 				</td>	
 
            </tr>           
@@ -69,7 +69,7 @@
       </h:panelGroup>
       
       <rich:spacer width="100%" height="20"/>
-		<rich:panel headerClass="container_box_panel_header"  bodyClass="container_body_style" >
+		<rich:panel id="idResultPanel" headerClass="container_box_panel_header"  bodyClass="container_body_style" >
 			<f:facet name="header"><h:outputText value="#{bundle.protege_search_result}" /> </f:facet>
 			<h:panelGrid columns="1" width="100%" cellpadding="0" cellspacing="0" border="0">
 				<rich:dataTable  width="100%" id="idDataGrid"  rowClasses=",container_even_row_style" rows="5"  columnsWidth="150,"
