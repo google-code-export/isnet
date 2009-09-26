@@ -66,5 +66,13 @@ public class MemberLogServiceImpl implements MemberLogService{
 	public List<MemberLog> getAllPendingLog(Long memberId) {
 		return this.getAllCompletedLog();
 	}
-
+	
+	public List<MemberLog> findByProperties (String fromDate, String toDate ) {
+    StringBuffer clause = new StringBuffer();    
+    clause.append(" select * from MEMBER_LOG where to_char(MEMBER_LOG_DATE_TIME,'yyyyMMdd') >= "+fromDate);
+    if ( toDate != null ) {
+      clause.append(" and to_char(MEMBER_LOG_DATE_TIME,'yyyyMMdd') <= "+toDate);
+    }
+    return memberLogDao.findByProperties(clause.toString());    
+  }
 }
