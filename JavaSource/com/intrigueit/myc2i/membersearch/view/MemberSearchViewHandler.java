@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import com.intrigueit.myc2i.common.view.BasePage;
 import com.intrigueit.myc2i.member.domain.Member;
 import com.intrigueit.myc2i.member.service.MemberService;
+import com.intrigueit.myc2i.membersearch.domain.MemberSearch;
 import com.intrigueit.myc2i.zipcode.ZipCodeUtil;
 import com.intrigueit.myc2i.zipcode.domain.ZipCode;
 import com.intrigueit.myc2i.zipcode.service.ZipCodeService;
@@ -23,31 +24,62 @@ public class MemberSearchViewHandler extends BasePage {
 	
 	private Double dist;
 	private String srcZipCode;
-	private Member searchMember;
+	private MemberSearch search;
 	
 	
 	/**
 	 * 
 	 */
 	public MemberSearchViewHandler() {
-		this.searchMember = new Member();
+		this.search = new MemberSearch(false,false,false,false);
+		this.dist = 20.00;
+		
 	}
 	public void executeSearch(){
 		try{
 			log.debug(this.dist);
 			List<String> zipCodes = this.getZipCodes();
+			List<Member> members = this.memberService.getMemberByDynamicHsql(this.getClause(zipCodes));
+			for(Member member: members){
+				System.out.println(member.getFirstName());
+			}
+			
 		}
 		catch(Exception ex){
 			log.error(ex.getMessage());
 			ex.printStackTrace();
 		}
 	}
+	private String getClause(List<String> zipCodes){
+		String clause = "";
+		if(this.search.getIsProfession()){
+			clause = "t.profession='"+ this.getMember().getProfession()+"'";
+		}
+		if(this.search.getIsEhinicity()){
+			clause = clause.equals("") ? clause+" t.ethinicity="+ this.getMember().getEthinicity()+"" : clause+" and t.ethinicity="+ this.getMember().getEthinicity()+"";
+		}
+		if(this.search.getIsMaritalStatus()){
+			clause = clause.equals("") ? clause+" t.maritalStatus='"+ this.getMember().getMaritalStatus()+"'" : clause+" and t.maritalStatus='"+ this.getMember().getMaritalStatus()+"'";
+		}
+		if(this.search.getIsYearOfBirth()){
+			clause = clause.equals("") ? clause+" t.birthYear="+this.getMember().getBirthYear() +"" : clause+" and t.birthYear="+this.getMember().getBirthYear() +"";
+		}
+		if(zipCodes.size() > 0){
+			String codes = "";
+			for(String str: zipCodes){
+				codes = codes.equals("")? str : codes + ","+ str;
+			}
+			clause = clause.equals("") ? clause+" t.zip in ("+codes +")" : clause+" and t.zip in ("+codes +")";
+		}
+		return clause;
+		
+	}
 	private List<String> getZipCodes(){
 		List<String> zipCodes = new ArrayList<String>();
 		
 		try{
-			String memberZipCode = this.getMember().getZip().toString();
-			ZipCode srcZip = this.zipCodeService.findById(memberZipCode);
+			//String memberZipCode = this.getMember().getZip().toString();
+			ZipCode srcZip = this.zipCodeService.findById(this.getSrcZipCode());
 			List<ZipCode> desZipCodes = this.zipCodeService.findByState(this.getMember().getState());
 			ZipCodeUtil util = new ZipCodeUtil();
 			for(ZipCode zip: desZipCodes){
@@ -90,13 +122,13 @@ public class MemberSearchViewHandler extends BasePage {
 	public void setSrcZipCode(String srcZipCode) {
 		this.srcZipCode = srcZipCode;
 	}
-	public Member getSearchMember() {
-		return searchMember;
+	public MemberSearch getSearch() {
+		return search;
 	}
-	public void setSearchMember(Member searchMember) {
-		this.searchMember = searchMember;
+	public void setSearch(MemberSearch search) {
+		this.search = search;
 	}
-	
+
 	
 	  
 }
