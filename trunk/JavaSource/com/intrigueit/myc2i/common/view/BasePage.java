@@ -48,7 +48,7 @@ public class BasePage {
     /* Common variable for managing this managebean and entity */
     private String actionType;
     private String reRenderIds; 
-    private String headerMsg;
+    private String msgType;
     private Integer rowIndex;    
     private String errorMessage = "";  
     private String secHeaderMsg;
@@ -290,7 +290,8 @@ public class BasePage {
   	 * @return the errorMessage
   	 */
   	public void setErrorMessage(String errorMessage) {
-  		this.errorMessage = errorMessage;
+  		this.setMsgType("");
+  	  this.errorMessage = errorMessage;
   	}
 
   	/**
@@ -342,17 +343,17 @@ public class BasePage {
     }
 
     /**
-     * @return the headerMsg
+     * @return the msgType
      */
-    public String getHeaderMsg() {
-      return headerMsg;
+    public String getMsgType() {
+      return msgType;
     }
 
     /**
-     * @param headerMsg the headerMsg to set
+     * @param msgType the msgType to set
      */
-    public void setHeaderMsg(String headerMsg) {
-      this.headerMsg = headerMsg;
+    public void setMsgType(String msgType) {
+      this.msgType = msgType;
     }
 
     /**
@@ -400,8 +401,8 @@ public class BasePage {
 
 	public Member getMember() {
 		Object obj = this.getSession().getAttribute(CommonConstants.SESSION_MEMBER_KEY);
-		if(obj != null) this.member = (Member) obj; 
-		return member;
+		if(obj != null) this.member = (Member) obj;
+    return member;
 	}
 
 	public void setMember(Member member) {
