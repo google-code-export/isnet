@@ -4,14 +4,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import javax.faces.model.SelectItem;
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-
 import com.intrigueit.myc2i.common.ServiceConstants;
 import com.intrigueit.myc2i.common.view.BasePage;
 import com.intrigueit.myc2i.common.view.CommonValidator;
@@ -37,6 +34,9 @@ public class myProfileViewHandler extends BasePage implements Serializable {
   private ArrayList<SelectItem> knowledgeLevelList;
   private String confirmPass;
   private Boolean agree = false;
+  
+  private ArrayList<SelectItem> question1List; 
+  private ArrayList<SelectItem> question2List;
   
   
   @Autowired
@@ -112,6 +112,31 @@ public class myProfileViewHandler extends BasePage implements Serializable {
                     .append(this.getText("member_validation_gender"));
         flag = false;
       }
+      
+      if(CommonValidator.isEmpty(this.getCurrentMember().getSecurityQuestion1())){
+        if ( !flag )errorMessage.append("<br />");
+        errorMessage.append(this.getText("common_error_prefix")).append(" ")
+                    .append(this.getText("change_password_security_question1_chose"));
+        flag = false;
+      }   
+      if(CommonValidator.isEmpty(this.getCurrentMember().getSecurityQuestionAns1())){
+        if ( !flag )errorMessage.append("<br />");
+        errorMessage.append(this.getText("common_error_prefix")).append(" ")
+                    .append(this.getText("change_password_security_question1_empty"));
+        flag = false;
+      } 
+      if(CommonValidator.isEmpty(this.getCurrentMember().getSecurityQuestion2())){
+        if ( !flag )errorMessage.append("<br />");
+        errorMessage.append(this.getText("common_error_prefix")).append(" ")
+                    .append(this.getText("change_password_security_question2_chose"));
+        flag = false;
+      }   
+      if(CommonValidator.isEmpty(this.getCurrentMember().getSecurityQuestionAns2())){
+        if ( !flag )errorMessage.append("<br />");
+        errorMessage.append(this.getText("common_error_prefix")).append(" ")
+                    .append(this.getText("change_password_security_question2_empty"));
+        flag = false;
+      }
     }
     if (!flag) setErrorMessage(this.getText("common_error_header") + errorMessage.toString());
     return flag;
@@ -155,7 +180,8 @@ public class myProfileViewHandler extends BasePage implements Serializable {
         //if (validationPhase2()) {         
           this.memberService.update(this.currentMember);    
           logger.debug("Member updated: "+ this.currentMember.getMemberId());
-          setErrorMessage(this.getText("update_success_message"));
+          this.setErrorMessage(this.getText("update_success_message"));
+          this.setMsgType(ServiceConstants.INFO);
         //}
       }
     } catch (Exception e) {
@@ -245,5 +271,27 @@ public class myProfileViewHandler extends BasePage implements Serializable {
   }
   public void setConfirmPass(String confirmPass) {
     this.confirmPass = confirmPass;
+  }
+    
+  public ArrayList<SelectItem> getQuestion1List() {
+    if(question1List == null){
+      this.question1List = viewDataProvider.getQuestionList();
+    }
+    return question1List;
+  }
+
+  public void setQuestion1List(ArrayList<SelectItem> question1List) {
+    this.question1List = question1List;
+  }
+
+  public ArrayList<SelectItem> getQuestion2List() {
+    if(question2List == null){
+      this.question2List = viewDataProvider.getQuestionList();
+    }
+    return question2List;
+  }
+  
+  public void setQuestion2List(ArrayList<SelectItem> question2List) {
+    this.question2List = question2List;
   }
 }
