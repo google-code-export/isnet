@@ -1,6 +1,8 @@
 package com.intrigueit.myc2i.memberlog.view;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -101,8 +103,11 @@ public class ContactUsViewHandler extends BasePage implements Serializable {
 	public void loadMessagesByCriteria() {
     try {
       logger.debug(" Load message by search critariya ");    
-      System.out.println(this.getFromDate() +":::"+this.getToDate());
-      List<MemberLog> recordList = memberLogService.findByProperties(this.fromDate,this.toDate);
+      String DATE_FORMAT = "yyyyMMdd";
+      SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
+      String fromDate = sdf.format(this.getFromDate());
+      String toDate = sdf.format(this.getToDate());
+      List<MemberLog> recordList = memberLogService.findByProperties(fromDate,toDate);
       getMessageLines().setWrappedData(recordList);
     }catch (Exception ex) {
       logger.error("Message by search critariya:"+ex.getMessage());
