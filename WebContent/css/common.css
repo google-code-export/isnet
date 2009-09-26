@@ -55,6 +55,12 @@
 	.column_class_right{
 		text-align: right;
 	}	
+	.col_40{
+		width: 40%;
+	}
+	.col_60{
+		width: 60%;
+	}	
 	.content_div{
 		border-left: 1px solid #F4EDBF;
 		border-right: 1px solid #F4EDBF;
