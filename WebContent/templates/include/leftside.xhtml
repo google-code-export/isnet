@@ -100,6 +100,32 @@
             </li>
          </ul>
         </h:panelGroup>
+        <h:panelGroup id="idMyProfileManagePanel" rendered="${moduleType eq 'AMA'}">
+          <ul class="sidemenu">
+            <li>
+              <h:outputLink styleClass="menu_item_clink" 
+                value="#{controllerBean.contextPath}/pages/secure/adminProfile.faces">
+                <h:outputText value="#{bundle.left_my_profile}"/>
+              </h:outputLink>
+            </li>
+            <li>
+              <h:outputLink styleClass="menu_item_clink" 
+                value="#{controllerBean.contextPath}/pages/secure/adminChgPassword.faces">
+                <h:outputText value="#{bundle.left_my_change_password}"/>
+              </h:outputLink>
+            </li>
+         </ul>
+        </h:panelGroup>
+        <h:panelGroup id="idContactUsManagePanel" rendered="${moduleType eq 'CU'}">
+          <ul class="sidemenu">
+            <li>
+              <h:outputLink styleClass="menu_item_clink" 
+                value="#{controllerBean.contextPath}/pages/secure/contactUsView.faces">
+                <h:outputText value="#{bundle.left_manage_contact_us}"/>
+              </h:outputLink>
+            </li>
+         </ul>
+        </h:panelGroup>
       </h:panelGroup>
     </div>
   </div>
