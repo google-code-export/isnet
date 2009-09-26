@@ -22,5 +22,7 @@ public interface MemberLogService {
 	
 	public List<MemberLog> getAllCompletedLog();
 	
-	public List<MemberLog> findAll();	
+	public List<MemberLog> findAll();
+	
+	public List<MemberLog> findByProperties(String fromDate, String toDate);
 }
