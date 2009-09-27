@@ -2,7 +2,6 @@ package com.intrigueit.myc2i.memberlog.view;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -114,19 +113,26 @@ public class ContactUsViewHandler extends BasePage implements Serializable {
       ex.printStackTrace();
     }
   }
-	public boolean validate () throws Exception{
-    logger.debug(" Validating member ");
-    boolean flag = true;
-    StringBuffer errorMessage = new StringBuffer();
-    if ( this.currentLog == null ) {
-      errorMessage.append(this.getText("common_system_error"));
-      flag = false;
-    } else {     
-      
+	
+	@SuppressWarnings("unchecked")
+	public void deleteMemberLog() {
+	  logger.debug("Deleting member log");
+    setErrorMessage("");
+    if(this.getParameter(ServiceConstants.RECORD_ID)!=null) {
+      String recordId = (String) this.getParameter(ServiceConstants.RECORD_ID);
+      try {       
+        int rowIndex = getMessageLines().getRowIndex();
+        MemberLog memberLog = memberLogService.findById(Long.parseLong(recordId));
+        memberLogService.delete(memberLog);
+        List<MemberLog> list = (List<MemberLog>) getMessageLines().getWrappedData();
+        list.remove(rowIndex);
+      } catch (Exception e) {
+        setErrorMessage(this.getText("common_system_error"));
+        logger.error(e.getMessage());
+        e.printStackTrace();
+      }
     }
-    if (!flag) setErrorMessage(this.getText("common_error_header") + errorMessage.toString());
-    return flag;
-  }	
+	}
 	
 	public void preReplay () {
 	  

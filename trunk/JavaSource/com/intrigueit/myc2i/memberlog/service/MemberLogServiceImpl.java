@@ -21,8 +21,7 @@ public class MemberLogServiceImpl implements MemberLogService{
 
 
 	public void delete(MemberLog entity) {
-		// TODO Auto-generated method stub
-		
+	  memberLogDao.delete(entity);
 	}
 
 
@@ -66,13 +65,13 @@ public class MemberLogServiceImpl implements MemberLogService{
 	public List<MemberLog> getAllPendingLog(Long memberId) {
 		return this.getAllCompletedLog();
 	}
-	
 	public List<MemberLog> findByProperties (String fromDate, String toDate ) {
     StringBuffer clause = new StringBuffer();    
-    clause.append(" select * from MEMBER_LOG where to_char(MEMBER_LOG_DATE_TIME,'yyyyMMdd') >= "+fromDate);
+    clause.append(" to_char(memberLogDateTime,'yyyyMMdd') >= "+fromDate);
     if ( toDate != null ) {
-      clause.append(" and to_char(MEMBER_LOG_DATE_TIME,'yyyyMMdd') <= "+toDate);
+      clause.append(" and to_char(memberLogDateTime,'yyyyMMdd') <= "+toDate);
     }
-    return memberLogDao.findByProperties(clause.toString());    
-  }
+    System.out.println("QUERY :::"+clause.toString());
+    return memberLogDao.loadByClause(clause.toString(), null);
+  }	
 }
