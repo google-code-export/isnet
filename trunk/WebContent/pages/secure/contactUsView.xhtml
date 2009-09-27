@@ -14,7 +14,7 @@
    xmlns:rich="http://richfaces.org/rich">
 
 <ui:composition template="/templates/maintmpl.xhtml">
-  <ui:param name="moduleTitle" value="Home >> Dashboard"></ui:param>
+  <ui:param name="moduleTitle" value="#{bundle.top_navigation_contact_us} >> #{bundle.left_manage_contact_us}"></ui:param>
   <ui:param name="userType" value="A"></ui:param>
   <ui:param name="moduleType" value="CU"></ui:param>
   <ui:param name="headerText" value="#{bundle.contact_us_message_details}"></ui:param>
@@ -36,8 +36,7 @@
                 <rich:calendar value="#{contactUsViewHandler.fromDate}"
                   locale="#{calendarManageBean.locale}"
                   popup="#{calendarManageBean.popup}"
-                  datePattern="#{calendarManageBean.pattern}" required="true"
-                  label="Date valid from"/>
+                  datePattern="#{calendarManageBean.pattern}" label="Date valid from"/>
               </a4j:outputPanel>
               &#160;
               <h:outputText value="#{bundle.contact_us_and}" />
@@ -46,8 +45,7 @@
               <rich:calendar value="#{contactUsViewHandler.toDate}"
                 locale="#{calendarManageBean.locale}"
                 popup="#{calendarManageBean.popup}"
-                datePattern="#{calendarManageBean.pattern}" required="true"
-                label="End date"/>
+                datePattern="#{calendarManageBean.pattern}" label="End date"/>
             </a4j:outputPanel>
             &#160;
             <a4j:commandButton value="#{bundle.contact_us_search}" styleClass="ibutton" 
@@ -88,9 +86,9 @@
           <h:outputText escape="false" value="#{message.memberLogEntryDescription}" />
          </rich:column>                  
          <rich:column style="text-align:center;vertical-align:middle;">
-           <rowBar:rowToolBar recordId="#{message.id}"
+           <rowBar:rowToolBar recordId="#{message.memberLogId}"
            sectionId="MESSAGE_LINES" modalPanelId="idmemberLogDialog" parentComp="secMESSAGE_LINES"
-           aUpdateRecord="preReplay" aDeleteRecord="deleteDocument" editTitle="Reply"/>
+           aUpdateRecord="preReplay" aDeleteRecord="deleteMemberLog" editTitle="Reply"/>
          </rich:column>
         </rich:dataTable>
         <rich:datascroller id="idDataScroller" align="center"  for="idMessageLines" maxPages="7" />
