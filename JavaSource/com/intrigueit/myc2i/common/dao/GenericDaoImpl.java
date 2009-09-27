@@ -66,4 +66,13 @@ public abstract class GenericDaoImpl<T, ID extends Serializable> implements Gene
 			}
 	    	return query.getResultList();
 		}
+	    
+	  @SuppressWarnings("unchecked")
+    public boolean isDuplicateRecord(String clause) {
+	    String hsql = "Select t from " + persistentClass.getName() + " t where "+ clause;
+      log.debug(hsql);
+      Query query = entityManager.createQuery(hsql);
+      List<T> recordList = query.getResultList();
+      return recordList.size()>0;
+	  }
 }
