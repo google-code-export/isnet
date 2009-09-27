@@ -15,4 +15,5 @@ public interface ChapterService {
   public void deleteChapter(Long recordId);
   public List<LocalChapter> findByProperty(String propertyName, Object value);
   public List<LocalChapter> findByProperties(SearchBean searchBean);
+  public boolean isRecordExist(Long recordId,String chapterName);
 }

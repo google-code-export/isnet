@@ -79,4 +79,11 @@ public class ChapterServiceImpl implements ChapterService {
     }
 	  return chapterDao.findByProperties(clause.toString());
 	}
+	
+	public boolean isRecordExist(Long recordId,String chapterName) {
+    StringBuffer clause = new StringBuffer();
+    clause.append(" chapterName = '"+chapterName+"'");
+    if (recordId != null && recordId !=0) clause.append(" and chapterId != " + recordId); 
+    return chapterDao.isDuplicateRecord(clause.toString());
+  }
 }
