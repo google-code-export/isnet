@@ -15,4 +15,5 @@ public interface UDValuesService {
   public void deleteUDValues(Long recordId);
   public ArrayList<String> getCategories();
   public List<UserDefinedValues> findByProperty(String propertyName, Object value);
+  public boolean isUDValueExist(Long recordId,String categoryName,String value);
 }

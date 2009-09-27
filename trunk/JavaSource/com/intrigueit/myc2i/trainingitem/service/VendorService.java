@@ -15,4 +15,5 @@ public interface VendorService {
   public void deleteVendor(Long recordId);
   public ArrayList<String> getCategories();
   public List<ItemVendor> findByProperty(String propertyName, Object value);
+  public boolean isRecordExist(Long recordId,String vendorName);
 }

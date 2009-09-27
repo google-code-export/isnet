@@ -39,15 +39,22 @@ public class VendorViewHandler extends BasePage implements Serializable {
 	  loadVendors();
 	}
 	
-	public boolean validate (ItemVendor vendor) {
+	public boolean validate () {
 	  logger.debug("Validating Vendor");
 	  boolean flag = true;
 	  StringBuffer errorMessage = new StringBuffer();
-	  if ( vendor == null ) {
+	  if ( this.currentVendor == null ) {
 	    errorMessage.append(this.getText("common_system_error"));
 	    return false;
-		} 	
-		if (!flag) setErrorMessage(errorMessage.toString());
+		} else {
+		  if (vendorService.isRecordExist(this.currentVendor.getVendorId(),
+          this.currentVendor.getVendorName())){
+		    errorMessage.append(this.getText("common_error_prefix")).append(" ")
+                  .append(this.getText("training_materials_vendor_exist"));
+		    flag = false;       
+		  }
+		}
+	  if (!flag) setErrorMessage(this.getText("common_error_header") + errorMessage.toString());
 	  return flag;
 	}
 	
@@ -101,7 +108,7 @@ public class VendorViewHandler extends BasePage implements Serializable {
 	  try {		  
 		  setErrorMessage("");
 		  this.currentVendor = getCurrentVendor();
-		  if(validate(this.currentVendor)) {
+		  if(validate()) {
   			this.vendorService.addVendor(this.currentVendor);
   			List<ItemVendor> udvList = (List<ItemVendor>) getVendorLines().getWrappedData();
   			udvList.add(this.currentVendor);
@@ -136,13 +143,12 @@ public class VendorViewHandler extends BasePage implements Serializable {
 	  logger.debug(" Updating vendor ");
 	  try {
 	    setErrorMessage("");
-	    ItemVendor vendor = getCurrentVendor();
-  		if(validate(vendor)) {
+	    if(validate()) {
 		    int rowIdx = getRowIndex();  		    
 		    Date dt = new Date();
         this.currentVendor.setRecordLastUpdatedDate(dt);
-		    this.vendorService.updateVendor(vendor);
-		    putObjInList(rowIdx,vendor);
+		    this.vendorService.updateVendor(this.currentVendor);
+		    putObjInList(rowIdx,this.currentVendor);
 		    setErrorMessage("");
   		}
 		} catch (Exception e) {

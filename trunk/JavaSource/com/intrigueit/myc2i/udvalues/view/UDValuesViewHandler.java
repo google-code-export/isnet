@@ -43,15 +43,22 @@ public class UDValuesViewHandler extends BasePage implements Serializable {
 	  getUDValuesByCategory();
 	}
 
-	public boolean validate (UserDefinedValues uValues) {
+	public boolean validate () {
 	  logger.debug(" Validating user define values ");
 	  boolean flag = true;
 	  StringBuffer errorMessage = new StringBuffer();
-	  if ( uValues == null ) {
+	  if ( this.currentUDValues == null ) {
 	    errorMessage.append(this.getText("common_system_error"));
 	    return false;
-		} 	
-		if (!flag) setErrorMessage(errorMessage.toString());
+		} else {
+		  if (udvService.isUDValueExist(this.currentUDValues.getUdValuesId(),
+		        this.currentUDValues.getUdValuesCategory(),this.currentUDValues.getUdValuesValue())){
+		    errorMessage.append(this.getText("common_error_prefix")).append(" ")
+                    .append(this.getText("user_define_values_code_exist"));
+		    flag = false;		    
+		  }
+		}
+	  if (!flag) setErrorMessage(this.getText("common_error_header") + errorMessage.toString());
 	  return flag;
 	}
 	
@@ -132,7 +139,7 @@ public class UDValuesViewHandler extends BasePage implements Serializable {
     logger.debug(" Adding new user define values into database ");
     setErrorMessage("");
     try {   
-      if(validate(this.currentUDValues)) {        
+      if(validate()) {        
         this.udvService.addUDValues(this.currentUDValues);
         this.loadCategories();
         List<UserDefinedValues> udvList = (List<UserDefinedValues>) getUdValuesLines().getWrappedData();
@@ -170,7 +177,7 @@ public class UDValuesViewHandler extends BasePage implements Serializable {
     logger.debug(" Updating user define values ");
     setErrorMessage("");
     try {      
-      if(validate(this.currentUDValues)) {
+      if(validate()) {
         this.setCommonData(ServiceConstants.UPDATE);       
         int rowIdx = getRowIndex();
         this.udvService.updateUDValues(this.currentUDValues);

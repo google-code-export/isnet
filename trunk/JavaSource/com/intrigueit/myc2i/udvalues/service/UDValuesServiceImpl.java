@@ -47,4 +47,14 @@ public class UDValuesServiceImpl implements UDValuesService {
     String clause = " t."+propertyName+" = ?1 ";
     return udValuesDao.loadByClause(clause, new Object[]{value});
   }
+	
+	@Override
+	public boolean isUDValueExist(Long recordId,String categoryName,String value) {
+	  StringBuffer clause = new StringBuffer();
+    clause.append(" udValuesCategory = '"+categoryName+"'")
+          .append(" and udValuesValue = '"+value+"'");
+    if (recordId != null && recordId !=0) clause.append(" and udValuesId != " + recordId); 
+    return udValuesDao.isDuplicateRecord(clause.toString());
+	}	
+
 }
