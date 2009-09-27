@@ -53,15 +53,22 @@ public class ChapterViewHandler extends BasePage implements Serializable {
     }
   }
 	
-	public boolean validate (LocalChapter chapter) {
+	public boolean validate () {
 	  logger.debug(" Validating chapter ");
 	  boolean flag = true;
 	  StringBuffer errorMessage = new StringBuffer();
-	  if ( chapter == null ) {
+	  if ( this.currentChapter == null ) {
 	    errorMessage.append(this.getText("common_system_error"));
 	    return false;
-		} 	
-		if (!flag) setErrorMessage(errorMessage.toString());
+		} else {
+      if (chapterService.isRecordExist(this.currentChapter.getChapterId(),
+          this.currentChapter.getChapterName())){
+        errorMessage.append(this.getText("common_error_prefix")).append(" ")
+                  .append(this.getText("chapter_exist"));
+        flag = false;       
+      }
+    }
+    if (!flag) setErrorMessage(this.getText("common_error_header") + errorMessage.toString());
 	  return flag;
 	}	
 	
@@ -116,7 +123,7 @@ public class ChapterViewHandler extends BasePage implements Serializable {
 	  setErrorMessage("");
 		try {		  
 		  this.currentChapter = getCurrentChapter();
-      if(validate(this.currentChapter)) {
+      if(validate()) {
   			this.chapterService.addChapter(this.currentChapter);
   			List<LocalChapter> udvList = (List<LocalChapter>) getChapterLines().getWrappedData();
   			udvList.add(this.currentChapter);
@@ -153,7 +160,7 @@ public class ChapterViewHandler extends BasePage implements Serializable {
 	  setErrorMessage("");
 	  try {
 			this.currentChapter = getCurrentChapter();
-  		if(validate(this.currentChapter)) {
+  		if(validate()) {
 		    int rowIdx = getRowIndex();  		    
 		    Date dt = new Date();
         this.currentChapter.setRecordLastUpdatedDate(dt);
