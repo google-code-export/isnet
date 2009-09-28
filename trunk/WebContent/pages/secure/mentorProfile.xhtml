@@ -13,22 +13,11 @@
  <ui:param name="userType" value="M"></ui:param>
  <ui:param name="moduleType" value="MA"></ui:param>
  <ui:param name="headerText" value="#{bundle.page_header_myaccount_profile}"></ui:param>
-  <ui:param name="refManageBean" value="#{udvViewHandler}"></ui:param>
+ <ui:param name="refManageBean" value="#{myProfileViewHandler}"></ui:param>
  
   <ui:define name="body">    
-    <h:panelGroup id="idSectionsCon">
-      <rich:spacer width="100%" height="5"/>
-      <h:panelGroup id="idTopCon">
-          <table border="0" cellspacing="0" cellpadding="0" width="98%">
-
-          </table>
-          
-      </h:panelGroup>
-      
-      <rich:spacer width="100%" height="10"/>
-		
-
-    </h:panelGroup>   
+       <ui:include src="./sections/myProfile.xhtml">
+    </ui:include>   
      
   </ui:define>
   
