@@ -26,6 +26,8 @@ public class MemberSearchViewHandler extends BasePage {
 	private String srcZipCode;
 	private MemberSearch search;
 	
+	private List<Member> members;
+	
 	
 	/**
 	 * 
@@ -33,13 +35,14 @@ public class MemberSearchViewHandler extends BasePage {
 	public MemberSearchViewHandler() {
 		this.search = new MemberSearch(false,false,false,false);
 		this.dist = 20.00;
+		this.members = new ArrayList<Member>();
 		
 	}
 	public void executeSearch(){
 		try{
 			log.debug(this.dist);
 			List<String> zipCodes = this.getZipCodes();
-			List<Member> members = this.memberService.getMemberByDynamicHsql(this.getClause(zipCodes));
+			this.members = this.memberService.getMemberByDynamicHsql(this.getClause(zipCodes));
 			for(Member member: members){
 				System.out.println(member.getFirstName());
 			}
@@ -128,6 +131,13 @@ public class MemberSearchViewHandler extends BasePage {
 	public void setSearch(MemberSearch search) {
 		this.search = search;
 	}
+	public List<Member> getMembers() {
+		return members;
+	}
+	public void setMembers(List<Member> members) {
+		this.members = members;
+	}
+
 
 	
 	  
