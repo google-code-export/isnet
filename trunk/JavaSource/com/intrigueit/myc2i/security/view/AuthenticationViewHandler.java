@@ -9,6 +9,7 @@ package com.intrigueit.myc2i.security.view;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -126,10 +127,11 @@ public class AuthenticationViewHandler extends BasePage implements Serializable 
 		if(emailId.equals("") || pass.equals("")){
 			return null;
 		}
-		member = this.memberService.findByProperty("email", emailId).get(0);
-		if(member == null){
+		List<Member> mems = this.memberService.findByProperty("email", emailId);
+		if(mems == null || mems.size() < 1){
 			return null;
 		}
+		member = mems.get(0);
 		CryptographicUtility crpUtil = new CryptographicUtility();
 		String decPass = crpUtil.getDeccryptedText(member.getPassword());
 		if(!pass.equals(decPass)){
