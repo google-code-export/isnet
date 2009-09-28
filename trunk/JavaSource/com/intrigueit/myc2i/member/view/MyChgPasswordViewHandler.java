@@ -13,7 +13,6 @@ import com.intrigueit.myc2i.common.ServiceConstants;
 import com.intrigueit.myc2i.common.utility.CryptographicUtility;
 import com.intrigueit.myc2i.common.view.BasePage;
 import com.intrigueit.myc2i.member.domain.Member;
-import com.intrigueit.myc2i.member.service.MemberExService;
 import com.intrigueit.myc2i.member.service.MemberService;
 
 @Component("myChgPasswordViewHandler")
@@ -41,7 +40,7 @@ public class MyChgPasswordViewHandler extends BasePage implements Serializable {
   private String confirmPassword;
 	/** Available transfer methods*/    
   @Autowired
-	public MyChgPasswordViewHandler(MemberExService memberExService,MemberService memberService) {
+	public MyChgPasswordViewHandler(MemberService memberService) {
 		this.memberService = memberService;
 		this.initialize();
 	} 
