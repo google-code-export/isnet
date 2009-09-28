@@ -146,9 +146,17 @@ public class AuthenticationViewHandler extends BasePage implements Serializable 
 			return ViewConstant.OUT_COME_PASSWORD_CHANGE;
 		}
 		else{
-			return ViewConstant.TO_MENTOR_DASHBOARD;
+			if(member.getTypeId()== 15L || member.getTypeId() == 16L){
+				return ViewConstant.TO_MENTOR_DASHBOARD;
+			}
+			else if(member.getTypeId() == 18L){
+				return ViewConstant.TO_ADMIN_HOME;
+			}
+			else if(member.getTypeId() == 17L){
+				return ViewConstant.TO_PROTEGE_DASHBOARD;
+			}
 		}
-
+		return "";
 	}
 	/**
 	 * Check if the record created date and last updated date is same
