@@ -78,8 +78,15 @@ public class DocumentViewHandler extends BasePage implements Serializable {
 	  if ( document == null ) {
 	    errorMessage.append(this.getText("common_system_error"));
 	    return false;
-		} 	
-		if (!flag) setErrorMessage(errorMessage.toString());
+		} else {
+		  if (documentService.isDocumentExist(this.currentDocument.getDocumentId(),
+          this.currentDocument.getDocumentName())){
+      errorMessage.append(this.getText("common_error_prefix")).append(" ")
+                  .append(this.getText("document_exist"));
+      flag = false;       
+    }
+		}
+	  if (!flag) setErrorMessage(this.getText("common_error_header") + errorMessage.toString());
 	  return flag;
 	}
 	

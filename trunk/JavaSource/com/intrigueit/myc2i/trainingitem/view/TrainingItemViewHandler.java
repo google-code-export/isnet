@@ -104,6 +104,14 @@ public class TrainingItemViewHandler extends BasePage implements Serializable {
                     .append(this.getText("vendor_notselect"));
         flag = false;
       }
+      
+      if (trainingItemService.isCategoryExist(this.currentTrainingItem.getItemId(),
+          this.currentTrainingItem.getItemEIndicator(),this.currentTrainingItem.getItemDescription())){
+        if ( !flag )errorMessage.append("<br />");  
+        errorMessage.append(this.getText("common_error_prefix")).append(" ")
+                  .append(this.getText("item_description_exist"));
+          flag = false;       
+      }
     }
     if (!flag) setErrorMessage(this.getText("common_error_header") + errorMessage.toString());
     return flag;

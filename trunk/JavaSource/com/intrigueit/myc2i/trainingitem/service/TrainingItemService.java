@@ -16,4 +16,5 @@ public interface TrainingItemService {
   public ArrayList<String> getCategories();
   public List<TrainingItem> findByProperty(String propertyName, Object value);
   public List<TrainingItem> findByProperties(String vendorId, String itemEnd);
+  public boolean isCategoryExist(Long recordId,String categoryName,String value);
 }

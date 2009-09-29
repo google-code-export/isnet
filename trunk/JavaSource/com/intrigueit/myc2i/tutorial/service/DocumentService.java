@@ -14,4 +14,5 @@ public interface DocumentService {
   public void updateDocument (TestTutorialDocument document);    
   public void deleteDocument(Long recordId);
   public List<TestTutorialDocument> findByProperty(String propertyName, Object value);
+  public boolean isDocumentExist(Long recordId,String docName);
 }

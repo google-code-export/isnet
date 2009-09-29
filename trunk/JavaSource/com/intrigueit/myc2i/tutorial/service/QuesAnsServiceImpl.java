@@ -65,4 +65,34 @@ public class QuesAnsServiceImpl implements QuestionAnsService {
     String hsql = "select max(pageNumber) from TestTutorialQuestionAns where modulesId ="+moduleId;
     return questionAnsDao.getMaxNumber(hsql);
   }
+  
+  @Override
+  public boolean isQuestionExist(Long recordId,Long moduleId,String question) {
+    List<Object> value = new ArrayList<Object>();
+    StringBuffer clause = new StringBuffer();
+    clause.append(" t.modulesId = ?1")
+          .append(" and t.question = ?2");
+    value.add(moduleId);
+    value.add(question);
+    if (recordId != null && recordId !=0) {
+      clause.append(" and t.questionAnsId != ?3");
+      value.add(recordId);
+    }
+    return questionAnsDao.isDuplicateRecord(clause.toString(),value.toArray());
+  }
+  
+  @Override
+  public boolean isPageNoExist(Long recordId,Long moduleId,Long pageNo) {
+    List<Object> value = new ArrayList<Object>();
+    StringBuffer clause = new StringBuffer();
+    clause.append(" t.modulesId = ?1")
+          .append(" and t.pageNumber = ?2");
+    value.add(moduleId);
+    value.add(pageNo);
+    if (recordId != null && recordId !=0) {
+      clause.append(" and t.questionAnsId != ?3");
+      value.add(recordId);
+    }
+    return questionAnsDao.isDuplicateRecord(clause.toString(),value.toArray());
+  }
 }

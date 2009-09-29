@@ -1,5 +1,6 @@
 package com.intrigueit.myc2i.tutorial.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,4 +48,17 @@ public class DocumentServiceImpl implements DocumentService {
     String clause = " t."+propertyName+" like ?1 ";
     return documentDao.loadByClause(clause, new Object[]{value});
   }
+	
+	@Override
+  public boolean isDocumentExist(Long recordId,String docName) {
+	  List<Object> value = new ArrayList<Object>();
+    StringBuffer clause = new StringBuffer();
+    clause.append(" t.documentName = ?1");
+    value.add(docName);
+    if (recordId != null && recordId !=0) {
+      clause.append(" and t.documentId != ?2");
+      value.add(recordId);
+    }
+    return documentDao.isDuplicateRecord(clause.toString(),value.toArray());
+	}
 }

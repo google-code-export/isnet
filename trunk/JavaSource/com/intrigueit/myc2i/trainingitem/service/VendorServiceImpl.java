@@ -47,9 +47,14 @@ public class VendorServiceImpl implements VendorService {
     return vendorDao.loadByClause(clause, new Object[]{value});
   }
   public boolean isRecordExist(Long recordId,String vendorName) {
+    List<Object> value = new ArrayList<Object>();
     StringBuffer clause = new StringBuffer();
-    clause.append(" vendorName = '"+vendorName+"'");
-    if (recordId != null && recordId !=0) clause.append(" and vendorId != " + recordId); 
-    return vendorDao.isDuplicateRecord(clause.toString());
+    clause.append(" t.vendorName = ?1");
+    value.add(vendorName);
+    if (recordId != null && recordId !=0) {
+      clause.append(" and t.vendorId != ?2");
+      value.add(recordId);
+    } 
+    return vendorDao.isDuplicateRecord(clause.toString(),value.toArray());
   }
 }
