@@ -18,11 +18,18 @@
         <h:outputText value="#{bundle.tutorial_qa_page_number}" />
         <span class="required_field">*</span>
        </h:panelGroup>
-       <h:inputText styleClass="number" value="#{currentEBean.pageNumber}" id="pageNumber"
-        label="Page number">
-        <f:convertNumber type="number"/>
-        <rich:ajaxValidator event="onblur" />
-       </h:inputText>
+       <h:panelGroup>
+         <h:inputText styleClass="number,readonly" disabled="true" value="#{currentEBean.pageNumber}" id="pageNumberr"
+          label="Page number" rendered="#{questionAnsViewHandler.actionType eq 'A'}" style="color:gray;background:#DFDFDF;">
+          <f:convertNumber type="number"/>
+          <rich:ajaxValidator event="onblur" />
+         </h:inputText>
+         <h:inputText styleClass="number" value="#{currentEBean.pageNumber}" id="pageNumber"
+          label="Page number" rendered="#{questionAnsViewHandler.actionType eq 'U'}">
+          <f:convertNumber type="number"/>
+          <rich:ajaxValidator event="onblur" />
+         </h:inputText>
+       </h:panelGroup>
        <rich:message for="pageNumber" />
        
        <h:panelGroup>
