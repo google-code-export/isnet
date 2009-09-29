@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.intrigueit.myc2i.common.CommonConstants;
 import com.intrigueit.myc2i.common.ServiceConstants;
 import com.intrigueit.myc2i.common.domain.SearchBean;
 import com.intrigueit.myc2i.common.view.BasePage;
@@ -66,7 +67,7 @@ public class ProtegeViewHandler extends BasePage implements Serializable {
 	
 	public void loadProteges() {		
 	  try {
-	    Object value = Long.parseLong("2");
+	    Object value = CommonConstants.PROTEGE;
 	    logger.debug(" Load proteges ");    
 	    List<Member> protegeList = memberService.findByProperty("typeId", value);
 	    getProtegeLines().setWrappedData(protegeList);
@@ -80,7 +81,7 @@ public class ProtegeViewHandler extends BasePage implements Serializable {
 	  try {
 	    logger.debug(" Load proteges by search critariya ");    
 	    SearchBean value = getSearchBean();
-	    value.setRecordId(new Long(2));
+	    value.setRecordId(CommonConstants.PROTEGE);
 	    List<Member> protegeList = memberExService.findByProperties(value);
 	    getProtegeLines().setWrappedData(protegeList);
 	  }catch (Exception ex) {
