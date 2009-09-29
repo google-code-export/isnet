@@ -141,8 +141,22 @@ public class QuestionAnsViewHandler extends BasePage implements Serializable {
                      .append(" ")
                      .append(this.getText("error_msg_modules_notselect")); 
 		  }
+		  if ( flag ) { 
+        if (questionAnsService.isQuestionExist(this.currentQuestionAns.getQuestionAnsId(),
+            questionAns.getModulesId(),this.currentQuestionAns.getQuestion())){
+          errorMessage.append(this.getText("common_error_prefix")).append(" ")
+                    .append(this.getText("question_exist"));
+          flag = false;       
+        }
+        if (questionAnsService.isPageNoExist(this.currentQuestionAns.getQuestionAnsId(),
+            questionAns.getModulesId(),this.currentQuestionAns.getPageNumber())){
+          errorMessage.append(this.getText("common_error_prefix")).append(" ")
+                    .append(this.getText("page_no_exist"));
+          flag = false;       
+        }
+      }
 		}
-		if (!flag) setErrorMessage(errorMessage.toString());
+	  if (!flag) setErrorMessage(this.getText("common_error_header") + errorMessage.toString());
 	  return flag;
 	}
 	
@@ -200,7 +214,7 @@ public class QuestionAnsViewHandler extends BasePage implements Serializable {
       logger.error(e.getMessage());
       e.printStackTrace();
     }
-	  return maxPageNo;
+	  return maxPageNo;	  
 	}
 	
 	public void preAddQuestionAns () {	  

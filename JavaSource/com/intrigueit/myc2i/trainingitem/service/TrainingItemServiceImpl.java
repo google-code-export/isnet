@@ -73,4 +73,19 @@ public class TrainingItemServiceImpl implements TrainingItemService {
     }
     return trainingItemDao.findByProperties(clause.toString());
   }
+  
+  @Override
+  public boolean isCategoryExist(Long recordId,String categoryName,String itemNAme) {
+    List<Object> value = new ArrayList<Object>();
+    StringBuffer clause = new StringBuffer();
+    clause.append(" t.itemEIndicator = ?1")
+          .append(" and t.itemDescription = ?2");
+    value.add(categoryName);
+    value.add(itemNAme);
+    if (recordId != null && recordId !=0) {
+      clause.append(" and t.itemId != ?3");
+      value.add(recordId);
+    }
+    return trainingItemDao.isDuplicateRecord(clause.toString(),value.toArray());
+  }
 }

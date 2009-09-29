@@ -49,12 +49,17 @@ public class UDValuesServiceImpl implements UDValuesService {
   }
 	
 	@Override
-	public boolean isUDValueExist(Long recordId,String categoryName,String value) {
+	public boolean isUDValueExist(Long recordId,String categoryName,String udValue) {
+	  List<Object> value = new ArrayList<Object>();
 	  StringBuffer clause = new StringBuffer();
-    clause.append(" udValuesCategory = '"+categoryName+"'")
-          .append(" and udValuesValue = '"+value+"'");
-    if (recordId != null && recordId !=0) clause.append(" and udValuesId != " + recordId); 
-    return udValuesDao.isDuplicateRecord(clause.toString());
+    clause.append(" t.udValuesCategory = ?1")
+          .append(" and t.udValuesValue = ?2");
+    value.add(categoryName);
+    value.add(udValue);
+    if (recordId != null && recordId !=0) {
+      clause.append(" and t.udValuesId != ?3");
+      value.add(recordId);
+    }
+    return udValuesDao.isDuplicateRecord(clause.toString(),value.toArray());
 	}	
-
 }

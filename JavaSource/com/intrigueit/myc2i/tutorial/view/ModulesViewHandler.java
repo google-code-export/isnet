@@ -126,6 +126,15 @@ public class ModulesViewHandler extends BasePage implements Serializable {
 	                  .append(this.getText("tutorial_module_user_notselect"));
 		    flag = false;
 	    }
+		  
+		  if ( flag ) { 
+  		  if (modulesService.isModuleExist(this.currentModules.getModulesId(),
+  		      document.getDocumentId(),this.currentModules.getModuleName())){
+          errorMessage.append(this.getText("common_error_prefix")).append(" ")
+                    .append(this.getText("module_name_exist"));
+          flag = false;       
+        }
+		  }
 		}
 		if (!flag) setErrorMessage(this.getText("common_error_header") + errorMessage.toString());
 	  return flag;

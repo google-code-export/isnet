@@ -1,5 +1,6 @@
 package com.intrigueit.myc2i.chapter.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -81,9 +82,14 @@ public class ChapterServiceImpl implements ChapterService {
 	}
 	
 	public boolean isRecordExist(Long recordId,String chapterName) {
-    StringBuffer clause = new StringBuffer();
-    clause.append(" chapterName = '"+chapterName+"'");
-    if (recordId != null && recordId !=0) clause.append(" and chapterId != " + recordId); 
-    return chapterDao.isDuplicateRecord(clause.toString());
+	  List<Object> value = new ArrayList<Object>();
+	  StringBuffer clause = new StringBuffer();
+    clause.append(" t.chapterName = ?1");
+    value.add(chapterName);
+    if (recordId != null && recordId !=0) {
+      clause.append(" and t.chapterId != ?2");
+      value.add(recordId);
+    } 
+    return chapterDao.isDuplicateRecord(clause.toString(),value.toArray());
   }
 }

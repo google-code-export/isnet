@@ -16,4 +16,5 @@ public interface ModulesService {
   public ArrayList<String> getCategories();
   public List<TestTutorialModules> findByProperty(String propertyName, Object value);
   public List<TestTutorialModules> findByProperties(String docTypeId, String userId);
+  public boolean isModuleExist(Long recordId,Long docId,String moduleName);
 }

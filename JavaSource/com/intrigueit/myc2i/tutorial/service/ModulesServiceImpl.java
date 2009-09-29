@@ -72,4 +72,19 @@ public class ModulesServiceImpl implements ModulesService {
     }
     return modulesDao.findByProperties(clause.toString());
   }
+  
+  @Override
+  public boolean isModuleExist(Long recordId,Long docId,String moduleName) {
+    List<Object> value = new ArrayList<Object>();
+    StringBuffer clause = new StringBuffer();
+    clause.append(" t.documentId = ?1")
+          .append(" and t.moduleName = ?2");
+    value.add(docId);
+    value.add(moduleName);
+    if (recordId != null && recordId !=0) {
+      clause.append(" and t.modulesId != ?3");
+      value.add(recordId);
+    }
+    return modulesDao.isDuplicateRecord(clause.toString(),value.toArray());
+  }
 }
