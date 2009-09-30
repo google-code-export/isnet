@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
- <context-param>
-  <param-name>javax.faces.DEFAULT_SUFFIX</param-name>
-  <param-value>.xhtml</param-value>
- </context-param>
- <context-param>
-  <param-name>contextConfigLocation</param-name>
-  <param-value>/WEB-INF/applicationContext.xml</param-value>
- </context-param>
- <context-param>
+
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+  version="2.4">
+  <context-param>
+    <param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+    <param-value>.xhtml</param-value>
+  </context-param>
+    <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>/WEB-INF/applicationContext.xml</param-value>
+  </context-param>
+
+<context-param>
   <param-name>facelets.REFRESH_PERIOD</param-name>
   <param-value>2</param-value>
  </context-param>
@@ -61,20 +65,24 @@
   <param-name>org.richfaces.LoadScriptStrategy</param-name>
   <param-value>ALL</param-value>
  </context-param>
+
  <context-param>
   <param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
   <param-value>ApplicationResources</param-value>
  </context-param>
  <!-- Fallback locale if no bundles found for browser's preferred locale 
-		Force a single locale using param-name 'javax.servlet.jsp.jstl.fmt.locale' -->
+    Force a single locale using param-name 'javax.servlet.jsp.jstl.fmt.locale' -->
  <context-param>
   <param-name>javax.servlet.jsp.jstl.fmt.fallbackLocale</param-name>
   <param-value>en</param-value>
  </context-param>
+ 
  <context-param>
-  <param-name>facelets.LIBRARIES</param-name>
-  <param-value>/WEB-INF/facelets/tags/rowToolBar/taglib.xml;
-      /WEB-INF/facelets/tags/component/cmptaglib.xml;</param-value>
+    <param-name>facelets.LIBRARIES</param-name>
+    <param-value>
+      /WEB-INF/facelets/tags/rowToolBar/taglib.xml;
+      /WEB-INF/facelets/tags/component/cmptaglib.xml;
+    </param-value>
  </context-param>
  <filter>
   <display-name>Ajax4jsf Filter</display-name>
@@ -86,18 +94,10 @@
   </init-param>
   <init-param>
    <param-name>maxRequestSize</param-name>
-   <param-value>999999999</param-value>
+   <param-value>9999999</param-value>
   </init-param>
  </filter>
- <filter>
-  <filter-name>JPA Filter</filter-name>
-  <filter-class>org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter</filter-class>
- </filter>
- <filter>
-  <display-name>Myc2I Security Filter</display-name>
-  <filter-name>pageFilter</filter-name>
-  <filter-class>com.intrigueit.myc2i.common.filter.SecurityCheckFilter</filter-class>
- </filter>
+ 
  <filter-mapping>
   <filter-name>ajax4jsf</filter-name>
   <servlet-name>Faces Servlet</servlet-name>
@@ -105,36 +105,47 @@
   <dispatcher>FORWARD</dispatcher>
   <dispatcher>INCLUDE</dispatcher>
  </filter-mapping>
- <filter-mapping>
-  <filter-name>JPA Filter</filter-name>
-  <url-pattern>*.faces</url-pattern>
- </filter-mapping>
- <filter-mapping>
-  <filter-name>pageFilter</filter-name>
-  <url-pattern>/pages/*</url-pattern>
- </filter-mapping>
- <listener>
-  <listener-class>com.intrigueit.myc2i.utility.ContextProvider</listener-class>
- </listener>
- <listener>
-  <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
- </listener>
- <listener>
-  <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
- </listener>
- <servlet>
-  <servlet-name>Faces Servlet</servlet-name>
-  <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
-  <load-on-startup>1</load-on-startup>
- </servlet>
- <servlet-mapping>
-  <servlet-name>Faces Servlet</servlet-name>
-  <url-pattern>*.faces</url-pattern>
- </servlet-mapping>
- <session-config>
-  <session-timeout>30</session-timeout>
- </session-config>
- <login-config>
-  <auth-method>BASIC</auth-method>
- </login-config>
+
+  <listener><listener-class>com.intrigueit.myc2i.utility.ContextProvider</listener-class></listener>  
+
+  <listener>
+    <listener-class>
+      org.springframework.web.context.ContextLoaderListener
+    </listener-class>
+  </listener>
+  <listener>
+    <listener-class>
+      org.springframework.web.context.request.RequestContextListener
+    </listener-class>
+  </listener>
+
+  <filter>
+    <filter-name>JPA Filter</filter-name>
+    <filter-class>org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>JPA Filter</filter-name>
+    <url-pattern>*.faces</url-pattern>
+  </filter-mapping>
+
+  <servlet>
+    <servlet-name>Faces Servlet</servlet-name>
+    <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>Faces Servlet</servlet-name>
+    <url-pattern>*.faces</url-pattern>
+  </servlet-mapping>
+   
+   <session-config>
+    <session-timeout>30</session-timeout>
+   </session-config>
+   
+   <login-config>
+    <auth-method>BASIC</auth-method>
+   </login-config>
+    
+  
 </web-app>
