@@ -41,6 +41,7 @@ public class UserManageViewHandler extends BasePage implements Serializable {
 	private SearchBean searchBean;
 	private ArrayList<SelectItem> usersList;
 	private ViewDataProvider viewDataProvider;
+	private CommonValidator commonValidator;
 	private Long recordId;
 	/** Available transfer methods*/
   private ArrayList<SelectItem> martialStatusList;
@@ -60,13 +61,6 @@ public class UserManageViewHandler extends BasePage implements Serializable {
       this.memberTypeHash = viewDataProvider.getMemberTypeHash();
     }
     return memberTypeHash;
-  }
-
-  /**
-   * @param memberTypeHash the memberTypeHash to set
-   */
-  public void setMemberTypeHash(Hashtable<String, String> memberTypeHash) {
-    this.memberTypeHash = memberTypeHash;
   }
 
   /**
@@ -103,6 +97,7 @@ public class UserManageViewHandler extends BasePage implements Serializable {
 		this.memberExService = memberExService;
 		this.memberService = memberService;
 		this.viewDataProvider = viewDataProvider;
+		commonValidator = new CommonValidator();
 		this.initialize();
 	} 
     
@@ -134,78 +129,10 @@ public class UserManageViewHandler extends BasePage implements Serializable {
   }
 	public boolean validate(){
 	  logger.debug(" Validating member ");
-    boolean flag = true;
-    StringBuffer errorMessage = new StringBuffer();
-    if ( this.currentMember == null ) {
-      errorMessage.append(this.getText("common_system_error"));
-      flag = false;
-    } else {      
-      if(CommonValidator.isEmpty(this.getCurrentMember().getFirstName())){
-        if ( !flag )errorMessage.append("<br />");
-        errorMessage.append(this.getText("common_error_prefix")).append(" ")
-                    .append(this.getText("member_validation_first_name"));
-        flag = false;
-      }
-      /** Check the last name */
-      if(CommonValidator.isEmpty(this.getCurrentMember().getLastName())){
-        if ( !flag )errorMessage.append("<br />");
-        errorMessage.append(this.getText("common_error_prefix")).append(" ")
-                    .append(this.getText("member_validation_last_name"));
-        flag = false;
-      }      
-      /** Check the Zip code */
-      if(!CommonValidator.isValidZipCode(this.currentMember.getZip())){
-        if ( !flag )errorMessage.append("<br />");
-        errorMessage.append(this.getText("common_error_prefix")).append(" ")
-                    .append(this.getText("member_validation_zip_code"));
-        flag = false;
-      }         
-      /** Check email address */
-      if (this.action.equals(ServiceConstants.ADD)) {
-        if(!CommonValidator.isValidEmail(this.getCurrentMember().getEmail())){
-          if ( !flag )errorMessage.append("<br />");
-          errorMessage.append(this.getText("common_error_prefix")).append(" ")
-                      .append(this.getText("member_validation_email_address"));
-          flag = false;
-        }
-        
-        if(CommonValidator.isEmpty(this.getCurrentMember().getPassword())){
-          if ( !flag )errorMessage.append("<br />");
-          errorMessage.append(this.getText("common_error_prefix")).append(" ")
-                      .append(this.getText("member_validation_password"));
-          flag = false;
-        }
-        if(!this.confirmPass.equals(this.currentMember.getPassword())){
-          if ( !flag )errorMessage.append("<br />");
-          errorMessage.append(this.getText("common_error_prefix")).append(" ")
-                      .append(this.getText("member_validation_password_dont_match"));
-          flag = false;
-        }
-      } 
-      /** Check the member profession */
-      if(CommonValidator.isEmpty(this.getCurrentMember().getProfession())){
-        if ( !flag )errorMessage.append("<br />");
-        errorMessage.append(this.getText("common_error_prefix")).append(" ")
-                    .append(this.getText("member_validation_profession"));
-        flag = false;
-      }
-      /** Check the Year of birth*/
-      if(CommonValidator.isNotValidNumber(this.getCurrentMember().getBirthYear())){
-        if ( !flag )errorMessage.append("<br />");
-        errorMessage.append(this.getText("common_error_prefix")).append(" ")
-                    .append(this.getText("member_validation_birth_year"));
-        flag = false;
-      }
-      /** Check the member gender */
-      if(CommonValidator.isEmpty(this.getCurrentMember().getGenderInd())){
-        if ( !flag )errorMessage.append("<br />");
-        errorMessage.append(this.getText("common_error_prefix")).append(" ")
-                    .append(this.getText("member_validation_gender"));
-        flag = false;
-      }
-    }
-    if (!flag) setErrorMessage(this.getText("common_error_header") + errorMessage.toString());
-    return flag;
+	  StringBuffer errorMessage = new StringBuffer();   
+	  boolean flag = commonValidator.validateMember(this.currentMember,"", action, confirmPass, errorMessage);
+	  if (!flag) setErrorMessage(this.getText("common_error_header") + errorMessage.toString());
+	  return flag;
   }
 	private boolean validationPhase2(){
 	  logger.debug(" Validating member ");
@@ -218,13 +145,7 @@ public class UserManageViewHandler extends BasePage implements Serializable {
                     .append(this.getText("member_validation_email_exist"));
         flag = false;
       }
-    }
-    if(this.getAgree() == false){
-      if ( !flag )errorMessage.append("<br />");
-      errorMessage.append(this.getText("common_error_prefix")).append(" ")
-                  .append(this.getText("member_validation_licence_agree"));
-      flag = false;
-    }
+    }    
     if (!flag) setErrorMessage(this.getText("common_error_header") + errorMessage.toString());
     return flag;
   }
@@ -237,7 +158,7 @@ public class UserManageViewHandler extends BasePage implements Serializable {
        if (action.equals(ServiceConstants.ADD )) {
          if(this.getParameter(ServiceConstants.RECORD_TYPE)!=null) {
            this.setUserType(this.getParameter(ServiceConstants.RECORD_TYPE).toString());
-           Hashtable<String, String> mType = this.getMemberTypeHash(); 
+           Hashtable<String, String> mType = this.getMemberTypeHash();
            if ( this.userType.equals(ServiceConstants.MENTOR)) {
              this.currentMember.setTypeId(Long.parseLong(mType.get(ServiceConstants.MENTOR)));
            } else if ( this.userType.equals(ServiceConstants.PROTEGE)) {
@@ -264,7 +185,6 @@ public class UserManageViewHandler extends BasePage implements Serializable {
     while(it.hasNext()) {
       String key = (String)it.next();
       if (type.equals(mType.get(key))) {
-        System.out.println("???????????::"+key);
         return key;       
       }      
     }

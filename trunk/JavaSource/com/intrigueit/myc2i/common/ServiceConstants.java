@@ -9,6 +9,7 @@ public class ServiceConstants {
   public static final String PROTEGE = "PROTEGE";
   public static final String RECORD_ID = "recordId";
   public static final String RECORD_TYPE = "recordType";
+  public static final String EXTRA_PARAM = "extraParam";
   public static final String UPDATE = "U";
   public static final String ADD = "A";
   public static final String DELETE = "D";
