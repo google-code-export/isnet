@@ -48,12 +48,12 @@ public class ViewDataProvider extends BasePage {
 
   
     public void loadUserTypes(){
-    this.userTypes = new ArrayList<SelectItem>();
-    userTypes.add(new SelectItem("",""));
-    List<UserDefinedValues> udvList = this.udService.findByProperty("udValuesCategory", "MEMBER_TYPE");
-    for (UserDefinedValues userDefinedValues : udvList) {
-      userTypes.add(new SelectItem(userDefinedValues.getUdValuesId()+"",userDefinedValues.getUdValuesValue().toString()));
-    }   
+      this.userTypes = new ArrayList<SelectItem>();
+      userTypes.add(new SelectItem("",""));
+      List<UserDefinedValues> udvList = this.udService.findByProperty("udValuesCategory", "MEMBER_TYPE");
+      for (UserDefinedValues userDefinedValues : udvList) {
+        userTypes.add(new SelectItem(userDefinedValues.getUdValuesId()+"",userDefinedValues.getUdValuesValue().toString()));
+      }   
   }
   
     /**

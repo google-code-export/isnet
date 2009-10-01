@@ -154,7 +154,14 @@ public class Member implements java.io.Serializable{
 	@Column( name = "RECORD_LAST_UPDATER_ID")
 	private String recordUpdaterId;
 	
-
+	@Column( name = "EMAIL_NOTIFICATION")
+  private String emailNotification;
+	
+	@Column( name = "AGREE_PRIVACY_POLICY")
+  private String agreePrivacyPolicy;
+	
+	
+	
 	@Column(name = "ADMIN_USER_INDICATOR",length = 20)
 	private String adminUserIndicator;
 	
@@ -535,6 +542,34 @@ public class Member implements java.io.Serializable{
 	public void setMemberShipExpiryDate(Date memberShipExpiryDate) {
 		this.memberShipExpiryDate = memberShipExpiryDate;
 	}
+
+  /**
+   * @return the emailNotification
+   */
+  public String getEmailNotification() {
+    return emailNotification;
+  }
+
+  /**
+   * @param emailNotification the emailNotification to set
+   */
+  public void setEmailNotification(String emailNotification) {
+    this.emailNotification = emailNotification;
+  }
+
+  /**
+   * @return the agreePrivacyPolicy
+   */
+  public String getAgreePrivacyPolicy() {
+    return agreePrivacyPolicy;
+  }
+
+  /**
+   * @param agreePrivacyPolicy the agreePrivacyPolicy to set
+   */
+  public void setAgreePrivacyPolicy(String agreePrivacyPolicy) {
+    this.agreePrivacyPolicy = agreePrivacyPolicy;
+  }
 	
 	
 	
