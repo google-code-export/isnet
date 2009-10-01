@@ -133,7 +133,11 @@
            <h:outputText escape="false" value="#{member.email}" />
          </rich:column>
          <rich:column>
-           <h:outputText escape="false" value="#{member.typeId}" />
+           <c:set var="isAdmin" value="N" />
+           <c:if test="#{member.typeId eq 18}">
+             <c:set var="isAdmin" value="Y" />
+           </c:if>
+           <h:outputText escape="false" value="${isAdmin}:${member.typeId}" />
          </rich:column>         
          <rich:column style="text-align:center;vertical-align:middle;">
            <rowBar:rowToolBar recordId="#{member.memberId}" recordType="#{member.typeId}"
