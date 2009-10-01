@@ -103,6 +103,10 @@ ALTER TABLE MEMBER MODIFY(MEMBER_MARITAL_STATUS  NULL);
 
 ALTER TABLE MEMBER MODIFY(MEMBER_MAZHAB  NULL);
 
+alter table member modify ( MEMBER_GENDER_INDICATOR varchar2(18));
+alter table myc2i.member add (email_notification  varchar2(20));
+alter table myc2i.member add (agree_privacy_policy  varchar2(20));
+
 CREATE TABLE ZIPCODEDATA
 (
   ZIPCODE    VARCHAR2(10 BYTE),
