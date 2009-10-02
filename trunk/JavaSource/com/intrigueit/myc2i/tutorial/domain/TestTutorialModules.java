@@ -1,4 +1,5 @@
 package com.intrigueit.myc2i.tutorial.domain;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -16,270 +17,286 @@ import org.hibernate.validator.NotEmpty;
 import com.sun.istack.internal.NotNull;
 
 @Entity
-@Table(name="TEST_TUTORIAL_MODULES")
+@Table(name = "TEST_TUTORIAL_MODULES")
 public class TestTutorialModules implements Serializable {
-	
-  private static final long serialVersionUID = 6148154328394694589L;
 
-  @Id
-	@Column(name="TEST_TUTORIAL_MODULES_ID")
-	@GeneratedValue(generator="modulesSeq")
-  @SequenceGenerator(name="modulesSeq",sequenceName="MODULES_ID_SEQ", allocationSize=1,initialValue=1)
+	private static final long serialVersionUID = 6148154328394694589L;
+
+	@Id
+	@Column(name = "TEST_TUTORIAL_MODULES_ID")
+	@GeneratedValue(generator = "modulesSeq")
+	@SequenceGenerator(name = "modulesSeq", sequenceName = "MODULES_ID_SEQ", allocationSize = 1, initialValue = 1)
 	private long modulesId;
 
-  @Column(name="TEST_TUTORIAL_DOCUMENT_ID")
+	@Column(name = "TEST_TUTORIAL_DOCUMENT_ID")
 	private Long documentId;
 
-  @NotNull
-  @NotEmpty
-  @Length(max=1)
-  @Column(name="TEST_INDICATOR",nullable = false, length = 1)
+	@NotNull
+	@NotEmpty
+	@Length(max = 1)
+	@Column(name = "TEST_INDICATOR", nullable = false, length = 1)
 	private String testIndicator;
 
-  @Column(name="MEMBER_TYPE_INDICATOR")
+	@Column(name = "MEMBER_TYPE_INDICATOR")
 	private Long memberTypeIndicator;
 
-  @NotNull
-  @NotEmpty
-  @Length(min=1,max=100)
-	@Column(name="MODULE_NAME",nullable = false, length = 100)
+	@NotNull
+	@NotEmpty
+	@Length(min = 1, max = 100)
+	@Column(name = "MODULE_NAME", nullable = false, length = 100)
 	private String moduleName;
 
-	@Column(name="MODULE_INTRO_AUDIO")
+	@Column(name = "MODULE_INTRO_AUDIO")
 	@Lob
 	private byte[] moduleIntroAudio;
 
-	@Column(name="MODULE_INTRO_VIDEO")
+	@Column(name = "MODULE_INTRO_VIDEO")
 	@Lob
 	private byte[] moduleIntroVideo;
-	
-	@Column(name="AUDIO_FILE_NAME")
-  private String audioFileName;
-  
-  @Column(name="VIDEO_FILE_NAME")
-  private String videoFileName;
-  
+
+	@Column(name = "AUDIO_FILE_NAME")
+	private String audioFileName;
+
+	@Column(name = "VIDEO_FILE_NAME")
+	private String videoFileName;
+
 	@NotNull
-  @NotEmpty
-  @Length(min=1,max=250)
-	@Column(name="MODULE_TEXT",nullable = false, length = 250)
+	@NotEmpty
+	@Length(min = 1, max = 250)
+	@Column(name = "MODULE_TEXT", nullable = false, length = 250)
 	private String moduleText;
-	
-	@Column(name="RECORD_CREATOR_ID")
+
+	@Column(name = "RECORD_CREATOR_ID")
 	private String recordCreatorId;
 
-	@Column(name="RECORD_CREATE_DATE")
+	@Column(name = "RECORD_CREATE_DATE")
 	private Date recordCreateDate;
 
-	@Column(name="RECORD_LAST_UPDATER_ID")
+	@Column(name = "RECORD_LAST_UPDATER_ID")
 	private String recordLastUpdaterId;
 
-	@Column(name="RECORD_LAST_UPDATED_DATE")
+	@Column(name = "RECORD_LAST_UPDATED_DATE")
 	private Date recordLastUpdatedDate;
 
 	public TestTutorialModules() {
 		super();
 	}
 
-	public TestTutorialModules(long modulesId, String moduleName,String moduleText) {
-    this.modulesId = modulesId;
-    this.moduleName = moduleName;
-    this.moduleText = moduleText;
-  }
-	
-  /**
-   * @return the modulesId
-   */
-  public long getModulesId() {
-    return modulesId;
-  }
+	public TestTutorialModules(long modulesId, String moduleName,
+			String moduleText) {
+		this.modulesId = modulesId;
+		this.moduleName = moduleName;
+		this.moduleText = moduleText;
+	}
 
-  /**
-   * @param modulesId the modulesId to set
-   */
-  public void setModulesId(long modulesId) {
-    this.modulesId = modulesId;
-  }
+	/**
+	 * @return the modulesId
+	 */
+	public long getModulesId() {
+		return modulesId;
+	}
 
-  /**
-   * @return the documentId
-   */
-  public Long getDocumentId() {
-    return documentId;
-  }
+	/**
+	 * @param modulesId
+	 *            the modulesId to set
+	 */
+	public void setModulesId(long modulesId) {
+		this.modulesId = modulesId;
+	}
 
-  /**
-   * @param documentId the documentId to set
-   */
-  public void setDocumentId(Long documentId) {
-    this.documentId = documentId;
-  }  
-  /**
-   * @return the testIndicator
-   */
-  public String getTestIndicator() {
-    return testIndicator;
-  }
+	/**
+	 * @return the documentId
+	 */
+	public Long getDocumentId() {
+		return documentId;
+	}
 
-  /**
-   * @param testIndicator the testIndicator to set
-   */
-  public void setTestIndicator(String testIndicator) {
-    this.testIndicator = testIndicator;
-  }
+	/**
+	 * @param documentId
+	 *            the documentId to set
+	 */
+	public void setDocumentId(Long documentId) {
+		this.documentId = documentId;
+	}
 
-  /**
-   * @return the memberTypeIndicator
-   */
-  public Long getMemberTypeIndicator() {
-    return memberTypeIndicator;
-  }
+	/**
+	 * @return the testIndicator
+	 */
+	public String getTestIndicator() {
+		return testIndicator;
+	}
 
-  /**
-   * @param memberTypeIndicator the memberTypeIndicator to set
-   */
-  public void setMemberTypeIndicator(Long memberTypeIndicator) {
-    this.memberTypeIndicator = memberTypeIndicator;
-  }
+	/**
+	 * @param testIndicator
+	 *            the testIndicator to set
+	 */
+	public void setTestIndicator(String testIndicator) {
+		this.testIndicator = testIndicator;
+	}
 
-  /**
-   * @return the moduleName
-   */
-  public String getModuleName() {
-    return moduleName;
-  }
+	/**
+	 * @return the memberTypeIndicator
+	 */
+	public Long getMemberTypeIndicator() {
+		return memberTypeIndicator;
+	}
 
-  /**
-   * @param moduleName the moduleName to set
-   */
-  public void setModuleName(String moduleName) {
-    this.moduleName = moduleName;
-  }
+	/**
+	 * @param memberTypeIndicator
+	 *            the memberTypeIndicator to set
+	 */
+	public void setMemberTypeIndicator(Long memberTypeIndicator) {
+		this.memberTypeIndicator = memberTypeIndicator;
+	}
 
-  /**
-   * @return the moduleIntroAudio
-   */
-  public byte[] getModuleIntroAudio() {
-    return moduleIntroAudio;
-  }
+	/**
+	 * @return the moduleName
+	 */
+	public String getModuleName() {
+		return moduleName;
+	}
 
-  /**
-   * @param moduleIntroAudio the moduleIntroAudio to set
-   */
-  public void setModuleIntroAudio(byte[] moduleIntroAudio) {
-    this.moduleIntroAudio = moduleIntroAudio;
-  }
+	/**
+	 * @param moduleName
+	 *            the moduleName to set
+	 */
+	public void setModuleName(String moduleName) {
+		this.moduleName = moduleName;
+	}
 
-  /**
-   * @return the moduleIntroVideo
-   */
-  public byte[] getModuleIntroVideo() {
-    return moduleIntroVideo;
-  }
+	/**
+	 * @return the moduleIntroAudio
+	 */
+	public byte[] getModuleIntroAudio() {
+		return moduleIntroAudio;
+	}
 
-  /**
-   * @param moduleIntroVideo the moduleIntroVideo to set
-   */
-  public void setModuleIntroVideo(byte[] moduleIntroVideo) {
-    this.moduleIntroVideo = moduleIntroVideo;
-  }
-  
-  /**
-   * @return the audioFileName
-   */
-  public String getAudioFileName() {
-    return audioFileName;
-  }
+	/**
+	 * @param moduleIntroAudio
+	 *            the moduleIntroAudio to set
+	 */
+	public void setModuleIntroAudio(byte[] moduleIntroAudio) {
+		this.moduleIntroAudio = moduleIntroAudio;
+	}
 
-  /**
-   * @param audioFileName the audioFileName to set
-   */
-  public void setAudioFileName(String audioFileName) {
-    this.audioFileName = audioFileName;
-  }
+	/**
+	 * @return the moduleIntroVideo
+	 */
+	public byte[] getModuleIntroVideo() {
+		return moduleIntroVideo;
+	}
 
-  /**
-   * @return the videoFileName
-   */
-  public String getVideoFileName() {
-    return videoFileName;
-  }
+	/**
+	 * @param moduleIntroVideo
+	 *            the moduleIntroVideo to set
+	 */
+	public void setModuleIntroVideo(byte[] moduleIntroVideo) {
+		this.moduleIntroVideo = moduleIntroVideo;
+	}
 
-  /**
-   * @param videoFileName the videoFileName to set
-   */
-  public void setVideoFileName(String videoFileName) {
-    this.videoFileName = videoFileName;
-  }
+	/**
+	 * @return the audioFileName
+	 */
+	public String getAudioFileName() {
+		return audioFileName;
+	}
 
-  /**
-   * @return the pageText
-   */
-  public String getModuleText() {
-    return moduleText;
-  }
+	/**
+	 * @param audioFileName
+	 *            the audioFileName to set
+	 */
+	public void setAudioFileName(String audioFileName) {
+		this.audioFileName = audioFileName;
+	}
 
-  /**
-   * @param pageText the pageText to set
-   */
-  public void setModuleText(String moduleText) {
-    this.moduleText = moduleText;
-  }
-  
-  /**
-   * @return the recordCreatorId
-   */
-  public String getRecordCreatorId() {
-    return recordCreatorId;
-  }
+	/**
+	 * @return the videoFileName
+	 */
+	public String getVideoFileName() {
+		return videoFileName;
+	}
 
-  /**
-   * @param recordCreatorId the recordCreatorId to set
-   */
-  public void setRecordCreatorId(String recordCreatorId) {
-    this.recordCreatorId = recordCreatorId;
-  }
+	/**
+	 * @param videoFileName
+	 *            the videoFileName to set
+	 */
+	public void setVideoFileName(String videoFileName) {
+		this.videoFileName = videoFileName;
+	}
 
-  /**
-   * @return the recordCreateDate
-   */
-  public Date getRecordCreateDate() {
-    return recordCreateDate;
-  }
+	/**
+	 * @return the pageText
+	 */
+	public String getModuleText() {
+		return moduleText;
+	}
 
-  /**
-   * @param recordCreateDate the recordCreateDate to set
-   */
-  public void setRecordCreateDate(Date recordCreateDate) {
-    this.recordCreateDate = recordCreateDate;
-  }
+	/**
+	 * @param pageText
+	 *            the pageText to set
+	 */
+	public void setModuleText(String moduleText) {
+		this.moduleText = moduleText;
+	}
 
-  /**
-   * @return the recordLastUpdaterId
-   */
-  public String getRecordLastUpdaterId() {
-    return recordLastUpdaterId;
-  }
+	/**
+	 * @return the recordCreatorId
+	 */
+	public String getRecordCreatorId() {
+		return recordCreatorId;
+	}
 
-  /**
-   * @param recordLastUpdaterId the recordLastUpdaterId to set
-   */
-  public void setRecordLastUpdaterId(String recordLastUpdaterId) {
-    this.recordLastUpdaterId = recordLastUpdaterId;
-  }
+	/**
+	 * @param recordCreatorId
+	 *            the recordCreatorId to set
+	 */
+	public void setRecordCreatorId(String recordCreatorId) {
+		this.recordCreatorId = recordCreatorId;
+	}
 
-  /**
-   * @return the recordLastUpdatedDate
-   */
-  public Date getRecordLastUpdatedDate() {
-    return recordLastUpdatedDate;
-  }
+	/**
+	 * @return the recordCreateDate
+	 */
+	public Date getRecordCreateDate() {
+		return recordCreateDate;
+	}
 
-  /**
-   * @param recordLastUpdatedDate the recordLastUpdatedDate to set
-   */
-  public void setRecordLastUpdatedDate(Date recordLastUpdatedDate) {
-    this.recordLastUpdatedDate = recordLastUpdatedDate;
-  }
+	/**
+	 * @param recordCreateDate
+	 *            the recordCreateDate to set
+	 */
+	public void setRecordCreateDate(Date recordCreateDate) {
+		this.recordCreateDate = recordCreateDate;
+	}
+
+	/**
+	 * @return the recordLastUpdaterId
+	 */
+	public String getRecordLastUpdaterId() {
+		return recordLastUpdaterId;
+	}
+
+	/**
+	 * @param recordLastUpdaterId
+	 *            the recordLastUpdaterId to set
+	 */
+	public void setRecordLastUpdaterId(String recordLastUpdaterId) {
+		this.recordLastUpdaterId = recordLastUpdaterId;
+	}
+
+	/**
+	 * @return the recordLastUpdatedDate
+	 */
+	public Date getRecordLastUpdatedDate() {
+		return recordLastUpdatedDate;
+	}
+
+	/**
+	 * @param recordLastUpdatedDate
+	 *            the recordLastUpdatedDate to set
+	 */
+	public void setRecordLastUpdatedDate(Date recordLastUpdatedDate) {
+		this.recordLastUpdatedDate = recordLastUpdatedDate;
+	}
 
 }
