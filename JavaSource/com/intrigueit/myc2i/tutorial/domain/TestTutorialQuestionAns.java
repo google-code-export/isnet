@@ -37,7 +37,13 @@ public class TestTutorialQuestionAns implements Serializable {
   @Length(min=1,max=250)
   @Column(name="PAGE_TEXT",nullable = false, length = 250)
   private String pageText;
-
+  
+  @NotNull
+  @NotEmpty
+  @Length(min=1,max=500)
+  @Column(name="PAGE_TITLE",nullable = false, length = 500)
+  private String pageTitle;
+  
   @Column(name="PAGE_AUDIO")
   @Lob
   private byte[] pageAudio;
@@ -45,7 +51,13 @@ public class TestTutorialQuestionAns implements Serializable {
   @Column(name="PAGE_VIDEO")
   @Lob
   private byte[] pageVideo;
-
+  
+  @Column(name="AUDIO_FILE_NAME")
+  private String audioFileName;
+  
+  @Column(name="VIDEO_FILE_NAME")
+  private String videoFileName;
+  
   @NotNull
   @NotEmpty
   @Length(max=150)
@@ -338,6 +350,20 @@ public class TestTutorialQuestionAns implements Serializable {
    */
   public void setPageText(String pageText) {
     this.pageText = pageText;
+  }  
+  
+  /**
+   * @return the pageTitle
+   */
+  public String getPageTitle() {
+    return pageTitle;
+  }
+
+  /**
+   * @param pageTitle the pageTitle to set
+   */
+  public void setPageTitle(String pageTitle) {
+    this.pageTitle = pageTitle;
   }
 
   /**
@@ -366,6 +392,34 @@ public class TestTutorialQuestionAns implements Serializable {
    */
   public void setPageVideo(byte[] pageVideo) {
     this.pageVideo = pageVideo;
+  }
+  
+  /**
+   * @return the audioFileName
+   */
+  public String getAudioFileName() {
+    return audioFileName;
+  }
+
+  /**
+   * @param audioFileName the audioFileName to set
+   */
+  public void setAudioFileName(String audioFileName) {
+    this.audioFileName = audioFileName;
+  }
+
+  /**
+   * @return the videoFileName
+   */
+  public String getVideoFileName() {
+    return videoFileName;
+  }
+
+  /**
+   * @param videoFileName the videoFileName to set
+   */
+  public void setVideoFileName(String videoFileName) {
+    this.videoFileName = videoFileName;
   }
 
 }
