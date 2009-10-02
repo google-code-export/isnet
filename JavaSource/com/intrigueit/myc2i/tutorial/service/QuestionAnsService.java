@@ -15,8 +15,6 @@ public interface QuestionAnsService {
 
 	public void addQuestionAns(TestTutorialQuestionAns questionAns);
 
-	public TestTutorialQuestionAns loadById();
-
 	public void deleteQuestionAns(Long recordId);
 
 	public ArrayList<String> getCategories();
