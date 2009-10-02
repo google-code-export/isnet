@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:a4j="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:c="http://java.sun.com/jstl/core">
+	<ui:composition>
+		<h:panelGroup id="${hidIdField}_toppg">
+			 <!-- Default search class -->
+      <c:set var="search_input" value="search_input"></c:set>
+      <c:if test="${!empty styleClass}">
+        <c:set var="search_input" value="${styleClass}" />
+      </c:if>
+			<h:inputText label="${msgLabel}" style="display:none;" id="id_${displayField}RecId" value="${searchBean[hidIdField]}"
+        required="${isRequired}"/>
+			<a4j:outputPanel layout="block" styleClass="google_search">
+				<h:panelGroup styleClass="search_container">
+					<h:inputText styleClass="${search_input}" align="top" id="id_${displayField}"
+						value="${searchBean[displayField]}" onfocus="Common.getSearchValue(this);" onblur="Common.checkSearchValue(this);">
+					</h:inputText>
+					<h:panelGroup styleClass="search_img_con">
+						<h:graphicImage value="${imagesPath}/combo_box_search.gif" styleClass="search_img"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</a4j:outputPanel>
+			<a4j:region>
+				<rich:suggestionbox id="${hidIdField}_suggestionBoxId" style="align:top" for="id_${displayField}" tokens=",["
+					rules="#{commonAutoComplete.rules}"
+					suggestionAction="#{commonAutoComplete.processRequest}" var="result"
+					fetchValue="#{result.recordDesc}-#{result.recordId}" rows="#{commonAutoComplete.intRows}"
+					first="#{commonAutoComplete.intFirst}"
+					minChars="#{commonAutoComplete.minchars}"
+					shadowOpacity="#{commonAutoComplete.shadowOpacity}"
+					border="#{commonAutoComplete.border}" width="#{commonAutoComplete.width}"
+					height="#{commonAutoComplete.height}"
+					shadowDepth="#{commonAutoComplete.shadowDepth}"
+					cellpadding="#{commonAutoComplete.cellpadding}"
+					nothingLabel="#{commonAutoComplete.emptyMsg}"
+					onselect="Common.resetSearchValue('#{commonAutoComplete.noRecordMsg}');"
+					zindex="10007"
+					frequency="#{commonAutoComplete.frequency}">
+		         <h:column> <h:outputText value="#{result.recordCode}" /> </h:column>
+		         <h:column> <h:outputText value="#{result.recordDesc}" /> </h:column>
+		         <f:param value="${searchObj}" name="searchTableCode"/>
+		         <f:param value="${extConds}" name="extConds"/>
+		     </rich:suggestionbox>
+		  </a4j:region>
+		</h:panelGroup>
+	</ui:composition>
+</html>

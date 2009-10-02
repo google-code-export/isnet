@@ -18,7 +18,15 @@
       <source>uploadlink.xhtml</source>
     </tag>
     <tag>
+      <tag-name>richtextlink</tag-name>
+      <source>richtextlink.xhtml</source>
+    </tag>
+    <tag>
       <tag-name>actioncmp</tag-name>
       <source>actioncmp.xhtml</source>
+    </tag>
+    <tag>
+      <tag-name>searchcmp</tag-name>
+      <source>searchcmp.xhtml</source>
     </tag>
 </facelet-taglib>
