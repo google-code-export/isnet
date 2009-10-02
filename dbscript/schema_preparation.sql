@@ -107,6 +107,17 @@ alter table member modify ( MEMBER_GENDER_INDICATOR varchar2(18));
 alter table member add (email_notification  varchar2(20));
 alter table member add (agree_privacy_policy  varchar2(20));
 
+alter table TEST_TUTORIAL_MODULES add (audio_file_name  varchar2(255));
+alter table TEST_TUTORIAL_MODULES add (video_file_name  varchar2(255));
+
+alter table TEST_TUTORIAL_DOCUMENT add (audio_file_name  varchar2(255));
+alter table TEST_TUTORIAL_DOCUMENT add (video_file_name  varchar2(255));
+
+alter table TEST_TUTORIAL_QUESTION_ANS add (audio_file_name  varchar2(255));
+alter table TEST_TUTORIAL_QUESTION_ANS add (video_file_name  varchar2(255));
+alter table TEST_TUTORIAL_QUESTION_ANS add (page_title  varchar2(500));
+
+
 CREATE TABLE ZIPCODEDATA
 (
   ZIPCODE    VARCHAR2(10 BYTE),
