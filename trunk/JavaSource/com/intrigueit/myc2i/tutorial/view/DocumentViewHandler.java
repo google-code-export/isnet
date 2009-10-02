@@ -27,8 +27,6 @@ public class DocumentViewHandler extends BasePage implements Serializable {
   private DocumentService documentService;
 	private TestTutorialDocument currentDocument;
 	private ListDataModel documentLines;
-	private String audioPath;
-	private String videoPath;
 	private FileUploadBean fileUploadBean;	
 	
 	@Autowired
@@ -46,7 +44,7 @@ public class DocumentViewHandler extends BasePage implements Serializable {
       if (fileUploadBean != null && fileUploadBean.getUploadFile() != null) {
         UFile ufile = fileUploadBean.getUploadFile();
         this.currentDocument.setDocumentIntroAudio(ufile.getData());        
-        this.setAudioPath(ufile.getName());
+        this.currentDocument.setAudioFileName(ufile.getName());
         logger.debug("Uploaded audio::"+ufile.getName());
         fileUploadBean.clearUploadData();
       }
@@ -61,7 +59,7 @@ public class DocumentViewHandler extends BasePage implements Serializable {
       if (fileUploadBean != null && fileUploadBean.getUploadFile() != null) {
         UFile ufile = fileUploadBean.getUploadFile();
         this.currentDocument.setDocumentIntroVideo(ufile.getData());
-        this.setVideoPath(ufile.getName());
+        this.currentDocument.setVideoFileName(ufile.getName());
         logger.debug("Uploaded video::"+ufile.getName());
         fileUploadBean.clearUploadData();
       }
@@ -104,13 +102,9 @@ public class DocumentViewHandler extends BasePage implements Serializable {
 	public void setCommonData ( String action ) {
 	  setSecHeaderMsg("");
 	  Date dt = new Date();           
-    this.audioPath = "";
-    this.videoPath = "";
     try {
       this.currentDocument.setRecordLastUpdaterId(""+this.getMember().getMemberId());    
       this.currentDocument.setRecordLastUpdatedDate(dt);
-      this.setVideoPath("");
-      this.setAudioPath("");
       if (action.equals(ServiceConstants.ADD )) {
         this.currentDocument.setRecordCreatorId(""+this.getMember().getMemberId());
         this.currentDocument.setRecordCreateDate(dt);
@@ -270,35 +264,6 @@ public class DocumentViewHandler extends BasePage implements Serializable {
    */
   public void setFileUploadBean(FileUploadBean fileUploadBean) {
     this.fileUploadBean = fileUploadBean;
-  }
-
-  
-	/**
-   * @return the audioPath
-   */
-  public String getAudioPath() {
-    return audioPath;
-  }
-
-  /**
-   * @param audioPath the audioPath to set
-   */
-  public void setAudioPath(String audioPath) {
-    this.audioPath = audioPath;
-  }
-
-  /**
-   * @return the videoPath
-   */
-  public String getVideoPath() {
-    return videoPath;
-  }
-
-  /**
-   * @param videoPath the videoPath to set
-   */
-  public void setVideoPath(String videoPath) {
-    this.videoPath = videoPath;
-  } 
+  }  
 
 }
