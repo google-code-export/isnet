@@ -24,11 +24,6 @@ public class QuesAnsServiceImpl implements QuestionAnsService {
 		return categoryList;
 	}
 	
-	public TestTutorialQuestionAns loadById() {
-		//return questionAnsDao.loadById(recordId);
-		return null;
-	}
-	
 	public TestTutorialQuestionAns loadById(Long recordId) {
 		return questionAnsDao.loadById(recordId);
 	}
