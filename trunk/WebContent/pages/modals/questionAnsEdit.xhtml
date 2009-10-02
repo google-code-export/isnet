@@ -121,7 +121,7 @@
        </h:panelGroup>
        <h:panelGroup id="idAudioFile">
          <h:inputText styleClass="short_text,readonly" disabled="true" style="color:gray;background:#DFDFDF;"
-            value="#{questionAnsViewHandler.audioPath}"/>        
+            value="#{currentEBean.audioFileName}"/>        
          <ccmp:uploadlink prompt="" uploadModalId="idAudioUpload" imgTitle="#{bundle.common_upload_audio}"/>
        </h:panelGroup>
        <rich:message for="pageAudio" />
@@ -132,7 +132,7 @@
        </h:panelGroup>
        <h:panelGroup id="idVideoFile">
          <h:inputText styleClass="short_text,readonly" disabled="true" style="color:gray;background:#DFDFDF;"
-            value="#{questionAnsViewHandler.videoPath}"/>        
+            value="#{currentEBean.videoFileName}"/>        
          <ccmp:uploadlink prompt="" uploadModalId="idVideoUpload" imgTitle="#{bundle.common_upload_video}"/>
        </h:panelGroup>
        <rich:message for="pageVideo" />

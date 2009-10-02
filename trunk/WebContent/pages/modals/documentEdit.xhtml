@@ -29,7 +29,7 @@
        </h:panelGroup>
        <h:panelGroup id="idAudioFile">
          <h:inputText styleClass="name,readonly" disabled="true" style="color:gray;background:#DFDFDF;" 
-            value="#{documentViewHandler.audioPath}"/>        
+            value="#{currentEBean.audioFileName}"/>        
          <ccmp:uploadlink prompt="" uploadModalId="idAudioUpload" imgTitle="#{bundle.common_upload_audio}"/>
        </h:panelGroup>
        <rich:message for="documentIntroAudio" />
@@ -40,7 +40,7 @@
        </h:panelGroup>
        <h:panelGroup id="idVideoFile">
          <h:inputText styleClass="name,readonly" disabled="true" style="color:gray;background:#DFDFDF;"
-            value="#{documentViewHandler.videoPath}"/>        
+            value="#{currentEBean.videoFileName}"/>        
          <ccmp:uploadlink prompt="" uploadModalId="idVideoUpload" imgTitle="#{bundle.common_upload_video}"/>
        </h:panelGroup>
        <rich:message for="documentIntroVideo" />
