@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:a4j="http://richfaces.org/a4j"
+    xmlns:c="http://java.sun.com/jstl/core"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+  <ui:composition>
+    <h:panelGroup>
+		  <a4j:commandLink onclick="Common.openModalPanel('${richTextModalId}','');"  ajaxSingle="true"
+          styleClass="menu_item_clink" reRender="${richTextModalId}Container">
+          <h:panelGroup>
+            <h:graphicImage title="${imgTitle}" value="${imagesPath}/upload.png"
+              styleClass="row_toolbar_icon"/> &#160; <h:outputText value="${prompt}" />&#160;
+          </h:panelGroup>
+        </a4j:commandLink>  
+    </h:panelGroup>
+	 </ui:composition>
+</html>
