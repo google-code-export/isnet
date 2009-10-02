@@ -119,7 +119,8 @@
         <ui:param name="uploadModalId" value="idVideoUpload"/>
         <ui:param name="action" value="uploadVideo"/>
         <ui:param name="reRenderIds" value="idVideoFile"/>
-        <ui:param name="fileExtentions" value="#{bundle.common_supported_video_ext}"/>            
+        <ui:param name="fileExtentions" value="#{bundle.common_supported_video_ext}"/>
+        <ui:param name="fileExtLabel" value="#{bundle.common_supported_video_label}"/>            
       </ui:include>
     </a4j:region>
     <a4j:region>
@@ -128,6 +129,7 @@
         <ui:param name="action" value="uploadAudio"/>
         <ui:param name="reRenderIds" value="idAudioFile"/>
         <ui:param name="fileExtentions" value="#{bundle.common_supported_audio_ext}"/>
+        <ui:param name="fileExtLabel" value="#{bundle.common_supported_audio_label}"/>
       </ui:include>
     </a4j:region>       
   </ui:define>
