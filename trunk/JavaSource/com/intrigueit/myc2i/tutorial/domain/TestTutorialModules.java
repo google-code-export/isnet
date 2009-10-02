@@ -52,7 +52,13 @@ public class TestTutorialModules implements Serializable {
 	@Column(name="MODULE_INTRO_VIDEO")
 	@Lob
 	private byte[] moduleIntroVideo;
-
+	
+	@Column(name="AUDIO_FILE_NAME")
+  private String audioFileName;
+  
+  @Column(name="VIDEO_FILE_NAME")
+  private String videoFileName;
+  
 	@NotNull
   @NotEmpty
   @Length(min=1,max=250)
@@ -176,6 +182,34 @@ public class TestTutorialModules implements Serializable {
    */
   public void setModuleIntroVideo(byte[] moduleIntroVideo) {
     this.moduleIntroVideo = moduleIntroVideo;
+  }
+  
+  /**
+   * @return the audioFileName
+   */
+  public String getAudioFileName() {
+    return audioFileName;
+  }
+
+  /**
+   * @param audioFileName the audioFileName to set
+   */
+  public void setAudioFileName(String audioFileName) {
+    this.audioFileName = audioFileName;
+  }
+
+  /**
+   * @return the videoFileName
+   */
+  public String getVideoFileName() {
+    return videoFileName;
+  }
+
+  /**
+   * @param videoFileName the videoFileName to set
+   */
+  public void setVideoFileName(String videoFileName) {
+    this.videoFileName = videoFileName;
   }
 
   /**

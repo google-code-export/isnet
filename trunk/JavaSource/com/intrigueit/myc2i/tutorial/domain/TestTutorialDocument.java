@@ -30,8 +30,14 @@ public class TestTutorialDocument implements Serializable {
   @Length(min=1, max=100)
 	@Column(name="DOCUMENT_NAME",nullable = false, length = 100)
 	private String documentName;
-
-	@Column(name="DOCUMENT_INTRO_AUDIO")
+  
+  @Column(name="AUDIO_FILE_NAME")
+  private String audioFileName;
+  
+  @Column(name="VIDEO_FILE_NAME")
+  private String videoFileName;
+	
+  @Column(name="DOCUMENT_INTRO_AUDIO")
 	@Lob
 	private byte[] documentIntroAudio;
 	
@@ -114,6 +120,34 @@ public class TestTutorialDocument implements Serializable {
    */
   public void setDocumentIntroVideo(byte[] documentIntroVideo) {
     this.documentIntroVideo = documentIntroVideo;
+  }  
+  
+  /**
+   * @return the audioFileName
+   */
+  public String getAudioFileName() {
+    return audioFileName;
+  }
+
+  /**
+   * @param audioFileName the audioFileName to set
+   */
+  public void setAudioFileName(String audioFileName) {
+    this.audioFileName = audioFileName;
+  }
+
+  /**
+   * @return the videoFileName
+   */
+  public String getVideoFileName() {
+    return videoFileName;
+  }
+
+  /**
+   * @param videoFileName the videoFileName to set
+   */
+  public void setVideoFileName(String videoFileName) {
+    this.videoFileName = videoFileName;
   }
 
   /**
