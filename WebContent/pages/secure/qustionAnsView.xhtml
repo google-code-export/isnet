@@ -62,7 +62,7 @@
                 <h:outputText value="#{bundle.tutorial_qa_page_number}" />
               </rich:column>
               <rich:column width="125px" style="text-align:left;" valign="top">
-                <h:outputText value="#{bundle.tutorial_qa_page_text}" />
+                <h:outputText value="#{bundle.tutorial_qa_page_title}" />
               </rich:column>              
               <rich:column width="20px" style="text-align:center;" valign="top">
                 <h:outputText value="#{bundle.common_action}" />
@@ -73,7 +73,7 @@
           <h:outputText escape="false" value="#{questionAns.pageNumber}" />
          </rich:column>
          <rich:column>
-           <h:outputText escape="false" value="#{questionAns.pageText}" />
+           <h:outputText escape="false" value="#{questionAns.pageTitle}" />
          </rich:column>         
          <rich:column style="text-align:center;vertical-align:middle;">
            <rowBar:rowToolBar recordId="#{questionAns.questionAnsId}"

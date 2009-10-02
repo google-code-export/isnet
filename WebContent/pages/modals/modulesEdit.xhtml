@@ -24,12 +24,22 @@
        <rich:message for="moduleName" />
        
        <h:panelGroup>
+        <h:outputText value="#{bundle.tutorial_module_title}" />
+        <span class="required_field">*</span>
+       </h:panelGroup>
+       <h:inputText styleClass="name" value="#{currentEBean.moduleTitle}" id="moduleTitle">
+        <rich:ajaxValidator event="onblur" />
+       </h:inputText>
+       <rich:message for="moduleTitle" />
+       
+       <h:panelGroup>
         <h:outputText value="#{bundle.tutorial_module_text}" />
         <span class="required_field">*</span>
        </h:panelGroup>
-       <h:inputText styleClass="name" value="#{currentEBean.moduleText}" id="moduleText">
+       <h:inputTextarea styleClass="medium_text" value="#{currentEBean.moduleText}" id="moduleText"
+         rows="4">
         <rich:ajaxValidator event="onblur" />
-       </h:inputText>
+       </h:inputTextarea>
        <rich:message for="moduleText" />        
        
        <h:panelGroup>

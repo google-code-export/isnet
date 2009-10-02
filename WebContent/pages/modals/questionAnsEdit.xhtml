@@ -33,12 +33,22 @@
        <rich:message for="pageNumber" />
        
        <h:panelGroup>
+        <h:outputText value="#{bundle.tutorial_qa_page_title}" />
+        <span class="required_field">*</span>
+       </h:panelGroup>
+       <h:inputText styleClass="medium_text" value="#{currentEBean.pageTitle}" id="pageTitle">
+        <rich:ajaxValidator event="onblur" />
+       </h:inputText>
+       <rich:message for="pageTitle" />
+       
+       <h:panelGroup>
         <h:outputText value="#{bundle.tutorial_qa_page_text}" />
         <span class="required_field">*</span>
        </h:panelGroup>
-       <h:inputText styleClass="medium_text" value="#{currentEBean.pageText}" id="pageText">
+       <h:inputTextarea styleClass="medium_text" value="#{currentEBean.pageText}" id="pageText"
+        rows="4">
         <rich:ajaxValidator event="onblur" />
-       </h:inputText>
+       </h:inputTextarea>
        <rich:message for="pageText" />
        
        <h:panelGroup>
