@@ -37,10 +37,7 @@ public class QuestionAnsViewHandler extends BasePage implements Serializable {
 	private String modulesName;	
 	private FileUploadBean fileUploadBean;
 	
-	private String audioPath;
-  private String videoPath;
-  
-  @Autowired
+	@Autowired
   public QuestionAnsViewHandler(QuestionAnsService questionAnsService,ModulesService modulesService) {
     this.questionAnsService = questionAnsService;
     this.modulesService = modulesService;
@@ -70,7 +67,7 @@ public class QuestionAnsViewHandler extends BasePage implements Serializable {
       if (fileUploadBean != null && fileUploadBean.getUploadFile() != null) {
         UFile ufile = fileUploadBean.getUploadFile();
         this.currentQuestionAns.setPageAudio(ufile.getData());
-        this.setAudioPath(ufile.getName());
+        this.currentQuestionAns.setAudioFileName(ufile.getName());
       }
     } catch(Exception ex) {
       logger.error("Unable to load audio");
@@ -83,7 +80,7 @@ public class QuestionAnsViewHandler extends BasePage implements Serializable {
       if (fileUploadBean != null && fileUploadBean.getUploadFile() != null) {
         UFile ufile = fileUploadBean.getUploadFile();
         this.currentQuestionAns.setPageVideo(ufile.getData());
-        this.setVideoPath(ufile.getName());
+        this.currentQuestionAns.setVideoFileName(ufile.getName());
       }
     } catch(Exception ex) {
       logger.error("Unable to load video");
@@ -181,8 +178,6 @@ public class QuestionAnsViewHandler extends BasePage implements Serializable {
 	            
 	public void setCommonData ( String action ) {
 	  setSecHeaderMsg("");
-	  this.audioPath = "";
-    this.videoPath = "";
 	  if (getModulesId()!=null && !getModulesId().isEmpty()) {
 	    this.currentQuestionAns.setModulesId(Long.parseLong(modulesId));
     }    
@@ -190,8 +185,6 @@ public class QuestionAnsViewHandler extends BasePage implements Serializable {
   	  Date dt = new Date();           
       this.currentQuestionAns.setRecordLastUpdaterId(""+this.getMember().getMemberId());    
       this.currentQuestionAns.setRecordLastUpdatedDate(dt);
-      this.setVideoPath("");
-      this.setAudioPath("");
       if (action.equals(ServiceConstants.ADD )) {
         this.currentQuestionAns.setRecordCreatorId(""+this.getMember().getMemberId());
         this.currentQuestionAns.setRecordCreateDate(dt);
@@ -396,35 +389,6 @@ public class QuestionAnsViewHandler extends BasePage implements Serializable {
 
   public void setModulesId(String modulesId) {
     this.modulesId = modulesId;
-  } 
-
-  
-	/**
-   * @return the audioPath
-   */
-  public String getAudioPath() {
-    return audioPath;
-  }
-
-  /**
-   * @param audioPath the audioPath to set
-   */
-  public void setAudioPath(String audioPath) {
-    this.audioPath = audioPath;
-  }
-
-  /**
-   * @return the videoPath
-   */
-  public String getVideoPath() {
-    return videoPath;
-  }
-
-  /**
-   * @param videoPath the videoPath to set
-   */
-  public void setVideoPath(String videoPath) {
-    this.videoPath = videoPath;
   }
   
   /**

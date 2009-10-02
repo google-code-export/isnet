@@ -43,8 +43,6 @@ public class ModulesViewHandler extends BasePage implements Serializable {
 	private String documentName;	
 	private FileUploadBean fileUploadBean;
 	private ViewDataProvider viewDataProvider;
-	private String audioPath;
-  private String videoPath;    
 	  
   @Autowired
 	public ModulesViewHandler(ModulesService modulesService,DocumentService documentService) {
@@ -161,8 +159,6 @@ public class ModulesViewHandler extends BasePage implements Serializable {
 	
 	public void setCommonData ( String action ) {
 	  setSecHeaderMsg("");
-	  this.audioPath = "";
-    this.videoPath = "";
 	  if (getDocumentId()!=null && !getDocumentId().isEmpty()) {
       this.currentModules.setDocumentId(Long.parseLong(getDocumentId()));
     }
@@ -173,8 +169,6 @@ public class ModulesViewHandler extends BasePage implements Serializable {
       Date dt = new Date();           
       this.currentModules.setRecordLastUpdaterId(""+this.getMember().getMemberId());    
       this.currentModules.setRecordLastUpdatedDate(dt);
-      this.setVideoPath("");
-      this.setAudioPath("");
       if (action.equals(ServiceConstants.ADD )) {
         this.currentModules.setRecordCreatorId(""+this.getMember().getMemberId());
         this.currentModules.setRecordCreateDate(dt);
@@ -295,7 +289,7 @@ public class ModulesViewHandler extends BasePage implements Serializable {
   	  if (fileUploadBean != null && fileUploadBean.getUploadFile() != null) {
         UFile ufile = fileUploadBean.getUploadFile();
         this.currentModules.setModuleIntroAudio(ufile.getData());
-        this.setAudioPath(ufile.getName());
+        this.currentModules.setAudioFileName(ufile.getName());
         fileUploadBean.clearUploadData();
       }
 	  } catch(Exception ex) {
@@ -309,7 +303,7 @@ public class ModulesViewHandler extends BasePage implements Serializable {
   	  if (fileUploadBean != null && fileUploadBean.getUploadFile() != null) {
         UFile ufile = fileUploadBean.getUploadFile();
         this.currentModules.setModuleIntroVideo(ufile.getData());
-        this.setVideoPath(ufile.getName());
+        this.currentModules.setVideoFileName(ufile.getName());
         fileUploadBean.clearUploadData();
       }
 	  } catch(Exception ex) {
@@ -400,38 +394,8 @@ public class ModulesViewHandler extends BasePage implements Serializable {
 
   public void setDocumentId(String documentId) {
     this.documentId = documentId;
-  }  
-
-  
-	/**
-   * @return the audioPath
-   */
-  public String getAudioPath() {
-    return audioPath;
   }
-
-  /**
-   * @param audioPath the audioPath to set
-   */
-  public void setAudioPath(String audioPath) {
-    this.audioPath = audioPath;
-  }
-
-  /**
-   * @return the videoPath
-   */
-  public String getVideoPath() {
-    return videoPath;
-  }
-
-  /**
-   * @param videoPath the videoPath to set
-   */
-  public void setVideoPath(String videoPath) {
-    this.videoPath = videoPath;
-  } 
-
-  
+    
   /**
    * @return the fileUploadBean
    */
