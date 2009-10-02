@@ -103,6 +103,7 @@ ALTER TABLE MEMBER MODIFY(MEMBER_MARITAL_STATUS  NULL);
 
 ALTER TABLE MEMBER MODIFY(MEMBER_MAZHAB  NULL);
 
+--- New script
 alter table member modify ( MEMBER_GENDER_INDICATOR varchar2(18));
 alter table member add (email_notification  varchar2(20));
 alter table member add (agree_privacy_policy  varchar2(20));
@@ -117,6 +118,11 @@ alter table TEST_TUTORIAL_QUESTION_ANS add (audio_file_name  varchar2(255));
 alter table TEST_TUTORIAL_QUESTION_ANS add (video_file_name  varchar2(255));
 alter table TEST_TUTORIAL_QUESTION_ANS add (page_title  varchar2(500));
 
+alter table TEST_TUTORIAL_MODULES add (module_title  varchar2(500));
+alter table TEST_TUTORIAL_QUESTION_ANS modify (page_text  varchar2(2000));
+alter table TEST_TUTORIAL_MODULES modify (module_text  varchar2(2000));
+
+--- end of new script
 
 CREATE TABLE ZIPCODEDATA
 (
