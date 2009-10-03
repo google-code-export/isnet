@@ -43,14 +43,20 @@
            value="#{controllerBean.contextPath}/pages/secure/memberStory.faces">
            <h:outputText value="#{bundle.left_navigation_mentor_success_story}"/>
          </h:outputLink>
-       </li>                      
+       </li> 
+	   <li>
+         <h:outputLink styleClass="menu_item_clink" 
+           value="#{controllerBean.contextPath}/pages/secure/memberTutorial.faces">
+           <h:outputText value="#{bundle.left_navigation_tutorial}"/>
+         </h:outputLink>
+       </li> 
     </ul>
    </h:panelGroup>
    <h:panelGroup id="idMentorAccountPanel" rendered="${moduleType eq 'MA'}">
      <ul class="sidemenu">
        <li>
          <h:outputLink styleClass="menu_item_clink" 
-           value="#{controllerBean.contextPath}/pages/secure/myProfile.faces">
+           value="#{controllerBean.contextPath}/pages/secure/mentorProfile.faces">
            <h:outputText value="#{bundle.page_header_myaccount_profile}"/>
          </h:outputLink>
        </li>
