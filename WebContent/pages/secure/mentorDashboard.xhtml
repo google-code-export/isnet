@@ -45,8 +45,93 @@
 								</a4j:commandButton> 
 							</h:column>												
 						</h:dataTable>			
-					</rich:panel>				
+					</rich:panel>	
+					<rich:panel style="width:'auto';margin-top: 0px;" headerClass="container_gold_header"  bodyClass="container_body_style" >
+						<f:facet name="header"><h:outputText value="#{bundle.dashboard_mentor_reporting}" /></f:facet>
+					<rich:dataTable 
+	                    onRowMouseOver="this.style.backgroundColor='#F1F1F1'"
+	                    onRowMouseOut="this.style.backgroundColor='#{a4jSkin.tableBackgroundColor}'"
+	                    cellpadding="0" cellspacing="0" 
+	                    width="100%" border="1" var="report" value="#{dashboardViewHandler.mentorReport}">	
+						<f:facet name="header">
+                        <rich:columnGroup>
+                            <h:column>
+                                <h:outputText value="#{bundle.member_first_name}" />
+                            </h:column>
+                            <h:column>
+                                <h:outputText value="#{bundle.member_last_name}" />
+                            </h:column>
+                            <h:column>
+                                <h:outputText value="#{bundle.member_certification}" />
+                            </h:column>
+                            <h:column>
+                                <h:outputText value="#{bundle.member_cert_valid}" />
+                            </h:column>     
+                            <h:column>
+                                <h:outputText value="#{bundle.member_dashboard_log}" />
+                            </h:column>                                                    
+                        </rich:columnGroup>
+                    </f:facet>
+                    <h:column>
+                    	<h:outputText value="#{report.mentor.firstName}"/>
+                    </h:column>
+                    <h:column>
+                    	<h:outputText value="#{report.mentor.lastName}"/>
+                    </h:column>
+                    <h:column>
+                    	<h:outputText value="#{report.mentor.certificationDate}"/>
+                    </h:column>        
+                    <h:column>
+                    	<h:outputText value="#{report.mentor.memberShipExpiryDate}"/>
+                    </h:column>
+                    <h:column>
+                    	<h:commandLink  value="Log" />
+                    </h:column>
+                                                                                                <rich:subTable
+                        onRowMouseOver="this.style.backgroundColor='#F8F8F8'"
+                        onRowMouseOut="this.style.backgroundColor='#{a4jSkin.tableBackgroundColor}'"
+                        var="protege" value="#{report.proteges}">
+                        <rich:column >
+                        	<f:facet name="header">
+                        		 <rich:spacer />
+                        	</f:facet>
+                            <h:outputText value=""></h:outputText>
+                        </rich:column>                        
+                        <rich:column >
+                        	<f:facet name="header">
+                        		<h:outputText value="#{bundle.dashboard_protege_first_name}" />
+                        	</f:facet>
+                            <h:outputText value="#{protege.firstName}"></h:outputText>
+                        </rich:column>
+                        <rich:column>
+                        	<f:facet name="header">
+                        		<h:outputText value="#{bundle.dashboard_protege_last_name}" />
+                        	</f:facet>                        
+                            <h:outputText value="#{protege.lastName}"></h:outputText>
+                        </rich:column>
+                        <rich:column>
+                        	<f:facet name="header">
+                        		<h:outputText value="#{bundle.dashboard_protege_mentor_date}" />
+                        	</f:facet>                        
+                            <h:outputText value="#{protege.mentoredByDate}"></h:outputText>
+                        </rich:column>
+                        <rich:column>
+                        	<f:facet name="header">
+                        		<h:outputText value="#{bundle.dashboard_protege_mentor_review}" />
+                        	</f:facet>                        
+                            <h:outputText value="#{protege.mentoredByDate}"></h:outputText>
+                        </rich:column>
+                        
+                    </rich:subTable>
+        
+        
+                                        
+                    </rich:dataTable>
+                    					
+					</rich:panel>					
 				</h:panelGrid>
+				
+				
 				<h:panelGroup>
 				<!-- Mentor dashboard right panel -->
 				<ui:include src="/pages/secure/sections/mentor_dashboard_right.xhtml" />
