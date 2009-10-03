@@ -17,12 +17,12 @@
 
 	<ui:define name="body">
 		<h:form>
-			<h:panelGrid columns="2" width="100%">
+			<h:panelGrid columns="2" width="100%" columnClasses="col_half,col_half">
 
 				<rich:panel headerClass="container_box_panel_header"
 					bodyClass="container_body_style">
 					<f:facet name="header">
-						<h:outputText value="#{bundle.activity_log_recent_activities}" />
+						<h:outputText value="#{bundle.member_my_resource_books}" />
 					</f:facet>
 					<h:panelGrid columns="1" width="100%" cellpadding="0"
 						cellspacing="0" border="0">
@@ -34,13 +34,30 @@
 								<h:outputText
 									value="#{book.itemDescription}" />
 							</rich:column>
-
 						</rich:dataTable>
 						<rich:datascroller id="idDataScroller" align="center"
 							for="idDataGrid" maxPages="5" />
 					</h:panelGrid>
 				</rich:panel>
-
+				
+				<rich:panel headerClass="container_box_panel_header"
+					bodyClass="container_body_style">
+					<f:facet name="header">
+						<h:outputText value="#{bundle.member_my_resource_cd}" />
+					</f:facet>
+					<h:panelGrid columns="1" width="100%" cellpadding="0"
+						cellspacing="0" border="0">
+						<rich:dataTable width="100%" id="idDataGrid2"
+							rowClasses=",container_even_row_style" rows="5"	value="#{resourceViewHandler.books}"
+							var="book" headerClass="table_column_style" cellpadding="0"	cellspacing="0">
+							<rich:column>
+								<h:outputText
+									value="#{book.itemDescription}" />
+							</rich:column>
+						</rich:dataTable>
+						<rich:datascroller id="idDataScroller2" align="center" for="idDataGrid2" maxPages="5" />
+					</h:panelGrid>
+				</rich:panel>
 			</h:panelGrid>
 
 
