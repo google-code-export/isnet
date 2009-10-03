@@ -20,6 +20,7 @@
   <ui:param name="headerText" value="#{bundle.left_navigation_tutorial_qa}"></ui:param>
 	<ui:param name="refManageBean" value="#{questionAnsViewHandler}"></ui:param>
   <ui:param name="uploadBean" value="#{questionAnsViewHandler.fileUploadBean}"></ui:param>
+  <ui:param name="editorBean" value="#{questionAnsViewHandler.currentQuestionAns}"></ui:param>
  <ui:define name="commonInfo">
 	</ui:define>
 	<ui:define name="js">
@@ -111,6 +112,15 @@
         <ui:param name="reRenderIds" value="idAudioFile"/>
         <ui:param name="fileExtentions" value="#{bundle.common_supported_audio_ext}"/>
         <ui:param name="fileExtLabel" value="#{bundle.common_supported_audio_label}"/>      
+      </ui:include>
+    </a4j:region>
+    
+    <a4j:region>
+      <ui:include src="/templates/richtexttmpl.xhtml">        
+        <ui:param name="propertyName" value="pageText"/>
+        <ui:param name="richTextModalId" value="idRichModuleText"/>
+        <ui:param name="action" value="uploadRichText"/>
+        <ui:param name="reRenderIds" value="idRichText"/>        
       </ui:include>
     </a4j:region>
   </ui:define>
