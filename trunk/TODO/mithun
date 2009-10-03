@@ -11,3 +11,6 @@ Please see the issues:
 
 public List<MemberLog> findByProperties (String fromDate, String toDate ) {
  function name is consistent with parameters. All check all your code
+ 
+ ***My profile State, gender do not show desire value.
+ 
