@@ -18,22 +18,25 @@
       </f:facet>
       <div class="richTextMainBlock">
         <a4j:form id="${richTextModalId}A4JForm">
-          <h:panelGroup style="height:320px;width:600px;" layout="block">
-            <rich:editor id="${richTextModalId}Editor" width="600" height="300" 
-              value="#{editorBean[propertyName]}" theme="advanced">
-             <f:param name="theme_advanced_toolbar_location" value="top"/>                               
-            </rich:editor>
-          </h:panelGroup>          
-          <rich:panel styleClass="action_panel" id="${richTextModalId}Ctrl">              
-            <h:panelGroup>
-              <a4j:commandButton id="${richTextModalId}Update" value="Update"
-                onclick="Richfaces.hideModalPanel('${richTextModalId}')" reRender="${reRenderIds}"
-                styleClass="ibutton" style="background:#F8F3D3;"/>               
-               &#160; 
-               <a4j:commandButton id="${richTextModalId}Close" onclick="Richfaces.hideModalPanel('${richTextModalId}')" 
-                ajaxSingle="true" value="Close" styleClass="ibutton" style="background:#F8F3D3;"/>
-            </h:panelGroup>
-          </rich:panel>              
+          <h:panelGroup id ="${richTextModalId}Container">
+            <h:panelGroup style="height:320px;width:600px;" layout="block">
+              <rich:editor id="${richTextModalId}Editor" width="600" height="300" 
+                value="#{editorBean[propertyName]}" theme="advanced">
+                <f:param name="theme_advanced_toolbar_location" value="top"/>                               
+              </rich:editor>
+            </h:panelGroup>          
+            <rich:panel styleClass="action_panel" id="${richTextModalId}Ctrl">              
+              <h:panelGroup>
+                <a4j:commandButton id="${richTextModalId}Update" value="Update"
+                  onclick="Richfaces.hideModalPanel('${richTextModalId}')" reRender="${reRenderIds}"
+                  styleClass="ibutton" style="background:#F8F3D3;"
+                  action="#{refManageBean[action]}"/>               
+                 &#160; 
+                 <a4j:commandButton id="${richTextModalId}Close" onclick="Richfaces.hideModalPanel('${richTextModalId}')" 
+                  ajaxSingle="true" value="Close" styleClass="ibutton" style="background:#F8F3D3;"/>
+              </h:panelGroup>
+            </rich:panel>
+          </h:panelGroup>            
         </a4j:form>
       </div>
       <f:facet name="footer">
