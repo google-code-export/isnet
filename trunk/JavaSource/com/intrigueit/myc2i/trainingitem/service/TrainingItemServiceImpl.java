@@ -88,4 +88,10 @@ public class TrainingItemServiceImpl implements TrainingItemService {
     }
     return trainingItemDao.isDuplicateRecord(clause.toString(),value.toArray());
   }
+
+@Override
+public List<TrainingItem> getMentorBooks() {
+    String clause = " t.itemEIndicator =?1 and t.itemEStorageLocati=?2 ";
+    return trainingItemDao.loadByClause(clause, new Object[]{"BOOK","ST001"});
+}
 }
