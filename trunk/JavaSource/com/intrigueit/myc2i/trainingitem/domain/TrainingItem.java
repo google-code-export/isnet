@@ -1,4 +1,5 @@
 package com.intrigueit.myc2i.trainingitem.domain;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -17,112 +18,112 @@ import org.hibernate.validator.NotEmpty;
 import com.sun.istack.internal.NotNull;
 
 @Entity
-@Table(name="TRAINING_ITEM")
+@Table(name = "TRAINING_ITEM")
 public class TrainingItem implements Serializable {
 	/**
    * 
    */
-  private static final long serialVersionUID = -7702585319897094869L;
+	private static final long serialVersionUID = -7702585319897094869L;
 
-  @Id
-	@Column(name="ITEM_ID")
-  @GeneratedValue(generator="trainingItemSeq")
-  @SequenceGenerator(name="trainingItemSeq",sequenceName="TRAINING_ITEM_SEQ", allocationSize=1,initialValue=1)
+	@Id
+	@Column(name = "ITEM_ID")
+	@GeneratedValue(generator = "trainingItemSeq")
+	@SequenceGenerator(name = "trainingItemSeq", sequenceName = "TRAINING_ITEM_SEQ", allocationSize = 1, initialValue = 1)
 	private long itemId;
 
 	@NotNull
-  @NotEmpty
-  @Length(min=1,max=150)
-  @Column(name="ITEM_DESCRIPTION",nullable = false, length = 150)
+	@NotEmpty
+	@Length(min = 1, max = 150)
+	@Column(name = "ITEM_DESCRIPTION", nullable = false, length = 150)
 	private String itemDescription;
 
 	@NotNull
-  @NotEmpty
-  @Length(min=1,max=20)
-	@Column(name="ITEM_E_INDICATOR",nullable = false, length = 20)
+	@NotEmpty
+	@Length(min = 1, max = 20)
+	@Column(name = "ITEM_E_INDICATOR", nullable = false, length = 20)
 	private String itemEIndicator;
-	
+
 	@NotNull
-  @NotEmpty
-  @Length(min=1,max=20)
-	@Column(name="ITEM_SUBSCRIPTION_IND",nullable = false, length = 20)
+	@NotEmpty
+	@Length(min = 1, max = 20)
+	@Column(name = "ITEM_SUBSCRIPTION_IND", nullable = false, length = 20)
 	private String itemSubscriptionInd;
-	
+
 	@NotNull
-  @NotEmpty
-  @Length(min=1,max=20)
-	@Column(name="ITEM_E_STORAGE_LOCATI",nullable = false, length = 20)
+	@NotEmpty
+	@Length(min = 1, max = 20)
+	@Column(name = "ITEM_E_STORAGE_LOCATI", nullable = false, length = 20)
 	private String itemEStorageLocati;
 
-	@Column(name="ITEM_PURCHASE_COST")
-	private BigDecimal itemPurchaseCost;
+	@Column(name = "ITEM_PURCHASE_COST")
+	private Double itemPurchaseCost;
 
-	@Column(name="ITEM_SALES_PRICE")
-	private BigDecimal itemSalesPrice;
+	@Column(name = "ITEM_SALES_PRICE")
+	private Double itemSalesPrice;
 
-	
-	@Column(name="ITEM_AVAILABILITY",length = 1)
+	@Column(name = "ITEM_AVAILABILITY", length = 1)
 	private String itemAvailability;
-	
-	public String getItemAvailability() {
-    return itemAvailability;
-  }	
-	
-  public void setItemAvailability(String itemAvailability) {
-    this.itemAvailability = itemAvailability;
-  }
 
-  @Column(name="RECORD_CREATOR_ID")
+	public String getItemAvailability() {
+		return itemAvailability;
+	}
+
+	public void setItemAvailability(String itemAvailability) {
+		this.itemAvailability = itemAvailability;
+	}
+
+	@Column(name = "RECORD_CREATOR_ID")
 	private String recordCreatorId;
 
-	@Column(name="RECORD_CREATE_DATE")
+	@Column(name = "RECORD_CREATE_DATE")
 	private Date recordCreateDate;
 
-	@Column(name="RECORD_LAST_UPDATER_ID")
+	@Column(name = "RECORD_LAST_UPDATER_ID")
 	private String recordLastUpdaterId;
 
-	@Column(name="RECORD_LAST_UPDATED_DATE")
+	@Column(name = "RECORD_LAST_UPDATED_DATE")
 	private Date recordLastUpdatedDate;
-	
+
 	@NotNull
-  @NotEmpty
-  @Length(min=1,max=20)
-	@Column(name="ITEM_VERSION",nullable = false, length = 20)
+	@NotEmpty
+	@Length(min = 1, max = 20)
+	@Column(name = "ITEM_VERSION", nullable = false, length = 20)
 	private String itemVersion;
-	
+
 	@NotNull
-  @NotEmpty
-  @Length(min=1,max=20)
-	@Column(name="ITEM_LANGUAGE",nullable = false, length = 20)
+	@NotEmpty
+	@Length(min = 1, max = 20)
+	@Column(name = "ITEM_LANGUAGE", nullable = false, length = 20)
 	private String itemLanguage;
 
-	@Column(name="ITEM_IMAGE")
+	@Column(name = "ITEM_IMAGE")
 	@Lob
 	private byte[] itemImage;
 
-	@Column(name="VENDOR_ID")
+	@Column(name = "VENDOR_ID")
 	private Long vendorId;
 
 	public TrainingItem() {
 		super();
 	}
 
-	public TrainingItem(long itemId, String itemDescription,String itemEIndicator,
-	    String itemSubscriptionInd,String itemEStorageLocati,BigDecimal itemPurchaseCost,
-	    BigDecimal itemSalesPrice,String itemVersion,String itemLanguage,String itemAvailability) {
-    this.itemId = itemId;
-    this.itemDescription = itemDescription;
-    this.itemEIndicator = itemEIndicator;
-    this.itemSubscriptionInd = itemSubscriptionInd;    
-    this.itemEStorageLocati = itemEStorageLocati;
-    this.itemPurchaseCost = itemPurchaseCost;
-    this.itemSalesPrice = itemSalesPrice;
-    this.itemVersion = itemVersion;
-    this.itemLanguage = itemLanguage;
-    this.itemAvailability = itemAvailability;
-  }
-  
-	
+	public TrainingItem(long itemId, String itemDescription,
+			String itemEIndicator, String itemSubscriptionInd,
+			String itemEStorageLocati, Double itemPurchaseCost,
+			Double itemSalesPrice, String itemVersion, String itemLanguage,
+			String itemAvailability) {
+		this.itemId = itemId;
+		this.itemDescription = itemDescription;
+		this.itemEIndicator = itemEIndicator;
+		this.itemSubscriptionInd = itemSubscriptionInd;
+		this.itemEStorageLocati = itemEStorageLocati;
+		this.itemPurchaseCost = itemPurchaseCost;
+		this.itemSalesPrice = itemSalesPrice;
+		this.itemVersion = itemVersion;
+		this.itemLanguage = itemLanguage;
+		this.itemAvailability = itemAvailability;
+	}
+
 	public long getItemId() {
 		return this.itemId;
 	}
@@ -163,19 +164,19 @@ public class TrainingItem implements Serializable {
 		this.itemEStorageLocati = itemEStorageLocati;
 	}
 
-	public BigDecimal getItemPurchaseCost() {
+	public Double getItemPurchaseCost() {
 		return this.itemPurchaseCost;
 	}
 
-	public void setItemPurchaseCost(BigDecimal itemPurchaseCost) {
+	public void setItemPurchaseCost(Double itemPurchaseCost) {
 		this.itemPurchaseCost = itemPurchaseCost;
 	}
 
-	public BigDecimal getItemSalesPrice() {
+	public Double getItemSalesPrice() {
 		return this.itemSalesPrice;
 	}
 
-	public void setItemSalesPrice(BigDecimal itemSalesPrice) {
+	public void setItemSalesPrice(Double itemSalesPrice) {
 		this.itemSalesPrice = itemSalesPrice;
 	}
 
