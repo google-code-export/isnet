@@ -103,6 +103,9 @@ ALTER TABLE MEMBER MODIFY(MEMBER_MARITAL_STATUS  NULL);
 
 ALTER TABLE MEMBER MODIFY(MEMBER_MAZHAB  NULL);
 
+ALTER TABLE MEMBER ADD (MENTORED_BY_DATE DATE);
+
+
 --- New script
 alter table member modify ( MEMBER_GENDER_INDICATOR varchar2(18));
 alter table member add (email_notification  varchar2(20));
