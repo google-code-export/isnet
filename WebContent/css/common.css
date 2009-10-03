@@ -277,3 +277,6 @@
  .container_even_row_style{
 	background-color: #EFE8D1;
 }
+.col_half{
+	width: 50%;
+}
