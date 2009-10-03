@@ -46,7 +46,7 @@ public class ModulePlayer extends BasePage{
   	private String pageContent;
 	public static final String DEFAULT_FILE_LOCATION = "/images/upload/";
 	
-  	public  String writeToFile(String fileName, byte data[])	throws IOException {
+  	public  String writeToFile(String fileName, byte data[])throws IOException {
 		String me = "FileUtils.WriteToFile";
 
 		ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
@@ -85,10 +85,7 @@ public class ModulePlayer extends BasePage{
   			mediaBean.dispose();
   			mediaBean = new MediaBean(this.currentPage.getPageAudio());
   			mediaBean.play();
-  			mediaBean.setPageContent("<h1 style=\"text-align: center;\"><strong>"+ this.currentPage.getPageText() +"</strong></h1><ul><li><h2>Seam text support out of the box using built-in converter</h2></li><li><h2>RichFaces skinnability</h2></li><li><h2>Implementation sm</h2></li></ul>");
   			mediaBean.setPageContent(this.currentPage.getPageText());
-  			log.debug(this.mediaBean.getPageContent());
-
   		}
   		catch(Exception ex){
   			ex.printStackTrace();
