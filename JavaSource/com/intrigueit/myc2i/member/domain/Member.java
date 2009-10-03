@@ -1,4 +1,4 @@
- /**
+/**
  * @(#)Member.java
  *
  * Copyright (c) Intrigue (USA) Inc. 2009
@@ -16,12 +16,13 @@ import javax.persistence.SequenceGenerator;
 
 /**
  * This class represent the MyC2i Member entity
- * @version 	1.00	August 11,2009
- * @author 		Shamim Ahmmed
+ * 
+ * @version 1.00 August 11,2009
+ * @author Shamim Ahmmed
  * 
  */
 @Entity(name = "MEMBER")
-public class Member implements java.io.Serializable{
+public class Member implements java.io.Serializable {
 
 	/**
 	 * Serialized version number
@@ -29,151 +30,149 @@ public class Member implements java.io.Serializable{
 	private static final long serialVersionUID = 5132754826162521230L;
 
 	/** Member Id */
-	@Id 
+	@Id
 	@Column(name = "MEMBER_ID")
-	@GeneratedValue(generator="MemberSeq")
-	@SequenceGenerator(name="MemberSeq",sequenceName="MEMBER_ID_SEQ", allocationSize=1,initialValue=1)		
+	@GeneratedValue(generator = "MemberSeq")
+	@SequenceGenerator(name = "MemberSeq", sequenceName = "MEMBER_ID_SEQ", allocationSize = 1, initialValue = 1)
 	private Long memberId;
-	
-	@Column( name = "MEMBER_TYPE_ID") 
+
+	@Column(name = "MEMBER_TYPE_ID")
 	private Long typeId;
 
 	@Column(name = "MENTORED_BY_MEMBER_ID")
 	private Long mentoredByMemberId;
-	
+
 	/** Member first name */
-	@Column( name = "MEMBER_FIRST_NAME")	
+	@Column(name = "MEMBER_FIRST_NAME")
 	private String firstName;
-	
+
 	/** Member last name */
-	@Column( name = "MEMBER_LAST_NAME")		
+	@Column(name = "MEMBER_LAST_NAME")
 	private String lastName;
-	
+
 	@Column(name = "MEMBER_STREET_ADDRESS", length = 20)
 	private String streetAddress;
 
-	@Column(name = "MEMBER_CITY",  length = 20)
+	@Column(name = "MEMBER_CITY", length = 20)
 	private String city;
 
 	@Column(name = "MEMBER_STATE", length = 20)
 	private String state;
-	
+
 	@Column(name = "MEMBER_ZIP", precision = 22, scale = 0)
 	private Long zip;
 
 	@Column(name = "MEMBER_EMAIL")
 	private String email;
-	
+
 	@Column(name = "MEMBER_LINKED_IN_LINK_URL")
 	private String linkedInURL;
-	
+
 	@Column(name = "MEMBER_COUNTRY")
 	private String country;
-	
-	@Column(name = "MEMBER_CELL_PHONE_NUMBER", precision = 22, scale = 0)  	
+
+	@Column(name = "MEMBER_CELL_PHONE_NUMBER", precision = 22, scale = 0)
 	private Long cellPhoneNumber;
-	
-	@Column(name = "MEMBER_WORK_PHONE_NUMBER", precision = 22, scale = 0)  	
+
+	@Column(name = "MEMBER_WORK_PHONE_NUMBER", precision = 22, scale = 0)
 	private Long workPhoneNumber;
-	
-	@Column(name = "MEMBER_HOME_PHONE_NUMBER", precision = 22, scale = 0) 	
-	private Long homePhoneNumber;	
-	
+
+	@Column(name = "MEMBER_HOME_PHONE_NUMBER", precision = 22, scale = 0)
+	private Long homePhoneNumber;
+
 	@Column(name = "MEMBER_PROFESSION")
 	private String profession;
-	
+
 	@Column(name = "MEMBER_COMPANY_NAME")
 	private String company;
-	
+
 	@Column(name = "MEMBER_PASSWORD")
-	private String password;   
-	
-	@Column(name = "MEMBER_INTRODUCTION_URL") 
-	private String introductionUrl; 
-	
+	private String password;
+
+	@Column(name = "MEMBER_INTRODUCTION_URL")
+	private String introductionUrl;
+
 	@Column(name = "MEMBER_ETHNICITY_ID")
 	private Long ethinicity;
-	
+
 	@Column(name = "MEMBER_YEAR_OF_BIRTH")
 	private Long birthYear;
-	
+
 	@Column(name = "MEMBER_GENDER_INDICATOR")
 	private String genderInd;
-	
+
 	@Column(name = "MEMBER_MARITAL_STATUS")
 	private String maritalStatus;
-	
+
 	@Column(name = "MEMBER_CHILDREN_INDICATOR")
 	private String childrenInd;
-	
+
 	@Column(name = "MEMBER_MAZHAB")
 	private String mazhab;
-	
+
 	@Column(name = "DO_NOT_CALL_INDICATOR")
 	private String dontCall;
-	
+
 	@Column(name = "DO_NOT_EMAIL_INDICATOR")
 	private String dontEmail;
-	
+
 	@Column(name = "MEMBER_INTEREST_LEVEL_ID")
 	private Long knowledgeLevel;
-	
+
 	@Column(name = "MEMBER_RELIGION_ID")
 	private Long religionId;
-	
+
 	@Column(name = "RECORD_CREATED_DATE")
 	private Date recordCreate;
-	
+
 	@Column(name = "RECORD_LAST_UPDATED_DATE")
 	private Date lastUpdated;
-	
+
 	@Column(name = "MEMBER_SECURITY_QUESTION_1")
 	private String securityQuestion1;
 
 	@Column(name = "MEMBER_SECURITY_QUESTION_2")
 	private String securityQuestion2;
-	
+
 	@Column(name = "MEMBER_SECURITY_QUESTION_3")
 	private String securityQuestion3;
-	
+
 	@Column(name = "MEMBER_SECURITY_ANSWER_1")
-	private String securityQuestionAns1;		
-	
+	private String securityQuestionAns1;
+
 	@Column(name = "MEMBER_SECURITY_ANSWER_2")
-	private String securityQuestionAns2;		
-	
+	private String securityQuestionAns2;
+
 	@Column(name = "MEMBER_SECURITY_ANSWER_3")
-	private String securityQuestionAns3;	
-	
+	private String securityQuestionAns3;
+
 	@Column(name = "MEMBER_ROLE_ID")
 	private Long memberRoleId;
-	
-	@Column( name = "RECORD_CREATOR_ID")
+
+	@Column(name = "RECORD_CREATOR_ID")
 	private String recordCreatorId;
-	
-	@Column( name = "RECORD_LAST_UPDATER_ID")
+
+	@Column(name = "RECORD_LAST_UPDATER_ID")
 	private String recordUpdaterId;
-	
-	@Column( name = "EMAIL_NOTIFICATION")
-  private String emailNotification;
-	
-	@Column( name = "AGREE_PRIVACY_POLICY")
-  private String agreePrivacyPolicy;
-	
-	
-	
-	@Column(name = "ADMIN_USER_INDICATOR",length = 20)
+
+	@Column(name = "EMAIL_NOTIFICATION")
+	private String emailNotification;
+
+	@Column(name = "AGREE_PRIVACY_POLICY")
+	private String agreePrivacyPolicy;
+
+	@Column(name = "ADMIN_USER_INDICATOR", length = 20)
 	private String adminUserIndicator;
-	
+
 	@Column(name = "MEMBER_MEMBERSHIP_EXPIRY_DATE")
 	private Date memberShipExpiryDate;
-	
-	/*
-	@Column(name = "MEMBER_LINKED_IN_LINK_URL", length = 20)
-	private String linkedInLinkUrl;
 
-	*/
-	 
+	@Column(name = "MEMBER_MENTOR_CERTIFICATION_DA")
+	private Date certificationDate;
+
+	@Column(name = "MENTORED_BY_DATE")
+	private Date mentoredByDate;
+
 	public Long getMemberId() {
 		return memberId;
 	}
@@ -191,34 +190,36 @@ public class Member implements java.io.Serializable{
 	}
 
 	/**
-   * @return the typeId
-   */
-  public Long getTypeId() {
-    return typeId;
-  }
+	 * @return the typeId
+	 */
+	public Long getTypeId() {
+		return typeId;
+	}
 
-  /**
-   * @param typeId the typeId to set
-   */
-  public void setTypeId(Long typeId) {
-    this.typeId = typeId;
-  }
+	/**
+	 * @param typeId
+	 *            the typeId to set
+	 */
+	public void setTypeId(Long typeId) {
+		this.typeId = typeId;
+	}
 
-  /**
-   * @return the mentoredByMemberId
-   */
-  public Long getMentoredByMemberId() {
-    return mentoredByMemberId;
-  }
+	/**
+	 * @return the mentoredByMemberId
+	 */
+	public Long getMentoredByMemberId() {
+		return mentoredByMemberId;
+	}
 
-  /**
-   * @param mentoredByMemberId the mentoredByMemberId to set
-   */
-  public void setMentoredByMemberId(Long mentoredByMemberId) {
-    this.mentoredByMemberId = mentoredByMemberId;
-  }
+	/**
+	 * @param mentoredByMemberId
+	 *            the mentoredByMemberId to set
+	 */
+	public void setMentoredByMemberId(Long mentoredByMemberId) {
+		this.mentoredByMemberId = mentoredByMemberId;
+	}
 
-  public void setFirstName(String firstName) {
+	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
 
@@ -253,7 +254,6 @@ public class Member implements java.io.Serializable{
 	public void setState(String state) {
 		this.state = state;
 	}
-
 
 	public String getEmail() {
 		return email;
@@ -290,23 +290,7 @@ public class Member implements java.io.Serializable{
 	public Long getZip() {
 		return zip;
 	}
-/*
-	public String getAdminUserIndicator() {
-		return adminUserIndicator;
-	}
 
-	public void setAdminUserIndicator(String adminUserIndicator) {
-		this.adminUserIndicator = adminUserIndicator;
-	}
-
-	public String getLinkedInLinkUrl() {
-		return linkedInLinkUrl;
-	}
-
-	public void setLinkedInLinkUrl(String linkedInLinkUrl) {
-		this.linkedInLinkUrl = linkedInLinkUrl;
-	}
-*/
 	public void setZip(Long zip) {
 		this.zip = zip;
 	}
@@ -543,34 +527,52 @@ public class Member implements java.io.Serializable{
 		this.memberShipExpiryDate = memberShipExpiryDate;
 	}
 
-  /**
-   * @return the emailNotification
-   */
-  public String getEmailNotification() {
-    return emailNotification;
-  }
+	/**
+	 * @return the emailNotification
+	 */
+	public String getEmailNotification() {
+		return emailNotification;
+	}
 
-  /**
-   * @param emailNotification the emailNotification to set
-   */
-  public void setEmailNotification(String emailNotification) {
-    this.emailNotification = emailNotification;
-  }
+	/**
+	 * @param emailNotification
+	 *            the emailNotification to set
+	 */
+	public void setEmailNotification(String emailNotification) {
+		this.emailNotification = emailNotification;
+	}
 
-  /**
-   * @return the agreePrivacyPolicy
-   */
-  public String getAgreePrivacyPolicy() {
-    return agreePrivacyPolicy;
-  }
+	/**
+	 * @return the agreePrivacyPolicy
+	 */
+	public String getAgreePrivacyPolicy() {
+		return agreePrivacyPolicy;
+	}
 
-  /**
-   * @param agreePrivacyPolicy the agreePrivacyPolicy to set
-   */
-  public void setAgreePrivacyPolicy(String agreePrivacyPolicy) {
-    this.agreePrivacyPolicy = agreePrivacyPolicy;
-  }
-	
-	
-	
+	/**
+	 * @param agreePrivacyPolicy
+	 *            the agreePrivacyPolicy to set
+	 */
+	public void setAgreePrivacyPolicy(String agreePrivacyPolicy) {
+		this.agreePrivacyPolicy = agreePrivacyPolicy;
+	}
+
+	public Date getCertificationDate() {
+		return certificationDate;
+	}
+
+	public void setCertificationDate(Date certificationDate) {
+		this.certificationDate = certificationDate;
+	}
+
+	public Date getMentoredByDate() {
+		return mentoredByDate;
+	}
+
+	public void setMentoredByDate(Date mentoredByDate) {
+		this.mentoredByDate = mentoredByDate;
+	}
+
+
+
 }
