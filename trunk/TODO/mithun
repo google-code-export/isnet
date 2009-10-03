@@ -5,3 +5,9 @@
 5. Check css for all 
 6. Table header as like success stories
 7. Document for how to implement tutorial
+
+
+Please see the issues:
+
+public List<MemberLog> findByProperties (String fromDate, String toDate ) {
+ function name is consistent with parameters. All check all your code
