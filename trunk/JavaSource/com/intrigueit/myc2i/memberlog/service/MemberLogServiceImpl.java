@@ -1,5 +1,7 @@
 package com.intrigueit.myc2i.memberlog.service;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,15 +65,26 @@ public class MemberLogServiceImpl implements MemberLogService{
 
 	@Override
 	public List<MemberLog> getAllPendingLog(Long memberId) {
-		return this.getAllCompletedLog();
+		String clause = " upper(t.status) = ?1 and t.memberId=?2";
+		return memberLogDao.loadByClause(clause, new Object[]{CommonConstants.ACTIVITY_STATUS.PENDING.toString(),memberId});
 	}
+	
 	public List<MemberLog> findByProperties (String fromDate, String toDate ) {
-    StringBuffer clause = new StringBuffer();    
-    clause.append(" to_char(memberLogDateTime,'yyyyMMdd') >= "+fromDate);
-    if ( toDate != null ) {
-      clause.append(" and to_char(memberLogDateTime,'yyyyMMdd') <= "+toDate);
-    }
-    System.out.println("QUERY :::"+clause.toString());
-    return memberLogDao.loadByClause(clause.toString(), null);
-  }	
+		StringBuffer clause = new StringBuffer();    
+		clause.append(" to_char(memberLogDateTime,'yyyyMMdd') >= "+fromDate);
+	    if ( toDate != null ) {
+	      clause.append(" and to_char(memberLogDateTime,'yyyyMMdd') <= "+toDate);
+	    }
+	    return memberLogDao.loadByClause(clause.toString(), null);
+	}
+
+	@Override
+	public Boolean isInActiveMember(Long memberId) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		cal.add(Calendar.DATE, -7);
+		String clause = " t.memberId=?1 and t.memberLogDateTime > ?2 ";
+		List<MemberLog> logs = memberLogDao.loadByClause(clause, new Object[]{memberId,cal.getTime()});
+		return  logs.size() == 0;
+	}	
 }
