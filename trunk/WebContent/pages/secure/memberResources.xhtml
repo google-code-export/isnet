@@ -1,26 +1,28 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-	 xmlns:ui="http://java.sun.com/jsf/facelets"
-	 xmlns:h="http://java.sun.com/jsf/html"
-	 xmlns:f="http://java.sun.com/jsf/core"
-	 xmlns:a4j="http://richfaces.org/a4j"
- 	 xmlns:c="http://java.sun.com/jstl/core"
- 	 xmlns:rich="http://richfaces.org/rich">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:rich="http://richfaces.org/rich">
 
 <ui:composition template="/templates/paymenttmpl.xhtml">
- <ui:param name="moduleTitle" value="My Resource"></ui:param>
- <ui:param name="userType" value="M"></ui:param>
-  <ui:param name="moduleType" value="MG"></ui:param>
- <ui:param name="headerText" value="My Resource"></ui:param>
-  <ui:param name="refManageBean" value="#{udvViewHandler}"></ui:param>
- 
-  <ui:define name="body">    
+	<ui:param name="moduleTitle" value="#{bundle.page_header_myresource}"></ui:param>
+	<ui:param name="userType" value="M"></ui:param>
+	<ui:param name="moduleType" value="MG"></ui:param>
+	<ui:param name="headerText" value="#{bundle.page_titile_myresource}"></ui:param>
+	<ui:param name="refManageBean" value="#{udvViewHandler}"></ui:param>
 
+	<ui:define name="body">
+	<h:form>
+		
+			
+	
+	</h:form>
+	</ui:define>
 
-  
-  </ui:define>
-  
 
 </ui:composition>
 </html>
