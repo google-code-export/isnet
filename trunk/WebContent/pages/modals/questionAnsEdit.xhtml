@@ -45,10 +45,13 @@
         <h:outputText value="#{bundle.tutorial_qa_page_text}" />
         <span class="required_field">*</span>
        </h:panelGroup>
-       <h:inputTextarea styleClass="medium_text" value="#{currentEBean.pageText}" id="pageText"
-        rows="4">
-        <rich:ajaxValidator event="onblur" />
-       </h:inputTextarea>
+       <h:panelGroup id="idRichText">
+         <h:inputTextarea styleClass="medium_text" value="#{currentEBean.pageText}" id="pageText"
+          rows="4">
+          <rich:ajaxValidator event="onblur" />
+         </h:inputTextarea>
+         <ccmp:richtextlink richTextModalId="idRichModuleText" imgTitle="#{bundle.common_rich_input_title}"/>
+       </h:panelGroup>
        <rich:message for="pageText" />
        
        <h:panelGroup>
