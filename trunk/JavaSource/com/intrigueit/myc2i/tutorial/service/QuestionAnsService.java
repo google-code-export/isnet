@@ -29,4 +29,6 @@ public interface QuestionAnsService {
 	public boolean isQuestionExist(Long recordId, Long moduleId, String question);
 
 	public boolean isPageNoExist(Long recordId, Long moduleId, Long pageNo);
+	
+	public List<TestTutorialQuestionAns> getTutorialByModule(Long mdouleId);
 }
