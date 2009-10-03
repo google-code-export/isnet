@@ -1,7 +1,10 @@
 package com.intrigueit.myc2i.dashboard.view;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.ListModel;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -9,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import com.intrigueit.myc2i.common.CommonConstants;
 import com.intrigueit.myc2i.common.view.BasePage;
+import com.intrigueit.myc2i.dashboard.report.MemberReport;
 import com.intrigueit.myc2i.member.domain.Member;
 import com.intrigueit.myc2i.member.service.MemberService;
 import com.intrigueit.myc2i.memberlog.domain.MemberLog;
@@ -44,6 +48,33 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 	private MemberLogService logService;
 	private UDValuesService udService;
 	private MemberService memberService;
+	private List<MemberReport> mentorReport;
+	private List<Member> idleMentors;
+
+	private void populateIdleMentorList(){
+		this.idleMentors = new ArrayList<Member>();
+		if(this.mentorReport == null){
+			this.getMentorReport();
+		}
+		for(MemberReport report: mentorReport){
+			if(this.logService.isInActiveMember(report.getMentor().getMemberId())){
+				this.idleMentors.add(report.getMentor());
+			}
+		}
+		
+	}
+	private void populateMentorReports(Member leadMentor){
+		this.mentorReport = new ArrayList<MemberReport>();
+		
+		List<Member> members = this.memberService.getMentorProtege(leadMentor.getMemberId());
+		for(Member mem: members){
+			MemberReport report = new MemberReport();
+			report.setMentor(mem);
+			List<Member> proteges = this.memberService.getMentorProtege(mem.getMemberId());
+			report.setProteges(proteges);
+			this.mentorReport.add(report);
+		}
+	}
 	
 	private MemberLog updateRequestStatus(String status){
 		String requestId = this.getParameter("REQUEST_ID");
@@ -144,7 +175,7 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 
 	private void loadAllPendingRequest(){
 		try{
-			this.pendingRequests = this.logService.getAllPendingLog();
+			this.pendingRequests = this.logService.getAllPendingLog(this.getMember().getMemberId());
 		}
 		catch(Exception ex){
 			ex.printStackTrace();
@@ -210,6 +241,34 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 
 	public void setImportantLinks(List<UserDefinedValues> importantLinks) {
 		this.importantLinks = importantLinks;
+	}
+
+	public List<MemberReport> getMentorReport() {
+		try{
+			this.populateMentorReports(this.getMember());
+		}
+		catch(Exception ex){
+			log.error(ex.getMessage());
+		}
+		return mentorReport;
+	}
+
+	public void setMentorReport(List<MemberReport> mentorReport) {
+		this.mentorReport = mentorReport;
+	}
+	
+	public List<Member> getIdleMentors() {
+		try{
+			this.populateIdleMentorList();
+		}
+		catch(Exception ex){
+			log.error(ex.getMessage());
+		}
+		return idleMentors;
+	}
+	
+	public void setIdleMentors(List<Member> idleMentors) {
+		this.idleMentors = idleMentors;
 	}
 
 	
