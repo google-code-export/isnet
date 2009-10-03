@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:a4j="http://richfaces.org/a4j"
+	  xmlns:c="http://java.sun.com/jstl/core"
+	  xmlns:rich="http://richfaces.org/rich"      
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+      
+   		
+		<head>
+		<title><ui:insert name="pageTitle">Page Title</ui:insert></title>
+		<style type="text/css">
+			body {
+				  font-family: Verdana, Arial, Helvetica, sans-serif;
+				  font-size: 14px;
+			}
+			.header {
+				  font-family: Verdana, Arial, Helvetica, sans-serif;
+				  font-size: 18px;
+			}
+			.bottom {
+				  font-family: Verdana, Arial, Helvetica, sans-serif;
+				  font-size: 9px;
+				  text-align: center;
+				  vertical-align: middle;
+				  color: #8E969D;
+			}
+		</style>
+		</head>
+
+<body bgcolor="#ffffff">
+<h:form>
+<table style="border:1px solid #CAD6E0"  align="center" cellpadding="0" cellspacing="0" border="0" width="400">
+<tbody>
+
+	<tr>
+		<td class="header" height="42" align="center" valign="middle" width="100%" bgcolor="#E4EBEB">
+			<h:graphicImage value="/images/tutorial_title.png" />
+		</td>
+	</tr>
+	<tr>
+		<td height="1" width="100%" bgcolor="#CAD6E0"></td>
+	</tr>	
+
+	<tr>
+		<td width="100%"  colspan="2">
+			<table width="100%" style="height:150px" align="left" cellpadding="0" cellspacing="0" border="0">
+			<tbody>
+				<tr>
+					<td align="center" width="100%" valign="middle">
+					<h:panelGroup id="idContainerx">
+					<h:inputHidden value="#{modulePlayer.modulePlay}" />
+
+					<h:outputText id="idContainer" value="#{modulePlayer.mediaBean.pageContent}" escape="false" />
+					
+					</h:panelGroup>
+					</td>
+				</tr>
+			</tbody>
+			</table>
+		</td>
+	</tr>	
+	
+	<tr>
+		<td colspan="2" align="center"  valign="bottom" height="1" width="100%" bgcolor="#FFFBEF">
+		<table>
+			<tr>
+				<td>
+					<a4j:commandLink >
+						<h:graphicImage value="/images/media_beginning.png" border="0"/>
+					</a4j:commandLink>
+				
+				</td>
+				<td>
+					<a4j:commandLink action="#{modulePlayer.playPreviousPage}" reRender="idContainer">
+						<h:graphicImage value="/images/media_step_back.png" border="0"/>
+					</a4j:commandLink>
+				
+				</td>				
+				<td>
+					<a4j:commandLink >
+						<h:graphicImage value="/images/media_play_green.png" border="0"/>
+					</a4j:commandLink>
+				</td>
+
+				<td>
+					<a4j:commandLink action="#{modulePlayer.playNextPage}" reRender="idContainer">
+						<h:graphicImage value="/images/media_step_forward.png" border="0"/>
+					</a4j:commandLink>				
+				</td>
+				<td>
+					<a4j:commandLink >
+						<h:graphicImage value="/images/media_end.png" border="0"/>
+					</a4j:commandLink>
+				
+				</td>
+			</tr>
+		</table>
+		
+		</td>
+	</tr>
+</tbody>
+</table>
+</h:form>
+</body>
+		
+</html>
