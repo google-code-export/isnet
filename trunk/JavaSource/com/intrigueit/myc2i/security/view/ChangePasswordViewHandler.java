@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import com.intrigueit.myc2i.common.CommonConstants;
 import com.intrigueit.myc2i.common.Myc2iException;
 import com.intrigueit.myc2i.common.utility.CryptographicUtility;
 import com.intrigueit.myc2i.common.view.BasePage;
