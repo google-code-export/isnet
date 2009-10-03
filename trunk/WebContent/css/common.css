@@ -279,4 +279,5 @@
 }
 .col_half{
 	width: 50%;
+	vertical-align: top;
 }
