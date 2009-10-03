@@ -67,7 +67,7 @@
 		<table>
 			<tr>
 				<td>
-					<a4j:commandLink >
+					<a4j:commandLink action="#{modulePlayer.playFirstPage}" reRender="idContainer">
 						<h:graphicImage value="/images/media_beginning.png" border="0"/>
 					</a4j:commandLink>
 				
@@ -90,7 +90,7 @@
 					</a4j:commandLink>				
 				</td>
 				<td>
-					<a4j:commandLink >
+					<a4j:commandLink action="#{modulePlayer.playLastPage}" reRender="idContainer">
 						<h:graphicImage value="/images/media_end.png" border="0"/>
 					</a4j:commandLink>
 				
