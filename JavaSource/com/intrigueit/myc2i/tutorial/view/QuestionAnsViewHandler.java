@@ -313,7 +313,10 @@ public class QuestionAnsViewHandler extends BasePage implements Serializable {
       logger.error("Unable to process list:"+e.getMessage());
     }
   }
-
+	
+	public void uploadRichText() {
+    System.out.println(this.currentQuestionAns.getPageText());    
+  }
 	/**
 	 * @return the currentQuestionAns
 	 */
