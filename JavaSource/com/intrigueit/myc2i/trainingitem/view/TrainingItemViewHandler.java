@@ -53,7 +53,8 @@ public class TrainingItemViewHandler extends BasePage implements Serializable {
 	}
 
 	public void initializeTrainingItem() {
-		getTrainingItemsByCategory();
+	  setSecHeaderMsg("");
+	  getTrainingItemsByCategory();
 	}
 
 	@SuppressWarnings("unchecked")
