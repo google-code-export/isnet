@@ -59,6 +59,7 @@ public class ModulesViewHandler extends BasePage implements Serializable {
   }
 
   public void initializeTestTutorialModules() {
+    setSecHeaderMsg("");
     this.getModulesByCritariya();
   }
 

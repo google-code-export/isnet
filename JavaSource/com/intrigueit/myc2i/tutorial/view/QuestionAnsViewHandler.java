@@ -45,6 +45,7 @@ public class QuestionAnsViewHandler extends BasePage implements Serializable {
   }
 
   public void initializeQuestionAns(){    
+    setSecHeaderMsg("");
     getQuestionAnsByCategory();
   }
   

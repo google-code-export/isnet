@@ -36,6 +36,7 @@ public class DocumentViewHandler extends BasePage implements Serializable {
   }
 
   public void initializeDocument(){   
+    setSecHeaderMsg("");
     loadDocuments();
   }
 
