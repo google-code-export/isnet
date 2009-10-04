@@ -150,6 +150,11 @@ public class QuestionAnsViewHandler extends BasePage implements Serializable {
           errorMessage.append(this.getText("common_error_prefix")).append(" ")
                     .append(this.getText("page_no_exist"));
           flag = false;       
+        }        
+        if (this.currentQuestionAns.getPageText() ==  null || this.currentQuestionAns.getPageText().isEmpty()){
+          errorMessage.append(this.getText("common_error_prefix")).append(" ")
+                    .append(this.getText("page_content_cant_empty"));
+          flag = false;       
         }
       }
 		}
