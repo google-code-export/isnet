@@ -24,7 +24,6 @@
  <ui:define name="commonInfo">
 	</ui:define>
 	<ui:define name="js">
-		<script></script>
 	</ui:define>
   <ui:define name="body">    
     <h:panelGroup id="idSectionsCon">
@@ -132,16 +131,7 @@
         <ui:param name="fileExtentions" value="#{bundle.common_supported_audio_ext}"/>
         <ui:param name="fileExtLabel" value="#{bundle.common_supported_audio_label}"/>
       </ui:include>
-    </a4j:region>
-    
-    <a4j:region>
-      <ui:include src="/templates/richtexttmpl.xhtml">
-        <ui:param name="richTextModalId" value="idRichModuleText"/>
-        <ui:param name="action" value="uploadRichText"/>
-        <ui:param name="reRenderIds" value="idRichText"/>
-        <ui:param name="propertyName" value="moduleText"/>
-      </ui:include>
-    </a4j:region>       
+    </a4j:region>    
   </ui:define>
 </ui:composition>
 </html>
