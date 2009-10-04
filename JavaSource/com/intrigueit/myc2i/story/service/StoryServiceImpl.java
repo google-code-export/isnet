@@ -53,7 +53,7 @@ public class StoryServiceImpl implements StoryService{
 
 	@Override
 	public List<MemberStory> findTopTenStories() {
-		String clause = " order by t.numberOfVotesReceived descending ";
+		String clause = "  order by t.numberOfVotesReceived descending ";
 		return this.stroyDao.loadTopResultsByClause(10, clause, new Object[]{});
 	}
 
@@ -64,7 +64,21 @@ public class StoryServiceImpl implements StoryService{
 
 	@Override
 	public MemberStory getWiningStory() {
-		return this.stroyDao.loadById(9L);
+		String clause = " t.weekWinnerIndicator IS NOT NULL order by t.weekWinnerIndicator descending ";
+		List<MemberStory> stories  = this.stroyDao.loadTopResultsByClause(1, clause, new Object[]{});
+		return stories.get(0);
+	}
+
+	@Override
+	public List<MemberStory> findTopTenMentorStories() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<MemberStory> findTopTenProtegeStories() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
