@@ -165,7 +165,12 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 	}
 
 	public List<MemberStory> getTopTenStories() {
-		this.topTenStories = this.storyService.findTopTenStories();
+		try{
+			this.topTenStories = this.storyService.findTopTenStories();
+		}
+		catch(Exception ex){
+			log.error(ex.getMessage());
+		}
 		return topTenStories;
 	}
 
