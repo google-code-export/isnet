@@ -40,6 +40,7 @@ public class ChapterViewHandler extends BasePage implements Serializable {
 	}
 
 	public void initializeChapter(){		
+	  setSecHeaderMsg("");
 	  loadChapters();
 	}
 
