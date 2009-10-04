@@ -84,7 +84,7 @@ Common.openModalPanel = function(panelId,errMag) {
 	if ( errMag ) return;
 	if( panelId ) {
 	//Richfaces.showModalPanel(panelId,{width:100,height:100,top:50});
-    Richfaces.showModalPanel(panelId,{width:400, top:25});
+    Richfaces.showModalPanel(panelId,{width:605, top:25});
   }
  }
 
