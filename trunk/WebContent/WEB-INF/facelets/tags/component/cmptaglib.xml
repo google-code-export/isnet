@@ -16,11 +16,7 @@
     <tag>
       <tag-name>uploadlink</tag-name>
       <source>uploadlink.xhtml</source>
-    </tag>
-    <tag>
-      <tag-name>richtextlink</tag-name>
-      <source>richtextlink.xhtml</source>
-    </tag>
+    </tag>    
     <tag>
       <tag-name>actioncmp</tag-name>
       <source>actioncmp.xhtml</source>
