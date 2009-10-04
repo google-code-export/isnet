@@ -45,6 +45,24 @@ public class ModulesViewHandler extends BasePage implements Serializable {
   private FileUploadBean fileUploadBean;
   private ViewDataProvider viewDataProvider;
 
+	private List<TestTutorialModules> modules;
+
+	public List<TestTutorialModules> getModules() {
+		try {
+			if (modules == null) {
+				modules = modulesService.loadAll();
+			}
+
+		} catch (Exception ex) {
+
+		}
+		return modules;
+	}
+
+	public void setModules(List<TestTutorialModules> modules) {
+		this.modules = modules;
+	}
+	
   @Autowired
   public ModulesViewHandler(ModulesService modulesService,
       DocumentService documentService) {
