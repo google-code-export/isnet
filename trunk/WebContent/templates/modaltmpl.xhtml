@@ -7,7 +7,8 @@
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:c="http://java.sun.com/jstl/core">
 	<ui:composition>
-		<rich:modalPanel id="${modalPanelId}" styleClass="modal_panel" autosized="true">
+		<rich:modalPanel id="${modalPanelId}" styleClass="modal_panel" autosized="true"
+      domElementAttachment="parent">
 			<f:facet name="header">
 				<h:form>
 					<h:outputText id="${modalPanelId}Header"  value="${refManageBean.secHeaderMsg}"></h:outputText>
