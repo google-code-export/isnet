@@ -13,7 +13,7 @@ import com.intrigueit.myc2i.common.ServiceConstants;
 import com.intrigueit.myc2i.utility.ContextInfo;
 
 @Component("commonAutoComplete")
-@Scope("request")
+@Scope("request") 
 public class CommonAutoComplete extends ContextInfo implements Serializable {
 	private static final long serialVersionUID = 3126855679065836286L;
 	/** Serialize version no */
