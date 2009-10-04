@@ -20,6 +20,10 @@ public interface StoryService {
 	
 	public List<MemberStory> findTopTenStories();
 	
+	public List<MemberStory> findTopTenMentorStories();
+	
+	public List<MemberStory> findTopTenProtegeStories();
+	
 	public MemberStory getMostVotedStory();
 	
 	public MemberStory getWiningStory();
