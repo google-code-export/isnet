@@ -35,6 +35,7 @@ public class MemberStory implements java.io.Serializable {
 	private String recordLastUpdaterId;
 	private Date recordLastUpdatedDate;
 	private String storyTitle;
+	private String category;
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -194,5 +195,14 @@ public class MemberStory implements java.io.Serializable {
 
 	public void setStoryTitle(String storyTitle) {
 		this.storyTitle = storyTitle;
+	}
+	
+	@Column( name = "STORY_CATEGORY")
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 }
