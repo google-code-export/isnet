@@ -22,9 +22,7 @@ import com.intrigueit.myc2i.common.view.ViewDataProvider;
 import com.intrigueit.myc2i.member.service.MemberService;
 import com.intrigueit.myc2i.memberlog.domain.MemberLog;
 import com.intrigueit.myc2i.memberlog.service.MemberLogService;
-import com.intrigueit.myc2i.udvalues.domain.UserDefinedValues;
 import com.intrigueit.myc2i.utility.Emailer;
-import com.sun.corba.se.spi.orbutil.fsm.Action;
 
 @Component("memberLogViewHandler")
 @Scope("session")
