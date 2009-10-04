@@ -486,6 +486,42 @@ div#content {
 }
 .style_italic{font-style: italic;}
 
+.google_search {
+  border: #7aa0c5 1px solid;
+  color: #000000;
+  font-size: 9pt;
+  background-color:white;
+  display: inline;
+}
+.search_container {
+  border: green 0px solid;
+}
+
+.search_img_con {
+  background-color: white;
+}
+
+.search_input{
+  display:inline; background-color: #ffffff; color: #000000; font-size: 9pt; width: 150px; padding-left: 2pt;
+  border: #7aa0c5 0px solid;
+}
+.m_search_input{
+  display:inline; background-color: #ffffff; color: #000000; font-size: 9pt; width: 212px;
+  border: #7aa0c5 0px solid;
+}
+.l_search_input{
+  display:inline; background-color: #ffffff; color: #000000; font-size: 9pt; width: 500px; padding-left: 2pt;
+  border: #7aa0c5 0px solid;
+}
+.search_img {
+  border: 0px;
+  margin:0px;
+  padding:0px;
+  hspace:0px;
+  vspace:0px;
+  vertical-align: middle;
+}
+
 .banner{
     background:  url(../images/banner.jpg) no-repeat;   
   }
