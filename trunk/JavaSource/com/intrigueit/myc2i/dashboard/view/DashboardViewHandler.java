@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.ListModel;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -144,10 +142,19 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 	 */
 	public DashboardViewHandler() {
 		this.mostVotedStory = "Quoting a witness from \"Balkh\", in his famous work entitled \"Kafi\", the celebrated scholar \"Kulayni\" relates the following";
-		this.winningStory = "Winner: Ahmmed Ibne Jafer Quoting a witness from \"Balkh\", in his famous work entitled \"Kafi\", the celebrated scholar \"Kulayni\" relates the following ";
+		//this.winningStory = "Winner: Ahmmed Ibne Jafer Quoting a witness from \"Balkh\", in his famous work entitled \"Kafi\", the celebrated scholar \"Kulayni\" relates the following ";
 		
 	}
-
+	private void loadWinningStroy(){
+		try{
+			MemberStory winStory = this.storyService.getWiningStory();
+			this.winningStory = "Winner:"+ winStory.getMember().getFirstName() +" "+ winStory.getMember().getLastName();
+			this.winningStory += winStory.getMemberStoryDescription();
+		}
+		catch(Exception ex){
+			log.error(ex.getMessage());
+		}
+	}
 	public String getMostVotedStory() {
 		return mostVotedStory;
 	}
@@ -157,6 +164,7 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 	}
 
 	public String getWinningStory() {
+		this.loadWinningStroy();
 		return winningStory;
 	}
 
