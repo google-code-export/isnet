@@ -1,7 +1,6 @@
 package com.intrigueit.myc2i.trainingitem.domain;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -14,8 +13,7 @@ import javax.persistence.Table;
 
 import org.hibernate.validator.Length;
 import org.hibernate.validator.NotEmpty;
-
-import com.sun.istack.internal.NotNull;
+import org.hibernate.validator.NotNull;
 
 @Entity
 @Table(name = "TRAINING_ITEM")

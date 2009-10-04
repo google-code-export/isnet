@@ -13,8 +13,7 @@ import javax.persistence.Table;
 import org.hibernate.validator.Email;
 import org.hibernate.validator.Length;
 import org.hibernate.validator.NotEmpty;
-
-import com.sun.istack.internal.NotNull;
+import org.hibernate.validator.NotNull;
 
 @Entity
 @Table(name="ITEM_VENDOR")
