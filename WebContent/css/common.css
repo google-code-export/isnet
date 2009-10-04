@@ -281,3 +281,20 @@
 	width: 50%;
 	vertical-align: top;
 }
+.dashboard_report_mentor_header{
+	text-align: left;
+	background-color: #EFE8D1;
+}
+.dashboard_report_mentor_sub_header{
+	text-align: left;
+	background-color: #DFD5B5;
+}
+.dashboard_report_row_odd{
+	background-color:#EFECE0;
+}
+.dashboard_report_row_even{
+	background-color: #FDFFEF;
+}
+.rich-subtable-headercell{
+	background-color: #FAF8E3;
+}
