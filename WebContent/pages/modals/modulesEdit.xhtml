@@ -12,72 +12,71 @@
     <rich:panel id="idModulesEditContainer" styleClass="default_edit">
 	 <rich:spacer width="100%" height="20"/>
 	 <c:set var="currentEBean" value="#{modulesViewHandler.currentModules}"></c:set>   
-	 <h:panelGrid columns="3" id="idModulesEditPanelGroup" border="0" columnClasses="prompt,data,errprompt"
-      rowClasses="rowinput" width="100%">
-	     <h:panelGroup>
-        <h:outputText value="#{bundle.tutorial_module_name}" />
-        <span class="required_field">*</span>
-       </h:panelGroup>
-       <h:inputText styleClass="short_text" value="#{currentEBean.moduleName}" id="moduleName">
-        <rich:ajaxValidator event="onblur" />
-       </h:inputText>
-       <rich:message for="moduleName" />
-       
-       <h:panelGroup>
-        <h:outputText value="#{bundle.tutorial_module_title}" />
-        <span class="required_field">*</span>
-       </h:panelGroup>
-       <h:inputText styleClass="name" value="#{currentEBean.moduleTitle}" id="moduleTitle">
-        <rich:ajaxValidator event="onblur" />
-       </h:inputText>
-       <rich:message for="moduleTitle" />
-       
-       <h:panelGroup>
-        <h:outputText value="#{bundle.tutorial_module_text}" />
-        <span class="required_field">*</span>
-       </h:panelGroup>
-       <h:panelGroup id="idRichText">
-         <h:inputTextarea styleClass="medium_text" value="#{currentEBean.moduleText}" id="moduleText"
-             rows="4">
-             <rich:ajaxValidator event="onblur" />
-          </h:inputTextarea>
-          <ccmp:richtextlink richTextModalId="idRichModuleText" imgTitle="#{bundle.common_rich_input_title}"/>
-       </h:panelGroup>
-       <rich:message for="moduleText" />        
-       
-       <h:panelGroup>
-        <h:outputText value="#{bundle.tutorial_module_test_ind}" />
-        <span class="required_field">*</span>
-       </h:panelGroup>
-       <h:inputText styleClass="short_text" value="#{currentEBean.testIndicator}" id="testIndicator">
-        <rich:ajaxValidator event="onblur" />
-       </h:inputText>
-       <rich:message for="testIndicator" />
-       
-       <h:panelGroup>
-        <h:outputText value="#{bundle.tutorial_module_audio}" />
-        <span class="required_field">&#160;</span>
-       </h:panelGroup>
-       <h:panelGroup id="idAudioFile">
-         <h:inputText styleClass="short_text,readonly" disabled="true" style="color:gray;background:#DFDFDF;" 
-            value="#{currentEBean.audioFileName}"/>        
-         <ccmp:uploadlink prompt="" uploadModalId="idAudioUpload" imgTitle="#{bundle.common_upload_audio}"/>
-       </h:panelGroup>
-       <rich:message for="moduleIntroAudio" />
-       
-       <h:panelGroup>
-        <h:outputText value="#{bundle.tutorial_module_video}" />
-        <span class="required_field">&#160;</span>
-       </h:panelGroup>
-       <h:panelGroup id="idVideoFile">
-         <h:inputText styleClass="short_text,readonly" disabled="true" style="color:gray;background:#DFDFDF;" 
-            value="#{currentEBean.videoFileName}"/>        
-         <ccmp:uploadlink prompt="" uploadModalId="idVideoUpload" imgTitle="#{bundle.common_upload_video}"/>
-       </h:panelGroup>
-       <rich:message for="documentIntroVideo" />
-       
-		</h:panelGrid>
-
+	 <h:panelGroup id="idModulesEditPanelGroup">
+     <rich:tabPanel switchType="client">
+     <rich:tab label="Module Information">   
+     <h:panelGrid columns="3" border="0" columnClasses="prompt,data,errprompt"
+        rowClasses="rowinput" width="100%">
+  	     <h:panelGroup>
+          <h:outputText value="#{bundle.tutorial_module_name}" />
+          <span class="required_field">*</span>
+         </h:panelGroup>
+         <h:inputText styleClass="medium_text" value="#{currentEBean.moduleName}" id="moduleName">
+          <rich:ajaxValidator event="onblur" />
+         </h:inputText>
+         <rich:message for="moduleName" />
+         
+         <h:panelGroup>
+          <h:outputText value="#{bundle.tutorial_module_title}" />
+          <span class="required_field">*</span>
+         </h:panelGroup>
+         <h:inputText styleClass="medium_text" value="#{currentEBean.moduleTitle}" id="moduleTitle">
+          <rich:ajaxValidator event="onblur" />
+         </h:inputText>
+         <rich:message for="moduleTitle" />
+         
+         <h:panelGroup>
+          <h:outputText value="#{bundle.tutorial_module_test_ind}" />
+          <span class="required_field">*</span>
+         </h:panelGroup>
+         <h:inputText styleClass="short_text" value="#{currentEBean.testIndicator}" id="testIndicator">
+          <rich:ajaxValidator event="onblur" />
+         </h:inputText>
+         <rich:message for="testIndicator" />
+         
+         <h:panelGroup>
+          <h:outputText value="#{bundle.tutorial_module_audio}" />
+          <span class="required_field">&#160;</span>
+         </h:panelGroup>
+         <h:panelGroup id="idAudioFile">
+           <h:inputText styleClass="short_text,readonly" disabled="true" style="color:gray;background:#DFDFDF;" 
+              value="#{currentEBean.audioFileName}"/>        
+           <ccmp:uploadlink prompt="" uploadModalId="idAudioUpload" imgTitle="#{bundle.common_upload_audio}"/>
+         </h:panelGroup>
+         <rich:message for="moduleIntroAudio" />
+         
+         <h:panelGroup>
+          <h:outputText value="#{bundle.tutorial_module_video}" />
+          <span class="required_field">&#160;</span>
+         </h:panelGroup>
+         <h:panelGroup id="idVideoFile">
+           <h:inputText styleClass="short_text,readonly" disabled="true" style="color:gray;background:#DFDFDF;" 
+              value="#{currentEBean.videoFileName}"/>        
+           <ccmp:uploadlink prompt="" uploadModalId="idVideoUpload" imgTitle="#{bundle.common_upload_video}"/>
+         </h:panelGroup>
+         <rich:message for="documentIntroVideo" />       
+  		</h:panelGrid>
+      </rich:tab>
+      <rich:tab label="Module Content">
+        <h:panelGrid columns="1" border="0" columnClasses="prompt,data,errprompt">
+          <rich:editor id="Editor" width="550" height="300" 
+            value="#{currentEBean.moduleText}" theme="advanced">
+            <f:param name="theme_advanced_toolbar_location" value="top"/>       
+          </rich:editor>
+        </h:panelGrid>
+      </rich:tab>
+      </rich:tabPanel>
+    </h:panelGroup>
     <rich:spacer width="100%" height="15"/>
     <ccmp:secactcmp controlBean="#{modulesViewHandler}" modalId="idModulesEdit" 
       actionType="#{modulesViewHandler.actionType}"

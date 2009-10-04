@@ -12,145 +12,145 @@
     <rich:panel id="idQuestionAnsEditContainer" styleClass="default_edit">
 	 <rich:spacer width="100%" height="20"/>
 	 <c:set var="currentEBean" value="#{questionAnsViewHandler.currentQuestionAns}"></c:set>
-	 <h:panelGrid columns="3" id="idQuestionAnsEditPanelGroup" border="0" columnClasses="prompt,data,errprompt"
-      rowClasses="rowinput" width="100%">
-	     <h:panelGroup>
-        <h:outputText value="#{bundle.tutorial_qa_page_number}" />
-        <span class="required_field">*</span>
-       </h:panelGroup>
-       <h:panelGroup>
-         <h:inputText styleClass="number,readonly" disabled="true" value="#{currentEBean.pageNumber}" id="pageNumberr"
-          label="Page number" rendered="#{questionAnsViewHandler.actionType eq 'A'}" style="color:gray;background:#DFDFDF;">
-          <f:convertNumber type="number"/>
-          <rich:ajaxValidator event="onblur" />
-         </h:inputText>
-         <h:inputText styleClass="number" value="#{currentEBean.pageNumber}" id="pageNumber"
-          label="Page number" rendered="#{questionAnsViewHandler.actionType eq 'U'}">
-          <f:convertNumber type="number"/>
-          <rich:ajaxValidator event="onblur" />
-         </h:inputText>
-       </h:panelGroup>
-       <rich:message for="pageNumber" />
-       
-       <h:panelGroup>
-        <h:outputText value="#{bundle.tutorial_qa_page_title}" />
-        <span class="required_field">*</span>
-       </h:panelGroup>
-       <h:inputText styleClass="medium_text" value="#{currentEBean.pageTitle}" id="pageTitle">
-        <rich:ajaxValidator event="onblur" />
-       </h:inputText>
-       <rich:message for="pageTitle" />
-       
-       <h:panelGroup>
-        <h:outputText value="#{bundle.tutorial_qa_page_text}" />
-        <span class="required_field">*</span>
-       </h:panelGroup>
-       <h:panelGroup id="idRichText">
-         <h:inputTextarea styleClass="medium_text" value="#{currentEBean.pageText}" id="pageText"
-          rows="4">
-          <rich:ajaxValidator event="onblur" />
-         </h:inputTextarea>
-         <ccmp:richtextlink richTextModalId="idRichModuleText" imgTitle="#{bundle.common_rich_input_title}"/>
-       </h:panelGroup>
-       <rich:message for="pageText" />
-       
-       <h:panelGroup>
-        <h:outputText value="#{bundle.tutorial_qa_question}" />
-        <span class="required_field">*</span>
-       </h:panelGroup>
-       <h:inputText styleClass="medium_text" value="#{currentEBean.question}" id="question"> 
-        <rich:ajaxValidator event="onblur" />
-       </h:inputText>
-       <rich:message for="question" />
-       
-       
-       <h:panelGroup>
-        <h:outputText value="#{bundle.tutorial_qa_correct_ans}" />
-        <span class="required_field">&#160;</span>
-       </h:panelGroup>
-       <h:inputText styleClass="code" value="#{currentEBean.questionCorrectAnswer}" id="questionCorrectAnswer">
-        <rich:ajaxValidator event="onblur" />
-       </h:inputText>
-       <rich:message for="questionCorrectAnswer" />   
-       
-       <h:panelGroup>
-        <h:outputText value="#{bundle.tutorial_qa_options_ans_a}" />
-        <span class="required_field">*</span>
-       </h:panelGroup>
-       <h:inputText styleClass="medium_text" value="#{currentEBean.questionOptionAnswerA}" id="questionOptionAnswerA">
-        <rich:ajaxValidator event="onblur" />
-       </h:inputText>
-       <rich:message for="questionOptionAnswerA" /> 
-        
-       <h:panelGroup>
-        <h:outputText value="#{bundle.tutorial_qa_options_ans_b}" />
-        <span class="required_field">*</span>
-       </h:panelGroup>
-       <h:inputText styleClass="medium_text" value="#{currentEBean.questionOptionAnswerB}" 
-        id="questionOptionAnswerB">
-        <rich:ajaxValidator event="onblur" />
-       </h:inputText>
-       <rich:message for="questionOptionAnswerB" />
-       
-       <h:panelGroup>
-        <h:outputText value="#{bundle.tutorial_qa_options_ans_c}" />
-        <span class="required_field">*</span>
-       </h:panelGroup>
-       <h:inputText styleClass="medium_text" value="#{currentEBean.questionOptionAnswerC}" id="questionOptionAnswerC">
-        <rich:ajaxValidator event="onblur" />
-       </h:inputText>
-       <rich:message for="questionOptionAnswerC" />
-       
-       <h:panelGroup>
-        <h:outputText value="#{bundle.tutorial_qa_options_ans_d}" />
-        <span class="required_field">*</span>
-       </h:panelGroup>
-       <h:inputText styleClass="medium_text" value="#{currentEBean.questionOptionAnswerD}" id="questionOptionAnswerD">
-        <rich:ajaxValidator event="onblur" />
-       </h:inputText>
-       <rich:message for="questionOptionAnswerD" />
-       
-       <h:panelGroup>
-        <h:outputText value="#{bundle.tutorial_qa_options_ans_e}" />
-        <span class="required_field">*</span>
-       </h:panelGroup>
-       <h:inputText styleClass="medium_text" value="#{currentEBean.questionOptionAnswerE}" id="questionOptionAnswerE">
-        <rich:ajaxValidator event="onblur" />
-       </h:inputText>
-       <rich:message for="questionOptionAnswerE" />
-       
-       <h:panelGroup>
-        <h:outputText value="#{bundle.tutorial_qa_options_ans_f}" />
-        <span class="required_field">*</span>
-       </h:panelGroup>
-       <h:inputText styleClass="medium_text" value="#{currentEBean.questionOptionAnswerF}" id="questionOptionAnswerF">
-        <rich:ajaxValidator event="onblur" />
-       </h:inputText>
-       <rich:message for="questionOptionAnswerF" />
-              
-       <h:panelGroup>
-        <h:outputText value="#{bundle.tutorial_qa_page_audio}" />
-        <span class="required_field">*</span>
-       </h:panelGroup>
-       <h:panelGroup id="idAudioFile">
-         <h:inputText styleClass="short_text,readonly" disabled="true" style="color:gray;background:#DFDFDF;"
-            value="#{currentEBean.audioFileName}"/>        
-         <ccmp:uploadlink prompt="" uploadModalId="idAudioUpload" imgTitle="#{bundle.common_upload_audio}"/>
-       </h:panelGroup>
-       <rich:message for="pageAudio" />
-       
-       <h:panelGroup>
-        <h:outputText value="#{bundle.tutorial_qa_page_video}" />
-        <span class="required_field">*</span>
-       </h:panelGroup>
-       <h:panelGroup id="idVideoFile">
-         <h:inputText styleClass="short_text,readonly" disabled="true" style="color:gray;background:#DFDFDF;"
-            value="#{currentEBean.videoFileName}"/>        
-         <ccmp:uploadlink prompt="" uploadModalId="idVideoUpload" imgTitle="#{bundle.common_upload_video}"/>
-       </h:panelGroup>
-       <rich:message for="pageVideo" />
-		</h:panelGrid>
-
+	 <h:panelGroup id="idQuestionAnsEditPanelGroup">
+     <rich:tabPanel switchType="client">
+     <rich:tab label="Basic Information">
+       <h:panelGrid columns="3" border="0" columnClasses="prompt,data,errprompt"
+          rowClasses="rowinput" width="100%">
+    	     <h:panelGroup>
+            <h:outputText value="#{bundle.tutorial_qa_page_number}" />
+            <span class="required_field">*</span>
+           </h:panelGroup>
+           <h:panelGroup>
+             <h:inputText styleClass="number,readonly" disabled="true" value="#{currentEBean.pageNumber}" id="pageNumberr"
+              label="Page number" rendered="#{questionAnsViewHandler.actionType eq 'A'}" style="color:gray;background:#DFDFDF;">
+              <f:convertNumber type="number"/>
+              <rich:ajaxValidator event="onblur" />
+             </h:inputText>
+             <h:inputText styleClass="number" value="#{currentEBean.pageNumber}" id="pageNumber"
+              label="Page number" rendered="#{questionAnsViewHandler.actionType eq 'U'}">
+              <f:convertNumber type="number"/>
+              <rich:ajaxValidator event="onblur" />
+             </h:inputText>
+           </h:panelGroup>
+           <rich:message for="pageNumber" />
+           
+           <h:panelGroup>
+            <h:outputText value="#{bundle.tutorial_qa_page_title}" />
+            <span class="required_field">*</span>
+           </h:panelGroup>
+           <h:inputText styleClass="medium_text" value="#{currentEBean.pageTitle}" id="pageTitle">
+            <rich:ajaxValidator event="onblur" />
+           </h:inputText>
+           <rich:message for="pageTitle" />
+           
+           <h:panelGroup>
+            <h:outputText value="#{bundle.tutorial_qa_question}" />
+            <span class="required_field">*</span>
+           </h:panelGroup>
+           <h:inputText styleClass="medium_text" value="#{currentEBean.question}" id="question"> 
+            <rich:ajaxValidator event="onblur" />
+           </h:inputText>
+           <rich:message for="question" />
+           
+           
+           <h:panelGroup>
+            <h:outputText value="#{bundle.tutorial_qa_correct_ans}" />
+            <span class="required_field">*</span>
+           </h:panelGroup>
+           <h:inputText styleClass="code" value="#{currentEBean.questionCorrectAnswer}" id="questionCorrectAnswer">
+            <rich:ajaxValidator event="onblur" />
+           </h:inputText>
+           <rich:message for="questionCorrectAnswer" />   
+           
+           <h:panelGroup>
+            <h:outputText value="#{bundle.tutorial_qa_options_ans_a}" />
+            <span class="required_field">*</span>
+           </h:panelGroup>
+           <h:inputText styleClass="medium_text" value="#{currentEBean.questionOptionAnswerA}" id="questionOptionAnswerA">
+            <rich:ajaxValidator event="onblur" />
+           </h:inputText>
+           <rich:message for="questionOptionAnswerA" /> 
+            
+           <h:panelGroup>
+            <h:outputText value="#{bundle.tutorial_qa_options_ans_b}" />
+            <span class="required_field">*</span>
+           </h:panelGroup>
+           <h:inputText styleClass="medium_text" value="#{currentEBean.questionOptionAnswerB}" 
+            id="questionOptionAnswerB">
+            <rich:ajaxValidator event="onblur" />
+           </h:inputText>
+           <rich:message for="questionOptionAnswerB" />
+           
+           <h:panelGroup>
+            <h:outputText value="#{bundle.tutorial_qa_options_ans_c}" />
+            <span class="required_field">*</span>
+           </h:panelGroup>
+           <h:inputText styleClass="medium_text" value="#{currentEBean.questionOptionAnswerC}" id="questionOptionAnswerC">
+            <rich:ajaxValidator event="onblur" />
+           </h:inputText>
+           <rich:message for="questionOptionAnswerC" />
+           
+           <h:panelGroup>
+            <h:outputText value="#{bundle.tutorial_qa_options_ans_d}" />
+            <span class="required_field">*</span>
+           </h:panelGroup>
+           <h:inputText styleClass="medium_text" value="#{currentEBean.questionOptionAnswerD}" id="questionOptionAnswerD">
+            <rich:ajaxValidator event="onblur" />
+           </h:inputText>
+           <rich:message for="questionOptionAnswerD" />
+           
+           <h:panelGroup>
+            <h:outputText value="#{bundle.tutorial_qa_options_ans_e}" />
+            <span class="required_field">*</span>
+           </h:panelGroup>
+           <h:inputText styleClass="medium_text" value="#{currentEBean.questionOptionAnswerE}" id="questionOptionAnswerE">
+            <rich:ajaxValidator event="onblur" />
+           </h:inputText>
+           <rich:message for="questionOptionAnswerE" />
+           
+           <h:panelGroup>
+            <h:outputText value="#{bundle.tutorial_qa_options_ans_f}" />
+            <span class="required_field">*</span>
+           </h:panelGroup>
+           <h:inputText styleClass="medium_text" value="#{currentEBean.questionOptionAnswerF}" id="questionOptionAnswerF">
+            <rich:ajaxValidator event="onblur" />
+           </h:inputText>
+           <rich:message for="questionOptionAnswerF" />
+                  
+           <h:panelGroup>
+            <h:outputText value="#{bundle.tutorial_qa_page_audio}" />
+            <span class="required_field">*</span>
+           </h:panelGroup>
+           <h:panelGroup id="idAudioFile">
+             <h:inputText styleClass="short_text,readonly" disabled="true" style="color:gray;background:#DFDFDF;"
+                value="#{currentEBean.audioFileName}"/>        
+             <ccmp:uploadlink prompt="" uploadModalId="idAudioUpload" imgTitle="#{bundle.common_upload_audio}"/>
+           </h:panelGroup>
+           <rich:message for="pageAudio" />
+           
+           <h:panelGroup>
+            <h:outputText value="#{bundle.tutorial_qa_page_video}" />
+            <span class="required_field">*</span>
+           </h:panelGroup>
+           <h:panelGroup id="idVideoFile">
+             <h:inputText styleClass="short_text,readonly" disabled="true" style="color:gray;background:#DFDFDF;"
+                value="#{currentEBean.videoFileName}"/>        
+             <ccmp:uploadlink prompt="" uploadModalId="idVideoUpload" imgTitle="#{bundle.common_upload_video}"/>
+           </h:panelGroup>
+           <rich:message for="pageVideo" />
+    		</h:panelGrid>
+      </rich:tab>
+        <rich:tab label="Page Content">
+        <h:panelGrid columns="1" border="0" columnClasses="prompt,data,errprompt">
+          <rich:editor id="Editor" width="550" height="300" 
+            value="#{currentEBean.pageText}" theme="advanced">
+            <f:param name="theme_advanced_toolbar_location" value="top"/>                               
+          </rich:editor>
+        </h:panelGrid>
+        </rich:tab>
+     </rich:tabPanel>
+    </h:panelGroup>
     <rich:spacer width="100%" height="15"/>
     <ccmp:secactcmp controlBean="#{questionAnsViewHandler}" modalId="idQuestionAnsEdit" 
       actionType="#{questionAnsViewHandler.actionType}"
