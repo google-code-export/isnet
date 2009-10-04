@@ -36,6 +36,7 @@ public class VendorViewHandler extends BasePage implements Serializable {
 	}
 
 	public void initializeVendor(){		
+	  setSecHeaderMsg("");
 	  loadVendors();
 	}
 	
