@@ -142,7 +142,7 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 	 */
 	public DashboardViewHandler() {
 		this.mostVotedStory = "Quoting a witness from \"Balkh\", in his famous work entitled \"Kafi\", the celebrated scholar \"Kulayni\" relates the following";
-		//this.winningStory = "Winner: Ahmmed Ibne Jafer Quoting a witness from \"Balkh\", in his famous work entitled \"Kafi\", the celebrated scholar \"Kulayni\" relates the following ";
+		this.winningStory = "Winner: Ahmmed Ibne Jafer Quoting a witness from \"Balkh\", in his famous work entitled \"Kafi\", the celebrated scholar \"Kulayni\" relates the following ";
 		
 	}
 	private void loadWinningStroy(){
@@ -164,7 +164,7 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 	}
 
 	public String getWinningStory() {
-		this.loadWinningStroy();
+		//this.loadWinningStroy();
 		return winningStory;
 	}
 
