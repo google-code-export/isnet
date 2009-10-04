@@ -80,15 +80,11 @@ Common.clearSearchBox = function(idSearchBox,moduleCode) {
   }
 }
 
-Common.openModalPanel = function(panelId,errMag,richTextIds) {
+Common.openModalPanel = function(panelId,errMag) {
 	if ( errMag ) return;
 	if( panelId ) {
 	//Richfaces.showModalPanel(panelId,{width:100,height:100,top:50});
     Richfaces.showModalPanel(panelId,{width:400, top:25});
-	if ( richTextIds ) {
-		var eleIds = panelId+"A4JForm:"+richTextIds;
-		setTimeout(function(){Common.applyTinyMCE(eleIds)},500);
-	}
   }
  }
 
