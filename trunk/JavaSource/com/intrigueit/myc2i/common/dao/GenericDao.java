@@ -18,6 +18,8 @@ public interface GenericDao<T, ID extends Serializable> {
 	List<T> loadByClause(String clause, Object[] params);
 	
 	List<T> loadTopResultsByClause(int top, String clause, Object[] params);
+	
+	public List<T> loadTopResultsByConditions(int top,String clause, Object[] params);
 
 	public boolean isDuplicateRecord(String clause);
 
