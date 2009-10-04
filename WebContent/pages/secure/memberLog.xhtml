@@ -15,7 +15,7 @@
  <ui:param name="userType" value="M"></ui:param>
  <ui:param name="moduleType" value="MH"></ui:param>
  <ui:param name="headerText" value="#{bundle.page_header_activity_log}"></ui:param>
- <ui:param name="refManageBean" value="#{udvViewHandler}"></ui:param>
+ <ui:param name="refManageBean" value="#{memberLogViewHandler}"></ui:param>
   <ui:define name="js">
   		<script type="text/javascript" src="#{controllerBean.contextPath}/js/Modalhelper.js"> </script>    
  </ui:define>
@@ -133,7 +133,6 @@
   <ui:define name="modalPanels">
     <a4j:region>
       <ui:include src="../modals/memberLogDialog.xhtml">
-
       </ui:include>
     </a4j:region>
   </ui:define>
