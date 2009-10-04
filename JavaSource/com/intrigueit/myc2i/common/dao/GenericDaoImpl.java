@@ -86,7 +86,7 @@ public abstract class GenericDaoImpl<T, ID extends Serializable> implements
 	}
 	public List<T> loadTopResultsByConditions(int top,String clause, Object[] params) {
 		String hsql = "Select t from " + persistentClass.getName()
-				+ " " + clause;
+				+ " t " + clause;
 		log.debug(hsql);
 		Query query = entityManager.createQuery(hsql);
 		query.setMaxResults(top);
