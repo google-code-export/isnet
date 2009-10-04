@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.intrigueit.myc2i.member.domain.Member;
 import com.intrigueit.myc2i.udvalues.domain.UserDefinedValues;
@@ -27,14 +28,13 @@ public class MemberLog implements java.io.Serializable {
 	private Timestamp memberLogDateTime;
 	private Long memberId;
 	private Long memberActivityType;	
-	
 	private UserDefinedValues userDefinedValues;
 	private Member member;
 	private String memberLogEntryDescription;
 	private String topic;
 	private String status;
-	
-	private Long recordCreatorId;
+	private String memberDesc;
+  private Long recordCreatorId;
 	private Member recordCreator;
 	private Date recordCreatedDate;
 	private Long recordLastUpdaterId;
@@ -53,8 +53,7 @@ public class MemberLog implements java.io.Serializable {
 	public Long getMemberLogId() {
 		return memberLogId;
 	}
-
-
+	  
 	public void setMemberLogId(Long memberLogId) {
 		this.memberLogId = memberLogId;
 	}
@@ -76,6 +75,22 @@ public class MemberLog implements java.io.Serializable {
 	public void setMemberId(Long memberId) {
 		this.memberId = memberId;
 	}
+	
+	 /**
+   * @return the memberDesc
+   */
+  @Transient
+	public String getMemberDesc() {
+    return memberDesc;
+  }
+
+  /**
+   * @param memberDesc the memberDesc to set
+   */
+  public void setMemberDesc(String memberDesc) {
+    this.memberDesc = memberDesc;
+  }
+
 
 	@Column(name = "MEMBER_LOG_TYPE_ID", nullable = false, precision = 22, scale = 0)
 	public Long getMemberActivityType() {
