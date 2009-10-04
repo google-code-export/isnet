@@ -117,15 +117,15 @@ public class TestTutorialQuestionAns implements Serializable {
 
   @Column(name="RECORD_LAST_UPDATED_DATE")
   private Date recordLastUpdatedDate;
-
+  
   public TestTutorialQuestionAns() {
     super();
   }
   
-  public TestTutorialQuestionAns(long questionAnsId,Long pageNumber,String pageText) {
+  public TestTutorialQuestionAns(long questionAnsId,Long pageNumber,String pageTitle) {
     this.questionAnsId = questionAnsId;
     this.pageNumber = pageNumber;
-    this.pageText = pageText;
+    this.pageTitle = pageTitle;
   }
   
   /**
