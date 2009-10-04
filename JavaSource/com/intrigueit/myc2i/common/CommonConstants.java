@@ -30,5 +30,8 @@ public class CommonConstants {
     public static final Long ROLE_OPERATOR = 21L;
     public static final Long ROLE_GUEST = 22L;
     
+    public static final String STORY_MENTOR = "MENTOR";
+    public static final String STORY_PROTEGE = "PROTEGE";
+    
     	
 }
