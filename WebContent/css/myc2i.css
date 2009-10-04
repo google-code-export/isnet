@@ -89,8 +89,8 @@ a:hover {
 .data{ padding-left: 2px; font-size: 9pt; font-weight: normal; color: #375e9f;vertical-align: top;}
 .errprompt{font-size: 9pt; font-weight: normal; color: red;text-align:left; vertical-align: middle;}
 
-.upload_left{vertical-align: top;}
-.upload_right{ vertical-align: top;}
+.upload_left{vertical-align: top;width: 40%;}
+.upload_right{ vertical-align: top;width:60%;}
 
 .leftside {
 	width: 20%;
@@ -424,8 +424,9 @@ div#content {
   text-align: left;
   padding: 0px;
 }
-
- .onecolumn_edit {
+.upload_info {
+}  
+.onecolumn_edit {
   float: left;
   width: 100%;
   height: auto;
