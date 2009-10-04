@@ -40,6 +40,7 @@ public class UDValuesViewHandler extends BasePage implements Serializable {
 	}
 
 	public void initializeUDValues(){		
+	  setSecHeaderMsg("");
 	  getUDValuesByCategory();
 	}
 
