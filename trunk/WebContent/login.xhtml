@@ -39,7 +39,7 @@
 			</div>
             
             <!-- Right Column -->
-				<h:panelGrid columns="1" width="100%" cellpadding="0" cellspacing="0">
+				<h:panelGrid columns="1" width="100%" border="0" cellpadding="0" cellspacing="0">
           		<!-- Login Box -->
           		<rich:panel  headerClass="login_box_panel_header"  bodyClass="login_box_panel">
           			<f:facet name="header"> <h:outputText value="#{bundle.login_page_login_box_title}" /></f:facet>
@@ -64,11 +64,18 @@
          				<h:outputText styleClass="error_message" value="#{authenticationViewHandler.errMessage}" />
          			</h:panelGrid>         			
 				</rich:panel>
-				
-				<div id="mentorButton" style="	margin-top: 22px;margin-left: 5px;">
+				<h:panelGrid columns="1" border="0">
+				<rich:spacer height="10"/>
+				<rich:spacer height="10"/>
+				<rich:spacer height="10"/>		
+				<h:panelGroup >
 					<h:outputLink value="#{controllerBean.contextPath}/mentorRegister.faces"> <h:graphicImage value="/images/address_book2.png" /> <h:outputText value="#{bundle.login_page_mentor_signup}" /> </h:outputLink>
-				</div>
-          		<rich:panel  headerClass="login_box_panel_header"  bodyClass="login_box_panel">
+				</h:panelGroup>		
+				
+				</h:panelGrid>
+				
+
+          		<rich:panel  style="margin-top:7px;" headerClass="login_box_panel_header"  bodyClass="login_box_panel">
           			<f:facet name="header"> <h:outputText value="#{bundle.login_page_why_register}" /></f:facet>
 					<p><h:outputText value="#{bundle.login_page_why_register_content1}" /></p>    
 					<p><h:outputText value="#{bundle.login_page_why_register_content2}" /></p>
