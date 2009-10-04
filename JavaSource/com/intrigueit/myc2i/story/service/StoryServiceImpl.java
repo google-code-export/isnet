@@ -53,7 +53,8 @@ public class StoryServiceImpl implements StoryService{
 
 	@Override
 	public List<MemberStory> findTopTenStories() {
-		return this.stroyDao.loadAll();
+		String clause = " order by t.numberOfVotesReceived descending ";
+		return this.stroyDao.loadTopResultsByClause(10, clause, new Object[]{});
 	}
 
 	@Override
