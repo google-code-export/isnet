@@ -12,8 +12,7 @@ import javax.persistence.Table;
 
 import org.hibernate.validator.Length;
 import org.hibernate.validator.NotEmpty;
-
-import com.sun.istack.internal.NotNull;
+import org.hibernate.validator.NotNull;
 
 @Entity
 @Table(name="TEST_TUTORIAL_QUESTION_ANS")
