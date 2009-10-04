@@ -57,6 +57,11 @@ public class StoryViewHandler extends BasePage implements Serializable{
 	public void saveStory(){
 		try{
 			if(this.ACTION.equals(CommonConstants.ADD)){
+				
+				this.currentStory.setCategory(CommonConstants.STORY_MENTOR);
+				if(this.getMember().getTypeId().equals(CommonConstants.PROTEGE)){
+					this.currentStory.setCategory(CommonConstants.STORY_PROTEGE);
+				}
 				this.storyService.save(this.currentStory);
 			}
 			else if(this.ACTION.equals(CommonConstants.EDIT)){
