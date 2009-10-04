@@ -29,11 +29,11 @@ public class TestTutorialModules implements Serializable {
 
   @Column(name="TEST_TUTORIAL_DOCUMENT_ID")
   private Long documentId;
-
+  
   @NotNull
-  @NotEmpty
-  @Length(max=1)
-  @Column(name="TEST_INDICATOR",nullable = false, length = 1)
+  @NotEmpty(message="Can not be empty")
+  @Length(max=1,message="Can not be empty")
+  @Column(name="TEST_INDICATOR",nullable = false)
   private String testIndicator;
 
   @Column(name="MEMBER_TYPE_INDICATOR")
@@ -87,10 +87,11 @@ public class TestTutorialModules implements Serializable {
     super();
   }
 
-  public TestTutorialModules(long modulesId, String moduleName,String moduleText) {
+  public TestTutorialModules(long modulesId, String moduleName,String moduleTitle,String testIndicator) {
     this.modulesId = modulesId;
     this.moduleName = moduleName;
-    this.moduleText = moduleText;
+    this.moduleTitle = moduleTitle;
+    this.testIndicator = testIndicator;
   }
   
   /**
