@@ -24,11 +24,14 @@ import com.intrigueit.myc2i.common.view.BasePage;
 import com.intrigueit.myc2i.common.view.ViewConstant;
 import com.intrigueit.myc2i.member.domain.Member;
 import com.intrigueit.myc2i.member.service.MemberService;
+import com.intrigueit.myc2i.security.Menu;
 
 @Component("authenticationViewHandler")
 @Scope("session")
 public class AuthenticationViewHandler extends BasePage implements Serializable {
 
+	private Menu menu ;
+	
 	/**
 	 * Serialized version no
 	 */
@@ -58,6 +61,7 @@ public class AuthenticationViewHandler extends BasePage implements Serializable 
 	@Autowired
 	public AuthenticationViewHandler(MemberService memberService) {
 		this.memberService = memberService;
+		menu = new Menu();
 	}
 
 	public String loginUser(){
@@ -142,17 +146,21 @@ public class AuthenticationViewHandler extends BasePage implements Serializable 
 	/**
 	 * */
 	public String getHomePageAddress(Member member){
+		
 		if(isFirstTimeLogin(member)){
 			return ViewConstant.OUT_COME_PASSWORD_CHANGE;
 		}
 		else{
 			if(member.getTypeId()== 15L || member.getTypeId() == 16L){
+				this.menu.setMentorTopMenu(true);
 				return ViewConstant.TO_MENTOR_DASHBOARD;
 			}
 			else if(member.getTypeId() == 18L){
+				this.menu.setAdminTopMenu(true);
 				return ViewConstant.TO_ADMIN_HOME;
 			}
 			else if(member.getTypeId() == 17L){
+				this.menu.setGuestTopMenu(true);
 				return ViewConstant.TO_PROTEGE_DASHBOARD;
 			}
 		}
@@ -211,6 +219,14 @@ public class AuthenticationViewHandler extends BasePage implements Serializable 
 
 	public void setIsLogged(Boolean isLogged) {
 		this.isLogged = isLogged;
+	}
+
+	public Menu getMenu() {
+		return menu;
+	}
+
+	public void setMenu(Menu menu) {
+		this.menu = menu;
 	}
 	
 	
