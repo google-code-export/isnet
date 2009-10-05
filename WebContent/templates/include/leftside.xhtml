@@ -10,18 +10,12 @@
       <h:panelGroup id="ltop_mdbsectionM" rendered="${userType eq 'M'}">
       	<!-- Mentor Home Menu -->
 			<ui:include src="/templates/include/mentorMenu.xhtml" />       
-	    </h:panelGroup>
+	  </h:panelGroup>
 	    
-	    <h:panelGroup id="ltop_gdbsectionG" rendered="${userType eq 'G'}">
-	     <ul class="sidemenu">
-          <li><a href="guest_site_dashboard.htm">Dashboard</a></li>
-          <li><a href="guest_site_mentor_profile.htm">Mentor Profile</a></li>
-          <li><a href="guest_site_mentor_search.htm">Mentor Search</a></li>
-          <li><a href="guest_site_protege_viewpoint.htm">Protege's Viewpoint</a></li>
-          <li><a href="guest_site_activity_logs.htm">Protege's Activity Log</a></li>
-          <li><a href="guest_online_tutorial.htm">Tutorial</a></li>
-       </ul>
+	  <h:panelGroup id="ltop_gdbsectionG" rendered="${userType eq 'P'}">
+			<ui:include src="/templates/include/protegeMenu.xhtml" />       
       </h:panelGroup>
+      
       <h:panelGroup id="ltop_gdbsectionA" rendered="${userType eq 'A'}">
         <h:panelGroup id="idAppManagePanel" rendered="${moduleType eq 'AM'}">
           <ul class="sidemenu">            
