@@ -103,9 +103,9 @@
               <rich:column width="35px" style="text-align:left;" valign="top">
                 <h:outputText value="#{bundle.member_email}" />
               </rich:column>
-              <rich:column width="35px" style="text-align:left;" valign="top">
+              <!--rich:column width="35px" style="text-align:left;" valign="top">
                 <h:outputText value="#{bundle.member_admin_yn}" />
-              </rich:column>              
+              </rich:column-->              
               <rich:column width="20px" style="text-align:center;" valign="top">
                 <h:outputText value="#{bundle.common_action}" />
               </rich:column>
@@ -132,13 +132,13 @@
          <rich:column>
            <h:outputText escape="false" value="#{member.email}" />
          </rich:column>
-         <rich:column>
+         <!--rich:column>
            <c:set var="isAdmin" value="N" />
            <c:if test="#{member.typeId eq 18}">
              <c:set var="isAdmin" value="Y" />
            </c:if>
            <h:outputText escape="false" value="${isAdmin}:${member.typeId}" />
-         </rich:column>         
+         </rich:column-->         
          <rich:column style="text-align:center;vertical-align:middle;">
            <rowBar:rowToolBar recordId="#{member.memberId}" recordType="#{member.typeId}"
             sectionId="MEMBER_LINES" modalPanelId="idUserEdit" parentComp="secMEMBER_LINES"
