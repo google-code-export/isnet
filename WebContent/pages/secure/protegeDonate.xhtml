@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	 xmlns:ui="http://java.sun.com/jsf/facelets"
+	 xmlns:h="http://java.sun.com/jsf/html"
+	 xmlns:f="http://java.sun.com/jsf/core"
+	 xmlns:a4j="http://richfaces.org/a4j"
+ 	 xmlns:c="http://java.sun.com/jstl/core"
+ 	 xmlns:rich="http://richfaces.org/rich">
+
+<ui:composition template="/templates/paymenttmpl.xhtml">
+ <ui:param name="moduleTitle" value="#{bundle.page_title_donate}"></ui:param>
+ <ui:param name="userType" value="P"></ui:param>
+  <ui:param name="moduleType" value="PG"></ui:param>
+ <ui:param name="headerText" value="#{bundle.page_title_donate}"></ui:param>
+  <ui:param name="refManageBean" value="#{udvViewHandler}"></ui:param>
+ 
+  <ui:define name="body">    
+
+	<h:panelGrid columns="1">
+       	<h:outputText value="#{bundle.member_donate_text1}" />
+       	<h:outputText value="#{bundle.member_donate_text2}" />
+       	<h:outputText value="#{bundle.member_donate_text3}" />
+
+		<ui:include src="/pages/secure/sections/payDonation.xhtml" />   
+		
+		<h:outputText value="#{bundle.member_donate_text4}" />
+		<h:outputText value="#{bundle.member_donate_text5}" />   	      	
+          
+	</h:panelGrid>
+  
+  </ui:define>
+  
+
+</ui:composition>
+</html>
