@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	 xmlns:ui="http://java.sun.com/jsf/facelets"
+	 xmlns:h="http://java.sun.com/jsf/html"
+	 xmlns:f="http://java.sun.com/jsf/core"
+	 xmlns:a4j="http://richfaces.org/a4j"
+   xmlns:rowBar="http://www.myc2i.com/jsf/rowToolBar"
+   xmlns:ccmp="http://www.myc2i.com/jsf/commoncmp"
+ 	 xmlns:c="http://java.sun.com/jstl/core"
+ 	 xmlns:rich="http://richfaces.org/rich">
+
+<ui:composition template="/templates/maintmpl.xhtml">
+ <ui:param name="moduleTitle" value="#{bundle.page_title_activity_log}"></ui:param>
+ <ui:param name="userType" value="P"></ui:param>
+ <ui:param name="moduleType" value="PH"></ui:param>
+ <ui:param name="headerText" value="#{bundle.page_header_activity_log}"></ui:param>
+ <ui:param name="refManageBean" value="#{memberLogViewHandler}"></ui:param>
+  <ui:define name="js">
+  		<script type="text/javascript" src="#{controllerBean.contextPath}/js/Modalhelper.js"> </script>    
+ </ui:define>
+ 
+  <ui:define name="body">    
+    <h:panelGroup id="idSectionsCon">
+      <rich:spacer width="100%" height="10"/>
+      <h:panelGroup id="idTopCon">
+          <table border="0" cellspacing="0" cellpadding="0" width="98%">
+           <tr>
+            <td align="right">
+		      <a4j:commandLink styleClass="table_control_normal_style" action="#{memberLogViewHandler.initMemberLog}" reRender="idmemberLogDialog"  oncomplete="Richfaces.showModalPanel('idmemberLogDialog')">
+		            <a4j:actionparam name="activityId" value="-1"  />
+		           	<h:graphicImage value="/images/new.png" align="middle" border="0" />	
+		          		 <rich:toolTip styleClass="tooltips_style"  >
+				          <span class="tooltips_span_style">#{bundle.activity_log_add_new}.<br/></span>
+				     </rich:toolTip>	
+				     <rich:spacer width="3"/>
+				     <h:outputText value="#{bundle.activity_log_add_new}" border="0" />			            	
+				</a4j:commandLink>			
+            </td>
+           </tr>
+          </table>
+          
+      </h:panelGroup>
+      
+      <rich:spacer width="100%" height="20"/>
+		<rich:panel headerClass="container_box_panel_header"  bodyClass="container_body_style" >
+			<f:facet name="header"><h:outputText value="#{bundle.activity_log_recent_activities}" /> </f:facet>
+			<h:panelGrid columns="1" width="100%" cellpadding="0" cellspacing="0" border="0">
+				<rich:dataTable  width="100%" id="idDataGrid"  rowClasses=",container_even_row_style" rows="5"  columnsWidth="150,"
+			                value="#{memberLogViewHandler.memberLogs}" var="log" headerClass="table_column_style" cellpadding="0" cellspacing="0">
+		             <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="#{bundle.activity_log_mentor_protege}"/>
+			             </f:facet>
+				 			<h:outputText value="#{log.member.firstName} #{log.member.lastName}" />
+		             </rich:column>
+		             <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="#{bundle.activity_type}"/>
+			             </f:facet>
+				 			<h:outputText value="#{log.userDefinedValues.udValuesValue}" />
+		             </rich:column>	
+		             <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="#{bundle.activity_subject}"/>
+			             </f:facet>
+				 			<h:outputText  value="#{log.topic}" />
+		             </rich:column>	  
+		             <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="#{bundle.activity_date_time}"/>
+			             </f:facet>
+				 			<h:outputText  value="#{log.memberLogDateTime}" >
+				 			<f:convertDateTime dateStyle="default" pattern="dd-MM-yyyy h:mm a"/>
+				 			</h:outputText>
+		             </rich:column>
+		             <rich:column >
+			             <f:facet name="header">
+			               <h:outputText value="#{bundle.activity_log_body}"/>
+			             </f:facet>
+				 			<h:outputText escape="false" value="#{log.memberLogEntryDescription}" />
+		             </rich:column>	           	   
+			      </rich:dataTable>		
+		        <rich:datascroller id="idDataScroller" align="center"  for="idDataGrid" maxPages="5" />
+			</h:panelGrid>			         
+		</rich:panel>
+		
+		<rich:panel headerClass="container_box_panel_header"  bodyClass="container_body_style" >
+			<f:facet name="header"><h:outputText value="#{bundle.activity_log_previous_activities}" /> </f:facet>
+			<h:panelGrid columns="1" width="100%" cellpadding="0" cellspacing="0" border="0">
+				<rich:dataTable  width="100%" id="idDataGridOldLog"  rowClasses=",container_even_row_style" rows="5"  columnsWidth="120,"
+			                value="#{memberLogViewHandler.memberLogsOld}" var="log" headerClass="table_column_style" cellpadding="0" cellspacing="0">
+		             <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="#{bundle.activity_log_mentor_protege}"/>
+			             </f:facet>
+				 			<h:outputText value="#{log.member.firstName} #{log.member.lastName}" />
+		             </rich:column>
+		             <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="#{bundle.activity_type}"/>
+			             </f:facet>
+				 			<h:outputText value="#{log.userDefinedValues.udValuesValue}" />
+		             </rich:column>	
+		             <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="#{bundle.activity_subject}"/>
+			             </f:facet>
+				 			<h:outputText  value="#{log.topic}" />
+		             </rich:column>	  
+		             <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="#{bundle.activity_date_time}"/>
+			             </f:facet>
+				 			<h:outputText  value="#{log.memberLogDateTime}" >
+				 			<f:convertDateTime dateStyle="default" pattern="dd-MM-yyyy h:mm a"/>
+				 			</h:outputText>
+		             </rich:column>
+		             <rich:column >
+			             <f:facet name="header">
+			               <h:outputText value="#{bundle.activity_log_body}"/>
+			             </f:facet>
+				 			<h:outputText escape="false" value="#{log.memberLogEntryDescription}" />
+		             </rich:column>	           	   
+			      </rich:dataTable>		
+		        <rich:datascroller id="idDataScrollerOldLog" align="center"  for="idDataGridOldLog" maxPages="5" />
+			</h:panelGrid>			         
+		</rich:panel>  		    
+
+    </h:panelGroup>    
+  </ui:define>
+  
+  <ui:define name="modalPanels">
+    <a4j:region>
+      <ui:include src="../modals/memberLogDialog.xhtml">
+      </ui:include>
+    </a4j:region>
+  </ui:define>
+</ui:composition>
+</html>
