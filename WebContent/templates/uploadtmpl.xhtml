@@ -26,9 +26,9 @@
                 <a4j:support event="onuploadcomplete" reRender="${uploadModalId}info,${reRenderIds}"  
                   action="#{refManageBean[action]}" 
                   oncomplete="Common.closeModalPanel('', '${uploadModalId}');"/>                
-              </rich:fileUpload>
+               </rich:fileUpload>
               <h:panelGroup id="${uploadModalId}info">                
-                <rich:panel bodyClass="info">
+                <rich:panel bodyClass="upload_info">
                   <f:facet name="header">
                     <h:outputText value="Uploaded Files Info" />
                   </f:facet>
