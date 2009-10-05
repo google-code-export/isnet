@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:rich="http://richfaces.org/rich">
+
+<ui:composition template="/templates/paymenttmpl.xhtml">
+	<ui:param name="moduleTitle" value="#{bundle.page_header_myresource}"></ui:param>
+	<ui:param name="userType" value="P"></ui:param>
+	<ui:param name="moduleType" value="PG"></ui:param>
+	<ui:param name="headerText" value="#{bundle.page_titile_myresource}"></ui:param>
+	<ui:param name="refManageBean" value="#{udvViewHandler}"></ui:param>
+
+	<ui:define name="body">
+		<h:form>
+			<h:panelGrid columns="2" width="100%" columnClasses="col_half,col_half">
+
+				<rich:panel headerClass="container_box_panel_header"
+					bodyClass="container_body_style">
+					<f:facet name="header">
+						<h:outputText value="#{bundle.member_my_resource_books}" />
+					</f:facet>
+					<h:panelGrid columns="1" width="100%" cellpadding="0"
+						cellspacing="0" border="0">
+						<rich:dataTable width="100%" id="idDataGrid"
+							rowClasses=",container_even_row_style" rows="5"	value="#{resourceViewHandler.books}"
+							var="book" headerClass="table_column_style" cellpadding="0"
+							cellspacing="0">
+							<rich:column>
+							<h:panelGrid columns="2">
+								<a4j:mediaOutput element="img" cacheable="false" session="true"
+        								createContent="#{resourceViewHandler.renderImage}" value="#{book.itemImage}" mimeType="image/jpeg" />							
+								<h:panelGrid columns="1">
+									<h:outputText	value="#{book.itemDescription}" />
+									<h:panelGroup>
+										<h:outputText style="font-weight: bold;" value="Price: $" />
+										<h:outputText value="#{book.itemSalesPrice}" />
+									</h:panelGroup>
+								</h:panelGrid>
+							</h:panelGrid>
+							
+							</rich:column>
+						</rich:dataTable>
+						<rich:datascroller id="idDataScroller" align="center"
+							for="idDataGrid" maxPages="5" />
+					</h:panelGrid>
+				</rich:panel>
+				
+				<rich:panel headerClass="container_box_panel_header"
+					bodyClass="container_body_style">
+					<f:facet name="header">
+						<h:outputText value="#{bundle.member_my_resource_cd}" />
+					</f:facet>
+					<h:panelGrid columns="1" width="100%" cellpadding="0"
+						cellspacing="0" border="0">
+						<rich:dataTable rendered="false" width="100%" id="idDataGrid2"
+							rowClasses=",container_even_row_style" rows="5"	value="#{resourceViewHandler.books}"
+							var="book" headerClass="table_column_style" cellpadding="0"	cellspacing="0">
+							<rich:column>
+							
+							</rich:column>
+						</rich:dataTable>
+						<rich:datascroller rendered="false" id="idDataScroller2" align="center" for="idDataGrid2" maxPages="5" />
+					</h:panelGrid>
+				</rich:panel>
+			</h:panelGrid>
+
+
+		</h:form>
+	</ui:define>
+
+
+</ui:composition>
+</html>
