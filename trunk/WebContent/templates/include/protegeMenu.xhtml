@@ -1,0 +1,68 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+<ui:composition>
+ 	<!-- Mentor Home Menu -->
+   <h:panelGroup id="idProtegeDashboardPanel" rendered="${moduleType eq 'PH'}">
+     <ul class="sidemenu">
+       <li>
+         <h:outputLink styleClass="menu_item_clink" 
+           value="#{controllerBean.contextPath}/pages/secure/protegeDashboard.faces">
+           <h:outputText value="#{bundle.left_navigation_mentor_dashboard}"/>
+         </h:outputLink>
+       </li>
+       <li>
+         <h:outputLink styleClass="menu_item_clink" 
+           value="#{controllerBean.contextPath}/pages/secure/protegeMentorProfile.faces">
+           <h:outputText value="#{bundle.left_navigation_protege_mentor_profile}"/>
+         </h:outputLink>
+       </li>  
+       <li>
+         <h:outputLink styleClass="menu_item_clink" 
+           value="#{controllerBean.contextPath}/pages/secure/mentorSearch.faces">
+           <h:outputText value="#{bundle.left_navigation_protege_mentor_search}"/>
+         </h:outputLink>
+       </li> 
+       <li>
+         <h:outputLink styleClass="menu_item_clink" 
+           value="#{controllerBean.contextPath}/pages/secure/protegeViewPoint.faces">
+           <h:outputText value="#{bundle.left_navigation_protege_viewpoint}"/>
+         </h:outputLink>
+       </li>                          
+       <li>
+         <h:outputLink styleClass="menu_item_clink" 
+           value="#{controllerBean.contextPath}/pages/secure/protegeLog.faces">
+           <h:outputText value="#{bundle.left_navigation_mentor_activity_log}"/>
+         </h:outputLink>
+       </li>   
+
+	   <li>
+         <h:outputLink styleClass="menu_item_clink" 
+           value="#{controllerBean.contextPath}/pages/secure/protegeTutorial.faces">
+           <h:outputText value="#{bundle.left_navigation_tutorial}"/>
+         </h:outputLink>
+       </li> 
+    </ul>
+   </h:panelGroup>
+   <h:panelGroup id="idProtegeAccountPanel" rendered="${moduleType eq 'PA'}">
+     <ul class="sidemenu">
+       <li>
+         <h:outputLink styleClass="menu_item_clink" 
+           value="#{controllerBean.contextPath}/pages/secure/protegeProfile.faces">
+           <h:outputText value="#{bundle.page_header_myaccount_profile}"/>
+         </h:outputLink>
+       </li>
+       <li>
+         <h:outputLink styleClass="menu_item_clink" 
+           value="#{controllerBean.contextPath}/pages/secure/protegeChangePassword.faces">
+           <h:outputText value="#{bundle.page_header_myaccount_change_password}"/>
+         </h:outputLink>
+       </li>  
+                     
+    </ul>
+   </h:panelGroup>       
+</ui:composition>
+</html>
