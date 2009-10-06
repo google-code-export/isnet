@@ -14,3 +14,5 @@ public List<MemberLog> findByProperties (String fromDate, String toDate ) {
  
  ***My profile State, gender do not show desire value.
  
+ Why myProfileViewHandle.java start with lower case?????
+ 
