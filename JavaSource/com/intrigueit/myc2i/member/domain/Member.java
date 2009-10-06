@@ -10,9 +10,15 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Transient;
+
+import com.intrigueit.myc2i.udvalues.domain.UserDefinedValues;
 
 /**
  * This class represent the MyC2i Member entity
@@ -58,7 +64,7 @@ public class Member implements java.io.Serializable {
 
 	@Column(name = "MEMBER_STATE", length = 20)
 	private String state;
-
+	
 	@Column(name = "MEMBER_ZIP", precision = 22, scale = 0)
 	private Long zip;
 
@@ -158,7 +164,7 @@ public class Member implements java.io.Serializable {
 	@Column(name = "EMAIL_NOTIFICATION")
 	private String emailNotification;
 
-	@Column(name = "AGREE_PRIVACY_POLICY")
+	@Transient
 	private String agreePrivacyPolicy;
 
 	@Column(name = "ADMIN_USER_INDICATOR", length = 20)
@@ -572,6 +578,35 @@ public class Member implements java.io.Serializable {
 	public void setMentoredByDate(Date mentoredByDate) {
 		this.mentoredByDate = mentoredByDate;
 	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "MEMBER_STATE", nullable = false, insertable = false, updatable = false)
+	private UserDefinedValues stateUDV;
+
+	public UserDefinedValues getStateUDV() {
+		return stateUDV;
+	}
+
+	public void setStateUDV(UserDefinedValues stateUDV) {
+		this.stateUDV = stateUDV;
+	}
+	
+
+
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "MEMBER_COUNTRY", nullable = false, insertable = false, updatable = false)
+	private UserDefinedValues countryUDV;
+
+	public UserDefinedValues getCountryUDV() {
+		return countryUDV;
+	}
+
+	public void setCountryUDV(UserDefinedValues countryUDV) {
+		this.countryUDV = countryUDV;
+	}
+	
+
 
 
 
