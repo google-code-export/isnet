@@ -20,6 +20,10 @@ public interface MemberLogService {
 	
 	public List<MemberLog> getAllPendingLog(Long memberId);
 	
+	public List<MemberLog> getAllProtegePendingRequest(Long memberId);
+	
+	public List<MemberLog> getAllCompletedLog(Long memberId);
+	
 	public List<MemberLog> getAllCompletedLog();
 	
 	public List<MemberLog> findAll();
