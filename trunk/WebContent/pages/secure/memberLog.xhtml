@@ -50,9 +50,9 @@
 			                value="#{memberLogViewHandler.memberLogs}" var="log" headerClass="table_column_style" cellpadding="0" cellspacing="0">
 		             <rich:column>
 			             <f:facet name="header">
-			               <h:outputText value="#{bundle.activity_log_mentor_protege}"/>
+			               <h:outputText value="#{bundle.app_protege}"/>
 			             </f:facet>
-				 			<h:outputText value="#{log.member.firstName} #{log.member.lastName}" />
+				 			<h:outputText value="#{log.toMember.firstName} #{log.toMember.lastName}" />
 		             </rich:column>
 		             <rich:column>
 			             <f:facet name="header">
@@ -92,9 +92,9 @@
 			                value="#{memberLogViewHandler.memberLogsOld}" var="log" headerClass="table_column_style" cellpadding="0" cellspacing="0">
 		             <rich:column>
 			             <f:facet name="header">
-			               <h:outputText value="#{bundle.activity_log_mentor_protege}"/>
+			               <h:outputText value="#{bundle.app_protege}"/>
 			             </f:facet>
-				 			<h:outputText value="#{log.member.firstName} #{log.member.lastName}" />
+				 			<h:outputText value="#{log.toMember.firstName} #{log.toMember.lastName}" />
 		             </rich:column>
 		             <rich:column>
 			             <f:facet name="header">
