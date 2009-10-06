@@ -22,7 +22,7 @@ public class MemberSearchViewHandler extends BasePage {
 	private MemberService memberService;
 	private ZipCodeService zipCodeService;
 	
-	private Double dist;
+	private Double dist = 20.0;
 	private String srcZipCode;
 	private MemberSearch search;
 	
@@ -34,15 +34,19 @@ public class MemberSearchViewHandler extends BasePage {
 	 */
 	public MemberSearchViewHandler() {
 		this.search = new MemberSearch(false,false,false,false);
-		this.dist = 20.00;
+		this.dist = 20.0;
 		this.members = new ArrayList<Member>();
 		
 	}
 	public void executeSearch(){
 		try{
-			log.debug(this.dist);
+			log.debug(this.getDist());
 			List<String> zipCodes = this.getZipCodes();
-			this.members = this.memberService.getMemberByDynamicHsql(this.getClause(zipCodes));
+			String conditions = this.getClause(zipCodes);
+			if(conditions != null && !conditions.equals("")){
+				this.members = this.memberService.getMemberByDynamicHsql(conditions);
+			}
+			
 			for(Member member: members){
 				System.out.println(member.getFirstName());
 			}
@@ -83,7 +87,7 @@ public class MemberSearchViewHandler extends BasePage {
 		try{
 			//String memberZipCode = this.getMember().getZip().toString();
 			ZipCode srcZip = this.zipCodeService.findById(this.getSrcZipCode());
-			List<ZipCode> desZipCodes = this.zipCodeService.findByState(this.getMember().getState());
+			List<ZipCode> desZipCodes = this.zipCodeService.findAll();
 			ZipCodeUtil util = new ZipCodeUtil();
 			for(ZipCode zip: desZipCodes){
 				Double distance = util.getDistance(srcZip, zip);
