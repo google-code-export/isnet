@@ -17,7 +17,6 @@
   <managed-bean-class>com.intrigueit.myc2i.common.utility.CalendarManageBean</managed-bean-class>
   <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
-  
  <navigation-rule>
   <from-view-id>/guestRegister.xhtml</from-view-id>
   <navigation-case>
@@ -85,6 +84,102 @@
  </navigation-rule>
  <navigation-rule>
   <from-view-id>/pages/secure/mentorDashboard.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>BACK_TO_LOGIN</from-outcome>
+   <to-view-id>/login.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/pages/secure/memberProtegeProfile.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>BACK_TO_LOGIN</from-outcome>
+   <to-view-id>/login.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/pages/secure/protegeSearch.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>BACK_TO_LOGIN</from-outcome>
+   <to-view-id>/login.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/pages/secure/leadMentorSearch.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>BACK_TO_LOGIN</from-outcome>
+   <to-view-id>/login.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/pages/secure/memberLog.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>BACK_TO_LOGIN</from-outcome>
+   <to-view-id>/login.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/pages/secure/memberStory.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>BACK_TO_LOGIN</from-outcome>
+   <to-view-id>/login.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/pages/secure/memberTutorial.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>BACK_TO_LOGIN</from-outcome>
+   <to-view-id>/login.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/pages/secure/mentorProfile.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>BACK_TO_LOGIN</from-outcome>
+   <to-view-id>/login.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/pages/secure/mentorChangePassword.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>BACK_TO_LOGIN</from-outcome>
+   <to-view-id>/login.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/pages/secure/mentorPayment.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>BACK_TO_LOGIN</from-outcome>
+   <to-view-id>/login.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/pages/secure/mentorResources.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>BACK_TO_LOGIN</from-outcome>
+   <to-view-id>/login.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/pages/secure/memberAskAQuestion.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>BACK_TO_LOGIN</from-outcome>
+   <to-view-id>/login.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/pages/secure/memberDonate.xhtml</from-view-id>
   <navigation-case>
    <from-outcome>BACK_TO_LOGIN</from-outcome>
    <to-view-id>/login.xhtml</to-view-id>
