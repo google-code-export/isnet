@@ -62,10 +62,13 @@ public class MemberLogServiceImpl implements MemberLogService{
 		return memberLogDao.loadByClause(clause, new Object[]{CommonConstants.ACTIVITY_STATUS.PENDING.toString()});
 	}
 
-
+	public List<MemberLog> getAllCompletedLog(Long memberId) {
+		String clause = " upper(t.status) <> ?1 and t.fromMemberId=?2";
+		return memberLogDao.loadByClause(clause, new Object[]{CommonConstants.ACTIVITY_STATUS.PENDING.toString(),memberId});
+	}
 	@Override
 	public List<MemberLog> getAllPendingLog(Long memberId) {
-		String clause = " upper(t.status) = ?1 and t.memberId=?2";
+		String clause = " upper(t.status) = ?1 and t.fromMemberId=?2";
 		return memberLogDao.loadByClause(clause, new Object[]{CommonConstants.ACTIVITY_STATUS.PENDING.toString(),memberId});
 	}
 	
@@ -83,8 +86,15 @@ public class MemberLogServiceImpl implements MemberLogService{
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(new Date());
 		cal.add(Calendar.DATE, -7);
-		String clause = " t.memberId=?1 and t.memberLogDateTime > ?2 ";
+		String clause = " t.fromMemberId=?1 and t.memberLogDateTime > ?2 ";
 		List<MemberLog> logs = memberLogDao.loadByClause(clause, new Object[]{memberId,cal.getTime()});
 		return  logs.size() == 0;
+	}
+
+
+	@Override
+	public List<MemberLog> getAllProtegePendingRequest(Long memberId) {
+		String clause = " upper(t.status) = ?1 and t.toMemberId=?2";
+		return memberLogDao.loadByClause(clause, new Object[]{CommonConstants.ACTIVITY_STATUS.PENDING.toString(),memberId});
 	}	
 }
