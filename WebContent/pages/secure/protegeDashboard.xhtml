@@ -28,10 +28,10 @@
 						<h:dataTable id="idRequestGrid" border="0" value="#{dashboardViewHandler.pendingRequests}" var="log" 
 					    columnClasses="column_class_center,,column_class_right"	cellpadding="0" cellspacing="0" width="100%">
 							<h:column>
-								<h:outputText value="#{log.recordCreator.firstName}  #{log.recordCreator.lastName}" />
+								<h:outputText value="#{log.fromMember.firstName}  #{log.fromMember.lastName}" />
 							</h:column>
 							<h:column>
-								<h:outputText value="#{bundle.dashboard_mentor_request}" />
+								<h:outputText value="#{bundle.dashboard_protege_request}" />
 							</h:column>
 							<h:column>
 								<a4j:commandButton action="#{dashboardViewHandler.acceptProtegeRequest}"  value="#{bundle.button_label_accept}" reRender="idRequestGrid">
