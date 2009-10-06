@@ -17,47 +17,52 @@ import javax.persistence.Transient;
 import com.intrigueit.myc2i.member.domain.Member;
 import com.intrigueit.myc2i.udvalues.domain.UserDefinedValues;
 
-
 @Entity
 @Table(name = "MEMBER_LOG")
 public class MemberLog implements java.io.Serializable {
 
 	private static final long serialVersionUID = -6795838491539131542L;
 	private Long memberLogId;
-	
+
 	private Timestamp memberLogDateTime;
-	private Long memberId;
-	private Long memberActivityType;	
+	private Long fromMemberId;
+	private Member fromMember;
+	
+	private Long toMemberId;
+	private Member toMember;
+	
+	private Long memberActivityType;
 	private UserDefinedValues userDefinedValues;
-	private Member member;
+
 	private String memberLogEntryDescription;
 	private String topic;
 	private String status;
 	private String memberDesc;
-  private Long recordCreatorId;
-	private Member recordCreator;
+	
+	private String recordCreatorId;
+	private String recordLastUpdaterId;
+
 	private Date recordCreatedDate;
-	private Long recordLastUpdaterId;
-	private Member recordLastUpdater;
 	private Date recordLastUpdatedDate;
+	
 	private Long eventDuration;
 
 	/** default constructor */
 	public MemberLog() {
 	}
-	
-	@Id 
+
+	@Id
 	@Column(name = "MEMBER_LOG_ID")
-	@GeneratedValue(generator="MemberLogSeq")
-	@SequenceGenerator(name="MemberLogSeq",sequenceName="MEMBER_LOG_ID_SEQ", allocationSize=1,initialValue=1)	
+	@GeneratedValue(generator = "MemberLogSeq")
+	@SequenceGenerator(name = "MemberLogSeq", sequenceName = "MEMBER_LOG_ID_SEQ", allocationSize = 1, initialValue = 1)
 	public Long getMemberLogId() {
 		return memberLogId;
 	}
-	  
+
 	public void setMemberLogId(Long memberLogId) {
 		this.memberLogId = memberLogId;
 	}
-	
+
 	@Column(name = "MEMBER_LOG_DATE_TIME", nullable = false)
 	public Date getMemberLogDateTime() {
 		return this.memberLogDateTime;
@@ -67,30 +72,30 @@ public class MemberLog implements java.io.Serializable {
 		this.memberLogDateTime = memberLogDateTime;
 	}
 
-	@Column(name = "MEMBER_ID", nullable = false, precision = 22, scale = 0)
-	public Long getMemberId() {
-		return this.memberId;
+	@Column(name = "FROM_MEMBER_ID", nullable = false, precision = 22, scale = 0)
+	public Long getFromMemberId() {
+		return this.fromMemberId;
 	}
 
-	public void setMemberId(Long memberId) {
-		this.memberId = memberId;
+	public void setFromMemberId(Long fromMemberId) {
+		this.fromMemberId = fromMemberId;
 	}
-	
-	 /**
-   * @return the memberDesc
-   */
-  @Transient
+
+	/**
+	 * @return the memberDesc
+	 */
+	@Transient
 	public String getMemberDesc() {
-    return memberDesc;
-  }
+		return memberDesc;
+	}
 
-  /**
-   * @param memberDesc the memberDesc to set
-   */
-  public void setMemberDesc(String memberDesc) {
-    this.memberDesc = memberDesc;
-  }
-
+	/**
+	 * @param memberDesc
+	 *            the memberDesc to set
+	 */
+	public void setMemberDesc(String memberDesc) {
+		this.memberDesc = memberDesc;
+	}
 
 	@Column(name = "MEMBER_LOG_TYPE_ID", nullable = false, precision = 22, scale = 0)
 	public Long getMemberActivityType() {
@@ -100,10 +105,9 @@ public class MemberLog implements java.io.Serializable {
 	public void setMemberActivityType(Long memberActivityType) {
 		this.memberActivityType = memberActivityType;
 	}
-	
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "MEMBER_LOG_TYPE_ID", nullable = false,insertable = false,updatable = false)
+	@JoinColumn(name = "MEMBER_LOG_TYPE_ID", nullable = false, insertable = false, updatable = false)
 	public UserDefinedValues getUserDefinedValues() {
 		return this.userDefinedValues;
 	}
@@ -113,13 +117,13 @@ public class MemberLog implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "MEMBER_ID", nullable = false,insertable = false,updatable = false)
-	public Member getMember() {
-		return this.member;
+	@JoinColumn(name = "FROM_MEMBER_ID", nullable = false, insertable = false, updatable = false)
+	public Member getFromMember() {
+		return this.fromMember;
 	}
 
-	public void setMember(Member member) {
-		this.member = member;
+	public void setFromMember(Member fromMember) {
+		this.fromMember = fromMember;
 	}
 
 	@Column(name = "MEMBER_LOG_ENTRY_DESCRIPTION")
@@ -130,23 +134,14 @@ public class MemberLog implements java.io.Serializable {
 	public void setMemberLogEntryDescription(String memberLogEntryDescription) {
 		this.memberLogEntryDescription = memberLogEntryDescription;
 	}
-	@Column( name = "MEMBER_LOG_TOPIC")
+
+	@Column(name = "MEMBER_LOG_TOPIC")
 	public String getTopic() {
 		return topic;
 	}
 
 	public void setTopic(String topic) {
 		this.topic = topic;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "RECORD_CREATOR_ID", nullable = false,insertable = false,updatable = false)	
-	public Member getRecordCreator() {
-		return this.recordCreator;
-	}
-
-	public void setRecordCreator(Member recordCreator) {
-		this.recordCreator = recordCreator;
 	}
 
 	@Column(name = "RECORD_CREATED_DATE")
@@ -158,15 +153,6 @@ public class MemberLog implements java.io.Serializable {
 		this.recordCreatedDate = recordCreatedDate;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "RECORD_LAST_UPDATER_ID", nullable = false,insertable = false,updatable = false)
-	public Member getRecordLastUpdater() {
-		return this.recordLastUpdater;
-	}
-
-	public void setRecordLastUpdater(Member recordLastUpdater) {
-		this.recordLastUpdater = recordLastUpdater;
-	}
 
 	@Column(name = "RECORD_LAST_UPDATED_DATE")
 	public Date getRecordLastUpdatedDate() {
@@ -185,7 +171,7 @@ public class MemberLog implements java.io.Serializable {
 	public void setEventDuration(Long eventDuration) {
 		this.eventDuration = eventDuration;
 	}
-		
+
 	@Column(name = "STATUS")
 	public String getStatus() {
 		return status;
@@ -194,21 +180,41 @@ public class MemberLog implements java.io.Serializable {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	@Column( name = "RECORD_CREATOR_ID")
-	public Long getRecordCreatorId() {
+
+	@Column(name = "RECORD_CREATOR_ID")
+	public String getRecordCreatorId() {
 		return recordCreatorId;
 	}
 
-	public void setRecordCreatorId(Long recordCreatorId) {
+	public void setRecordCreatorId(String recordCreatorId) {
 		this.recordCreatorId = recordCreatorId;
 	}
-	@Column( name = "RECORD_LAST_UPDATER_ID")
-	public Long getRecordLastUpdaterId() {
+
+	@Column(name = "RECORD_LAST_UPDATER_ID")
+	public String getRecordLastUpdaterId() {
 		return recordLastUpdaterId;
 	}
 
-	public void setRecordLastUpdaterId(Long recordLastUpdaterId) {
+	public void setRecordLastUpdaterId(String recordLastUpdaterId) {
 		this.recordLastUpdaterId = recordLastUpdaterId;
+	}
+	
+	@Column(name = "TO_MEMBER_ID", nullable = false, precision = 22, scale = 0)
+	public Long getToMemberId() {
+		return toMemberId;
+	}
+
+	public void setToMemberId(Long toMemberId) {
+		this.toMemberId = toMemberId;
+	}
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "TO_MEMBER_ID", nullable = false, insertable = false, updatable = false)
+	public Member getToMember() {
+		return toMember;
+	}
+
+	public void setToMember(Member toMember) {
+		this.toMember = toMember;
 	}
 
 }
