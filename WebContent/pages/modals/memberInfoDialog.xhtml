@@ -19,7 +19,7 @@
 
 	<rich:tabPanel switchType="client">
         <rich:tab label="Basic Information">
-					<h:panelGrid columns="2" id="gridMemberLog" width="100%">
+					<h:panelGrid columns="2" id="gridMemberLog" width="100%" border="0">
 
 				    					    					
 						<h:outputLabel >
@@ -88,6 +88,9 @@
 							<h:inputText  id="idLinkedInURL" value="#{protegeProfileViewHandler.currentMember.linkedInURL}" styleClass="form_input_text_medium"/>
 			
 					</h:panelGrid>
+			        <h:panelGrid columns="1" width="100%" columnClasses="column_class_center">
+			        <a4j:commandButton value="#{bundle.button_close_label}" onclick="Richfaces.hideModalPanel('idmemberInfoDialog')" />
+			        </h:panelGrid>						
         </rich:tab>
         <rich:tab label="Details Information">
 					<h:panelGrid columns="2" id="gridProtegeDetails" width="100%">
@@ -150,11 +153,12 @@
 							</h:selectOneMenu>
 
 					</h:panelGrid>
+			        <h:panelGrid columns="1" width="100%" columnClasses="column_class_center">
+			        <a4j:commandButton value="#{bundle.button_close_label}" onclick="Richfaces.hideModalPanel('idmemberInfoDialog')" />
+			        </h:panelGrid>					
         </rich:tab>
         
-	        <h:panelGrid columns="1" width="100%" columnClasses="column_class_center">
-	        <a4j:commandButton value="#{bundle.button_close_label}" onclick="Richfaces.hideModalPanel('idmemberInfoDialog')" />
-	        </h:panelGrid>
+
 	        
     </rich:tabPanel>
 															
