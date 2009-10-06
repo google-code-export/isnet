@@ -89,8 +89,8 @@ public class ProtegeProfileViewHandler extends BasePage{
 	/** Send release email to protege */
 	private void sendConfirmationEmail(String email,String mentorName)throws Exception{
 		
-		String msgBody = this.getText("email_protege_release_body");
-		String emailSubject = this.getText("email_protege_release_subject",new String[]{mentorName});
+		String msgBody = this.getText("email_protege_release_body",new String[]{mentorName});
+		String emailSubject = this.getText("email_protege_release_subject");
 		/**Send email notification */
 		Emailer emailer = new Emailer(email, msgBody,emailSubject);
 		emailer.setContentType("text/html");
