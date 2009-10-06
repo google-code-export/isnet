@@ -31,10 +31,10 @@
 	      		</td>
 	      		<td>
 					<h:selectOneRadio id="idDistance"  value="#{memberSearchViewHandler.dist}">
-			  			<f:selectItem  itemLabel="#{bundle.protege_search_distance_five}" itemValue="5.00"  />
-			  			<f:selectItem  itemLabel="#{bundle.protege_search_distance_ten}" itemValue="10.00"  />
-			  			<f:selectItem  itemLabel="#{bundle.protege_search_distance_fifteen}" itemValue="15.00"  />
-			  			<f:selectItem  itemLabel="#{bundle.protege_search_distance_twenty}" itemValue="20.00"  />				  
+			  			<f:selectItem  itemLabel="#{bundle.protege_search_distance_five}" itemValue="5.0"  />
+			  			<f:selectItem  itemLabel="#{bundle.protege_search_distance_ten}" itemValue="10.0"  />
+			  			<f:selectItem  itemLabel="#{bundle.protege_search_distance_fifteen}" itemValue="15.0"  />
+			  			<f:selectItem  itemLabel="#{bundle.protege_search_distance_twenty}" itemValue="20.0"  />				  
 					</h:selectOneRadio>		      
 	      		</td>
 	      		<td>
@@ -93,7 +93,7 @@
 			             <f:facet name="header">
 			                <h:outputText value="#{bundle.member_state}" />
 			             </f:facet>
-						<h:outputText value="#{member.state}" />
+						<h:outputText value="#{member.stateUDV.udValuesDesc}" />
 		             </rich:column>
 		             <rich:column >
 			             <f:facet name="header">
@@ -105,32 +105,37 @@
 			             <f:facet name="header">
 			               <h:outputText value="#{bundle.member_country}" />
 			             </f:facet>
-						<h:outputText value="#{member.country}" />
+						<h:outputText value="#{member.countryUDV.udValuesDesc}" />
 		             </rich:column>	
 		             <rich:column>
 			             <f:facet name="header">
 			               <h:outputText value="#{bundle.member_gender}" />
 			             </f:facet>
-						<h:outputText value="#{member.genderInd}" />
+						<h:outputText value="#{member.genderInd == 'M'?'Male':'Female'}" />      
 		             </rich:column>	
 		             <rich:column>
 			             <f:facet name="header">
 			               <h:outputText value="#{bundle.member_birth_year}" />
 			             </f:facet>
-
+						<h:outputText value="#{member.birthYear}" />
 		             </rich:column>	
 		             <rich:column>
 			             <f:facet name="header">
 			               <h:outputText value="#{bundle.protege_search_profile}" />
 			             </f:facet>
-
+		         		 <a4j:commandLink  reRender="idmemberInfoDialog" action="#{protegeProfileViewHandler.loadMember}" oncomplete="Richfaces.showModalPanel('idmemberInfoDialog')">
+				             <a4j:actionparam name="MEMBER_ID" value="#{member.memberId}"  />
+				             <a4j:actionparam name="action" value="VIEW"  />
+			            	<h:graphicImage value="/images/member_view.png" align="middle" border="0" > 
+			            	</h:graphicImage>	
+		            		 <rich:toolTip styleClass="tooltips_style"  >
+						          <span class="tooltips_span_style">
+						              #{bundle.button_label_view}<br/>
+						          </span>
+						     </rich:toolTip>	
+						</a4j:commandLink>			             
 		             </rich:column>		
-		             <rich:column>
-			             <f:facet name="header">
-			               <h:outputText value="#{bundle.protege_search_contact}" />
-			             </f:facet>
 
-		             </rich:column>	
 		             <rich:column>
 			             <f:facet name="header">
 			               <h:outputText value="#{bundle.protege_search_add_protege}" />
@@ -145,7 +150,13 @@
 		
     </h:panelGroup>    
   </ui:define>
-  
+    <ui:define name="modalPanels">
+    <a4j:region>
+      <ui:include src="../modals/memberInfoDialog.xhtml">
+
+      </ui:include>
+    </a4j:region>
+  </ui:define>
 
 </ui:composition>
 </html>
