@@ -70,11 +70,13 @@ public class MemberLogViewHandler extends BasePage implements Serializable{
 				return;
 			}
 			/** Set audit fields */
-			this.currentLog.setRecordCreatorId(this.getMember().getMemberId());
+			this.currentLog.setRecordCreatorId(this.getMember().getMemberId()+"");
 			this.currentLog.setRecordCreatedDate(new Date());
 			this.currentLog.setRecordLastUpdatedDate(new Date());
-			this.currentLog.setRecordLastUpdaterId(this.getMember().getMemberId());
+			this.currentLog.setRecordLastUpdaterId(this.getMember().getMemberId()+"");
 			this.currentLog.setStatus(CommonConstants.ACTIVITY_STATUS.PENDING.toString());
+			this.currentLog.setFromMemberId(this.getMember().getMemberId());
+			
 			Date dt = new Date();
 			this.currentLog.setMemberLogDateTime(new Timestamp(dt.getTime()));			
 			this.memberLogService.save(this.currentLog);
@@ -83,7 +85,7 @@ public class MemberLogViewHandler extends BasePage implements Serializable{
 			  lines.add(this.currentLog);
 			}
 			//MemberLog lg = this.memberLogService.findById(this.currentLog.getMemberLogId());
-			//log.debug("Sending email notification");
+			log.debug("Sending email notification");
 			//this.sendConfirmationEmail(this.currentLog.getUserDefinedValues().getUdValuesValue(), this.currentLog.getMember().getEmail());
 			
 			//log.debug("member id: "+lg.getMember().getMemberId()+" type id: "+lg.getMemberActivityType());
@@ -168,7 +170,7 @@ public class MemberLogViewHandler extends BasePage implements Serializable{
         //this.currentLog = memberLogService.findById(Long.parseLong(recordId));
         MemberLog mLog = (MemberLog) this.getMessageLines().getRowData();
         this.currentLog = new MemberLog();
-        this.currentLog.setMemberId(mLog.getMemberId());
+        this.currentLog.setFromMemberId(mLog.getToMemberId());
         this.currentLog.setTopic("Ref : "+mLog.getTopic());
         this.setActionType(ServiceConstants.UPDATE);
         this.setReRenderIds("MESSAGE_LINES");        
@@ -183,7 +185,7 @@ public class MemberLogViewHandler extends BasePage implements Serializable{
   
 	public List<MemberLog> getMemberLogs() {
 		try{
-			this.memberLogs = this.memberLogService.getAllPendingLog();
+			this.memberLogs = this.memberLogService.getAllPendingLog( this.getMember().getMemberId());
 		}
 		catch(Exception ex){
 			log.error(ex.getMessage());
@@ -220,7 +222,7 @@ public class MemberLogViewHandler extends BasePage implements Serializable{
 
 	public List<MemberLog> getMemberLogsOld() {
 		try{
-			this.memberLogsOld = this.memberLogService.getAllCompletedLog();
+			this.memberLogsOld = this.memberLogService.getAllCompletedLog(this.getMember().getMemberId());
 		}
 		catch(Exception ex){
 			log.error(ex.getMessage());
