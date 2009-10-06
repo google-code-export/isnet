@@ -102,7 +102,7 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 	public void acceptProtegeRequest(){
 		MemberLog log = this.updateRequestStatus(CommonConstants.ACTIVITY_STATUS.ACCEPTED.toString());
 		if(log != null){
-			this.updateProtege(log.getRecordCreatorId());
+			this.updateProtege(log.getFromMemberId());
 		}
 	}
 	public void rejectProtegeRequest(){
@@ -188,10 +188,11 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 
 	private void loadAllPendingRequest(){
 		try{
-			this.pendingRequests = this.logService.getAllPendingLog(this.getMember().getMemberId());
+			this.pendingRequests = this.logService.getAllProtegePendingRequest(this.getMember().getMemberId());
 		}
 		catch(Exception ex){
 			ex.printStackTrace();
+			log.error(ex.getMessage());
 		}
 	}
 	public List<MemberLog> getPendingRequests() {
