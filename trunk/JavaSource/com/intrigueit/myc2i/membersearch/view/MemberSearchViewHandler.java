@@ -47,10 +47,6 @@ public class MemberSearchViewHandler extends BasePage {
 				this.members = this.memberService.getMemberByDynamicHsql(conditions);
 			}
 			
-			for(Member member: members){
-				System.out.println(member.getFirstName());
-			}
-			
 		}
 		catch(Exception ex){
 			log.error(ex.getMessage());
