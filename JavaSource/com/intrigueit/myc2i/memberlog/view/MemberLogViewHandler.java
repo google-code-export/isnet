@@ -210,11 +210,11 @@ public class MemberLogViewHandler extends BasePage implements Serializable {
 		setErrorMessage("");
 		logger.debug(" Preparing member log for replay ");
 		if (this.getParameter(ServiceConstants.RECORD_ID) != null) {
-			// String recordId = (String)
-			// this.getParameter(ServiceConstants.RECORD_ID);
+
 			try {
-				// this.currentLog =
-				// memberLogService.findById(Long.parseLong(recordId));
+
+				this.showSearchBox = false;
+				this.isActivityTypeReadOnly = true;
 				MemberLog mLog = (MemberLog) this.getMessageLines()
 						.getRowData();
 				this.currentLog = new MemberLog();
