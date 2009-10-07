@@ -140,7 +140,15 @@
 			             <f:facet name="header">
 			               <h:outputText value="#{bundle.protege_search_add_protege}" />
 			             </f:facet>
-
+		         		 <a4j:commandLink value="#{bundle.button_label_send_request}"  reRender="idmemberLogDialog" action="#{memberLogViewHandler.initMemberLogForProtegeRequest}" oncomplete="Richfaces.showModalPanel('idmemberLogDialog')">
+				             <a4j:actionparam name="MEMBER_ID" value="#{member.memberId}"  />
+				              <a4j:actionparam name="MEMBER_NAME" value="#{member.firstName} #{member.lastName} "  />
+		            		 <rich:toolTip styleClass="tooltips_style"  >
+						          <span class="tooltips_span_style">
+						              #{bundle.button_tooltips_send_request}<br/>
+						          </span>
+						     </rich:toolTip>	
+						</a4j:commandLink>
 		             </rich:column>			             		             	             		             		             
 		             		                      	   
 			      </rich:dataTable>		
@@ -152,10 +160,10 @@
   </ui:define>
     <ui:define name="modalPanels">
     <a4j:region>
-      <ui:include src="../modals/memberInfoDialog.xhtml">
-
-      </ui:include>
+      <ui:include src="../modals/memberInfoDialog.xhtml"></ui:include>
+      <ui:include src="../modals/memberLogDialog.xhtml" ></ui:include>
     </a4j:region>
+    
   </ui:define>
 
 </ui:composition>
