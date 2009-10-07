@@ -54,18 +54,18 @@ public class MemberSearchViewHandler extends BasePage {
 		}
 	}
 	private String getClause(List<String> zipCodes){
-		String clause = "";
+		String clause = " t.mentoredByMemberId IS NULL and t.typeId =17";
 		if(this.search.getIsProfession()){
-			clause = "t.profession='"+ this.getMember().getProfession()+"'";
+			clause = clause + " and t.profession='"+ this.getMember().getProfession()+"'";
 		}
 		if(this.search.getIsEhinicity()){
-			clause = clause.equals("") ? clause+" t.ethinicity="+ this.getMember().getEthinicity()+"" : clause+" and t.ethinicity="+ this.getMember().getEthinicity()+"";
+			clause = clause+" and t.ethinicity="+ this.getMember().getEthinicity()+"";
 		}
 		if(this.search.getIsMaritalStatus()){
-			clause = clause.equals("") ? clause+" t.maritalStatus='"+ this.getMember().getMaritalStatus()+"'" : clause+" and t.maritalStatus='"+ this.getMember().getMaritalStatus()+"'";
+			clause =  clause+" and t.maritalStatus='"+ this.getMember().getMaritalStatus()+"'";
 		}
 		if(this.search.getIsYearOfBirth()){
-			clause = clause.equals("") ? clause+" t.birthYear="+this.getMember().getBirthYear() +"" : clause+" and t.birthYear="+this.getMember().getBirthYear() +"";
+			clause = clause+" and t.birthYear="+this.getMember().getBirthYear() +"";
 		}
 		if(zipCodes.size() > 0){
 			String codes = "";
