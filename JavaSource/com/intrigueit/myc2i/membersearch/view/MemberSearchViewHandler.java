@@ -25,6 +25,7 @@ public class MemberSearchViewHandler extends BasePage {
 	private Double dist = 20.0;
 	private String srcZipCode;
 	private MemberSearch search;
+	private int recordCount;
 	
 	private List<Member> members;
 	
@@ -40,11 +41,27 @@ public class MemberSearchViewHandler extends BasePage {
 	}
 	public void executeSearch(){
 		try{
-			log.debug(this.getDist());
+			String searchType = this.getRequest().getParameter("SEARCH_TYPE");
+			String clause = null;
+			if(searchType == null){
+				return;
+			}
+			if(searchType.equals("PROTEGE")){
+				clause = " t.mentoredByMemberId IS NULL and t.typeId =17";
+			}
+			else if(searchType.equals("LEAD_MENTOR")){
+				clause = " t.typeId =16";
+			}
+			else if(searchType.equals("MENTOR")){
+				clause = " t.typeId =15";
+			}
 			List<String> zipCodes = this.getZipCodes();
-			String conditions = this.getClause(zipCodes);
+			String conditions = this.getClause(zipCodes,clause);
 			if(conditions != null && !conditions.equals("")){
 				this.members = this.memberService.getMemberByDynamicHsql(conditions);
+				if(this.members != null){
+					this.recordCount = this.members.size();
+				}
 			}
 			
 		}
@@ -53,8 +70,8 @@ public class MemberSearchViewHandler extends BasePage {
 			ex.printStackTrace();
 		}
 	}
-	private String getClause(List<String> zipCodes){
-		String clause = " t.mentoredByMemberId IS NULL and t.typeId =17";
+	private String getClause(List<String> zipCodes,String clause){
+		
 		if(this.search.getIsProfession()){
 			clause = clause + " and t.profession='"+ this.getMember().getProfession()+"'";
 		}
@@ -136,6 +153,12 @@ public class MemberSearchViewHandler extends BasePage {
 	}
 	public void setMembers(List<Member> members) {
 		this.members = members;
+	}
+	public int getRecordCount() {
+		return recordCount;
+	}
+	public void setRecordCount(int recordCount) {
+		this.recordCount = recordCount;
 	}
 
 
