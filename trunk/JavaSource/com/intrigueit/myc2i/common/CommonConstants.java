@@ -12,7 +12,7 @@ public class CommonConstants {
     /** User name session object key. */
     public static final String SESSION_MEMBER_EMAIL = "USER_EMAIL";	
     
-    public enum ACTIVITY_STATUS { PENDING ,ACCEPTED,REJECTED,COMPLETED };
+    public enum ACTIVITY_STATUS { PENDING ,ACCEPTED,REJECTED,COMPLETED,SENT };
     
     public enum STATUS { Yes, No };
      
@@ -30,6 +30,7 @@ public class CommonConstants {
     public static final Long ROLE_OPERATOR = 21L;
     public static final Long ROLE_GUEST = 22L;
     
+    public static final Long ACTIVITY_TYPE_MESSAGE = 27L;
     public static final Long ACTIVITY_TYPE_MENTOR_REQUEST = 26L;
     public static final Long ACTIVITY_TYPE_PROTEGE_REQUEST = 25L;
     public static final Long ACTIVITY_TYPE_MENTOR_RELEASE = 24L;
