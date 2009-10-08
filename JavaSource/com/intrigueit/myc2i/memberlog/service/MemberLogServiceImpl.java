@@ -96,5 +96,20 @@ public class MemberLogServiceImpl implements MemberLogService{
 	public List<MemberLog> getAllProtegePendingRequest(Long memberId) {
 		String clause = " upper(t.status) = ?1 and t.toMemberId=?2";
 		return memberLogDao.loadByClause(clause, new Object[]{CommonConstants.ACTIVITY_STATUS.PENDING.toString(),memberId});
+	}
+
+
+	@Override
+	public List<MemberLog> getAllMentorReleaseLog(Long memberId) {
+		String clause = " t.memberActivityType = ?1 and t.fromMemberId=?2";
+		return memberLogDao.loadByClause(clause, new Object[]{CommonConstants.ACTIVITY_TYPE_MENTOR_RELEASE,memberId});
+	}
+
+
+	@Override
+	public List<MemberLog> getAllProtegeReleaseLog(Long memberId) {
+		String clause = " t.memberActivityType = ?1 and t.toMemberId=?2";
+		return memberLogDao.loadByClause(clause, new Object[]{CommonConstants.ACTIVITY_TYPE_PROTEGE_RELEASE,memberId});
 	}	
+	
 }
