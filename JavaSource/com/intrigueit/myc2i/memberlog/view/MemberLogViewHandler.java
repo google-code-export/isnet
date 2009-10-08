@@ -138,7 +138,7 @@ public class MemberLogViewHandler extends BasePage implements Serializable {
 						.getWrappedData();
 				lines.add(this.currentLog);
 			}
-
+			
 			log.debug("Sending email notification");
 			String proteemail = this.memberService.findById(this.currentLog.getToMemberId()).getEmail();
 			String emailSub = this.udService.loadById(this.currentLog.getMemberActivityType()).getUdValuesValue();
