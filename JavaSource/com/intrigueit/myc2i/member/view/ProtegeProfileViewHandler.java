@@ -1,6 +1,7 @@
 package com.intrigueit.myc2i.member.view;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -24,6 +25,11 @@ public class ProtegeProfileViewHandler extends BasePage{
 	private Member currentMember;
 	
 	private List<Member> myProtegeList;
+	
+	private List<Member> protegeCurrentMentor;
+	private List<Member> previousMentor;
+	private List<Member> mentorsAraoundProtege;
+	private List<MemberLog> protegeLogs;
 	
 	/**
 	 * 
@@ -132,6 +138,73 @@ public class ProtegeProfileViewHandler extends BasePage{
 
 	public void setMyProtegeList(List<Member> myProtegeList) {
 		this.myProtegeList = myProtegeList;
+	}
+
+	public List<Member> getProtegeCurrentMentor() {
+		try{
+			Member mem = this.memberService.findById(this.getMember().getMemberId());
+			
+			this.protegeCurrentMentor = new ArrayList<Member>();
+			this.protegeCurrentMentor.add(mem);
+		}
+		catch(Exception ex){
+			log.debug(ex.getMessage());
+		}
+		return protegeCurrentMentor;
+	}
+
+	public void setProtegeCurrentMentor(List<Member> protegeCurrentMentor) {
+		this.protegeCurrentMentor = protegeCurrentMentor;
+	}
+
+	private List<String> getMentorsId(){
+		List<String> ids = new ArrayList<String>();
+		try{
+			List<MemberLog> logs1 = this.logService.getAllProtegeReleaseLog(this.getMember().getMemberId());
+			List<MemberLog> logs2 = this.logService.getAllMentorReleaseLog(this.getMember().getMemberId());
+			for(MemberLog log : logs1){
+				ids.add(log.getFromMemberId().toString());
+			}
+			for(MemberLog log: logs2){
+				ids.add(log.getToMemberId().toString());
+			}
+			
+		}
+		catch(Exception ex){
+			log.error(ex.getMessage());
+		}
+		return ids;
+	}
+	private void loadPreviousMentors(){
+		try{
+			
+		}
+		catch(Exception ex){
+			log.error(ex.getMessage());
+		}
+	}
+	public List<Member> getPreviousMentor() {
+		return previousMentor;
+	}
+
+	public void setPreviousMentor(List<Member> previousMentor) {
+		this.previousMentor = previousMentor;
+	}
+
+	public List<Member> getMentorsAraoundProtege() {
+		return mentorsAraoundProtege;
+	}
+
+	public void setMentorsAraoundProtege(List<Member> mentorsAraoundProtege) {
+		this.mentorsAraoundProtege = mentorsAraoundProtege;
+	}
+
+	public List<MemberLog> getProtegeLogs() {
+		return protegeLogs;
+	}
+
+	public void setProtegeLogs(List<MemberLog> protegeLogs) {
+		this.protegeLogs = protegeLogs;
 	}
 	
 	
