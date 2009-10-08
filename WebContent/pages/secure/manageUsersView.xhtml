@@ -88,7 +88,7 @@
               <rich:column width="65px" style="text-align:left;" valign="top">
                 <h:outputText value="#{bundle.member_last_name}" />
               </rich:column>
-              <rich:column width="85px" style="text-align:left;" valign="top">
+              <rich:column width="80px" style="text-align:left;" valign="top">
                 <h:outputText value="#{bundle.member_address}" />
               </rich:column>
               <rich:column width="45px" style="text-align:left;" valign="top">
@@ -103,10 +103,10 @@
               <rich:column width="35px" style="text-align:left;" valign="top">
                 <h:outputText value="#{bundle.member_email}" />
               </rich:column>
-              <rich:column width="35px" style="text-align:left;" valign="top">
+              <rich:column width="55px" style="text-align:left;" valign="top;text-align:center">
                 <h:outputText value="#{bundle.member_admin_yn}" />
               </rich:column>              
-              <rich:column width="20px" style="text-align:center;" valign="top">
+              <rich:column width="25px" style="text-align:center;" valign="top">
                 <h:outputText value="#{bundle.common_action}" />
               </rich:column>
           </rich:columnGroup>
@@ -124,7 +124,7 @@
            <h:outputText escape="false" value="#{member.city}" />
          </rich:column>
          <rich:column>
-           <h:outputText escape="false" value="#{member.state}" />
+           <h:outputText escape="false" value="#{member.stateUDV.udValuesValue}" />
          </rich:column>         
          <rich:column>
            <h:outputText escape="false" value="#{member.zip}" />
