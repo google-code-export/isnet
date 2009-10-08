@@ -31,4 +31,12 @@ public interface MemberLogService {
 	public List<MemberLog> findByProperties(String fromDate, String toDate);
 	
 	public Boolean isInActiveMember(Long memberId);
+	
+	public List<MemberLog> getAllProtegeReleaseLog(Long memberId);
+	
+	public List<MemberLog> getAllMentorReleaseLog(Long memberId);
+	
+	
+	
+	
 }
