@@ -3,6 +3,7 @@ package com.intrigueit.myc2i.member.service;
 
 import java.util.List;
 
+import com.intrigueit.myc2i.common.domain.SearchBean;
 import com.intrigueit.myc2i.member.domain.Member;
 
 
@@ -26,5 +27,7 @@ public interface MemberService {
 	public List<Member> getMentorProtege(Long mentorId);
 	
 	public List<Member> getMemberByDynamicHsql(String hsql);
+	
+	public List<Member> findByProperties(SearchBean searchBean);
 	
 }

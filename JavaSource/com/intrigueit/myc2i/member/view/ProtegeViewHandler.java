@@ -18,7 +18,6 @@ import com.intrigueit.myc2i.common.ServiceConstants;
 import com.intrigueit.myc2i.common.domain.SearchBean;
 import com.intrigueit.myc2i.common.view.BasePage;
 import com.intrigueit.myc2i.member.domain.Member;
-import com.intrigueit.myc2i.member.service.MemberExService;
 import com.intrigueit.myc2i.member.service.MemberService;
 
 @Component("protegeViewHandler")
@@ -29,7 +28,6 @@ public class ProtegeViewHandler extends BasePage implements Serializable {
   /** Initialize the Logger */
   protected static final Logger logger = Logger.getLogger( ProtegeViewHandler.class );
   
-  private MemberExService memberExService;
   private MemberService memberService;
 	private Member currentProtege;
 	List<SelectItem> mentorList;
@@ -38,8 +36,7 @@ public class ProtegeViewHandler extends BasePage implements Serializable {
 	private String mentorId;	
 	
   @Autowired
-	public ProtegeViewHandler(MemberExService memberExService,MemberService memberService) {
-		this.memberExService = memberExService;
+	public ProtegeViewHandler(MemberService memberService) {
 		this.memberService = memberService;
 		this.initialize();
 	} 
@@ -82,7 +79,7 @@ public class ProtegeViewHandler extends BasePage implements Serializable {
 	    logger.debug(" Load proteges by search critariya ");    
 	    SearchBean value = getSearchBean();
 	    value.setRecordId(CommonConstants.PROTEGE);
-	    List<Member> protegeList = memberExService.findByProperties(value);
+	    List<Member> protegeList = memberService.findByProperties(value);
 	    getProtegeLines().setWrappedData(protegeList);
 	  }catch (Exception ex) {
 	    logger.error("proteges by search critariya:"+ex.getMessage());
@@ -92,7 +89,7 @@ public class ProtegeViewHandler extends BasePage implements Serializable {
 	
 	@SuppressWarnings("unchecked")
   public void loadMentors() {    
-	  Object value = Long.parseLong("1");
+	  Object value = CommonConstants.MENTOR;
     logger.debug(" Load mentors ");
     ArrayList<SelectItem> mList = new ArrayList<SelectItem>();
     mList.add(new SelectItem("",""));
