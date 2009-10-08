@@ -15,4 +15,6 @@ public interface MemberDao extends GenericDao<Member,Long>{
 	public List<Member> getMentorProteges(Long mentorId);
 	
 	public List<Member> findByDynamicHsql(String clause);
+	
+	public List<Member> findByProperties(String hsql);
 }

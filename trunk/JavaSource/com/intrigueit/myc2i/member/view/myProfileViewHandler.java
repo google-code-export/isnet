@@ -9,153 +9,162 @@ import java.util.List;
 import java.util.Set;
 
 import javax.faces.model.SelectItem;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+
 import com.intrigueit.myc2i.common.ServiceConstants;
 import com.intrigueit.myc2i.common.view.BasePage;
 import com.intrigueit.myc2i.common.view.CommonValidator;
 import com.intrigueit.myc2i.common.view.ViewDataProvider;
 import com.intrigueit.myc2i.member.domain.Member;
-import com.intrigueit.myc2i.member.service.MemberExService;
 import com.intrigueit.myc2i.member.service.MemberService;
 
 @Component("myProfileViewHandler")
-@Scope("session") 
-public class myProfileViewHandler extends BasePage implements Serializable {	
+@Scope("session")
+public class myProfileViewHandler extends BasePage implements Serializable {
   private static final long serialVersionUID = 2098951095935218884L;
-  
+
   /** Initialize the Logger */
-  protected static final Logger logger = Logger.getLogger( myProfileViewHandler.class );
-  
+  protected static final Logger logger = Logger
+      .getLogger(myProfileViewHandler.class);
+
   private MemberService memberService;
-	private Member currentMember;
-	private ViewDataProvider viewDataProvider;
-	private CommonValidator commonValidator;
-	/** Available transfer methods*/
+  private Member currentMember;
+  private ViewDataProvider viewDataProvider;
+  private CommonValidator commonValidator;
+  /** Available transfer methods */
   private ArrayList<SelectItem> martialStatusList;
   private ArrayList<SelectItem> birthYearlist;
   private ArrayList<SelectItem> knowledgeLevelList;
   private String confirmPass;
-  private Boolean agree = false;  
-  private ArrayList<SelectItem> question1List; 
+  private Boolean agree = false;
+  private ArrayList<SelectItem> question1List;
   private ArrayList<SelectItem> question2List;
-  private Hashtable<String, String> memberTypeHash;  
-  private String userType; 
-  
+  private Hashtable<String, String> memberTypeHash;
+  private String userType;
+
   @Autowired
-	public myProfileViewHandler(MemberExService memberExService,MemberService memberService,
-	    ViewDataProvider viewDataProvider) {
-		this.memberService = memberService;
-		this.viewDataProvider = viewDataProvider;
-		commonValidator = new CommonValidator();
-		this.initialize();
-	} 
-    
-	public void initialize(){		
-	  loadMember();
-	}
-	
-	public void loadMember() {   
+  public myProfileViewHandler(MemberService memberService,
+      ViewDataProvider viewDataProvider) {
+    this.memberService = memberService;
+    this.viewDataProvider = viewDataProvider;
+    commonValidator = new CommonValidator();
+    this.initialize();
+  }
+
+  public void initialize() {
+    loadMember();
+  }
+
+  public void loadMember() {
     try {
-      logger.debug(" Load Member ");    
+      logger.debug(" Load Member ");
       Long recordId = this.getMember().getMemberId();
       this.currentMember = memberService.findById(recordId);
-      if (this.currentMember.getTypeId() !=null ) {
-        setUserType(parseMemberType(""+this.currentMember.getTypeId()));
+      if (this.currentMember.getTypeId() != null) {
+        setUserType(parseMemberType("" + this.currentMember.getTypeId()));
       }
       this.setActionType(ServiceConstants.UPDATE);
-    }catch (Exception ex) {
-      logger.error("Unable to load Members:"+ex.getMessage());
+    } catch (Exception ex) {
+      logger.error("Unable to load Members:" + ex.getMessage());
       ex.printStackTrace();
     }
   }
-	
-	public boolean validate(){
+
+  public boolean validate() {
     logger.debug(" Validating member ");
-    StringBuffer errorMessage = new StringBuffer();   
-    boolean flag = commonValidator.validateMember(this.currentMember,getUserType(),ServiceConstants.UPDATE,
-        confirmPass, errorMessage);
-    if (!flag) setErrorMessage(this.getText("common_error_header") + errorMessage.toString());
+    StringBuffer errorMessage = new StringBuffer();
+    boolean flag = commonValidator.validateMember(this.currentMember,
+        getUserType(), ServiceConstants.UPDATE, confirmPass, errorMessage);
+    if (!flag)
+      setErrorMessage(this.getText("common_error_header")
+          + errorMessage.toString());
     return flag;
   }
-	private boolean validationPhase2(){
-	  logger.debug(" Validating member ");
+
+  private boolean validationPhase2() {
+    logger.debug(" Validating member ");
     boolean flag = true;
-    StringBuffer errorMessage = new StringBuffer();    
-    if(this.getAgree() == false){
-      if ( !flag )errorMessage.append("<br />");
+    StringBuffer errorMessage = new StringBuffer();
+    if (this.getAgree() == false) {
+      if (!flag)
+        errorMessage.append("<br />");
       errorMessage.append(this.getText("common_error_prefix")).append(" ")
-                  .append(this.getText("member_validation_licence_agree"));
+          .append(this.getText("member_validation_licence_agree"));
       flag = false;
     }
-    if (!flag) setErrorMessage(this.getText("common_error_header") + errorMessage.toString());
+    if (!flag)
+      setErrorMessage(this.getText("common_error_header")
+          + errorMessage.toString());
     return flag;
   }
-	public void setCommonData ( String action ) {
-    setSecHeaderMsg("");    
-    try {           
-       Date dt = new Date();           
-       this.currentMember.setRecordUpdaterId(""+this.getMember().getMemberId());    
-       this.currentMember.setLastUpdated(dt);       
+
+  public void setCommonData(String action) {
+    setSecHeaderMsg("");
+    try {
+      Date dt = new Date();
+      this.currentMember
+          .setRecordUpdaterId("" + this.getMember().getMemberId());
+      this.currentMember.setLastUpdated(dt);
     } catch (Exception e) {
-      setSecHeaderMsg(this.getText("invalid_seesion_message")); 
-      logger.error(" Unable to set common data :"+e.getMessage());
-       e.printStackTrace();
-     }
-   }	
-	
-	public void reloadUser() {
-	  Long recordId = this.getMember().getMemberId();
+      setSecHeaderMsg(this.getText("invalid_seesion_message"));
+      logger.error(" Unable to set common data :" + e.getMessage());
+      e.printStackTrace();
+    }
+  }
+
+  public void reloadUser() {
+    Long recordId = this.getMember().getMemberId();
     this.currentMember = memberService.findById(recordId);
-	}
-	
-	public void updateUser () {
+  }
+
+  public void updateUser() {
     logger.debug(" Updating user ");
     setErrorMessage("");
     try {
-      String mTypeId = "";  
-      if(validate()) {         
-        //if (validationPhase2()) {         
-          this.memberService.update(this.currentMember);    
-          logger.debug("Member updated: "+ this.currentMember.getMemberId());
-          this.setErrorMessage(this.getText("update_success_message"));
-          this.setMsgType(ServiceConstants.INFO);
-        //}
-      }    
+      String mTypeId = "";
+      if (validate()) {
+        // if (validationPhase2()) {
+        this.memberService.update(this.currentMember);
+        logger.debug("Member updated: " + this.currentMember.getMemberId());
+        this.setErrorMessage(this.getText("update_success_message"));
+        this.setMsgType(ServiceConstants.INFO);
+        // }
+      }
     } catch (Exception e) {
       setErrorMessage(this.getText("common_system_error"));
       logger.error(e.getMessage());
       e.printStackTrace();
     }
   }
-	
-	/**
+
+  /**
    * @return the memberTypeHash
    */
   public Hashtable<String, String> getMemberTypeHash() {
-    if ( memberTypeHash == null ) {
+    if (memberTypeHash == null) {
       this.memberTypeHash = viewDataProvider.getMemberTypeHash();
     }
     return memberTypeHash;
-  }  
-  
-  
+  }
+
   @SuppressWarnings("unchecked")
-  private String parseMemberType ( String type ) {
+  private String parseMemberType(String type) {
     Hashtable<String, String> mType = this.getMemberTypeHash();
     Set keySet = mType.keySet();
     Iterator it = keySet.iterator();
-    while(it.hasNext()) {
-      String key = (String)it.next();
+    while (it.hasNext()) {
+      String key = (String) it.next();
       if (type.equals(mType.get(key))) {
-        return key;       
-      }      
+        return key;
+      }
     }
     return "";
   }
- 
+
   /**
    * @return the userType
    */
@@ -164,61 +173,66 @@ public class myProfileViewHandler extends BasePage implements Serializable {
   }
 
   /**
-   * @param userType the userType to set
+   * @param userType
+   *          the userType to set
    */
   public void setUserType(String userType) {
     this.userType = userType;
   }
 
+  /**
+   * @return the currentMember
+   */
+  public Member getCurrentMember() {
+    if (currentMember == null) {
+      System.out.println(" Init member ");
+      currentMember = new Member();
+    }
+    return currentMember;
+  }
 
   /**
-	 * @return the currentMember
-	 */
-	public Member getCurrentMember() {
-		if (currentMember == null) {
-			System.out.println(" Init member ");
-		  currentMember = new Member();
-		}
-		return currentMember;
-	}
+   * @param currentMember
+   *          the currentMember to set
+   */
+  public void setCurrentMember(Member currentMember) {
+    this.currentMember = currentMember;
+  }
 
-	/**
-	 * @param currentMember the currentMember to set
-	 */
-	public void setCurrentMember(Member currentMember) {
-		this.currentMember = currentMember;
-	}	
-	  
   public List<SelectItem> getStatesList() {
     return viewDataProvider.getStateList();
   }
-  
+
   public List<SelectItem> getCountryList() {
     return this.viewDataProvider.getCountryList();
   }
-  
+
   public List<SelectItem> getEthinicityList() {
     return this.viewDataProvider.getEthinicityList();
   }
 
   public ArrayList<SelectItem> getMartialStatusList() {
-    if(martialStatusList == null){
+    if (martialStatusList == null) {
       this.martialStatusList = ViewDataProvider.getMaritialStatusList();
     }
     return martialStatusList;
   }
+
   public void setMartialStatusList(ArrayList<SelectItem> martialStatusList) {
     this.martialStatusList = martialStatusList;
   }
+
   public ArrayList<SelectItem> getBirthYearlist() {
-    if(birthYearlist == null){
+    if (birthYearlist == null) {
       this.birthYearlist = ViewDataProvider.getYearList();
     }
     return birthYearlist;
   }
+
   public void setBirthYearlist(ArrayList<SelectItem> birthYearlist) {
     this.birthYearlist = birthYearlist;
   }
+
   public List<SelectItem> getProfessionList() {
     return viewDataProvider.getProfessionList();
   }
@@ -228,33 +242,38 @@ public class myProfileViewHandler extends BasePage implements Serializable {
   }
 
   public ArrayList<SelectItem> getKnowledgeLevelList() {
-    if(knowledgeLevelList == null){
+    if (knowledgeLevelList == null) {
       this.knowledgeLevelList = ViewDataProvider.getKnowledgeLevelList();
     }
     return knowledgeLevelList;
   }
+
   public void setKnowledgeLevelList(ArrayList<SelectItem> knowledgeLevelList) {
     this.knowledgeLevelList = knowledgeLevelList;
   }
-  
+
   public List<SelectItem> getReligionList() {
     return this.viewDataProvider.getReligionList();
   }
+
   public Boolean getAgree() {
     return agree;
   }
+
   public void setAgree(Boolean agree) {
     this.agree = agree;
   }
+
   public String getConfirmPass() {
     return confirmPass;
   }
+
   public void setConfirmPass(String confirmPass) {
     this.confirmPass = confirmPass;
   }
-    
+
   public ArrayList<SelectItem> getQuestion1List() {
-    if(question1List == null){
+    if (question1List == null) {
       this.question1List = viewDataProvider.getQuestionList();
     }
     return question1List;
@@ -265,12 +284,12 @@ public class myProfileViewHandler extends BasePage implements Serializable {
   }
 
   public ArrayList<SelectItem> getQuestion2List() {
-    if(question2List == null){
+    if (question2List == null) {
       this.question2List = viewDataProvider.getQuestionList();
     }
     return question2List;
   }
-  
+
   public void setQuestion2List(ArrayList<SelectItem> question2List) {
     this.question2List = question2List;
   }

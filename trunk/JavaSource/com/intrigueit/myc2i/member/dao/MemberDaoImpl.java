@@ -38,4 +38,11 @@ public class MemberDaoImpl extends GenericDaoImpl<Member,Long> implements Member
 	 
 	    return this.loadByClause(clause, new Object[]{});
 	}
+	
+	@SuppressWarnings("unchecked")
+  @Override
+  public List<Member> findByProperties(String hsql) {
+    Query query = entityManager.createQuery(hsql);
+    return query.getResultList();
+  }
 }

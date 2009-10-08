@@ -20,7 +20,6 @@ import com.intrigueit.myc2i.common.utility.CryptographicUtility;
 import com.intrigueit.myc2i.common.view.BasePage;
 import com.intrigueit.myc2i.common.view.ViewDataProvider;
 import com.intrigueit.myc2i.member.domain.Member;
-import com.intrigueit.myc2i.member.service.MemberExService;
 import com.intrigueit.myc2i.member.service.MemberService;
 
 @Component("resetPasswordViewHandler")
@@ -31,7 +30,6 @@ public class ResetPasswordViewHandler extends BasePage implements Serializable {
   /** Initialize the Logger */
   protected static final Logger logger = Logger.getLogger( ResetPasswordViewHandler.class );
   
-  private MemberExService memberExService;
   private MemberService memberService;
 	private Member currentMember;
 	private ListDataModel memberLines;
@@ -53,9 +51,8 @@ public class ResetPasswordViewHandler extends BasePage implements Serializable {
 	private String confirmPassword;
   
   @Autowired
-	public ResetPasswordViewHandler(MemberExService memberExService,MemberService memberService,
+	public ResetPasswordViewHandler(MemberService memberService,
 	    ViewDataProvider viewDataProvider) {
-		this.memberExService = memberExService;
 		this.memberService = memberService;
 		this.viewDataProvider = viewDataProvider;
 		this.initialize();
@@ -81,7 +78,7 @@ public class ResetPasswordViewHandler extends BasePage implements Serializable {
       logger.debug(" Load Members by search critariya ");    
       SearchBean value = getSearchBean();
       System.out.println(value.getRecordId());
-      List<Member> memberList = memberExService.findByProperties(value);
+      List<Member> memberList = memberService.findByProperties(value);
       getMemberLines().setWrappedData(memberList);
     }catch (Exception ex) {
       logger.error("Members by search critariya:"+ex.getMessage());
