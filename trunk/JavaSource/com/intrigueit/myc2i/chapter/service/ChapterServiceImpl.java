@@ -46,40 +46,36 @@ public class ChapterServiceImpl implements ChapterService {
     return chapterDao.loadByClause(clause, new Object[]{value});
   }
 	
-	public List<LocalChapter> findByProperties(SearchBean searchBean) {
-	  StringBuffer clause = new StringBuffer();
-	  clause.append(" from LocalChapter ");
-	  boolean useWhere = true;
-	  if (searchBean.getChapterName()!= null && !searchBean.getChapterName().isEmpty()) {
-	    clause.append(" where upper(chapterName) like upper('%"+searchBean.getChapterName()+"%')");
-	    useWhere = false;
+	 @Override
+	  public List<LocalChapter> findByProperties(SearchBean searchBean) {
+	    List<Object> value = new ArrayList<Object>();
+	    StringBuffer clause = new StringBuffer();
+	    boolean useAnd = false;
+	    int i = 1;
+	    if (searchBean.getChapterName() != null && !searchBean.getChapterName().isEmpty()) {
+	      clause.append(" upper(chapterName) like ?" + i++);
+	      value.add("%" + searchBean.getChapterName().toUpperCase() + "%");
+	      useAnd = true;
+	    }  
+
+	    if (searchBean.getCity() != null && !searchBean.getCity().isEmpty()) {
+	      clause = (useAnd) ? clause.append(" and upper(chapterCity) like ?" + i++)
+	          : clause.append(" upper(chapterCity) like ?" + i++);
+	      value.add("%" + searchBean.getCity().toUpperCase() + "%");
+	      useAnd = true;
+	    }
+
+	    if (searchBean.getState() != null && !searchBean.getState().isEmpty()) {
+	      clause = (useAnd) ? clause.append(" and upper(chapterState) like ?" + i++)
+	          : clause.append(" upper(chapterState) like ?" + i++);
+	      value.add("%" + searchBean.getState().toUpperCase() + "%");      
+	    }
+	    if (clause.length() == 0) {
+	      return chapterDao.loadAll();
+	    } else {
+	      return chapterDao.loadByClause(clause.toString(), value.toArray());
+	    }
 	  }
-	  /*if (searchBean.getChapterLeader()!= null && !searchBean.getChapterLeader().isEmpty()) {
-      if ( useWhere ) {
-        clause.append(" where ");
-      } else {
-        clause.append(" and ");
-      }
-      clause.append(" leadMemberName like '%"+searchBean.getChapterLeader()+"%'");
-    }*/
-	  if (searchBean.getCity()!= null && !searchBean.getCity().isEmpty()) {
-      if ( useWhere ) {
-        clause.append(" where ");
-      } else {
-        clause.append(" and ");
-      }
-      clause.append(" upper(chapterCity) like upper('%"+searchBean.getCity()+"%')");
-    }
-	  if (searchBean.getState()!= null && !searchBean.getState().isEmpty()) {
-      if ( useWhere ) {
-        clause.append(" where ");
-      } else {
-        clause.append(" and ");
-      }
-      clause.append(" upper(chapterState) like upper('%"+searchBean.getState()+"%')");
-    }
-	  return chapterDao.findByProperties(clause.toString());
-	}
 	
 	public boolean isRecordExist(Long recordId,String chapterName) {
 	  List<Object> value = new ArrayList<Object>();
