@@ -121,11 +121,13 @@ public class CommonValidator extends BasePage {
         flag = false;
       }
       
-      if(CommonValidator.isEmpty(member.getAgreePrivacyPolicy()) || member.getAgreePrivacyPolicy().equals("false")){
-        if ( !flag )errorMessage.append("<br />");
-        errorMessage.append(this.getText("common_error_prefix")).append(" ")
-                    .append(this.getText("member_validation_licence_agree"));
-        flag = false;
+      if (action.equals(ServiceConstants.ADD)) {
+        if(CommonValidator.isEmpty(member.getAgreePrivacyPolicy()) || member.getAgreePrivacyPolicy().equals("false")){
+          if ( !flag )errorMessage.append("<br />");
+          errorMessage.append(this.getText("common_error_prefix")).append(" ")
+                      .append(this.getText("member_validation_licence_agree"));
+          flag = false;
+        }
       }
       
       if(CommonValidator.isEmpty(member.getSecurityQuestion1())){
