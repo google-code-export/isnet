@@ -35,7 +35,7 @@
 			<f:facet name="header"><h:outputText value="Current mentor details" /> </f:facet>
 			<h:panelGrid columns="1" width="100%" cellpadding="0" cellspacing="0" border="0">
 				<rich:dataTable  width="100%" id="idDataGrid"  rowClasses=",container_even_row_style" rows="5" 
-			                value="#{memberSearchViewHandler.members}" var="member" headerClass="table_column_style" cellpadding="0" cellspacing="0">
+			                value="#{protegeProfileViewHandler.protegeCurrentMentor}" var="member" headerClass="table_column_style" cellpadding="0" cellspacing="0">
 		             <rich:column>
 			             <f:facet name="header">
 			                <h:outputText value="#{bundle.protege_search_name}" />
@@ -87,7 +87,7 @@
 			            	</h:graphicImage>	
 		            		 <rich:toolTip styleClass="tooltips_style"  >
 						          <span class="tooltips_span_style">
-						              #{bundle.button_label_view}<br/>
+						              #{bundle.button_label_view_mentor}<br/>
 						          </span>
 						     </rich:toolTip>	
 						</a4j:commandLink>			             
@@ -97,14 +97,14 @@
 			             <f:facet name="header">
 			               <h:outputText value="Action" />
 			             </f:facet>
-		         		 <a4j:commandButton  value="#{bundle.button_label_send_request}"  reRender="idCurrentMentorPanel" action="#{memberLogViewHandler.initMemberLogForMentorRequest}" >
+		         		 <a4j:commandLink   value="#{bundle.button_label_release_mentor}"  reRender="idCurrentMentorPanel" action="#{protegeProfileViewHandler.releaseMentor}" >
 				             <a4j:actionparam name="MEMBER_ID" value="#{member.memberId}"  />
 		            		 <rich:toolTip styleClass="tooltips_style"  >
 						          <span class="tooltips_span_style">
-						              #{bundle.button_tooltips_send_mentor_request}<br/>
+						              #{bundle.button_tooltips_release_from_mentor}<br/>
 						          </span>
 						     </rich:toolTip>	
-						</a4j:commandButton>
+						</a4j:commandLink >
 		             </rich:column>			             		             	             		             		             
 		             		                      	   
 			      </rich:dataTable>		
@@ -167,7 +167,7 @@
 			            	</h:graphicImage>	
 		            		 <rich:toolTip styleClass="tooltips_style"  >
 						          <span class="tooltips_span_style">
-						              #{bundle.button_label_view}<br/>
+						              #{bundle.button_label_view_mentor}<br/>
 						          </span>
 						     </rich:toolTip>	
 						</a4j:commandLink>			             
@@ -178,7 +178,130 @@
 		        <rich:datascroller id="idDataScroller2" align="center"  for="idDataGrid2" maxPages="5" />
 			</h:panelGrid>			         
 		</rich:panel>
-				
+
+		<rich:panel id="idMentorAroundMePanel" headerClass="container_box_panel_header"  bodyClass="container_body_style" >
+			<f:facet name="header">
+			<h:panelGroup>
+				<h:outputText value="List of Mentors in 20 miles radious" /> 
+		         <h:outputLink  value="#{controllerBean.contextPath}/pages/secure/mentorSearch.faces">
+		           <h:outputText value=" [ Advanced search ] "/>
+		         </h:outputLink>				
+			</h:panelGroup>
+			</f:facet>
+			<h:panelGrid columns="1" width="100%" cellpadding="0" cellspacing="0" border="0">
+				<rich:dataTable  width="100%" id="idDataGrid3"  rowClasses=",container_even_row_style" rows="5" 
+			                value="#{protegeProfileViewHandler.mentorsAraoundProtege}" var="member" headerClass="table_column_style" cellpadding="0" cellspacing="0">
+		             <rich:column>
+			             <f:facet name="header">
+			                <h:outputText value="#{bundle.protege_search_name}" />
+			             </f:facet>
+			             <h:panelGroup>
+			             	<h:outputText value="#{member.firstName}" /><rich:spacer width="5"/> <h:outputText value="#{member.lastName}" />
+			             </h:panelGroup>
+				 			
+		             </rich:column>
+		             <rich:column>
+			             <f:facet name="header">
+			                 <h:outputText value="#{bundle.member_city}" />
+			             </f:facet>
+						<h:outputText value="#{member.city}" />
+		             </rich:column>	  
+		             <rich:column>
+			             <f:facet name="header">
+			                <h:outputText value="#{bundle.member_state}" />
+			             </f:facet>
+						<h:outputText value="#{member.stateUDV.udValuesDesc}" />
+		             </rich:column>
+		             <rich:column >
+			             <f:facet name="header">
+			               <h:outputText value="#{bundle.member_zip}" />
+			             </f:facet>
+				 		<h:outputText value="#{member.zip}" />	
+		             </rich:column>	  
+		             <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="#{bundle.member_country}" />
+			             </f:facet>
+						<h:outputText value="#{member.countryUDV.udValuesDesc}" />
+		             </rich:column>	
+		             <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="#{bundle.member_gender}" />
+			             </f:facet>
+						<h:outputText value="#{member.genderInd == 'M'?'Male':'Female'}" />      
+		             </rich:column>	
+
+		             <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="#{bundle.protege_search_profile}" />
+			             </f:facet>
+		         		 <a4j:commandLink  reRender="idmemberInfoDialog" action="#{protegeProfileViewHandler.loadMember}" oncomplete="Richfaces.showModalPanel('idmemberInfoDialog')">
+				             <a4j:actionparam name="MEMBER_ID" value="#{member.memberId}"  />
+				             <a4j:actionparam name="action" value="VIEW"  />
+			            	<h:graphicImage value="/images/member_view.png" align="middle" border="0" > 
+			            	</h:graphicImage>	
+		            		 <rich:toolTip styleClass="tooltips_style"  >
+						          <span class="tooltips_span_style">
+						              #{bundle.button_label_view_mentor}<br/>
+						          </span>
+						     </rich:toolTip>	
+						</a4j:commandLink>			             
+		             </rich:column>		
+		             		             	             		             		             
+		             		                      	   
+			      </rich:dataTable>		
+		        <rich:datascroller id="idDataScroller3" align="center"  for="idDataGrid3" maxPages="5" />
+			</h:panelGrid>			         
+		</rich:panel>
+
+		<rich:panel headerClass="container_box_panel_header"  bodyClass="container_body_style" >
+			<f:facet name="header"><h:outputText value="Protege log" /> </f:facet>
+			<h:panelGrid columns="1" width="100%" cellpadding="0" cellspacing="0" border="0">
+				<rich:dataTable  width="100%" id="idDataGridOldLog"  rowClasses=",container_even_row_style" rows="5"  columnsWidth="120,"
+			                value="#{protegeProfileViewHandler.protegeLogs}" var="log" headerClass="table_column_style" cellpadding="0" cellspacing="0">
+		             <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="#{bundle.activity_date_time}"/>
+			             </f:facet>
+				 			<h:outputText  value="#{log.memberLogDateTime}" >
+				 			<f:convertDateTime dateStyle="default" pattern="dd-MM-yyyy h:mm a"/>
+				 			</h:outputText>
+		             </rich:column>		             
+		             <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="Sent By"/>
+			             </f:facet>
+				 			<h:outputText value="#{log.fromMember.firstName} #{log.fromMember.lastName}" />
+		             </rich:column>
+		             <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="Sent To"/>
+			             </f:facet>
+				 			<h:outputText value="#{log.toMember.firstName} #{log.toMember.lastName}" />
+		             </rich:column>	
+		             <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="#{bundle.activity_subject}"/>
+			             </f:facet>
+				 			<h:outputText  value="#{log.topic}" />
+		             </rich:column>	  
+		             <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="#{bundle.activity_type}"/>
+			             </f:facet>
+				 			<h:outputText value="#{log.userDefinedValues.udValuesValue}" />
+		             </rich:column>	
+		             <rich:column >
+			             <f:facet name="header">
+			               <h:outputText value="#{bundle.activity_log_body}"/>
+			             </f:facet>
+				 			<h:outputText escape="false" value="#{log.memberLogEntryDescription}" />
+		             </rich:column>	           	   
+			      </rich:dataTable>		
+		        <rich:datascroller id="idDataScrollerOldLog" align="center"  for="idDataGridOldLog" maxPages="5" />
+			</h:panelGrid>			         
+		</rich:panel>  
+								
     </h:panelGroup>    
   </ui:define>
   
