@@ -16,12 +16,16 @@ import com.intrigueit.myc2i.member.service.MemberService;
 import com.intrigueit.myc2i.memberlog.domain.MemberLog;
 import com.intrigueit.myc2i.memberlog.service.MemberLogService;
 import com.intrigueit.myc2i.utility.Emailer;
+import com.intrigueit.myc2i.zipcode.ZipCodeUtil;
+import com.intrigueit.myc2i.zipcode.domain.ZipCode;
+import com.intrigueit.myc2i.zipcode.service.ZipCodeService;
 
 @Component("protegeProfileViewHandler")
 @Scope("session")
 public class ProtegeProfileViewHandler extends BasePage{
 	private MemberService memberService;
 	private MemberLogService logService;
+	private ZipCodeService zipCodeService;
 	private Member currentMember;
 	
 	private List<Member> myProtegeList;
@@ -37,12 +41,110 @@ public class ProtegeProfileViewHandler extends BasePage{
 	private static final long serialVersionUID = 4277383197550797956L;
 	
 	@Autowired
-	public ProtegeProfileViewHandler(MemberService memberService, MemberLogService logService) {
+	public ProtegeProfileViewHandler(MemberService memberService, MemberLogService logService,ZipCodeService zipCodeService) {
 		this.memberService = memberService;
 		this.logService = logService;
+		this.zipCodeService = zipCodeService;
 		this.currentMember = new Member();
 	}
 	
+	private void loadMentorAroundMe(){
+		String clause = null;
+		clause = " t.typeId =15";
+		try{
+			List<String> zipCodes = this.getZipCodes();
+			if(zipCodes.size() > 0){
+				String codes = "";
+				for(String str: zipCodes){
+					codes = codes.equals("")? str : codes + ","+ str;
+				}
+				clause = clause.equals("") ? clause+" t.zip in ("+codes +")" : clause+" and t.zip in ("+codes +")";
+			}
+
+			this.mentorsAraoundProtege = this.memberService.getMemberByDynamicHsql(clause);
+		
+		}
+		catch(Exception ex){
+			log.error(ex.getMessage());
+		}
+	}
+	private List<String> getZipCodes(){
+		List<String> zipCodes = new ArrayList<String>();
+		
+		try{
+			//String memberZipCode = this.getMember().getZip().toString();
+			ZipCode srcZip = this.zipCodeService.findById(this.getMember().getZip()+"");
+			List<ZipCode> desZipCodes = this.zipCodeService.findAll();
+			ZipCodeUtil util = new ZipCodeUtil();
+			for(ZipCode zip: desZipCodes){
+				Double distance = util.getDistance(srcZip, zip);
+				if(distance <= 20.0){
+					log.debug("From: "+srcZip.getZipCode() + " Des: "+ zip.getZipCode()+" dis(M): "+ distance);
+					zipCodes.add(zip.getZipCode());
+				}
+				
+			}
+		}
+		catch(Exception ex){
+			
+		}
+		return zipCodes;
+	}
+	
+	public void releaseMentor(){
+		String memberId = this.getParameter("MEMBER_ID");
+		if(memberId == null || memberId.equals("")){
+			return;
+		}		
+		try{
+			Member mentor = this.memberService.findById(Long.parseLong(memberId));
+			Member protege = this.memberService.findById(this.getMember().getMemberId());
+			if(mentor == null){
+				return;
+			}
+			
+			protege.setMentoredByMemberId(null);
+			this.memberService.update(protege);
+			this.getSession().setAttribute(CommonConstants.SESSION_MEMBER_KEY, protege);
+			
+			this.createMentorReleaseLog(mentor);
+			
+			String msgBody = this.getText("email_mentor_release_body",new String[]{ this.getMember().getFirstName() +" "+ this.getMember().getLastName()});
+			String emailSubject = this.getText("email_mentor_release_subject");
+			
+			this.sendConfirmationEmail(mentor.getEmail(),msgBody,emailSubject);
+			
+		}
+		catch(Exception ex){
+			log.error(ex.getMessage());
+		}		
+	}
+	
+	private void createMentorReleaseLog(Member mentor){
+		try{
+			MemberLog log = new MemberLog();
+			log.setFromMemberId(this.getMember().getMemberId());
+			log.setToMemberId(mentor.getMemberId());
+			log.setMemberActivityType(CommonConstants.ACTIVITY_TYPE_MENTOR_RELEASE);
+			log.setTopic(this.getText("activity_log_release_mentor_sub"));
+			log.setMemberLogEntryDescription(this.getText("activity_log_release_mentor_body"));
+			
+			log.setRecordCreatorId(this.getMember().getMemberId()+"");
+			log.setRecordCreatedDate(new Date());
+			log.setRecordLastUpdatedDate(new Date());
+			log.setRecordLastUpdaterId(this.getMember().getMemberId()+"");
+			log.setStatus(CommonConstants.ACTIVITY_STATUS.COMPLETED.toString());
+			
+			Date dt = new Date();
+			log.setMemberLogDateTime(new Timestamp(dt.getTime()));	
+			
+			this.logService.save(log);
+			
+		}
+		catch(Exception ex){
+			log.error(ex.getMessage());
+		}
+	}
 	public void releaseProtege(){
 		String memberId = this.getParameter("MEMBER_ID");
 		if(memberId == null || memberId.equals("")){
@@ -59,7 +161,10 @@ public class ProtegeProfileViewHandler extends BasePage{
 			
 			this.createReleaseLog(protege);
 			
-			this.sendConfirmationEmail(protege.getEmail(), this.getMember().getFirstName() +" "+ this.getMember().getLastName());
+			String msgBody = this.getText("email_protege_release_body",new String[]{ this.getMember().getFirstName() +" "+ this.getMember().getLastName()});
+			String emailSubject = this.getText("email_protege_release_subject");
+			
+			this.sendConfirmationEmail(protege.getEmail(), msgBody,emailSubject);
 			
 		}
 		catch(Exception ex){
@@ -93,10 +198,8 @@ public class ProtegeProfileViewHandler extends BasePage{
 		}
 	}
 	/** Send release email to protege */
-	private void sendConfirmationEmail(String email,String mentorName)throws Exception{
+	private void sendConfirmationEmail(String email,String msgBody,String emailSubject)throws Exception{
 		
-		String msgBody = this.getText("email_protege_release_body",new String[]{mentorName});
-		String emailSubject = this.getText("email_protege_release_subject");
 		/**Send email notification */
 		Emailer emailer = new Emailer(email, msgBody,emailSubject);
 		emailer.setContentType("text/html");
@@ -141,14 +244,14 @@ public class ProtegeProfileViewHandler extends BasePage{
 	}
 
 	public List<Member> getProtegeCurrentMentor() {
+		this.protegeCurrentMentor = new ArrayList<Member>();		
 		try{
-			Member mem = this.memberService.findById(this.getMember().getMemberId());
+			Member mem = this.memberService.findById(this.getMember().getMentoredByMemberId());
 			
-			this.protegeCurrentMentor = new ArrayList<Member>();
 			this.protegeCurrentMentor.add(mem);
 		}
 		catch(Exception ex){
-			log.debug(ex.getMessage());
+			log.error(ex.getMessage());
 		}
 		return protegeCurrentMentor;
 	}
@@ -193,6 +296,10 @@ public class ProtegeProfileViewHandler extends BasePage{
 	}
 
 	public List<Member> getMentorsAraoundProtege() {
+		if(mentorsAraoundProtege == null){
+			this.loadMentorAroundMe();
+		}
+		
 		return mentorsAraoundProtege;
 	}
 
