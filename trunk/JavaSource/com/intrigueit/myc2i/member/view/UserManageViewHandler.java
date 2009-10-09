@@ -237,7 +237,7 @@ public class UserManageViewHandler extends BasePage implements Serializable {
           this.memberService.save(this.currentMember);
           List<Member> itemList = (List<Member>) getMemberLines()
               .getWrappedData();
-          itemList.add(this.currentMember);
+          itemList.add(this.memberService.findById(this.currentMember.getMemberId()));
           logger.debug("Member added: " + this.currentMember.getMemberId());
         }
       }
@@ -285,8 +285,8 @@ public class UserManageViewHandler extends BasePage implements Serializable {
       if (validate()) {
         if (validationPhase2()) {
           int rowIdx = this.getRowIndex();
-          this.memberService.update(this.currentMember);
-          putObjInList(rowIdx, this.currentMember);
+          this.memberService.update(this.currentMember);          
+          putObjInList(rowIdx, this.memberService.findById(this.currentMember.getMemberId()));
           logger.debug("Member updated: " + this.currentMember.getMemberId());
           setErrorMessage("");
         }
