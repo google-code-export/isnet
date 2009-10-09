@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.intrigueit.myc2i.common.CommonConstants;
+import com.intrigueit.myc2i.common.ServiceConstants;
 import com.intrigueit.myc2i.memberlog.dao.MemberLogDao;
 import com.intrigueit.myc2i.memberlog.domain.MemberLog;
 
@@ -72,15 +73,24 @@ public class MemberLogServiceImpl implements MemberLogService{
 		return memberLogDao.loadByClause(clause, new Object[]{CommonConstants.ACTIVITY_STATUS.PENDING.toString(),memberId});
 	}
 	
-	public List<MemberLog> findByProperties (String fromDate, String toDate ) {
+	@Override
+	public List<MemberLog> findMemberLogByDate (String fromDate, String toDate ) {
 		StringBuffer clause = new StringBuffer();    
 		clause.append(" to_char(memberLogDateTime,'yyyyMMdd') >= "+fromDate);
-	    if ( toDate != null ) {
-	      clause.append(" and to_char(memberLogDateTime,'yyyyMMdd') <= "+toDate);
-	    }
-	    return memberLogDao.loadByClause(clause.toString(), null);
+	  if ( toDate != null ) {
+	    clause.append(" and to_char(memberLogDateTime,'yyyyMMdd') <= "+toDate);
+	  }
+	  return memberLogDao.loadByClause(clause.toString(), null);
 	}
-
+	
+	@Override
+	public List<MemberLog> loadMemberLogByActivityType( Long memberId ) {
+	  StringBuffer clause = new StringBuffer();
+    clause.append(" toMemberId = "+memberId);
+    clause.append(" and memberActivityType = "+CommonConstants.ACTIVITY_TYPE_MESSAGE);
+    return memberLogDao.loadByClause(clause.toString(), null);
+	}
+	
 	@Override
 	public Boolean isInActiveMember(Long memberId) {
 		Calendar cal = Calendar.getInstance();
