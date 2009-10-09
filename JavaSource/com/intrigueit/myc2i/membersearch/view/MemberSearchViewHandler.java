@@ -105,7 +105,7 @@ public class MemberSearchViewHandler extends BasePage {
 			for(ZipCode zip: desZipCodes){
 				Double distance = util.getDistance(srcZip, zip);
 				if(distance <= this.dist){
-					System.out.println("From: "+srcZip.getZipCode() + " Des: "+ zip.getZipCode()+" dis(M): "+ distance);
+					log.debug("From: "+srcZip.getZipCode() + " Des: "+ zip.getZipCode()+" dis(M): "+ distance);
 					zipCodes.add(zip.getZipCode());
 				}
 				
