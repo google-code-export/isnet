@@ -30,4 +30,6 @@ public interface MemberService {
 	
 	public List<Member> findByProperties(SearchBean searchBean);
 	
+	public List<Member> findMentorByIds(List<String> idList);
+	
 }
