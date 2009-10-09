@@ -114,4 +114,15 @@ public class MemberServiceImpl implements MemberService {
     }
   }
 
+@Override
+public List<Member> findMentorByIds(List<String> idList) {
+    String ids = null;
+	for(String str: idList){
+    	ids = (ids == null)? str : ids + ","+str; 
+    }
+	String clause = " t.memberId IN ("+ ids +") ";
+    
+    return memberDao.loadByClause(clause, new Object[] {});
+}
+
 }
