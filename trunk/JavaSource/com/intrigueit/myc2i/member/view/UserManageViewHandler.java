@@ -51,6 +51,20 @@ public class UserManageViewHandler extends BasePage implements Serializable {
   private String action;
   private String userType;
   private Hashtable<String, String> memberTypeHash;
+  private boolean isUserTypeReadOnly;
+  /**
+   * @return the isUserTypeReadOnly
+   */
+  public boolean getIsUserTypeReadOnly() {
+    return isUserTypeReadOnly;
+  }
+
+  /**
+   * @param isUserTypeReadOnly the isUserTypeReadOnly to set
+   */
+  public void setIsUserTypeReadOnly(boolean isUserTypeReadOnly) {
+    this.isUserTypeReadOnly = isUserTypeReadOnly;
+  }
 
   /**
    * @return the memberTypeHash
@@ -131,7 +145,7 @@ public class UserManageViewHandler extends BasePage implements Serializable {
   public boolean validate() {
     logger.debug(" Validating member ");
     StringBuffer errorMessage = new StringBuffer();
-    boolean flag = commonValidator.validateMember(this.currentMember, "",
+    boolean flag = commonValidator.validateMember(this.currentMember,this.getUserType(),
         action, confirmPass, errorMessage);
     if (!flag)
       setErrorMessage(this.getText("common_error_header")
@@ -145,8 +159,7 @@ public class UserManageViewHandler extends BasePage implements Serializable {
     StringBuffer errorMessage = new StringBuffer();
     if (this.action.equals(ServiceConstants.ADD)) {
       if (this.memberService.isMemberExist(this.currentMember.getEmail())) {
-        if (!flag)
-          errorMessage.append("<br />");
+        if (!flag) errorMessage.append("<br />");
         errorMessage.append(this.getText("common_error_prefix")).append(" ")
             .append(this.getText("member_validation_email_exist"));
         flag = false;
@@ -212,10 +225,12 @@ public class UserManageViewHandler extends BasePage implements Serializable {
     try {
       this.currentMember = new Member();
       this.setCommonData(ServiceConstants.ADD);
+      this.setConfirmPass("");
+      this.isUserTypeReadOnly = true;
       setSecHeaderMsg(this.getText("header_msg_manage_user") + " "
           + this.getText("header_msg_add"));
       setActionType(ServiceConstants.ADD);
-      setReRenderIds("MEMBER_LINES");
+      setReRenderIds("MEMBER_LINES");      
     } catch (Exception e) {
       logger.error(e.getMessage());
       setErrorMessage(this.getText("common_system_error"));
@@ -234,6 +249,9 @@ public class UserManageViewHandler extends BasePage implements Serializable {
           CryptographicUtility crp = new CryptographicUtility();
           this.currentMember.setPassword(crp
               .getEncryptedText(this.currentMember.getPassword()));
+          if (this.currentMember.getCountry().equals("-1")) {
+            this.currentMember.setCountry(null);
+          }
           this.memberService.save(this.currentMember);
           List<Member> itemList = (List<Member>) getMemberLines()
               .getWrappedData();
@@ -242,6 +260,9 @@ public class UserManageViewHandler extends BasePage implements Serializable {
         }
       }
     } catch (Exception e) {
+      if (this.currentMember.getMemberId() != null) {
+        this.currentMember.setMemberId(null);
+      }
       setErrorMessage(this.getText("common_system_error"));
       logger.error(e.getMessage());
       e.printStackTrace();
@@ -263,6 +284,7 @@ public class UserManageViewHandler extends BasePage implements Serializable {
         }
         setErrorMessage("");
         this.currentMember = memberService.findById(Long.parseLong(recordId));
+        this.isUserTypeReadOnly = false;
         this.setCommonData(ServiceConstants.UPDATE);
         setSecHeaderMsg(this.getText("header_msg_manage_user") + " "
             + this.getText("header_msg_add"));

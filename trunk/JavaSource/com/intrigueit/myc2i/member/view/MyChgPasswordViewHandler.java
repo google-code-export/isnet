@@ -3,8 +3,6 @@ package com.intrigueit.myc2i.member.view;
 import java.io.Serializable;
 
 import org.apache.log4j.Logger;
-import org.hibernate.validator.NotEmpty;
-import org.hibernate.validator.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -12,119 +10,150 @@ import org.springframework.stereotype.Component;
 import com.intrigueit.myc2i.common.ServiceConstants;
 import com.intrigueit.myc2i.common.utility.CryptographicUtility;
 import com.intrigueit.myc2i.common.view.BasePage;
+import com.intrigueit.myc2i.common.view.CommonValidator;
 import com.intrigueit.myc2i.member.domain.Member;
 import com.intrigueit.myc2i.member.service.MemberService;
 
 @Component("myChgPasswordViewHandler")
-@Scope("session") 
-public class MyChgPasswordViewHandler extends BasePage implements Serializable {	
-  
+@Scope("session")
+public class MyChgPasswordViewHandler extends BasePage implements Serializable {
+
   private static final long serialVersionUID = -8177894044709887971L;
 
   /** Initialize the Logger */
-  protected static final Logger logger = Logger.getLogger( MyChgPasswordViewHandler.class );
-  
+  protected static final Logger logger = Logger
+      .getLogger(MyChgPasswordViewHandler.class);
+
   private MemberService memberService;
-	private Member currentMember;
-	
-	@NotNull
-  @NotEmpty
+  private Member currentMember;
+
   private String oldPassword;
-  
-  @NotNull
-  @NotEmpty
+
   private String newPassword;
-  
-  @NotNull
-  @NotEmpty
+
   private String confirmPassword;
-	/** Available transfer methods*/    
+
+  /** Available transfer methods */
   @Autowired
-	public MyChgPasswordViewHandler(MemberService memberService) {
-		this.memberService = memberService;
-		this.initialize();
-	} 
-    
-	public void initialize(){		
-	  loadMember();
-	}
-	
-	public void loadMember() {   
+  public MyChgPasswordViewHandler(MemberService memberService) {
+    this.memberService = memberService;
+    this.initialize();
+  }
+
+  public void initialize() {
+    loadMember();
+  }
+
+  public void loadMember() {
     try {
-      logger.debug(" Load Member ");    
+      logger.debug(" Load Member ");
       Long recordId = this.getMember().getMemberId();
       this.currentMember = memberService.findById(recordId);
       this.setActionType(ServiceConstants.UPDATE);
-    }catch (Exception ex) {
-      logger.error("Unable to load Members:"+ex.getMessage());
+    } catch (Exception ex) {
+      logger.error("Unable to load Members:" + ex.getMessage());
       ex.printStackTrace();
     }
   }
-	
-	public boolean validate () throws Exception{
+
+  public boolean validate() throws Exception {
     logger.debug(" Validating member ");
     boolean flag = true;
     StringBuffer errorMessage = new StringBuffer();
-    if ( this.currentMember == null ) {
+    if (this.currentMember == null) {
       errorMessage.append(this.getText("common_system_error"));
       flag = false;
-    } else {      
-      CryptographicUtility crp = new CryptographicUtility();
-      String oldPass = crp.getDeccryptedText(this.currentMember.getPassword());
-      if (oldPass == null || !oldPass.equals(this.getOldPassword())) {
-        errorMessage.append(this.getText("common_error_prefix"))
-                    .append(" ")
-                    .append(this.getText("user_password_miss_match_msg"));
-         flag = false;
-      }
-      if ( !this.getNewPassword().equals(this.getConfirmPassword())) {
-        if ( !flag )errorMessage.append("<br />");
+    } else {
+      boolean isPassNotEmpty = true; 
+      if (CommonValidator.isEmpty(this.getOldPassword())) {
+        isPassNotEmpty = false;
+        if (!flag) errorMessage.append("<br />");
         errorMessage.append(this.getText("common_error_prefix")).append(" ")
-                    .append(this.getText("user_oldpass_mewpass_notmatch"));
+            .append(this.getText("member_validation_old_password"));
         flag = false;
       }
+      if (CommonValidator.isEmpty(this.getNewPassword())) {
+        isPassNotEmpty = false;
+        if (!flag) errorMessage.append("<br />");
+        errorMessage.append(this.getText("common_error_prefix")).append(" ")
+            .append(this.getText("member_validation_new_password"));
+        flag = false;
+      }
+      if (CommonValidator.isEmpty(this.getConfirmPassword())) {
+        isPassNotEmpty = false;
+        if (!flag) errorMessage.append("<br />");
+        errorMessage.append(this.getText("common_error_prefix")).append(" ")
+            .append(this.getText("member_validation_confirm_password"));
+        flag = false;
+      }
+      if (isPassNotEmpty && !this.getConfirmPassword().equals(this.getNewPassword())) {
+        if (!flag)
+          errorMessage.append("<br />");
+        errorMessage.append(this.getText("common_error_prefix")).append(" ")
+            .append(this.getText("member_validation_password_dont_match"));
+        flag = false;
+      }
+      if ( flag ) {
+        CryptographicUtility crp = new CryptographicUtility();
+        String oldPass = crp.getDeccryptedText(this.currentMember.getPassword());
+        if (oldPass == null || !oldPass.equals(this.getOldPassword())) {
+          errorMessage.append(this.getText("common_error_prefix")).append(" ")
+              .append(this.getText("user_password_miss_match_msg"));
+          flag = false;
+        }
+        if (!this.getNewPassword().equals(this.getConfirmPassword())) {
+          if (!flag)
+            errorMessage.append("<br />");
+          errorMessage.append(this.getText("common_error_prefix")).append(" ")
+              .append(this.getText("user_oldpass_mewpass_notmatch"));
+          flag = false;
+        }
+      }
     }
-    if (!flag) setErrorMessage(this.getText("common_error_header") + errorMessage.toString());
+    if (!flag)
+      setErrorMessage(this.getText("common_error_header")
+          + errorMessage.toString());
     return flag;
   }
-	
-	public void clearForm() {
-	  this.setOldPassword("");
-	  this.setNewPassword("");
-	  this.setConfirmPassword("");
-	}
-	
-	 public void resetUserPassword () {
-	    logger.debug(" Change user password ");
-	    setErrorMessage("");
-	    try {
-	      if(validate()) {         
-	        CryptographicUtility crp = new CryptographicUtility();
-	        this.currentMember.setPassword(crp.getEncryptedText(this.getNewPassword()));
-	        memberService.update(this.currentMember);
-	        this.setErrorMessage(this.getText("update_password_success_message"));
-	        this.setMsgType(ServiceConstants.INFO);
-	        
-	      }
-	    } catch (Exception e) {
-	      setErrorMessage(this.getText("common_system_error"));
-	      logger.error(e.getMessage());
-	      e.printStackTrace();
-	    }
-	  }
-	
-	/**
-	 * @return the currentMember
-	 */
-	public Member getCurrentMember() {
-		if (currentMember == null) {
-			System.out.println(" Init member ");
-		  currentMember = new Member();
-		}
-		return currentMember;
-	}
-	
-	/**
+
+  public void clearForm() {
+    this.setOldPassword("");
+    this.setNewPassword("");
+    this.setConfirmPassword("");
+  }
+
+  public void resetUserPassword() {
+    logger.debug(" Change user password ");
+    setErrorMessage("");
+    try {
+      if (validate()) {
+        CryptographicUtility crp = new CryptographicUtility();
+        this.currentMember.setPassword(crp.getEncryptedText(this
+            .getNewPassword()));
+        memberService.update(this.currentMember);
+        this.setErrorMessage(this.getText("update_password_success_message"));
+        this.setMsgType(ServiceConstants.INFO);
+
+      }
+    } catch (Exception e) {
+      setErrorMessage(this.getText("common_system_error"));
+      logger.error(e.getMessage());
+      e.printStackTrace();
+    }
+  }
+
+  /**
+   * @return the currentMember
+   */
+  public Member getCurrentMember() {
+    if (currentMember == null) {
+      System.out.println(" Init member ");
+      currentMember = new Member();
+    }
+    return currentMember;
+  }
+
+  /**
    * @return the oldPassword
    */
   public String getOldPassword() {
@@ -132,7 +161,8 @@ public class MyChgPasswordViewHandler extends BasePage implements Serializable {
   }
 
   /**
-   * @param oldPassword the oldPassword to set
+   * @param oldPassword
+   *          the oldPassword to set
    */
   public void setOldPassword(String oldPassword) {
     this.oldPassword = oldPassword;
@@ -146,7 +176,8 @@ public class MyChgPasswordViewHandler extends BasePage implements Serializable {
   }
 
   /**
-   * @param newPassword the newPassword to set
+   * @param newPassword
+   *          the newPassword to set
    */
   public void setNewPassword(String newPassword) {
     this.newPassword = newPassword;
@@ -160,7 +191,8 @@ public class MyChgPasswordViewHandler extends BasePage implements Serializable {
   }
 
   /**
-   * @param confirmPassword the confirmPassword to set
+   * @param confirmPassword
+   *          the confirmPassword to set
    */
   public void setConfirmPassword(String confirmPassword) {
     this.confirmPassword = confirmPassword;
