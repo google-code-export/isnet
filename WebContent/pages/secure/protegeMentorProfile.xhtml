@@ -30,15 +30,162 @@
           
       </h:panelGroup>
       
-      <rich:spacer width="100%" height="10"/>
-		
-	    
-	comming soon
+
+		<rich:panel id="idCurrentMentorPanel" headerClass="container_box_panel_header"  bodyClass="container_body_style" >
+			<f:facet name="header"><h:outputText value="Current mentor details" /> </f:facet>
+			<h:panelGrid columns="1" width="100%" cellpadding="0" cellspacing="0" border="0">
+				<rich:dataTable  width="100%" id="idDataGrid"  rowClasses=",container_even_row_style" rows="5" 
+			                value="#{memberSearchViewHandler.members}" var="member" headerClass="table_column_style" cellpadding="0" cellspacing="0">
+		             <rich:column>
+			             <f:facet name="header">
+			                <h:outputText value="#{bundle.protege_search_name}" />
+			             </f:facet>
+			             <h:panelGroup>
+			             	<h:outputText value="#{member.firstName}" /><rich:spacer width="5"/> <h:outputText value="#{member.lastName}" />
+			             </h:panelGroup>
+				 			
+		             </rich:column>
+		             <rich:column>
+			             <f:facet name="header">
+			                 <h:outputText value="#{bundle.member_city}" />
+			             </f:facet>
+						<h:outputText value="#{member.city}" />
+		             </rich:column>	  
+		             <rich:column>
+			             <f:facet name="header">
+			                <h:outputText value="#{bundle.member_state}" />
+			             </f:facet>
+						<h:outputText value="#{member.stateUDV.udValuesDesc}" />
+		             </rich:column>
+		             <rich:column >
+			             <f:facet name="header">
+			               <h:outputText value="#{bundle.member_zip}" />
+			             </f:facet>
+				 		<h:outputText value="#{member.zip}" />	
+		             </rich:column>	  
+		             <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="#{bundle.member_country}" />
+			             </f:facet>
+						<h:outputText value="#{member.countryUDV.udValuesDesc}" />
+		             </rich:column>	
+		             <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="#{bundle.member_gender}" />
+			             </f:facet>
+						<h:outputText value="#{member.genderInd == 'M'?'Male':'Female'}" />      
+		             </rich:column>	
+
+		             <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="#{bundle.protege_search_profile}" />
+			             </f:facet>
+		         		 <a4j:commandLink  reRender="idmemberInfoDialog" action="#{protegeProfileViewHandler.loadMember}" oncomplete="Richfaces.showModalPanel('idmemberInfoDialog')">
+				             <a4j:actionparam name="MEMBER_ID" value="#{member.memberId}"  />
+				             <a4j:actionparam name="action" value="VIEW"  />
+			            	<h:graphicImage value="/images/member_view.png" align="middle" border="0" > 
+			            	</h:graphicImage>	
+		            		 <rich:toolTip styleClass="tooltips_style"  >
+						          <span class="tooltips_span_style">
+						              #{bundle.button_label_view}<br/>
+						          </span>
+						     </rich:toolTip>	
+						</a4j:commandLink>			             
+		             </rich:column>		
+
+		             <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="Action" />
+			             </f:facet>
+		         		 <a4j:commandButton  value="#{bundle.button_label_send_request}"  reRender="idCurrentMentorPanel" action="#{memberLogViewHandler.initMemberLogForMentorRequest}" >
+				             <a4j:actionparam name="MEMBER_ID" value="#{member.memberId}"  />
+		            		 <rich:toolTip styleClass="tooltips_style"  >
+						          <span class="tooltips_span_style">
+						              #{bundle.button_tooltips_send_mentor_request}<br/>
+						          </span>
+						     </rich:toolTip>	
+						</a4j:commandButton>
+		             </rich:column>			             		             	             		             		             
+		             		                      	   
+			      </rich:dataTable>		
+			</h:panelGrid>			         
+		</rich:panel>
+
+		<rich:panel id="idPreviousMentorPanel" headerClass="container_box_panel_header"  bodyClass="container_body_style" >
+			<f:facet name="header"><h:outputText value="Previous mentor details" /> </f:facet>
+			<h:panelGrid columns="1" width="100%" cellpadding="0" cellspacing="0" border="0">
+				<rich:dataTable  width="100%" id="idDataGrid2"  rowClasses=",container_even_row_style" rows="5" 
+			                value="#{protegeProfileViewHandler.previousMentor}" var="member" headerClass="table_column_style" cellpadding="0" cellspacing="0">
+		             <rich:column>
+			             <f:facet name="header">
+			                <h:outputText value="#{bundle.protege_search_name}" />
+			             </f:facet>
+			             <h:panelGroup>
+			             	<h:outputText value="#{member.firstName}" /><rich:spacer width="5"/> <h:outputText value="#{member.lastName}" />
+			             </h:panelGroup>
+				 			
+		             </rich:column>
+		             <rich:column>
+			             <f:facet name="header">
+			                 <h:outputText value="#{bundle.member_city}" />
+			             </f:facet>
+						<h:outputText value="#{member.city}" />
+		             </rich:column>	  
+		             <rich:column>
+			             <f:facet name="header">
+			                <h:outputText value="#{bundle.member_state}" />
+			             </f:facet>
+						<h:outputText value="#{member.stateUDV.udValuesDesc}" />
+		             </rich:column>
+		             <rich:column >
+			             <f:facet name="header">
+			               <h:outputText value="#{bundle.member_zip}" />
+			             </f:facet>
+				 		<h:outputText value="#{member.zip}" />	
+		             </rich:column>	  
+		             <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="#{bundle.member_country}" />
+			             </f:facet>
+						<h:outputText value="#{member.countryUDV.udValuesDesc}" />
+		             </rich:column>	
+		             <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="#{bundle.member_gender}" />
+			             </f:facet>
+						<h:outputText value="#{member.genderInd == 'M'?'Male':'Female'}" />      
+		             </rich:column>	
+
+		             <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="#{bundle.protege_search_profile}" />
+			             </f:facet>
+		         		 <a4j:commandLink  reRender="idmemberInfoDialog" action="#{protegeProfileViewHandler.loadMember}" oncomplete="Richfaces.showModalPanel('idmemberInfoDialog')">
+				             <a4j:actionparam name="MEMBER_ID" value="#{member.memberId}"  />
+				             <a4j:actionparam name="action" value="VIEW"  />
+			            	<h:graphicImage value="/images/member_view.png" align="middle" border="0" > 
+			            	</h:graphicImage>	
+		            		 <rich:toolTip styleClass="tooltips_style"  >
+						          <span class="tooltips_span_style">
+						              #{bundle.button_label_view}<br/>
+						          </span>
+						     </rich:toolTip>	
+						</a4j:commandLink>			             
+		             </rich:column>		
+		             		             	             		             		             
+		             		                      	   
+			      </rich:dataTable>		
+		        <rich:datascroller id="idDataScroller2" align="center"  for="idDataGrid2" maxPages="5" />
+			</h:panelGrid>			         
+		</rich:panel>
+				
     </h:panelGroup>    
   </ui:define>
   
   <ui:define name="modalPanels">
-        
+    <a4j:region>
+      <ui:include src="../modals/memberInfoDialog.xhtml"></ui:include>
+    </a4j:region>
   </ui:define>
 </ui:composition>
 </html>
