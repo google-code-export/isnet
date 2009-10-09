@@ -177,13 +177,14 @@ public class ProtegeProfileViewHandler extends BasePage{
 	}
 	private void loadPreviousMentors(){
 		try{
-			
+			this.previousMentor = this.memberService.findMentorByIds(this.getMentorsId());
 		}
 		catch(Exception ex){
 			log.error(ex.getMessage());
 		}
 	}
 	public List<Member> getPreviousMentor() {
+		this.loadPreviousMentors();
 		return previousMentor;
 	}
 
