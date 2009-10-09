@@ -176,10 +176,13 @@ public class MemberLogViewHandler extends BasePage implements Serializable {
 
 	public void loadAllMemberLog() {
 		try {
-			logger.debug(" Load All Member Log");
-			List<MemberLog> recordList = memberLogService.findAll();
-			this.getMessageLines().setWrappedData(recordList);
-			this.setActionType(ServiceConstants.UPDATE);
+		  Long recordId = this.getMember().getMemberId();
+		  if ( recordId != null ) {
+  		  logger.debug(" Load All Member Log");
+  			List<MemberLog> recordList = memberLogService.loadMemberLogByActivityType(recordId);
+  			this.getMessageLines().setWrappedData(recordList);
+  			this.setActionType(ServiceConstants.UPDATE);
+		  }	
 		} catch (Exception ex) {
 			logger.error("Unable to load Members:" + ex.getMessage());
 			ex.printStackTrace();
@@ -193,7 +196,7 @@ public class MemberLogViewHandler extends BasePage implements Serializable {
 			SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
 			String fromDate = sdf.format(this.getFromDate());
 			String toDate = sdf.format(this.getToDate());
-			List<MemberLog> recordList = memberLogService.findByProperties(
+			List<MemberLog> recordList = memberLogService.findMemberLogByDate(
 					fromDate, toDate);
 			getMessageLines().setWrappedData(recordList);
 		} catch (Exception ex) {
@@ -238,9 +241,15 @@ public class MemberLogViewHandler extends BasePage implements Serializable {
 						.getRowData();
 				this.currentLog = new MemberLog();
 				this.currentLog.setFromMemberId(mLog.getToMemberId());
+				this.setMemberName(mLog.getToMember().getFirstName());
 				this.currentLog.setTopic("Ref : " + mLog.getTopic());
 				this.setActionType(ServiceConstants.UPDATE);
 				this.setReRenderIds("MESSAGE_LINES");
+				this.currentLog.setMemberActivityType(CommonConstants.ACTIVITY_TYPE_MESSAGE);
+				this.errMsgs.clear();
+	      this.hasError = false;
+	      this.showSearchBox = false;
+	      this.isActivityTypeReadOnly = true;
 				setSecHeaderMsg(this.getText("header_msg_contact_us") + " "
 						+ this.getText("header_msg_update"));
 			} catch (Exception e) {
@@ -336,12 +345,7 @@ public class MemberLogViewHandler extends BasePage implements Serializable {
 	public ListDataModel getMessageLines() {
 		if (messageLines == null) {
 			messageLines = new ListDataModel();
-		}
-		try{
 			this.loadAllMemberLog();
-		}
-		catch(Exception ex){
-			log.error(ex.getMessage());
 		}
 		return messageLines;
 	}
