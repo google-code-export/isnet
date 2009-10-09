@@ -251,14 +251,15 @@
           <h:outputText  value="#{bundle.member_new_email_notify}"/>
         </h:panelGroup>
         
-        <h:outputLabel>
+        <h:outputLabel rendered="#{userManageViewHandler.actionType eq 'A'}">
         <h:outputText styleClass="required_field" value="*" />
         </h:outputLabel>
-        <h:panelGroup >
+        <h:panelGroup rendered="#{userManageViewHandler.actionType eq 'A'}">
           <h:selectBooleanCheckbox id="idPrivacy" title="Privacy Policy"  value="#{currentEBean.agreePrivacyPolicy}" />
           <rich:spacer width="5"></rich:spacer>                   
           <h:outputText  value="#{bundle.member_term_privacy_policy}"/>          
         </h:panelGroup>
+        
       </h:panelGrid>
     </rich:tab>
     <rich:tab label="Ssecurity Question">
