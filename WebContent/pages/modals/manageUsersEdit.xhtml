@@ -9,12 +9,12 @@
    xmlns:c="http://java.sun.com/jstl/core"
    xmlns:ccmp="http://www.myc2i.com/jsf/commoncmp">
   <ui:composition>
-    <rich:panel id="idUserEditContainer" styleClass="default_edit">
+   <rich:panel id="idUserEditContainer" styleClass="default_edit">
 	 <rich:spacer width="100%" height="20"/>
 	 <c:set var="currentEBean" value="#{userManageViewHandler.currentMember}"></c:set>	 
    <h:panelGroup id="idUserEditPanelGroup">
-   <rich:tabPanel switchType="client">
-   <rich:tab label="Login Information" rendered="#{userManageViewHandler.actionType eq 'A'}">
+   <rich:tabPanel switchType="client" selectedTab="idLoginInfo">
+   <rich:tab name="idLoginInfo" label="Login Information" rendered="#{userManageViewHandler.actionType eq 'A'}">
       <h:panelGrid columns="2" id="idloginInfo" border="0" columnClasses="prompt,data,errprompt"
         rowClasses="rowinput" width="100%">
         <h:outputLabel >
@@ -42,7 +42,7 @@
         <h:outputText value="#{bundle.member_type}"/>
         <h:panelGroup>
           <h:selectOneMenu styleClass="dropdown" id="userType"
-            value="#{currentEBean.typeId}" >
+            value="#{currentEBean.typeId}" disabled="#{userManageViewHandler.isUserTypeReadOnly}">
             <f:selectItems value="#{userManageViewHandler.usersList}"/>
           </h:selectOneMenu>
         </h:panelGroup>
@@ -96,22 +96,41 @@
          </h:selectOneMenu>
             
          <h:outputLabel rendered="#{userManageViewHandler.userType ne 'PROTEGE'}">
-          <h:outputText value="#{bundle.member_home_phone}"/>
+          <h:outputText value="#{bundle.member_home_phone}"/>          
          </h:outputLabel>  
-         <h:inputText  id="idHomePhone" value="#{currentEBean.homePhoneNumber}" styleClass="form_input_text_medium"
-          rendered="#{userManageViewHandler.userType ne 'PROTEGE'}"/>
+         <h:panelGroup>
+           <h:inputText  id="idHomePhone" value="#{currentEBean.homePhoneNumber}" 
+            styleClass="number"
+            rendered="#{userManageViewHandler.userType ne 'PROTEGE'}" label="Home phone">
+            <f:convertNumber type="number"/>
+            <rich:ajaxValidator event="onblur"/>
+           </h:inputText>
+           <rich:message for="idHomePhone" title="Must be a numnber"/>
+         </h:panelGroup>
         
          <h:outputLabel rendered="#{userManageViewHandler.userType ne 'PROTEGE'}">
-              <h:outputText value="#{bundle.member_work_phone}"/>
+           <h:outputText value="#{bundle.member_work_phone}"/>
          </h:outputLabel>  
-         <h:inputText  id="idWorkPhone" value="#{currentEBean.workPhoneNumber}" styleClass="form_input_text_medium"
-          rendered="#{userManageViewHandler.userType ne 'PROTEGE'}"/>
+         <h:panelGroup>
+          <h:inputText  id="idWorkPhone" value="#{currentEBean.workPhoneNumber}" 
+            styleClass="number" rendered="#{userManageViewHandler.userType ne 'PROTEGE'}" label="Work phone">
+            <f:convertNumber type="number"/>
+            <rich:ajaxValidator event="onblur"/>
+          </h:inputText>
+          <rich:message for="idWorkPhone" title="Must be a numnber"/>
+         </h:panelGroup>
             
          <h:outputLabel rendered="#{userManageViewHandler.userType ne 'PROTEGE'}">
           <h:outputText value="#{bundle.member_cell_phone}"/>
-         </h:outputLabel>  
-         <h:inputText  id="idCellPhone" value="#{currentEBean.cellPhoneNumber}" styleClass="form_input_text_medium"
-          rendered="#{userManageViewHandler.userType ne 'PROTEGE'}"/>
+         </h:outputLabel>
+         <h:panelGroup>  
+           <h:inputText  id="idCellPhone" value="#{currentEBean.cellPhoneNumber}" 
+            styleClass="number" rendered="#{userManageViewHandler.userType ne 'PROTEGE'}" label="Cell phone">
+            <f:convertNumber type="number"/>
+            <rich:ajaxValidator event="onblur"/>
+           </h:inputText>
+           <rich:message for="idCellPhone" title="Must be a numnber"/>
+         </h:panelGroup>
                           
           <h:outputLabel rendered="#{userManageViewHandler.userType ne 'PROTEGE'}">
           <h:outputText value="#{bundle.member_linked_in_URL}"/><h:outputText styleClass="required_field" value="" />
