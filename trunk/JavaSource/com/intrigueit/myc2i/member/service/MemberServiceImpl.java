@@ -102,10 +102,10 @@ public class MemberServiceImpl implements MemberService {
       useAnd = true;
     }
 
-    if (searchBean.getState() != null && !searchBean.getState().isEmpty()) {
-      clause = (useAnd) ? clause.append(" and upper(state) like ?" + i++)
-          : clause.append(" upper(state) like ?" + i++);
-      value.add("%" + searchBean.getState().toUpperCase() + "%");      
+    if (searchBean.getState() != null && !searchBean.getState().equals("-1")) {
+      clause = (useAnd) ? clause.append(" and state =?" + i++)
+          : clause.append(" state =?" + i++);
+      value.add(searchBean.getState());      
     }
     if (clause.length() == 0) {
       return memberDao.loadAll();
