@@ -28,7 +28,9 @@ public interface MemberLogService {
 	
 	public List<MemberLog> findAll();
 	
-	public List<MemberLog> findByProperties(String fromDate, String toDate);
+	public List<MemberLog> findMemberLogByDate(String fromDate, String toDate);
+	
+	public List<MemberLog> loadMemberLogByActivityType(Long memberId);
 	
 	public Boolean isInActiveMember(Long memberId);
 	
