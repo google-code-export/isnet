@@ -249,7 +249,7 @@ public class UserManageViewHandler extends BasePage implements Serializable {
           CryptographicUtility crp = new CryptographicUtility();
           this.currentMember.setPassword(crp
               .getEncryptedText(this.currentMember.getPassword()));
-          if (this.currentMember.getCountry().equals("-1")) {
+          if (this.currentMember.getCountry()!=null && this.currentMember.getCountry().equals("-1")) {
             this.currentMember.setCountry(null);
           }
           this.memberService.save(this.currentMember);
