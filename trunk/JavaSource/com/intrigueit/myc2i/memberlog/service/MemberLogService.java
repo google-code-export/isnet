@@ -38,6 +38,8 @@ public interface MemberLogService {
 	
 	public List<MemberLog> getAllMentorReleaseLog(Long memberId);
 	
+	public List<MemberLog> getMemberConversation(Long memberId);
+	
 	
 	
 	
