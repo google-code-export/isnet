@@ -136,7 +136,7 @@ public class CommonValidator extends BasePage {
       }
 
       /*if (!memberType.equals(ServiceConstants.PROTEGE)
-          && CommonValidator.isNotValidNumber(member.getHomePhoneNumber())) {
+          && CommonValidator.isEmpty(member.getHomePhoneNumber())) {
         if (!flag)
           errorMessage.append("<br />");
         errorMessage.append(this.getText("common_error_prefix")).append(" ")
@@ -145,7 +145,7 @@ public class CommonValidator extends BasePage {
       }
       
       if (!memberType.equals(ServiceConstants.PROTEGE)
-          && CommonValidator.isNotValidNumber(member.getWorkPhoneNumber())) {
+          && CommonValidator.isEmpty(member.getWorkPhoneNumber())) {
         if (!flag)
           errorMessage.append("<br />");
         errorMessage.append(this.getText("common_error_prefix")).append(" ")
@@ -154,13 +154,13 @@ public class CommonValidator extends BasePage {
       }
       
       if (!memberType.equals(ServiceConstants.PROTEGE)
-          && CommonValidator.isNotValidNumber(member.getCellPhoneNumber())) {
+          && CommonValidator.isEmpty(member.getCellPhoneNumber())) {
         if (!flag)
           errorMessage.append("<br />");
         errorMessage.append(this.getText("common_error_prefix")).append(" ")
             .append(this.getText("member_validation_cell_phone"));
         flag = false;
-      }     */ 
+      } */
       
       /** Check the member profession */
       if (CommonValidator.isEmpty(member.getProfession())) {
