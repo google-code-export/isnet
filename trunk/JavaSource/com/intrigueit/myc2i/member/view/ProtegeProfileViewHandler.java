@@ -307,7 +307,16 @@ public class ProtegeProfileViewHandler extends BasePage{
 		this.mentorsAraoundProtege = mentorsAraoundProtege;
 	}
 
+	private void loadLogs(){
+		try{
+			this.protegeLogs = this.logService.getMemberConversation(this.getMember().getMemberId());
+		}
+		catch(Exception ex){
+			log.error(ex.getMessage());
+		}
+	}
 	public List<MemberLog> getProtegeLogs() {
+		this.loadLogs();
 		return protegeLogs;
 	}
 
