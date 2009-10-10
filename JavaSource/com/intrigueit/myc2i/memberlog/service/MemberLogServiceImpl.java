@@ -120,6 +120,13 @@ public class MemberLogServiceImpl implements MemberLogService{
 	public List<MemberLog> getAllProtegeReleaseLog(Long memberId) {
 		String clause = " t.memberActivityType = ?1 and t.toMemberId=?2";
 		return memberLogDao.loadByClause(clause, new Object[]{CommonConstants.ACTIVITY_TYPE_PROTEGE_RELEASE,memberId});
+	}
+
+
+	@Override
+	public List<MemberLog> getMemberConversation(Long memberId) {
+		String clause = " t.fromMemberId=?1  OR t.toMemberId=?2 ORDER BY t.memberLogDateTime DESC ";
+		return memberLogDao.loadByClause(clause, new Object[]{memberId,memberId});
 	}	
 	
 }
