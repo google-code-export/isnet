@@ -77,14 +77,14 @@ public class Member implements java.io.Serializable {
 	@Column(name = "MEMBER_COUNTRY")
 	private String country;
 
-	@Column(name = "MEMBER_CELL_PHONE_NUMBER", precision = 22, scale = 0)
-	private Long cellPhoneNumber;
+	@Column(name = "MEMBER_CELL_PHONE_NUMBER")
+	private String cellPhoneNumber;
 
-	@Column(name = "MEMBER_WORK_PHONE_NUMBER", precision = 22, scale = 0)
-	private Long workPhoneNumber;
+	@Column(name = "MEMBER_WORK_PHONE_NUMBER")
+	private String workPhoneNumber;
 
-	@Column(name = "MEMBER_HOME_PHONE_NUMBER", precision = 22, scale = 0)
-	private Long homePhoneNumber;
+	@Column(name = "MEMBER_HOME_PHONE_NUMBER")
+	private String homePhoneNumber;
 
 	@Column(name = "MEMBER_PROFESSION")
 	private String profession;
@@ -301,27 +301,27 @@ public class Member implements java.io.Serializable {
 		this.zip = zip;
 	}
 
-	public Long getCellPhoneNumber() {
+	public String getCellPhoneNumber() {
 		return cellPhoneNumber;
 	}
 
-	public void setCellPhoneNumber(Long cellPhoneNumber) {
+	public void setCellPhoneNumber(String cellPhoneNumber) {
 		this.cellPhoneNumber = cellPhoneNumber;
 	}
 
-	public Long getWorkPhoneNumber() {
+	public String getWorkPhoneNumber() {
 		return workPhoneNumber;
 	}
 
-	public void setWorkPhoneNumber(Long workPhoneNumber) {
+	public void setWorkPhoneNumber(String workPhoneNumber) {
 		this.workPhoneNumber = workPhoneNumber;
 	}
 
-	public Long getHomePhoneNumber() {
+	public String getHomePhoneNumber() {
 		return homePhoneNumber;
 	}
 
-	public void setHomePhoneNumber(Long homePhoneNumber) {
+	public void setHomePhoneNumber(String homePhoneNumber) {
 		this.homePhoneNumber = homePhoneNumber;
 	}
 
