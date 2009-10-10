@@ -99,13 +99,8 @@
           <h:outputText value="#{bundle.member_home_phone}"/>          
          </h:outputLabel>  
          <h:panelGroup>
-           <h:inputText  id="idHomePhone" value="#{currentEBean.homePhoneNumber}" 
-            styleClass="number"
-            rendered="#{userManageViewHandler.userType ne 'PROTEGE'}" label="Home phone">
-            <f:convertNumber type="number"/>
-            <rich:ajaxValidator event="onblur"/>
-           </h:inputText>
-           <rich:message for="idHomePhone" title="Must be a numnber"/>
+           <h:inputText  id="idHomePhone" value="#{currentEBean.homePhoneNumber}" styleClass="form_input_text_medium"
+            rendered="#{userManageViewHandler.userType ne 'PROTEGE'}"/>
          </h:panelGroup>
         
          <h:outputLabel rendered="#{userManageViewHandler.userType ne 'PROTEGE'}">
@@ -113,11 +108,7 @@
          </h:outputLabel>  
          <h:panelGroup>
           <h:inputText  id="idWorkPhone" value="#{currentEBean.workPhoneNumber}" 
-            styleClass="number" rendered="#{userManageViewHandler.userType ne 'PROTEGE'}" label="Work phone">
-            <f:convertNumber type="number"/>
-            <rich:ajaxValidator event="onblur"/>
-          </h:inputText>
-          <rich:message for="idWorkPhone" title="Must be a numnber"/>
+            styleClass="form_input_text_medium" rendered="#{userManageViewHandler.userType ne 'PROTEGE'}"/>
          </h:panelGroup>
             
          <h:outputLabel rendered="#{userManageViewHandler.userType ne 'PROTEGE'}">
@@ -125,11 +116,7 @@
          </h:outputLabel>
          <h:panelGroup>  
            <h:inputText  id="idCellPhone" value="#{currentEBean.cellPhoneNumber}" 
-            styleClass="number" rendered="#{userManageViewHandler.userType ne 'PROTEGE'}" label="Cell phone">
-            <f:convertNumber type="number"/>
-            <rich:ajaxValidator event="onblur"/>
-           </h:inputText>
-           <rich:message for="idCellPhone" title="Must be a numnber"/>
+            styleClass="form_input_text_medium" rendered="#{userManageViewHandler.userType ne 'PROTEGE'}"/>
          </h:panelGroup>
                           
           <h:outputLabel rendered="#{userManageViewHandler.userType ne 'PROTEGE'}">
