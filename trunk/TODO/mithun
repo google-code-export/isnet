@@ -16,3 +16,5 @@ public List<MemberLog> findByProperties (String fromDate, String toDate ) {
  
  Why myProfileViewHandle.java start with lower case?????
  
+ WARN :[2009-10-12 22:44:32,566]  com.intrigueit.myc2i.memberlog.view.MemberLogViewHandler (BasePage.java:117) - Missing key for 'header_msg_contact_us'
+ 
