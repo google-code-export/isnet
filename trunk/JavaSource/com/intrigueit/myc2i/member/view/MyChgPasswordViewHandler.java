@@ -41,6 +41,7 @@ public class MyChgPasswordViewHandler extends BasePage implements Serializable {
   }
 
   public void initialize() {
+    setSecHeaderMsg("");
     loadMember();
   }
 
