@@ -34,12 +34,26 @@ public class StoryViewHandler extends BasePage implements Serializable{
 	
 	private String ACTION = "";
 	
+	private List<MemberStory> voteStoryList;
+	
 	
 
 	@Autowired
 	public StoryViewHandler(StoryService storyService) {
 		this.storyService = storyService;
 		this.currentStory = new MemberStory();
+	}
+	private void loadVoteStoryList(){
+		String type = this.getRequest().getParameter("STORY_TYPE");
+		if(type == null || type.equals("")){
+			return;
+		}
+		try{
+			this.voteStoryList = this.storyService.findMostVotedAndLatestStories(type);
+		}
+		catch(Exception ex){
+			log.error(ex.getMessage());
+		}
 	}
 	/** Load all my stories*/
 	private void loadStoryList(){
@@ -136,6 +150,13 @@ public class StoryViewHandler extends BasePage implements Serializable{
 	}
 	public void setCurrentStory(MemberStory currentStory) {
 		this.currentStory = currentStory;
+	}
+	public List<MemberStory> getVoteStoryList() {
+		this.loadVoteStoryList();
+		return voteStoryList;
+	}
+	public void setVoteStoryList(List<MemberStory> voteStoryList) {
+		this.voteStoryList = voteStoryList;
 	}	
 
 }
