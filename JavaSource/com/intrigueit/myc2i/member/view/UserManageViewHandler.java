@@ -116,6 +116,7 @@ public class UserManageViewHandler extends BasePage implements Serializable {
   }
 
   public void initialize() {
+    setSecHeaderMsg("");
     loadAllMembers();
   }
 
