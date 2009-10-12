@@ -2,6 +2,7 @@ package com.intrigueit.myc2i.dashboard.view;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import com.intrigueit.myc2i.story.domain.MemberStory;
 import com.intrigueit.myc2i.story.service.StoryService;
 import com.intrigueit.myc2i.udvalues.domain.UserDefinedValues;
 import com.intrigueit.myc2i.udvalues.service.UDValuesService;
+import com.intrigueit.myc2i.utility.Emailer;
 
 @Component("dashboardViewHandler")
 @Scope("session")
@@ -49,6 +51,15 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 	private List<MemberReport> mentorReport;
 	private List<Member> idleMentors;
 
+	/** Send release email to protege */
+	private void sendConfirmationEmail(String email,String msgBody,String emailSubject)throws Exception{
+		
+		/**Send email notification */
+		Emailer emailer = new Emailer(email, msgBody,emailSubject);
+		emailer.setContentType("text/html");
+		emailer.sendEmail();		
+	}
+	
 	private void populateIdleMentorList(){
 		this.idleMentors = new ArrayList<Member>();
 		if(this.mentorReport == null){
@@ -73,6 +84,33 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 			this.mentorReport.add(report);
 		}
 	}
+	private void populateProtegeMentorReports(Member leadMentor){
+		this.mentorReport = new ArrayList<MemberReport>();
+		
+		MemberReport report = new MemberReport();
+		report.setMentor(leadMentor);
+		List<Member> members = this.memberService.getMentorProtege(leadMentor.getMemberId());
+		report.setProteges(members);
+		this.mentorReport.add(report);
+
+	}
+	private Member getProtegeTopLevelMentor(Member member){
+		
+		if(member.getMentoredByMemberId() != null){
+			Member mentor = this.memberService.findById(member.getMentoredByMemberId());
+			if(mentor != null && mentor.getMentoredByMemberId() != null){
+				Member leadMentor =this.memberService.findById(mentor.getMentoredByMemberId());
+				if(leadMentor != null){
+					return leadMentor;
+				}
+				else{
+					return mentor;
+				}
+				
+			}
+		}
+		return member;
+	}
 	
 	private MemberLog updateRequestStatus(String status){
 		String requestId = this.getParameter("REQUEST_ID");
@@ -82,6 +120,10 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 		try{
 			MemberLog request = this.logService.findById(Long.parseLong(requestId));
 			request.setStatus(status);
+			request.setRecordLastUpdaterId(this.getMember().getMemberId()+"");
+			request.setRecordLastUpdatedDate(new Date());
+			
+			this.logService.update(request);
 			return request;
 		}
 		catch(Exception ex){
@@ -89,24 +131,75 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 		}
 		return null;
 	}
-	private void updateProtege(Long protegeId){
+	private void updateProtege(Long protegeId,Long mentorId){
 		try{
 			Member member = this.memberService.findById(protegeId);
-			member.setMentoredByMemberId(this.getMember().getMemberId());
+			member.setMentoredByMemberId(mentorId);
 			this.memberService.update(member);
 		}
 		catch(Exception ex){
 			ex.printStackTrace();
 		}
 	}
-	public void acceptProtegeRequest(){
-		MemberLog log = this.updateRequestStatus(CommonConstants.ACTIVITY_STATUS.ACCEPTED.toString());
-		if(log != null){
-			this.updateProtege(log.getFromMemberId());
+	public void acceptMentorRequest(){
+		try{
+
+			MemberLog log = this.updateRequestStatus(CommonConstants.ACTIVITY_STATUS.ACCEPTED.toString());
+			if(log != null){
+				this.updateProtege(log.getToMemberId(),log.getFromMemberId());
+			}		
+			String msgBody = this.getText("email_mentor_request_accept_body",new String[]{ this.getMember().getFirstName() +" "+ this.getMember().getLastName()});
+			String emailSubject = this.getText("email_mentor_request_accepted_subject");
+			
+			this.sendConfirmationEmail(log.getFromMember().getEmail(), msgBody,emailSubject);
+			
 		}
+		catch(Exception ex){
+			log.error(ex.getMessage());
+		}		
+	}
+	public void acceptProtegeRequest(){
+		try{
+
+			MemberLog log = this.updateRequestStatus(CommonConstants.ACTIVITY_STATUS.ACCEPTED.toString());
+			if(log != null){
+				this.updateProtege(log.getFromMemberId(),log.getToMemberId());
+			}		
+			String msgBody = this.getText("email_protege_request_accept_body",new String[]{ this.getMember().getFirstName() +" "+ this.getMember().getLastName()});
+			String emailSubject = this.getText("email_protege_request_accepted_subject");
+			
+			this.sendConfirmationEmail(log.getToMember().getEmail(), msgBody,emailSubject);			
+		}
+		catch(Exception ex){
+			log.error(ex.getMessage());
+		}
+	
 	}
 	public void rejectProtegeRequest(){
-		this.updateRequestStatus(CommonConstants.ACTIVITY_STATUS.REJECTED.toString());
+		try{
+			MemberLog log = this.updateRequestStatus(CommonConstants.ACTIVITY_STATUS.REJECTED.toString());
+			
+			String msgBody = this.getText("email_protege_request_accept_body",new String[]{ this.getMember().getFirstName() +" "+ this.getMember().getLastName()});
+			String emailSubject = this.getText("email_protege_request_accepted_subject");
+			
+			this.sendConfirmationEmail(log.getToMember().getEmail(), msgBody,emailSubject);					
+		}
+		catch(Exception ex){
+			log.error(ex.getMessage());
+		}
+	}
+	public void rejectMentorRequest(){
+		try{
+			MemberLog log = this.updateRequestStatus(CommonConstants.ACTIVITY_STATUS.REJECTED.toString());
+			
+			String msgBody = this.getText("email_mentor_request_reject_body",new String[]{ this.getMember().getFirstName() +" "+ this.getMember().getLastName()});
+			String emailSubject = this.getText("email_mentor_request_rejected_subject");
+			
+			this.sendConfirmationEmail(log.getToMember().getEmail(), msgBody,emailSubject);					
+		}
+		catch(Exception ex){
+			log.error(ex.getMessage());
+		}		
 	}
 	public StoryService getStoryService() {
 		return storyService;
@@ -259,7 +352,14 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 
 	public List<MemberReport> getMentorReport() {
 		try{
-			this.populateMentorReports(this.getMember());
+			if(this.getMember().getTypeId().equals(CommonConstants.PROTEGE)){
+				Member top = this.getProtegeTopLevelMentor(this.getMember());
+				this.populateProtegeMentorReports(top);
+				
+			}else{
+				this.populateMentorReports(this.getMember());
+			}
+			
 		}
 		catch(Exception ex){
 			log.error(ex.getMessage());
