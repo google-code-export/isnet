@@ -1,0 +1,135 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+<ui:composition>
+	<h:panelGrid columns="1" width="100%" border="0" cellpadding="0"
+		cellspacing="0">
+		<rich:panel style="width:'auto';margin-top: 0px;"
+			headerClass="container_gold_header" bodyClass="container_body_style">
+			<f:facet name="header">
+				<h:outputText value="#{bundle.dashboard_mentor_new_mentor_request}" />
+			</f:facet>
+			<h:dataTable id="idRequestGrid" border="0"
+				value="#{dashboardViewHandler.pendingRequests}" var="log"
+				columnClasses="column_class_center,,column_class_right"
+				cellpadding="0" cellspacing="0" width="100%">
+				<h:column>
+					<h:outputText
+						value="#{log.fromMember.firstName}  #{log.fromMember.lastName}" />
+				</h:column>
+				<h:column>
+					<h:outputText value="#{bundle.dashboard_protege_request}" />
+				</h:column>
+				<h:column>
+					<a4j:commandButton
+						action="#{dashboardViewHandler.acceptMentorRequest}"
+						value="#{bundle.button_label_accept}" reRender="idRequestGrid">
+						<a4j:actionparam name="REQUEST_ID" value="#{log.memberLogId}" />
+					</a4j:commandButton>
+					<rich:spacer width="3" />
+					<h:outputText value="#{bundle.or_label}" />
+					<rich:spacer width="5" />
+					<a4j:commandButton
+						action="#{dashboardViewHandler.rejectMentorRequest}"
+						value="#{bundle.button_label_deny}" reRender="idRequestGrid">
+						<a4j:actionparam name="REQUEST_ID" value="#{log.memberLogId}" />
+					</a4j:commandButton>
+				</h:column>
+			</h:dataTable>
+		</rich:panel>
+		
+		<rich:panel style="width:'auto';margin-top: 0px;"
+			headerClass="container_gold_header" bodyClass="container_body_style">
+			<f:facet name="header">
+				<h:outputText value="#{bundle.dashboard_mentor_reporting}" />
+			</f:facet>
+			<rich:dataTable
+				rowClasses="dashboard_report_row_odd,dashboard_report_row_even"
+				cellpadding="0" cellspacing="0" width="100%" border="0" var="report"
+				value="#{dashboardViewHandler.mentorReport}">
+				<f:facet name="header">
+					<rich:columnGroup>
+						<rich:column styleClass="dashboard_report_mentor_header">
+							<h:outputText value="#{bundle.member_first_name}" />
+						</rich:column>
+						<rich:column styleClass="dashboard_report_mentor_header">
+							<h:outputText value="#{bundle.member_last_name}" />
+						</rich:column>
+						<rich:column styleClass="dashboard_report_mentor_header">
+							<h:outputText value="#{bundle.member_certification}" />
+						</rich:column>
+						<rich:column styleClass="dashboard_report_mentor_header">
+							<h:outputText value="#{bundle.member_cert_valid}" />
+						</rich:column>
+						<rich:column styleClass="dashboard_report_mentor_header">
+							<h:outputText value="#{bundle.member_dashboard_log}" />
+						</rich:column>
+					</rich:columnGroup>
+				</f:facet>
+				<h:column>
+					<h:outputText value="#{report.mentor.firstName}" />
+				</h:column>
+				<h:column>
+					<h:outputText value="#{report.mentor.lastName}" />
+				</h:column>
+				<h:column>
+					<h:outputText value="#{report.mentor.certificationDate}">
+						<f:convertDateTime dateStyle="default" pattern="dd-MM-yyyy" />
+					</h:outputText>
+				</h:column>
+				<h:column>
+					<h:outputText value="#{report.mentor.memberShipExpiryDate}">
+						<f:convertDateTime dateStyle="default" pattern="dd-MM-yyyy" />
+					</h:outputText>
+				</h:column>
+				<h:column>
+					<h:commandLink value="Log" />
+				</h:column>
+				<rich:subTable rowClasses="odd-row,even-row" var="protege"
+					value="#{report.proteges}">
+					<rich:column rowspan="1">
+						<f:facet name="header">
+							<rich:spacer />
+						</f:facet>
+						<h:outputText value=""></h:outputText>
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="#{bundle.dashboard_protege_first_name}" />
+						</f:facet>
+						<h:outputText value="#{protege.firstName}"></h:outputText>
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="#{bundle.dashboard_protege_last_name}" />
+						</f:facet>
+						<h:outputText value="#{protege.lastName}"></h:outputText>
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="#{bundle.dashboard_protege_mentor_date}" />
+						</f:facet>
+						<h:outputText value="#{protege.mentoredByDate}">
+							<f:convertDateTime dateStyle="default" pattern="dd-MM-yyyy" />
+						</h:outputText>
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="#{bundle.dashboard_protege_mentor_review}" />
+						</f:facet>
+						<h:commandLink value="Review" />
+					</rich:column>
+
+				</rich:subTable>
+
+			</rich:dataTable>
+
+		</rich:panel>
+			
+	</h:panelGrid>
+
+</ui:composition>
+</html>
