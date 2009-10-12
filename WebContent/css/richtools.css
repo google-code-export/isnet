@@ -9,3 +9,10 @@
    border-style: solid;
    background: #FFFCEF url(../images/2.jpg) 0 0 repeat-x;   
 }
+.rich-tab-inactive {
+    cursor: pointer;
+}
+.rich-tabpanel-content {
+    border-width: 1px 1px 1px 1px;
+    background-color: transparent;
+}
