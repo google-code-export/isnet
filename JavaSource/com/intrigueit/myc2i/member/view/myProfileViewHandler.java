@@ -56,7 +56,8 @@ public class myProfileViewHandler extends BasePage implements Serializable {
   }
 
   public void initialize() {
-    loadMember();
+    setSecHeaderMsg("");
+    loadMember();    
   }
 
   public void loadMember() {
@@ -128,6 +129,9 @@ public class myProfileViewHandler extends BasePage implements Serializable {
       String mTypeId = "";
       if (validate()) {
         // if (validationPhase2()) {
+        if (this.currentMember.getCountry()!=null && this.currentMember.getCountry().equals("-1")) {
+          this.currentMember.setCountry(null);
+        }
         this.memberService.update(this.currentMember);
         logger.debug("Member updated: " + this.currentMember.getMemberId());
         this.setErrorMessage(this.getText("update_success_message"));
@@ -135,6 +139,9 @@ public class myProfileViewHandler extends BasePage implements Serializable {
         // }
       }
     } catch (Exception e) {
+      if (this.currentMember.getMemberId() != null) {
+        this.currentMember.setMemberId(null);
+      }
       setErrorMessage(this.getText("common_system_error"));
       logger.error(e.getMessage());
       e.printStackTrace();
