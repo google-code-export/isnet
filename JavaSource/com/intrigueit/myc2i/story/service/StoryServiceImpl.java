@@ -81,4 +81,11 @@ public class StoryServiceImpl implements StoryService{
 		return null;
 	}
 
+	@Override
+	public List<MemberStory> findMostVotedAndLatestStories(String type) {
+		String clause = " where lower(t.approvedForPublishInd)=?1 and t.category=?2 ORDER BY t.numberOfVotesReceived DESC t.memberStoryDate DESC ";
+		List<MemberStory> stories  = this.stroyDao.loadTopResultsByConditions(1000, clause, new Object[]{"yes",type});
+		return stories;
+	}
+
 }
