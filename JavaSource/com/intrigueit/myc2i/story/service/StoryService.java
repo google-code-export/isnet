@@ -27,4 +27,7 @@ public interface StoryService {
 	public MemberStory getMostVotedStory();
 	
 	public MemberStory getWiningStory();
+	
+	public List<MemberStory> findMostVotedAndLatestStories(String type);
+	
 }
