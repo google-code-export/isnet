@@ -17,5 +17,7 @@ public interface PayPalLogService {
 	public List<PayPalLog> findByProperty(String propertyName, Object value);
 	
 	public Boolean IsTxnExist(String txnId, String payerEmail);
+	
+	public PayPalLog getLastPayPalLogById(Long memberId);
 
 }

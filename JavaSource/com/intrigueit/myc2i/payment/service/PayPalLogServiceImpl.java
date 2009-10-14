@@ -54,9 +54,14 @@ public class PayPalLogServiceImpl implements PayPalLogService{
 	public Boolean IsTxnExist(String txnId, String payerEmail) {
 		return payPalLogDao.IsTxnExist(txnId,payerEmail);
 	}
-
-
-
+	
+	@Override
+	public PayPalLog getLastPayPalLogById(Long memberId) {
+	  StringBuffer clause = new StringBuffer();
+	  clause.append(" from PayPalLog ")
+	        .append(" where ipnLogId = (select max(ipnLogId) from PayPalLog where memberId = "+memberId+")");
+	  return payPalLogDao.getLastPayPalLogById(clause.toString());
+	}
 
 
 
