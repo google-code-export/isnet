@@ -140,6 +140,13 @@ public class ViewDataProvider extends BasePage {
 		maritialStatusList.add(new SelectItem("3","Widow"));
 		return maritialStatusList;
 	}
+	
+	public ArrayList<SelectItem> getPaymentTerms(){
+    ArrayList<SelectItem> payTermList = new ArrayList<SelectItem>();
+    payTermList.add(new SelectItem("1","One Year"));
+    return payTermList;
+  }
+	
 	public static ArrayList<SelectItem> getYearList(){
 		ArrayList<SelectItem> birthYearList = new ArrayList<SelectItem>();
 		birthYearList.add(new SelectItem("-1","--Select--"));
