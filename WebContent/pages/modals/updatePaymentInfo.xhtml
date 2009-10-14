@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:a4j="http://richfaces.org/a4j"
+   xmlns:rich="http://richfaces.org/rich"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:c="http://java.sun.com/jstl/core"
+   xmlns:ccmp="http://www.myc2i.com/jsf/commoncmp">
+  <ui:composition>
+   <rich:panel id="idUpdatePaymentContainer" styleClass="default_edit">
+	 <rich:spacer width="100%" height="20"/>
+   <c:set var="currentEBean" value="#{updatePaymentViewHandler.currentMember}"></c:set>
+   <h:panelGrid columns="2" id="idUpdatePaymentPanelGroup" border="0" columnClasses="prompt,data,errprompt"
+    rowClasses="rowinput" width="100%">
+	   <h:outputText value="#{bundle.payment_member_first_name}"/>
+     <h:outputText value="#{currentEBean.firstName}"/>
+     
+     <h:outputText value="#{bundle.payment_member_exp_date}"/>
+     <h:outputText value="#{currentEBean.memberShipExpiryDate}"/>   
+     
+     <h:outputText value="#{bundle.payment_last_payment_date}"/>
+     <h:outputText value="#{updatePaymentViewHandler.lastPayPalLog.paymentDate}"/>
+      
+     <h:outputText value="#{bundle.payment_last_transaction_id}"/>
+     <h:outputText value="#{updatePaymentViewHandler.lastPayPalLog.payPalTxnId}"/>
+     
+     <h:outputText value="#{bundle.payment_terms}"/>
+     <h:panelGroup>
+          <h:selectOneMenu styleClass="dropdown" id="paymentTerm"
+            value="#{updatePaymentViewHandler.paymentTerms}" disabled="true">
+            <f:selectItems value="#{updatePaymentViewHandler.paymentTermList}"/>
+          </h:selectOneMenu>
+        </h:panelGroup>
+      
+    </h:panelGrid>
+
+    <rich:spacer width="100%" height="15"/>
+    <ccmp:secactcmp controlBean="#{updatePaymentViewHandler}" modalId="idUpdatePayment" 
+      actionType="#{updatePaymentViewHandler.actionType}"
+      addAction="" updateAction="updatePaymentInfo"  reloadAction="preUpdatePaymentInfo"
+      reRenderIds="#{updatePaymentViewHandler.reRenderIds}"/>
+    <rich:spacer width="100%" height="5"/>
+    </rich:panel>
+  </ui:composition>
+</html>
