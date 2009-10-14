@@ -10,9 +10,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.intrigueit.myc2i.common.view.BasePage;
-import com.intrigueit.myc2i.memberlog.service.MemberLogService;
 import com.intrigueit.myc2i.payment.service.PayPalLogService;
-import com.intrigueit.myc2i.story.service.StoryService;
 import com.intrigueit.myc2i.udvalues.domain.UserDefinedValues;
 import com.intrigueit.myc2i.udvalues.service.UDValuesService;
 
