@@ -42,7 +42,9 @@
           <h:inputText id="idLastName" styleClass="medium_text" value="#{searchBean.lastName}"/>
           
           <h:outputText value="#{bundle.member_state}"/>
-          <h:inputText id="idState" styleClass="name" value="#{searchBean.state}"/>
+          <h:selectOneMenu id="idState" value="#{searchBean.state}" styleClass="form_input_text_medium"> 
+            <f:selectItems value="#{protegeViewHandler.statesList}"/>             
+          </h:selectOneMenu>
           
           <h:outputText value="#{bundle.member_city}"/>
           <h:inputText id="idCity" styleClass="name" value="#{searchBean.city}"/>       
