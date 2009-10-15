@@ -17,6 +17,7 @@ import com.intrigueit.myc2i.common.CommonConstants;
 import com.intrigueit.myc2i.common.ServiceConstants;
 import com.intrigueit.myc2i.common.domain.SearchBean;
 import com.intrigueit.myc2i.common.view.BasePage;
+import com.intrigueit.myc2i.common.view.ViewDataProvider;
 import com.intrigueit.myc2i.member.domain.Member;
 import com.intrigueit.myc2i.member.service.MemberService;
 
@@ -34,10 +35,13 @@ public class ProtegeViewHandler extends BasePage implements Serializable {
 	private ListDataModel protegeLines;
 	private SearchBean searchBean;
 	private String mentorId;	
+	private ViewDataProvider viewDataProvider;
 	
   @Autowired
-	public ProtegeViewHandler(MemberService memberService) {
+	public ProtegeViewHandler(MemberService memberService,
+      ViewDataProvider viewDataProvider) {
 		this.memberService = memberService;
+		this.viewDataProvider = viewDataProvider;
 		this.initialize();
 	} 
     
@@ -176,8 +180,12 @@ public class ProtegeViewHandler extends BasePage implements Serializable {
 	 */
 	public void setMentorList(List<SelectItem> mentorList) {
 		this.mentorList = mentorList;
-	}
-	
+	}	
+
+  public List<SelectItem> getStatesList() {
+    return viewDataProvider.getStateList();
+  }
+  
 	/**
 	 * @return the protegeLines
 	 */
