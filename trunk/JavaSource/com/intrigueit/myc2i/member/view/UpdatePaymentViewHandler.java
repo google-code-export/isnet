@@ -1,7 +1,6 @@
 package com.intrigueit.myc2i.member.view;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -253,6 +252,10 @@ public class UpdatePaymentViewHandler extends BasePage implements Serializable {
     this.recordId = recordId;
   }
 
+  public List<SelectItem> getStatesList() {
+    return viewDataProvider.getStateList();
+  }
+  
   /**
    * @return the paymentTerms
    */

@@ -152,6 +152,10 @@ public class ResetPasswordViewHandler extends BasePage implements Serializable {
     }
   }
 	
+	public List<SelectItem> getStatesList() {
+    return viewDataProvider.getStateList();
+  }
+	
 	/**
 	 * @return the currentMember
 	 */
