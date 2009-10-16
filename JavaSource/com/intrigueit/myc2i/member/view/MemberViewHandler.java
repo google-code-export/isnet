@@ -133,7 +133,7 @@ public class MemberViewHandler extends BasePage implements Serializable{
 			this.currentMember.setAdminUserIndicator(CommonConstants.STATUS.No.toString());
 			
 			this.memberService.save(this.currentMember);
-			//this.sendConfirmationEmail(this.currentMember.getEmail(), plainPassword);
+			this.sendConfirmationEmail(this.currentMember.getEmail(), plainPassword);
 
 			logger.debug("Guest added: "+ this.currentMember.getMemberId());
 			this.currentMember = new Member();
