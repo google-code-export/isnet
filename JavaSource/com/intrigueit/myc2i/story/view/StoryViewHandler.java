@@ -43,13 +43,55 @@ public class StoryViewHandler extends BasePage implements Serializable{
 		this.storyService = storyService;
 		this.currentStory = new MemberStory();
 	}
-	private void loadVoteStoryList(){
-		String type = this.getRequest().getParameter("STORY_TYPE");
-		if(type == null || type.equals("")){
+	
+	public void voteForStory(){
+		String storyId = this.getParameter("storyId");
+		if(storyId == null){
 			return;
 		}
 		try{
+			
+			MemberStory story = this.storyService.findById(Long.parseLong(storyId));
+			if(hasVotingRight(story)){
+				story.setNumberOfVotesReceived(story.getNumberOfVotesReceived()+1);
+				this.storyService.update(story);
+				String cookie = this.getCookieName(story);
+				this.storeCokie(cookie, "1");
+			}
+			
+		}
+		catch(Exception ex){
+			log.error(ex.getMessage());
+		}
+	}
+	
+	private String getCookieName(MemberStory story){
+		return this.getMember().getMemberId()+""+ story.getMemberStoryId()+"";
+	}
+	
+	private Boolean hasVotingRight(MemberStory story){
+		String cookieName = getCookieName(story);
+		String cookieValue = this.getCookieValue(cookieName);
+		if(cookieValue == null || !cookieValue.equals("1")){
+			return true;
+		}
+		
+		return false;
+
+	}
+	private void loadVoteStoryList(){
+
+		try{
+			String type = this.getMember().getTypeId().toString();
+			if(type.equals("17")){
+				type = "PROTEGE";
+			}else{
+				type = "MENTOR";
+			}
 			this.voteStoryList = this.storyService.findMostVotedAndLatestStories(type);
+			for(MemberStory story: voteStoryList){
+				log.debug(story.getNumberOfVotesReceived());
+			}
 		}
 		catch(Exception ex){
 			log.error(ex.getMessage());
