@@ -15,6 +15,7 @@ import java.util.ResourceBundle;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -407,6 +408,31 @@ public class BasePage {
 
 	public void setMember(Member member) {
 		this.member = member;
+	}
+	
+	protected void storeCokie(String name,String value){
+		Cookie cookie = new Cookie(name,value);
+		cookie.setMaxAge(60*60*24*30);
+		this.getResponse().addCookie(cookie);
+	}
+	
+	protected Cookie getCookie(String name){
+		Cookie cookie[] = this.getRequest().getCookies();
+		if(cookie != null && cookie.length > 0){
+			for(int i = 0; i<cookie.length; i++){
+		        if(cookie[i].getName().equals(name)){
+		            return cookie[i];
+		          }
+			}
+		}
+		return null;
+	}
+	protected String getCookieValue(String name){
+		Cookie cookie = this.getCookie(name);
+		if(cookie != null){
+			return cookie.getValue();
+		}
+		return null;
 	}
 
 }
