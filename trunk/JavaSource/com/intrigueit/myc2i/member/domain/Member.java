@@ -66,7 +66,7 @@ public class Member implements java.io.Serializable {
 	private String state;
 	
 	@Column(name = "MEMBER_ZIP", precision = 22, scale = 0)
-	private Long zip;
+	private String zip;
 
 	@Column(name = "MEMBER_EMAIL")
 	private String email;
@@ -293,11 +293,11 @@ public class Member implements java.io.Serializable {
 		this.profession = profession;
 	}
 
-	public Long getZip() {
+	public String getZip() {
 		return zip;
 	}
 
-	public void setZip(Long zip) {
+	public void setZip(String zip) {
 		this.zip = zip;
 	}
 
