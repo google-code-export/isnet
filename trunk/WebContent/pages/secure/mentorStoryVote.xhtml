@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	 xmlns:ui="http://java.sun.com/jsf/facelets"
+	 xmlns:h="http://java.sun.com/jsf/html"
+	 xmlns:f="http://java.sun.com/jsf/core"
+	 xmlns:a4j="http://richfaces.org/a4j"
+   xmlns:rowBar="http://www.myc2i.com/jsf/rowToolBar"
+   xmlns:ccmp="http://www.myc2i.com/jsf/commoncmp"
+ 	 xmlns:c="http://java.sun.com/jstl/core"
+ 	 xmlns:rich="http://richfaces.org/rich">
+
+<ui:composition template="/templates/maintmpl.xhtml">
+ <ui:param name="moduleTitle" value="Vote for story"></ui:param>
+ <ui:param name="userType" value="M"></ui:param>
+ <ui:param name="moduleType" value="MH"></ui:param>
+ <ui:param name="headerText" value="Browse all story and vote them"></ui:param>
+ <ui:param name="refManageBean" value="#{storyViewHandler}"></ui:param>
+ 
+  <ui:define name="body">    
+   	<ui:include src="/pages/secure/sections/storyVoteContent.xhtml" />  
+ 
+ </ui:define>
+  
+  <ui:define name="modalPanels">
+    <a4j:region>
+      <ui:include src="../modals/memberStoryDialog.xhtml">
+
+      </ui:include>
+    </a4j:region>
+  </ui:define>
+</ui:composition>
+</html>
