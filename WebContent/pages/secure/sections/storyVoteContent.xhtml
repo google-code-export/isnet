@@ -1,0 +1,63 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:a4j="http://richfaces.org/a4j"
+   xmlns:rich="http://richfaces.org/rich">
+<ui:composition>
+
+    <h:panelGroup id="idSectionsCon">
+      <rich:spacer width="100%" height="5"/>
+
+      <rich:spacer width="100%" height="10"/>
+		<rich:panel headerClass="container_box_panel_header" id="idContainer"  bodyClass="container_body_style" >
+			<f:facet name="header"><h:outputText value="All stories" /> </f:facet>
+			<h:panelGrid columns="1" width="100%" cellpadding="0" cellspacing="0" border="0">
+				<rich:dataTable  width="100%" id="idDataGrid"  rowClasses=",container_even_row_style" rows="15"  columnsWidth="150,"
+			                value="#{storyViewHandler.voteStoryList}" var="story" headerClass="table_column_style" cellpadding="0" cellspacing="0">
+		             <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="#{bundle.success_story_title}"/>
+			             </f:facet>
+				 			<h:outputText value="#{story.storyTitle}" />
+		             </rich:column>
+		             <rich:column>
+			             <f:facet name="header">
+			                <h:outputText value="Details"/>
+			             </f:facet>
+				 			<h:outputText  value="#{story.memberStoryDescription}" >
+				 			</h:outputText>
+		             </rich:column>		             
+		             <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="Total vote"/>
+			             </f:facet>
+				 			<h:outputText  value="#{story.numberOfVotesReceived}" />
+		             </rich:column>	  
+		             <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="Vote"/>
+			             </f:facet>		             
+						<rich:spacer width="5"/>
+		         		 <a4j:commandLink reRender="idDataGrid"  action="#{storyViewHandler.voteForStory}" >
+				            <f:param name="storyId" value="#{story.memberStoryId}"  />
+			            	<h:graphicImage value="/images/check.png" align="middle" border="0" > 
+			            	</h:graphicImage>	
+		            		 <rich:toolTip styleClass="tooltips_style"  >
+						          <span class="tooltips_span_style">
+						              Please click here to provide your vote.<br/>
+						          </span>
+						     </rich:toolTip>	
+						</a4j:commandLink>									             
+		             </rich:column>
+          	   
+			      </rich:dataTable>		
+		        <rich:datascroller id="idDataScroller" align="center"  for="idDataGrid" maxPages="8" />
+			</h:panelGrid>			         
+		</rich:panel>
+	    
+
+    </h:panelGroup>    
+
+</ui:composition>
+</html>
