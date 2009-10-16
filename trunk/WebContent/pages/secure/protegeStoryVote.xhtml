@@ -15,64 +15,12 @@
  <ui:param name="userType" value="P"></ui:param>
  <ui:param name="moduleType" value="PH"></ui:param>
  <ui:param name="headerText" value="Browse all story and vote them"></ui:param>
- <ui:param name="refManageBean" value="#{memberLogViewHandler}"></ui:param>
+ <ui:param name="refManageBean" value="#{storyViewHandler}"></ui:param>
  
   <ui:define name="body">    
-    <h:panelGroup id="idSectionsCon">
-      <rich:spacer width="100%" height="5"/>
-
-      
-      <rich:spacer width="100%" height="10"/>
-		<rich:panel headerClass="container_box_panel_header"  bodyClass="container_body_style" >
-			<f:facet name="header"><h:outputText value="All stories" /> </f:facet>
-			<h:panelGrid columns="1" width="100%" cellpadding="0" cellspacing="0" border="0">
-				<rich:dataTable  width="100%" id="idDataGrid"  rowClasses=",container_even_row_style" rows="15"  columnsWidth="150,"
-			                value="#{storyViewHandler.voteStoryList}" var="story" headerClass="table_column_style" cellpadding="0" cellspacing="0">
-		             <rich:column>
-			             <f:facet name="header">
-			               <h:outputText value="#{bundle.success_story_title}"/>
-			             </f:facet>
-				 			<h:outputText value="#{story.storyTitle}" />
-		             </rich:column>
-		             <rich:column>
-			             <f:facet name="header">
-			                <h:outputText value="Details"/>
-			             </f:facet>
-				 			<h:outputText  value="#{story.memberStoryDescription}" >
-				 			</h:outputText>
-		             </rich:column>		             
-		             <rich:column>
-			             <f:facet name="header">
-			               <h:outputText value="Total vote"/>
-			             </f:facet>
-				 			<h:outputText  value="#{story.numberOfVotesReceived}" />
-		             </rich:column>	  
-		             <rich:column>
-			             <f:facet name="header">
-			               <h:outputText value="Vote"/>
-			             </f:facet>		             
-						<rich:spacer width="5"/>
-		         		 <a4j:commandLink  reRender="idDataGrid,idDataScroller" action="#{storyViewHandler.removeObject}" >
-				            <a4j:actionparam name="storyId" value="#{story.memberStoryId}"  />
-				            <a4j:actionparam name="action" value="VOTE"  />
-			            	<h:graphicImage value="/images/check.png" align="middle" border="0" > 
-			            	</h:graphicImage>	
-		            		 <rich:toolTip styleClass="tooltips_style"  >
-						          <span class="tooltips_span_style">
-						              Please click here to provide your vote.<br/>
-						          </span>
-						     </rich:toolTip>	
-						</a4j:commandLink>									             
-		             </rich:column>
-          	   
-			      </rich:dataTable>		
-		        <rich:datascroller id="idDataScroller" align="center"  for="idDataGrid" maxPages="5" />
-			</h:panelGrid>			         
-		</rich:panel>
-	    
-
-    </h:panelGroup>    
-  </ui:define>
+   	<ui:include src="/pages/secure/sections/storyVoteContent.xhtml" />  
+ 
+ </ui:define>
   
   <ui:define name="modalPanels">
     <a4j:region>
