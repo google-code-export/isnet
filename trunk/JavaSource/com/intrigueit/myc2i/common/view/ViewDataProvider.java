@@ -9,7 +9,6 @@ import javax.faces.model.SelectItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
 import com.intrigueit.myc2i.member.domain.Member;
 import com.intrigueit.myc2i.member.service.MemberService;
@@ -51,11 +50,15 @@ public class ViewDataProvider extends BasePage {
     public void loadUserTypes(){
       this.userTypes = new ArrayList<SelectItem>();
       userTypes.add(new SelectItem("",""));
-      List<UserDefinedValues> udvList = this.udService.findByProperty("udValuesCategory", "MEMBER_TYPE");
-      for (UserDefinedValues userDefinedValues : udvList) {
-        userTypes.add(new SelectItem(userDefinedValues.getUdValuesId()+"",userDefinedValues.getUdValuesValue().toString()));
-      }   
-  }
+      try {
+        List<UserDefinedValues> udvList = this.udService.findByProperty("udValuesCategory", "MEMBER_TYPE");
+        for (UserDefinedValues userDefinedValues : udvList) {
+          userTypes.add(new SelectItem(userDefinedValues.getUdValuesId()+"",userDefinedValues.getUdValuesValue().toString()));
+        }
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+    }
   
     /**
      * @return the memberType
@@ -63,16 +66,20 @@ public class ViewDataProvider extends BasePage {
     public Hashtable<String, String> getMemberTypeHash() {
       if (memberTypeHash == null) {
         loadMemberTypeHash();
-        
       }
       return memberTypeHash;
     }
+    
     public void loadMemberTypeHash(){
       this.memberTypeHash = new Hashtable<String, String>();
-      List<UserDefinedValues> udvList = this.udService.findByProperty("udValuesCategory", "MEMBER_TYPE");
-      for (UserDefinedValues userDefinedValues : udvList) {
-        this.memberTypeHash.put(""+userDefinedValues.getUdValuesValue(), ""+userDefinedValues.getUdValuesId());
-      }   
+      try {
+        List<UserDefinedValues> udvList = this.udService.findByProperty("udValuesCategory", "MEMBER_TYPE");
+        for (UserDefinedValues userDefinedValues : udvList) {
+          this.memberTypeHash.put(""+userDefinedValues.getUdValuesValue(), ""+userDefinedValues.getUdValuesId());
+        }
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
     }  
   
   
@@ -111,28 +118,42 @@ public class ViewDataProvider extends BasePage {
 	private void loadEthinicity(){
 		this.ethinicityList = new ArrayList<SelectItem>();
 		ethinicityList.add(new SelectItem("-1","--Select--"));
-		List<UserDefinedValues> udvList = this.udService.findByProperty("udValuesCategory", "ETHINICITY");
-		for (UserDefinedValues userDefinedValues : udvList) {
-			ethinicityList.add(new SelectItem(userDefinedValues.getUdValuesId()+"",userDefinedValues.getUdValuesValue().toString()));
-		}	
+		try {
+  		List<UserDefinedValues> udvList = this.udService.findByProperty("udValuesCategory", "ETHINICITY");
+  		for (UserDefinedValues userDefinedValues : udvList) {
+  			ethinicityList.add(new SelectItem(userDefinedValues.getUdValuesId()+"",userDefinedValues.getUdValuesValue().toString()));
+  		}
+		} catch (Exception e) {
+      e.printStackTrace();
+    }
 	}	
+	
 	private void loadMadhab(){
 		this.madhabList = new ArrayList<SelectItem>();
 		madhabList.add(new SelectItem("-1","--Select--"));
-		List<UserDefinedValues> udvList = this.udService.findByProperty("udValuesCategory", "MADHAB");
-		for (UserDefinedValues userDefinedValues : udvList) {
-			madhabList.add(new SelectItem(userDefinedValues.getUdValuesId()+"",userDefinedValues.getUdValuesValue().toString()));
-		}	
+		try {
+  		List<UserDefinedValues> udvList = this.udService.findByProperty("udValuesCategory", "MADHAB");
+  		for (UserDefinedValues userDefinedValues : udvList) {
+  			madhabList.add(new SelectItem(userDefinedValues.getUdValuesId()+"",userDefinedValues.getUdValuesValue().toString()));
+  		}
+		} catch (Exception e) {
+      e.printStackTrace();
+    }
 	}
 	
 	private void loadProfession(){
 		this.professionList = new ArrayList<SelectItem>();
 		professionList.add(new SelectItem("-1","--Select--"));
-		List<UserDefinedValues> udvList = this.udService.findByProperty("udValuesCategory", "PROFESSION");
-		for (UserDefinedValues userDefinedValues : udvList) {
-			professionList.add(new SelectItem(userDefinedValues.getUdValuesId()+"",userDefinedValues.getUdValuesValue().toString()));
-		}	
+		try {
+  		List<UserDefinedValues> udvList = this.udService.findByProperty("udValuesCategory", "PROFESSION");
+  		for (UserDefinedValues userDefinedValues : udvList) {
+  			professionList.add(new SelectItem(userDefinedValues.getUdValuesId()+"",userDefinedValues.getUdValuesValue().toString()));
+  		}
+		} catch (Exception e) {
+      e.printStackTrace();
+    }
 	}
+	
 	public static ArrayList<SelectItem> getMaritialStatusList(){
 		ArrayList<SelectItem> maritialStatusList = new ArrayList<SelectItem>();
 		maritialStatusList.add(new SelectItem("-1","--Select--"));
@@ -185,25 +206,33 @@ public class ViewDataProvider extends BasePage {
 	private void loadReligion(){
 		this.religionList = new ArrayList<SelectItem>();
 		religionList.add(new SelectItem("-1","--Select--"));
-		List<UserDefinedValues> udvList = this.udService.findByProperty("udValuesCategory", "RELIGION");
-		for (UserDefinedValues userDefinedValues : udvList) {
-			religionList.add(new SelectItem(userDefinedValues.getUdValuesId()+"",userDefinedValues.getUdValuesValue().toString()));
-		}	
+		try {
+  		List<UserDefinedValues> udvList = this.udService.findByProperty("udValuesCategory", "RELIGION");
+  		for (UserDefinedValues userDefinedValues : udvList) {
+  			religionList.add(new SelectItem(userDefinedValues.getUdValuesId()+"",userDefinedValues.getUdValuesValue().toString()));
+  		}
+		}catch (Exception e) {
+      e.printStackTrace();
+    }	
 	}	
 	public ArrayList<SelectItem> getQuestionList(){
 		ArrayList<SelectItem> questionList = new ArrayList<SelectItem>();
 		questionList.add(new SelectItem("","--Select--"));
-		for(int i=1;i<= 5;i++){
-			String key = "security_question_"+i;
-			String question = this.getText(key);
-			questionList.add(new SelectItem(""+i,question));
-		}
-	
+		try {
+  		for(int i=1;i<= 5;i++){
+  			String key = "security_question_"+i;
+  			String question = this.getText(key);
+  			questionList.add(new SelectItem(""+i,question));
+  		}
+		} catch (Exception e) {
+      e.printStackTrace();
+    }	
 		return questionList;
 	}
 	
 	private void getActivityTypeList(){
 		activityList = new ArrayList<SelectItem>();
+		activityList.add(new SelectItem("-1","--Select--"));
 		List<UserDefinedValues> udvList = this.udService.findByProperty("udValuesCategory", "ACTIVITY_LOG");
 		for (UserDefinedValues userDefinedValues : udvList) {
 			activityList.add(new SelectItem(userDefinedValues.getUdValuesId()+"",userDefinedValues.getUdValuesValue().toString()));
@@ -211,28 +240,42 @@ public class ViewDataProvider extends BasePage {
 	}
 	private void loadMemberList(){
 		this.memberList = new ArrayList<SelectItem>();
-		List<Member> members = this.memberService.findAll();
-		for (Member member : members) {
-			this.memberList.add(new SelectItem( member.getMemberId().toString(),member.getFirstName()+ " "+member.getLastName()));
-		}
+		memberList.add(new SelectItem("-1","--Select--"));
+		try {
+  		List<Member> members = this.memberService.findAll();
+  		for (Member member : members) {
+  			this.memberList.add(new SelectItem( member.getMemberId().toString(),member.getFirstName()+ " "+member.getLastName()));
+  		}
+		} catch (Exception e) {
+      e.printStackTrace();
+    }
 	}
+	
 	/** Load state list */
 	private void loadStateList(){
 		this.stateList = new ArrayList<SelectItem>();
 		stateList.add(new SelectItem("-1","--Select--"));
-		List<UserDefinedValues> udvList = this.udService.findByProperty("udValuesCategory", "STATE");
-		for (UserDefinedValues userDefinedValues : udvList) {
-			stateList.add(new SelectItem(userDefinedValues.getUdValuesId()+"",userDefinedValues.getUdValuesDesc().toString()));
-		}		
-		
+		try {
+  		List<UserDefinedValues> udvList = this.udService.findByProperty("udValuesCategory", "STATE");
+  		for (UserDefinedValues userDefinedValues : udvList) {
+  			stateList.add(new SelectItem(userDefinedValues.getUdValuesId()+"",userDefinedValues.getUdValuesDesc().toString()));
+  		}
+		} catch (Exception e) {
+		  e.printStackTrace();
+    }		
 	}
+	
 	private void loadCountryList(){
 		this.countryList = new ArrayList<SelectItem>();
 		countryList.add(new SelectItem("-1","--Select--"));
-		List<UserDefinedValues> udvList = this.udService.findByProperty("udValuesCategory", "COUNTRY");
-		for (UserDefinedValues userDefinedValues : udvList) {
-			countryList.add(new SelectItem(userDefinedValues.getUdValuesId()+"",userDefinedValues.getUdValuesValue().toString()));
-		}		
+		try {
+  		List<UserDefinedValues> udvList = this.udService.findByProperty("udValuesCategory", "COUNTRY");
+  		for (UserDefinedValues userDefinedValues : udvList) {
+  			countryList.add(new SelectItem(userDefinedValues.getUdValuesId()+"",userDefinedValues.getUdValuesValue().toString()));
+  		}
+		} catch (Exception e) {
+      e.printStackTrace();
+    }	
 	}
 	public UDValuesService getUdService() {
 		return udService;
