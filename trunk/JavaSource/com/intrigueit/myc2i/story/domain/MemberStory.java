@@ -11,9 +11,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.intrigueit.myc2i.member.domain.Member;
-
 
 @Entity
 @Table(name = "MEMBER_STORY")
@@ -37,12 +37,15 @@ public class MemberStory implements java.io.Serializable {
 	private String storyTitle;
 	private String category;
 	
-	private static final long serialVersionUID = 1L;
+
+	private Boolean storyError;
 	
-	@Id 
+	private static final long serialVersionUID = 1L;
+
+	@Id
 	@Column(name = "MEMBER_STORY_ID")
-	@GeneratedValue(generator="StorySeq")
-	@SequenceGenerator(name="StorySeq",sequenceName="MEMBER_STORY_ID_SEQ", allocationSize=1,initialValue=1)		
+	@GeneratedValue(generator = "StorySeq")
+	@SequenceGenerator(name = "StorySeq", sequenceName = "MEMBER_STORY_ID_SEQ", allocationSize = 1, initialValue = 1)
 	public Long getMemberStoryId() {
 		return memberStoryId;
 	}
@@ -78,10 +81,9 @@ public class MemberStory implements java.io.Serializable {
 	public void setMemberStoryDescription(String memberStoryDescription) {
 		this.memberStoryDescription = memberStoryDescription;
 	}
-	
 
 	@Column(name = "MEMBER_STORY_AUDIO_VIDEO")
-	public String  getMemberStoryAudioVideo() {
+	public String getMemberStoryAudioVideo() {
 		return this.memberStoryAudioVideo;
 	}
 
@@ -89,7 +91,7 @@ public class MemberStory implements java.io.Serializable {
 		this.memberStoryAudioVideo = memberStoryAudioVideo;
 	}
 
-	@Column(name = "DELETED_BY_ADMIN_USER_IND",  length = 20)
+	@Column(name = "DELETED_BY_ADMIN_USER_IND", length = 20)
 	public String getDeletedByAdminUserInd() {
 		return this.deletedByAdminUserInd;
 	}
@@ -179,7 +181,6 @@ public class MemberStory implements java.io.Serializable {
 		this.recordLastUpdaterId = recordLastUpdaterId;
 	}
 
-
 	@Column(name = "RECORD_LAST_UPDATED_DATE", nullable = false)
 	public Date getRecordLastUpdatedDate() {
 		return this.recordLastUpdatedDate;
@@ -188,7 +189,8 @@ public class MemberStory implements java.io.Serializable {
 	public void setRecordLastUpdatedDate(Date recordLastUpdatedDate) {
 		this.recordLastUpdatedDate = recordLastUpdatedDate;
 	}
-	@Column( name = "STORY_TITLE")
+
+	@Column(name = "STORY_TITLE")
 	public String getStoryTitle() {
 		return storyTitle;
 	}
@@ -196,13 +198,22 @@ public class MemberStory implements java.io.Serializable {
 	public void setStoryTitle(String storyTitle) {
 		this.storyTitle = storyTitle;
 	}
-	
-	@Column( name = "STORY_CATEGORY")
+
+	@Column(name = "STORY_CATEGORY")
 	public String getCategory() {
 		return category;
 	}
 
 	public void setCategory(String category) {
 		this.category = category;
+	}
+	
+	@Transient
+	public Boolean getStoryError() {
+		return storyError;
+	}
+
+	public void setStoryError(Boolean storyError) {
+		this.storyError = storyError;
 	}
 }
