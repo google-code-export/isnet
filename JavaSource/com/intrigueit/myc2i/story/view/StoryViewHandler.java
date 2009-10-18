@@ -1,6 +1,8 @@
 package com.intrigueit.myc2i.story.view;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -12,6 +14,8 @@ import com.intrigueit.myc2i.common.CommonConstants;
 import com.intrigueit.myc2i.common.view.BasePage;
 import com.intrigueit.myc2i.story.domain.MemberStory;
 import com.intrigueit.myc2i.story.service.StoryService;
+import com.intrigueit.myc2i.udvalues.domain.UserDefinedValues;
+import com.intrigueit.myc2i.udvalues.service.UDValuesService;
 
 
 @Component("storyViewHandler")
@@ -26,21 +30,31 @@ public class StoryViewHandler extends BasePage implements Serializable{
 	private static  final String ID_PRM = "storyId";
 	private static final String ACTION_PRM = "action";
 	
+	private List<String> curseWords;
+	
+
 	private StoryService storyService;
 	
+	private UDValuesService udService;
+	
 	private List<MemberStory> storyList;
+	
+	private List<MemberStory> adminStoryList;
 	
 	private MemberStory currentStory;
 	
 	private String ACTION = "";
+	
+	private String ddDay = "0";
 	
 	private List<MemberStory> voteStoryList;
 	
 	
 
 	@Autowired
-	public StoryViewHandler(StoryService storyService) {
+	public StoryViewHandler(StoryService storyService,UDValuesService udService) {
 		this.storyService = storyService;
+		this.udService = udService;
 		this.currentStory = new MemberStory();
 	}
 	
@@ -199,6 +213,81 @@ public class StoryViewHandler extends BasePage implements Serializable{
 	}
 	public void setVoteStoryList(List<MemberStory> voteStoryList) {
 		this.voteStoryList = voteStoryList;
-	}	
+	}
+
+	public String getDdDay() {
+		return ddDay;
+	}
+
+	public void setDdDay(String ddDay) {
+		this.ddDay = ddDay;
+	}
+	private void loadAdminStory(){
+		try{
+			int dayCount = Integer.parseInt(this.ddDay);
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(new Date());
+			if(dayCount == 0){
+				cal.set(Calendar.HOUR, 0);
+				cal.set(Calendar.MINUTE, 1);
+			}else{
+				cal.add(Calendar.DATE, dayCount);
+			}
+				
+			
+			this.adminStoryList = this.storyService.findUnpublishProtegeStories(cal.getTime());
+			for(MemberStory story: this.adminStoryList){
+				if(isContainCurseWord(story)){
+					story.setStoryError(true);
+				}
+						
+			}
+			
+		}
+		catch(Exception ex){
+			ex.printStackTrace();
+		}
+	}
+	private boolean isContainCurseWord(MemberStory story){
+		List<String> words = this.getCurseWords();
+		for(String word: words){
+			if(story.getMemberStoryDescription().toLowerCase().contains(word.toLowerCase())){
+				return true;
+			}
+		}
+		return false;
+	}
+	public List<MemberStory> getAdminStoryList() {
+		this.loadAdminStory();
+		return adminStoryList;
+	}
+
+	public void setAdminStoryList(List<MemberStory> adminStoryList) {
+		this.adminStoryList = adminStoryList;
+	}
+
+	public List<String> getCurseWords() {
+		if(this.curseWords == null){
+			this.initCurseWordsList();
+		}
+		return curseWords;
+	}
+
+	public void setCurseWords(List<String> curseWords) {
+		this.curseWords = curseWords;
+	}
+	private void initCurseWordsList(){
+		try{
+			this.curseWords = new ArrayList<String>();
+			List<UserDefinedValues> words = this.udService.findByProperty("udValuesCategory", "CURSE_WORDS");
+			for(UserDefinedValues ud: words){
+				curseWords.add(ud.getUdValuesValue());
+			}
+		}
+		catch(Exception ex){
+			ex.printStackTrace();
+			log.error(ex.getMessage());
+		}
+	}
 
 }

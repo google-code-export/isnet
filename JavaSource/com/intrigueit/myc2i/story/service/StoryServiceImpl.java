@@ -1,5 +1,6 @@
 package com.intrigueit.myc2i.story.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,6 +86,13 @@ public class StoryServiceImpl implements StoryService{
 	public List<MemberStory> findMostVotedAndLatestStories(String type) {
 		String clause = " where lower(t.approvedForPublishInd)=?1 and t.category=?2 ORDER BY t.numberOfVotesReceived DESC t.memberStoryDate DESC ";
 		List<MemberStory> stories  = this.stroyDao.loadTopResultsByConditions(1000, clause, new Object[]{"yes",type});
+		return stories;
+	}
+
+	@Override
+	public List<MemberStory> findUnpublishProtegeStories(Date date) {
+		String clause = "  lower(t.memberPermissionToPublish)=?1 and t.memberStoryDate >= ?2 ORDER BY t.memberStoryDate DESC ";
+		List<MemberStory> stories  = this.stroyDao.loadByClause(clause, new Object[]{"yes",date});
 		return stories;
 	}
 
