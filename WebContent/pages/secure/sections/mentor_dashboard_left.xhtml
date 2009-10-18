@@ -36,6 +36,11 @@
 					<h:commandLink value="#{story.storyTitle}" />
 				</h:column>
 			</h:dataTable>	
+			
+         <h:outputLink style="font-weight:bolder;"  value="#{controllerBean.contextPath}/pages/secure/mentorStoryVote.faces">
+            <a4j:actionparam name="STORY_TYPE" value="MENTOR"  />
+           <h:outputText value=" Browse more stories... "/>
+         </h:outputLink>				
 		</rich:panel>		
 				
 	</h:panelGrid>
