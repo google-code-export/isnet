@@ -1,5 +1,6 @@
 package com.intrigueit.myc2i.story.service;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -29,5 +30,7 @@ public interface StoryService {
 	public MemberStory getWiningStory();
 	
 	public List<MemberStory> findMostVotedAndLatestStories(String type);
+	
+	public List<MemberStory> findUnpublishProtegeStories(Date date);
 	
 }
