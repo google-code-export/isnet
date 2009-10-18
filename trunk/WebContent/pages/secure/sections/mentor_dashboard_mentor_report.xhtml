@@ -119,7 +119,16 @@
 						<f:facet name="header">
 							<h:outputText value="#{bundle.dashboard_protege_mentor_review}" />
 						</f:facet>
-						<h:commandLink value="Review" />
+		         		 <a4j:commandLink value="Review" reRender="idmemberInfoDialog" action="#{protegeProfileViewHandler.loadMember}" oncomplete="Richfaces.showModalPanel('idmemberInfoDialog')">
+				             <a4j:actionparam name="MEMBER_ID" value="#{protege.memberId}"  />
+				             <a4j:actionparam name="action" value="VIEW"  />
+		            		 <rich:toolTip styleClass="tooltips_style"  >
+						          <span class="tooltips_span_style">
+						              View profile<br/>
+						          </span>
+						     </rich:toolTip>	
+						</a4j:commandLink>
+						
 					</rich:column>
 
 				</rich:subTable>
