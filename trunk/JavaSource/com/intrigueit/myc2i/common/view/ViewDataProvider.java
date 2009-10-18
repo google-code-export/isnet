@@ -8,6 +8,7 @@ import javax.faces.model.SelectItem;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import com.intrigueit.myc2i.member.domain.Member;
@@ -15,7 +16,7 @@ import com.intrigueit.myc2i.member.service.MemberService;
 import com.intrigueit.myc2i.udvalues.domain.UserDefinedValues;
 import com.intrigueit.myc2i.udvalues.service.UDValuesService;
 
-@Repository
+@Component("viewDataProvider")
 @Scope("request")
 public class ViewDataProvider extends BasePage {
 	
@@ -139,6 +140,16 @@ public class ViewDataProvider extends BasePage {
 		maritialStatusList.add(new SelectItem("2","Divorced"));
 		maritialStatusList.add(new SelectItem("3","Widow"));
 		return maritialStatusList;
+	}
+	
+	public  ArrayList<SelectItem> getDateList(){
+		ArrayList<SelectItem> dayList = new ArrayList<SelectItem>();
+		dayList.add(new SelectItem("0","Today"));
+		dayList.add(new SelectItem("-1","Yesterday"));
+		dayList.add(new SelectItem("-7","Last Week"));
+		dayList.add(new SelectItem("-30","Last Month"));
+		dayList.add(new SelectItem("-90","Last Quarter"));
+		return dayList;
 	}
 	
 	public ArrayList<SelectItem> getPaymentTerms(){
