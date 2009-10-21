@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.intrigueit.myc2i.common.CommonConstants;
 import com.intrigueit.myc2i.story.dao.StoryDao;
 import com.intrigueit.myc2i.story.domain.MemberStory;
 
@@ -48,8 +47,8 @@ public class StoryServiceImpl implements StoryService{
 
 	@Override
 	public List<MemberStory> findMyAllStories(Long memberId) {
-		String clause = " upper(t.member.memberId) = ?1 ";
-		return stroyDao.loadByClause(clause, new Object[]{memberId});
+		String clause = " upper(t.member.memberId) = ?1 and lower(t.approvedForPublishInd) <> ?2 ";
+		return stroyDao.loadByClause(clause, new Object[]{memberId,"yes"});
 	}
 
 	@Override
@@ -91,8 +90,8 @@ public class StoryServiceImpl implements StoryService{
 
 	@Override
 	public List<MemberStory> findUnpublishProtegeStories(Date date) {
-		String clause = "  lower(t.memberPermissionToPublish)=?1 and t.memberStoryDate >= ?2 ORDER BY t.memberStoryDate DESC ";
-		List<MemberStory> stories  = this.stroyDao.loadByClause(clause, new Object[]{"yes",date});
+		String clause = "  lower(t.memberPermissionToPublish)=?1 and t.memberStoryDate >= ?2 and lower(t.approvedForPublishInd) <> ?3 ORDER BY t.memberStoryDate DESC ";
+		List<MemberStory> stories  = this.stroyDao.loadByClause(clause, new Object[]{"yes",date,"yes"});
 		return stories;
 	}
 
