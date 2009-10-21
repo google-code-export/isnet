@@ -15,12 +15,17 @@ import org.hibernate.validator.Length;
 import org.hibernate.validator.NotEmpty;
 import org.hibernate.validator.NotNull;
 
+
 @Entity
 @Table(name = "TEST_TUTORIAL_DOCUMENT")
 public class TestTutorialDocument implements Serializable {
-	private static final long serialVersionUID = 7046264158950500215L;
+	
+	/**
+   * Generated serial version ID
+   */
+  private static final long serialVersionUID = 4010264359945000674L;
 
-	@Id
+  @Id
 	@Column(name = "TEST_TUTORIAL_DOCUMENT_ID")
 	@GeneratedValue(generator = "documentSeq")
 	@SequenceGenerator(name = "documentSeq", sequenceName = "DOCUMENT_ID_SEQ", allocationSize = 1, initialValue = 1)
