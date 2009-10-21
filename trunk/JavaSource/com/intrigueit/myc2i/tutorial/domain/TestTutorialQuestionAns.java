@@ -17,7 +17,10 @@ import org.hibernate.validator.NotNull;
 @Entity
 @Table(name="TEST_TUTORIAL_QUESTION_ANS")
 public class TestTutorialQuestionAns implements Serializable {
-  private static final long serialVersionUID = 2878691417147392110L;
+  /**
+   * Generated serial version id
+   */
+  private static final long serialVersionUID = -6651122786016102212L;
 
   @Id
   @Column(name="TEST_TUTORIAL_QUESTION_ANS_ID")
