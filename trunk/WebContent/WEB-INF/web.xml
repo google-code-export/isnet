@@ -138,6 +138,19 @@
   <auth-method>BASIC</auth-method>
  </login-config>
   <servlet>
+  <servlet-name>scheduler-init</servlet-name>
+  <servlet-class>com.intrigueit.myc2i.scheduler.SchedulerInit</servlet-class>
+  <init-param>
+   <param-name>shutdown-on-unload</param-name>
+   <param-value>true</param-value>
+  </init-param>
+  <init-param>
+   <param-name>start-scheduler-on-load</param-name>
+   <param-value>false</param-value>
+  </init-param>
+  <load-on-startup>1</load-on-startup>
+ </servlet>
+  <servlet>
     <description>PayPal IPN Listener</description>
     <display-name>PayPalTxnListener</display-name>
     <servlet-name>PayPalTxnListener</servlet-name>
