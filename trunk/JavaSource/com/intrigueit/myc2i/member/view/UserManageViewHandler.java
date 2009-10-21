@@ -28,7 +28,11 @@ import com.intrigueit.myc2i.member.service.MemberService;
 @Component("userManageViewHandler")
 @Scope("session")
 public class UserManageViewHandler extends BasePage implements Serializable {
-  private static final long serialVersionUID = 2098951095935218884L;
+  
+  /**
+   * Generated serial version ID
+   */
+  private static final long serialVersionUID = 3453749110036449548L;
 
   /** Initialize the Logger */
   protected static final Logger logger = Logger

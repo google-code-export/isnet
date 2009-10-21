@@ -26,9 +26,13 @@ import com.intrigueit.myc2i.trainingitem.service.VendorService;
 @Component("trainingItemViewHandler")
 @Scope("session")
 public class TrainingItemViewHandler extends BasePage implements Serializable {
-	private static final long serialVersionUID = 3515525820248010355L;
+	
+	/**
+   * Generated serial version ID
+   */
+  private static final long serialVersionUID = 6912747403326406124L;
 
-	/** Initialize the Logger */
+  /** Initialize the Logger */
 	protected static final Logger logger = Logger
 			.getLogger(TrainingItemViewHandler.class);
 

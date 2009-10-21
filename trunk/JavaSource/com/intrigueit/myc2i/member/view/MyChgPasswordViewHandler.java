@@ -18,7 +18,10 @@ import com.intrigueit.myc2i.member.service.MemberService;
 @Scope("session")
 public class MyChgPasswordViewHandler extends BasePage implements Serializable {
 
-  private static final long serialVersionUID = -8177894044709887971L;
+  /**
+   * Generated serial version ID
+   */
+  private static final long serialVersionUID = -8195696485898880496L;
 
   /** Initialize the Logger */
   protected static final Logger logger = Logger

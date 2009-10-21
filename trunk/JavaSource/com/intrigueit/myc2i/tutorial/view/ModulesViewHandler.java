@@ -27,7 +27,11 @@ import com.intrigueit.myc2i.tutorial.service.ModulesService;
 @Component("modulesViewHandler")
 @Scope("session")
 public class ModulesViewHandler extends BasePage implements Serializable {
-  private static final long serialVersionUID = 3515525820248010355L;
+  
+  /**
+   * Generated serial version ID
+   */
+  private static final long serialVersionUID = -3806943561966771817L;
 
   /** Initialize the Logger */
   protected static final Logger logger = Logger

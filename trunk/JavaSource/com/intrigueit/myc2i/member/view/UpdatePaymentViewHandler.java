@@ -26,8 +26,10 @@ import com.intrigueit.myc2i.payment.service.PayPalLogService;
 @Component("updatePaymentViewHandler")
 @Scope("session") 
 public class UpdatePaymentViewHandler extends BasePage implements Serializable {
-  
-  private static final long serialVersionUID = -8460205831430189013L;
+  /**
+   * 
+   */
+  private static final long serialVersionUID = -4343353793602551592L;
 
   /** Initialize the Logger */
   protected static final Logger logger = Logger.getLogger( UpdatePaymentViewHandler.class );
