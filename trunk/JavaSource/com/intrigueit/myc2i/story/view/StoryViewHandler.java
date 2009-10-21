@@ -57,7 +57,38 @@ public class StoryViewHandler extends BasePage implements Serializable{
 		this.udService = udService;
 		this.currentStory = new MemberStory();
 	}
-	
+	public void approveStory(){
+		String storyId = this.getParameter("storyId");
+		if(storyId == null){
+			return;
+		}	
+		String action = this.getParameter("action");
+		if(action == null){
+			return;
+		}
+		try{
+			if(action.equals("APPROVE")){
+				MemberStory story = this.storyService.findById(Long.parseLong(storyId));
+				story.setApprovedForPublishInd("Yes");
+				story.setApprovalDate(new Date());
+				story.setRecordLastUpdatedDate(new Date());
+				story.setRecordLastUpdaterId(this.getMember().getMemberId()+"");
+				this.storyService.update(story);
+			}
+			if(action.equals("REJECT")){
+				MemberStory story = this.storyService.findById(Long.parseLong(storyId));
+				story.setApprovedForPublishInd("No");
+				story.setMemberPermissionToPublish("No");
+				story.setRecordLastUpdatedDate(new Date());
+				story.setRecordLastUpdaterId(this.getMember().getMemberId()+"");
+				this.storyService.update(story);
+			}			
+		}
+		catch(Exception ex){
+			ex.printStackTrace();
+			log.error(ex.getMessage());
+		}
+	}
 	public void voteForStory(){
 		String storyId = this.getParameter("storyId");
 		if(storyId == null){
