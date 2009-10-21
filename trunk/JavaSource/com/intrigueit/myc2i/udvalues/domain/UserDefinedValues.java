@@ -25,9 +25,12 @@ import org.hibernate.validator.NotNull;
 @Table(name="USER_DEFINED_VALUES")
 public class UserDefinedValues implements Serializable {
 
-	private static final long serialVersionUID = 2418244902167932564L;
+	/**
+   * Generated serial version ID
+   */
+  private static final long serialVersionUID = -8802595429940620956L;
 
-	@Id
+  @Id
 	@Column(name="USER_DEFINED_VALUES_ID")
 	@GeneratedValue(generator="UDValueSeq")
 	@SequenceGenerator(name="UDValueSeq",sequenceName="UDVALUE_ID_SEQ", allocationSize=1,initialValue=1)
