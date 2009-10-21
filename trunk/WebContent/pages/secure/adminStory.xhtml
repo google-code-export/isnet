@@ -65,7 +65,7 @@
 			             <f:facet name="header">
 			               <h:outputText value="#{bundle.common_label_action}"/>
 			             </f:facet>		             
-		         		 <a4j:commandLink  reRender="idmemberStoryDialog" action="#{storyViewHandler.approveStory}" >
+		         		 <a4j:commandLink  reRender="idDataGrid,idDataScroller" action="#{storyViewHandler.approveStory}" >
 				             <a4j:actionparam name="storyId" value="#{story.memberStoryId}"  />
 				             <a4j:actionparam name="action" value="APPROVE"  />
 			            	<h:graphicImage value="/images/checks.png" align="middle" border="0" > 
@@ -77,9 +77,9 @@
 						     </rich:toolTip>	
 						</a4j:commandLink>
 						<rich:spacer width="5"/>
-		         		 <a4j:commandLink rendered="#{story.storyError}"  reRender="idDataGrid,idDataScroller" action="#{storyViewHandler.removeObject}" >
+		         		 <a4j:commandLink rendered="#{story.storyError}"  reRender="idDataGrid,idDataScroller" action="#{storyViewHandler.approveStory}" >
 				            <a4j:actionparam name="storyId" value="#{story.memberStoryId}"  />
-				            <a4j:actionparam name="action" value="DELETE"  />
+				            <a4j:actionparam name="action" value="REJECT"  />
 			            	<h:graphicImage value="/images/delete.png" align="middle" border="0" > 
 			            	</h:graphicImage>	
 		            		 <rich:toolTip styleClass="tooltips_style"  >
