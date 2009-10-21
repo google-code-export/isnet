@@ -19,7 +19,11 @@ import org.hibernate.validator.NotNull;
 @Entity
 @Table(name="LOCAL_CHAPTER")
 public class LocalChapter implements Serializable {	
-  private static final long serialVersionUID = -347552243572403761L;
+  
+  /**
+   * Generated serial version ID
+   */
+  private static final long serialVersionUID = 249123646772893226L;
 
   @Id
 	@Column(name="LOCAL_CHAPTER_ID")
