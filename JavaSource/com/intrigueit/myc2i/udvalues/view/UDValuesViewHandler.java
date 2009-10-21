@@ -22,9 +22,13 @@ import com.intrigueit.myc2i.udvalues.service.UDValuesService;
 @Component("udvViewHandler")
 @Scope("session")
 public class UDValuesViewHandler extends BasePage implements Serializable {
-	private static final long serialVersionUID = 7257665847228909296L;
-	
-	/** Initialize the Logger */
+		
+	/**
+   * Generated serial version ID
+   */
+  private static final long serialVersionUID = -8378735635815072749L;
+
+  /** Initialize the Logger */
   protected static final Logger logger = Logger.getLogger( UDValuesViewHandler.class );
 	
   private UDValuesService udvService;

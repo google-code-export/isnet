@@ -19,9 +19,13 @@ import com.intrigueit.myc2i.tutorial.service.DocumentService;
 @Component("documentViewHandler")
 @Scope("session")
 public class DocumentViewHandler extends BasePage implements Serializable {
-	private static final long serialVersionUID = 3515525820248010355L;
 	
-	/** Initialize the Logger */
+  /**
+   * Generated serial version ID
+   */
+  private static final long serialVersionUID = -1366909468397602969L;
+
+  /** Initialize the Logger */
   protected static final Logger logger = Logger.getLogger( DocumentViewHandler.class );
 	
   private DocumentService documentService;

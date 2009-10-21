@@ -23,7 +23,12 @@ import com.intrigueit.myc2i.tutorial.service.QuestionAnsService;
 @Component("questionAnsViewHandler")
 @Scope("session")
 public class QuestionAnsViewHandler extends BasePage implements Serializable {	
-  private static final long serialVersionUID = -6178343179237704434L;
+ 
+  /**
+   * Generated serial version ID
+   */
+  private static final long serialVersionUID = -1783081168429167496L;
+
   /** Initialize the Logger */
   protected static final Logger logger = Logger.getLogger( QuestionAnsViewHandler.class );
 

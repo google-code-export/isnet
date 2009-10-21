@@ -19,9 +19,13 @@ import com.intrigueit.myc2i.trainingitem.service.VendorService;
 @Component("vendorViewHandler")
 @Scope("session")
 public class VendorViewHandler extends BasePage implements Serializable {
-	private static final long serialVersionUID = 3515525820248010355L;
-	
-	/** Initialize the Logger */  
+		
+	/**
+   * Generated serial version ID
+   */
+  private static final long serialVersionUID = -4258841378553095560L;
+
+  /** Initialize the Logger */  
 	protected static final Logger logger = Logger.getLogger( VendorViewHandler.class );
 	
 	private VendorService vendorService;

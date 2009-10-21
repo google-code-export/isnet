@@ -25,8 +25,11 @@ import com.intrigueit.myc2i.member.service.MemberService;
 @Component("resetPasswordViewHandler")
 @Scope("session") 
 public class ResetPasswordViewHandler extends BasePage implements Serializable {	
-  private static final long serialVersionUID = 2098951095935218884L;
-  
+  /**
+   * 
+   */
+  private static final long serialVersionUID = -8545336293801428884L;
+
   /** Initialize the Logger */
   protected static final Logger logger = Logger.getLogger( ResetPasswordViewHandler.class );
   

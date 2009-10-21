@@ -21,8 +21,12 @@ import com.intrigueit.myc2i.common.view.BasePage;
 @Component("chapterViewHandler")
 @Scope("session")
 public class ChapterViewHandler extends BasePage implements Serializable {	
-  private static final long serialVersionUID = -1874852743776992351L;
   
+  /**
+   * Generated serial version ID
+   */
+  private static final long serialVersionUID = -463590747959332517L;
+
   /** Initialize the Logger */
   protected static final Logger logger = Logger.getLogger( ChapterViewHandler.class );
   
