@@ -18,8 +18,9 @@ import org.hibernate.validator.NotNull;
 @Entity
 @Table(name="ITEM_VENDOR")
 public class ItemVendor implements Serializable {
-	/**
-   * 
+	
+  /**
+   * Generated serial version id
    */
   private static final long serialVersionUID = -2080629454595731508L;
 
