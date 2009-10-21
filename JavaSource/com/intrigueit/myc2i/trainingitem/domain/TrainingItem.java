@@ -18,12 +18,13 @@ import org.hibernate.validator.NotNull;
 @Entity
 @Table(name = "TRAINING_ITEM")
 public class TrainingItem implements Serializable {
+	
 	/**
-   * 
+   * Generated serial version ID
    */
-	private static final long serialVersionUID = -7702585319897094869L;
+  private static final long serialVersionUID = 1942081746949649346L;
 
-	@Id
+  @Id
 	@Column(name = "ITEM_ID")
 	@GeneratedValue(generator = "trainingItemSeq")
 	@SequenceGenerator(name = "trainingItemSeq", sequenceName = "TRAINING_ITEM_SEQ", allocationSize = 1, initialValue = 1)
