@@ -90,12 +90,11 @@ public class FileUploadBean implements Serializable {
     }
 	}
 	
-	public String clearUploadData() {
-		System.out.println("clear ...");
-	  files.clear();
+	public void clearUploadData() {
+		files.clear();
 		setUploadsAvailable(5);
 		imageUrls.clear();
-		return null;
+		logger.debug("Clear loaded file information");
 	}
 	
 	public long getTimeStamp(){
