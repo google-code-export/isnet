@@ -27,7 +27,7 @@
         <h:outputText value="#{bundle.training_materials_item_desc}" />
         <span class="required_field">*</span>
        </h:panelGroup>
-       <h:inputText styleClass="name" value="#{currentEBean.itemDescription}" id="desc">
+       <h:inputText styleClass="medium_text" value="#{currentEBean.itemDescription}" id="desc">
         <rich:ajaxValidator event="onblur" />
        </h:inputText>
        <rich:message for="desc" />        
@@ -96,7 +96,7 @@
        </h:panelGroup>
        <h:panelGroup id="idImageFile" style="vertical-align:top;">
           <h:inputText styleClass="short_text,readonly" disabled="true" style="color:gray;background:#DFDFDF;"
-          value="#{trainingItemViewHandler.imagePath}"/>
+          value="#{currentEBean.imageFileName}"/>
           <ccmp:uploadlink prompt="" uploadModalId="idImageUpload" 
           imgTitle="#{bundle.common_upload_image}"/>
        </h:panelGroup>
@@ -106,7 +106,7 @@
         <h:outputText value="#{bundle.training_materials_available}" />
         <span class="required_field">*</span>
        </h:panelGroup>       
-       <h:panelGroup valign="top">
+       <h:panelGroup style="vertical-align:middle;">
           <h:selectOneRadio  value="${currentEBean.itemAvailability}">
             <f:selectItem  itemLabel="#{bundle.common_yes}" itemValue="Y" />
             <f:selectItem  itemLabel="#{bundle.common_no}" itemValue="N" />
