@@ -106,3 +106,8 @@ alter table "TEST_TUTORIAL_MODULES" add constraint "TEST_TUTORIAL_MODULES_PK" pr
 alter table "TEST_TUTORIAL_QUESTION_ANS" add constraint "TEST_TUTORIAL_QUESTION_ANS_PK" primary key ("TEST_TUTORIAL_QUESTION_ANS_ID");
 
 alter table "TRAINING_ITEM" add constraint "TRAINING_ITEM_PK" primary key ("ITEM_ID");
+
+-- New alter script
+alter table TRAINING_ITEM add (image_file_name  varchar2(255));
+
+
