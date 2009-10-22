@@ -98,7 +98,10 @@ public class TrainingItem implements Serializable {
 	@Column(name = "ITEM_IMAGE")
 	@Lob
 	private byte[] itemImage;
-
+	
+	@Column(name = "IMAGE_FILE_NAME")
+  private String imageFileName;
+	
 	@Column(name = "VENDOR_ID")
 	private Long vendorId;
 
@@ -243,4 +246,18 @@ public class TrainingItem implements Serializable {
 		this.vendorId = vendorId;
 	}
 
+  /**
+   * @return the imageFileName
+   */
+  public String getImageFileName() {
+    return imageFileName;
+  }
+
+  /**
+   * @param imageFileName the imageFileName to set
+   */
+  public void setImageFileName(String imageFileName) {
+    this.imageFileName = imageFileName;
+  }
+	
 }
