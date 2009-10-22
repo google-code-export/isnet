@@ -90,6 +90,7 @@ public class TrainingItemViewHandler extends BasePage implements Serializable {
 					&& fileUploadBean.getUploadFile() != null) {
 				UFile ufile = fileUploadBean.getUploadFile();
 				this.currentTrainingItem.setItemImage(ufile.getData());
+				this.currentTrainingItem.setImageFileName(ufile.getName());
 				this.setImagePath(ufile.getName());
 				fileUploadBean.clearUploadData();
 			}
