@@ -116,7 +116,7 @@ public class MemberLog implements java.io.Serializable {
 		this.userDefinedValues = userDefinedValues;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "FROM_MEMBER_ID", nullable = false, insertable = false, updatable = false)
 	public Member getFromMember() {
 		return this.fromMember;
@@ -207,7 +207,7 @@ public class MemberLog implements java.io.Serializable {
 	public void setToMemberId(Long toMemberId) {
 		this.toMemberId = toMemberId;
 	}
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "TO_MEMBER_ID", nullable = false, insertable = false, updatable = false)
 	public Member getToMember() {
 		return toMember;
