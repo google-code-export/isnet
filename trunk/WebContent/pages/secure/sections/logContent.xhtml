@@ -1,0 +1,68 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:a4j="http://richfaces.org/a4j"
+   xmlns:rich="http://richfaces.org/rich">
+<ui:composition>
+
+    <h:panelGroup id="idSectionsCon">
+      <rich:spacer width="100%" height="5"/>
+
+      <rich:spacer width="100%" height="10"/>
+
+		<rich:panel styleClass="popup_window_outer_panel_style" id="idPopupPanel">
+
+				<rich:dataTable  width="100%" id="idDataGrid"  rowClasses=",container_even_row_style" rows="10"  
+			                value="#{memberLogViewHandler.memberLastWeekLogs}" var="log" headerClass="table_column_style" cellpadding="0" cellspacing="0">
+		            <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="From"/>
+			             </f:facet>
+				 			<h:outputText value="#{log.fromMember.firstName} #{log.fromMember.lastName}" />
+		             </rich:column>		   
+		            
+		               <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="To"/>
+			             </f:facet>
+				 			<h:outputText value="#{log.toMember.firstName} #{log.toMember.lastName}" />
+		             </rich:column> 
+		             <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="#{bundle.activity_type}"/>
+			             </f:facet>
+				 			<h:outputText value="#{log.userDefinedValues.udValuesValue}" />
+		             </rich:column>	
+		             
+		             <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="#{bundle.activity_subject}"/>
+			             </f:facet>
+				 			<h:outputText  value="#{log.topic}" />
+		             </rich:column>	  
+		             <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="#{bundle.activity_date_time}"/>
+			             </f:facet>
+				 			<h:outputText  value="#{log.memberLogDateTime}" >
+				 			<f:convertDateTime dateStyle="default" pattern="#{bundle.long_date_pattern}"/>
+				 			</h:outputText>
+		             </rich:column>
+		             <rich:column >
+			             <f:facet name="header">
+			               <h:outputText value="#{bundle.activity_log_body}"/>
+			             </f:facet>
+				 			<h:outputText escape="false" value="#{log.memberLogEntryDescription}" />
+		             </rich:column>	           	   
+			      </rich:dataTable>		
+		        <rich:datascroller id="idDataScroller" align="center"  for="idDataGrid" maxPages="5" />
+                              
+         
+        </rich:panel>
+	    
+
+    </h:panelGroup>    
+
+</ui:composition>
+</html>
