@@ -3,6 +3,7 @@ package com.intrigueit.myc2i.memberlog.view;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -37,6 +38,7 @@ public class MemberLogViewHandler extends BasePage implements Serializable {
 	private UDValuesService udService;
 	private List<MemberLog> memberLogs;
 	private List<MemberLog> memberLogsOld;
+	private List<MemberLog> memberLastWeekLogs;
 	private List<SelectItem> mentorList;
 	private MemberLog currentLog;
 	private ViewDataProvider viewDataProvider;
@@ -62,6 +64,22 @@ public class MemberLogViewHandler extends BasePage implements Serializable {
 		this.showSearchBox = true;
 		this.isActivityTypeReadOnly = false;
 
+	}
+	public void initRecentLog(){
+		String memberId = this.getRequest().getParameter("MEMBER_ID");
+		if(memberId == null){
+			return;
+		}		
+		try{
+			
+			this.memberLastWeekLogs = this.memberLogService.getRecentConversation(Long.parseLong(memberId));
+			if(this.memberLastWeekLogs == null){
+				this.memberLastWeekLogs = new ArrayList<MemberLog>();
+			}
+		}
+		catch(Exception ex){
+			log.error(ex.getMessage());
+		}
 	}
 	public void initMemberLogForProtegeRequest() {
 		try{
@@ -380,6 +398,15 @@ public class MemberLogViewHandler extends BasePage implements Serializable {
 
 	public void setIsActivityTypeReadOnly(boolean isActivityTypeReadOnly) {
 		this.isActivityTypeReadOnly = isActivityTypeReadOnly;
+	}
+
+	public List<MemberLog> getMemberLastWeekLogs() {
+		this.initRecentLog();
+		return memberLastWeekLogs;
+	}
+
+	public void setMemberLastWeekLogs(List<MemberLog> memberLastWeekLogs) {
+		this.memberLastWeekLogs = memberLastWeekLogs;
 	}
 
 }
