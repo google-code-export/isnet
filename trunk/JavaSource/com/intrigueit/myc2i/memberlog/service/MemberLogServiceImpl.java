@@ -127,6 +127,17 @@ public class MemberLogServiceImpl implements MemberLogService{
 	public List<MemberLog> getMemberConversation(Long memberId) {
 		String clause = " t.fromMemberId=?1  OR t.toMemberId=?2 ORDER BY t.memberLogDateTime DESC ";
 		return memberLogDao.loadByClause(clause, new Object[]{memberId,memberId});
+	}
+
+
+	@Override
+	public List<MemberLog> getRecentConversation(Long memberId) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		cal.add(Calendar.MONTH, -1);
+		String clause = " (t.fromMemberId=?1 or  t.toMemberId=?1) and t.memberLogDateTime > ?2 ";
+		List<MemberLog> logs = memberLogDao.loadByClause(clause, new Object[]{memberId,cal.getTime()});
+		return logs;
 	}	
 	
 }
