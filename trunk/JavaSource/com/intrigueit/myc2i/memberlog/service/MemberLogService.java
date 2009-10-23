@@ -40,6 +40,8 @@ public interface MemberLogService {
 	
 	public List<MemberLog> getMemberConversation(Long memberId);
 	
+	public List<MemberLog> getRecentConversation(Long memberId);
+	
 	
 	
 	
