@@ -8,7 +8,7 @@
     xmlns:c="http://java.sun.com/jstl/core">
 	<ui:composition>
 
-		<rich:modalPanel id="idmemberStoryDialog" minHeight="350" minWidth="460" onshow="javascript:limiter();">
+		<rich:modalPanel id="idmemberStoryDialog" minHeight="450" minWidth="470" onshow="javascript:limiter();">
 			<f:facet name="header"><h:outputText value="#{bundle.success_story_modal_title}"/></f:facet>
 			<f:facet name="controls">
               	<h:graphicImage value="/images/close.png" style="cursor:pointer" onclick="Richfaces.hideModalPanel('idmemberStoryDialog')" />
@@ -17,7 +17,9 @@
             <a4j:form id="memberStoryForm" >
 				<h:inputHidden value="#{storyViewHandler.hasError}" id="errorCount"/>
 				<rich:panel styleClass="popup_window_outer_panel_style" id="idPopupPanel">
-
+					<h:panelGrid columns="1" width="100%">
+						<h:outputText value="#{bundle.story_label_description}" style="font-weight: bold;"/>
+					</h:panelGrid>
 					<h:dataTable rendered="#{storyViewHandler.hasError}" value="#{storyViewHandler.errMsgs}" var="msg" width="100%" columnClasses="error_panel_left_col,error_panel_right_col">
 					   <f:facet name="header"><h:outputText  value="#{bundle.member_validation_header}"/> </f:facet>
 						<h:column >
