@@ -76,16 +76,31 @@
 				</h:column>
 				<h:column>
 					<h:outputText value="#{report.mentor.certificationDate}">
-						<f:convertDateTime dateStyle="default" pattern="dd-MM-yyyy" />
+						<f:convertDateTime dateStyle="default" pattern="#{bundle.short_date_pattern}" />
 					</h:outputText>
 				</h:column>
 				<h:column>
 					<h:outputText value="#{report.mentor.memberShipExpiryDate}">
-						<f:convertDateTime dateStyle="default" pattern="dd-MM-yyyy" />
+						<f:convertDateTime dateStyle="default" pattern="#{bundle.short_date_pattern}" />
 					</h:outputText>
 				</h:column>
 				<h:column>
-					<h:commandLink value="Log" />
+				<!-- 
+		         		 <a4j:commandLink value="Log"  reRender="idmemberActivityLogDetailDialog"  oncomplete="Richfaces.showModalPanel('idmemberActivityLogDetailDialog')">
+				             <a4j:actionparam name="MEMBER_ID" value="#{report.mentor.memberId}"  />
+				             <a4j:actionparam name="action" value="VIEW"  />
+		            		 <rich:toolTip styleClass="tooltips_style"  >
+						          <span class="tooltips_span_style">
+						              Show Recent Activity of Member<br/>
+						          </span>
+						     </rich:toolTip>	
+						</a4j:commandLink>
+						 -->
+         <h:outputLink style="font-weight:bolder;"  value="#{controllerBean.contextPath}/pages/secure/mentorLogReview.faces">
+           <h:outputText value=" Log"/>
+           <a4j:actionparam name="MEMBER_ID" value="#{report.mentor.memberId}"  />
+         </h:outputLink>						
+											
 				</h:column>
 				<rich:subTable rowClasses="odd-row,even-row" var="protege"
 					value="#{report.proteges}">
@@ -112,7 +127,7 @@
 							<h:outputText value="#{bundle.dashboard_protege_mentor_date}" />
 						</f:facet>
 						<h:outputText value="#{protege.mentoredByDate}">
-							<f:convertDateTime dateStyle="default" pattern="dd-MM-yyyy" />
+							<f:convertDateTime dateStyle="default" pattern="#{bundle.short_date_pattern}" />
 						</h:outputText>
 					</rich:column>
 					<rich:column>
