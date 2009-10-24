@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:a4j="http://richfaces.org/a4j"
+   xmlns:rich="http://richfaces.org/rich"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:c="http://java.sun.com/jstl/core"
+   xmlns:ccmp="http://www.myc2i.com/jsf/commoncmp">
+	<ui:composition>
+    <rich:modalPanel id="idmemberActivityLogDetailDialog" minHeight="400" minWidth="650" >      
+      <f:facet name="header"><h:outputText value="#{bundle.activity_log_activity_title}"/></f:facet>
+      <f:facet name="controls">
+                <h:graphicImage value="/images/close.png" style="cursor:pointer" onclick="Richfaces.hideModalPanel('idmemberActivityLogDetailDialog')" />
+          </f:facet>              
+         <a4j:form id="memberLogForm">
+         <h:panelGroup id="idmemberLogDialogContainer">
+
+        <rich:panel styleClass="popup_window_outer_panel_style" id="idPopupPanel">
+
+				<rich:dataTable  width="100%" id="idDataGrid"  rowClasses=",container_even_row_style" rows="10"  
+			                value="#{memberLogViewHandler.memberLastWeekLogs}" var="log" headerClass="table_column_style" cellpadding="0" cellspacing="0">
+<!-- 
+		             <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="From"/>
+			             </f:facet>
+				 			<h:outputText value="#{log.fromMember.firstName} #{log.fromMember.lastName}" />
+		             </rich:column>		             
+		             <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="To"/>
+			             </f:facet>
+				 			<h:outputText value="#{log.toMember.firstName} #{log.toMember.lastName}" />
+		             </rich:column>
+		             <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="#{bundle.activity_type}"/>
+			             </f:facet>
+				 			<h:outputText value="#{log.userDefinedValues.udValuesValue}" />
+		             </rich:column>	
+		              -->
+		             <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="#{bundle.activity_subject}"/>
+			             </f:facet>
+				 			<h:outputText  value="#{log.topic}" />
+		             </rich:column>	  
+		             <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="#{bundle.activity_date_time}"/>
+			             </f:facet>
+				 			<h:outputText  value="#{log.memberLogDateTime}" >
+				 			<f:convertDateTime dateStyle="default" pattern="#{bundle.long_date_pattern}"/>
+				 			</h:outputText>
+		             </rich:column>
+		             <rich:column >
+			             <f:facet name="header">
+			               <h:outputText value="#{bundle.activity_log_body}"/>
+			             </f:facet>
+				 			<h:outputText escape="false" value="#{log.memberLogEntryDescription}" />
+		             </rich:column>	           	   
+			      </rich:dataTable>		
+		        <rich:datascroller id="idDataScroller" align="center"  for="idDataGrid" maxPages="5" />
+     
+
+          
+        </rich:panel>
+        </h:panelGroup>
+      </a4j:form>      
+    </rich:modalPanel>  
+  </ui:composition>
+</html>
