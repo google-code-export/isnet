@@ -73,6 +73,7 @@ public class StoryViewHandler extends BasePage implements Serializable{
 				story.setApprovalDate(new Date());
 				story.setRecordLastUpdatedDate(new Date());
 				story.setRecordLastUpdaterId(this.getMember().getMemberId()+"");
+				story.setScreenedByMemberId(this.getMember().getMemberId()+"");
 				this.storyService.update(story);
 			}
 			if(action.equals("REJECT")){
@@ -98,7 +99,11 @@ public class StoryViewHandler extends BasePage implements Serializable{
 			
 			MemberStory story = this.storyService.findById(Long.parseLong(storyId));
 			if(hasVotingRight(story)){
-				story.setNumberOfVotesReceived(story.getNumberOfVotesReceived()+1);
+				long voteCount = 1;
+				if(story.getNumberOfVotesReceived() != null){
+					voteCount = story.getNumberOfVotesReceived()+1;
+				}
+				story.setNumberOfVotesReceived(voteCount);
 				this.storyService.update(story);
 				String cookie = this.getCookieName(story);
 				this.storeCokie(cookie, "1");
