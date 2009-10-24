@@ -19,7 +19,7 @@ public interface StoryService {
 	
 	public List<MemberStory> findMyAllStories(Long memberId);
 	
-	public List<MemberStory> findTopTenStories();
+	public List<MemberStory> findTopTenStories(String type);
 	
 	public List<MemberStory> findTopTenMentorStories();
 	
@@ -27,10 +27,14 @@ public interface StoryService {
 	
 	public MemberStory getMostVotedStory();
 	
-	public MemberStory getWiningStory();
+	public MemberStory getWiningStory(String type);
 	
 	public List<MemberStory> findMostVotedAndLatestStories(String type);
 	
 	public List<MemberStory> findUnpublishProtegeStories(Date date);
+	
+	public MemberStory getWeeklyMentorWiningStory();
+	
+	public MemberStory getWeeklyProtegeWiningStory();
 	
 }
