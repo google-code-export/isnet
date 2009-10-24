@@ -26,6 +26,7 @@
 		<!-- Top ten stories -->
 		<rich:panel style="width:'auto';margin-top: 3px;" headerClass="container_gold_header"  bodyClass="container_body_style" >
 			<f:facet name="header"><h:outputText value="#{bundle.dashboard_mentor_winning_story}" /></f:facet>
+			<h:outputText value="#{dashboardViewHandler.winner}" /><br/>
 			<h:outputText value="#{dashboardViewHandler.winningStory}" />
 		</rich:panel>
 		<!-- Mentor success stories -->
