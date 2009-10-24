@@ -6,14 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.intrigueit.myc2i.common.view.BasePage;
 import com.intrigueit.myc2i.member.service.MemberService;
 import com.intrigueit.myc2i.story.service.StoryService;
 import com.intrigueit.myc2i.udvalues.domain.UserDefinedValues;
 import com.intrigueit.myc2i.udvalues.service.UDValuesService;
+import com.intrigueit.myc2i.utility.Emailer;
 
 @Component("storyTriggerViewHandler")
-@Scope("session")
-public class StoryTriggerViewHandler {
+public class StoryTriggerViewHandler extends BasePage{
 	
 	/** Services ref */
 	private UDValuesService udService;
@@ -38,6 +39,26 @@ public class StoryTriggerViewHandler {
 		this.memberService = memberService;
 	}
 
+	public void execute(){
+		try{
+			String email = this.getMyc2iAccountEmailAccount();
+			log.debug(email);
+		}
+		catch(Exception ex){
+			ex.printStackTrace();
+		}
+	}
+	/** Send confirmation email to member */
+	private void sendConfirmationEmail(String type, String email)
+			throws Exception {
+
+		String msgBody = "";
+		String emailSubject = "";
+		/** Send email notification */
+		Emailer emailer = new Emailer(email, msgBody, emailSubject);
+		emailer.setContentType("text/html");
+		emailer.sendEmail();
+	}
 	public String getMyc2iAccountEmailAccount() {
 		try{
 			List<UserDefinedValues> values = this.udService.findByProperty("udValuesCategory", "MYC2I_ACCOUNT_EMAIL");
