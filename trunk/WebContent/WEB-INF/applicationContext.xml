@@ -40,16 +40,15 @@
     
 	<aop:aspectj-autoproxy/>
 	
-
-	<bean name="storyJobBean" class="org.springframework.scheduling.quartz.JobDetailBean">
-	  <property name="jobClass" value="com.intrigueit.myc2i.scheduler.WeeklyStoryTrigger" />
+	<bean id="dummyJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject"><ref bean="storyTriggerViewHandler"/></property>
+		<property name="targetMethod"><value>execute</value></property>
 	</bean>
 	
-	
 	<bean id="cronStoryCheckTriggerBean" class="org.springframework.scheduling.quartz.CronTriggerBean">
-	    <property name="jobDetail" ref="storyJobBean" />
-	      <property name="cronExpression" value="0 58 * ? * FRI" /> 
-	    <!--<property name="cronExpression" value="0 0/1 * * * ?" /> -->
+	    <property name="jobDetail" ref="dummyJobDetail" />
+	      <!--<property name="cronExpression" value="0 58 23 ? * FRI" /> -->
+	    <property name="cronExpression" value="0 0/1 * * * ?" /> 
 	</bean>
 	
 	<bean id="scheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
