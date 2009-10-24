@@ -18,9 +18,9 @@
         <h:outputText value="#{bundle.document_name}" />
         <span class="required_field">*</span>
        </h:panelGroup>
-       <h:inputText styleClass="medium_text" value="#{currentEBean.documentName}" id="documentName">
+       <h:inputTextarea styleClass="medium_text" value="#{currentEBean.documentName}" id="documentName" rows="3">
         <rich:ajaxValidator event="onblur" />
-       </h:inputText>
+       </h:inputTextarea>
        <rich:message for="documentName" />       
        
        <h:panelGroup>
