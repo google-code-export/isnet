@@ -1,5 +1,6 @@
 package com.intrigueit.myc2i.scheduler;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.servlet.ServletConfig;
@@ -22,7 +23,7 @@ public class SchedulerInit extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 1L;
 	/** will repeat after 600000 milisecond**/
-	private final Integer REPEAT_INTERVAL = 5000;
+	private final Integer REPEAT_INTERVAL = 60000;
 	
 	protected static final Logger log = Logger.getLogger( SchedulerInit.class );
 	
@@ -40,10 +41,18 @@ public class SchedulerInit extends HttpServlet {
         // Initiate JobDetail with job name, job group, and executable job class
         JobDetail jobDetail = new JobDetail("jobDetail-s1", "jobDetailGroup-s1", StoryCollator.class);
         // Initiate SimpleTrigger with its name and group name
-        SimpleTrigger simpleTrigger = 
-        	new SimpleTrigger("simpleTrigger", "triggerGroup-s1");
+        SimpleTrigger simpleTrigger = new SimpleTrigger("simpleTrigger", "triggerGroup-s1");
         // set its start up time
-        simpleTrigger.setStartTime(new Date(ctime));
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(new Date());
+        int min = cal.get(Calendar.MINUTE);
+        int actualMin = 60 - min;
+        log.debug("Intial min: "+ min +" Min: "+actualMin);
+        
+        cal.set(Calendar.MINUTE, actualMin);
+        log.debug(cal.getTime());
+        
+        simpleTrigger.setStartTime( cal.getTime() );
         // set the interval, how often the job should run (10 seconds here) 
         //simpleTrigger.setRepeatInterval(10000);
      // set the interval, how often the job should run (1000 seconds here)
@@ -63,7 +72,7 @@ public class SchedulerInit extends HttpServlet {
         
 
 		// start the scheduler
-        scheduler.start();
+        //scheduler.start();
 	    }catch(Exception ex){
 	    	ex.printStackTrace();
 	    }
