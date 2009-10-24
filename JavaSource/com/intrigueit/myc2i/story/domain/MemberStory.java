@@ -54,7 +54,7 @@ public class MemberStory implements java.io.Serializable {
 		this.memberStoryId = memberStoryId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "MEMBER_ID")
 	public Member getMember() {
 		return this.member;
