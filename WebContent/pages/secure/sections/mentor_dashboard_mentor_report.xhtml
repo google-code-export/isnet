@@ -188,16 +188,19 @@
 				</h:column>
 				<h:column>
 					<h:outputText value="#{mentor.certificationDate}">
-						<f:convertDateTime dateStyle="default" pattern="dd-MM-yyyy" />
+						<f:convertDateTime dateStyle="default" pattern="#{bundle.short_date_pattern}" />
 					</h:outputText>
 				</h:column>
 				<h:column>
 					<h:outputText value="#{mentor.memberShipExpiryDate}">
-						<f:convertDateTime dateStyle="default" pattern="dd-MM-yyyy" />
+						<f:convertDateTime dateStyle="default" pattern="#{bundle.short_date_pattern}" />
 					</h:outputText>
 				</h:column>
 				<h:column>
-					<h:commandLink value="Log" />
+		         <h:outputLink style="font-weight:bolder;"  value="#{controllerBean.contextPath}/pages/secure/mentorLogReview.faces">
+		           <h:outputText value=" Log"/>
+		           <a4j:actionparam name="MEMBER_ID" value="#{mentor.memberId}"  />
+		         </h:outputLink>	
 				</h:column>
 				
 				</rich:dataTable>
