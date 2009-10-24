@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:a4j="http://richfaces.org/a4j"
+   xmlns:rich="http://richfaces.org/rich"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:c="http://java.sun.com/jstl/core"
+   xmlns:ccmp="http://www.myc2i.com/jsf/commoncmp">
+	<ui:composition>
+    <rich:modalPanel id="idRequestNoteDialog" minHeight="200" minWidth="300" >      
+      <f:facet name="header"><h:outputText value="Confirmation"/></f:facet>
+      <f:facet name="controls">
+                <h:graphicImage value="/images/close.png" style="cursor:pointer" onclick="Richfaces.hideModalPanel('idRequestNoteDialog')" />
+          </f:facet>              
+         <a4j:form id="memberNoteForm">
+         <h:panelGroup id="idmemberNoteDialogContainer">
+
+        <rich:panel styleClass="popup_window_outer_panel_style" id="idNotePopupPanel">
+
+          <h:panelGrid columns="2" id="gridNoteMember" width="100%">
+
+            <h:outputText value="Your Note:" />                
+              <h:inputTextarea id="idBody" rows="3"  cols="100" value="#{dashboardViewHandler.note}" styleClass="form_input_text_medium"></h:inputTextarea>
+                      
+            <h:outputText value=""/>
+            <h:panelGroup>
+              <a4j:commandButton action="#{dashboardViewHandler.execute}"  value="Confirm" oncomplete="Richfaces.hideModalPanel('idRequestNoteDialog')" 
+                reRender="idRequestGrid">
+                      </a4j:commandButton>
+              <a4j:commandButton value="#{bundle.button_close_label}" onclick="Richfaces.hideModalPanel('idRequestNoteDialog')" />    
+            </h:panelGroup>       
+          </h:panelGrid>
+        </rich:panel>
+        </h:panelGroup>
+      </a4j:form>      
+    </rich:modalPanel>  
+  </ui:composition>
+</html>
