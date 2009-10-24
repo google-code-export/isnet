@@ -1,5 +1,6 @@
 package com.intrigueit.myc2i.story.service;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -47,14 +48,14 @@ public class StoryServiceImpl implements StoryService{
 
 	@Override
 	public List<MemberStory> findMyAllStories(Long memberId) {
-		String clause = " upper(t.member.memberId) = ?1 and lower(t.approvedForPublishInd) <> ?2 ";
+		String clause = " upper(t.member.memberId) = ?1 and lower(t.approvedForPublishInd) <> ?2 and t.weekWinnerIndicator IS NULL ";
 		return stroyDao.loadByClause(clause, new Object[]{memberId,"yes"});
 	}
 
 	@Override
-	public List<MemberStory> findTopTenStories() {
-		String clause = " ORDER BY t.numberOfVotesReceived DESC ";
-		return this.stroyDao.loadTopResultsByConditions(10, clause, new Object[]{});
+	public List<MemberStory> findTopTenStories(String type) {
+		String clause = " where lower(t.approvedForPublishInd)=?1 and t.category=?2 and t.weekWinnerIndicator IS NULL ORDER BY t.numberOfVotesReceived DESC ";
+		return this.stroyDao.loadTopResultsByConditions(10, clause, new Object[]{"yes",type});
 	}
 
 	@Override
@@ -63,9 +64,9 @@ public class StoryServiceImpl implements StoryService{
 	}
 
 	@Override
-	public MemberStory getWiningStory() {
-		String clause = " where t.weekWinnerIndicator IS NOT NULL ORDER BY t.weekWinnerIndicator DESC ";
-		List<MemberStory> stories  = this.stroyDao.loadTopResultsByConditions(1, clause, new Object[]{});
+	public MemberStory getWiningStory(String type) {
+		String clause = " where t.weekWinnerIndicator IS NOT NULL and t.category=?1 ORDER BY t.weekWinnerIndicator DESC ";
+		List<MemberStory> stories  = this.stroyDao.loadTopResultsByConditions(1, clause, new Object[]{type});
 		return stories.get(0);
 	}
 
@@ -93,6 +94,46 @@ public class StoryServiceImpl implements StoryService{
 		String clause = "  lower(t.memberPermissionToPublish)=?1 and t.memberStoryDate >= ?2 and lower(t.approvedForPublishInd) <> ?3 ORDER BY t.memberStoryDate DESC ";
 		List<MemberStory> stories  = this.stroyDao.loadByClause(clause, new Object[]{"yes",date,"yes"});
 		return stories;
+	}
+
+	@Override
+	public MemberStory getWeeklyMentorWiningStory() {
+		String clause = " where t.numberOfVotesReceived IS NOT NULL and t.weekWinnerIndicator IS NULL and lower(t.approvedForPublishInd)=?1 and t.category=?2 ORDER BY t.numberOfVotesReceived DESC t.approvalDate DESC ";
+		List<MemberStory> stories  = this.stroyDao.loadTopResultsByConditions(100, clause, new Object[]{"yes","MENTOR"});
+		for(MemberStory story: stories){
+			if(!isMemberWinThisYear(story.getMember().getMemberId())){
+				return story;
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public MemberStory getWeeklyProtegeWiningStory() {
+		String clause = " where t.numberOfVotesReceived IS NOT NULL and t.weekWinnerIndicator IS NULL and lower(t.approvedForPublishInd)=?1 and t.category=?2 ORDER BY t.numberOfVotesReceived DESC t.approvalDate DESC ";
+		List<MemberStory> stories  = this.stroyDao.loadTopResultsByConditions(1, clause, new Object[]{"yes","PROTEGE"});
+		for(MemberStory story: stories){
+			if(!isMemberWinThisYear(story.getMember().getMemberId())){
+				return story;
+			}
+		}
+		return null;
+	}
+	
+	private Boolean isMemberWinThisYear(Long memberId){
+		String DATE_FORMAT = "yyyy";
+		SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
+		String dateStr = sdf.format(new Date());
+		
+		String clause = " where  to_char(t.weekWinnerIndicator,'yyyy')  =?1 and t.member.memberId=?2 ";
+		List<MemberStory> stories  = this.stroyDao.loadTopResultsByConditions(1, clause, new Object[]{dateStr,memberId});
+		if(stories == null){
+			return false;
+		}
+		if(stories.size() == 0){
+			return false;
+		}
+		return true;
 	}
 
 }
