@@ -1,5 +1,6 @@
 package com.intrigueit.myc2i.scheduler.view;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import com.intrigueit.myc2i.common.view.BasePage;
 import com.intrigueit.myc2i.member.service.MemberService;
+import com.intrigueit.myc2i.story.domain.MemberStory;
 import com.intrigueit.myc2i.story.service.StoryService;
 import com.intrigueit.myc2i.udvalues.domain.UserDefinedValues;
 import com.intrigueit.myc2i.udvalues.service.UDValuesService;
@@ -24,6 +26,10 @@ public class StoryTriggerViewHandler extends BasePage{
 	private MemberService memberService;
 	
 	private String myc2iAccountEmailAccount;
+	
+	private MemberStory mentorStory;
+	private MemberStory protegeStory;
+	
 	
 	
 	/**
@@ -43,6 +49,25 @@ public class StoryTriggerViewHandler extends BasePage{
 		try{
 			String email = this.getMyc2iAccountEmailAccount();
 			log.debug(email);
+			
+			this.mentorStory = this.storyService.getWeeklyMentorWiningStory();
+			if(this.mentorStory != null){
+				this.mentorStory.setWeekWinnerIndicator(new Date());
+				this.storyService.update(this.mentorStory);
+				log.debug(this.mentorStory.getStoryTitle());
+			}
+
+			this.protegeStory = this.storyService.getWeeklyProtegeWiningStory();
+			if(this.protegeStory != null){
+				this.protegeStory.setWeekWinnerIndicator(new Date());
+				this.storyService.update(this.protegeStory);
+				log.debug(this.protegeStory.getStoryTitle());
+				
+			}
+
+			
+			
+
 		}
 		catch(Exception ex){
 			ex.printStackTrace();
