@@ -12,6 +12,7 @@ public class ContextProvider implements ServletContextListener {
 	     theServletContext = arg0.getServletContext();
 	     System.out.println(".................myc2i is Starting....................");
 	     BasePage.setContextRealPath(theServletContext.getRealPath("/"));
+	     ContextInfo.setContextRealPath(theServletContext.getRealPath("/"));
 	 }
 
 	 public void contextDestroyed(ServletContextEvent arg0) {
