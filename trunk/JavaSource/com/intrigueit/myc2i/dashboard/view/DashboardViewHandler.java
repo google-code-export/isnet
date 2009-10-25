@@ -31,6 +31,7 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 	
 	/** Wining story */
 	private String winningStory;
+	private String winner;
 	
 	/** Top ten stories */
 	private List<MemberStory> topTenStories;
@@ -50,6 +51,9 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 	private MemberService memberService;
 	private List<MemberReport> mentorReport;
 	private List<Member> idleMentors;
+	private String note;
+	private String logId;
+	private String action;
 
 	/** Send release email to protege */
 	private void sendConfirmationEmail(String email,String msgBody,String emailSubject)throws Exception{
@@ -113,7 +117,8 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 	}
 	
 	private MemberLog updateRequestStatus(String status){
-		String requestId = this.getParameter("REQUEST_ID");
+		
+		String requestId = this.logId;//this.getParameter("REQUEST_ID");
 		if(requestId == null || requestId.equals("")){
 			return null;
 		}		
@@ -141,14 +146,41 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 			ex.printStackTrace();
 		}
 	}
+	public void execute(){
+		String act = this.action;
+		if(act == null || act.equals("")){
+			return;
+		}		
+		try{
+			if(this.action.equals("1")){
+				this.acceptProtegeRequest();
+			}
+			else if(this.action.equals("2")){
+				this.rejectProtegeRequest();
+			}
+			else if(this.action.equals("3")){
+				this.acceptMentorRequest();
+			}	
+			else if(this.action.equals("4")){
+				this.rejectMentorRequest();
+			}			
+		}
+		catch(Exception ex){
+			log.error(ex.getMessage());
+		}
+	}
 	public void acceptMentorRequest(){
 		try{
 
 			MemberLog log = this.updateRequestStatus(CommonConstants.ACTIVITY_STATUS.ACCEPTED.toString());
+			
+			int memberProtege = this.memberService.getMentorProtegeCout(log.getFromMemberId());
+			if (memberProtege >= 5) return;
+			
 			if(log != null){
 				this.updateProtege(log.getToMemberId(),log.getFromMemberId());
 			}		
-			String msgBody = this.getText("email_mentor_request_accept_body",new String[]{ this.getMember().getFirstName() +" "+ this.getMember().getLastName()});
+			String msgBody = this.getText("email_mentor_request_accept_body",new String[]{ this.getMember().getFirstName() +" "+ this.getMember().getLastName(), this.getNote()});
 			String emailSubject = this.getText("email_mentor_request_accepted_subject");
 			
 			this.sendConfirmationEmail(log.getFromMember().getEmail(), msgBody,emailSubject);
@@ -160,12 +192,14 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 	}
 	public void acceptProtegeRequest(){
 		try{
-
+			int memberProtege = this.memberService.getMentorProtegeCout(this.getMember().getMemberId());
+			if (memberProtege >= 5) return;
+			
 			MemberLog log = this.updateRequestStatus(CommonConstants.ACTIVITY_STATUS.ACCEPTED.toString());
 			if(log != null){
 				this.updateProtege(log.getFromMemberId(),log.getToMemberId());
 			}		
-			String msgBody = this.getText("email_protege_request_accept_body",new String[]{ this.getMember().getFirstName() +" "+ this.getMember().getLastName()});
+			String msgBody = this.getText("email_protege_request_accept_body",new String[]{ this.getMember().getFirstName() +" "+ this.getMember().getLastName(),this.getNote()});
 			String emailSubject = this.getText("email_protege_request_accepted_subject");
 			
 			this.sendConfirmationEmail(log.getToMember().getEmail(), msgBody,emailSubject);			
@@ -179,7 +213,7 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 		try{
 			MemberLog log = this.updateRequestStatus(CommonConstants.ACTIVITY_STATUS.REJECTED.toString());
 			
-			String msgBody = this.getText("email_protege_request_accept_body",new String[]{ this.getMember().getFirstName() +" "+ this.getMember().getLastName()});
+			String msgBody = this.getText("email_protege_request_accept_body",new String[]{ this.getMember().getFirstName() +" "+ this.getMember().getLastName(),this.getNote()});
 			String emailSubject = this.getText("email_protege_request_accepted_subject");
 			
 			this.sendConfirmationEmail(log.getToMember().getEmail(), msgBody,emailSubject);					
@@ -192,7 +226,7 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 		try{
 			MemberLog log = this.updateRequestStatus(CommonConstants.ACTIVITY_STATUS.REJECTED.toString());
 			
-			String msgBody = this.getText("email_mentor_request_reject_body",new String[]{ this.getMember().getFirstName() +" "+ this.getMember().getLastName()});
+			String msgBody = this.getText("email_mentor_request_reject_body",new String[]{ this.getMember().getFirstName() +" "+ this.getMember().getLastName(),this.getNote()});
 			String emailSubject = this.getText("email_mentor_request_rejected_subject");
 			
 			this.sendConfirmationEmail(log.getToMember().getEmail(), msgBody,emailSubject);					
@@ -235,14 +269,20 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 	 */
 	public DashboardViewHandler() {
 		this.mostVotedStory = "Quoting a witness from \"Balkh\", in his famous work entitled \"Kafi\", the celebrated scholar \"Kulayni\" relates the following";
-		this.winningStory = "Winner: Ahmmed Ibne Jafer Quoting a witness from \"Balkh\", in his famous work entitled \"Kafi\", the celebrated scholar \"Kulayni\" relates the following ";
-		
+		this.winningStory = "Quoting a witness from \"Balkh\", in his famous work entitled \"Kafi\", the celebrated scholar \"Kulayni\" relates the following ";
+		this.winner = "Winner: Ahmmed Ibne Jafer";
 	}
 	private void loadWinningStroy(){
 		try{
-			MemberStory winStory = this.storyService.getWiningStory();
-			this.winningStory = "Winner:"+ winStory.getMember().getFirstName() +" "+ winStory.getMember().getLastName();
-			this.winningStory += winStory.getMemberStoryDescription();
+			String type = "MENTOR";
+			if(this.getMember().getTypeId().equals(CommonConstants.PROTEGE)){
+				type = "PROTEGE";
+			}
+			MemberStory winStory = this.storyService.getWiningStory(type);
+			if(winStory != null){
+				this.winningStory = winStory.getMemberStoryDescription();
+				this.winner = "Winner:"+ winStory.getMember().getFirstName() +" "+ winStory.getMember().getLastName();
+			}
 		}
 		catch(Exception ex){
 			log.error(ex.getMessage());
@@ -257,7 +297,7 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 	}
 
 	public String getWinningStory() {
-		//this.loadWinningStroy();
+		this.loadWinningStroy();
 		return winningStory;
 	}
 
@@ -267,7 +307,11 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 
 	public List<MemberStory> getTopTenStories() {
 		try{
-			this.topTenStories = this.storyService.findTopTenStories();
+			String type = "MENTOR";
+			if(this.getMember().getTypeId().equals(CommonConstants.PROTEGE)){
+				type = "PROTEGE";
+			}			
+			this.topTenStories = this.storyService.findTopTenStories(type);
 		}
 		catch(Exception ex){
 			log.error(ex.getMessage());
@@ -383,6 +427,38 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 	
 	public void setIdleMentors(List<Member> idleMentors) {
 		this.idleMentors = idleMentors;
+	}
+
+	public String getWinner() {
+		return winner;
+	}
+
+	public void setWinner(String winner) {
+		this.winner = winner;
+	}
+
+	public String getNote() {
+		return note;
+	}
+
+	public void setNote(String note) {
+		this.note = note;
+	}
+
+	public String getLogId() {
+		return logId;
+	}
+
+	public void setLogId(String logId) {
+		this.logId = logId;
+	}
+
+	public String getAction() {
+		return action;
+	}
+
+	public void setAction(String action) {
+		this.action = action;
 	}
 
 	
