@@ -47,14 +47,24 @@ public class StoryTriggerViewHandler extends BasePage{
 
 	public void execute(){
 		try{
-			String email = this.getMyc2iAccountEmailAccount();
-			log.debug(email);
+			String accountEmail = this.getMyc2iAccountEmailAccount();
+			log.debug("Calling scheduler....");
 			
 			this.mentorStory = this.storyService.getWeeklyMentorWiningStory();
 			if(this.mentorStory != null){
 				this.mentorStory.setWeekWinnerIndicator(new Date());
 				this.storyService.update(this.mentorStory);
+				
 				log.debug(this.mentorStory.getStoryTitle());
+				
+				/** Send member email */
+				String sub = "MyC2i weekly story competition winning notification";
+				String winner = this.mentorStory.getMember().getFirstName()+" "+ this.mentorStory.getMember().getLastName();
+				String body = "MyC2i weekly story competition result: <br/><br/>Winner Name: "+ winner +" <br/><br/>Prize Money:<br/><br/>$500<br/><br/>Thanks <br/>MyC2i support team.";
+
+				this.sendConfirmationEmail(sub, body, this.mentorStory.getMember().getEmail());
+				/** Send account email */
+				this.sendConfirmationEmail(sub, body, accountEmail);
 			}
 
 			this.protegeStory = this.storyService.getWeeklyProtegeWiningStory();
@@ -62,6 +72,15 @@ public class StoryTriggerViewHandler extends BasePage{
 				this.protegeStory.setWeekWinnerIndicator(new Date());
 				this.storyService.update(this.protegeStory);
 				log.debug(this.protegeStory.getStoryTitle());
+				
+				/** Send member email */
+				String sub = "MyC2i weekly story competition winning notification";
+				String winner = this.protegeStory.getMember().getFirstName()+" "+ this.protegeStory.getMember().getLastName();
+				String body = "MyC2i weekly story competition result: <br/><br/>Winner Name: "+ winner +" <br/><br/>Prize Money:<br/><br/>$500<br/><br/>Thanks <br/>MyC2i support team.";
+
+				this.sendConfirmationEmail(sub, body, this.protegeStory.getMember().getEmail());
+				/** Send account email */
+				this.sendConfirmationEmail(sub, body, accountEmail);			
 				
 			}
 
@@ -74,11 +93,9 @@ public class StoryTriggerViewHandler extends BasePage{
 		}
 	}
 	/** Send confirmation email to member */
-	private void sendConfirmationEmail(String type, String email)
+	private void sendConfirmationEmail(String emailSubject,String msgBody, String email)
 			throws Exception {
 
-		String msgBody = "";
-		String emailSubject = "";
 		/** Send email notification */
 		Emailer emailer = new Emailer(email, msgBody, emailSubject);
 		emailer.setContentType("text/html");
