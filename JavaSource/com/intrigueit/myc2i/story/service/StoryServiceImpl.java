@@ -1,6 +1,7 @@
 package com.intrigueit.myc2i.story.service;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -82,10 +83,22 @@ public class StoryServiceImpl implements StoryService{
 		return null;
 	}
 
+	private Date getWeekFirstDay(){
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+
+		int weekday = cal.get(Calendar.DAY_OF_WEEK) + 1 ;
+		cal.add(Calendar.DAY_OF_YEAR, -weekday);
+
+		return cal.getTime();
+	}
 	@Override
 	public List<MemberStory> findMostVotedAndLatestStories(String type) {
-		String clause = " where lower(t.approvedForPublishInd)=?1 and t.category=?2 ORDER BY t.numberOfVotesReceived DESC t.memberStoryDate DESC ";
-		List<MemberStory> stories  = this.stroyDao.loadTopResultsByConditions(1000, clause, new Object[]{"yes",type});
+		Date date = this.getWeekFirstDay();
+		System.out.println(date);
+		
+		String clause = " where lower(t.approvedForPublishInd)=?1 and t.category=?2 and t.approvalDate > ?3 ORDER BY t.approvalDate DESC ";
+		List<MemberStory> stories  = this.stroyDao.loadTopResultsByConditions(50, clause, new Object[]{"yes",type,date});
 		return stories;
 	}
 
@@ -98,8 +111,9 @@ public class StoryServiceImpl implements StoryService{
 
 	@Override
 	public MemberStory getWeeklyMentorWiningStory() {
-		String clause = " where t.numberOfVotesReceived IS NOT NULL and t.weekWinnerIndicator IS NULL and lower(t.approvedForPublishInd)=?1 and t.category=?2 ORDER BY t.numberOfVotesReceived DESC t.approvalDate DESC ";
-		List<MemberStory> stories  = this.stroyDao.loadTopResultsByConditions(100, clause, new Object[]{"yes","MENTOR"});
+		Date date = this.getWeekFirstDay();
+		String clause = " where t.numberOfVotesReceived IS NOT NULL and t.weekWinnerIndicator IS NULL and lower(t.approvedForPublishInd)=?1 and t.category=?2 and t.approvalDate > ?3  ORDER BY t.numberOfVotesReceived DESC t.approvalDate DESC ";
+		List<MemberStory> stories  = this.stroyDao.loadTopResultsByConditions(50, clause, new Object[]{"yes","MENTOR",date});
 		for(MemberStory story: stories){
 			if(!isMemberWinThisYear(story.getMember().getMemberId())){
 				return story;
@@ -110,8 +124,9 @@ public class StoryServiceImpl implements StoryService{
 
 	@Override
 	public MemberStory getWeeklyProtegeWiningStory() {
-		String clause = " where t.numberOfVotesReceived IS NOT NULL and t.weekWinnerIndicator IS NULL and lower(t.approvedForPublishInd)=?1 and t.category=?2 ORDER BY t.numberOfVotesReceived DESC t.approvalDate DESC ";
-		List<MemberStory> stories  = this.stroyDao.loadTopResultsByConditions(1, clause, new Object[]{"yes","PROTEGE"});
+		Date date = this.getWeekFirstDay();
+		String clause = " where t.numberOfVotesReceived IS NOT NULL and t.weekWinnerIndicator IS NULL and lower(t.approvedForPublishInd)=?1 and t.category=?2 and t.approvalDate > ?3 ORDER BY t.numberOfVotesReceived DESC t.approvalDate DESC ";
+		List<MemberStory> stories  = this.stroyDao.loadTopResultsByConditions(50, clause, new Object[]{"yes","PROTEGE",date});
 		for(MemberStory story: stories){
 			if(!isMemberWinThisYear(story.getMember().getMemberId())){
 				return story;
