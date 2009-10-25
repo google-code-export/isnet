@@ -125,4 +125,14 @@ public List<Member> findMentorByIds(List<String> idList) {
     return memberDao.loadByClause(clause, new Object[] {});
 }
 
+@Override
+public int getMentorProtegeCout(Long memberId) {
+	String clause = " t.mentoredByMemberId =?1 ";
+    
+	List<Member> members =  memberDao.loadByClause(clause, new Object[] {memberId});
+	if(members == null) return 0;
+	return  members.size();
+    
+}
+
 }
