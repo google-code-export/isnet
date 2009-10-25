@@ -32,4 +32,6 @@ public interface MemberService {
 	
 	public List<Member> findMentorByIds(List<String> idList);
 	
+	public int getMentorProtegeCout(Long memberId);
+	
 }
