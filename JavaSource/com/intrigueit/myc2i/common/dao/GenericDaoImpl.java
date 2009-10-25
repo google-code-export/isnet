@@ -63,7 +63,7 @@ public abstract class GenericDaoImpl<T, ID extends Serializable> implements
 	public List<T> loadByClause(String clause, Object[] params) {
 		String hsql = "Select t from " + persistentClass.getName()
 				+ " t where " + clause;
-		log.debug(hsql);
+		//log.debug(hsql);
 		Query query = entityManager.createQuery(hsql);
 		/** bind parameters */
 		for (int i = 0; params != null && i < params.length; i++) {
@@ -75,7 +75,7 @@ public abstract class GenericDaoImpl<T, ID extends Serializable> implements
 	public List<T> loadTopResultsByClause(int top,String clause, Object[] params) {
 		String hsql = "Select t from " + persistentClass.getName()
 				+ " t where " + clause;
-		log.debug(hsql);
+		//log.debug(hsql);
 		Query query = entityManager.createQuery(hsql);
 		query.setMaxResults(top);
 		/** bind parameters */
@@ -87,7 +87,7 @@ public abstract class GenericDaoImpl<T, ID extends Serializable> implements
 	public List<T> loadTopResultsByConditions(int top,String clause, Object[] params) {
 		String hsql = "Select t from " + persistentClass.getName()
 				+ " t " + clause;
-		log.debug(hsql);
+		//log.debug(hsql);
 		Query query = entityManager.createQuery(hsql);
 		query.setMaxResults(top);
 		/** bind parameters */
@@ -100,7 +100,7 @@ public abstract class GenericDaoImpl<T, ID extends Serializable> implements
 	public boolean isDuplicateRecord(String clause) {
 		String hsql = "Select t from " + persistentClass.getName()
 				+ " t where " + clause;
-		log.debug(hsql);
+		//log.debug(hsql);
 		Query query = entityManager.createQuery(hsql);
 		List<T> recordList = query.getResultList();
 		return recordList.size() > 0;
@@ -110,7 +110,7 @@ public abstract class GenericDaoImpl<T, ID extends Serializable> implements
 	public boolean isDuplicateRecord(String clause, Object[] params) {
 		String hsql = "Select t from " + persistentClass.getName()
 				+ " t where " + clause;
-		log.debug(hsql);
+		//log.debug(hsql);
 		Query query = entityManager.createQuery(hsql);
 		/** bind parameters */
 		for (int i = 0; params != null && i < params.length; i++) {
