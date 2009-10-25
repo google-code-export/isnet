@@ -139,9 +139,7 @@ public class StoryViewHandler extends BasePage implements Serializable{
 				type = "MENTOR";
 			}
 			this.voteStoryList = this.storyService.findMostVotedAndLatestStories(type);
-			for(MemberStory story: voteStoryList){
-				log.debug(story.getNumberOfVotesReceived());
-			}
+
 		}
 		catch(Exception ex){
 			log.error(ex.getMessage());
