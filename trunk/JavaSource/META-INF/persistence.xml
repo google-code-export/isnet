@@ -14,7 +14,7 @@
 			<property name = "hibernate.connection.password" value = "myc2i2"/>
 			<property name="hibernate.cache.use_query_cache" value="false"/>
 			<property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
-      		<property name="hibernate.showsql" value="true"/>
+      		<property name="hibernate.showsql" value="false"/>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.Oracle9Dialect"/>
 			
 	  	</properties>
