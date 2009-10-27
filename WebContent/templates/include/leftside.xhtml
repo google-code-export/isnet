@@ -55,6 +55,12 @@
                 <h:outputText value="#{bundle.left_navigation_tutorial_qa}"/>
               </h:outputLink>
             </li>
+            <li>
+              <h:outputLink styleClass="menu_item_clink"
+                value="#{controllerBean.contextPath}/pages/secure/adminStory.faces">
+                <h:outputText value="Approve Story"/>
+              </h:outputLink>
+            </li>            
          </ul>
         </h:panelGroup>
         <h:panelGroup id="idUserManagePanel" rendered="${moduleType eq 'UM'}">
