@@ -17,9 +17,12 @@
           
           <h:panelGrid columns="1" width="100%" valign="center" border="0" cellpadding="0" cellspacing="0">
             <rich:spacer height="150"/>
-			<div id="guestButton">
-				<h:outputLink value="#{controllerBean.contextPath}/guestRegister.faces"> <h:graphicImage value="/images/address_book3.png" /> <h:outputText value="#{bundle.login_page_guest_signup}" /> </h:outputLink>
-			</div>
+			<h:panelGrid columns="1" width="100%" border="0" columnClasses="center_align_col">
+				<h:outputLink value="#{controllerBean.contextPath}/guestRegister.faces"> 
+					<h:graphicImage value="/images/address_book3.png" /> 
+					<h:outputText value="#{bundle.login_page_guest_signup}" /> 
+				</h:outputLink>			
+			</h:panelGrid>
 			 <rich:spacer height="7"/>
 			<rich:panel headerClass="login_box_panel_header"  bodyClass="login_box_panel">
 			<f:facet name="header"><h:outputText value="#{bundle.login_page_success_stories}" /> </f:facet>
@@ -64,13 +67,18 @@
          				<h:outputText styleClass="error_message" value="#{authenticationViewHandler.errMessage}" />
          			</h:panelGrid>         			
 				</rich:panel>
-				<h:panelGrid columns="1" border="0">
+				<h:panelGrid columns="1"  width="100%" border="0" >
 				<rich:spacer height="10"/>
 				<rich:spacer height="10"/>
 				<rich:spacer height="10"/>		
-				<h:panelGroup >
-					<h:outputLink value="#{controllerBean.contextPath}/mentorRegister.faces"> <h:graphicImage value="/images/address_book2.png" /> <h:outputText value="#{bundle.login_page_mentor_signup}" /> </h:outputLink>
-				</h:panelGroup>		
+
+				<h:panelGrid columns="1" width="100%" border="0" columnClasses="center_align_col">
+					<h:outputLink value="#{controllerBean.contextPath}/mentorRegister.faces"> 
+						<h:graphicImage value="/images/address_book2.png" /> 
+						<h:outputText value="#{bundle.login_page_mentor_signup}" /> 
+					</h:outputLink>		
+				</h:panelGrid>
+								
 				
 				</h:panelGrid>
 				
