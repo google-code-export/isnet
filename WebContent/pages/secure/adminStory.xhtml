@@ -52,7 +52,7 @@
 			                <h:outputText value="#{bundle.success_story_create}"/>
 			             </f:facet>
 				 			<h:outputText  value="#{story.memberStoryDate}" >
-				 			<f:convertDateTime dateStyle="default" pattern="dd-MM-yyyy"/>
+				 			<f:convertDateTime dateStyle="default" pattern="#{bundle.short_date_pattern}"/>
 				 			</h:outputText>
 		             </rich:column>		             
 		             <rich:column>
