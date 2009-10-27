@@ -24,18 +24,17 @@
 					<h:outputText value="#{bundle.dashboard_protege_request}" />
 				</h:column>
 				<h:column>
-					<a4j:commandButton
-						action="#{dashboardViewHandler.acceptMentorRequest}"
-						value="#{bundle.button_label_accept}" reRender="idRequestGrid">
-						<a4j:actionparam name="REQUEST_ID" value="#{log.memberLogId}" />
+					<a4j:commandButton oncomplete="Richfaces.showModalPanel('idRequestNoteDialog')"
+						value="#{bundle.button_label_accept}">
+						<a4j:actionparam name="logId"  value="#{log.memberLogId}" assignTo="#{dashboardViewHandler.logId}" />
+						<a4j:actionparam name="act"  value="3" assignTo="#{dashboardViewHandler.action}" />
 					</a4j:commandButton>
 					<rich:spacer width="3" />
 					<h:outputText value="#{bundle.or_label}" />
 					<rich:spacer width="5" />
-					<a4j:commandButton
-						action="#{dashboardViewHandler.rejectMentorRequest}"
-						value="#{bundle.button_label_deny}" reRender="idRequestGrid">
-						<a4j:actionparam name="REQUEST_ID" value="#{log.memberLogId}" />
+					<a4j:commandButton value="#{bundle.button_label_deny}" oncomplete="Richfaces.showModalPanel('idRequestNoteDialog')" >
+						<a4j:actionparam name="logId"  value="#{log.memberLogId}" assignTo="#{dashboardViewHandler.logId}" />
+						<a4j:actionparam name="act"  value="4" assignTo="#{dashboardViewHandler.action}" />
 					</a4j:commandButton>
 				</h:column>
 			</h:dataTable>
