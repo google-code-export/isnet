@@ -70,7 +70,9 @@ public class MemberViewHandler extends BasePage implements Serializable{
 		this.hasError = false;
 		try{
 			this.validateMember();
+			this.validationPhase3();
 			this.validationPhase2();
+			
 			if(this.errMsgs.size()>0){
 				this.hasError = true;
 				return "";
@@ -226,6 +228,12 @@ public class MemberViewHandler extends BasePage implements Serializable{
 		if(this.getAgree() == false){
 			this.errMsgs.add(this.getText("member_validation_licence_agree"));
 		}		
+	}
+	private void validationPhase3(){
+		if(CommonValidator.isInvalidListItem(this.getCurrentMember().getMazhab())){
+			this.errMsgs.add( this.getText("member_validation_madhab"));
+		}
+	
 	}
 	public Member getCurrentMember() {
 		return currentMember;
