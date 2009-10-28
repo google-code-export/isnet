@@ -11,7 +11,8 @@
    xmlns:rowBar="http://www.myc2i.com/jsf/rowToolBar"
    xmlns:ccmp="http://www.myc2i.com/jsf/commoncmp"
  	 xmlns:c="http://java.sun.com/jstl/core"
- 	 xmlns:rich="http://richfaces.org/rich">
+ 	 xmlns:rich="http://richfaces.org/rich"
+   xmlns:cuscmp="http://www.myc2i.com/jsf/commoncmp">
 
 <ui:composition template="/templates/maintmpl.xhtml">
  <ui:param name="moduleTitle" value="#{bundle.top_navigation_mp_relation_management} >> #{bundle.left_chapter_manage_chapter}"></ui:param>
@@ -35,15 +36,21 @@
           <h:inputText id="idEmail" styleClass="medium_text" value="#{searchBean.chapterName}"/>
           
           <h:outputText value="#{bundle.chapter_chapter_leader}"/>
-          <h:inputText id="ifFirstName" styleClass="medium_text" value="#{searchBean.chapterLeader}"/>
+          <cuscmp:searchcmp  searchBean="#{searchBean}" msgLabel="Chapter leader" extConds=""
+            displayField="recordDesc" hidIdField="recordId" searchObj="MT" isRequired="false"/>
           
           <h:outputText value="#{bundle.chapter_city}"/>
           <h:inputText id="idLastName" styleClass="medium_text" value="#{searchBean.city}"/>
           
           <h:outputText value="#{bundle.chapter_state}"/>
-          <h:inputText id="idState" styleClass="name" value="#{searchBean.state}"/>
-          
-          <h:outputText value=""/>
+          <h:selectOneMenu id="idState" value="#{searchBean.state}" styleClass="medium_text"> 
+           <f:selectItems value="#{chapterViewHandler.statesList}"/>             
+         </h:selectOneMenu>
+         
+         <h:outputText value="&#160;"/>
+         <h:outputText value=""/>
+         
+         <h:outputText value=""/>
           <a4j:commandButton value="#{bundle.chapter_search}" styleClass="ibutton" style="background:#F8F3D3;"
             action="#{chapterViewHandler.loadChapterByCriteria}" reRender="CHAPTER_LINES"
             onclick="forceSBlockUI(ajaxProcessMsg);" oncomplete="forceSUnblockUI();"/>
