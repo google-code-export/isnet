@@ -1,13 +1,13 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-   xmlns:h="http://java.sun.com/jsf/html"
-   xmlns:ui="http://java.sun.com/jsf/facelets"
-   xmlns:a4j="http://richfaces.org/a4j"
-   xmlns:rich="http://richfaces.org/rich"
-   xmlns:f="http://java.sun.com/jsf/core"
-   xmlns:c="http://java.sun.com/jstl/core"
-   xmlns:ccmp="http://www.myc2i.com/jsf/commoncmp">
+  xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:a4j="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:c="http://java.sun.com/jstl/core"
+    xmlns:ccmp="http://www.myc2i.com/jsf/commoncmp">
+    
   <ui:composition>
     <rich:panel id="idChapterEditContainer" styleClass="default_edit">
 	 <rich:spacer width="100%" height="20"/>
@@ -21,13 +21,23 @@
        <h:inputText styleClass="short_text" value="#{currentEBean.chapterName}" id="chapterName">
         <rich:ajaxValidator event="onblur" />
        </h:inputText>
-       <rich:message for="chapterName" />
+       <rich:message for="chapterName" />       
        
-              <h:panelGroup>
+       <h:panelGroup>
+        <h:outputText value="#{bundle.chapter_lead}" />
+        <span class="required_field">*</span>
+       </h:panelGroup>
+       <h:panelGroup>
+       <ccmp:searchcmp  searchBean="#{currentEBean}" msgLabel="Chapter name" extConds=""
+          displayField="leadMemberName" hidIdField="leadMemberId" searchObj="MT" isRequired="true"/>
+       </h:panelGroup>
+       <rich:message for="leadMemberName" />
+             
+       <h:panelGroup>
         <h:outputText value="#{bundle.chapter_street_address}" />
         <span class="required_field">&#160;</span>
        </h:panelGroup>
-       <h:inputText styleClass="name" value="#{currentEBean.chapterStreetAddress}" id="chapterStreetAddress">
+       <h:inputText styleClass="medium_text" value="#{currentEBean.chapterStreetAddress}" id="chapterStreetAddress">
         <rich:ajaxValidator event="onblur" />
        </h:inputText>
        <rich:message for="chapterStreetAddress" />        
@@ -44,12 +54,12 @@
        <h:panelGroup>
         <h:outputText value="#{bundle.chapter_state}" />
         <span class="required_field">&#160;</span>
-       </h:panelGroup>
-       <h:inputText styleClass="short_text" value="#{currentEBean.chapterState}" id="chapterState">
-        <rich:ajaxValidator event="onblur" />
-       </h:inputText>
+       </h:panelGroup>       
+       <h:selectOneMenu id="chapterState" value="#{currentEBean.chapterState}"  styleClass="short_text"> 
+        <f:selectItems value="#{userManageViewHandler.statesList}"/>     
+       </h:selectOneMenu>
        <rich:message for="chapterState" />
-       
+         
        <h:panelGroup>
         <h:outputText value="#{bundle.chapter_zip}" />
         <span class="required_field">&#160;</span>
@@ -57,17 +67,17 @@
        <h:inputText styleClass="short_text" value="#{currentEBean.chapterZip}" id="chapterZip">
         <rich:ajaxValidator event="onblur" />
        </h:inputText>
-       <rich:message for="chapterZip" />   
+       <rich:message for="chapterZip" />
        
        <h:panelGroup>
         <h:outputText value="#{bundle.chapter_country}" />
-        <span class="required_field">*</span>
+        <span class="required_field"></span>
        </h:panelGroup>
-       <h:inputText styleClass="short_text" value="#{currentEBean.chapterCountry}" id="chapterCountry">
-        <rich:ajaxValidator event="onblur" />
-       </h:inputText>
-       <rich:message for="chapterCountry" /> 
-        
+       <h:selectOneMenu id="chapterCountry" value="#{currentEBean.chapterCountry}"  styleClass="short_text"> 
+        <f:selectItems value="#{chapterViewHandler.countryList}"/>
+       </h:selectOneMenu>
+       <rich:message for="chapterCountry" />   
+          
        <h:panelGroup>
         <h:outputText value="#{bundle.chapter_phone}" />
         <span class="required_field">&#160;</span>
@@ -81,7 +91,7 @@
         <h:outputText value="#{bundle.chapter_email_address}" />
         <span class="required_field">*</span>
        </h:panelGroup>
-       <h:inputText styleClass="short_text" value="#{currentEBean.chapterEmailAddress}" id="chapterEmailAddress">
+       <h:inputText styleClass="medium_text" value="#{currentEBean.chapterEmailAddress}" id="chapterEmailAddress">
         <rich:ajaxValidator event="onblur" />
        </h:inputText>
        <rich:message for="chapterEmailAddress" /> 
