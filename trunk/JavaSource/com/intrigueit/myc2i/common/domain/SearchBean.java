@@ -2,6 +2,7 @@ package com.intrigueit.myc2i.common.domain;
 
 public class SearchBean {
   private Long recordId;
+  private Long recordDesc;
   private String firstName;
   private String lastName;
   private String city;
@@ -14,6 +15,20 @@ public class SearchBean {
   }
   public void setRecordId(Long recordId) {
     this.recordId = recordId;
+  }
+  
+  
+  /**
+   * @return the recordDesc
+   */
+  public Long getRecordDesc() {
+    return recordDesc;
+  }
+  /**
+   * @param recordDesc the recordDesc to set
+   */
+  public void setRecordDesc(Long recordDesc) {
+    this.recordDesc = recordDesc;
   }
   public String getFirstName() {
     return firstName;
