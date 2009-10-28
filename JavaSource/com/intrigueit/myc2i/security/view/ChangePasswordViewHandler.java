@@ -70,7 +70,7 @@ public class ChangePasswordViewHandler extends BasePage  implements Serializable
 			}			
 			Member dbMember = this.memberService.findById(member.getMemberId());
 			this.modifyMember(dbMember);
-			//this.sendConfirmationEmail(dbMember.getEmail(), newPassword);
+			this.sendConfirmationEmail(dbMember.getEmail(), newPassword);
 			return ViewConstant.PASSWORD_CHANGE_TO_HOME;
 		}
 		catch(Myc2iException ex){
@@ -117,8 +117,8 @@ public class ChangePasswordViewHandler extends BasePage  implements Serializable
 		}
 	}
 	public void validate(){
-		if(CommonValidator.isEmpty(this.newPassword)){
-			this.errMsgs.add( this.getText("change_password_change_validation_new_password_empty"));
+		if(!CommonValidator.isValidPassword(this.newPassword)){
+			this.errMsgs.add( this.getText("member_validation_password"));
 		}
 		if(!this.newPassword.equals(this.confirmPassword)){
 			this.errMsgs.add( this.getText("change_password_dont_match"));
