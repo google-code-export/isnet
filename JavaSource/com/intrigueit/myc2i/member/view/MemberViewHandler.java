@@ -171,6 +171,14 @@ public class MemberViewHandler extends BasePage implements Serializable{
 		if(CommonValidator.isEmpty(this.getCurrentMember().getLastName())){
 			this.errMsgs.add( this.getText("member_validation_last_name"));
 		}	
+		/** Check the City  */
+		if(CommonValidator.isEmpty(this.getCurrentMember().getCity())){
+			this.errMsgs.add( this.getText("member_validation_city"));
+		}		
+		/** Check the State  */
+		if(CommonValidator.isInvalidListItem(this.getCurrentMember().getState())){
+			this.errMsgs.add( this.getText("member_validation_state"));
+		}		
 		/** Check the Zip code */
 		if(!CommonValidator.isValidZipCode(this.currentMember.getZip())){
 			this.errMsgs.add( this.getText("member_validation_zip_code"));
