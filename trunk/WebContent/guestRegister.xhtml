@@ -185,10 +185,10 @@
 							</h:selectOneMenu>
 
 							<h:outputLabel>
-							<h:outputText styleClass="required_field" value="*" />
+							<h:outputText styleClass="required_field" value="" />
 							</h:outputLabel>
 							<h:panelGroup >
-								<h:selectBooleanCheckbox>
+								<h:selectBooleanCheckbox value="#{memberViewHandler.currentMember.emailNotification}" >
 											</h:selectBooleanCheckbox>
 								<rich:spacer width="5"></rich:spacer>										
 								<h:outputText  value="#{bundle.member_new_email_notify}"/>
