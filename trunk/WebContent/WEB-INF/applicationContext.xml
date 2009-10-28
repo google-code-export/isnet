@@ -62,8 +62,8 @@
 	
 	<bean id="cronStoryCheckTriggerBean" class="org.springframework.scheduling.quartz.CronTriggerBean">
 	    <property name="jobDetail" ref="dummyJobDetail" />
-	      <!--<property name="cronExpression" value="0 58 23 ? * FRI" /> -->
-	    <property name="cronExpression" value="0 0/1 * * * ?" /> 
+	     <property name="cronExpression" value="0 59 23 ? * FRI" /> 
+	     <!--<property name="cronExpression" value="0 0/1 * * * ?" /> -->
 	</bean>
 	
 	<bean id="scheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
