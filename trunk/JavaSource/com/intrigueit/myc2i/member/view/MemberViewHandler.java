@@ -192,10 +192,6 @@ public class MemberViewHandler extends BasePage implements Serializable{
 		if(!CommonValidator.isValidEmail(this.getCurrentMember().getEmail())){
 			this.errMsgs.add( this.getText("member_validation_email_address"));
 		}
-		/** Check the last name */
-		if(CommonValidator.isEmpty(this.getCurrentMember().getPassword())){
-			this.errMsgs.add( this.getText("member_validation_password"));
-		}		
 		/** Check the member profession */
 		if(CommonValidator.isEmpty(this.getCurrentMember().getProfession())){
 			this.errMsgs.add( this.getText("member_validation_profession"));
@@ -215,6 +211,10 @@ public class MemberViewHandler extends BasePage implements Serializable{
 		if(CommonValidator.isInvalidListItem(this.getCurrentMember().getEthinicity())){
 			this.errMsgs.add( this.getText("member_validation_ethinicity"));
 		}
+		/** Check the valid password */
+		if(!CommonValidator.isValidPassword(this.getCurrentMember().getPassword())){
+			this.errMsgs.add( this.getText("member_validation_password"));
+		}			
 		
 		
 	}
