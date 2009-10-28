@@ -16,6 +16,7 @@ import com.intrigueit.myc2i.common.CommonConstants;
 import com.intrigueit.myc2i.common.utility.CryptographicUtility;
 import com.intrigueit.myc2i.common.view.BasePage;
 import com.intrigueit.myc2i.common.view.CommonValidator;
+import com.intrigueit.myc2i.common.view.ViewConstant;
 import com.intrigueit.myc2i.common.view.ViewDataProvider;
 import com.intrigueit.myc2i.member.domain.Member;
 import com.intrigueit.myc2i.member.service.MemberService;
@@ -63,7 +64,7 @@ public class MemberViewHandler extends BasePage implements Serializable{
 		}
 
 	}
-	public void registerMentor(){
+	public String registerMentor(){
 		
 		logger.debug("Registering Mentor");
 		this.hasError = false;
@@ -72,7 +73,7 @@ public class MemberViewHandler extends BasePage implements Serializable{
 			this.validationPhase2();
 			if(this.errMsgs.size()>0){
 				this.hasError = true;
-				return;
+				return "";
 			}
 			
 			CryptographicUtility crpUtil = new CryptographicUtility();
@@ -92,6 +93,7 @@ public class MemberViewHandler extends BasePage implements Serializable{
 			logger.debug("Mentor added: "+ this.currentMember.getMemberId());
 			this.currentMember= new Member();
 			this.setSuccessMessage(this.getText("mentor_success"));
+			return ViewConstant.REGISTER_SUCCESSFULL;
 		}
 		catch(Exception ex){
 			this.hasError = true;
@@ -100,6 +102,7 @@ public class MemberViewHandler extends BasePage implements Serializable{
 			this.setSuccessMessage("");
 		}
 		this.resetPassword();
+		return "";
 		
 	}
 	private void resetPassword(){
@@ -109,7 +112,7 @@ public class MemberViewHandler extends BasePage implements Serializable{
 		this.currentMember.setPassword("");
 		this.confirmPass = "";
 	}
-	public void registerGuest(){
+	public String registerGuest(){
 		logger.debug("Registering Guest");
 		this.hasError = false;
 		try{
@@ -117,7 +120,7 @@ public class MemberViewHandler extends BasePage implements Serializable{
 			this.validationPhase2();
 			if(this.errMsgs.size()>0){
 				this.hasError = true;
-				return;
+				return "";
 			}
 
 			CryptographicUtility crpUtil = new CryptographicUtility();
@@ -138,6 +141,7 @@ public class MemberViewHandler extends BasePage implements Serializable{
 			logger.debug("Guest added: "+ this.currentMember.getMemberId());
 			this.currentMember = new Member();
 			this.setSuccessMessage(this.getText("mentor_success"));
+			return ViewConstant.REGISTER_SUCCESSFULL;
 		}
 		catch(Exception ex){
 			this.hasError = true;
@@ -147,6 +151,7 @@ public class MemberViewHandler extends BasePage implements Serializable{
 			this.setSuccessMessage("");
 		}		
 		this.resetPassword();
+		return "";
 	}
 	
 	/** Send confirmation email to member */
@@ -206,6 +211,11 @@ public class MemberViewHandler extends BasePage implements Serializable{
 		if(!this.confirmPass.equals(this.currentMember.getPassword())){
 			this.errMsgs.add( this.getText("member_validation_password_dont_match"));
 		}
+		/** Check the member profession */
+		if(CommonValidator.isInvalidListItem(this.getCurrentMember().getEthinicity())){
+			this.errMsgs.add( this.getText("member_validation_ethinicity"));
+		}
+		
 		
 	}
 	
