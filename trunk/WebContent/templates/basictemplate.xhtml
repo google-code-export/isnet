@@ -18,8 +18,20 @@
       	<link rel="STYLESHEET" type="text/css" href="#{controllerBean.contextPath}/#{controllerBean.cssPath}/myc2i.css"/>
       	<link rel="STYLESHEET" type="text/css" href="#{controllerBean.contextPath}/#{controllerBean.cssPath}/menu_style.css"/>
        	<link rel="STYLESHEET" type="text/css" href="#{controllerBean.contextPath}/#{controllerBean.cssPath}/common.css"/>
-       	
 		</a4j:outputPanel>
+	    <a4j:loadScript src="/js/jquery/jquery-1.2.js"/>
+	    <a4j:loadScript src="/js/jquery/jquery.blockUI.js"/>
+	    <a4j:loadScript src="/js/jquery/jqconfig.js"/>		
+	    <script>
+	      /* define diffrent message for ajax loading*/
+	      var ajaxLoadingMsg = "Loading...";
+	      var ajaxProcessMsg = "Processing...";
+	      var ajaxWaitMsg = "Please wait...";
+	      var ajaxUpdateMsg = "Updating...";
+	      var ajaxCreateCrt = "Creating...";
+	      var ajaxAddMsg = "Adding...";
+	      var ajaxPrepareMsg = "Preparing...";
+	    </script>	    
 
 		<ui:insert name="js"></ui:insert>
 	</head>
