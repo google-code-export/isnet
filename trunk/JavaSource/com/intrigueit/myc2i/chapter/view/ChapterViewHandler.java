@@ -17,6 +17,7 @@ import com.intrigueit.myc2i.chapter.service.ChapterService;
 import com.intrigueit.myc2i.common.ServiceConstants;
 import com.intrigueit.myc2i.common.domain.SearchBean;
 import com.intrigueit.myc2i.common.view.BasePage;
+import com.intrigueit.myc2i.common.view.ViewDataProvider;
 
 @Component("chapterViewHandler")
 @Scope("session")
@@ -35,11 +36,14 @@ public class ChapterViewHandler extends BasePage implements Serializable {
 	private SearchBean searchBean;	
 	List<SelectItem> categoryList;
 	private ListDataModel chapterLines;
-	private String categoryName;	
+	private String categoryName;
+	private ViewDataProvider viewDataProvider;
 		
   @Autowired
-	public ChapterViewHandler(ChapterService chapterService) {
+	public ChapterViewHandler(ChapterService chapterService,
+      ViewDataProvider viewDataProvider) {
 		this.chapterService = chapterService;
+		this.viewDataProvider = viewDataProvider;
 		this.initializeChapter();
 	}
 
@@ -129,11 +133,14 @@ public class ChapterViewHandler extends BasePage implements Serializable {
 		try {		  
 		  this.currentChapter = getCurrentChapter();
       if(validate()) {
+        this.currentChapter.setChapterState(null);
+        this.currentChapter.setChapterCountry(null);
   			this.chapterService.addChapter(this.currentChapter);
   			List<LocalChapter> udvList = (List<LocalChapter>) getChapterLines().getWrappedData();
   			udvList.add(this.currentChapter);
 			}
 		} catch (Exception e) {
+		  System.out.println("::::::::::::::::: "+this.currentChapter.getChapterId());
 		  setErrorMessage(this.getText("common_system_error"));
 			logger.error(e.getMessage());
 			e.printStackTrace();
@@ -260,6 +267,14 @@ public class ChapterViewHandler extends BasePage implements Serializable {
 
   public void setSearchBean(SearchBean searchBean) {
     this.searchBean = searchBean;
+  }
+  
+  public List<SelectItem> getStatesList() {
+    return viewDataProvider.getStateList();
+  }
+
+  public List<SelectItem> getCountryList() {
+    return this.viewDataProvider.getCountryList();
   }
 
 }
