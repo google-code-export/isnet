@@ -24,12 +24,22 @@
    <to-view-id>/login.xhtml</to-view-id>
    <redirect/>
   </navigation-case>
+  <navigation-case>
+   <from-outcome>REGISTER_SUCCESSFULL</from-outcome>
+   <to-view-id>/accountSuccessMessage.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
  </navigation-rule>
  <navigation-rule>
   <from-view-id>/mentorRegister.xhtml</from-view-id>
   <navigation-case>
    <from-outcome>BACK_TO_LOGIN</from-outcome>
    <to-view-id>/login.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>REGISTER_SUCCESSFULL</from-outcome>
+   <to-view-id>/accountSuccessMessage.xhtml</to-view-id>
    <redirect/>
   </navigation-case>
  </navigation-rule>
@@ -404,6 +414,14 @@
  </navigation-rule>
  <navigation-rule>
   <from-view-id>/pages/secure/mentorLogReview.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>BACK_TO_LOGIN</from-outcome>
+   <to-view-id>/login.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/accountSuccessMessage.xhtml</from-view-id>
   <navigation-case>
    <from-outcome>BACK_TO_LOGIN</from-outcome>
    <to-view-id>/login.xhtml</to-view-id>
