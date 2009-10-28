@@ -5,8 +5,11 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -15,6 +18,8 @@ import org.hibernate.validator.Email;
 import org.hibernate.validator.Length;
 import org.hibernate.validator.NotEmpty;
 import org.hibernate.validator.NotNull;
+
+import com.intrigueit.myc2i.udvalues.domain.UserDefinedValues;
 
 @Entity
 @Table(name="LOCAL_CHAPTER")
@@ -32,10 +37,10 @@ public class LocalChapter implements Serializable {
 	private Long chapterId;
   
   @Column(name="CHAPTER_LEAD_MEMBER_ID")
-  private Integer leadMemberId;
+  private Long leadMemberId;
   
   @Transient
-  private Integer leadMemberName;
+  private String leadMemberName;
 
   @NotNull
   @NotEmpty
@@ -76,9 +81,6 @@ public class LocalChapter implements Serializable {
 	@Column(name="LOCAL_CHAPTER_FAX",length = 20)
 	private String chapterFax;
 
-	@NotNull
-  @NotEmpty
-  @Length(min=2,max=20)
 	@Column(name="LOCAL_CHAPTER_COUNTRY",length = 20)	
 	private String chapterCountry;
 	
@@ -106,19 +108,19 @@ public class LocalChapter implements Serializable {
     this.chapterId = chapterId;
   }
   
-  public Integer getLeadMemberId() {
+  public Long getLeadMemberId() {
     return leadMemberId;
   }
 
-  public void setLeadMemberId(Integer leadMemberId) {
+  public void setLeadMemberId(Long leadMemberId) {
     this.leadMemberId = leadMemberId;
   }
 
-  public Integer getLeadMemberName() {
+  public String getLeadMemberName() {
     return leadMemberName;
   }
 
-  public void setLeadMemberName(Integer leadMemberName) {
+  public void setLeadMemberName(String leadMemberName) {
     this.leadMemberName = leadMemberName;
   }
   public String getChapterName() {
@@ -231,5 +233,29 @@ public class LocalChapter implements Serializable {
 
   public void setRecordLastUpdatedDate(Date recordLastUpdatedDate) {
     this.recordLastUpdatedDate = recordLastUpdatedDate;
-  }	
+  }
+  
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "LOCAL_CHAPTER_STATE", nullable = false, insertable = false, updatable = false)
+  private UserDefinedValues stateUDV;
+
+  public UserDefinedValues getStateUDV() {
+    return stateUDV;
+  }
+
+  public void setStateUDV(UserDefinedValues stateUDV) {
+    this.stateUDV = stateUDV;
+  }
+
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "LOCAL_CHAPTER_COUNTRY", nullable = false, insertable = false, updatable = false)
+  private UserDefinedValues countryUDV;
+
+  public UserDefinedValues getCountryUDV() {
+    return countryUDV;
+  }
+
+  public void setCountryUDV(UserDefinedValues countryUDV) {
+    this.countryUDV = countryUDV;
+  }
 }

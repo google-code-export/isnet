@@ -57,19 +57,26 @@ public class ChapterServiceImpl implements ChapterService {
 	      value.add("%" + searchBean.getChapterName().toUpperCase() + "%");
 	      useAnd = true;
 	    }  
-
+	    
+	    if ( searchBean.getRecordId() != null ) {
+        clause.append(" leadMemberId = ?" + i++);
+        value.add(searchBean.getRecordId());
+        useAnd = true;
+      }
+	    
 	    if (searchBean.getCity() != null && !searchBean.getCity().isEmpty()) {
 	      clause = (useAnd) ? clause.append(" and upper(chapterCity) like ?" + i++)
 	          : clause.append(" upper(chapterCity) like ?" + i++);
 	      value.add("%" + searchBean.getCity().toUpperCase() + "%");
 	      useAnd = true;
 	    }
-
-	    if (searchBean.getState() != null && !searchBean.getState().isEmpty()) {
-	      clause = (useAnd) ? clause.append(" and upper(chapterState) like ?" + i++)
-	          : clause.append(" upper(chapterState) like ?" + i++);
-	      value.add("%" + searchBean.getState().toUpperCase() + "%");      
+	   
+	    if (searchBean.getState() != null && !searchBean.getState().equals("-1")) {
+	      clause = (useAnd) ? clause.append(" and chapterState =?" + i++)
+	          : clause.append(" chapterState =?" + i++);
+	      value.add(searchBean.getState());      
 	    }
+	    
 	    if (clause.length() == 0) {
 	      return chapterDao.loadAll();
 	    } else {
