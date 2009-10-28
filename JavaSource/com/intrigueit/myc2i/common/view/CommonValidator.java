@@ -25,6 +25,12 @@ public class CommonValidator extends BasePage {
     }
     return false;
   }
+  public static boolean isInvalidListItem(String val) {
+	    if (val == null || val.equals("-1")) {
+	      return true;
+	    }
+	    return false;
+	  }
 
   public static boolean isValidZipCode(String zip) {
 
