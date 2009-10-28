@@ -31,7 +31,12 @@ public class CommonValidator extends BasePage {
 	    }
 	    return false;
 	  }
-
+  public static boolean isInvalidListItem(Long val) {
+	    if (val == null || val.equals(-1L)) {
+	      return true;
+	    }
+	    return false;
+	  }
   public static boolean isValidZipCode(String zip) {
 
     return zip.matches("\\d{5}");
