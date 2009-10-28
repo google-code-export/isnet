@@ -209,10 +209,10 @@
 							</h:selectOneMenu>
 							
 							<h:outputLabel>
-							<h:outputText styleClass="required_field" value="*" />
+							<h:outputText styleClass="required_field" value="" />
 							</h:outputLabel>
 							<h:panelGroup >
-								<h:selectBooleanCheckbox title=""   >
+								<h:selectBooleanCheckbox title=""   value="#{memberViewHandler.currentMember.emailNotification}" >
 											</h:selectBooleanCheckbox>
 								<rich:spacer width="5"></rich:spacer>										
 								<h:outputText  value="#{bundle.member_new_email_notify}"/>
@@ -242,7 +242,7 @@
 				<rich:panel id="actionBox" bodyClass="panel_content_body">
 						<h:panelGrid columns="1" columnClasses="column_class_center" width="100%">
 							<h:panelGroup>
-								<a4j:commandButton action="#{memberViewHandler.registerMentor}" value="#{bundle.common_label_signup}" reRender="idPanelContainer" />
+								<a4j:commandButton onclick="forceBlockUI(ajaxWaitMsg);"   oncomplete="forceUnblockUI();" action="#{memberViewHandler.registerMentor}" value="#{bundle.common_label_signup}" reRender="idPanelContainer" />
 								<rich:spacer width="10"></rich:spacer>	
 								<h:commandButton action="#{navigationBean.backToLogin}"   value="#{bundle.common_label_back}"  />								
 							</h:panelGroup>		
