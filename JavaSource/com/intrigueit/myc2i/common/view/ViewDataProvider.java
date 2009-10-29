@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.intrigueit.myc2i.common.ServiceConstants;
 import com.intrigueit.myc2i.member.domain.Member;
 import com.intrigueit.myc2i.member.service.MemberService;
 import com.intrigueit.myc2i.udvalues.domain.UserDefinedValues;
@@ -35,7 +36,36 @@ public class ViewDataProvider extends BasePage {
 	private List<SelectItem> ethinicityList;
 	private ArrayList<SelectItem> userTypes;
 	private Hashtable<String, String> memberTypeHash;
+	private ArrayList<SelectItem> moduleUsers;
 	
+	/**
+   * @return the userTypes
+   */
+  public ArrayList<SelectItem> getModuleUsers() {
+    if ( userTypes == null ) {
+      this.loadModuleUsers();
+    }      
+    return this.userTypes;
+  }
+
+
+  public void loadModuleUsers(){
+    this.userTypes = new ArrayList<SelectItem>();
+    userTypes.add(new SelectItem("",""));
+    try {
+      List<UserDefinedValues> udvList = this.udService.findByProperty("udValuesCategory", "MEMBER_TYPE");
+      for (UserDefinedValues userDefinedValues : udvList) {
+        if (userDefinedValues.getUdValuesValue()!=null && 
+            !userDefinedValues.getUdValuesValue().equals(ServiceConstants.ADMIN)) {
+          userTypes.add(new SelectItem(userDefinedValues.getUdValuesId()+"",userDefinedValues.getUdValuesValue()));
+        }
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  
 	/**
      * @return the userTypes
      */
