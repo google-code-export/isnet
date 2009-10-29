@@ -61,8 +61,14 @@ public class PasswordRecoveryViewHanndler extends BasePage implements Serializab
 			}
 			Member member = this.memberService.findByProperty("email", this.getEmail()).get(0);
 			
+			this.invalidSecurityQuestion(member);
+			if(this.errMsgs.size()>0){
+				this.hasError = true;
+				return;
+			}			
 			/** Validation phase 2 */
 			this.validateMemberInformation(member);
+			
 			if(this.errMsgs.size()>0){
 				this.hasError = true;
 				return;
@@ -93,8 +99,8 @@ public class PasswordRecoveryViewHanndler extends BasePage implements Serializab
 	/** Send confirmation email to member */
 	private void sendConfirmationEmail(String email, String password)throws Exception{
 		
-		String msgBody = this.getText("email_password_recovery_confirmation_subject", new String[]{email,password});
-		String emailSubject = this.getText("email_password_recovery_confirmation_body");
+		String emailSubject  = this.getText("email_password_recovery_confirmation_subject");
+		String msgBody = this.getText("email_password_recovery_confirmation_body", new String[]{email,password});
 		/**Send email notification */
 		Emailer emailer = new Emailer(email, msgBody,emailSubject);
 		emailer.setContentType("text/html");
@@ -108,6 +114,17 @@ public class PasswordRecoveryViewHanndler extends BasePage implements Serializab
 			!member.getSecurityQuestionAns2().equals( this.getQuestion2Ans())){
 			
 			this.errMsgs.add( this.getText("password_recovery_invalid_member"));
+		}
+		
+	}
+	private void invalidSecurityQuestion(Member member){
+		if(member == null ||
+			member.getSecurityQuestion1() == null ||
+			member.getSecurityQuestionAns1() == null ||
+			member.getSecurityQuestion2() == null ||
+			member.getSecurityQuestionAns2() == null ){
+			
+			this.errMsgs.add("No security questions are set yet.You need to login first with initial password.");
 		}
 		
 	}
