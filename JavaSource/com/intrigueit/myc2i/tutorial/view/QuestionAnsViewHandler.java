@@ -74,6 +74,8 @@ public class QuestionAnsViewHandler extends BasePage implements Serializable {
         UFile ufile = fileUploadBean.getUploadFile();
         this.currentQuestionAns.setPageAudio(ufile.getData());
         this.currentQuestionAns.setAudioFileName(ufile.getName());
+        logger.debug("Uploaded audio::"+ufile.getName());
+        fileUploadBean.clearUploadData();
       }
     } catch(Exception ex) {
       logger.error("Unable to load audio");
@@ -87,6 +89,8 @@ public class QuestionAnsViewHandler extends BasePage implements Serializable {
         UFile ufile = fileUploadBean.getUploadFile();
         this.currentQuestionAns.setPageVideo(ufile.getData());
         this.currentQuestionAns.setVideoFileName(ufile.getName());
+        logger.debug("Uploaded video::"+ufile.getName());
+        fileUploadBean.clearUploadData();
       }
     } catch(Exception ex) {
       logger.error("Unable to load video");
