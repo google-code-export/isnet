@@ -33,8 +33,8 @@ public class TestTutorialModules implements Serializable {
   private Long documentId;
   
   @NotNull
-  @NotEmpty(message="Can not be empty")
-  @Length(max=1,message="Can not be empty")
+  @NotEmpty(message="Length must be 1")
+  @Length(max=1,message="Length must be 1")
   @Column(name="TEST_INDICATOR",nullable = false)
   private String testIndicator;
 

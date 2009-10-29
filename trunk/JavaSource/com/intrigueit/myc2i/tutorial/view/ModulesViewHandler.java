@@ -340,6 +340,7 @@ public class ModulesViewHandler extends BasePage implements Serializable {
         UFile ufile = fileUploadBean.getUploadFile();
         this.currentModules.setModuleIntroAudio(ufile.getData());
         this.currentModules.setAudioFileName(ufile.getName());
+        logger.debug("Uploaded audio::"+ufile.getName());
         fileUploadBean.clearUploadData();
       }
     } catch (Exception ex) {
@@ -354,6 +355,7 @@ public class ModulesViewHandler extends BasePage implements Serializable {
         UFile ufile = fileUploadBean.getUploadFile();
         this.currentModules.setModuleIntroVideo(ufile.getData());
         this.currentModules.setVideoFileName(ufile.getName());
+        logger.debug("Uploaded vedio::"+ufile.getName());
         fileUploadBean.clearUploadData();
       }
     } catch (Exception ex) {
@@ -393,7 +395,7 @@ public class ModulesViewHandler extends BasePage implements Serializable {
 
   public ArrayList<SelectItem> getUsersList() {
     if (usersList == null) {
-      this.usersList = viewDataProvider.getUserTypes();
+      this.usersList = viewDataProvider.getModuleUsers();
     }
     return usersList;
   }
