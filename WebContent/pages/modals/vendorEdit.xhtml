@@ -47,7 +47,6 @@
        </h:panelGroup>
        <h:inputText styleClass="short_text" value="#{currentEBean.vendorPhone}" id="vendorPhone"
         label="Vendor phone">
-        <f:convertNumber type="number"/>
         <rich:ajaxValidator event="onblur" />
        </h:inputText>
        <rich:message for="vendorPhone" />
