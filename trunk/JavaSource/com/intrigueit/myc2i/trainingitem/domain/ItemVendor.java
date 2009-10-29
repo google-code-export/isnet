@@ -49,9 +49,9 @@ public class ItemVendor implements Serializable {
 	@Column(name="VENDOR_ADDRESS",nullable = false, length = 100)
 	private String vendorAddress;
 	
-	
-	@Column(name="VENDOR_PHONE")
-	private BigDecimal vendorPhone;
+	@Length(max = 20)
+	@Column(name="VENDOR_PHONE",nullable = true, length = 20)
+	private String vendorPhone;
 
 	@Column(name="RECORD_CREATOR_ID")
 	private String recordCreatorId;
@@ -101,11 +101,11 @@ public class ItemVendor implements Serializable {
 		this.vendorAddress = vendorAddress;
 	}
 
-	public BigDecimal getVendorPhone() {
+	public String getVendorPhone() {
 		return this.vendorPhone;
 	}
 
-	public void setVendorPhone(BigDecimal vendorPhone) {
+	public void setVendorPhone(String vendorPhone) {
 		this.vendorPhone = vendorPhone;
 	}
 
