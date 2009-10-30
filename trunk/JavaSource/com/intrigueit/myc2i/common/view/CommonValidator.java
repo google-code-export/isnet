@@ -158,9 +158,8 @@ public class CommonValidator extends BasePage {
 								this.getText("member_validation_last_name"));
 				flag = false;
 			}
-			/** Check the last name */
-			if (!memberType.equals(ServiceConstants.PROTEGE)
-					&& CommonValidator.isEmpty(member.getCity())) {
+			
+			if (CommonValidator.isEmpty(member.getCity())) {
 				if (!flag)
 					errorMessage.append("<br />");
 				errorMessage.append(this.getText("common_error_prefix"))
@@ -168,8 +167,7 @@ public class CommonValidator extends BasePage {
 								this.getText("member_validation_city"));
 				flag = false;
 			}
-			if (!memberType.equals(ServiceConstants.PROTEGE)
-					&& member.getState().equals("-1")) {
+			if (member.getState().equals("-1")) {
 				if (!flag)
 					errorMessage.append("<br />");
 				errorMessage.append(this.getText("common_error_prefix"))
@@ -185,62 +183,64 @@ public class CommonValidator extends BasePage {
 						.append(" ").append(
 								this.getText("member_validation_zip_code"));
 				flag = false;
-			}
-
-			/*
-			 * if (!memberType.equals(ServiceConstants.PROTEGE) &&
-			 * CommonValidator.isEmpty(member.getHomePhoneNumber())) { if
-			 * (!flag) errorMessage.append("<br />");
-			 * errorMessage.append(this.getText
-			 * ("common_error_prefix")).append(" ")
-			 * .append(this.getText("member_validation_home_phone")); flag =
-			 * false; }
-			 * 
-			 * if (!memberType.equals(ServiceConstants.PROTEGE) &&
-			 * CommonValidator.isEmpty(member.getWorkPhoneNumber())) { if
-			 * (!flag) errorMessage.append("<br />");
-			 * errorMessage.append(this.getText
-			 * ("common_error_prefix")).append(" ")
-			 * .append(this.getText("member_validation_work_phone")); flag =
-			 * false; }
-			 * 
-			 * if (!memberType.equals(ServiceConstants.PROTEGE) &&
-			 * CommonValidator.isEmpty(member.getCellPhoneNumber())) { if
-			 * (!flag) errorMessage.append("<br />");
-			 * errorMessage.append(this.getText
-			 * ("common_error_prefix")).append(" ")
-			 * .append(this.getText("member_validation_cell_phone")); flag =
-			 * false; }
-			 */
-
-			/** Check the member profession */
-			if (CommonValidator.isEmpty(member.getProfession())) {
+			}		
+			if (member.getEthinicity()==-1) {
+        if (!flag) errorMessage.append("<br />");
+        errorMessage.append(this.getText("common_error_prefix"))
+            .append(" ").append(
+                this.getText("member_validation_ethinicity"));
+            flag = false;
+      }
+			
+			if (member.getMaritalStatus().equals("-1")) {
+        if (!flag)
+          errorMessage.append("<br />");
+        errorMessage.append(this.getText("common_error_prefix"))
+            .append(" ").append(
+                this.getText("member_validation_marital_status"));
+        flag = false;
+      }			
+			
+			/** Check the member gender */
+			if (CommonValidator.isEmpty(member.getGenderInd())) {
+        if (!flag)
+          errorMessage.append("<br />");
+        errorMessage.append(this.getText("common_error_prefix"))
+            .append(" ").append(
+                this.getText("member_validation_gender"));
+        flag = false;
+      }
+			
+      /** Check the Year of birth */
+      if (CommonValidator.isNotValidNumber(member.getBirthYear())) {
+        if (!flag)
+          errorMessage.append("<br />");
+        errorMessage.append(this.getText("common_error_prefix"))
+            .append(" ").append(
+                this.getText("member_validation_birth_year"));
+        flag = false;
+      }
+      
+      /** Check the member profession */
+      if (member.getProfession().equals("-1")) {  
 				if (!flag)
 					errorMessage.append("<br />");
 				errorMessage.append(this.getText("common_error_prefix"))
 						.append(" ").append(
 								this.getText("member_validation_profession"));
 				flag = false;
-			}
-			/** Check the Year of birth */
-			if (CommonValidator.isNotValidNumber(member.getBirthYear())) {
-				if (!flag)
-					errorMessage.append("<br />");
-				errorMessage.append(this.getText("common_error_prefix"))
-						.append(" ").append(
-								this.getText("member_validation_birth_year"));
-				flag = false;
-			}
-			/** Check the member gender */
-			if (CommonValidator.isEmpty(member.getGenderInd())) {
-				if (!flag)
-					errorMessage.append("<br />");
-				errorMessage.append(this.getText("common_error_prefix"))
-						.append(" ").append(
-								this.getText("member_validation_gender"));
-				flag = false;
-			}
-
+			}			
+			
+      if (!memberType.equals(ServiceConstants.PROTEGE)
+          && member.getMazhab().equals("-1")) {
+        if (!flag)
+          errorMessage.append("<br />");
+        errorMessage.append(this.getText("common_error_prefix"))
+            .append(" ").append(
+                this.getText("member_validation_madhab"));
+        flag = false;
+      }
+      
 			if (action.equals(ServiceConstants.ADD)) {
 				if (CommonValidator.isEmpty(member.getAgreePrivacyPolicy())
 						|| member.getAgreePrivacyPolicy().equals("false")) {
