@@ -17,14 +17,14 @@
 	   <h:panelGroup>
        <h:outputText value="#{bundle.user_define_values_category_name}"/><span class="required_field">*</span>
        </h:panelGroup>
-       <h:inputText styleClass="short_text" value="#{currentEBean.udValuesCategory}" id="CategoryName">
+       <h:inputText styleClass="form_input_text_medium" value="#{currentEBean.udValuesCategory}" id="CategoryName">
         <rich:ajaxValidator event="onblur" />
      </h:inputText>
      <rich:message for="CategoryName" />
      <h:panelGroup>
        <h:outputText value="#{bundle.user_define_values_code}"/><span class="required_field">*</span>
        </h:panelGroup>
-       <h:inputText styleClass="short_text" value="#{currentEBean.udValuesValue}" id="Code">
+       <h:inputText styleClass="form_input_text_medium" value="#{currentEBean.udValuesValue}" id="Code">
         <rich:ajaxValidator event="onblur" />
      </h:inputText>
      <rich:message for="Code" />
@@ -33,10 +33,10 @@
         <h:outputText value="#{bundle.user_define_values_desc}"/>
         <span class="required_field">&#160;</span>
       </h:panelGroup>
-			<h:inputText id="Description" styleClass="medium_text" value="#{currentEBean.udValuesDesc}"
-        label="Description">
-        <rich:ajaxValidator event="onblur" />
-      </h:inputText>
+          <h:inputTextarea label="Description" id="Description" rows="6"  value="#{currentEBean.udValuesDesc}" styleClass="form_input_text_medium_large">
+            <rich:ajaxValidator event="onblur" />
+        </h:inputTextarea>
+        
       <rich:message for="Description" />  
 		</h:panelGrid>
 
