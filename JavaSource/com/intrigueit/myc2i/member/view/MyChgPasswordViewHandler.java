@@ -79,7 +79,6 @@ public class MyChgPasswordViewHandler extends BasePage implements Serializable {
 			errorMessage.append(this.appendErrorMessage("change_password_validation_old_password_invalid"));
 			isValid = false;	
 		}
-		
 		if (!CommonValidator.isValidPassword(this.getNewPassword())) {
 			errorMessage.append(this.appendErrorMessage("member_validation_password"));
 			isValid = false;			
