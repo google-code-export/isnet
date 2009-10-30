@@ -27,6 +27,7 @@ import com.intrigueit.myc2i.common.view.ViewConstant;
 import com.intrigueit.myc2i.member.domain.Member;
 import com.intrigueit.myc2i.member.service.MemberService;
 import com.intrigueit.myc2i.security.Menu;
+import com.intrigueit.myc2i.udvalues.service.UDValuesService;
 
 @Component("authenticationViewHandler")
 @Scope("session")
@@ -40,6 +41,11 @@ public class AuthenticationViewHandler extends BasePage implements Serializable 
 	private String pass_cokie = "__PASS_COKIE";
 	private String chk_cokie = "__CHECKED";
 	private String init;
+	private String mentorStory;
+	private String protegeStory;
+	
+	private UDValuesService udService;
+	
 	/**
 	 * Serialized version no
 	 */
@@ -95,7 +101,7 @@ public class AuthenticationViewHandler extends BasePage implements Serializable 
 		CryptographicUtility crpUtil = new CryptographicUtility();	
 		try{
 			String chk = this.getCookieValue(chk_cokie);
-			if(!chk.equals("")){
+			if(chk != null && !chk.equals("")){
 				this.setChecked(Boolean.parseBoolean(chk));
 				if(this.getChecked()){
 					String pass = this.getCookieValue(pass_cokie);
@@ -295,6 +301,47 @@ public class AuthenticationViewHandler extends BasePage implements Serializable 
 	public void setInit(String init) {
 		this.init = init;
 	}
+	public String getMentorStory() {
+		this.loadMentorStory();
+		return mentorStory;
+	}
+	public void setMentorStory(String mentorStory) {
+		this.mentorStory = mentorStory;
+	}
+	public String getProtegeStory() {
+		this.loadProtegeStory();
+		return protegeStory;
+	}
+	public void setProtegeStory(String protegeStory) {
+		this.protegeStory = protegeStory;
+	}
+	private void loadMentorStory(){
+		try{
+			this.mentorStory = this.udService.findByProperty("udValuesCategory", "MENTOR_STORY").get(0).getUdValuesDesc();
+		}
+		catch(Exception ex){
+			log.error(ex.getMessage());
+			this.mentorStory = "I saw them debasing themselves in search of sustenance and I thought about the verse, \"And there is not a beast in the earth but the sustenance thereof depends on Allah\", so I kept myself busy with my responsibilities toward Him and I left my property with Him";
+		}
+	}
+	private void loadProtegeStory(){
+		try{
+			this.protegeStory = this.udService.findByProperty("udValuesCategory", "PROTEGE_STORY").get(0).getUdValuesDesc();
+		}
+		catch(Exception ex){
+			log.error(ex.getMessage());
+			this.protegeStory = "I saw them debasing themselves in search of sustenance and I thought about the verse, \"And there is not a beast in the earth but the sustenance thereof depends on Allah\", so I kept myself busy with my responsibilities toward Him and I left my property with Him";
+		}
+	}
+
+	public UDValuesService getUdService() {
+		return udService;
+	}
+	
+	@Autowired
+	public void setUdService(UDValuesService udService) {
+		this.udService = udService;
+	}	
 	
 	
 	
