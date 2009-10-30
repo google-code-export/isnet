@@ -8,6 +8,8 @@ package com.intrigueit.myc2i.security.view;
 
 
 import java.io.Serializable;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.Calendar;
 import java.util.List;
 
@@ -32,6 +34,12 @@ public class AuthenticationViewHandler extends BasePage implements Serializable 
 
 	private Menu menu ;
 	
+	private Boolean checked;
+	
+	private String email_cokie = "__EMAIL_ID";
+	private String pass_cokie = "__PASS_COKIE";
+	private String chk_cokie = "__CHECKED";
+	private String init;
 	/**
 	 * Serialized version no
 	 */
@@ -63,16 +71,59 @@ public class AuthenticationViewHandler extends BasePage implements Serializable 
 		this.memberService = memberService;
 		menu = new Menu();
 	}
+	private void storeInCokie(){
 
+		CryptographicUtility crpUtil = new CryptographicUtility();		
+		try{
+			if(this.getChecked()){
+				String pass = crpUtil.getEncryptedText(this.getPassword());
+				pass = URLEncoder.encode(pass,"UTF-8");
+				String email = this.getUserEmailId();
+				email = URLEncoder.encode(email,"UTF-8");
+				this.storeCokie(email_cokie, email);
+				this.storeCokie(pass_cokie, pass);
+			}
+			this.storeCokie(chk_cokie, this.getChecked().toString());
+
+		}
+		catch(Exception ex){
+			log.error(ex.getMessage());
+		}
+		
+	}
+	private void restoreCokie(){
+		CryptographicUtility crpUtil = new CryptographicUtility();	
+		try{
+			String chk = this.getCookieValue(chk_cokie);
+			if(!chk.equals("")){
+				this.setChecked(Boolean.parseBoolean(chk));
+				if(this.getChecked()){
+					String pass = this.getCookieValue(pass_cokie);
+					pass = URLDecoder.decode(pass,"UTF-8");
+					String dec = crpUtil.getDeccryptedText(pass);
+					if(!pass.equals("")){
+						this.setPassword(dec);
+					}
+					String email = URLDecoder.decode(this.getCookieValue(email_cokie),"UTF-8");
+					this.setUserEmailId(email);	
+				}
+			}
+			
+		}
+		catch(Exception ex){
+			ex.printStackTrace();
+			log.error(ex.getMessage());
+		}
+	}
 	public String loginUser(){
 		String navOutCome = "";
 		try{
-			log.debug("Looging user...");
 			Member member  = this.getValidUser();
 			if(member != null){
 				//this.getSession().setAttribute(CommonConstants.CURRENT_MEMMBER, member);
 				this.setMemberinSession(member);
 				navOutCome = this.getHomePageAddress(member);
+				this.storeInCokie();
 			}
 			else{
 				this.errMessage = this.getText("lgoin_page_login_error");
@@ -227,6 +278,22 @@ public class AuthenticationViewHandler extends BasePage implements Serializable 
 
 	public void setMenu(Menu menu) {
 		this.menu = menu;
+	}
+
+	public Boolean getChecked() {
+
+		return checked;
+	}
+
+	public void setChecked(Boolean checked) {
+		this.checked = checked;
+	}
+	public String getInit() {
+		this.restoreCokie();
+		return init;
+	}
+	public void setInit(String init) {
+		this.init = init;
 	}
 	
 	
