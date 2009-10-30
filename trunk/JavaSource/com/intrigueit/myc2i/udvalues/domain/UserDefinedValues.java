@@ -36,8 +36,8 @@ public class UserDefinedValues implements Serializable {
 	@SequenceGenerator(name="UDValueSeq",sequenceName="UDVALUE_ID_SEQ", allocationSize=1,initialValue=1)
 	private long udValuesId;
 
-	@Length(max=250)
-	@Column(name="USER_DEFINED_VALUES_DESCRIPTIO",nullable = true, length = 250)	
+	@Length(max=500)
+	@Column(name="USER_DEFINED_VALUES_DESCRIPTIO",nullable = true, length = 500)	
 	private String udValuesDesc;
 
 	@Column(name="RECORD_CREATOR_ID",nullable = false, length = 20)
