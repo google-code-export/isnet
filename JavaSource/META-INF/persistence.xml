@@ -8,16 +8,7 @@
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<class>com.intrigueit.myc2i.member.domain.Member</class>
   		<properties>
-			<!-- 
-			<property name = "hibernate.connection.driver_class" value = "oracle.jdbc.driver.OracleDriver"/>
-			<property name = "hibernate.connection.url" value = "jdbc:oracle:thin:@127.0.0.1:1521:ORCL"/>
-			<property name = "hibernate.connection.username" value = "myc2i2"/>
-			<property name = "hibernate.connection.password" value = "myc2i2"/>
-      		<property name="hibernate.showsql" value="false"/>
-			<property name="hibernate.dialect" value="org.hibernate.dialect.Oracle9Dialect"/>
-			 -->
 			<property name="hibernate.cache.use_query_cache" value="false"/>
-
 			<property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>			 
 	  	</properties>
 	</persistence-unit>
