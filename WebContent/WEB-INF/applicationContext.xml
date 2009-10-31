@@ -11,20 +11,24 @@
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
            
 	<context:component-scan base-package="com.intrigueit.myc2i" />
+
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	     <property name="location" value="WEB-INF/application.properties" />
+	</bean>
 	
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
-		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"></property>
-		<property name="jdbcUrl" value="jdbc:oracle:thin:@127.0.0.1:1521:ORCL"/>
-		<property name="user" value="myc2i2"/>
-		<property name="password" value="myc2i2"/>
+		<property name="driverClass" value="${database.driver}"></property>
+		<property name="jdbcUrl" value="${database.url}"/>
+		<property name="user" value="${database.username}"/>
+		<property name="password" value="${database.password}"/>
 		<property name="initialPoolSize" value="1"></property>
 		<property name="minPoolSize" value="1"></property>
 		<property name="maxPoolSize" value="2"/>
-		<property name="checkoutTimeout" value="1000"/> <!--  Wartezeit auf freie Pool-Connection -->
+		<property name="checkoutTimeout" value="1000"/> 
 		<property name="maxStatements" value="50"></property>
 		<property name="automaticTestTable" value="C3P0_TEST_TABLE"></property>
 		<property name="testConnectionOnCheckin" value="true"></property>
-		<property name="idleConnectionTestPeriod" value="60"></property> <!--  in Sekunden -->
+		<property name="idleConnectionTestPeriod" value="60"></property> 
 	</bean>
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
@@ -32,9 +36,9 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="jpaVendorAdapter">
 			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-				<property name="databasePlatform" value="org.hibernate.dialect.Oracle9Dialect"/>
-				<property name="showSql" value="false" />
-				<property name="generateDdl" value="false" />
+				<property name="databasePlatform" value="${database.dialect}"/>
+				<property name="showSql" value="${database.showSql}" />
+				<property name="generateDdl" value="${database.generateDdl}" />
 			</bean>
 		</property>
 	</bean>
