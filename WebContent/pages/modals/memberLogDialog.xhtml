@@ -52,7 +52,7 @@
                       
             <h:outputText value=""/>
             <h:panelGroup>
-              <a4j:commandButton action="#{memberLogViewHandler.saveMemberLog}"  value="#{bundle.button_submit_label}" oncomplete="ModalHelper.validateModal('memberLogForm','idmemberLogDialog')"  
+              <a4j:commandButton onclick="forceBlockUI(ajaxWaitMsg);" action="#{memberLogViewHandler.saveMemberLog}"  value="#{bundle.button_submit_label}" oncomplete="forceUnblockUI();ModalHelper.validateModal('memberLogForm','idmemberLogDialog')"  
                 reRender="MESSAGE_LINES,idDataGrid,idDataScroller,errorCount,idPopupPanel">
                 <f:param name="action" value="${action}"/>                
               </a4j:commandButton>
