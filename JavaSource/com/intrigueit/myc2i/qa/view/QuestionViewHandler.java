@@ -33,7 +33,10 @@ public class QuestionViewHandler extends BasePage implements Serializable {
 	/** Call search in Islam City */
 	public void executeSearch(){
 		try{
-			System.out.println( this.getActionURL());
+			if(this.getTopic().equals("")){
+				return;
+			}
+			log.debug( this.getActionURL());
 			SimpleDataExtractor de = new SimpleDataExtractor(this.getActionURL());
 			this.questions = de.extract();
 		}
