@@ -44,7 +44,7 @@
 					<h:inputText value="#{memberSearchViewHandler.srcZipCode}" />
 				</td>	
 				<td>
-					<a4j:commandButton  value="#{bundle.button_label_search}" action="#{memberSearchViewHandler.executeSearch}" reRender="idResultPanel">
+					<a4j:commandButton  onclick="forceBlockUI(ajaxProcessMsg);"   oncomplete="forceUnblockUI();" value="#{bundle.button_label_search}" action="#{memberSearchViewHandler.executeSearch}" reRender="idResultPanel">
 						<f:param name="SEARCH_TYPE" value="PROTEGE"/>
 					</a4j:commandButton>
 				</td>
