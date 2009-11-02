@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.intrigueit.myc2i.common.CommonConstants;
 import com.intrigueit.myc2i.common.ServiceConstants;
 import com.intrigueit.myc2i.member.domain.Member;
 import com.intrigueit.myc2i.member.service.MemberService;
@@ -260,14 +261,26 @@ public class ViewDataProvider extends BasePage {
 		return questionList;
 	}
 	
-	private void getActivityTypeList(){
+
+	private void getMentorActivityTypeList(){
 		activityList = new ArrayList<SelectItem>();
 		activityList.add(new SelectItem("-1","--Select--"));
-		List<UserDefinedValues> udvList = this.udService.findByProperty("udValuesCategory", "ACTIVITY_LOG");
-		for (UserDefinedValues userDefinedValues : udvList) {
-			activityList.add(new SelectItem(userDefinedValues.getUdValuesId()+"",userDefinedValues.getUdValuesValue().toString()));
+		List<UserDefinedValues> udvList = null;
+		if(this.getMember().getTypeId() == CommonConstants.PROTEGE){
+			udvList = this.udService.findByProperty("udValuesCategory", "ACTIVITY_LOG_PROTEGE");
+			for (UserDefinedValues userDefinedValues : udvList) {
+				activityList.add(new SelectItem(userDefinedValues.getUdValuesId()+"",userDefinedValues.getUdValuesValue().toString()));
+			}
+			
+		}else{
+			udvList = this.udService.findByProperty("udValuesCategory", "ACTIVITY_LOG_MENTOR");
+			for (UserDefinedValues userDefinedValues : udvList) {
+				activityList.add(new SelectItem(userDefinedValues.getUdValuesId()+"",userDefinedValues.getUdValuesValue().toString()));
+			}			
 		}
 	}
+
+	
 	private void loadMemberList(){
 		this.memberList = new ArrayList<SelectItem>();
 		memberList.add(new SelectItem("-1","--Select--"));
@@ -323,7 +336,7 @@ public class ViewDataProvider extends BasePage {
 	}
 	public List<SelectItem> getActivityList() {
 		if(activityList == null){
-			this.getActivityTypeList();
+			this.getMentorActivityTypeList();
 		}
 		return activityList;
 	}
