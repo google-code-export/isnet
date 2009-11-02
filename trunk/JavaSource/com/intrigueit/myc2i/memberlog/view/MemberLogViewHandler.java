@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -48,7 +49,8 @@ public class MemberLogViewHandler extends BasePage implements Serializable {
 	private Boolean showSearchBox;
 	private boolean isActivityTypeReadOnly;
 	private String memberName;
-
+	private String ddDay = "0";
+	
 	@Autowired
 	public MemberLogViewHandler(MemberLogService memberLogService,
 			MemberService memberService,UDValuesService udService) {
@@ -149,13 +151,14 @@ public class MemberLogViewHandler extends BasePage implements Serializable {
 
 			Date dt = new Date();
 			this.currentLog.setMemberLogDateTime(new Timestamp(dt.getTime()));
-			this.memberLogService.save(this.currentLog);
 			
 			if (action.equals("replay")) {
+				this.currentLog.setStatus(CommonConstants.ACTIVITY_STATUS.COMPLETED.toString());
 				List<MemberLog> lines = (List<MemberLog>) getMessageLines()
 						.getWrappedData();
 				lines.add(this.currentLog);
 			}
+			this.memberLogService.save(this.currentLog);
 			
 			log.debug("Sending email notification");
 			String proteemail = this.memberService.findById(this.currentLog.getToMemberId()).getEmail();
@@ -314,8 +317,17 @@ public class MemberLogViewHandler extends BasePage implements Serializable {
 
 	public List<MemberLog> getMemberLogsOld() {
 		try {
-			this.memberLogsOld = this.memberLogService.getAllCompletedLog(this
-					.getMember().getMemberId());
+			int dayCount = Integer.parseInt(this.ddDay);
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(new Date());
+			if(dayCount == 0){
+				cal.set(Calendar.HOUR, 0);
+				cal.set(Calendar.MINUTE, 1);
+			}else{
+				cal.add(Calendar.DATE, dayCount);
+			}
+			
+			this.memberLogsOld = this.memberLogService.getAllCompletedLog(this.getMember().getMemberId(),cal.getTime());
 		} catch (Exception ex) {
 			log.error(ex.getMessage());
 		}
@@ -407,6 +419,14 @@ public class MemberLogViewHandler extends BasePage implements Serializable {
 
 	public void setMemberLastWeekLogs(List<MemberLog> memberLastWeekLogs) {
 		this.memberLastWeekLogs = memberLastWeekLogs;
+	}
+
+	public String getDdDay() {
+		return ddDay;
+	}
+
+	public void setDdDay(String ddDay) {
+		this.ddDay = ddDay;
 	}
 
 }
