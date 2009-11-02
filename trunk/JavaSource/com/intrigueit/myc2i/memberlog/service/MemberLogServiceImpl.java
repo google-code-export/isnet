@@ -63,9 +63,9 @@ public class MemberLogServiceImpl implements MemberLogService{
 		return memberLogDao.loadByClause(clause, new Object[]{CommonConstants.ACTIVITY_STATUS.PENDING.toString()});
 	}
 
-	public List<MemberLog> getAllCompletedLog(Long memberId) {
-		String clause = " upper(t.status) <> ?1 and t.fromMemberId=?2";
-		return memberLogDao.loadByClause(clause, new Object[]{CommonConstants.ACTIVITY_STATUS.PENDING.toString(),memberId});
+	public List<MemberLog> getAllCompletedLog(Long memberId,Date date) {
+		String clause = " upper(t.status) <> ?1 and t.fromMemberId=?2 and t.memberLogDateTime >= ?3 ";
+		return memberLogDao.loadByClause(clause, new Object[]{CommonConstants.ACTIVITY_STATUS.PENDING.toString(),memberId,date});
 	}
 	@Override
 	public List<MemberLog> getAllPendingLog(Long memberId) {
