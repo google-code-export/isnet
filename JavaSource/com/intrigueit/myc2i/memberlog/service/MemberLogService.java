@@ -1,5 +1,6 @@
 package com.intrigueit.myc2i.memberlog.service;
 
+import java.util.Date;
 import java.util.List;
 
 import com.intrigueit.myc2i.memberlog.domain.MemberLog;
@@ -22,7 +23,7 @@ public interface MemberLogService {
 	
 	public List<MemberLog> getAllProtegePendingRequest(Long memberId);
 	
-	public List<MemberLog> getAllCompletedLog(Long memberId);
+	public List<MemberLog> getAllCompletedLog(Long memberId,Date date);
 	
 	public List<MemberLog> getAllCompletedLog();
 	
