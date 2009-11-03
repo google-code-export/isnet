@@ -140,7 +140,6 @@ public class ChapterViewHandler extends BasePage implements Serializable {
   			udvList.add(this.currentChapter);
 			}
 		} catch (Exception e) {
-		  System.out.println("::::::::::::::::: "+this.currentChapter.getChapterId());
 		  setErrorMessage(this.getText("common_system_error"));
 			logger.error(e.getMessage());
 			e.printStackTrace();
