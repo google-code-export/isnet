@@ -36,7 +36,7 @@
           <h:inputText id="idEmail" styleClass="medium_text" value="#{searchBean.chapterName}"/>
           
           <h:outputText value="#{bundle.chapter_chapter_leader}"/>
-          <cuscmp:searchcmp  searchBean="#{searchBean}" msgLabel="Chapter leader" extConds=""
+          <cuscmp:searchcmp searchBean="#{searchBean}" msgLabel="Chapter leader" extConds=""
             displayField="recordDesc" hidIdField="recordId" searchObj="MT" isRequired="false"/>
           
           <h:outputText value="#{bundle.chapter_city}"/>
@@ -104,13 +104,13 @@
            <h:outputText escape="false" value="#{chapter.chapterCity}" />
          </rich:column>
          <rich:column>
-           <h:outputText escape="false" value="#{chapter.chapterState}" />
+           <h:outputText escape="false" value="#{chapter.stateUDV.udValuesValue}" />
          </rich:column>
          <rich:column>
            <h:outputText escape="false" value="#{chapter.chapterZip}" />
          </rich:column>         
          <rich:column>
-           <h:outputText escape="false" value="#{chapter.chapterCountry}" />
+           <h:outputText escape="false" value="#{chapter.countryUDV.udValuesValue}" />
          </rich:column>
          <rich:column>
            <h:outputText escape="false" value="#{chapter.chapterPhone}" />
