@@ -49,6 +49,14 @@
           <h:outputText value="#{bundle.member_city}"/>
           <h:inputText id="idCity" styleClass="name" value="#{searchBean.city}"/>       
           
+          <h:outputText  value=""/>
+          <h:panelGroup>
+            <h:selectBooleanCheckbox id="idShowAll" title="Show all protege" 
+              value="#{searchBean.extraProps}" />
+            <rich:spacer width="5"></rich:spacer>
+            <h:outputText  value="#{bundle.show_all_protege}"/>
+          </h:panelGroup>
+          
           <h:outputText value=""/>
           <a4j:commandButton value="#{bundle.protege_search}" styleClass="ibutton" style="background:#F8F3D3;"
             action="#{protegeViewHandler.loadProtegesByCriteria}" reRender="PROTEGE_LINES"
