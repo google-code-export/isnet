@@ -34,4 +34,5 @@ public interface MemberService {
 	
 	public int getMentorProtegeCout(Long memberId);
 	
+	public List<Member> loadProtegeWithoutMentor();
 }

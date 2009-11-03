@@ -42,7 +42,7 @@ public class MemberDaoImpl extends GenericDaoImpl<Member, Long> implements
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Member> findByProperties(String hsql) {
+	public List<Member> findByClause(String hsql) {
 		Query query = entityManager.createQuery(hsql);
 		return query.getResultList();
 	}
