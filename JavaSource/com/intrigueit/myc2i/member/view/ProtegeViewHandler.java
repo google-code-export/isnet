@@ -72,9 +72,8 @@ public class ProtegeViewHandler extends BasePage implements Serializable {
 	
 	public void loadProteges() {		
 	  try {
-	    Object value = CommonConstants.PROTEGE;
 	    logger.debug(" Load proteges ");    
-	    List<Member> protegeList = memberService.findByProperty("typeId", value);
+	    List<Member> protegeList = memberService.loadProtegeWithoutMentor();
 	    getProtegeLines().setWrappedData(protegeList);
 	  }catch (Exception ex) {
       logger.error("Unable to load proteges:"+ex.getMessage());
@@ -126,8 +125,7 @@ public class ProtegeViewHandler extends BasePage implements Serializable {
         this.currentProtege = memberService.findById(Long.parseLong(recordId));
         setSecHeaderMsg(this.getText("header_msg_assign_proteges_to_mentor"));
         setReRenderIds("PROTEGE_LINES");
-        setRowIndex(getProtegeLines().getRowIndex());
-        System.out.println(currentProtege.getMemberId());
+        this.setRowIndex(getProtegeLines().getRowIndex());
       } catch (Exception e) {
         setErrorMessage(this.getText("common_system_error"));
         logger.error(e.getMessage());
@@ -135,7 +133,8 @@ public class ProtegeViewHandler extends BasePage implements Serializable {
       }
     }
   }
-	public void assignedMentor() {
+	@SuppressWarnings("unchecked")
+  public void assignedMentor() {
 	  logger.debug(" Assigned mentor to protege ");
     setErrorMessage("");
     try {
@@ -143,6 +142,12 @@ public class ProtegeViewHandler extends BasePage implements Serializable {
         if(validate(this.currentProtege)) {         
           this.currentProtege.setMentoredByMemberId(Long.parseLong(getMentorId()));
           memberService.update(this.currentProtege);
+          if (searchBean.getExtraProps()!=null && !searchBean.getExtraProps().equals("true")) {
+            List<Member> itemList = (List<Member>) getProtegeLines().getWrappedData();
+            int rowIndex = this.getRowIndex();
+            itemList.remove(rowIndex);
+          }
+          logger.debug(" Protege assigned to mentor ");
         }
       }
     } catch (Exception e) {

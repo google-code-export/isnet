@@ -16,5 +16,5 @@ public interface MemberDao extends GenericDao<Member,Long>{
 	
 	public List<Member> findByDynamicHsql(String clause);
 	
-	public List<Member> findByProperties(String hsql);
+	public List<Member> findByClause(String hsql);
 }

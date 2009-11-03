@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.intrigueit.myc2i.common.CommonConstants;
 import com.intrigueit.myc2i.common.domain.SearchBean;
 import com.intrigueit.myc2i.member.dao.MemberDao;
 import com.intrigueit.myc2i.member.domain.Member;
@@ -107,13 +108,23 @@ public class MemberServiceImpl implements MemberService {
           : clause.append(" state =?" + i++);
       value.add(searchBean.getState());      
     }
+    if (searchBean.getExtraProps()!=null && !searchBean.getExtraProps().equals("true")) {
+      clause = (useAnd) ? clause.append(" and mentoredByMemberId is null")
+          : clause.append(" mentoredByMemberId is null");
+    }
+    
     if (clause.length() == 0) {
       return memberDao.loadAll();
     } else {
       return memberDao.loadByClause(clause.toString(), value.toArray());
     }
   }
-
+  
+  public List<Member> loadProtegeWithoutMentor() {
+    String clause = "from MEMBER where typeId = "+CommonConstants.PROTEGE+" and mentoredByMemberId is null";      
+    return memberDao.findByClause(clause);
+  }
+  
 @Override
 public List<Member> findMentorByIds(List<String> idList) {
     String ids = null;
