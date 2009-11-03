@@ -58,7 +58,7 @@ public class ChapterServiceImpl implements ChapterService {
 	      useAnd = true;
 	    }  
 	    
-	    if ( searchBean.getRecordId() != null ) {
+	    if ( searchBean.getRecordId() != null && searchBean.getRecordId() != 0) {
         clause.append(" leadMemberId = ?" + i++);
         value.add(searchBean.getRecordId());
         useAnd = true;
