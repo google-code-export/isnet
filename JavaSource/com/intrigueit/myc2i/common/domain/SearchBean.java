@@ -2,7 +2,7 @@ package com.intrigueit.myc2i.common.domain;
 
 public class SearchBean {
   private Long recordId;
-  private Long recordDesc;
+  private String recordDesc;
   private String firstName;
   private String lastName;
   private String city;
@@ -10,24 +10,25 @@ public class SearchBean {
   private String email;
   private String chapterName;
   private String chapterLeader;
+  private String extraProps;
+  
   public Long getRecordId() {
     return recordId;
   }
   public void setRecordId(Long recordId) {
     this.recordId = recordId;
-  }
-  
+  }  
   
   /**
    * @return the recordDesc
    */
-  public Long getRecordDesc() {
+  public String getRecordDesc() {
     return recordDesc;
   }
   /**
    * @param recordDesc the recordDesc to set
    */
-  public void setRecordDesc(Long recordDesc) {
+  public void setRecordDesc(String recordDesc) {
     this.recordDesc = recordDesc;
   }
   public String getFirstName() {
@@ -72,4 +73,17 @@ public class SearchBean {
   public void setChapterLeader(String chapterLeader) {
     this.chapterLeader = chapterLeader;
   }
+  /**
+   * @return the extraProps
+   */
+  public String getExtraProps() {
+    return extraProps;
+  }
+  /**
+   * @param extraProps the extraProps to set
+   */
+  public void setExtraProps(String extraProps) {
+    this.extraProps = extraProps;
+  }
+  
 }
