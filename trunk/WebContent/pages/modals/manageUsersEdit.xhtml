@@ -13,7 +13,7 @@
 	 <rich:spacer width="100%" height="20"/>
 	 <c:set var="currentEBean" value="#{userManageViewHandler.currentMember}"></c:set>	 
    <h:panelGroup id="idUserEditPanelGroup">
-   <rich:tabPanel switchType="client" selectedTab="idLoginInfo">
+   <rich:tabPanel switchType="client" selectedTab="idBasicInformation">
    <rich:tab name="idLoginInfo" label="Login Information" rendered="#{userManageViewHandler.actionType eq 'A'}">
       <h:panelGrid columns="2" id="idloginInfo" border="0" columnClasses="prompt,data,errprompt"
         rowClasses="rowinput" width="100%">
@@ -36,7 +36,7 @@
         
       </h:panelGrid>
    </rich:tab>
-    <rich:tab label="Basic Information">
+    <rich:tab label="Basic Information" id="idBasicInformation">
       <h:panelGrid columns="2" id="idBasicInfo" border="0" columnClasses="prompt,data,errprompt"
         rowClasses="rowinput" width="100%">
         <h:outputText value="#{bundle.member_type}"/>
