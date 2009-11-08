@@ -27,6 +27,7 @@
 				  color: #8E969D;
 			}
 		</style>
+		
 		</head>
 
 <body bgcolor="#ffffff">
@@ -45,16 +46,28 @@
 
 	<tr>
 		<td width="100%"  colspan="2">
-			<table width="100%" style="height:150px" align="left" cellpadding="0" cellspacing="0" border="0">
+			<table width="100%" style="height:150px" align="left" cellpadding="0" cellspacing="0" border="1">
 			<tbody>
 				<tr>
 					<td align="center" width="100%" valign="middle">
-					<h:panelGroup id="idContainerx">
-					<h:inputHidden value="#{modulePlayer.modulePlay}" />
+					<rich:panel id="idContainer">
+						<h:panelGroup  rendered="#{!modulePlayer.hasQuestionAns}">
+							<h:inputHidden value="#{modulePlayer.modulePlay}" />
+							<h:outputText id="idContainerxxx" value="#{modulePlayer.mediaBean.pageContent}" escape="false" />
+						</h:panelGroup>					
+					</rich:panel>
 
-					<h:outputText id="idContainer" value="#{modulePlayer.mediaBean.pageContent}" escape="false" />
-					
-					</h:panelGroup>
+					<rich:panel rendered="#{modulePlayer.hasQuestionAns}" id="idQuestionPanel" headerClass="container_box_panel_header"  bodyClass="container_body_style">
+						<f:facet name="header"><h:outputText value="#{modulePlayer.currentPage.question}" /> </f:facet>
+						<h:selectOneRadio layout="pageDirection">
+						  <f:selectItem  itemLabel="#{modulePlayer.currentPage.questionOptionAnswerA}" itemValue="A" />
+						  <f:selectItem  itemLabel="#{modulePlayer.currentPage.questionOptionAnswerB}" itemValue="B" />
+						  <f:selectItem  itemLabel="#{modulePlayer.currentPage.questionOptionAnswerC}" itemValue="C" />
+						  <f:selectItem  itemLabel="#{modulePlayer.currentPage.questionOptionAnswerD}" itemValue="D" />
+						  	<f:selectItem  itemLabel="#{modulePlayer.currentPage.questionOptionAnswerE}" itemValue="E" />
+						  <f:selectItem  itemLabel="#{modulePlayer.currentPage.questionOptionAnswerF}" itemValue="F" />
+						</h:selectOneRadio>						
+					</rich:panel>
 					</td>
 				</tr>
 			</tbody>
@@ -67,13 +80,13 @@
 		<table>
 			<tr>
 				<td>
-					<a4j:commandLink action="#{modulePlayer.playFirstPage}" reRender="idContainer">
+					<a4j:commandLink action="#{modulePlayer.playFirstPage}" reRender="idContainer,idQuestionPanel">
 						<h:graphicImage value="/images/media_beginning.png" border="0"/>
 					</a4j:commandLink>
 				
 				</td>
 				<td>
-					<a4j:commandLink action="#{modulePlayer.playPreviousPage}" reRender="idContainer">
+					<a4j:commandLink action="#{modulePlayer.playPreviousPage}" reRender="idContainer,idQuestionPanel">
 						<h:graphicImage value="/images/media_step_back.png" border="0"/>
 					</a4j:commandLink>
 				
@@ -85,12 +98,12 @@
 				</td>
 
 				<td>
-					<a4j:commandLink action="#{modulePlayer.playNextPage}" reRender="idContainer">
+					<a4j:commandLink action="#{modulePlayer.playNextPage}" reRender="idContainer,idQuestionPanel">
 						<h:graphicImage value="/images/media_step_forward.png" border="0"/>
 					</a4j:commandLink>				
 				</td>
 				<td>
-					<a4j:commandLink action="#{modulePlayer.playLastPage}" reRender="idContainer">
+					<a4j:commandLink action="#{modulePlayer.playLastPage}" reRender="idContainer,idQuestionPanel">
 						<h:graphicImage value="/images/media_end.png" border="0"/>
 					</a4j:commandLink>
 				
