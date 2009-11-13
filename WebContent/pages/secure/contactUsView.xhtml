@@ -77,13 +77,13 @@
           </rich:columnGroup>
           </f:facet>
          <rich:column>
-          <h:outputText escape="false" value="#{message.fromMember.firstName}" />
+          <h:outputText value="#{message.fromMember.firstName}" />
          </rich:column>
          <rich:column>
-          <h:outputText escape="false" value="#{message.topic}" />
+          <h:outputText value="#{message.topic}" />
          </rich:column>
          <rich:column>
-          <h:outputText escape="false" value="#{message.memberLogEntryDescription}" />
+          <h:outputText value="#{message.memberLogEntryDescription}" />
          </rich:column>                  
          <rich:column style="text-align:center;vertical-align:middle;">
            <rowBar:rowToolBar recordId="#{message.memberLogId}"
