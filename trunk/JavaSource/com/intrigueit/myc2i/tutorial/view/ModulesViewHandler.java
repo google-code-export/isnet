@@ -383,9 +383,7 @@ public class ModulesViewHandler extends BasePage implements Serializable {
   }
 
   public List<SelectItem> getDocumentList() {
-    if (documentList == null) {
-      loadDocuments();
-    }
+    loadDocuments();
     return documentList;
   }
 
