@@ -18,6 +18,7 @@ import com.intrigueit.myc2i.common.ServiceConstants;
 import com.intrigueit.myc2i.common.domain.SearchBean;
 import com.intrigueit.myc2i.common.utility.CryptographicUtility;
 import com.intrigueit.myc2i.common.view.BasePage;
+import com.intrigueit.myc2i.common.view.CommonValidator;
 import com.intrigueit.myc2i.common.view.ViewDataProvider;
 import com.intrigueit.myc2i.member.domain.Member;
 import com.intrigueit.myc2i.member.service.MemberService;
@@ -89,31 +90,34 @@ public class ResetPasswordViewHandler extends BasePage implements Serializable {
     }
   }
 	
+	 private void appendErrorMessage(StringBuffer errorMessage, String key){
+	    errorMessage.append(this.getText("common_error_prefix"))
+	                .append(" ")
+	                .append(this.getText(key))
+	                .append("<br />");;
+	  }
+	  
+	 
 	public boolean validate (Member member) throws Exception{
     logger.debug(" Validating member ");
-    boolean flag = true;
     StringBuffer errorMessage = new StringBuffer();
     if ( member == null ) {
       errorMessage.append(this.getText("common_system_error"));
-      flag = false;
     } else {      
       CryptographicUtility crp = new CryptographicUtility();
-      String oldPass = crp.getDeccryptedText(member.getPassword());
+      String oldPass = crp.getDeccryptedText(this.currentMember.getPassword());
       if (oldPass == null || !oldPass.equals(this.getOldPassword())) {
-        errorMessage.append(this.getText("common_error_prefix"))
-                    .append(" ")
-                    .append(this.getText("user_password_miss_match_msg"));
-         flag = false;
+        this.appendErrorMessage(errorMessage,"change_password_validation_old_password_invalid");
       }
-      if ( !this.getNewPassword().equals(this.getConfirmPassword())) {
-        if ( !flag )errorMessage.append("<br />");
-        errorMessage.append(this.getText("common_error_prefix")).append(" ")
-                    .append(this.getText("user_oldpass_mewpass_notmatch"));
-        flag = false;
+      if (!CommonValidator.isValidPassword(this.getNewPassword())) {
+        this.appendErrorMessage(errorMessage,"member_validation_password");
+      }      
+      if(!this.getConfirmPassword().equals(this.getNewPassword())){
+        this.appendErrorMessage(errorMessage,"member_validation_password_dont_match");
       }
     }
-    if (!flag) setErrorMessage(this.getText("common_error_header") + errorMessage.toString());
-    return flag;
+    if (!errorMessage.toString().isEmpty()) setErrorMessage(this.getText("common_error_header") + errorMessage.toString());
+    return errorMessage.toString().isEmpty();
   }
 	
 	
