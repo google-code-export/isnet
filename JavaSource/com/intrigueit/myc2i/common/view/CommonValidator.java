@@ -74,233 +74,99 @@ public class CommonValidator extends BasePage {
 		}
 		return false;
 	}
-
+	
+	private void appendErrorMessage(StringBuffer errorMessage, String key){
+	  errorMessage.append(this.getText("common_error_prefix"))
+	              .append(" ")
+	              .append(this.getText(key))
+	              .append("<br />");;
+  }
+	
 	public boolean validateMember(Member member, String memberType,
 			String action, String confirmPass, StringBuffer errorMessage) {
-		boolean flag = true;
 		if (member == null) {
-			errorMessage.append(this.getText("common_system_error"));
-			flag = false;
+		  this.appendErrorMessage(errorMessage,"common_system_error");
 		} else {
 			/** Check email address */
 			if (action.equals(ServiceConstants.ADD)) {
 				if (!CommonValidator.isValidEmail(member.getEmail())) {
-					if (!flag)
-						errorMessage.append("<br />");
-					errorMessage
-							.append(this.getText("common_error_prefix"))
-							.append(" ")
-							.append(
-									this
-											.getText("member_validation_email_address"));
-					flag = false;
-				}
-
-				boolean isPassNotEmpty = true;
-				if (CommonValidator.isEmpty(member.getPassword())) {
-					isPassNotEmpty = false;
-					if (!flag)
-						errorMessage.append("<br />");
-					errorMessage.append(this.getText("common_error_prefix"))
-							.append(" ").append(
-									this.getText("member_validation_password"));
-					flag = false;
-				}
-				if (CommonValidator.isEmpty(confirmPass)) {
-					isPassNotEmpty = false;
-					if (!flag)
-						errorMessage.append("<br />");
-					errorMessage
-							.append(this.getText("common_error_prefix"))
-							.append(" ")
-							.append(
-									this
-											.getText("member_validation_confirm_password"));
-					flag = false;
-				}
-				if (isPassNotEmpty && !confirmPass.equals(member.getPassword())) {
-					if (!flag)
-						errorMessage.append("<br />");
-					errorMessage
-							.append(this.getText("common_error_prefix"))
-							.append(" ")
-							.append(
-									this
-											.getText("member_validation_password_dont_match"));
-					flag = false;
-				}
+					this.appendErrorMessage(errorMessage,"member_validation_email_address");
+				}				
+				if (!CommonValidator.isValidPassword(member.getPassword())) {
+		      this.appendErrorMessage(errorMessage,"member_validation_password");
+		    }		    
+		    if(!member.getPassword().equals(confirmPass)){
+		      this.appendErrorMessage(errorMessage,"member_validation_password_dont_match");
+		    }
 			}
 			if (member.getTypeId() == null || member.getTypeId() == 0) {
-				if (!flag)
-					errorMessage.append("<br />");
-				errorMessage
-						.append(this.getText("common_error_prefix"))
-						.append(" ")
-						.append(
-								this
-										.getText("validation_msg_usertype_required"));
-				flag = false;
+			  this.appendErrorMessage(errorMessage,"validation_msg_usertype_required");
 			}
 			if (CommonValidator.isEmpty(member.getFirstName())) {
-				if (!flag)
-					errorMessage.append("<br />");
-				errorMessage.append(this.getText("common_error_prefix"))
-						.append(" ").append(
-								this.getText("member_validation_first_name"));
-				flag = false;
+			  this.appendErrorMessage(errorMessage,"member_validation_first_name");
 			}
 			/** Check the last name */
 			if (CommonValidator.isEmpty(member.getLastName())) {
-				if (!flag)
-					errorMessage.append("<br />");
-				errorMessage.append(this.getText("common_error_prefix"))
-						.append(" ").append(
-								this.getText("member_validation_last_name"));
-				flag = false;
+			  this.appendErrorMessage(errorMessage,"member_validation_last_name");
 			}
 			
 			if (CommonValidator.isEmpty(member.getCity())) {
-				if (!flag)
-					errorMessage.append("<br />");
-				errorMessage.append(this.getText("common_error_prefix"))
-						.append(" ").append(
-								this.getText("member_validation_city"));
-				flag = false;
+			  this.appendErrorMessage(errorMessage,"member_validation_city");
 			}
 			if (member.getState().equals("-1")) {
-				if (!flag)
-					errorMessage.append("<br />");
-				errorMessage.append(this.getText("common_error_prefix"))
-						.append(" ").append(
-								this.getText("member_validation_state"));
-				flag = false;
+			  this.appendErrorMessage(errorMessage,"member_validation_state");
 			}
 			/** Check the Zip code */
 			if (!CommonValidator.isValidZipCode(member.getZip())) {
-				if (!flag)
-					errorMessage.append("<br />");
-				errorMessage.append(this.getText("common_error_prefix"))
-						.append(" ").append(
-								this.getText("member_validation_zip_code"));
-				flag = false;
+			  this.appendErrorMessage(errorMessage,"member_validation_zip_code");
 			}		
 			if (member.getEthinicity()==-1) {
-        if (!flag) errorMessage.append("<br />");
-        errorMessage.append(this.getText("common_error_prefix"))
-            .append(" ").append(
-                this.getText("member_validation_ethinicity"));
-            flag = false;
-      }
-			
+			  this.appendErrorMessage(errorMessage,"member_validation_ethinicity");
+      }			
 			if (member.getMaritalStatus().equals("-1")) {
-        if (!flag)
-          errorMessage.append("<br />");
-        errorMessage.append(this.getText("common_error_prefix"))
-            .append(" ").append(
-                this.getText("member_validation_marital_status"));
-        flag = false;
+			  this.appendErrorMessage(errorMessage,"member_validation_marital_status");
       }			
 			
 			/** Check the member gender */
 			if (CommonValidator.isEmpty(member.getGenderInd())) {
-        if (!flag)
-          errorMessage.append("<br />");
-        errorMessage.append(this.getText("common_error_prefix"))
-            .append(" ").append(
-                this.getText("member_validation_gender"));
-        flag = false;
+			  this.appendErrorMessage(errorMessage,"member_validation_gender");
       }
 			
       /** Check the Year of birth */
       if (CommonValidator.isNotValidNumber(member.getBirthYear())) {
-        if (!flag)
-          errorMessage.append("<br />");
-        errorMessage.append(this.getText("common_error_prefix"))
-            .append(" ").append(
-                this.getText("member_validation_birth_year"));
-        flag = false;
+        this.appendErrorMessage(errorMessage,"member_validation_birth_year");
       }
       
       /** Check the member profession */
-      if (member.getProfession().equals("-1")) {  
-				if (!flag)
-					errorMessage.append("<br />");
-				errorMessage.append(this.getText("common_error_prefix"))
-						.append(" ").append(
-								this.getText("member_validation_profession"));
-				flag = false;
+      if (member.getProfession().equals("-1")) {
+        this.appendErrorMessage(errorMessage,"member_validation_profession");
 			}			
 			
       if (!memberType.equals(ServiceConstants.PROTEGE)
           && member.getMazhab().equals("-1")) {
-        if (!flag)
-          errorMessage.append("<br />");
-        errorMessage.append(this.getText("common_error_prefix"))
-            .append(" ").append(
-                this.getText("member_validation_madhab"));
-        flag = false;
+        this.appendErrorMessage(errorMessage,"member_validation_madhab");
       }
       
 			if (action.equals(ServiceConstants.ADD)) {
 				if (CommonValidator.isEmpty(member.getAgreePrivacyPolicy())
 						|| member.getAgreePrivacyPolicy().equals("false")) {
-					if (!flag)
-						errorMessage.append("<br />");
-					errorMessage
-							.append(this.getText("common_error_prefix"))
-							.append(" ")
-							.append(
-									this
-											.getText("member_validation_licence_agree"));
-					flag = false;
+				  this.appendErrorMessage(errorMessage,"member_validation_licence_agree");
 				}
 			}
 
 			if (CommonValidator.isEmpty(member.getSecurityQuestion1())) {
-				if (!flag)
-					errorMessage.append("<br />");
-				errorMessage
-						.append(this.getText("common_error_prefix"))
-						.append(" ")
-						.append(
-								this
-										.getText("change_password_security_question1_chose"));
-				flag = false;
+			  this.appendErrorMessage(errorMessage,"change_password_security_question1_chose");
 			}
 			if (CommonValidator.isEmpty(member.getSecurityQuestionAns1())) {
-				if (!flag)
-					errorMessage.append("<br />");
-				errorMessage
-						.append(this.getText("common_error_prefix"))
-						.append(" ")
-						.append(
-								this
-										.getText("change_password_security_question1_empty"));
-				flag = false;
+			  this.appendErrorMessage(errorMessage,"change_password_security_question1_empty");				
 			}
 			if (CommonValidator.isEmpty(member.getSecurityQuestion2())) {
-				if (!flag)
-					errorMessage.append("<br />");
-				errorMessage
-						.append(this.getText("common_error_prefix"))
-						.append(" ")
-						.append(
-								this
-										.getText("change_password_security_question2_chose"));
-				flag = false;
+			  this.appendErrorMessage(errorMessage,"change_password_security_question2_chose");
 			}
 			if (CommonValidator.isEmpty(member.getSecurityQuestionAns2())) {
-				if (!flag)
-					errorMessage.append("<br />");
-				errorMessage
-						.append(this.getText("common_error_prefix"))
-						.append(" ")
-						.append(
-								this
-										.getText("change_password_security_question2_empty"));
-				flag = false;
+			  this.appendErrorMessage(errorMessage,"change_password_security_question2_empty");
 			}
 		}
-		return flag;
+		return errorMessage.toString().isEmpty();
 	}
 }
