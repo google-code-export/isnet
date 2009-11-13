@@ -54,7 +54,7 @@
         <div class="spacer"></div>
         <rich:dataTable styleClass="listcontainer" headerClass="listheader" rowClasses="odd-row,even-row"
           id="idUDValuesLines" value="#{udvViewHandler.udValuesLines}" var="udValues"
-          rows="7" cellpadding="0" cellspacing="0">
+          rows="7">
           <f:facet name="header">
             <rich:columnGroup>
               <rich:column width="30%" style="text-align:left;">
@@ -69,10 +69,10 @@
           </rich:columnGroup>
           </f:facet>
          <rich:column>
-           <h:outputText escape="false" value="#{udValues.udValuesValue}" />
+           <h:outputText value="#{udValues.udValuesValue}" />
          </rich:column>
          <rich:column>           
-           <h:outputText escape="false" value="#{udValues.udValuesDesc}" />
+           <h:outputText value="#{udValues.udValuesDesc}" />
          </rich:column>
          <rich:column style="text-align:center;vertical-align:middle;">
            <rowBar:rowToolBar recordId="#{udValues.udValuesId}"
