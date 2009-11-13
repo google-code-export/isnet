@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.intrigueit.myc2i.common.ServiceConstants;
 import com.intrigueit.myc2i.common.dao.GenericDaoImpl;
+import com.intrigueit.myc2i.common.utility.EscapeChars;
 import com.intrigueit.myc2i.member.domain.Member;
 
 @Transactional
@@ -53,7 +54,8 @@ public class CommonSearchDaoImpl extends GenericDaoImpl<CommonSearchDataTmp,Long
       Iterator it = recordList.iterator();
       while (it.hasNext()) {
         Member obj = (Member) it.next();
-        resultList.add(new CommonSearchDataTmp(""+obj.getMemberId(),obj.getFirstName(),obj.getFirstName()));
+        resultList.add(new CommonSearchDataTmp(""+obj.getMemberId(),
+            EscapeChars.forHTML(obj.getFirstName()),EscapeChars.forHTML(obj.getFirstName())));
       }
     }
     return resultList;
