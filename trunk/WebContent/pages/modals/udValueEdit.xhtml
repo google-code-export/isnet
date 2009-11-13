@@ -33,7 +33,8 @@
         <h:outputText value="#{bundle.user_define_values_desc}"/>
         <span class="required_field">&#160;</span>
       </h:panelGroup>
-          <h:inputTextarea label="Description" id="Description" rows="6"  value="#{currentEBean.udValuesDesc}" styleClass="form_input_text_medium_large">
+          <h:inputTextarea label="Description" id="Description" rows="6"  value="#{currentEBean.udValuesDesc}" 
+            styleClass="form_input_text_medium_large" escape="false">
             <rich:ajaxValidator event="onblur" />
         </h:inputTextarea>
         
