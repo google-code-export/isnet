@@ -153,6 +153,7 @@ public class ChapterViewHandler extends BasePage implements Serializable {
   		String recordId = (String) this.getParameter(ServiceConstants.RECORD_ID);
   		try {
   			this.currentChapter = chapterService.loadById(Long.parseLong(recordId));
+  			this.currentChapter.setLeadMemberName(this.currentChapter.getLeadMember().getFirstName());
   			this.setCommonData(ServiceConstants.UPDATE);
   			setSecHeaderMsg(this.getText("header_msg_manage_chapter") + " " + this.getText("header_msg_update"));
 				setActionType(ServiceConstants.UPDATE);
@@ -176,7 +177,7 @@ public class ChapterViewHandler extends BasePage implements Serializable {
 		    Date dt = new Date();
         this.currentChapter.setRecordLastUpdatedDate(dt);
 		    chapterService.updateChapter(this.currentChapter);
-		    putObjInList(rowIdx,this.currentChapter);
+		    putObjInList(rowIdx,chapterService.loadById(this.currentChapter.getChapterId()));
 		  }
 		} catch (Exception e) {
 		  setErrorMessage(this.getText("common_system_error"));
