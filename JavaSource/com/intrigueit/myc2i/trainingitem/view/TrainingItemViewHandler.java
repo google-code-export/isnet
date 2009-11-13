@@ -352,9 +352,7 @@ public class TrainingItemViewHandler extends BasePage implements Serializable {
 	}
 
 	public List<SelectItem> getVendorList() {
-		if (vendorList == null) {
-			loadVendors();
-		}
+		loadVendors();
 		return vendorList;
 	}
 

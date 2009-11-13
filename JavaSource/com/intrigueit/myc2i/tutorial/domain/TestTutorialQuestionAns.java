@@ -11,8 +11,6 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.hibernate.validator.Length;
-import org.hibernate.validator.NotEmpty;
-import org.hibernate.validator.NotNull;
 
 @Entity
 @Table(name="TEST_TUTORIAL_QUESTION_ANS")
@@ -34,15 +32,11 @@ public class TestTutorialQuestionAns implements Serializable {
   @Column(name="PAGE_NUMBER")
   private Long pageNumber;
   
-  @NotNull
-  @NotEmpty
-  @Length(min=1,max=2000)
+  @Length(max=2000)
   @Column(name="PAGE_TEXT",nullable = false, length = 2000)
   private String pageText;
   
-  @NotNull
-  @NotEmpty
-  @Length(min=1,max=500)
+  @Length(max=500)
   @Column(name="PAGE_TITLE",nullable = false, length = 500)
   private String pageTitle;
   
@@ -60,51 +54,35 @@ public class TestTutorialQuestionAns implements Serializable {
   @Column(name="VIDEO_FILE_NAME")
   private String videoFileName;
   
-  @NotNull
-  @NotEmpty
   @Length(max=150)
   @Column(name="QUESTION",length = 150)
   private String question;
 
-  @NotNull
-  @NotEmpty
-  @Length(min=1,max=100)
+  @Length(max=100)
   @Column(name="QUESTION_CORRECT_ANSWER",nullable = false, length = 100)
-  private String questionCorrectAnswer;
-
-  @NotNull
-  @NotEmpty
-  @Length(min=1,max=100)
+  private String questionCorrectAnswer;  
+  
+  @Length(max=100)
   @Column(name="QUESTION_OPTION_ANSWER_A",nullable = false, length = 100)
-  private String questionOptionAnswerA;
-
-  @NotNull
-  @NotEmpty
-  @Length(min=1,max=100)
+  private String questionOptionAnswerA;  
+  
+  @Length(max=100)
   @Column(name="QUESTION_OPTION_ANSWER_B",nullable = false, length = 100)
-  private String questionOptionAnswerB;
-
-  @NotNull
-  @NotEmpty
-  @Length(min=1,max=100)
+  private String questionOptionAnswerB;  
+  
+  @Length(max=100)
   @Column(name="QUESTION_OPTION_ANSWER_C",nullable = false, length = 100)
-  private String questionOptionAnswerC;
-
-  @NotNull
-  @NotEmpty
-  @Length(min=1,max=100)
+  private String questionOptionAnswerC;  
+  
+  @Length(max=100)
   @Column(name="QUESTION_OPTION_ANSWER_D",nullable = false, length = 100)
-  private String questionOptionAnswerD;
-
-  @NotNull
-  @NotEmpty
-  @Length(min=1,max=100)
+  private String questionOptionAnswerD;  
+  
+  @Length(max=100)
   @Column(name="QUESTION_OPTION_ANSWER_E",nullable = false, length = 100)
-  private String questionOptionAnswerE;
-
-  @NotNull
-  @NotEmpty
-  @Length(min=1,max=100)
+  private String questionOptionAnswerE;  
+  
+  @Length(max=100)
   @Column(name="QUESTION_OPTION_ANSWER_F",nullable = false, length = 100)
   private String questionOptionAnswerF;
 
