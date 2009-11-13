@@ -66,23 +66,23 @@
             <f:selectItems value="#{myProfileViewHandler.countryList}"/>
            </h:selectOneMenu>
               
-           <h:outputLabel rendered="#{myProfileViewHandler.userType ne 'PROTEGE'}">
+           <h:outputLabel>
             <h:outputText value="#{bundle.member_home_phone}"/>
            </h:outputLabel>  
-           <h:inputText  id="idHomePhone" value="#{currentEBean.homePhoneNumber}" styleClass="form_input_text_medium"
-            rendered="#{myProfileViewHandler.userType ne 'PROTEGE'}"/>
+           <h:inputText  id="idHomePhone" value="#{currentEBean.homePhoneNumber}" 
+            styleClass="form_input_text_medium"/>
            
-           <h:outputLabel rendered="#{myProfileViewHandler.userType ne 'PROTEGE'}">
-                <h:outputText value="#{bundle.member_work_phone}"/>
+           <h:outputLabel>
+            <h:outputText value="#{bundle.member_work_phone}"/>
            </h:outputLabel>  
-           <h:inputText  id="idWorkPhone" value="#{currentEBean.workPhoneNumber}" styleClass="form_input_text_medium"
-            rendered="#{myProfileViewHandler.userType ne 'PROTEGE'}"/>
+           <h:inputText  id="idWorkPhone" value="#{currentEBean.workPhoneNumber}" 
+            styleClass="form_input_text_medium"/>
               
-           <h:outputLabel rendered="#{myProfileViewHandler.userType ne 'PROTEGE'}">
+           <h:outputLabel>
             <h:outputText value="#{bundle.member_cell_phone}"/>
            </h:outputLabel>  
-           <h:inputText  id="idCellPhone" value="#{currentEBean.cellPhoneNumber}" styleClass="form_input_text_medium"
-            rendered="#{myProfileViewHandler.userType ne 'PROTEGE'}"/>
+           <h:inputText id="idCellPhone" value="#{currentEBean.cellPhoneNumber}" 
+            styleClass="form_input_text_medium"/>
                             
            <h:outputLabel rendered="#{myProfileViewHandler.userType ne 'PROTEGE'}">
             <h:outputText value="#{bundle.member_linked_in_URL}"/><h:outputText styleClass="required_field" value="" />
@@ -90,34 +90,33 @@
             <h:inputText  id="idLinkedInURL" value="#{currentEBean.linkedInURL}" styleClass="form_input_text_medium"
               rendered="#{myProfileViewHandler.userType ne 'PROTEGE'}"/>
             
-            <h:outputLabel rendered="#{myProfileViewHandler.userType ne 'PROTEGE'}">  
-              <h:outputText value="#{bundle.member_privacy_ind}"></h:outputText><h:outputText styleClass="required_field" value="" />
+            <h:outputLabel>  
+              <h:outputText value="#{bundle.member_privacy_ind}">
+              </h:outputText><h:outputText styleClass="required_field" value="" />
             </h:outputLabel>            
-            <h:panelGroup rendered="#{myProfileViewHandler.userType ne 'PROTEGE'}">
-              <h:selectBooleanCheckbox id="idPrivacyInd" value="#{currentEBean.dontEmail}" 
-              rendered="#{myProfileViewHandler.userType ne 'PROTEGE'}"/>                  
+            <h:panelGroup>
+              <h:selectBooleanCheckbox id="idPrivacyInd" value="#{currentEBean.dontEmail}"/>                  
               <rich:spacer width="5"></rich:spacer>                   
               <h:outputText  value="#{bundle.member_privacy_dont_email}"/>
             </h:panelGroup>
             
-            <h:outputText value="" rendered="#{myProfileViewHandler.userType ne 'PROTEGE'}"/>            
-            <h:panelGroup rendered="#{myProfileViewHandler.userType ne 'PROTEGE'}">
+            <h:outputText value=""/>            
+            <h:panelGroup>
               <h:selectBooleanCheckbox id="idDontCall" value="#{currentEBean.dontCall}"  >
-                    </h:selectBooleanCheckbox>
+                </h:selectBooleanCheckbox>
               <rich:spacer width="5"></rich:spacer>                   
               <h:outputText  value="#{bundle.member_privacy_dont_phone}"/>
             </h:panelGroup>
            
-           <h:outputText value="" rendered="#{myProfileViewHandler.userType ne 'PROTEGE'}"/>         
-           <h:outputText id="idURLLabel1" value="#{bundle.member_introduction_url_label1}"
-           rendered="#{myProfileViewHandler.userType ne 'PROTEGE'}"/>
+           <h:outputText value=""/>         
+           <h:outputText id="idURLLabel1" value="#{bundle.member_introduction_url_label1}"/>
            
-           <h:outputText id="idURLLabel2" value="" rendered="#{myProfileViewHandler.userType ne 'PROTEGE'}"/>
-           <h:outputText value="#{bundle.member_introduction_url_label2}" rendered="#{myProfileViewHandler.userType ne 'PROTEGE'}"/>         
+           <h:outputText id="idURLLabel2" value=""/>
+           <h:outputText value="#{bundle.member_introduction_url_label2}"/>         
           
-          <h:outputText value="#{bundle.member_online_profile}" rendered="#{myProfileViewHandler.userType ne 'PROTEGE'}"/>
-          <h:inputText  id="idOnlineProfile" value="#{myProfileViewHandler.currentMember.introductionUrl}" styleClass="form_input_text_medium"
-            rendered="#{myProfileViewHandler.userType ne 'PROTEGE'}"/>
+          <h:outputText value="#{bundle.member_online_profile}"/>
+          <h:inputText  id="idOnlineProfile" value="#{myProfileViewHandler.currentMember.introductionUrl}" 
+            styleClass="form_input_text_medium"/>
                 
           <h:outputLabel>
             <h:outputText value="#{bundle.member_ethinicity}"/>
@@ -135,12 +134,11 @@
             <f:selectItems value="#{myProfileViewHandler.martialStatusList}"/>
           </h:selectOneMenu>  
           
-          <h:outputLabel rendered="#{myProfileViewHandler.userType ne 'PROTEGE'}">
+          <h:outputLabel>
             <h:outputText value="#{bundle.member_gender}" />
             <h:outputText styleClass="required_field" value="*" />
           </h:outputLabel>              
-          <h:selectOneRadio id="idGenderIndicator" style="width: 150px;" value="#{currentEBean.genderInd}"
-            rendered="#{myProfileViewHandler.userType ne 'PROTEGE'}">
+          <h:selectOneRadio id="idGenderIndicator" style="width: 150px;" value="#{currentEBean.genderInd}">
             <f:selectItem  itemLabel="#{bundle.member_gender_male}" itemValue="M"  />
             <f:selectItem  itemLabel="#{bundle.member_gender_female}" itemValue="F"  />
           </h:selectOneRadio> 
