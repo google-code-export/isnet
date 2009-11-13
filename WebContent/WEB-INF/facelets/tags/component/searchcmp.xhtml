@@ -41,8 +41,8 @@
 					onselect="Common.resetSearchValue('#{commonAutoComplete.noRecordMsg}');"
 					zindex="10007"
 					frequency="#{commonAutoComplete.frequency}">
-		         <h:column> <h:outputText value="#{result.recordCode}" /> </h:column>
-		         <h:column> <h:outputText value="#{result.recordDesc}" /> </h:column>
+		         <h:column> <h:outputText escape="false" value="#{result.recordCode}" /> </h:column>
+		         <h:column> <h:outputText escape="false" value="#{result.recordDesc}" /> </h:column>
 		         <f:param value="${searchObj}" name="searchTableCode"/>
 		         <f:param value="${extConds}" name="extConds"/>
 		     </rich:suggestionbox>
