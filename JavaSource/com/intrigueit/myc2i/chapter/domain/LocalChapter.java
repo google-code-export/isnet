@@ -19,6 +19,7 @@ import org.hibernate.validator.Length;
 import org.hibernate.validator.NotEmpty;
 import org.hibernate.validator.NotNull;
 
+import com.intrigueit.myc2i.member.domain.Member;
 import com.intrigueit.myc2i.udvalues.domain.UserDefinedValues;
 
 @Entity
@@ -258,4 +259,25 @@ public class LocalChapter implements Serializable {
   public void setCountryUDV(UserDefinedValues countryUDV) {
     this.countryUDV = countryUDV;
   }
+  
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "CHAPTER_LEAD_MEMBER_ID", nullable = false, insertable = false, updatable = false)
+  private Member leadMember;
+
+  /**
+   * @return the leadMember
+   */
+  public Member getLeadMember() {
+    return leadMember;
+  }
+
+  /**
+   * @param leadMember the leadMember to set
+   */
+  public void setLeadMember(Member leadMember) {
+    this.leadMember = leadMember;
+  }
+  
+  
+
 }
