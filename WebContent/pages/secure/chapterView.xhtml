@@ -37,16 +37,16 @@
           
           <h:outputText value="#{bundle.chapter_chapter_leader}"/>
           <cuscmp:searchcmp searchBean="#{searchBean}" msgLabel="Chapter leader" extConds=""
-            displayField="recordDesc" hidIdField="recordId" searchObj="MT" isRequired="false"/>
-          
-          <h:outputText value="#{bundle.chapter_city}"/>
-          <h:inputText id="idLastName" styleClass="medium_text" value="#{searchBean.city}"/>
+            displayField="recordDesc" hidIdField="recordId" searchObj="MT" isRequired="false"/>          
           
           <h:outputText value="#{bundle.chapter_state}"/>
           <h:selectOneMenu id="idState" value="#{searchBean.state}" styleClass="medium_text"> 
            <f:selectItems value="#{chapterViewHandler.statesList}"/>             
          </h:selectOneMenu>
          
+         <h:outputText value="#{bundle.chapter_city}"/>
+         <h:inputText id="idLastName" styleClass="medium_text" value="#{searchBean.city}"/>
+          
          <h:outputText value="&#160;"/>
          <h:outputText value=""/>
          
