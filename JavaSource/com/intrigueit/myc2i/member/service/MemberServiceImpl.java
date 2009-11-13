@@ -22,6 +22,7 @@ public class MemberServiceImpl implements MemberService {
   }
 
   public void delete(Member entity) {
+    memberDao.delete(entity);
   }
 
   public List<Member> findAll() {

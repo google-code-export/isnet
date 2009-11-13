@@ -363,7 +363,6 @@ public class UserManageViewHandler extends BasePage implements Serializable {
    */
   public Member getCurrentMember() {
     if (currentMember == null) {
-      System.out.println(" Init member ");
       currentMember = new Member();
     }
     return currentMember;
