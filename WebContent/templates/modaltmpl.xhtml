@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:a4j="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:c="http://java.sun.com/jstl/core">
+	<ui:composition>
+		<rich:modalPanel id="${modalPanelId}" styleClass="modal_panel" autosized="true"
+      domElementAttachment="parent">
+			<f:facet name="header">
+				<h:form>
+					<h:outputText id="${modalPanelId}Header"  value="${refManageBean.secHeaderMsg}"></h:outputText>
+				</h:form>
+			</f:facet>
+			<ui:include src="/templates/include/modalcontrols.xhtml">
+				<ui:param name="modalId" value="${modalPanelId}" />
+			</ui:include>
+		 	<div class="mainSecBlock">
+				<a4j:outputPanel ajaxRendered="true">
+	   			<h:form style="display:none" prependId="true" id="${modalPanelId}HidErrForm">
+	       		<h:inputHidden id="${modalPanelId}MaxSeverity" value="#{facesContext.maximumSeverity.ordinal}"/>
+	   			</h:form>
+   			</a4j:outputPanel>
+				<a4j:form id="${modalPanelId}A4JForm">
+					<a4j:region>
+						<h:panelGroup id="${modalPanelId}ErrPan">
+				    	<c:set var="errMsg" value="${refManageBean.errorMessage}"></c:set>
+				      <rich:panel styleClass="error_panel" rendered="${errMsg ne ''}">
+				      	<f:facet name="header">
+				        	<h:panelGrid columns="2" border="0" id="${modalPanelId}ErrorHead" columnClasses="errorhead_text,errorhead_icon">
+				        		<h:outputText value="Error panel"/>
+				        		<a4j:commandLink  action="${refManageBean.hideErrorPanel}" reRender="${modalPanelId}ErrPan" styleClass="menu_item_clink">
+								  		<h:panelGroup>
+						         		<h:graphicImage value="#{controllerBean.imagesPath}/cross.png" styleClass="sec_toolbar_icon"/>
+						          </h:panelGroup>
+							  		</a4j:commandLink>
+				        	</h:panelGrid>
+				        </f:facet>
+				        <h:panelGrid columns="2" id="${modalPanelId}ErrorMsg" columnClasses="errormsg_icon,errormsg_text">
+				        	<h:graphicImage value="#{controllerBean.imagesPath}/critical.png" styleClass="sec_toolbar_icon"/>
+				        	<h:outputText escape="false" value="${errMsg}"/>
+				      	</h:panelGrid>
+				      </rich:panel>
+					  </h:panelGroup>
+					</a4j:region>
+          <ui:include src="/pages/modals/${moduleName}.xhtml"/>
+				</a4j:form>
+			 </div>
+			<f:facet name="footer">
+			</f:facet>
+		</rich:modalPanel>
+
+	</ui:composition>
+</html>
