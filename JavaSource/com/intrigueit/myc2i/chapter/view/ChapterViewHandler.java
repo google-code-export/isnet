@@ -18,6 +18,7 @@ import com.intrigueit.myc2i.common.ServiceConstants;
 import com.intrigueit.myc2i.common.domain.SearchBean;
 import com.intrigueit.myc2i.common.view.BasePage;
 import com.intrigueit.myc2i.common.view.ViewDataProvider;
+import com.intrigueit.myc2i.utility.Emailer;
 
 @Component("chapterViewHandler")
 @Scope("session")
@@ -133,9 +134,9 @@ public class ChapterViewHandler extends BasePage implements Serializable {
 		try {		  
 		  this.currentChapter = getCurrentChapter();
       if(validate()) {
-        this.currentChapter.setChapterState(null);
-        this.currentChapter.setChapterCountry(null);
-  			this.chapterService.addChapter(this.currentChapter);
+        if (this.currentChapter.getChapterCountry().equals("-1")) this.currentChapter.setChapterCountry(null);
+        if (this.currentChapter.getChapterState().equals("-1")) this.currentChapter.setChapterState(null);
+        this.chapterService.addChapter(this.currentChapter);
   			List<LocalChapter> udvList = (List<LocalChapter>) getChapterLines().getWrappedData();
   			udvList.add(this.currentChapter);
 			}
@@ -176,8 +177,15 @@ public class ChapterViewHandler extends BasePage implements Serializable {
 		    int rowIdx = getRowIndex();  		    
 		    Date dt = new Date();
         this.currentChapter.setRecordLastUpdatedDate(dt);
-		    chapterService.updateChapter(this.currentChapter);
+		    if (this.currentChapter.getChapterCountry().equals("-1")) this.currentChapter.setChapterCountry(null);
+		    if (this.currentChapter.getChapterState().equals("-1")) this.currentChapter.setChapterState(null);
+        chapterService.updateChapter(this.currentChapter);
 		    putObjInList(rowIdx,chapterService.loadById(this.currentChapter.getChapterId()));
+		    sendNotification(this.currentChapter.getLeadMember().getEmail(),
+		        this.getText("chapter_update_notification_subject"),
+		        this.getText("chapter_update_notification_body",
+                new String[]{this.currentChapter.getLeadMember().getFirstName(),
+		            this.currentChapter.getChapterName()}));
 		  }
 		} catch (Exception e) {
 		  setErrorMessage(this.getText("common_system_error"));
@@ -194,9 +202,14 @@ public class ChapterViewHandler extends BasePage implements Serializable {
   		String recordId = (String) this.getParameter(ServiceConstants.RECORD_ID);
   		try {  			
 				int rowIndex = getChapterLines().getRowIndex();
-				chapterService.deleteChapter(Long.parseLong(recordId));
+				LocalChapter chapter = this.chapterService.loadById(Long.parseLong(recordId));
+				chapterService.deleteChapter(chapter);
 				List<LocalChapter> udvList = (List<LocalChapter>) getChapterLines().getWrappedData();
 				udvList.remove(rowIndex);
+				sendNotification(chapter.getLeadMember().getEmail(),
+            this.getText("chapter_delete_notification_subject"),
+            this.getText("chapter_delete_notification_body",
+                new String[]{chapter.getLeadMember().getFirstName(),chapter.getChapterName()}));
 			} catch (Exception e) {
 			  setErrorMessage(this.getText("common_system_error"));
 				logger.error(e.getMessage());
@@ -204,6 +217,21 @@ public class ChapterViewHandler extends BasePage implements Serializable {
 			}
   	}
 	}
+	
+	/** Send confirmation email to member */
+  public void sendNotification(String email, String emailSubject,String msgBody)throws Exception {
+    /**Send email notification */
+    try {
+      Emailer emailer = new Emailer(email, msgBody,emailSubject);
+      emailer.setContentType("text/html");
+      emailer.sendEmail();
+    } catch (Exception e) {
+      logger.debug("Failed to sending notification email");
+      e.printStackTrace();
+    }
+  }
+  
+  
 	@SuppressWarnings("unchecked")
 	private void putObjInList(int idx,Object fetchObj) {
 		List<LocalChapter> list = (List<LocalChapter>) getChapterLines().getWrappedData();

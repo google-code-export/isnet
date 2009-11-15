@@ -36,9 +36,8 @@ public class ChapterServiceImpl implements ChapterService {
 		chapterDao.persist(udValues);
 	}
 
-	public void deleteChapter(Long recordId) {
-		LocalChapter udValues = chapterDao.loadById(recordId);
-		chapterDao.delete(udValues);		
+	public void deleteChapter(LocalChapter chapter) {
+		chapterDao.delete(chapter);		
 	}
 	
 	public List<LocalChapter> findByProperty(String propertyName, Object value) {
