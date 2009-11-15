@@ -12,7 +12,7 @@ public interface ChapterService {
   public LocalChapter loadById(Long recordId);
   public void updateChapter (LocalChapter chapter);
   public void addChapter (LocalChapter chapter);
-  public void deleteChapter(Long recordId);
+  public void deleteChapter(LocalChapter chapter);
   public List<LocalChapter> findByProperty(String propertyName, Object value);
   public List<LocalChapter> findByProperties(SearchBean searchBean);
   public boolean isRecordExist(Long recordId,String chapterName);
