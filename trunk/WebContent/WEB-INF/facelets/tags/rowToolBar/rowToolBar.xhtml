@@ -26,7 +26,7 @@
         </a4j:commandLink>
       </h:panelGroup>
       <h:panelGroup rendered="${aDeleteRecord ne ''}">
-        <a4j:commandLink  rendered="true" onclick="forceBlockUI(ajaxLoadingMsg);"
+        <a4j:commandLink  rendered="true" onclick="forceBlockUI(ajaxProcessMsg);"
             action="#{refManageBean[aDeleteRecord]}"
             oncomplete="forceUnblockUI();" reRender="${sectionId},idErrorPanel" styleClass="menu_item_clink">
             <f:param name="recordId" value="${recordId}"/>
