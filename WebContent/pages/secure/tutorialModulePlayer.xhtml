@@ -52,7 +52,6 @@
 					<td align="center" width="100%" valign="middle">
 					<rich:panel id="idContainer">
 						<h:panelGroup  rendered="#{!modulePlayer.hasQuestionAns}">
-							<h:inputHidden value="#{modulePlayer.modulePlay}" />
 							<h:outputText id="idContainerxxx" value="#{modulePlayer.mediaBean.pageContent}" escape="false" />
 						</h:panelGroup>					
 					</rich:panel>
@@ -80,32 +79,31 @@
 		<table>
 			<tr>
 				<td>
-					<a4j:commandLink action="#{modulePlayer.playFirstPage}" reRender="idContainer,idQuestionPanel">
-						<h:graphicImage value="/images/media_beginning.png" border="0"/>
-					</a4j:commandLink>
+					<h:commandButton action="#{modulePlayer.playFirstPage}" value="First">
+						
+					</h:commandButton>
 				
 				</td>
 				<td>
-					<a4j:commandLink action="#{modulePlayer.playPreviousPage}" reRender="idContainer,idQuestionPanel">
-						<h:graphicImage value="/images/media_step_back.png" border="0"/>
-					</a4j:commandLink>
+					<h:commandButton action="#{modulePlayer.playPreviousPage}" value="Previous">
+					
+					</h:commandButton>
 				
 				</td>				
 				<td>
-					<a4j:commandLink >
-						<h:graphicImage value="/images/media_play_green.png" border="0"/>
-					</a4j:commandLink>
+					<h:commandButton value="Stop">
+						
+					</h:commandButton>
 				</td>
 
 				<td>
-					<a4j:commandLink action="#{modulePlayer.playNextPage}" reRender="idContainer,idQuestionPanel">
-						<h:graphicImage value="/images/media_step_forward.png" border="0"/>
-					</a4j:commandLink>				
+					<h:commandButton action="#{modulePlayer.playNextPage}" value="Next">
+						
+					</h:commandButton>				
 				</td>
 				<td>
-					<a4j:commandLink action="#{modulePlayer.playLastPage}" reRender="idContainer,idQuestionPanel">
-						<h:graphicImage value="/images/media_end.png" border="0"/>
-					</a4j:commandLink>
+					<h:commandButton action="#{modulePlayer.playLastPage}" value="Last">
+					</h:commandButton>
 				
 				</td>
 			</tr>
