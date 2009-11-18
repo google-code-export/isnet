@@ -1,6 +1,7 @@
 package com.intrigueit.myc2i.payment;
 
 import java.io.BufferedReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -12,11 +13,13 @@ import java.text.SimpleDateFormat;
 import java.util.Enumeration;
 import java.util.List;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
@@ -24,6 +27,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.intrigueit.myc2i.payment.domain.PayPalLog;
 import com.intrigueit.myc2i.payment.view.PaymentViewHandler;
+import com.intrigueit.myc2i.scheduler.SchedulerInit;
 import com.intrigueit.myc2i.udvalues.domain.UserDefinedValues;
 
 /**
@@ -33,7 +37,10 @@ import com.intrigueit.myc2i.udvalues.domain.UserDefinedValues;
 public class PayPalTxnListener extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
-       
+	private String tmpFile = null;
+	private String filePath = null;
+	
+	protected static final Logger log = Logger.getLogger( PayPalTxnListener.class );   
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -57,22 +64,26 @@ public class PayPalTxnListener extends HttpServlet {
 	}
 	@SuppressWarnings({ "unchecked", "deprecation" })
 	private void processTransaction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		WebApplicationContext ctx = WebApplicationContextUtils.getWebApplicationContext(getServletContext());      
 		String strActionURL = null;
 		String merchantEmail = null;
 		PaymentViewHandler bean = null;
+		FileWriter fw = null;
+
 		try{
 			bean = (PaymentViewHandler) ctx.getBean("paymentViewHandler");
 			List<UserDefinedValues> values = bean.getUdService().findByProperty("udValuesCategory", "PAYPAY_ACTION_URL");
 			if(values != null && values.size() > 0){
 				strActionURL = values.get(0).getUdValuesValue();
-				System.out.print(strActionURL);
+				log.debug(strActionURL);
 			}
 			List<UserDefinedValues> merchantEmails = bean.getUdService().findByProperty("udValuesCategory", "MERCHANT_ACCOUNT");
 			if(merchantEmails != null && merchantEmails.size() > 0){
 				merchantEmail = merchantEmails.get(0).getUdValuesValue();
-				System.out.print(merchantEmail);
-			}			
+				log.debug(merchantEmail);
+			}		
+		     fw = new FileWriter(filePath+""+tmpFile);
 		}
 		catch(Exception ex){
 			ex.printStackTrace();
@@ -81,11 +92,13 @@ public class PayPalTxnListener extends HttpServlet {
 		Enumeration en = request.getParameterNames();
 		String str = "cmd=_notify-validate";
 		while(en.hasMoreElements()){
-		String paramName = (String)en.nextElement();
-		String paramValue = request.getParameter(paramName);
-		str = str + "&" + paramName + "=" + URLEncoder.encode(paramValue);
+			String paramName = (String)en.nextElement();
+			String paramValue = request.getParameter(paramName);
+			str = str + "&" + paramName + "=" + URLEncoder.encode(paramValue);
 		}
-
+		
+		fw.append(str);
+		
 		URL u = new URL(strActionURL);
 		URLConnection uc = u.openConnection();
 		uc.setDoOutput(true);
@@ -97,11 +110,9 @@ public class PayPalTxnListener extends HttpServlet {
 		BufferedReader in = new BufferedReader(new InputStreamReader(uc.getInputStream()));
 		String txtResponse = in.readLine();
 		in.close();
-		
-		
+				
 		txtResponse = "VERIFIED";
-		
-		
+				
 		String itemName = request.getParameter("item_name");
 		String itemNumber = request.getParameter("item_number");
 		String paymentStatus = request.getParameter("payment_status");
@@ -132,22 +143,22 @@ public class PayPalTxnListener extends HttpServlet {
 			if(!receiverEmail.equals(merchantEmail)){
 				return;
 			}
-			PayPalLog log = new PayPalLog();
+			PayPalLog plog = new PayPalLog();
 			try{
-				log.setCurrency(paymentCurrency);
-				log.setGrossAmount(Double.parseDouble(paymentAmount));
-				log.setItemName(itemName);
-				log.setMemberId(Long.parseLong(memberId));
-				log.setNotifyVersion(Double.parseDouble(notifyVersion));
-				log.setPayerEmail(payerEmail);
+				plog.setCurrency(paymentCurrency);
+				plog.setGrossAmount(Double.parseDouble(paymentAmount));
+				plog.setItemName(itemName);
+				plog.setMemberId(Long.parseLong(memberId));
+				plog.setNotifyVersion(Double.parseDouble(notifyVersion));
+				plog.setPayerEmail(payerEmail);
 				DateFormat df = new SimpleDateFormat("HH:mm:ss MMM dd, yyyy z");
-				log.setPaymentDate(df.parse(paymentDate));
-				log.setPaymentStatus(paymentStatus);
-				log.setPayPalTxnId(txnId);
-				log.setTxnType(txn_type);
+				plog.setPaymentDate(df.parse(paymentDate));
+				plog.setPaymentStatus(paymentStatus);
+				plog.setPayPalTxnId(txnId);
+				plog.setTxnType(txn_type);
 				
 				/** Save the transaction log */
-				bean.getPayPalLogService().save(log);
+				bean.getPayPalLogService().save(plog);
 				
 			}
 			catch(Exception ex){
@@ -162,6 +173,14 @@ public class PayPalTxnListener extends HttpServlet {
 		else {
 			// error
 		}		
+	}
+
+	@Override
+	public void init(ServletConfig config) throws ServletException {
+		// TODO Auto-generated method stub
+		super.init(config);
+		this.tmpFile = this.getInitParameter("TMP_FILE");
+		this.filePath = this.getInitParameter("TMP_PATH");
 	}
 
 
