@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.intrigueit.myc2i.common.CommonConstants;
 import com.intrigueit.myc2i.common.ServiceConstants;
 import com.intrigueit.myc2i.common.domain.SearchBean;
 import com.intrigueit.myc2i.common.utility.CryptographicUtility;
@@ -191,12 +192,15 @@ public class UserManageViewHandler extends BasePage implements Serializable {
           if (this.userType.equals(ServiceConstants.MENTOR)) {
             this.currentMember.setTypeId(Long.parseLong(mType
                 .get(ServiceConstants.MENTOR)));
+            this.currentMember.setMemberRoleId(CommonConstants.ROLE_SUPERVISOR);
           } else if (this.userType.equals(ServiceConstants.PROTEGE)) {
             this.currentMember.setTypeId(Long.parseLong(mType
                 .get(ServiceConstants.PROTEGE)));
+            this.currentMember.setMemberRoleId(CommonConstants.ROLE_GUEST);
           } else if (this.userType.equals(ServiceConstants.ADMIN)) {
             this.currentMember.setTypeId(Long.parseLong(mType
                 .get(ServiceConstants.ADMIN)));
+            this.currentMember.setMemberRoleId(CommonConstants.ROLE_ADMINISTRATOR);
           }
         }
         this.currentMember.setRecordCreatorId(""
