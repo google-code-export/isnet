@@ -10,8 +10,10 @@ import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.TimeZone;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -62,6 +64,12 @@ public class PayPalTxnListener extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		this.processTransaction(request, response);
 	}
+	 private String getDateTime()  
+	 {  
+	     DateFormat df = new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss");  
+	     df.setTimeZone(TimeZone.getTimeZone("PST"));  
+	     return df.format(new Date());  
+	 }
 	@SuppressWarnings({ "unchecked", "deprecation" })
 	private void processTransaction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -83,7 +91,7 @@ public class PayPalTxnListener extends HttpServlet {
 				merchantEmail = merchantEmails.get(0).getUdValuesValue();
 				log.debug(merchantEmail);
 			}		
-		     fw = new FileWriter(filePath+""+tmpFile);
+		     fw = new FileWriter(filePath+"PAYMENT_"+getDateTime()+".txt");
 		}
 		catch(Exception ex){
 			ex.printStackTrace();
@@ -111,7 +119,7 @@ public class PayPalTxnListener extends HttpServlet {
 		String txtResponse = in.readLine();
 		in.close();
 				
-		txtResponse = "VERIFIED";
+		//txtResponse = "VERIFIED";
 				
 		String itemName = request.getParameter("item_name");
 		String itemNumber = request.getParameter("item_number");
