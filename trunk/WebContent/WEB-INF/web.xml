@@ -143,6 +143,14 @@
     <display-name>PayPalTxnListener</display-name>
     <servlet-name>PayPalTxnListener</servlet-name>
     <servlet-class>com.intrigueit.myc2i.payment.PayPalTxnListener</servlet-class>
+    <init-param>
+      <param-name>TMP_FILE</param-name>
+      <param-value>C:\\tmp\\data.tmp</param-value>
+    </init-param>   
+    <init-param>
+      <param-name>TMP_PATH</param-name>
+      <param-value>C:\\tmp\\</param-value>
+    </init-param>  
   </servlet>
   <servlet-mapping>
     <servlet-name>PayPalTxnListener</servlet-name>
