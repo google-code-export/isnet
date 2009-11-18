@@ -12,7 +12,7 @@ public class CalendarManageBean {
 		locale = Locale.US;
 		popup = true;
 		//pattern = "MMM d, yyyy";
-		pattern = "dd-MMM-yyyy";
+		pattern = "MM-dd-yyyy";
 		readonly = true;
 	}
 
