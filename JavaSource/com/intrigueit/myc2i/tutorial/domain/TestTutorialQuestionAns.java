@@ -33,11 +33,11 @@ public class TestTutorialQuestionAns implements Serializable {
   private Long pageNumber;
   
   @Length(max=2000)
-  @Column(name="PAGE_TEXT",nullable = false, length = 2000)
+  @Column(name="PAGE_TEXT",length = 2000)
   private String pageText;
   
   @Length(max=500)
-  @Column(name="PAGE_TITLE",nullable = false, length = 500)
+  @Column(name="PAGE_TITLE",length = 500)
   private String pageTitle;
   
   @Column(name="PAGE_AUDIO")
@@ -59,31 +59,31 @@ public class TestTutorialQuestionAns implements Serializable {
   private String question;
 
   @Length(max=100)
-  @Column(name="QUESTION_CORRECT_ANSWER",nullable = false, length = 100)
+  @Column(name="QUESTION_CORRECT_ANSWER",length = 100)
   private String questionCorrectAnswer;  
   
   @Length(max=100)
-  @Column(name="QUESTION_OPTION_ANSWER_A",nullable = false, length = 100)
+  @Column(name="QUESTION_OPTION_ANSWER_A",length = 100)
   private String questionOptionAnswerA;  
   
   @Length(max=100)
-  @Column(name="QUESTION_OPTION_ANSWER_B",nullable = false, length = 100)
+  @Column(name="QUESTION_OPTION_ANSWER_B",length = 100)
   private String questionOptionAnswerB;  
   
   @Length(max=100)
-  @Column(name="QUESTION_OPTION_ANSWER_C",nullable = false, length = 100)
+  @Column(name="QUESTION_OPTION_ANSWER_C",length = 100)
   private String questionOptionAnswerC;  
   
   @Length(max=100)
-  @Column(name="QUESTION_OPTION_ANSWER_D",nullable = false, length = 100)
+  @Column(name="QUESTION_OPTION_ANSWER_D",length = 100)
   private String questionOptionAnswerD;  
   
   @Length(max=100)
-  @Column(name="QUESTION_OPTION_ANSWER_E",nullable = false, length = 100)
+  @Column(name="QUESTION_OPTION_ANSWER_E",length = 100)
   private String questionOptionAnswerE;  
   
   @Length(max=100)
-  @Column(name="QUESTION_OPTION_ANSWER_F",nullable = false, length = 100)
+  @Column(name="QUESTION_OPTION_ANSWER_F",length = 100)
   private String questionOptionAnswerF;
 
   @Column(name="RECORD_CREATOR_ID")
