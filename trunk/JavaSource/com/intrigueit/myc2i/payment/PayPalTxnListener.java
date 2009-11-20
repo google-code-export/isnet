@@ -1,6 +1,7 @@
 package com.intrigueit.myc2i.payment;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -91,7 +92,7 @@ public class PayPalTxnListener extends HttpServlet {
 				merchantEmail = merchantEmails.get(0).getUdValuesValue();
 				log.debug(merchantEmail);
 			}		
-		     fw = new FileWriter(filePath+"PAYMENT_"+getDateTime()+".txt");
+		     fw = new FileWriter(new File(filePath+"PAYMENT_"+getDateTime()+".txt"));
 		}
 		catch(Exception ex){
 			ex.printStackTrace();
@@ -106,6 +107,9 @@ public class PayPalTxnListener extends HttpServlet {
 		}
 		
 		fw.append(str);
+		if(fw != null){
+			fw.close();
+		}
 		
 		URL u = new URL(strActionURL);
 		URLConnection uc = u.openConnection();
@@ -176,10 +180,10 @@ public class PayPalTxnListener extends HttpServlet {
 			
 		}
 		else if(txtResponse.equals("INVALID")) {
-			// log for investigation
+			log.debug("Response Invalid "+ txtResponse);
 		}
 		else {
-			// error
+			log.debug("Response Other: error "+ txtResponse);
 		}		
 	}
 
