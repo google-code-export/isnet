@@ -22,6 +22,7 @@ import com.intrigueit.myc2i.common.view.CommonValidator;
 import com.intrigueit.myc2i.common.view.ViewDataProvider;
 import com.intrigueit.myc2i.member.domain.Member;
 import com.intrigueit.myc2i.member.service.MemberService;
+import com.intrigueit.myc2i.utility.Emailer;
 
 @Component("resetPasswordViewHandler")
 @Scope("session") 
@@ -151,6 +152,13 @@ public class ResetPasswordViewHandler extends BasePage implements Serializable {
         CryptographicUtility crp = new CryptographicUtility();
         this.currentMember.setPassword(crp.getEncryptedText(this.getNewPassword()));
         memberService.update(this.currentMember);
+        if (this.currentMember.getEmail()!=null) {
+          sendNotification(this.currentMember.getEmail(),
+              this.getText("password_change_notification_subject"),
+              this.getText("password_change_notification_body",
+                  new String[]{this.currentMember.getFirstName(),
+                  this.getNewPassword()}));
+        }
       }
     } catch (Exception e) {
       setErrorMessage(this.getText("common_system_error"));
@@ -159,6 +167,18 @@ public class ResetPasswordViewHandler extends BasePage implements Serializable {
     }
   }
 	
+	/** Send confirmation email to member */
+  public void sendNotification(String email, String emailSubject,String msgBody)throws Exception {
+    /**Send email notification */
+    try {
+      Emailer emailer = new Emailer(email, msgBody,emailSubject);
+      emailer.setContentType("text/html");
+      emailer.sendEmail();
+    } catch (Exception e) {
+      logger.debug("Failed to sending notification email");
+      e.printStackTrace();
+    }
+  }
 	public List<SelectItem> getStatesList() {
     return viewDataProvider.getStateList();
   }
