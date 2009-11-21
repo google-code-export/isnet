@@ -77,6 +77,11 @@ public class ChapterViewHandler extends BasePage implements Serializable {
                   .append(this.getText("chapter_exist"));
         flag = false;       
       }
+      if (this.currentChapter.getLeadMemberId() == 0) {
+        errorMessage.append(this.getText("common_error_prefix")).append(" ")
+        .append(this.getText("select_lead_chapter"));
+        flag = false;
+      }
     }
     if (!flag) setErrorMessage(this.getText("common_error_header") + errorMessage.toString());
 	  return flag;
@@ -136,6 +141,7 @@ public class ChapterViewHandler extends BasePage implements Serializable {
       if(validate()) {
         if (this.currentChapter.getChapterCountry().equals("-1")) this.currentChapter.setChapterCountry(null);
         if (this.currentChapter.getChapterState().equals("-1")) this.currentChapter.setChapterState(null);
+        if (this.currentChapter.getLeadMemberId() == 0) this.currentChapter.setLeadMemberId(null);
         this.chapterService.addChapter(this.currentChapter);
   			List<LocalChapter> udvList = (List<LocalChapter>) getChapterLines().getWrappedData();
   			udvList.add(this.currentChapter);
@@ -179,13 +185,16 @@ public class ChapterViewHandler extends BasePage implements Serializable {
         this.currentChapter.setRecordLastUpdatedDate(dt);
 		    if (this.currentChapter.getChapterCountry().equals("-1")) this.currentChapter.setChapterCountry(null);
 		    if (this.currentChapter.getChapterState().equals("-1")) this.currentChapter.setChapterState(null);
+		    if (this.currentChapter.getLeadMemberId() == 0) this.currentChapter.setLeadMemberId(null);
         chapterService.updateChapter(this.currentChapter);
 		    putObjInList(rowIdx,chapterService.loadById(this.currentChapter.getChapterId()));
-		    sendNotification(this.currentChapter.getLeadMember().getEmail(),
-		        this.getText("chapter_update_notification_subject"),
-		        this.getText("chapter_update_notification_body",
-                new String[]{this.currentChapter.getLeadMember().getFirstName(),
-		            this.currentChapter.getChapterName()}));
+		    if (this.currentChapter.getLeadMember()!=null && this.currentChapter.getLeadMember().getEmail()!=null) {
+  		    sendNotification(this.currentChapter.getLeadMember().getEmail(),
+  		        this.getText("chapter_update_notification_subject"),
+  		        this.getText("chapter_update_notification_body",
+                  new String[]{this.currentChapter.getLeadMember().getFirstName(),
+  		            this.currentChapter.getChapterName()}));
+		    }
 		  }
 		} catch (Exception e) {
 		  setErrorMessage(this.getText("common_system_error"));
@@ -206,10 +215,12 @@ public class ChapterViewHandler extends BasePage implements Serializable {
 				chapterService.deleteChapter(chapter);
 				List<LocalChapter> udvList = (List<LocalChapter>) getChapterLines().getWrappedData();
 				udvList.remove(rowIndex);
-				sendNotification(chapter.getLeadMember().getEmail(),
-            this.getText("chapter_delete_notification_subject"),
-            this.getText("chapter_delete_notification_body",
-                new String[]{chapter.getLeadMember().getFirstName(),chapter.getChapterName()}));
+				if (chapter.getLeadMember()!=null && chapter.getLeadMember().getEmail()!=null) {
+  				sendNotification(chapter.getLeadMember().getEmail(),
+              this.getText("chapter_delete_notification_subject"),
+              this.getText("chapter_delete_notification_body",
+                  new String[]{chapter.getLeadMember().getFirstName(),chapter.getChapterName()}));
+				}
 			} catch (Exception e) {
 			  setErrorMessage(this.getText("common_system_error"));
 				logger.error(e.getMessage());
