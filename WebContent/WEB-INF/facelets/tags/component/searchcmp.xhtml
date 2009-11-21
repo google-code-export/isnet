@@ -13,8 +13,8 @@
       <c:if test="${!empty styleClass}">
         <c:set var="search_input" value="${styleClass}" />
       </c:if>
-			<h:inputText label="${msgLabel}" style="display:none;" id="id_${displayField}RecId" value="${searchBean[hidIdField]}"
-        required="${isRequired}"/>
+			<h:inputText label="${msgLabel}" style="display:none;" id="id_${displayField}RecId" 
+        value="${searchBean[hidIdField]}"/>
 			<a4j:outputPanel layout="block" styleClass="google_search">
 				<h:panelGroup styleClass="search_container">
 					<h:inputText styleClass="${search_input}" align="top" id="id_${displayField}"
