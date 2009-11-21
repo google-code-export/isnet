@@ -162,7 +162,6 @@ public class ProtegeViewHandler extends BasePage implements Serializable {
 	 */
 	public Member getCurrentProtege() {
 		if (currentProtege == null) {
-			System.out.println(" Init protege ");
 		  currentProtege = new Member();
 		}
 		return currentProtege;
