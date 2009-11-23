@@ -142,9 +142,9 @@ public class ChapterViewHandler extends BasePage implements Serializable {
         if (this.currentChapter.getChapterCountry().equals("-1")) this.currentChapter.setChapterCountry(null);
         if (this.currentChapter.getChapterState().equals("-1")) this.currentChapter.setChapterState(null);
         if (this.currentChapter.getLeadMemberId() == 0) this.currentChapter.setLeadMemberId(null);
-        this.chapterService.addChapter(this.currentChapter);
-  			List<LocalChapter> udvList = (List<LocalChapter>) getChapterLines().getWrappedData();
-  			udvList.add(this.currentChapter);
+        this.chapterService.addChapter(this.currentChapter);        
+        List<LocalChapter> chapterList = (List<LocalChapter>) getChapterLines().getWrappedData();
+        chapterList.add(this.chapterService.loadById(this.currentChapter.getChapterId()));
 			}
 		} catch (Exception e) {
 		  setErrorMessage(this.getText("common_system_error"));
