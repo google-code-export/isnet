@@ -255,7 +255,7 @@ public class MemberViewHandler extends BasePage implements Serializable{
 
 	public ArrayList<SelectItem> getMartialStatusList() {
 		if(martialStatusList == null){
-			this.martialStatusList = ViewDataProvider.getMaritialStatusList();
+			this.martialStatusList = this.viewDataProvider.getMaritialStatusList();
 		}
 		return martialStatusList;
 	}
