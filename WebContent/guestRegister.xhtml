@@ -107,7 +107,20 @@
 								<rich:spacer width="5"></rich:spacer>										
 								<h:outputText  value="#{bundle.member_privacy_dont_phone}"/>
 							</h:panelGroup>	
-							
+
+							<h:outputLabel>
+							<h:outputText value=""/>
+							</h:outputLabel>
+							<h:outputLabel >
+							<h:outputText value="Password must be 6-20 characters starting with letter, "/>
+							</h:outputLabel>
+							<h:outputLabel>
+							<h:outputText value=""/>
+							</h:outputLabel>
+							<h:outputLabel >
+							<h:outputText value="at least upper case letter and one number. "/>
+							</h:outputLabel>
+														
 							<h:outputLabel >
 							<h:outputText value="#{bundle.member_password}"/><h:outputText styleClass="required_field" value="*" />
 							</h:outputLabel>	
@@ -212,7 +225,7 @@
 				<rich:panel id="actionBox" bodyClass="panel_content_body">
 						<h:panelGrid columns="1" columnClasses="column_class_center" width="100%">
 							<h:panelGroup>
-								<a4j:commandButton onclick="forceBlockUI(ajaxWaitMsg);"   oncomplete="forceUnblockUI();" action="#{memberViewHandler.registerGuest}" value="#{bundle.common_label_signup}" reRender="idPanelContainer" />
+								<h:commandButton onclick="forceBlockUI(ajaxWaitMsg);"   oncomplete="forceUnblockUI();" action="#{memberViewHandler.registerGuest}" value="#{bundle.common_label_signup}" />
 								<rich:spacer width="10"></rich:spacer>	
 								<h:commandButton action="#{navigationBean.backToLogin}"  value="#{bundle.common_label_back}"  />
 							</h:panelGroup>		
