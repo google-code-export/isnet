@@ -314,7 +314,7 @@ public class ViewDataProvider extends BasePage {
 		try {
   		List<UserDefinedValues> udvList = this.udService.findByProperty("udValuesCategory", "COUNTRY");
   		for (UserDefinedValues userDefinedValues : udvList) {
-  			countryList.add(new SelectItem(userDefinedValues.getUdValuesId()+"",userDefinedValues.getUdValuesValue().toString()));
+  			countryList.add(new SelectItem(userDefinedValues.getUdValuesId()+"",userDefinedValues.getUdValuesDesc().toString()));
   		}
 		} catch (Exception e) {
       e.printStackTrace();
