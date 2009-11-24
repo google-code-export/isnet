@@ -67,7 +67,7 @@
 			<h:panelGrid columns="1" width="100%" cellpadding="0" cellspacing="0" border="0">
 				<h:dataTable value="#{modulesViewHandler.modules}" var="module">
 		             <rich:column>
-			       		 <a4j:commandLink  action="#{modulePlayer.init}" oncomplete="javascript:showTutorial('http://localhost:8088/myc2i/pages/secure/tutorialModulePlayer.faces?moduleId=1')">
+			       		 <a4j:commandLink  action="#{modulePlayer.init}" oncomplete="javascript:showTutorial('${controllerBean.contextPath}/pages/secure/tutorialModulePlayer.faces?moduleId=1')">
 				             <a4j:actionparam name="moduleId" value="#{module.modulesId}"  />
 			            	<h:graphicImage value="/images/play_tutorial.png" align="middle" border="0" > 
 			            	</h:graphicImage>	
@@ -86,7 +86,7 @@
 				 			<h:outputText value="::" />
 		             </rich:column>		             
 		             <rich:column>
-				 			<h:outputText  value="#{module.moduleText}" />
+				 			<h:outputText  value="#{module.moduleTitle}" />
 		             </rich:column>		
 		             				
 				</h:dataTable>
