@@ -1,17 +1,6 @@
 package com.intrigueit.myc2i.media;
 
-import java.io.BufferedOutputStream;
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
-
-import javax.faces.context.FacesContext;
-import javax.servlet.ServletContext;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -44,44 +33,13 @@ public class ModulePlayer extends BasePage{
   	private int pageIndex = -1;
   	
   	private String pageContent;
-	public static final String DEFAULT_FILE_LOCATION = "/images/upload/";
-	
-  	public  String writeToFile(String fileName, byte data[])throws IOException {
-		String me = "FileUtils.WriteToFile";
-
-		ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
-		String imagePath = servletContext.getRealPath("");
-		String filePath = imagePath +""+DEFAULT_FILE_LOCATION+fileName;
-		System.out.println(filePath);
-		File theFile = new File(filePath);
-
-		// Check if a file exists.
-		if (theFile.exists()) {
-			String msg = theFile.isDirectory() ? "directory" : (!theFile.canWrite() ? "not writable" : null);
-			if (msg != null) {
-				throw new IOException(me + ": file '" + fileName + "' is " + msg);
-			}
-		}
-
-		// Create directory for the file, if requested.
-		if (theFile.getParentFile() != null) {
-			theFile.getParentFile().mkdirs();
-		}
-
-		BufferedOutputStream fOut = null;
-		try	{
-			fOut = new BufferedOutputStream(new FileOutputStream(theFile));
-			fOut.write(data);
-		} catch (Exception e) {
-			throw new IOException(me + " failed, got: " + e.toString());
-		} finally {
-			fOut.close();
-		}
-		return filePath;
-	}
+  	
+  	private Boolean hasQuestionAns;
+  	
 
   	public void renderPage(){
   		try{
+  			this.decideQuestion();
   			mediaBean.dispose();
   			mediaBean = new MediaBean(this.currentPage.getPageAudio());
   			mediaBean.play();
@@ -93,6 +51,7 @@ public class ModulePlayer extends BasePage{
   	}
 	public void playPreviousPage(){
 		try{
+			//log.debug(this.hasQuestionAns);
 			log.debug("Playing previous page");
 			if(pageIndex > 0){
 				pageIndex -= 1;
@@ -119,15 +78,17 @@ public class ModulePlayer extends BasePage{
 	
 	public void playNextPage(){
 		try{
+			//log.debug(this.getHasQuestionAns());
 			if(pageIndex < tutorials.size()-1){
 				pageIndex += 1;
 				log.debug("index:"+pageIndex);
 	  			this.currentPage = this.tutorials.get(pageIndex);
+	  			//log.debug(this.currentPage.getPageText());
 				this.renderPage();
 			}
 		}
 		catch(Exception ex){
-			
+			ex.printStackTrace();
 		}
 		log.debug("index:"+pageIndex);
 	}
@@ -145,7 +106,8 @@ public class ModulePlayer extends BasePage{
   		try{
   			mediaBean = new MediaBean(this.getModule().getModuleIntroAudio());
   			mediaBean.play();
-  			mediaBean.setPageContent("<h1 style=\"text-align: center;\"><strong>Introduction to Da'wah</strong></h1><ul><li><h2>Seam text support out of the box using built-in converter</h2></li><li><h2>RichFaces skinnability</h2></li><li><h2>Implementation of manageable configurations mechanism</h2></li></ul>");
+  			mediaBean.setPageContent(this.getModule().getModuleText());
+			this.setCurrentPage(null);
   		}
   		catch(Exception ex){
   			ex.printStackTrace();
@@ -153,7 +115,10 @@ public class ModulePlayer extends BasePage{
   	}
   	public void playModule(){
   		try{
-  			this.playModuleIntroduction();
+  			if(this.pageIndex == -1){
+  				this.playModuleIntroduction();
+  			}
+  			
   		}
   		catch(Exception ex){
   			ex.printStackTrace();
@@ -167,9 +132,12 @@ public class ModulePlayer extends BasePage{
 		try{
 			module =  this.modulesService.loadById(Long.parseLong(moduleId));
 			tutorials = this.questionService.getTutorialByModule(module.getModulesId());
+			this.pageIndex = -1;
+			this.hasQuestionAns = false;
+			this.playModuleIntroduction();
 		}
 		catch(Exception ex){
-			
+			ex.printStackTrace();
 		}
 	}
 	
@@ -231,6 +199,27 @@ public class ModulePlayer extends BasePage{
 	@Autowired
 	public void setQuestionService(QuestionAnsService questionService) {
 		this.questionService = questionService;
-	}	
+	}
+	public Boolean getHasQuestionAns() {
+		return hasQuestionAns;
+	}
+	public void setHasQuestionAns(Boolean hasQuestionAns) {
+		this.hasQuestionAns = hasQuestionAns;
+	}
+
+	public void decideQuestion() {
+		this.hasQuestionAns = true;
+		if(this.currentPage == null){
+			this.hasQuestionAns = false;
+		}
+		if(this.getCurrentPage().getQuestion() ==null || this.currentPage.getQuestion().equals("")){
+			this.hasQuestionAns = false;
+		}
+		log.debug(this.hasQuestionAns);
+	}
+	/*
+	public void setHasQuestionAns(Boolean hasQuestionAns) {
+		this.hasQuestionAns = hasQuestionAns;
+	}	*/
 	
 }
