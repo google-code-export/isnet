@@ -185,12 +185,21 @@ public class ViewDataProvider extends BasePage {
     }
 	}
 	
-	public static ArrayList<SelectItem> getMaritialStatusList(){
+	public  ArrayList<SelectItem> getMaritialStatusList(){
 		ArrayList<SelectItem> maritialStatusList = new ArrayList<SelectItem>();
 		maritialStatusList.add(new SelectItem("-1","--Select--"));
-		maritialStatusList.add(new SelectItem("1","Single"));
-		maritialStatusList.add(new SelectItem("2","Divorced"));
-		maritialStatusList.add(new SelectItem("3","Widow"));
+		//maritialStatusList.add(new SelectItem("1","Single"));
+		//maritialStatusList.add(new SelectItem("2","Divorced"));
+		//maritialStatusList.add(new SelectItem("3","Widow"));
+		try {
+	  		List<UserDefinedValues> udvList = this.udService.findByProperty("udValuesCategory", "MARITAL_STATUS");
+	  		for (UserDefinedValues userDefinedValues : udvList) {
+	  			maritialStatusList.add(new SelectItem(userDefinedValues.getUdValuesId()+"",userDefinedValues.getUdValuesValue().toString()));
+	  		}
+		}catch (Exception e) {
+	      e.printStackTrace();
+	    }
+			
 		return maritialStatusList;
 	}
 	
