@@ -112,7 +112,7 @@ public class ModulesViewHandler extends BasePage implements Serializable {
   }
 
   public boolean preValidate() {
-    logger.debug("Validating Training items");
+    logger.debug("Validating tutorial modules");
     boolean flag = true;
     StringBuffer errorMessage = new StringBuffer();
     if (this.getDocumentId() == null || this.getDocumentId().isEmpty()) {
@@ -134,7 +134,7 @@ public class ModulesViewHandler extends BasePage implements Serializable {
   }
 
   public boolean postValidate(TestTutorialModules document) {
-    logger.debug("Validating Training items");
+    logger.debug("Validating tutorial module");
     boolean flag = true;
     StringBuffer errorMessage = new StringBuffer();
     if (document == null) {
@@ -176,7 +176,7 @@ public class ModulesViewHandler extends BasePage implements Serializable {
   }
 
   public void getModulesByCritariya() {
-    logger.debug(" Load Trainings items ");
+    logger.debug(" Load tutorial module ");
     String docTypeId = "";
     String userId = "";
     try {
@@ -220,7 +220,7 @@ public class ModulesViewHandler extends BasePage implements Serializable {
   }
 
   public void preAddModules() {
-    logger.debug("Preparing training item objet");
+    logger.debug("Preparing tutorial module");
     setErrorMessage("");
     try {
       if (preValidate()) {
@@ -240,7 +240,7 @@ public class ModulesViewHandler extends BasePage implements Serializable {
 
   @SuppressWarnings("unchecked")
   public void addModules() {
-    logger.debug("Prepare Training item objet for new record");
+    logger.debug("Prepare tutorial module for new record");
     try {
       setErrorMessage("");
       if (postValidate(this.currentModules)) {
@@ -260,7 +260,7 @@ public class ModulesViewHandler extends BasePage implements Serializable {
   }
 
   public void preUpdateModules() {
-    logger.debug("Prepare training item object updating");
+    logger.debug("Prepare tutorial module for updating");
     setErrorMessage("");
     if (this.getParameter(ServiceConstants.RECORD_ID) != null) {
       String recordId = (String) this.getParameter(ServiceConstants.RECORD_ID);
@@ -281,7 +281,7 @@ public class ModulesViewHandler extends BasePage implements Serializable {
   }
 
   public void updateModules() {
-    logger.debug("Updating training item object");
+    logger.debug("Updating tutorial module");
     try {
       setErrorMessage("");
       this.currentModules = getCurrentModules();
@@ -303,7 +303,7 @@ public class ModulesViewHandler extends BasePage implements Serializable {
   @SuppressWarnings("unchecked")
   public void deleteModules() {
     setErrorMessage("");
-    logger.debug("Deleting training item object");
+    logger.debug("Deleting tutorial module");
     setErrorMessage("");
     if (this.getParameter(ServiceConstants.RECORD_ID) != null) {
       String recordId = (String) this.getParameter(ServiceConstants.RECORD_ID);

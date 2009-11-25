@@ -196,7 +196,7 @@ public class DocumentViewHandler extends BasePage implements Serializable {
 	
 	@SuppressWarnings("unchecked")
 	public void deleteDocument() {
-	  logger.debug("Deleting training item object");
+	  logger.debug("Deleting document");
 	  setErrorMessage("");
 	  if(this.getParameter(ServiceConstants.RECORD_ID)!=null) {
   		String recordId = (String) this.getParameter(ServiceConstants.RECORD_ID);
