@@ -45,7 +45,9 @@ public abstract class GenericDaoImpl<T, ID extends Serializable> implements
 	}
 
 	public void update(T entity) {
-		entityManager.merge(entity);
+		Object ob = entityManager.merge(entity);
+		entityManager.flush();
+		entityManager.refresh(ob);
 	}
 
 	public void delete(T entity) {
