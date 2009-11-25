@@ -117,7 +117,7 @@ public class ChapterViewHandler extends BasePage implements Serializable {
   }
 	
 	public void preAddChapter () {
-	  logger.debug(" Preparing user define values for adding new record ");
+	  logger.debug(" Preparing chapter for adding new record ");
 	  setErrorMessage("");
 		try {		  
 		  this.currentChapter = new LocalChapter();		  		  
@@ -134,7 +134,7 @@ public class ChapterViewHandler extends BasePage implements Serializable {
 	
 	@SuppressWarnings("unchecked")
 	public void addChapter () {
-	  logger.debug(" Adding new user define values into database ");
+	  logger.debug(" Adding chapter into database ");
 	  setErrorMessage("");
 		try {		  
 		  this.currentChapter = getCurrentChapter();
@@ -158,7 +158,7 @@ public class ChapterViewHandler extends BasePage implements Serializable {
 	
 	public void preUpdateChapter() {
 		setErrorMessage("");
-		logger.debug(" Preparing user define values for updating ");
+		logger.debug(" Preparing chapter for updating ");
 		if(this.getParameter(ServiceConstants.RECORD_ID)!=null) {
   		String recordId = (String) this.getParameter(ServiceConstants.RECORD_ID);
   		try {
@@ -178,7 +178,7 @@ public class ChapterViewHandler extends BasePage implements Serializable {
 	}
 	
 	public void updateChapter() {
-	  logger.debug(" Updating user define values ");
+	  logger.debug(" Updating chapter ");
 	  setErrorMessage("");
 	  try {
 			this.currentChapter = getCurrentChapter();
@@ -210,7 +210,7 @@ public class ChapterViewHandler extends BasePage implements Serializable {
 	
 	@SuppressWarnings("unchecked")
 	public void deleteChapter() {
-	  logger.debug(" Deleting user define values from database ");
+	  logger.debug(" Deleting chapter from database ");
 	  setErrorMessage("");
 	  if(this.getParameter(ServiceConstants.RECORD_ID)!=null) {
   		String recordId = (String) this.getParameter(ServiceConstants.RECORD_ID);
