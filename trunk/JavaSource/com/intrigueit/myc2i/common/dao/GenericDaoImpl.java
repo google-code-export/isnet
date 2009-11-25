@@ -40,9 +40,11 @@ public abstract class GenericDaoImpl<T, ID extends Serializable> implements
 		return entityManager.find(persistentClass, id);
 	}
 
-	public void persist(T entity) {
-		entityManager.persist(entity);
-	}
+  public void persist(T entity) {
+    entityManager.persist(entity);
+    entityManager.flush();
+    entityManager.refresh(entity);
+  }
 
 	public void update(T entity) {
 		Object ob = entityManager.merge(entity);
