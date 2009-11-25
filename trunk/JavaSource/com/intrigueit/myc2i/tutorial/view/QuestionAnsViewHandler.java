@@ -121,7 +121,7 @@ public class QuestionAnsViewHandler extends BasePage implements Serializable {
   }
 	
 	public boolean preValidate () {
-    logger.debug("Validating Training items");
+    logger.debug("Validating question and answer");
     boolean flag = true;
     StringBuffer errorMessage = new StringBuffer();    
     System.out.println(this.getModulesId());
@@ -136,7 +136,7 @@ public class QuestionAnsViewHandler extends BasePage implements Serializable {
   }
 	
 	public boolean postValidate (TestTutorialQuestionAns questionAns) {
-	  logger.debug("Validating Training items");
+	  logger.debug("Validating question and answer");
 	  boolean flag = true;
 	  StringBuffer errorMessage = new StringBuffer();
 	  if ( questionAns == null ) {
@@ -226,7 +226,7 @@ public class QuestionAnsViewHandler extends BasePage implements Serializable {
 	}
 	
 	public void preAddQuestionAns () {	  
-	  logger.debug("Preparing training item objet");
+	  logger.debug("Preparing question and answer");
 	  setErrorMessage("");
 	  try {
 	    setErrorMessage("");
@@ -246,7 +246,7 @@ public class QuestionAnsViewHandler extends BasePage implements Serializable {
 	
 	@SuppressWarnings("unchecked")
 	public void addQuestionAns () {
-	  logger.debug("Prepare Training item objet for new record");
+	  logger.debug("Prepare question and answer for new record");
 	  try {		  
 		  setErrorMessage("");
 		  this.currentQuestionAns = getCurrentQuestionAns();
@@ -266,7 +266,7 @@ public class QuestionAnsViewHandler extends BasePage implements Serializable {
 		}		
 	}	            
 	public void preUpdateQuestionAns() {
-	  logger.debug("Prepare training item object updating");
+	  logger.debug("Prepare question and answer updating");
 	  if(this.getParameter(ServiceConstants.RECORD_ID)!=null) {
   		String recordId = (String) this.getParameter(ServiceConstants.RECORD_ID);
   		try {
@@ -286,7 +286,7 @@ public class QuestionAnsViewHandler extends BasePage implements Serializable {
 	}
 	
 	public void updateQuestionAns() {
-	  logger.debug("Updating training item object");
+	  logger.debug("Updating question and answer");
 	  try {
 	    setErrorMessage("");
 	    TestTutorialQuestionAns questionAns = getCurrentQuestionAns();
@@ -305,7 +305,7 @@ public class QuestionAnsViewHandler extends BasePage implements Serializable {
 	
 	@SuppressWarnings("unchecked")
 	public void deleteQuestionAns() {
-	  logger.debug("Deleting training item object");
+	  logger.debug("Deleting question and answer");
 	  setErrorMessage("");
 	  if(this.getParameter(ServiceConstants.RECORD_ID)!=null) {
   		String recordId = (String) this.getParameter(ServiceConstants.RECORD_ID);

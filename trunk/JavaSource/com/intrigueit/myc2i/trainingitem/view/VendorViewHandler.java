@@ -168,7 +168,7 @@ public class VendorViewHandler extends BasePage implements Serializable {
 	
 	@SuppressWarnings("unchecked")
 	public void deleteVendor() {
-	  logger.debug("Deleting training item object");
+	  logger.debug("Deleting vendor");
 	  setErrorMessage("");
 	  if(this.getParameter(ServiceConstants.RECORD_ID)!=null) {
   		String recordId = (String) this.getParameter(ServiceConstants.RECORD_ID);
