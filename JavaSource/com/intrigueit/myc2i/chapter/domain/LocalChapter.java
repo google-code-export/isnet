@@ -18,7 +18,6 @@ import org.hibernate.validator.Email;
 import org.hibernate.validator.Length;
 import org.hibernate.validator.NotEmpty;
 import org.hibernate.validator.NotNull;
-import org.hibernate.validator.Pattern;
 
 import com.intrigueit.myc2i.member.domain.Member;
 import com.intrigueit.myc2i.udvalues.domain.UserDefinedValues;
