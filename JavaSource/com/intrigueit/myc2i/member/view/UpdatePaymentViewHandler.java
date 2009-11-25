@@ -115,7 +115,7 @@ public class UpdatePaymentViewHandler extends BasePage implements Serializable {
   }
 	
 	public boolean validate() throws Exception {
-    logger.debug(" Validating member ");
+    logger.debug(" Validating information ");
     boolean flag = true;
     StringBuffer errorMessage = new StringBuffer();
     if ( this.currentMember == null ) {
