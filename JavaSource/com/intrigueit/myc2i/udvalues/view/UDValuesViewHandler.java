@@ -163,7 +163,10 @@ public class UDValuesViewHandler extends BasePage implements Serializable {
 						+ this.currentUDValues.getUdValuesId());
 			}
 		} catch (Exception e) {
-			setErrorMessage(this.getText("common_system_error"));
+		  if (this.currentUDValues.getUdValuesId() != null) {
+        this.currentUDValues.setUdValuesId(null);
+      }
+		  setErrorMessage(this.getText("common_system_error"));
 			logger.error(e.getMessage());
 			e.printStackTrace();
 		}
