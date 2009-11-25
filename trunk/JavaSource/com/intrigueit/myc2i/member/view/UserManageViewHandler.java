@@ -25,6 +25,7 @@ import com.intrigueit.myc2i.common.view.CommonValidator;
 import com.intrigueit.myc2i.common.view.ViewDataProvider;
 import com.intrigueit.myc2i.member.domain.Member;
 import com.intrigueit.myc2i.member.service.MemberService;
+import com.intrigueit.myc2i.utility.Emailer;
 
 @Component("userManageViewHandler")
 @Scope("session")
@@ -265,6 +266,14 @@ public class UserManageViewHandler extends BasePage implements Serializable {
           List<Member> itemList = (List<Member>) getMemberLines()
               .getWrappedData();
           itemList.add(this.memberService.findById(this.currentMember.getMemberId()));
+          if (this.currentMember.getEmail()!=null) {
+            sendNotification(this.currentMember.getEmail(),
+                this.getText("admin_new_user_creation_notify_sub"),
+                this.getText("admin_new_user_creation_notify_body",
+                    new String[]{this.currentMember.getFirstName(),
+                    this.currentMember.getEmail(),
+                    this.getConfirmPass()}));
+          }
           logger.debug("Member added: " + this.currentMember.getMemberId());
         }
       }
@@ -278,6 +287,18 @@ public class UserManageViewHandler extends BasePage implements Serializable {
     }
   }
 
+  /** Send confirmation email to member */
+  public void sendNotification(String email, String emailSubject,String msgBody)throws Exception {
+    /**Send email notification */
+    try {
+      Emailer emailer = new Emailer(email, msgBody,emailSubject);
+      emailer.setContentType("text/html");
+      emailer.sendEmail();
+    } catch (Exception e) {
+      logger.debug("Failed to sending notification email");
+      e.printStackTrace();
+    }
+  }
   public void preUpdateUser() {
     logger.debug(" Prepare user for update :: "
         + this.getParameter(ServiceConstants.RECORD_ID));
