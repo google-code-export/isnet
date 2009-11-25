@@ -231,8 +231,7 @@ public class QuestionAnsViewHandler extends BasePage implements Serializable {
 	  try {
 	    setErrorMessage("");
 	    if (preValidate()) {
-  	    this.currentQuestionAns = new TestTutorialQuestionAns();
-  	    this.currentQuestionAns.setPageNumber(this.getMaxPageNo());
+  	    this.currentQuestionAns = new TestTutorialQuestionAns();  	    
   	    this.setCommonData(ServiceConstants.ADD);
   			setSecHeaderMsg(this.getText("header_msg_tutorial_qa") + " " + this.getText("header_msg_add"));
   			setActionType(ServiceConstants.ADD);
@@ -251,6 +250,7 @@ public class QuestionAnsViewHandler extends BasePage implements Serializable {
 	  try {		  
 		  setErrorMessage("");
 		  this.currentQuestionAns = getCurrentQuestionAns();
+		  this.currentQuestionAns.setPageNumber(this.getMaxPageNo());
 		  if(postValidate(this.currentQuestionAns)) {  			
 		    questionAnsService.addQuestionAns(this.currentQuestionAns);
   			List<TestTutorialQuestionAns> itemList = (List<TestTutorialQuestionAns>) getQuestionAnsLines().getWrappedData();
