@@ -27,7 +27,7 @@ public class TestTutorialModules implements Serializable {
   @Column(name="TEST_TUTORIAL_MODULES_ID")
   @GeneratedValue(generator="modulesSeq")
   @SequenceGenerator(name="modulesSeq",sequenceName="MODULES_ID_SEQ", allocationSize=1,initialValue=1)
-  private long modulesId;
+  private Long modulesId;
 
   @Column(name="TEST_TUTORIAL_DOCUMENT_ID")
   private Long documentId;
@@ -89,7 +89,7 @@ public class TestTutorialModules implements Serializable {
     super();
   }
 
-  public TestTutorialModules(long modulesId, String moduleName,String moduleTitle,String testIndicator) {
+  public TestTutorialModules(Long modulesId, String moduleName,String moduleTitle,String testIndicator) {
     this.modulesId = modulesId;
     this.moduleName = moduleName;
     this.moduleTitle = moduleTitle;
@@ -99,14 +99,14 @@ public class TestTutorialModules implements Serializable {
   /**
    * @return the modulesId
    */
-  public long getModulesId() {
+  public Long getModulesId() {
     return modulesId;
   }
 
   /**
    * @param modulesId the modulesId to set
    */
-  public void setModulesId(long modulesId) {
+  public void setModulesId(Long modulesId) {
     this.modulesId = modulesId;
   }
 

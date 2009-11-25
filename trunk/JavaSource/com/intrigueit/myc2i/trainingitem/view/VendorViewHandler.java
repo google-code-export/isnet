@@ -119,6 +119,9 @@ public class VendorViewHandler extends BasePage implements Serializable {
   			udvList.add(this.currentVendor);
 			}
 		} catch (Exception e) {
+		  if (this.currentVendor.getVendorId() != null) {
+        this.currentVendor.setVendorId(null);
+      }
 		  setErrorMessage(this.getText("common_system_error"));
 			logger.error(e.getMessage());
 			e.printStackTrace();

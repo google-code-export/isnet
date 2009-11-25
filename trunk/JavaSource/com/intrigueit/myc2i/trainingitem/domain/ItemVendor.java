@@ -1,6 +1,5 @@
 package com.intrigueit.myc2i.trainingitem.domain;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -28,7 +27,7 @@ public class ItemVendor implements Serializable {
 	@Column(name="VENDOR_ID")
 	@GeneratedValue(generator="vendorSeq")
   @SequenceGenerator(name="vendorSeq",sequenceName="VENDOR_ID_SEQ", allocationSize=1,initialValue=1)
-	private long vendorId;
+	private Long vendorId;
 
 	@NotNull
   @NotEmpty
@@ -69,11 +68,11 @@ public class ItemVendor implements Serializable {
 		super();
 	}
 
-	public long getVendorId() {
+	public Long getVendorId() {
 		return this.vendorId;
 	}
 
-	public void setVendorId(long vendorId) {
+	public void setVendorId(Long vendorId) {
 		this.vendorId = vendorId;
 	}
 

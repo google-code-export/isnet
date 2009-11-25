@@ -148,6 +148,9 @@ public class DocumentViewHandler extends BasePage implements Serializable {
   			udvList.add(this.currentDocument);
   		}
 		} catch (Exception e) {
+		  if (this.currentDocument.getDocumentId() != null) {
+        this.currentDocument.setDocumentId(null);
+      }
 		  setErrorMessage(this.getText("common_system_error"));
 			logger.error(e.getMessage());
 			e.printStackTrace();
@@ -165,7 +168,7 @@ public class DocumentViewHandler extends BasePage implements Serializable {
 				setActionType(ServiceConstants.UPDATE);
 				setReRenderIds("DOCUMENT_LINES");
 				setRowIndex(getDocumentLines().getRowIndex());
-			} catch (Exception e) {
+			} catch (Exception e) {			  
 			  setErrorMessage(this.getText("common_system_error"));
 			  logger.error(e.getMessage());
 				e.printStackTrace();

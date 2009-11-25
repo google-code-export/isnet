@@ -28,7 +28,7 @@ public class TrainingItem implements Serializable {
 	@Column(name = "ITEM_ID")
 	@GeneratedValue(generator = "trainingItemSeq")
 	@SequenceGenerator(name = "trainingItemSeq", sequenceName = "TRAINING_ITEM_SEQ", allocationSize = 1, initialValue = 1)
-	private long itemId;
+	private Long itemId;
 
 	@NotNull
 	@NotEmpty
@@ -109,7 +109,7 @@ public class TrainingItem implements Serializable {
 		super();
 	}
 
-	public TrainingItem(long itemId, String itemDescription,
+	public TrainingItem(Long itemId, String itemDescription,
 			String itemEIndicator, String itemSubscriptionInd,
 			String itemEStorageLocati, Double itemPurchaseCost,
 			Double itemSalesPrice, String itemVersion, String itemLanguage,
@@ -126,11 +126,11 @@ public class TrainingItem implements Serializable {
 		this.itemAvailability = itemAvailability;
 	}
 
-	public long getItemId() {
+	public Long getItemId() {
 		return this.itemId;
 	}
 
-	public void setItemId(long itemId) {
+	public void setItemId(Long itemId) {
 		this.itemId = itemId;
 	}
 

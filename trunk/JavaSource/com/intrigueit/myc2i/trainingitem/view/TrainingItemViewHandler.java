@@ -248,7 +248,10 @@ public class TrainingItemViewHandler extends BasePage implements Serializable {
 						+ this.currentTrainingItem.getItemId());
 			}
 		} catch (Exception e) {
-			setErrorMessage(this.getText("common_system_error"));
+		  if (this.currentTrainingItem.getItemId() != null) {
+        this.currentTrainingItem.setItemId(null);
+      }
+		  setErrorMessage(this.getText("common_system_error"));
 			logger.error(e.getMessage());
 			e.printStackTrace();
 		}
