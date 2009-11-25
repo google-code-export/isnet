@@ -29,7 +29,7 @@ public class TestTutorialDocument implements Serializable {
 	@Column(name = "TEST_TUTORIAL_DOCUMENT_ID")
 	@GeneratedValue(generator = "documentSeq")
 	@SequenceGenerator(name = "documentSeq", sequenceName = "DOCUMENT_ID_SEQ", allocationSize = 1, initialValue = 1)
-	private long documentId;
+	private Long documentId;
 
 	@NotNull
 	@NotEmpty
@@ -67,7 +67,7 @@ public class TestTutorialDocument implements Serializable {
 		super();
 	}
 
-	public TestTutorialDocument(long documentId, String documentName) {
+	public TestTutorialDocument(Long documentId, String documentName) {
 		this.documentId = documentId;
 		this.documentName = documentName;
 	}
@@ -75,7 +75,7 @@ public class TestTutorialDocument implements Serializable {
 	/**
 	 * @return the documentId
 	 */
-	public long getDocumentId() {
+	public Long getDocumentId() {
 		return documentId;
 	}
 
@@ -83,7 +83,7 @@ public class TestTutorialDocument implements Serializable {
 	 * @param documentId
 	 *            the documentId to set
 	 */
-	public void setDocumentId(long documentId) {
+	public void setDocumentId(Long documentId) {
 		this.documentId = documentId;
 	}
 

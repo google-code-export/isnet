@@ -250,6 +250,9 @@ public class ModulesViewHandler extends BasePage implements Serializable {
         itemList.add(this.currentModules);
       }
     } catch (Exception e) {
+      if (this.currentModules.getModulesId() != null) {
+        this.currentModules.setModulesId(null);
+      }
       setErrorMessage(this.getText("common_system_error"));
       logger.error(e.getMessage());
       e.printStackTrace();

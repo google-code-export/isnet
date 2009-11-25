@@ -257,6 +257,9 @@ public class QuestionAnsViewHandler extends BasePage implements Serializable {
   			itemList.add(this.currentQuestionAns);
 			}
 		} catch (Exception e) {
+		  if ( this.currentQuestionAns.getQuestionAnsId() != null) {
+		    this.currentQuestionAns.setQuestionAnsId(null);
+      }
 		  setErrorMessage(this.getText("common_system_error"));
 			logger.error(e.getMessage());
 			e.printStackTrace();

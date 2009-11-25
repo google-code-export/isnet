@@ -24,7 +24,7 @@ public class TestTutorialQuestionAns implements Serializable {
   @Column(name="TEST_TUTORIAL_QUESTION_ANS_ID")
   @GeneratedValue(generator="questionAnsSeq")
   @SequenceGenerator(name="questionAnsSeq",sequenceName="QUESTION_ANS_SEQ", allocationSize=1,initialValue=1)
-  private long questionAnsId;
+  private Long questionAnsId;
 
   @Column(name="TEST_TUTORIAL_MODULES_ID")
   private Long modulesId;
@@ -102,7 +102,7 @@ public class TestTutorialQuestionAns implements Serializable {
     super();
   }
   
-  public TestTutorialQuestionAns(long questionAnsId,Long pageNumber,String pageTitle) {
+  public TestTutorialQuestionAns(Long questionAnsId,Long pageNumber,String pageTitle) {
     this.questionAnsId = questionAnsId;
     this.pageNumber = pageNumber;
     this.pageTitle = pageTitle;
@@ -111,14 +111,14 @@ public class TestTutorialQuestionAns implements Serializable {
   /**
    * @return the questionAnsId
    */
-  public long getQuestionAnsId() {
+  public Long getQuestionAnsId() {
     return questionAnsId;
   }
 
   /**
    * @param questionAnsId the questionAnsId to set
    */
-  public void setQuestionAnsId(long questionAnsId) {
+  public void setQuestionAnsId(Long questionAnsId) {
     this.questionAnsId = questionAnsId;
   }
 

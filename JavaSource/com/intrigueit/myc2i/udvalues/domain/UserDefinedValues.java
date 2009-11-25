@@ -34,7 +34,7 @@ public class UserDefinedValues implements Serializable {
 	@Column(name="USER_DEFINED_VALUES_ID")
 	@GeneratedValue(generator="UDValueSeq")
 	@SequenceGenerator(name="UDValueSeq",sequenceName="UDVALUE_ID_SEQ", allocationSize=1,initialValue=1)
-	private long udValuesId;
+	private Long udValuesId;
 
 	@Length(max=500)
 	@Column(name="USER_DEFINED_VALUES_DESCRIPTIO",nullable = true, length = 500)	
@@ -72,14 +72,14 @@ public class UserDefinedValues implements Serializable {
 	/**
 	 * @return the udValuesId
 	 */
-	public long getUdValuesId() {
+	public Long getUdValuesId() {
 		return udValuesId;
 	}
 
 	/**
 	 * @param udValuesId the udValuesId to set
 	 */
-	public void setUdValuesId(long udValuesId) {
+	public void setUdValuesId(Long udValuesId) {
 		this.udValuesId = udValuesId;
 	}
 
