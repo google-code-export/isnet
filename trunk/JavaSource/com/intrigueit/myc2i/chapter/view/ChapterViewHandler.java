@@ -111,7 +111,7 @@ public class ChapterViewHandler extends BasePage implements Serializable {
       }
     } catch (Exception e) {
       setSecHeaderMsg(this.getText("invalid_seesion_message"));
-      logger.error(" Unable to load training items by search critariya :"+e.getMessage());
+      logger.error(" Unable to load chapter by search critariya :"+e.getMessage());
       e.printStackTrace();
     }
   }
