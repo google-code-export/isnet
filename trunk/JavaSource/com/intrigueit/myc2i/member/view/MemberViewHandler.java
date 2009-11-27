@@ -31,7 +31,6 @@ public class MemberViewHandler extends BasePage implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private MemberService memberService;
 	private Member currentMember;
-	private Long id=  21L;	
 	
 	/** Available transfer methods*/
 	private ArrayList<SelectItem> martialStatusList;
@@ -50,10 +49,7 @@ public class MemberViewHandler extends BasePage implements Serializable{
 		this.memberService = memberService;
 		this.currentMember = new Member();
 	}
-	public void test(){
-		this.currentMember = this.memberService.findById(id);
-		logger.debug(this.currentMember.getFirstName());
-	}
+
 	public void update(){
 		try{
 			this.memberService.update(this.currentMember);
@@ -95,7 +91,7 @@ public class MemberViewHandler extends BasePage implements Serializable{
 			logger.debug("Mentor added: "+ this.currentMember.getMemberId());
 			this.currentMember= new Member();
 			this.setSuccessMessage(this.getText("mentor_success"));
-			return ViewConstant.REGISTER_SUCCESSFULL;
+			//return ViewConstant.REGISTER_SUCCESSFULL;
 		}
 		catch(Exception ex){
 			this.hasError = true;
@@ -143,7 +139,7 @@ public class MemberViewHandler extends BasePage implements Serializable{
 			logger.debug("Guest added: "+ this.currentMember.getMemberId());
 			this.currentMember = new Member();
 			this.setSuccessMessage(this.getText("mentor_success"));
-			return ViewConstant.REGISTER_SUCCESSFULL;
+			//return ViewConstant.REGISTER_SUCCESSFULL;
 		}
 		catch(Exception ex){
 			this.hasError = true;
