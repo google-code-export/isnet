@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:a4j="http://richfaces.org/a4j"
+  xmlns:c="http://java.sun.com/jstl/core"
+  xmlns:rich="http://richfaces.org/rich">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml; charset=UTF-8"/>
+    <title>
+      <h:outputText value="MyC2i :: ${moduleTitle}" />
+  </title>
+  <c:choose>
+    <c:when test="${userType eq 'M'}">
+      <c:set var="colClass" value="admin_leftside,admin_middle" />
+      <c:set var="showRightColumn" value="N" />
+    </c:when>
+    <c:when test="${userType eq 'SC'}">
+      <c:set var="colClass" value="admin_middle" />
+      <c:set var="showRightColumn" value="N" />
+      <c:set var="showLeftColumn" value="N" />
+    </c:when>    
+    <c:otherwise>
+      <c:set var="colClass" value="leftside,middle,rightside" />
+    </c:otherwise>
+  </c:choose>
+
+    <a4j:outputPanel id="idStyleClass">
+      <link rel="STYLESHEET" type="text/css" href="#{controllerBean.contextPath}/#{controllerBean.cssPath}/myc2i.css"/>
+      <link rel="STYLESHEET" type="text/css" href="#{controllerBean.contextPath}/#{controllerBean.cssPath}/richtools.css"/>
+       <link rel="STYLESHEET" type="text/css" href="#{controllerBean.contextPath}/#{controllerBean.cssPath}/common.css"/>
+    </a4j:outputPanel>
+    <a4j:loadScript src="/js/jquery/jquery-1.2.js"/>
+    <a4j:loadScript src="/js/jquery/jquery.blockUI.js"/>
+    <a4j:loadScript src="/js/jquery/jqconfig.js"/>
+    <a4j:loadScript src="/js/common.js" />
+    <script>
+      /* define diffrent message for ajax loading*/
+      var ajaxLoadingMsg = "Loading...";
+      var ajaxProcessMsg = "Processing...";
+      var ajaxWaitMsg = "Please wait...";
+      var ajaxUpdateMsg = "Updating...";
+      var ajaxCreateCrt = "Creating...";
+      var ajaxAddMsg = "Adding...";
+      var ajaxPrepareMsg = "Preparing...";
+    </script>
+    <ui:insert name="js"></ui:insert>
+  </head>
+
+  <body>
+    <a4j:outputPanel layout="block" id="idMainBlock">
+      <f:view id="idMainView">
+       <f:loadBundle basename="ApplicationResources" var="bundle"/>
+        <c:set var="imagesPath" value="#{controllerBean.imagesPath}" />
+        <h:inputHidden id="idContextPath" value="#{controllerBean.contextPath}" />
+          <div class="viewcontainer mainBlock" id="idMainContainer">
+          <h:panelGroup id="idHContainer">
+          	<h:form>
+            <ui:include src="/templates/include/header.xhtml" />
+            </h:form>
+            </h:panelGroup>
+            <h:panelGroup id="idMenuContainer">
+              <div class="menu_container">
+                <ui:include src="/templates/include/topnav.xhtml">
+              	<ui:param name="userType" value="${userType}"></ui:param>
+            </ui:include>
+              </div>
+            </h:panelGroup>
+         <div id="inner-container" class="clearfix" style="border: 0px solid red;">
+          <div id="content" style="border: 0px solid red;">
+          <h:panelGrid styleClass="body_content" width="99%" columns="3" border="0" cellpadding="0" cellspacing="0"
+           rowClasses="rowinput">
+          
+            <h:column>
+              <div class="form" style="border:0px solid red;margin-top:5px;" >
+                <h:panelGroup id="idErrorPanel">
+                  <c:set var="errMsg" value="${refManageBean.errorMessage}"></c:set>
+                  <rich:panel styleClass="error_panel" rendered="${errMsg ne ''}">
+                    <f:facet name="header">
+                      <h:panelGrid columns="2" border="0" id="idErrorHead" columnClasses="errorhead_text,errorhead_icon">
+                        <h:outputText value="Error panel"/>
+                        <a4j:commandLink  action="${refManageBean.hideErrorPanel}" reRender="idErrorPanel" styleClass="menu_item_clink">
+                          <h:panelGroup>
+                            <h:graphicImage value="#{controllerBean.imagesPath}/cross.png" styleClass="sec_toolbar_icon"/>
+                          </h:panelGroup>
+                        </a4j:commandLink>
+                      </h:panelGrid>
+                    </f:facet>
+                    <h:panelGrid columns="2" id="idErrorMsg" columnClasses="errormsg_icon,errormsg_text">
+                      <h:graphicImage value="#{controllerBean.imagesPath}/critical.png" styleClass="sec_toolbar_icon"/>
+                      <h:outputText escape="false" value="${errMsg}"/>
+                    </h:panelGrid>
+                  </rich:panel>
+                </h:panelGroup>
+
+                <div class="formHead"><h:outputText value="${headerText}" /></div>
+                <div class="formFields formBorder wideLabels">
+                  <ui:insert name="body">Body</ui:insert>
+                  <div class="formControls wideLabels">
+                    <table>
+                      <tr><td align="center">&nbsp;</td></tr>
+                      <tr><td align="center">&nbsp;</td></tr>
+                      <tr><td align="center">&nbsp;</td></tr>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </h:column>
+           
+          </h:panelGrid>
+        </div>
+      </div>
+      <h:panelGroup id="idFContainer">
+        <ui:include src="/templates/include/footer.xhtml" >
+          <ui:param name="userType" value="${userType}"></ui:param>
+        </ui:include>
+      </h:panelGroup>
+        </div>
+        <ui:insert name="jsFunction"></ui:insert>
+        <ui:insert name="modalPanels"></ui:insert>
+      </f:view>
+    </a4j:outputPanel>
+</body>
+</html>
