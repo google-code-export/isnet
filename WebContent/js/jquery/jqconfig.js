@@ -10,7 +10,7 @@ jQuery.extend(jQuery.blockUI.defaults.overlayCSS, { opacity: '0', cursor:'normal
 jQuery.blockUI.defaults.elementMessage = " Loading...";
 jQuery.blockUI.defaults.fadeTime = 0;
 jQuery.blockUI.defaults.fadeOut = 0;
-jQuery.extend(jQuery.blockUI.defaults.elementMessageCSS, { height:'20px',width:'100px', padding:'1px', textAlign:'left',fontWeight: 'normal', color:'white',
+jQuery.extend(jQuery.blockUI.defaults.elementMessageCSS, { height:'20px',width:'300px', padding:'1px', textAlign:'left',fontWeight: 'normal', color:'white',
                                                            fontFamily: "Arial,Helvetica,sans-serif",background:'red'});
 // styles for the displayBox
 jQuery.extend(jQuery.blockUI.defaults.displayBoxCSS, { width: '400px', height: '400px', top:'10%', left:'10%' });
