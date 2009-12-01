@@ -5,7 +5,7 @@
 		class="org.apache.log4j.RollingFileAppender">
 		<param name="maxFileSize" value="100KB" />
 		<param name="maxBackupIndex" value="5" />
-		<param name="File" value="./logs/myc2i.log" />
+		<param name="File" value="c:\\tmp\\myc2i.log" />
 		<param name="threshold" value="info" />
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern"
@@ -24,7 +24,7 @@
 		class="org.apache.log4j.RollingFileAppender">
 		<param name="maxFileSize" value="500000KB" />
 		<param name="maxBackupIndex" value="5" />
-		<param name="File" value="/usr/java/tomcat6.0/logs/agent_debug.log" />
+		<param name="File" value="c:\\tmp\\agent_debug.log" />
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern"
 				value="%-5p:[%d{ISO8601}]  %c (%F:%L) - %m%n" />
@@ -37,9 +37,9 @@
 
 	<logger name="com.intrigueit.myc2i">
   		<level value="debug"/>
-  		 <!-- 
+  		  
   		 <appender-ref ref="debugfile" />
-  		 	-->
+  		 	
   	  <appender-ref ref="stdout" /> 
   		 
 		
@@ -47,8 +47,8 @@
 
 	<root>
 	<priority value="fatal"></priority>
-	<!--  <appender-ref ref="file" />
-	 -->
+	  <appender-ref ref="file" />
+	 
 
 	</root> 
 
