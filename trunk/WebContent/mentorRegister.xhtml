@@ -255,7 +255,7 @@
 				<rich:panel id="actionBox" bodyClass="panel_content_body">
 						<h:panelGrid columns="1" columnClasses="column_class_center" width="100%">
 							<h:panelGroup>
-								<h:commandButton onclick="forceBlockUI(ajaxWaitMsg);"   oncomplete="forceUnblockUI();" action="#{memberViewHandler.registerMentor}" value="#{bundle.common_label_signup}"  />
+								<h:commandButton onclick="ModalHelper.show();"   oncomplete="ModalHelper.hide();" action="#{memberViewHandler.registerMentor}" value="#{bundle.common_label_signup}"  />
 								<rich:spacer width="10"></rich:spacer>	
 								<h:commandButton action="#{navigationBean.backToLogin}"   value="#{bundle.common_label_back}"  />								
 							</h:panelGroup>		
