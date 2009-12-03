@@ -21,8 +21,11 @@
 						value="#{log.fromMember.firstName}  #{log.fromMember.lastName}" />
 				</h:column>
 				<h:column>
-					<h:outputText value="#{bundle.dashboard_mentor_request}" />
+					<h:outputText value="sent a request for " />
 				</h:column>
+				<h:column>
+					<h:outputText value="#{log.topic}" />
+				</h:column>				
 				<h:column>
 					<a4j:commandButton oncomplete="Richfaces.showModalPanel('idRequestNoteDialog')"
 						value="#{bundle.button_label_accept}">
@@ -37,6 +40,21 @@
 						<a4j:actionparam name="act"  value="2" assignTo="#{dashboardViewHandler.action}" />
 					</a4j:commandButton>
 				</h:column>
+				<!-- 
+				<h:column>
+			
+         		 <a4j:commandLink value="details..." action="#{storyViewHandler.initializeDialog}"  reRender="idStoryDialog"  oncomplete="Richfaces.showModalPanel('idStoryDialog')">
+		             <a4j:actionparam name="storyId" value="#{story.memberStoryId}"  />
+		             <a4j:actionparam name="action" value="VIEW"  />
+            		 <rich:toolTip styleClass="tooltips_style"  >
+				          <span class="tooltips_span_style">
+				              View Story Details<br/>
+				          </span>
+				     </rich:toolTip>	
+				</a4j:commandLink>
+											
+				</h:column>
+				 -->				
 			</h:dataTable>
 		</rich:panel>
 		<rich:panel style="width:'auto';margin-top: 0px;"
