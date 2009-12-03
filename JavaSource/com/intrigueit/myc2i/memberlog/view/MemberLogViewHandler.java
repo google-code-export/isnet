@@ -21,9 +21,11 @@ import com.intrigueit.myc2i.common.ServiceConstants;
 import com.intrigueit.myc2i.common.view.BasePage;
 import com.intrigueit.myc2i.common.view.CommonValidator;
 import com.intrigueit.myc2i.common.view.ViewDataProvider;
+import com.intrigueit.myc2i.member.domain.Member;
 import com.intrigueit.myc2i.member.service.MemberService;
 import com.intrigueit.myc2i.memberlog.domain.MemberLog;
 import com.intrigueit.myc2i.memberlog.service.MemberLogService;
+import com.intrigueit.myc2i.udvalues.domain.UserDefinedValues;
 import com.intrigueit.myc2i.udvalues.service.UDValuesService;
 import com.intrigueit.myc2i.utility.Emailer;
 
@@ -141,6 +143,12 @@ public class MemberLogViewHandler extends BasePage implements Serializable {
 				this.hasError = true;
 				return;
 			}
+			Member memberTo = memberService.findById(this.currentLog.getToMemberId());
+			this.currentLog.setToMember(memberTo);
+			
+			UserDefinedValues udLogType = udService.loadById(this.currentLog.getMemberActivityType());
+			this.currentLog.setUserDefinedValues(udLogType);
+			
 			/** Set audit fields */
 			this.currentLog.setRecordCreatorId(this.getMember().getMemberId()+ "");
 			this.currentLog.setRecordCreatedDate(new Date());
@@ -148,6 +156,7 @@ public class MemberLogViewHandler extends BasePage implements Serializable {
 			this.currentLog.setRecordLastUpdaterId(this.getMember().getMemberId()+ "");
 			this.currentLog.setStatus(CommonConstants.ACTIVITY_STATUS.PENDING.toString());
 			this.currentLog.setFromMemberId(this.getMember().getMemberId());
+			this.currentLog.setFromMember(this.getMember());
 
 			Date dt = new Date();
 			this.currentLog.setMemberLogDateTime(new Timestamp(dt.getTime()));
