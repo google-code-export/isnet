@@ -1,6 +1,8 @@
 package com.intrigueit.myc2i.membersearch.view;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +43,7 @@ public class MemberSearchViewHandler extends BasePage {
 	}
 	public void executeSearch(){
 		try{
+			long startTime = Calendar.getInstance().getTimeInMillis();
 			String searchType = this.getRequest().getParameter("SEARCH_TYPE");
 			String clause = null;
 			if(searchType == null){
@@ -63,7 +66,11 @@ public class MemberSearchViewHandler extends BasePage {
 					this.recordCount = this.members.size();
 				}
 			}
-			
+			SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");	
+			Calendar cal = Calendar.getInstance();
+			long elapsed = cal.getTimeInMillis()- startTime;	
+			cal.setTimeInMillis(elapsed);
+			log.debug(dateFormat.format(cal.getTime())); 			
 		}
 		catch(Exception ex){
 			log.error(ex.getMessage());
