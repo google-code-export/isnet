@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.intrigueit.myc2i.common.CommonConstants;
 import com.intrigueit.myc2i.common.Myc2iException;
 import com.intrigueit.myc2i.common.utility.CryptographicUtility;
 import com.intrigueit.myc2i.common.view.BasePage;
@@ -71,7 +72,16 @@ public class ChangePasswordViewHandler extends BasePage  implements Serializable
 			Member dbMember = this.memberService.findById(member.getMemberId());
 			this.modifyMember(dbMember);
 			this.sendConfirmationEmail(dbMember.getEmail(), newPassword);
-			return ViewConstant.PASSWORD_CHANGE_TO_HOME;
+
+			if(member.getTypeId().equals(CommonConstants.MENTOR) || member.getTypeId().equals(CommonConstants.LEAD_MENTOR)){
+				return ViewConstant.TO_MENTOR_DASHBOARD;
+			}
+			else if(member.getTypeId().equals(CommonConstants.ADMIN)){
+				return ViewConstant.TO_ADMIN_HOME;
+			}
+			else if(member.getTypeId().equals(CommonConstants.PROTEGE)){
+				return ViewConstant.TO_PROTEGE_DASHBOARD;
+			}			
 		}
 		catch(Myc2iException ex){
 			this.errMsgs.add(ex.getMessage());
