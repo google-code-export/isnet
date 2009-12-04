@@ -129,7 +129,6 @@ public class UpdatePaymentViewHandler extends BasePage implements Serializable {
 	public void loadPaymentInfoByMemberId(Long memberId) {
 	  try {
   	  List<PayPalLog> values = this.payPalLogService.findByProperty("memberId", new Long(memberId));
-  	  System.out.println(values.size());
   	  if (values != null) {
   	    this.getMemberPaymentLines().setWrappedData(values);
   	  }
