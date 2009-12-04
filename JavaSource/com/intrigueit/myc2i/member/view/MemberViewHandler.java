@@ -98,6 +98,8 @@ public class MemberViewHandler extends BasePage implements Serializable{
 			this.errMsgs.add(this.getText("member_register_system_error"));
 			ex.printStackTrace();
 			this.setSuccessMessage("");
+			log.error(ex.getStackTrace());
+			log.error(ex.getMessage());
 		}
 		this.resetPassword();
 		return "";
@@ -145,6 +147,7 @@ public class MemberViewHandler extends BasePage implements Serializable{
 			this.hasError = true;
 			this.errMsgs.add(this.getText("member_register_system_error"));
 			log.error(ex.getStackTrace());
+			log.error(ex.getMessage());
 			ex.printStackTrace();
 			this.setSuccessMessage("");
 		}		
