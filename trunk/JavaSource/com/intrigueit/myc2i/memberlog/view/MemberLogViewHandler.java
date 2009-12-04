@@ -92,9 +92,16 @@ public class MemberLogViewHandler extends BasePage implements Serializable {
 			if(memberId == null){
 				return;
 			}
+
+			UserDefinedValues actType = null;
+			List<UserDefinedValues> types = udService.findByProperty("udValuesValue", CommonConstants.ACTIVITY_TYPE_PROTEGE_REQUEST);
+			if(types != null && types.size() > 0){
+				actType = types.get(0);
+			}
+			
 			this.currentLog = new MemberLog();
 			this.currentLog.setToMemberId(Long.parseLong(memberId));
-			this.currentLog.setMemberActivityType(CommonConstants.ACTIVITY_TYPE_PROTEGE_REQUEST);
+			this.currentLog.setMemberActivityType(actType.getUdValuesId());
 			this.currentLog.setTopic(this.getText("acitivity_log_protege_request_sub"));
 			this.errMsgs.clear();
 			this.hasError = false;
@@ -114,9 +121,15 @@ public class MemberLogViewHandler extends BasePage implements Serializable {
 			if(memberId == null){
 				return;
 			}
+			UserDefinedValues actType = null;
+			List<UserDefinedValues> types = udService.findByProperty("udValuesValue", CommonConstants.ACTIVITY_TYPE_MENTOR_REQUEST);
+			if(types != null && types.size() > 0){
+				actType = types.get(0);
+			}
+			
 			this.currentLog = new MemberLog();
 			this.currentLog.setToMemberId(Long.parseLong(memberId));
-			this.currentLog.setMemberActivityType(CommonConstants.ACTIVITY_TYPE_MENTOR_REQUEST);
+			this.currentLog.setMemberActivityType(actType.getUdValuesId());
 			this.currentLog.setTopic(this.getText("acitivity_log_mentor_request_sub"));
 			this.errMsgs.clear();
 			this.hasError = false;
@@ -177,6 +190,7 @@ public class MemberLogViewHandler extends BasePage implements Serializable {
 
 		} catch (Exception ex) {
 			this.errMsgs.add(this.getText("common_error_system_level"));
+			log.error(ex.getMessage());
 			ex.printStackTrace();
 		}
 		this.resetMessage();
