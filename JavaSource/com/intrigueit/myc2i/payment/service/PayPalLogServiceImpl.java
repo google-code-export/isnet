@@ -63,6 +63,4 @@ public class PayPalLogServiceImpl implements PayPalLogService{
 	  return payPalLogDao.getLastPayPalLogById(clause.toString());
 	}
 
-
-
 }

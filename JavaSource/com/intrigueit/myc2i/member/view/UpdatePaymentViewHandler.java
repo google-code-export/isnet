@@ -45,7 +45,7 @@ public class UpdatePaymentViewHandler extends BasePage implements Serializable {
 	private ViewDataProvider viewDataProvider;
 	private Long recordId;
 	private String paymentTerms;
-	
+	private ListDataModel memberPaymentLines;
   /**
    * @return the paymentTerms
    */
@@ -126,6 +126,19 @@ public class UpdatePaymentViewHandler extends BasePage implements Serializable {
     return flag;
   }
 	
+	public void loadPaymentInfoByMemberId(Long memberId) {
+	  try {
+  	  List<PayPalLog> values = this.payPalLogService.findByProperty("memberId", new Long(memberId));
+  	  System.out.println(values.size());
+  	  if (values != null) {
+  	    this.getMemberPaymentLines().setWrappedData(values);
+  	  }
+	  } catch (Exception e) {
+      logger.error(e.getMessage());
+      e.printStackTrace();
+    }  
+	}
+	
 	public boolean loadLastPaymentInfoById(Long recordId) {
 	  try {
       PayPalLog pLog = this.payPalLogService.getLastPayPalLogById(recordId);
@@ -145,6 +158,7 @@ public class UpdatePaymentViewHandler extends BasePage implements Serializable {
       String recordId = (String) this.getParameter(ServiceConstants.RECORD_ID);      
       try {                
         if ( this.loadLastPaymentInfoById(Long.parseLong(recordId)) ) {
+          loadPaymentInfoByMemberId(new Long(recordId));
           this.currentMember = memberService.findById(Long.parseLong(recordId));
           setSecHeaderMsg(this.getText("header_msg_update_payment"));
           setActionType(ServiceConstants.UPDATE);
@@ -218,6 +232,26 @@ public class UpdatePaymentViewHandler extends BasePage implements Serializable {
 	public void setMemberLines(ListDataModel memberLines) {
 		this.memberLines = memberLines;
 	}	
+	
+	
+	
+	/**
+   * @return the memberPaymentLines
+   */
+  public ListDataModel getMemberPaymentLines() {
+    if(memberPaymentLines == null){
+      memberPaymentLines = new ListDataModel();
+    }
+    return memberPaymentLines;
+  }
+  
+  /**
+   * @param memberPaymentLines the memberPaymentLines to set
+   */
+  public void setMemberPaymentLines(ListDataModel memberPaymentLines) {
+    this.memberPaymentLines = memberPaymentLines;
+  }
+	
 	
 	public ArrayList<SelectItem> getUsersList() {
     if(usersList == null){
