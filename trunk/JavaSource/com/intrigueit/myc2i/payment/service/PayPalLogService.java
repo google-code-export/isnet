@@ -18,6 +18,6 @@ public interface PayPalLogService {
 	
 	public Boolean IsTxnExist(String txnId, String payerEmail);
 	
-	public PayPalLog getLastPayPalLogById(Long memberId);
+	public PayPalLog getLastPayPalLogById(Long memberId);	
 
 }
