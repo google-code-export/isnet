@@ -14,16 +14,16 @@
    <c:set var="currentEBean" value="#{updatePaymentViewHandler.currentMember}"></c:set>
    <h:panelGrid columns="2" id="idUpdatePaymentPanelGroup" border="0" columnClasses="prompt,data,errprompt"
     rowClasses="rowinput" width="100%">
-	   <h:outputText value="#{bundle.payment_member_first_name}"/>
+	   <h:outputText value="#{bundle.payment_member_first_name} :"/>
      <h:outputText value="#{currentEBean.firstName}"/>
      
-     <h:outputText value="#{bundle.payment_member_exp_date}"/>
+     <h:outputText value="#{bundle.payment_member_exp_date} :"/>
      <h:outputText value="#{currentEBean.memberShipExpiryDate}"/>   
      
-     <h:outputText value="#{bundle.payment_last_payment_date}"/>
+     <h:outputText value="#{bundle.payment_last_payment_date} :"/>
      <h:outputText value="#{updatePaymentViewHandler.lastPayPalLog.paymentDate}"/>
       
-     <h:outputText value="#{bundle.payment_last_transaction_id}"/>
+     <h:outputText value="#{bundle.payment_last_transaction_id} :"/>
      <h:outputText value="#{updatePaymentViewHandler.lastPayPalLog.payPalTxnId}"/>
      
      <h:outputText value="#{bundle.payment_terms}"/>
@@ -42,6 +42,50 @@
       addAction="" updateAction="updatePaymentInfo"  reloadAction="preUpdatePaymentInfo"
       reRenderIds="#{updatePaymentViewHandler.reRenderIds}"/>
     <rich:spacer width="100%" height="5"/>
+     <rich:spacer width="100%" height="20"/>      
+      <h:panelGroup id="MEMBER_PAYMENT_LINES">        
+        <rich:dataTable styleClass="listcontainer" headerClass="listheader" rowClasses="odd-row,even-row"
+          id="idMemberPayLines" value="#{updatePaymentViewHandler.memberPaymentLines}" var="memberPayInfo"
+          rows="7" cellpadding="0" cellspacing="0">
+          <f:facet name="header">
+            <rich:columnGroup>
+              <rich:column width="90px" style="text-align:left;" valign="top">
+                <h:outputText value="#{bundle.payment_payer_email}" />
+              </rich:column>
+              <rich:column width="45px" style="text-align:center;" valign="top">
+                <h:outputText value="#{bundle.payment_amount}" />
+              </rich:column>
+              <rich:column width="45px" style="text-align:center;" valign="top">
+                <h:outputText value="#{bundle.payment_currency}" />
+              </rich:column>              
+              <rich:column width="65px" style="text-align:left;" valign="top">
+                <h:outputText value="#{bundle.payment_last_payment_date}" />
+              </rich:column>
+              <rich:column width="65px" style="text-align:left;" valign="top">
+                <h:outputText value="#{bundle.payment_transaction_id}" />
+              </rich:column>
+          </rich:columnGroup>
+          </f:facet>
+         <rich:column>
+          <h:outputText value="#{memberPayInfo.payerEmail}" />
+         </rich:column>
+         <rich:column style="text-align:center;">
+           <h:outputText value="#{memberPayInfo.grossAmount}" />
+         </rich:column>
+         <rich:column style="text-align:center;">
+           <h:outputText value="#{memberPayInfo.currency}" />
+         </rich:column>
+         <rich:column>
+           <h:outputText value="#{memberPayInfo.paymentDate}" />
+         </rich:column>
+         <rich:column>
+           <h:outputText value="#{memberPayInfo.payPalTxnId}" />
+         </rich:column>
+        </rich:dataTable>
+        <rich:datascroller id="idDataScroller" align="center"  for="idMemberPayLines" maxPages="7" />
+      </h:panelGroup>
     </rich:panel>
+    
+   
   </ui:composition>
 </html>
