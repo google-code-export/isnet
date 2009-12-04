@@ -74,13 +74,23 @@
  <navigation-rule>
   <from-view-id>/pages/secure/changePassword.xhtml</from-view-id>
   <navigation-case>
-   <from-outcome>PASSWORD_CHANGE_TO_HOME</from-outcome>
+   <from-outcome>TO_MENTOR_DASHBOARD</from-outcome>
    <to-view-id>/pages/secure/mentorDashboard.xhtml</to-view-id>
    <redirect/>
   </navigation-case>
   <navigation-case>
    <from-outcome>BACK_TO_LOGIN</from-outcome>
    <to-view-id>/login.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>TO_ADMIN_HOME</from-outcome>
+   <to-view-id>/pages/secure/udValueView.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>TO_PROTEGE_DASHBOARD</from-outcome>
+   <to-view-id>/pages/secure/protegeDashboard.xhtml</to-view-id>
    <redirect/>
   </navigation-case>
  </navigation-rule>
