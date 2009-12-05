@@ -307,9 +307,7 @@ public class UserManageViewHandler extends BasePage implements Serializable {
       try {
         if (this.getParameter(ServiceConstants.RECORD_TYPE) != null) {
           String recordType = (String) this
-              .getParameter(ServiceConstants.RECORD_TYPE);
-          System.out.println(this.parseMemberType(recordType) + ":::LLLL:::"
-              + recordType);
+              .getParameter(ServiceConstants.RECORD_TYPE);         
           this.setUserType(this.parseMemberType(recordType));
         }
         setErrorMessage("");
