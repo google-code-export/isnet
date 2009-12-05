@@ -34,14 +34,18 @@
 		            var xMax = 640, yMax=480;
 		        }
 			}
-
+			var w= 500;
+			var h = 400;
+			alert(xMax +" "+yMax);
+			
 			var xOffset = (xMax - w)/2
 			var yOffset = (yMax - h)/2
+			alert(
 			var sCenteringString;
 			day = new Date();
 			id = day.getTime();
 			sCenteringString = ',screenX=' + xOffset + ',screenY=' + yOffset + ',top='+ yOffset + ',left=' + xOffset + ''
-			eval("page" + id + " = window.open(URL, '" + id + "', 'toolbar=0,scrollbars=1,location=0,statusbar=0,menubar=0,resizable=0,width=' + w + ',height=' + h + sCenteringString);");
+			window.open(URL, '" + id + "', 'width=' + w + ',height=' + h + sCenteringString);
 		}
 
 		</script>
