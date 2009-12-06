@@ -94,9 +94,14 @@
   <filter-class>org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter</filter-class>
  </filter>
  <filter>
-  <display-name>Myc2I Security Filter</display-name>
+  <display-name>MyC2i Security Filter</display-name>
   <filter-name>pageFilter</filter-name>
   <filter-class>com.intrigueit.myc2i.common.filter.SecurityCheckFilter</filter-class>
+ </filter>
+ <filter>
+  <display-name>MyC2i Security Filter</display-name>
+  <filter-name>privilegeFilter</filter-name>
+  <filter-class>com.intrigueit.myc2i.common.filter.UserPrivilegeCheckFilter</filter-class>
  </filter>
  <filter-mapping>
   <filter-name>ajax4jsf</filter-name>
@@ -111,6 +116,10 @@
  </filter-mapping>
  <filter-mapping>
   <filter-name>pageFilter</filter-name>
+  <url-pattern>/pages/*</url-pattern>
+ </filter-mapping>
+ <filter-mapping>
+  <filter-name>privilegeFilter</filter-name>
   <url-pattern>/pages/*</url-pattern>
  </filter-mapping>
  <listener>
