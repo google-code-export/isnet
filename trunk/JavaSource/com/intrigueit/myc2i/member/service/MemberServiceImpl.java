@@ -10,6 +10,7 @@ import com.intrigueit.myc2i.common.CommonConstants;
 import com.intrigueit.myc2i.common.domain.SearchBean;
 import com.intrigueit.myc2i.member.dao.MemberDao;
 import com.intrigueit.myc2i.member.domain.Member;
+import com.intrigueit.myc2i.role.domain.RolePageAccess;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -126,25 +127,29 @@ public class MemberServiceImpl implements MemberService {
     return memberDao.findByClause(clause);
   }
   
-@Override
-public List<Member> findMentorByIds(List<String> idList) {
-    String ids = null;
-	for(String str: idList){
-    	ids = (ids == null)? str : ids + ","+str; 
-    }
-	String clause = " t.memberId IN ("+ ids +") ";
-    
-    return memberDao.loadByClause(clause, new Object[] {});
-}
+  @Override
+  public List<Member> findMentorByIds(List<String> idList) {
+      String ids = null;
+  	for(String str: idList){
+      	ids = (ids == null)? str : ids + ","+str; 
+      }
+  	String clause = " t.memberId IN ("+ ids +") ";
+      
+      return memberDao.loadByClause(clause, new Object[] {});
+  }
 
-@Override
-public int getMentorProtegeCout(Long memberId) {
-	String clause = " t.mentoredByMemberId =?1 ";
-    
-	List<Member> members =  memberDao.loadByClause(clause, new Object[] {memberId});
-	if(members == null) return 0;
-	return  members.size();
-    
-}
+  @Override
+  public int getMentorProtegeCout(Long memberId) {
+  	String clause = " t.mentoredByMemberId =?1 ";
+      
+  	List<Member> members =  memberDao.loadByClause(clause, new Object[] {memberId});
+  	if(members == null) return 0;
+  	return  members.size();
+      
+  }
 
+  public List<RolePageAccess> loadUserPrivilegePages(Long memberTypeId) {
+    return memberDao.loadUserPrivilegePages(memberTypeId);
+  }
+  
 }
