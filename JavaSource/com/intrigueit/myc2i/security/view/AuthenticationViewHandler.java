@@ -10,6 +10,7 @@ package com.intrigueit.myc2i.security.view;
 import java.io.Serializable;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -26,6 +27,7 @@ import com.intrigueit.myc2i.common.view.BasePage;
 import com.intrigueit.myc2i.common.view.ViewConstant;
 import com.intrigueit.myc2i.member.domain.Member;
 import com.intrigueit.myc2i.member.service.MemberService;
+import com.intrigueit.myc2i.role.domain.RolePageAccess;
 import com.intrigueit.myc2i.security.Menu;
 import com.intrigueit.myc2i.udvalues.service.UDValuesService;
 
@@ -128,6 +130,7 @@ public class AuthenticationViewHandler extends BasePage implements Serializable 
 			if(member != null){
 				//this.getSession().setAttribute(CommonConstants.CURRENT_MEMMBER, member);
 				this.setMemberinSession(member);
+				this.setUserPrivilegePages(member.getTypeId());
 				navOutCome = this.getHomePageAddress(member);
 				this.storeInCokie();
 			}
@@ -145,6 +148,25 @@ public class AuthenticationViewHandler extends BasePage implements Serializable 
 		}
 		return navOutCome;
 	}
+	
+	public void setUserPrivilegePages(Long memberTypeId) {	  
+	  try {
+  	  List<RolePageAccess> privilegePagesList = this.memberService.loadUserPrivilegePages(memberTypeId);    
+  	  if (privilegePagesList !=null) {
+  	    ArrayList<String> privilegePages = new ArrayList<String>();
+  	    for (RolePageAccess rolePageAccess : privilegePagesList) {
+          if ( rolePageAccess.getApplicationPages() != null ) {
+            privilegePages.add(rolePageAccess.getApplicationPages().getPageUrl());
+          }
+        }
+        HttpSession session =  getRequest().getSession(true);    
+        session.setAttribute(CommonConstants.USER_PRIVILEGE_PAGES, privilegePages);
+      }
+	  } catch (Exception e) {
+	    log.debug(e.getMessage());
+	    e.printStackTrace();
+    } 
+	}
 	/**
 	 * Logout the User from application and clear
 	 * user information from session object.
@@ -158,9 +180,8 @@ public class AuthenticationViewHandler extends BasePage implements Serializable 
 			HttpSession session = getSession();
 			session.removeAttribute(CommonConstants.SESSION_MEMBER_KEY);
 			session.removeAttribute(CommonConstants.SESSION_MEMBER_EMAIL);
+			session.removeAttribute(CommonConstants.USER_PRIVILEGE_PAGES);			
 			session.invalidate();
-			//this.getResponse().sendRedirect(this.getRequest().getContextPath() + "/login.jsf");
-			
 		}
 		catch(Exception ex){
 			ex.printStackTrace();
