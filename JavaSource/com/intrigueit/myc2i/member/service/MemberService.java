@@ -5,14 +5,15 @@ import java.util.List;
 
 import com.intrigueit.myc2i.common.domain.SearchBean;
 import com.intrigueit.myc2i.member.domain.Member;
+import com.intrigueit.myc2i.role.domain.RolePageAccess;
 
 
 public interface MemberService {
 
 
-    public void save(Member entity);
+  public void save(Member entity);
 
-    public void delete(Member entity);
+  public void delete(Member entity);
 
 	public Member update(Member entity);
 	
@@ -35,4 +36,6 @@ public interface MemberService {
 	public int getMentorProtegeCout(Long memberId);
 	
 	public List<Member> loadProtegeWithoutMentor();
+	
+	public List<RolePageAccess> loadUserPrivilegePages(Long memberTypeId);
 }
