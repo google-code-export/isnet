@@ -39,5 +39,5 @@ public class CommonConstants {
     public static final String STORY_MENTOR = "MENTOR";
     public static final String STORY_PROTEGE = "PROTEGE";
     
-    	
+    public final static String  USER_PRIVILEGE_PAGES = "USER_PRIVILEGE_PAGES";	
 }
