@@ -23,7 +23,7 @@ import com.intrigueit.myc2i.common.CommonConstants;
 
  
 /**
- * This class is responsible for implementing the security of NetCourier Agent System.
+ * This class is responsible for implementing the security of MyC2i.
  * it check the security when the user request form some resources.
  *
  * @version 	1.00 June 11 2008
