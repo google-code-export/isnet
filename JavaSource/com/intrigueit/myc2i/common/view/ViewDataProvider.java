@@ -275,7 +275,7 @@ public class ViewDataProvider extends BasePage {
 		activityList = new ArrayList<SelectItem>();
 		activityList.add(new SelectItem("-1","--Select--"));
 		List<UserDefinedValues> udvList = null;
-		if(this.getMember().getTypeId() == CommonConstants.PROTEGE){
+		if(this.getMember().getTypeId().equals(CommonConstants.PROTEGE)){
 			udvList = this.udService.findByProperty("udValuesCategory", "ACTIVITY_LOG_PROTEGE");
 			for (UserDefinedValues userDefinedValues : udvList) {
 				activityList.add(new SelectItem(userDefinedValues.getUdValuesId()+"",userDefinedValues.getUdValuesValue().toString()));
