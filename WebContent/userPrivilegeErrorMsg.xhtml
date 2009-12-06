@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	 xmlns:ui="http://java.sun.com/jsf/facelets"
+	 xmlns:h="http://java.sun.com/jsf/html"
+	 xmlns:f="http://java.sun.com/jsf/core"
+	 xmlns:a4j="http://richfaces.org/a4j"
+ 	xmlns:c="http://java.sun.com/jstl/core"
+ 	xmlns:rich="http://richfaces.org/rich">
+
+	<ui:composition template="/templates/basictemplate.xhtml">
+	<ui:param name="moduleTitle" value="#{bundle.page_title_permission_denied}"></ui:param>
+ 		<ui:param name="userType" value="Public">
+ 	</ui:param>
+
+	<ui:define name="body">
+	<h:panelGrid columns="3" columnClasses="reg_page_column1,reg_page_column2,reg_page_column3" width="100%">
+		<h:outputText value="" />
+		<h:panelGroup>
+		<rich:panel style="width:'auto'"  id="idPanelContainer" headerClass="panel_header" bodyClass="panel_content_body" styleClass="content_panel">
+			<f:facet name="header">
+				<h:outputLabel id="idHeaderMessage" >
+				  <h:outputText value="Illegal request - Permission Denied !!!"/>
+				</h:outputLabel>
+			</f:facet>
+
+			<h:panelGrid columns="1" width="100%" columnClasses="column_class_center">
+				<h:outputLabel id="idSuccessMessageBox">
+				<h:outputText escape="true" value="You do not have permission to access this page! 
+        Your user account may not have sufficient privileges to access this page. Please " />
+				<h:outputLink styleClass="menu_item_clink" 
+          value="#{controllerBean.contextPath}/login.faces">
+          <h:outputText value="back to login"/>
+        </h:outputLink>
+        <h:outputText escape="true" value=" page and try with different user account 
+          or contact with MyC2i support team." /> 
+				</h:outputLabel>						
+			</h:panelGrid>
+		</rich:panel>
+	 </h:panelGroup>
+		<h:outputText value="" />			
+	</h:panelGrid>	   
+  </ui:define>
+   	
+	</ui:composition>
+
+</html>
