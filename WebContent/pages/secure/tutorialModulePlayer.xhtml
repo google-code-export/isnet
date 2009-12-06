@@ -63,7 +63,7 @@
 						  <f:selectItem  itemLabel="#{modulePlayer.currentPage.questionOptionAnswerB}" itemValue="B" />
 						  <f:selectItem  itemLabel="#{modulePlayer.currentPage.questionOptionAnswerC}" itemValue="C" />
 						  <f:selectItem  itemLabel="#{modulePlayer.currentPage.questionOptionAnswerD}" itemValue="D" />
-						  	<f:selectItem  itemLabel="#{modulePlayer.currentPage.questionOptionAnswerE}" itemValue="E" />
+						  <f:selectItem  itemLabel="#{modulePlayer.currentPage.questionOptionAnswerE}" itemValue="E" />
 						  <f:selectItem  itemLabel="#{modulePlayer.currentPage.questionOptionAnswerF}" itemValue="F" />
 						</h:selectOneRadio>						
 					</rich:panel>
@@ -91,7 +91,7 @@
 				
 				</td>				
 				<td>
-					<h:commandButton value="Stop">
+					<h:commandButton value="Stop" action="#{modulePlayer.saveTestResult}">
 						
 					</h:commandButton>
 				</td>
