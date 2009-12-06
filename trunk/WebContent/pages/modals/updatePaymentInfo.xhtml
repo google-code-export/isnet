@@ -52,6 +52,9 @@
               <rich:column width="90px" style="text-align:left;" valign="top">
                 <h:outputText value="#{bundle.payment_payer_email}" />
               </rich:column>
+              <rich:column width="90px" style="text-align:left;" valign="top">
+                <h:outputText value="Payment For" />
+              </rich:column>              
               <rich:column width="45px" style="text-align:center;" valign="top">
                 <h:outputText value="#{bundle.payment_amount}" />
               </rich:column>
@@ -69,6 +72,9 @@
          <rich:column>
           <h:outputText value="#{memberPayInfo.payerEmail}" />
          </rich:column>
+         <rich:column style="text-align:center;">
+           <h:outputText value="#{memberPayInfo.itemName}" />
+         </rich:column>         
          <rich:column style="text-align:center;">
            <h:outputText value="#{memberPayInfo.grossAmount}" />
          </rich:column>
