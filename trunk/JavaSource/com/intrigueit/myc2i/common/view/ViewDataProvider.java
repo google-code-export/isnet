@@ -308,13 +308,13 @@ public class ViewDataProvider extends BasePage {
 		this.stateList = new ArrayList<SelectItem>();
 		stateList.add(new SelectItem("-1","--Select--"));
 		try {
-  		List<UserDefinedValues> udvList = this.udService.findByProperty("udValuesCategory", "STATE");
-  		for (UserDefinedValues userDefinedValues : udvList) {
-  			stateList.add(new SelectItem(userDefinedValues.getUdValuesId()+"",userDefinedValues.getUdValuesDesc().toString()));
-  		}
-		} catch (Exception e) {
-		  e.printStackTrace();
-    }		
+			List<UserDefinedValues> udvList = this.udService.findByProperty("udValuesCategory", "STATE");
+			for (UserDefinedValues userDefinedValues : udvList) {
+				stateList.add(new SelectItem(userDefinedValues.getUdValuesId()+"",userDefinedValues.getUdValuesDesc().toString()));
+			}
+		}catch (Exception e){
+			log.error(e.getMessage());
+		}		
 	}
 	
 	private void loadCountryList(){
