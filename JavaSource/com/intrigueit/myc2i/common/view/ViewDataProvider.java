@@ -319,7 +319,7 @@ public class ViewDataProvider extends BasePage {
 	
 	private void loadCountryList(){
 		this.countryList = new ArrayList<SelectItem>();
-		countryList.add(new SelectItem("-1","--Select--"));
+		countryList.add(new SelectItem("","--Select--"));
 		try {
   		List<UserDefinedValues> udvList = this.udService.findByProperty("udValuesCategory", "COUNTRY");
   		for (UserDefinedValues userDefinedValues : udvList) {
