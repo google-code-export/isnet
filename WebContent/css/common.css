@@ -298,3 +298,8 @@
 .rich-subtable-headercell{
 	background-color: #FAF8E3;
 }
+.registration_header_style{
+	text-align: left;
+	color: black;
+	font-size: small;
+}
