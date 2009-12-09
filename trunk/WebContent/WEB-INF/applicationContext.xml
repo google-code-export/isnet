@@ -30,6 +30,10 @@
 		<property name="testConnectionOnCheckin" value="true"></property>
 		<property name="idleConnectionTestPeriod" value="60"></property> 
 	</bean>
+
+	<bean id="memberSearchDao" class="com.intrigueit.myc2i.membersearch.dao.MemberSearchDao">
+	    <property name="dataSource" ref="dataSource" />
+	</bean>	
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="persistenceUnitName" value="myc2iPU"/>
