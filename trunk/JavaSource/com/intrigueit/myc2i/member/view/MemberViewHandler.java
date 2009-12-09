@@ -14,8 +14,10 @@ import org.springframework.stereotype.Component;
 
 import com.intrigueit.myc2i.common.CommonConstants;
 import com.intrigueit.myc2i.common.utility.CryptographicUtility;
+import com.intrigueit.myc2i.common.utility.PassPhrase;
 import com.intrigueit.myc2i.common.view.BasePage;
 import com.intrigueit.myc2i.common.view.CommonValidator;
+import com.intrigueit.myc2i.common.view.ViewConstant;
 import com.intrigueit.myc2i.common.view.ViewDataProvider;
 import com.intrigueit.myc2i.member.domain.Member;
 import com.intrigueit.myc2i.member.service.MemberService;
@@ -74,8 +76,8 @@ public class MemberViewHandler extends BasePage implements Serializable{
 			}
 			
 			CryptographicUtility crpUtil = new CryptographicUtility();
-			String plainPassword = this.currentMember.getPassword();
-			this.currentMember.setPassword( crpUtil.getEncryptedText(this.currentMember.getPassword()));
+			String plainPassword = PassPhrase.getNext();
+			this.currentMember.setPassword( crpUtil.getEncryptedText(plainPassword));
 			Date dt = new Date();
 			this.currentMember.setRecordCreate(dt);
 			this.currentMember.setLastUpdated(dt);
@@ -90,7 +92,7 @@ public class MemberViewHandler extends BasePage implements Serializable{
 			logger.debug("Mentor added: "+ this.currentMember.getMemberId());
 			this.currentMember= new Member();
 			this.setSuccessMessage(this.getText("mentor_success"));
-			//return ViewConstant.REGISTER_SUCCESSFULL;
+			return ViewConstant.REGISTER_SUCCESSFULL;
 		}
 		catch(Exception ex){
 			this.hasError = true;
@@ -123,13 +125,13 @@ public class MemberViewHandler extends BasePage implements Serializable{
 			}
 
 			CryptographicUtility crpUtil = new CryptographicUtility();
-			String plainPassword = this.currentMember.getPassword();
-			this.currentMember.setPassword( crpUtil.getEncryptedText(this.currentMember.getPassword()));
+			String plainPassword = PassPhrase.getNext();
+			this.currentMember.setPassword( crpUtil.getEncryptedText(plainPassword));
 			Date dt = new Date();
 			this.currentMember.setRecordCreate(dt);
 			this.currentMember.setLastUpdated(dt);
-			this.currentMember.setRecordCreatorId("-1");
-			this.currentMember.setRecordUpdaterId("-1");
+			this.currentMember.setRecordCreatorId(CommonConstants.SYSTEM_USER_ID);
+			this.currentMember.setRecordUpdaterId(CommonConstants.SYSTEM_USER_ID);
 			this.currentMember.setTypeId(CommonConstants.PROTEGE);
 			this.currentMember.setMemberRoleId(CommonConstants.ROLE_GUEST);
 			this.currentMember.setAdminUserIndicator(CommonConstants.STATUS.No.toString());
@@ -140,7 +142,7 @@ public class MemberViewHandler extends BasePage implements Serializable{
 			logger.debug("Guest added: "+ this.currentMember.getMemberId());
 			this.currentMember = new Member();
 			this.setSuccessMessage(this.getText("mentor_success"));
-			//return ViewConstant.REGISTER_SUCCESSFULL;
+			return ViewConstant.REGISTER_SUCCESSFULL;
 		}
 		catch(Exception ex){
 			this.hasError = true;
@@ -204,18 +206,18 @@ public class MemberViewHandler extends BasePage implements Serializable{
 		if(CommonValidator.isEmpty(this.getCurrentMember().getGenderInd())){
 			this.errMsgs.add( this.getText("member_validation_gender"));
 		}		
-		if(!this.confirmPass.equals(this.currentMember.getPassword())){
+/*		if(!this.confirmPass.equals(this.currentMember.getPassword())){
 			this.errMsgs.add( this.getText("member_validation_password_dont_match"));
-		}
+		}*/
 		/** Check the member profession */
 		if(CommonValidator.isInvalidListItem(this.getCurrentMember().getEthinicity())){
 			this.errMsgs.add( this.getText("member_validation_ethinicity"));
 		}
-		/** Check the valid password */
+/*		*//** Check the valid password *//*
 		if(!CommonValidator.isValidPassword(this.getCurrentMember().getPassword())){
 			this.errMsgs.add( this.getText("member_validation_password"));
 		}			
-		
+		*/
 		
 	}
 	
