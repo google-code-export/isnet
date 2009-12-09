@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import com.intrigueit.myc2i.common.view.BasePage;
 import com.intrigueit.myc2i.member.domain.Member;
 import com.intrigueit.myc2i.member.service.MemberService;
+import com.intrigueit.myc2i.membersearch.dao.MemberSearchDao;
 import com.intrigueit.myc2i.membersearch.domain.MemberSearch;
 import com.intrigueit.myc2i.zipcode.ZipCodeUtil;
 import com.intrigueit.myc2i.zipcode.domain.ZipCode;
@@ -28,6 +29,7 @@ public class MemberSearchViewHandler extends BasePage {
 	private String srcZipCode;
 	private MemberSearch search;
 	private int recordCount;
+	private MemberSearchDao memberSearchDao;
 	
 	private List<Member> members;
 	
@@ -58,7 +60,12 @@ public class MemberSearchViewHandler extends BasePage {
 			else if(searchType.equals("MENTOR")){
 				clause = " t.typeId =15";
 			}
-			List<String> zipCodes = this.getZipCodes();
+			String zipcode = this.getSrcZipCode();
+			
+			ZipCode srcZip = this.zipCodeService.findById(zipcode);
+			this.memberSearchDao.fetchZipCode(srcZip.getLatitude(), srcZip.getLongitude(), this.dist);
+			List<String> zipCodes = this.memberSearchDao.fetchZipCode(srcZip.getLatitude(), srcZip.getLongitude(), this.dist);
+			
 			String conditions = this.getClause(zipCodes,clause);
 			if(conditions != null && !conditions.equals("")){
 				this.members = this.memberService.getMemberByDynamicHsql(conditions);
@@ -70,7 +77,7 @@ public class MemberSearchViewHandler extends BasePage {
 			Calendar cal = Calendar.getInstance();
 			long elapsed = cal.getTimeInMillis()- startTime;	
 			cal.setTimeInMillis(elapsed);
-			log.debug(dateFormat.format(cal.getTime())); 			
+			log.debug(dateFormat.format(cal.getTime())); 		
 		}
 		catch(Exception ex){
 			log.error(ex.getMessage());
@@ -166,6 +173,11 @@ public class MemberSearchViewHandler extends BasePage {
 	}
 	public void setRecordCount(int recordCount) {
 		this.recordCount = recordCount;
+	}
+	
+	@Autowired
+	public void setMemberSearchDao(MemberSearchDao memberSearchDao) {
+		this.memberSearchDao = memberSearchDao;
 	}
 
 
