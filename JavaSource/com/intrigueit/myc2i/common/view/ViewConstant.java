@@ -3,7 +3,7 @@ package com.intrigueit.myc2i.common.view;
 public class ViewConstant {
 
 	public final static String  OUT_COME_PASSWORD_CHANGE = "TO_PASSWORD_CHANGE";
-	public final static String  xPASSWORD_CHANGE_TO_HOME = "PASSWORD_CHANGE_TO_HOME";
+	//public final static String  xPASSWORD_CHANGE_TO_HOME = "PASSWORD_CHANGE_TO_HOME";
 	public final static String  TO_MENTOR_DASHBOARD = "TO_MENTOR_DASHBOARD";
 	public final static String  TO_PROTEGE_DASHBOARD = "TO_PROTEGE_DASHBOARD";
 	public final static String  TO_ADMIN_HOME = "TO_ADMIN_HOME";
