@@ -1,6 +1,9 @@
 package com.intrigueit.myc2i.media;
 
+import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -11,6 +14,10 @@ import com.intrigueit.myc2i.tutorial.domain.TestTutorialModules;
 import com.intrigueit.myc2i.tutorial.domain.TestTutorialQuestionAns;
 import com.intrigueit.myc2i.tutorial.service.ModulesService;
 import com.intrigueit.myc2i.tutorial.service.QuestionAnsService;
+import com.intrigueit.myc2i.tutotialtest.domain.TestResult;
+import com.intrigueit.myc2i.tutotialtest.domain.TestResultDetails;
+import com.intrigueit.myc2i.tutotialtest.service.TestResultDetailsService;
+import com.intrigueit.myc2i.tutotialtest.service.TestResultService;
 
 @Component("modulePlayer")
 @Scope("session")
@@ -36,6 +43,51 @@ public class ModulePlayer extends BasePage{
   	
   	private Boolean hasQuestionAns;
   	
+  	private TestResultService testService;
+  	private TestResultDetailsService testDetailsService;
+  	
+  	
+  	public void saveTestResult(){
+  		
+  		try{
+  			TestResult test = new TestResult();
+  			test.setModuleId(module.getModulesId());
+  			test.setDocumentId(module.getDocumentId());
+  			test.setMemberId(this.getMember().getMemberId());
+  			test.setStartTime(new Date());
+  			test.setEndTime(new Date());
+  			test.setTotalQuestions(10L);
+  			test.setTotalCorrect(7L);
+  			test.setIsPassed(true);
+  			test.setRecordCreatorId(this.getMember().getMemberId()+"");
+  			test.setRecordCreateDate(new Date());
+  			test.setLastUpdatedDate(new Date());
+  			test.setRecordUpdatorId(this.getMember().getMemberId()+"");
+  			
+  			TestResultDetails details1 = new TestResultDetails();
+  			details1.setIsCorrect(true);
+  			details1.setRecordCreatorId(this.getMember().getMemberId()+"");
+  			details1.setRecordCreateDate(new Date());
+  			details1.setLastUpdatedDate(new Date());
+  			details1.setRecordUpdatorId(this.getMember().getMemberId()+"");
+  			details1.setMemberAns("A");
+  			details1.setQuestionId(1L);
+  			details1.setTestResult(test);
+  			Set<TestResultDetails> res = new HashSet<TestResultDetails>();
+  			res.add(details1);
+  			test.setTestResultDetails(res);
+  			
+  			this.testService.save(test);
+  			
+  			
+  			
+  			
+  		}
+  		catch(Exception ex){
+  			log.error(ex.getMessage());
+  			ex.printStackTrace();
+  		}
+  	}
 
   	public void renderPage(){
   		try{
@@ -221,5 +273,23 @@ public class ModulePlayer extends BasePage{
 	public void setHasQuestionAns(Boolean hasQuestionAns) {
 		this.hasQuestionAns = hasQuestionAns;
 	}	*/
+
+	public TestResultService getTestService() {
+		return testService;
+	}
+	
+	@Autowired
+	public void setTestService(TestResultService testService) {
+		this.testService = testService;
+	}
+
+	public TestResultDetailsService getTestDetailsService() {
+		return testDetailsService;
+	}
+	
+	@Autowired
+	public void setTestDetailsService(TestResultDetailsService testDetailsService) {
+		this.testDetailsService = testDetailsService;
+	}
 	
 }
