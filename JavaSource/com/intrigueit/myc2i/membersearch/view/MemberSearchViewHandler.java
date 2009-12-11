@@ -32,6 +32,7 @@ public class MemberSearchViewHandler extends BasePage {
 	private MemberSearchDao memberSearchDao;
 	
 	private List<Member> members;
+	private String msg;
 	
 	
 	/**
@@ -43,9 +44,25 @@ public class MemberSearchViewHandler extends BasePage {
 		this.members = new ArrayList<Member>();
 		
 	}
+	
+	private void reset(){
+		this.msg = "";
+		this.members.clear();
+	}
+	private String getValidZipCode(){
+		Long zipCode = 0L;
+		try{
+			 zipCode = Long.parseLong(this.getSrcZipCode());
+		}
+		catch(Exception ex){
+			zipCode = 0L;
+		}
+		return ""+zipCode;
+	}
 	public void executeSearch(){
 		try{
-			long startTime = Calendar.getInstance().getTimeInMillis();
+			this.reset();
+
 			String searchType = this.getRequest().getParameter("SEARCH_TYPE");
 			String clause = null;
 			if(searchType == null){
@@ -60,8 +77,11 @@ public class MemberSearchViewHandler extends BasePage {
 			else if(searchType.equals("MENTOR")){
 				clause = " t.typeId =15";
 			}
-			String zipcode = this.getSrcZipCode();
-			
+			String zipcode = this.getValidZipCode();
+			if(zipcode == null ||  zipcode.equals("") ||  zipcode.equals("0")){
+				return;
+			}
+
 			ZipCode srcZip = this.zipCodeService.findById(zipcode);
 			this.memberSearchDao.fetchZipCode(srcZip.getLatitude(), srcZip.getLongitude(), this.dist);
 			List<String> zipCodes = this.memberSearchDao.fetchZipCode(srcZip.getLatitude(), srcZip.getLongitude(), this.dist);
@@ -73,15 +93,12 @@ public class MemberSearchViewHandler extends BasePage {
 					this.recordCount = this.members.size();
 				}
 			}
-			SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");	
-			Calendar cal = Calendar.getInstance();
-			long elapsed = cal.getTimeInMillis()- startTime;	
-			cal.setTimeInMillis(elapsed);
-			log.debug(dateFormat.format(cal.getTime())); 		
+
 		}
 		catch(Exception ex){
 			log.error(ex.getMessage());
 			ex.printStackTrace();
+			this.msg = ex.getMessage();
 		}
 	}
 	private String getClause(List<String> zipCodes,String clause){
