@@ -208,11 +208,17 @@ public class ProtegeProfileViewHandler extends BasePage{
 	
 	/** Load the selected member */
 	public void loadMember(){
-		String memberId = this.getParameter("MEMBER_ID");
-		if(memberId == null || memberId.equals("")){
-			return;
+		try{
+			String memberId = this.getParameter("MEMBER_ID");
+			if(memberId == null || memberId.equals("")){
+				return;
+			}
+			this.currentMember = this.memberService.findById(Long.parseLong(memberId));
+			
 		}
-		this.currentMember = this.memberService.findById(Long.parseLong(memberId));
+		catch(Exception ex){
+			ex.printStackTrace();
+		}
 	}
 	
 	private void loadMyProtege(){
@@ -246,8 +252,9 @@ public class ProtegeProfileViewHandler extends BasePage{
 	public List<Member> getProtegeCurrentMentor() {
 		this.protegeCurrentMentor = new ArrayList<Member>();		
 		try{
-			Member mem = this.memberService.findById(this.getMember().getMentoredByMemberId());
-			
+			this.protegeCurrentMentor.clear();
+			Member me = this.memberService.findById(this.getMember().getMemberId());
+			Member mem = this.memberService.findById(me.getMentoredByMemberId());
 			this.protegeCurrentMentor.add(mem);
 		}
 		catch(Exception ex){
