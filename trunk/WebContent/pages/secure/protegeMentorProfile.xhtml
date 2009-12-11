@@ -90,14 +90,14 @@
 						              #{bundle.button_label_view_mentor}<br/>
 						          </span>
 						     </rich:toolTip>	
-						</a4j:commandLink>			             
+						</a4j:commandLink>	             
 		             </rich:column>		
 
 		             <rich:column>
 			             <f:facet name="header">
 			               <h:outputText value="Action" />
 			             </f:facet>
-		         		 <a4j:commandLink   value="#{bundle.button_label_release_mentor}"  reRender="idCurrentMentorPanel" action="#{protegeProfileViewHandler.releaseMentor}" >
+		         		 <a4j:commandLink  onclick="forceBlockUI(ajaxProcessMsg);"   oncomplete="forceUnblockUI();" value="#{bundle.button_label_release_mentor}"  reRender="idCurrentMentorPanel" action="#{protegeProfileViewHandler.releaseMentor}" >
 				             <a4j:actionparam name="MEMBER_ID" value="#{member.memberId}"  />
 		            		 <rich:toolTip styleClass="tooltips_style"  >
 						          <span class="tooltips_span_style">
@@ -110,11 +110,11 @@
 			      </rich:dataTable>		
 			</h:panelGrid>			         
 		</rich:panel>
-
+		
 		<rich:panel id="idPreviousMentorPanel" headerClass="container_box_panel_header"  bodyClass="container_body_style" >
 			<f:facet name="header"><h:outputText value="Previous mentor details" /> </f:facet>
 			<h:panelGrid columns="1" width="100%" cellpadding="0" cellspacing="0" border="0">
-				<rich:dataTable  width="100%" id="idDataGrid2"  rowClasses=",container_even_row_style" rows="5" 
+				<rich:dataTable  width="100%" id="idDataGrid2"  rowClasses=",container_even_row_style" rows="10" 
 			                value="#{protegeProfileViewHandler.previousMentor}" var="member" headerClass="table_column_style" cellpadding="0" cellspacing="0">
 		             <rich:column>
 			             <f:facet name="header">
@@ -177,8 +177,8 @@
 			      </rich:dataTable>		
 		        <rich:datascroller id="idDataScroller2" align="center"  for="idDataGrid2" maxPages="5" />
 			</h:panelGrid>			         
-		</rich:panel>
-
+		</rich:panel>		
+		
 		<rich:panel id="idMentorAroundMePanel" headerClass="container_box_panel_header"  bodyClass="container_body_style" >
 			<f:facet name="header">
 			<h:panelGroup>
@@ -189,7 +189,7 @@
 			</h:panelGroup>
 			</f:facet>
 			<h:panelGrid columns="1" width="100%" cellpadding="0" cellspacing="0" border="0">
-				<rich:dataTable  width="100%" id="idDataGrid3"  rowClasses=",container_even_row_style" rows="5" 
+				<rich:dataTable  width="100%" id="idDataGrid3"  rowClasses=",container_even_row_style" rows="10" 
 			                value="#{protegeProfileViewHandler.mentorsAraoundProtege}" var="member" headerClass="table_column_style" cellpadding="0" cellspacing="0">
 		             <rich:column>
 			             <f:facet name="header">
@@ -253,7 +253,7 @@
 		        <rich:datascroller id="idDataScroller3" align="center"  for="idDataGrid3" maxPages="5" />
 			</h:panelGrid>			         
 		</rich:panel>
-
+				
 		<rich:panel headerClass="container_box_panel_header"  bodyClass="container_body_style" >
 			<f:facet name="header"><h:outputText value="Protege log" /> </f:facet>
 			<h:panelGrid columns="1" width="100%" cellpadding="0" cellspacing="0" border="0">
@@ -264,7 +264,7 @@
 			               <h:outputText value="#{bundle.activity_date_time}"/>
 			             </f:facet>
 				 			<h:outputText  value="#{log.memberLogDateTime}" >
-				 			<f:convertDateTime dateStyle="default" pattern="dd-MM-yyyy h:mm a"/>
+				 			<f:convertDateTime dateStyle="default" pattern="#{bundle.long_date_pattern}"/>
 				 			</h:outputText>
 		             </rich:column>		             
 		             <rich:column>
@@ -300,8 +300,7 @@
 			      </rich:dataTable>		
 		        <rich:datascroller id="idDataScrollerOldLog" align="center"  for="idDataGridOldLog" maxPages="5" />
 			</h:panelGrid>			         
-		</rich:panel>  
-								
+		</rich:panel> 				
     </h:panelGroup>    
   </ui:define>
   
