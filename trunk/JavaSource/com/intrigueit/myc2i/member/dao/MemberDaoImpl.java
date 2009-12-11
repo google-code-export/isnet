@@ -49,7 +49,6 @@ public class MemberDaoImpl extends GenericDaoImpl<Member, Long> implements
 	@SuppressWarnings("unchecked")
   @Override
 	public List<RolePageAccess> loadUserPrivilegePages(Long memberTypeId) {
-	  return entityManager.createQuery(
-    "from RolePageAccess where memberTypeId="+memberTypeId).getResultList();
+	  return entityManager.createQuery("from RolePageAccess where memberTypeId="+memberTypeId).getResultList();
 	}
 }
