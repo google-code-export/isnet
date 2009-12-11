@@ -15,6 +15,7 @@ import com.intrigueit.myc2i.member.domain.Member;
 import com.intrigueit.myc2i.member.service.MemberService;
 import com.intrigueit.myc2i.memberlog.domain.MemberLog;
 import com.intrigueit.myc2i.memberlog.service.MemberLogService;
+import com.intrigueit.myc2i.membersearch.dao.MemberSearchDao;
 import com.intrigueit.myc2i.utility.Emailer;
 import com.intrigueit.myc2i.zipcode.ZipCodeUtil;
 import com.intrigueit.myc2i.zipcode.domain.ZipCode;
@@ -27,13 +28,12 @@ public class ProtegeProfileViewHandler extends BasePage{
 	private MemberLogService logService;
 	private ZipCodeService zipCodeService;
 	private Member currentMember;
-	
 	private List<Member> myProtegeList;
-	
 	private List<Member> protegeCurrentMentor;
 	private List<Member> previousMentor;
 	private List<Member> mentorsAraoundProtege;
 	private List<MemberLog> protegeLogs;
+	private MemberSearchDao memberSearchDao;
 	
 	/**
 	 * 
@@ -50,7 +50,7 @@ public class ProtegeProfileViewHandler extends BasePage{
 	
 	private void loadMentorAroundMe(){
 		String clause = null;
-		clause = " t.typeId =15";
+		clause = " t.typeId ="+CommonConstants.MENTOR+"";
 		try{
 			List<String> zipCodes = this.getZipCodes();
 			if(zipCodes.size() > 0){
@@ -72,21 +72,12 @@ public class ProtegeProfileViewHandler extends BasePage{
 		List<String> zipCodes = new ArrayList<String>();
 		
 		try{
-			//String memberZipCode = this.getMember().getZip().toString();
 			ZipCode srcZip = this.zipCodeService.findById(this.getMember().getZip()+"");
-			List<ZipCode> desZipCodes = this.zipCodeService.findAll();
-			ZipCodeUtil util = new ZipCodeUtil();
-			for(ZipCode zip: desZipCodes){
-				Double distance = util.getDistance(srcZip, zip);
-				if(distance <= 20.0){
-					log.debug("From: "+srcZip.getZipCode() + " Des: "+ zip.getZipCode()+" dis(M): "+ distance);
-					zipCodes.add(zip.getZipCode());
-				}
-				
-			}
+			zipCodes = this.memberSearchDao.fetchZipCode(srcZip.getLatitude(), srcZip.getLongitude(), 20.0);
 		}
 		catch(Exception ex){
-			
+			log.error(ex.getMessage());
+			ex.printStackTrace();
 		}
 		return zipCodes;
 	}
@@ -329,6 +320,15 @@ public class ProtegeProfileViewHandler extends BasePage{
 
 	public void setProtegeLogs(List<MemberLog> protegeLogs) {
 		this.protegeLogs = protegeLogs;
+	}
+
+	public MemberSearchDao getMemberSearchDao() {
+		return memberSearchDao;
+	}
+	
+	@Autowired
+	public void setMemberSearchDao(MemberSearchDao memberSearchDao) {
+		this.memberSearchDao = memberSearchDao;
 	}
 	
 	
