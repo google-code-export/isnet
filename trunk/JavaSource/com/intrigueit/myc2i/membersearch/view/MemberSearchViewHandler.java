@@ -83,7 +83,6 @@ public class MemberSearchViewHandler extends BasePage {
 			}
 
 			ZipCode srcZip = this.zipCodeService.findById(zipcode);
-			this.memberSearchDao.fetchZipCode(srcZip.getLatitude(), srcZip.getLongitude(), this.dist);
 			List<String> zipCodes = this.memberSearchDao.fetchZipCode(srcZip.getLatitude(), srcZip.getLongitude(), this.dist);
 			
 			String conditions = this.getClause(zipCodes,clause);
