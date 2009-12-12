@@ -42,7 +42,15 @@
 			<f:facet name="header"><h:outputText value="#{bundle.dashboard_mentor_mentor_sucess}" /></f:facet>
 			<h:dataTable value="#{dashboardViewHandler.topTenStories}" var="story">
 				<h:column>
-					<h:commandLink value="#{story.storyTitle}" />
+         		 <a4j:commandLink value="#{story.storyTitle}" action="#{storyViewHandler.initializeDialog}"  reRender="idStoryDialog"  oncomplete="Richfaces.showModalPanel('idStoryDialog')">
+		             <a4j:actionparam name="storyId" value="#{story.memberStoryId}"  />
+		             <a4j:actionparam name="action" value="VIEW"  />
+            		 <rich:toolTip styleClass="tooltips_style"  >
+				          <span class="tooltips_span_style">
+				              View Story Details<br/>
+				          </span>
+				     </rich:toolTip>	
+				</a4j:commandLink>					
 				</h:column>
 			</h:dataTable>	
          <h:outputLink style="font-weight:bolder; font-size: 14px;"  value="#{controllerBean.contextPath}/pages/secure/protegeStoryVote.faces">
