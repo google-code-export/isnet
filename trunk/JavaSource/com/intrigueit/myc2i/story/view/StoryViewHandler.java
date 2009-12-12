@@ -133,10 +133,10 @@ public class StoryViewHandler extends BasePage implements Serializable{
 
 		try{
 			String type = this.getMember().getTypeId().toString();
-			if(type.equals("17")){
-				type = "PROTEGE";
+			if(type.equals(CommonConstants.PROTEGE.toString())){
+				type = CommonConstants.STORY_PROTEGE;
 			}else{
-				type = "MENTOR";
+				type = CommonConstants.STORY_MENTOR;
 			}
 			this.voteStoryList = this.storyService.findMostVotedAndLatestStories(type);
 
