@@ -258,12 +258,12 @@ public class MemberLogViewHandler extends BasePage implements Serializable {
 					.getParameter(ServiceConstants.RECORD_ID);
 			try {
 				int rowIndex = getMessageLines().getRowIndex();
-				MemberLog memberLog = memberLogService.findById(Long
-						.parseLong(recordId));
+				MemberLog memberLog = memberLogService.findById(Long.parseLong(recordId));
 				memberLogService.delete(memberLog);
-				List<MemberLog> list = (List<MemberLog>) getMessageLines()
-						.getWrappedData();
-				list.remove(rowIndex);
+				List<MemberLog> list = (List<MemberLog>) getMessageLines().getWrappedData();
+				if(list != null && list.size() > 0){
+					list.remove(rowIndex);
+				}
 			} catch (Exception e) {
 				setErrorMessage(this.getText("common_system_error"));
 				logger.error(e.getMessage());
