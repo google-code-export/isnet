@@ -12,15 +12,31 @@
     <title>
       <h:outputText value="MyC2i :: ${moduleTitle}" />
     </title>  
+  
+  <c:set var="refColumns" value="3" />
+  <c:if test="${ not empty pageColumns}">
+    <c:set var="refColumns" value="${pageColumns}" />
+  </c:if>
+  
+  <c:when test="${userType eq 'A'}">
+    <c:set var="colClass" value="admin_leftside,admin_middle" />
+    <c:set var="showRightColumn" value="N" />
+  </c:when>
   <c:choose>
     <c:when test="${userType eq 'A'}">
       <c:set var="colClass" value="admin_leftside,admin_middle" />
       <c:set var="showRightColumn" value="N" />
     </c:when>
 
-    <c:when test="${userType eq 'P'}">
+    <c:when test="${userType eq 'P' and empty pageColumns}">
       <c:set var="colClass" value="admin_leftside,admin_middle" />
       <c:set var="showRightColumn" value="N" />
+    </c:when>
+    
+    <c:when test="${userType eq 'P' and pageColumns eq '1'}">
+      <c:set var="colClass" value="middle" />
+      <c:set var="showRightColumn" value="N" />
+      <c:set var="showLeftColumn" value="N" />
     </c:when>
     
     <c:when test="${userType eq 'MG'}">
@@ -82,7 +98,7 @@
             </h:panelGroup>
          <div id="inner-container" class="clearfix" style="border: 0px solid red;">
           <div id="content" style="border: 0px solid red;">
-          <h:panelGrid styleClass="body_content" width="99%" columns="3" border="0" cellpadding="0" cellspacing="0"
+          <h:panelGrid styleClass="body_content" width="99%" columns="${refColumns}" border="0" cellpadding="0" cellspacing="0"
             columnClasses="${colClass}" rowClasses="rowinput">
             <h:column rendered="${showLeftColumn ne 'N'}">
             	<ui:include src="/templates/include/leftside.xhtml"/>
