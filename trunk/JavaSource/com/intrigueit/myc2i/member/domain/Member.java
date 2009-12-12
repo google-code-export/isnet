@@ -178,6 +178,9 @@ public class Member implements java.io.Serializable {
 
 	@Column(name = "MENTORED_BY_DATE")
 	private Date mentoredByDate;
+	
+	@Column(name = "LAST_ACTIVITY")
+	private Date lastActivity;
 
 	public Long getMemberId() {
 		return memberId;
@@ -604,6 +607,14 @@ public class Member implements java.io.Serializable {
 
 	public void setCountryUDV(UserDefinedValues countryUDV) {
 		this.countryUDV = countryUDV;
+	}
+
+	public Date getLastActivity() {
+		return lastActivity;
+	}
+
+	public void setLastActivity(Date lastActivity) {
+		this.lastActivity = lastActivity;
 	}
 	
 
