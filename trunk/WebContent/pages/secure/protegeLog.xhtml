@@ -50,7 +50,7 @@
 			                value="#{memberLogViewHandler.memberLogs}" var="log" headerClass="table_column_style" cellpadding="0" cellspacing="0">
 		             <rich:column>
 			             <f:facet name="header">
-			               <h:outputText value="#{bundle.app_mentor}"/>
+			               <h:outputText value="To"/>
 			             </f:facet>
 				 			<h:outputText value="#{log.toMember.firstName} #{log.toMember.lastName}" />
 		             </rich:column>
@@ -71,7 +71,7 @@
 			               <h:outputText value="#{bundle.activity_date_time}"/>
 			             </f:facet>
 				 			<h:outputText  value="#{log.memberLogDateTime}" >
-				 			<f:convertDateTime dateStyle="default" pattern="MM-dd-yyyy h:mm a"/>
+				 			<f:convertDateTime dateStyle="default" pattern="#{bundle.long_date_pattern}"/>
 				 			</h:outputText>
 		             </rich:column>
 		             <rich:column >
@@ -79,7 +79,24 @@
 			               <h:outputText value="#{bundle.activity_log_body}"/>
 			             </f:facet>
 				 			<h:outputText escape="false" value="#{log.memberLogEntryDescription}" />
-		             </rich:column>	           	   
+		             </rich:column>	   
+		             <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="#{bundle.common_label_action}"/>
+			             </f:facet>		             
+						<rich:spacer width="5"/>
+		         		 <a4j:commandLink  reRender="idDataGrid,idDataScroller" action="#{memberLogViewHandler.deleteMemberLog}" >
+				            <a4j:actionparam name="recordId" value="#{log.memberLogId}"  />
+				            <a4j:actionparam name="action" value="DELETE"  />
+			            	<h:graphicImage value="/images/delete.png" align="middle" border="0" > 
+			            	</h:graphicImage>	
+		            		 <rich:toolTip styleClass="tooltips_style"  >
+						          <span class="tooltips_span_style">
+						              Delete this log<br/>
+						          </span>
+						     </rich:toolTip>	
+						</a4j:commandLink>									             
+		             </rich:column>		                     	   
 			      </rich:dataTable>		
 		        <rich:datascroller id="idDataScroller" align="center"  for="idDataGrid" maxPages="5" />
 			</h:panelGrid>			         
@@ -92,7 +109,7 @@
 			                value="#{memberLogViewHandler.memberLogsOld}" var="log" headerClass="table_column_style" cellpadding="0" cellspacing="0">
 		             <rich:column>
 			             <f:facet name="header">
-			               <h:outputText value="#{bundle.app_mentor}"/>
+			               <h:outputText value="To"/>
 			             </f:facet>
 				 			<h:outputText value="#{log.toMember.firstName} #{log.toMember.lastName}" />
 		             </rich:column>
@@ -113,7 +130,7 @@
 			               <h:outputText value="#{bundle.activity_date_time}"/>
 			             </f:facet>
 				 			<h:outputText  value="#{log.memberLogDateTime}" >
-				 			<f:convertDateTime dateStyle="default" pattern="MM-dd-yyyy h:mm a"/>
+				 			<f:convertDateTime dateStyle="default" pattern="#{bundle.long_date_pattern}"/>
 				 			</h:outputText>
 		             </rich:column>
 		             <rich:column >
@@ -121,7 +138,24 @@
 			               <h:outputText value="#{bundle.activity_log_body}"/>
 			             </f:facet>
 				 			<h:outputText escape="false" value="#{log.memberLogEntryDescription}" />
-		             </rich:column>	           	   
+		             </rich:column>	  
+		             <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="#{bundle.common_label_action}"/>
+			             </f:facet>		             
+						<rich:spacer width="5"/>
+		         		 <a4j:commandLink  reRender="idDataGridOldLog,idDataScrollerOldLog" action="#{memberLogViewHandler.deleteMemberLog}" >
+				            <a4j:actionparam name="recordId" value="#{log.memberLogId}"  />
+				            <a4j:actionparam name="action" value="DELETE"  />
+			            	<h:graphicImage value="/images/delete.png" align="middle" border="0" > 
+			            	</h:graphicImage>	
+		            		 <rich:toolTip styleClass="tooltips_style"  >
+						          <span class="tooltips_span_style">
+						              Delete this log<br/>
+						          </span>
+						     </rich:toolTip>	
+						</a4j:commandLink>									             
+		             </rich:column>			                      	   
 			      </rich:dataTable>		
 		        <rich:datascroller id="idDataScrollerOldLog" align="center"  for="idDataGridOldLog" maxPages="5" />
 			</h:panelGrid>			         
