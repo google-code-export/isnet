@@ -1,0 +1,238 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:a4j="http://richfaces.org/a4j"
+  xmlns:c="http://java.sun.com/jstl/core"
+  xmlns:rich="http://richfaces.org/rich">
+
+<ui:composition template="/templates/maintmpl.xhtml">
+  <ui:param name="moduleTitle" value="#{bundle.page_header_protege_evaluat_mentor}"></ui:param>
+  <ui:param name="userType" value="P"></ui:param>
+  <ui:param name="moduleType" value="MG"></ui:param>
+  <ui:param name="headerText" value="#{bundle.protege_evaluat_mentor_managment}"></ui:param>
+  <ui:param name="refManageBean" value="#{proEvalManViewHandler}"></ui:param>
+  <ui:param name="pageColumns" value="1"></ui:param>
+  
+   <ui:define name="commonInfo">
+  </ui:define>
+  <ui:define name="js">
+    <script></script>
+  </ui:define>
+  <ui:define name="body">
+    <h:panelGroup id="idSectionsCon">
+      <table width="96%" cellpadding="0" cellspacing="0" border="0" align="center">
+        <colgroup>
+          <col width="160px"/>
+          <col width="70px"/>
+          <col width="70px"/>
+          <col width="40px"/>
+          <col width="40px"/>
+          <col width="80px"/>
+        </colgroup>
+        <tbody>
+          <tr class="listhead">
+            <td> <h:outputText value="#{bundle.protege_evaluat_mentor_factor}" /></td>
+            <td> <h:outputText value="#{bundle.protege_evaluat_mentor_vmuch_agree}" /></td>
+            <td> <h:outputText value="#{bundle.protege_evaluat_mentor_somewhat_agree}" /></td>
+            <td> <h:outputText value="#{bundle.protege_evaluat_mentor_neutral}" /></td>
+            <td> <h:outputText value="#{bundle.protege_evaluat_mentor_dagree}" /></td>
+            <td> <h:outputText value="#{bundle.protege_evaluat_mentor_vmuch_dagree}" /></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr class="listhead">
+            <td> <h:outputText value="#{bundle.protege_evaluat_mentor_factor_one_text}" /> </td>
+            <td colspan="5">
+                <h:selectOneRadio id="factorOneRating" 
+                  value="#{proEvalManViewHandler.currentProEvalMentor.evalFactorOneRatingNum}">              
+                  <f:selectItem itemLabel="&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                    &#160;&#160;&#160;&#160;&#160;&#160;" 
+                    itemValue="10"  />
+                                      
+                  <f:selectItem itemLabel="&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                    &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                    &#160;&#160;&#160;&#160;&#160;" 
+                    itemValue="7"  />
+                    
+                  <f:selectItem itemLabel="&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                    &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;" 
+                    itemValue="5"  />
+                    
+                  <f:selectItem itemLabel="&#160;&#160;&#160;&#160;&#160;&#160;
+                  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;" 
+                    itemValue="3"  />
+                                
+                  <f:selectItem itemLabel="" 
+                    itemValue="1"  />
+                </h:selectOneRadio>
+            </td>  
+          </tr>
+          
+          <tr class="listhead">
+            <td> <h:outputText value="#{bundle.protege_evaluat_mentor_factor_two_text}" /> </td>
+            <td colspan="5">
+                <h:selectOneRadio id="factorTwoRating" 
+                  value="#{proEvalManViewHandler.currentProEvalMentor.evalFactorTwoRatingNum}">              
+                  <f:selectItem itemLabel="&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                    &#160;&#160;&#160;&#160;&#160;&#160;" 
+                    itemValue="10"  />
+                                      
+                  <f:selectItem itemLabel="&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                    &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                    &#160;&#160;&#160;&#160;&#160;" 
+                    itemValue="7"  />
+                    
+                  <f:selectItem itemLabel="&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                    &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;" 
+                    itemValue="5"  />
+                    
+                  <f:selectItem itemLabel="&#160;&#160;&#160;&#160;&#160;&#160;
+                  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;" 
+                    itemValue="3"  />
+                                
+                  <f:selectItem itemLabel="" 
+                    itemValue="1"  />
+                </h:selectOneRadio>
+            </td>  
+          </tr> 
+          
+          <tr class="listhead">
+            <td> <h:outputText value="#{bundle.protege_evaluat_mentor_factor_three_text}" /> </td>
+            <td colspan="5">
+                <h:selectOneRadio
+                  value="#{proEvalManViewHandler.currentProEvalMentor.evalFactorThreeRatingNum}">              
+                  <f:selectItem itemLabel="&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                    &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                    &#160;&#160;&#160;&#160;&#160;" 
+                    itemValue="10"  />
+                                      
+                  <f:selectItem itemLabel="&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                    &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                    &#160;&#160;&#160;&#160;&#160;" 
+                    itemValue="7"  />
+                    
+                  <f:selectItem itemLabel="&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                    &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;" 
+                    itemValue="5"  />
+                    
+                  <f:selectItem itemLabel="&#160;&#160;&#160;&#160;&#160;&#160;
+                  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;" 
+                    itemValue="3"  />
+                                
+                  <f:selectItem itemLabel="" 
+                    itemValue="1"  />
+                </h:selectOneRadio>
+            </td>  
+          </tr>
+          
+          <tr class="listhead">
+            <td> <h:outputText value="#{bundle.protege_evaluat_mentor_factor_four_text}" /> </td>
+            <td colspan="5">
+                <h:selectOneRadio
+                  value="#{proEvalManViewHandler.currentProEvalMentor.evalFactorFourRatingNum}">              
+                  <f:selectItem itemLabel="&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                    &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                    &#160;&#160;&#160;&#160;&#160;" 
+                    itemValue="10"  />
+                                      
+                  <f:selectItem itemLabel="&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                    &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                    &#160;&#160;&#160;&#160;&#160;" 
+                    itemValue="7"  />
+                    
+                  <f:selectItem itemLabel="&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                    &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;" 
+                    itemValue="5"  />
+                    
+                  <f:selectItem itemLabel="&#160;&#160;&#160;&#160;&#160;&#160;
+                  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;" 
+                    itemValue="3"  />
+                                
+                  <f:selectItem itemLabel="" 
+                    itemValue="1"  />
+                </h:selectOneRadio>
+            </td>  
+          </tr>   
+          
+          <tr class="listhead">
+            <td> <h:outputText value="#{bundle.protege_evaluat_mentor_factor_five_text}" /> </td>
+            <td colspan="5">
+                <h:selectOneRadio
+                  value="#{proEvalManViewHandler.currentProEvalMentor.evalFactorFiveRatingNum}">              
+                  <f:selectItem itemLabel="&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                    &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                    &#160;&#160;&#160;&#160;&#160;" 
+                    itemValue="10"  />
+                                      
+                  <f:selectItem itemLabel="&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                    &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                    &#160;&#160;&#160;&#160;&#160;" 
+                    itemValue="7"  />
+                    
+                  <f:selectItem itemLabel="&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                    &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;" 
+                    itemValue="5"  />
+                    
+                  <f:selectItem itemLabel="&#160;&#160;&#160;&#160;&#160;&#160;
+                  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;" 
+                    itemValue="3"  />
+                                
+                  <f:selectItem itemLabel="" 
+                    itemValue="1"  />
+                </h:selectOneRadio>
+            </td>  
+          </tr>
+          
+           <tr class="listhead">
+            <td> <h:outputText value="#{bundle.protege_evaluat_mentor_factor_six_text}" /> </td>
+            <td colspan="5">
+                <h:selectOneRadio
+                  value="#{proEvalManViewHandler.currentProEvalMentor.evalFactorSixRatingNum}">              
+                  <f:selectItem itemLabel="&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                    &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                    &#160;&#160;&#160;&#160;&#160;" 
+                    itemValue="10"  />
+                                      
+                  <f:selectItem itemLabel="&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                    &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                    &#160;&#160;&#160;&#160;&#160;" 
+                    itemValue="7"  />
+                    
+                  <f:selectItem itemLabel="&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                    &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;" 
+                    itemValue="5"  />
+                    
+                  <f:selectItem itemLabel="&#160;&#160;&#160;&#160;&#160;&#160;
+                  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;" 
+                    itemValue="3"  />
+                                
+                  <f:selectItem itemLabel="" 
+                    itemValue="1"  />
+                </h:selectOneRadio>
+            </td>  
+          </tr>                               
+        </tbody>        
+      </table>      
+      <rich:spacer width="100%" height="15"/>    
+      <rich:panel styleClass="action_panel">
+        <h:panelGrid border="0" cellpadding="1" rowClasses="secf_rowcalss"
+          styleClass="text_align_center" columns="2">
+        <a4j:commandButton value="#{bundle.button_submit_label}" action="#{proEvalManViewHandler.doSave}" 
+          onclick="forceSBlockUI(ajaxProcessMsg);" styleClass="ibutton" style="background:#F8F3D3;" 
+          oncomplete="forceSUnblockUI();"
+          reRender="idErrorPanel"/>
+          <a4j:commandButton value="#{bundle.button_clear}" action="#{proEvalManViewHandler.doClear}" 
+          onclick="forceSBlockUI(ajaxProcessMsg);" styleClass="ibutton" style="background:#F8F3D3;" 
+          oncomplete="forceSUnblockUI();" reRender="idErrorPanel,idSectionsCon"/>
+        </h:panelGrid>  
+      </rich:panel>    
+      <rich:spacer width="100%" height="5"/>
+    </h:panelGroup>
+  </ui:define>
+  <ui:define name="modalPanels">    
+  </ui:define> 
+</ui:composition>
+</html>
