@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.intrigueit.myc2i.common.CommonConstants;
-import com.intrigueit.myc2i.common.ServiceConstants;
 import com.intrigueit.myc2i.memberlog.dao.MemberLogDao;
 import com.intrigueit.myc2i.memberlog.domain.MemberLog;
 
