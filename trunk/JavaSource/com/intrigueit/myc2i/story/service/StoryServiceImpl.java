@@ -95,8 +95,6 @@ public class StoryServiceImpl implements StoryService{
 	@Override
 	public List<MemberStory> findMostVotedAndLatestStories(String type) {
 		Date date = this.getWeekFirstDay();
-		System.out.println(date);
-		
 		String clause = " where lower(t.approvedForPublishInd)=?1 and t.category=?2 and t.approvalDate > ?3 ORDER BY t.approvalDate DESC ";
 		List<MemberStory> stories  = this.stroyDao.loadTopResultsByConditions(50, clause, new Object[]{"yes",type,date});
 		return stories;
