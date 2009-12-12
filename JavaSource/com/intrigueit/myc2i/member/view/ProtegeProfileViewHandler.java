@@ -16,6 +16,7 @@ import com.intrigueit.myc2i.member.service.MemberService;
 import com.intrigueit.myc2i.memberlog.domain.MemberLog;
 import com.intrigueit.myc2i.memberlog.service.MemberLogService;
 import com.intrigueit.myc2i.membersearch.dao.MemberSearchDao;
+import com.intrigueit.myc2i.udvalues.service.UDValuesService;
 import com.intrigueit.myc2i.utility.Emailer;
 import com.intrigueit.myc2i.zipcode.ZipCodeUtil;
 import com.intrigueit.myc2i.zipcode.domain.ZipCode;
@@ -34,6 +35,7 @@ public class ProtegeProfileViewHandler extends BasePage{
 	private List<Member> mentorsAraoundProtege;
 	private List<MemberLog> protegeLogs;
 	private MemberSearchDao memberSearchDao;
+	private UDValuesService udService;
 	
 	/**
 	 * 
@@ -113,10 +115,13 @@ public class ProtegeProfileViewHandler extends BasePage{
 	
 	private void createMentorReleaseLog(Member mentor){
 		try{
+			
+			Long mentorReleaseTypeId = this.udService.getUDValue("udValuesValue", CommonConstants.ACTIVITY_TYPE_MENTOR_RELEASE).getUdValuesId();
+					
 			MemberLog log = new MemberLog();
 			log.setFromMemberId(this.getMember().getMemberId());
 			log.setToMemberId(mentor.getMemberId());
-			log.setMemberActivityType(CommonConstants.ACTIVITY_TYPE_MENTOR_RELEASE);
+			log.setMemberActivityType(mentorReleaseTypeId);
 			log.setTopic(this.getText("activity_log_release_mentor_sub"));
 			log.setMemberLogEntryDescription(this.getText("activity_log_release_mentor_body"));
 			
@@ -164,10 +169,13 @@ public class ProtegeProfileViewHandler extends BasePage{
 	}
 	private void createReleaseLog(Member protege){
 		try{
+			
+			Long mentorReleaseTypeId = this.udService.getUDValue("udValuesValue", CommonConstants.ACTIVITY_TYPE_MENTOR_RELEASE).getUdValuesId();
+						
 			MemberLog log = new MemberLog();
 			log.setFromMemberId(this.getMember().getMemberId());
 			log.setToMemberId(protege.getMemberId());
-			log.setMemberActivityType(CommonConstants.ACTIVITY_TYPE_PROTEGE_RELEASE);
+			log.setMemberActivityType(mentorReleaseTypeId);
 			log.setTopic(this.getText("activity_log_release_sub"));
 			log.setMemberLogEntryDescription(this.getText("activity_log_release_body"));
 			
@@ -261,8 +269,11 @@ public class ProtegeProfileViewHandler extends BasePage{
 	private List<String> getMentorsId(){
 		List<String> ids = new ArrayList<String>();
 		try{
-			List<MemberLog> logs1 = this.logService.getAllProtegeReleaseLog(this.getMember().getMemberId());
-			List<MemberLog> logs2 = this.logService.getAllMentorReleaseLog(this.getMember().getMemberId());
+			Long protegeReleaseTypeId = this.udService.getUDValue("udValuesValue", CommonConstants.ACTIVITY_TYPE_PROTEGE_RELEASE).getUdValuesId();
+			Long mentorReleaseTypeId = this.udService.getUDValue("udValuesValue", CommonConstants.ACTIVITY_TYPE_MENTOR_RELEASE).getUdValuesId();
+			
+			List<MemberLog> logs1 = this.logService.getAllProtegeReleaseLog(this.getMember().getMemberId(),protegeReleaseTypeId);
+			List<MemberLog> logs2 = this.logService.getAllMentorReleaseLog(this.getMember().getMemberId(),mentorReleaseTypeId);
 			for(MemberLog log : logs1){
 				ids.add(log.getFromMemberId().toString());
 			}
@@ -329,6 +340,15 @@ public class ProtegeProfileViewHandler extends BasePage{
 	@Autowired
 	public void setMemberSearchDao(MemberSearchDao memberSearchDao) {
 		this.memberSearchDao = memberSearchDao;
+	}
+
+	public UDValuesService getUdService() {
+		return udService;
+	}
+	
+	@Autowired
+	public void setUdService(UDValuesService udService) {
+		this.udService = udService;
 	}
 	
 	
