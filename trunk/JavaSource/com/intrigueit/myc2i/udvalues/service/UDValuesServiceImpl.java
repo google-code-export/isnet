@@ -61,5 +61,16 @@ public class UDValuesServiceImpl implements UDValuesService {
       value.add(recordId);
     }
     return udValuesDao.isDuplicateRecord(clause.toString(),value.toArray());
+	}
+
+	@Override
+	public UserDefinedValues getUDValue(String propertyName, Object value) {
+	    String clause = " t."+propertyName+" = ?1 ";
+	    List<UserDefinedValues> values = udValuesDao.loadByClause(clause, new Object[]{value});
+		if(values != null && values.size() > 0){
+			return  values.get(0);
+		}
+		return null;
+	    
 	}	
 }
