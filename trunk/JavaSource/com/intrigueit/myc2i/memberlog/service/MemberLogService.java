@@ -35,9 +35,9 @@ public interface MemberLogService {
 	
 	public Boolean isInActiveMember(Long memberId);
 	
-	public List<MemberLog> getAllProtegeReleaseLog(Long memberId);
+	public List<MemberLog> getAllProtegeReleaseLog(Long memberId,Long logTypeId);
 	
-	public List<MemberLog> getAllMentorReleaseLog(Long memberId);
+	public List<MemberLog> getAllMentorReleaseLog(Long memberId,Long logTypeId);
 	
 	public List<MemberLog> getMemberConversation(Long memberId);
 	
