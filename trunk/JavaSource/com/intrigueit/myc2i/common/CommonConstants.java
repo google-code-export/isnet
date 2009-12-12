@@ -33,8 +33,10 @@ public class CommonConstants {
     public static final Long ACTIVITY_TYPE_MESSAGE = 27L;
     public static final String ACTIVITY_TYPE_MENTOR_REQUEST = "Mentor Request";
     public static final String ACTIVITY_TYPE_PROTEGE_REQUEST = "Protege Request";
-    public static final Long ACTIVITY_TYPE_MENTOR_RELEASE = 24L;
-    public static final Long ACTIVITY_TYPE_PROTEGE_RELEASE = 23L;
+    //public static final Long ACTIVITY_TYPE_MENTOR_RELEASE = 24L;
+    //public static final Long ACTIVITY_TYPE_PROTEGE_RELEASE = 23L;
+    public static final String ACTIVITY_TYPE_MENTOR_RELEASE = "Mentor Release";
+    public static final String ACTIVITY_TYPE_PROTEGE_RELEASE = "Protege Release";    
     
     public static final String STORY_MENTOR = "MENTOR";
     public static final String STORY_PROTEGE = "PROTEGE";
