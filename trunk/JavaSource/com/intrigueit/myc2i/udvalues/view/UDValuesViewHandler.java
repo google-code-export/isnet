@@ -74,7 +74,7 @@ public class UDValuesViewHandler extends BasePage implements Serializable {
 
 	public void getUDValuesByCategory() {
 		Object value = "%";
-		logger.debug(" Load User define values ");
+		//logger.debug(" Load User define values ");
 		try {
 			if (getCategoryName() != null && !getCategoryName().isEmpty()) {
 				value = getCategoryName();
