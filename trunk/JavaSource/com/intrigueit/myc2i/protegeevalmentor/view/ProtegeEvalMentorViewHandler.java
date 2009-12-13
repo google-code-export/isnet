@@ -85,7 +85,7 @@ public class ProtegeEvalMentorViewHandler extends BasePage implements Serializab
           protegeEvalMentorService.save(this.currentProEvalMentor);
           logger.debug("Added and clear form...");
           this.setCurrentProEvalMentor(new ProtegeEvaluationOfMentor());
-          this.setErrorMessage(this.getText("update_success_message"));
+          this.setErrorMessage(this.getText("added_success_message"));
           this.setMsgType(ServiceConstants.INFO);
         }
       }
