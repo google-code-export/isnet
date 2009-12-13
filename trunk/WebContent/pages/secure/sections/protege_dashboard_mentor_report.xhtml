@@ -7,22 +7,26 @@
 <ui:composition>
 	<h:panelGrid columns="1" width="100%" border="0" cellpadding="0"
 		cellspacing="0">
+		
 		<rich:panel style="width:'auto';margin-top: 0px;"
 			headerClass="container_gold_header" bodyClass="container_body_style">
 			<f:facet name="header">
 				<h:outputText value="#{bundle.dashboard_mentor_new_mentor_request}" />
 			</f:facet>
 			<h:dataTable id="idRequestGrid" border="0"
-				value="#{dashboardViewHandler.pendingRequests}" var="log"
-				columnClasses="column_class_center,,column_class_right"
+				value="#{dashboardViewHandler.protegePendingMentorRequests}" var="log"
+				columnClasses="column_class_center,,,column_class_right"
 				cellpadding="0" cellspacing="0" width="100%">
 				<h:column>
 					<h:outputText
 						value="#{log.fromMember.firstName}  #{log.fromMember.lastName}" />
 				</h:column>
 				<h:column>
-					<h:outputText value="#{bundle.dashboard_protege_request}" />
+					<h:outputText value="sent a " />
 				</h:column>
+				<h:column>
+					<h:outputText value="#{log.topic}" />
+				</h:column>	
 				<h:column>
 					<a4j:commandButton oncomplete="Richfaces.showModalPanel('idRequestNoteDialog')"
 						value="#{bundle.button_label_accept}">
@@ -39,9 +43,217 @@
 				</h:column>
 			</h:dataTable>
 		</rich:panel>
-		<!-- 
 
-		 -->			
+		<rich:panel style="width:'auto';margin-top: 0px;"	headerClass="container_gold_header" bodyClass="container_body_style">
+			<f:facet name="header">
+				<h:outputText value="Pending activities" />
+			</f:facet>
+			<h:dataTable id="idProtegeActivityGrid" border="0"
+				value="#{dashboardViewHandler.protegePendingActivity}" var="log"
+				columnClasses="column_class_center,,,column_class_right"
+				cellpadding="0" cellspacing="0" width="100%">
+				<h:column>
+					<h:outputText
+						value="#{log.fromMember.firstName}  #{log.fromMember.lastName}" />
+				</h:column>
+				<h:column>
+					<h:outputText value="sent a " />
+				</h:column>
+				<h:column>
+					<h:outputText value="#{log.topic}" />
+				</h:column>					
+				<h:column>
+					<a4j:commandButton oncomplete="Richfaces.showModalPanel('idRequestNoteDialog')"
+						value="#{bundle.button_label_accept}">
+						<a4j:actionparam name="logId"  value="#{log.memberLogId}" assignTo="#{dashboardViewHandler.logId}" />
+						<a4j:actionparam name="act"  value="3" assignTo="#{dashboardViewHandler.action}" />
+					</a4j:commandButton>
+					<rich:spacer width="3" />
+					<h:outputText value="#{bundle.or_label}" />
+					<rich:spacer width="5" />
+					<a4j:commandButton value="#{bundle.button_label_deny}" oncomplete="Richfaces.showModalPanel('idRequestNoteDialog')" >
+						<a4j:actionparam name="logId"  value="#{log.memberLogId}" assignTo="#{dashboardViewHandler.logId}" />
+						<a4j:actionparam name="act"  value="4" assignTo="#{dashboardViewHandler.action}" />
+					</a4j:commandButton>
+				</h:column>
+			</h:dataTable>
+		</rich:panel>
+		
+		<rich:panel style="width:'auto';margin-top: 0px;"
+			headerClass="container_gold_header" bodyClass="container_body_style">
+			<f:facet name="header">
+				<h:outputText value="Mentor hierarchy" />
+			</f:facet>
+			<rich:dataTable
+				rowClasses="dashboard_report_row_odd,dashboard_report_row_even"
+				cellpadding="0" cellspacing="0" width="100%" border="0" var="report"
+				value="#{dashboardViewHandler.mentorReport}">
+				<f:facet name="header">
+					<rich:columnGroup>
+						<rich:column styleClass="dashboard_report_mentor_header">
+							<h:outputText value="#{bundle.member_first_name}" />
+						</rich:column>
+						<rich:column styleClass="dashboard_report_mentor_header">
+							<h:outputText value="#{bundle.member_last_name}" />
+						</rich:column>
+						<rich:column styleClass="dashboard_report_mentor_header">
+							<h:outputText value="#{bundle.member_certification}" />
+						</rich:column>
+						<rich:column styleClass="dashboard_report_mentor_header">
+							<h:outputText value="#{bundle.dashboard_mentor_last_activity}" />
+						</rich:column>
+						<rich:column styleClass="dashboard_report_mentor_header">
+							<h:outputText value="#{bundle.member_dashboard_log}" />
+						</rich:column>
+					</rich:columnGroup>
+				</f:facet>
+				<h:column>
+					<h:outputText value="#{report.mentor.firstName}" />
+				</h:column>
+				<h:column>
+					<h:outputText value="#{report.mentor.lastName}" />
+				</h:column>
+				<h:column>
+					<h:outputText value="#{report.mentor.certificationDate}">
+						<f:convertDateTime dateStyle="default" pattern="#{bundle.short_date_pattern}" />
+					</h:outputText>
+				</h:column>
+				<h:column>
+					<h:outputText value="#{report.mentor.lastActivity}">
+						<f:convertDateTime dateStyle="default" pattern="#{bundle.short_date_pattern}" />
+					</h:outputText>
+				</h:column>
+				<h:column>
+					<h:commandLink value="Log" />
+				</h:column>
+				<rich:subTable rowClasses="odd-row,even-row" var="protege"
+					value="#{report.proteges}">
+					<rich:column rowspan="1">
+						<f:facet name="header">
+							<rich:spacer />
+						</f:facet>
+						<h:outputText value=""></h:outputText>
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="First name" />
+						</f:facet>
+						<h:outputText value="#{protege.firstName}"></h:outputText>
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="Last name" />
+						</f:facet>
+						<h:outputText value="#{protege.lastName}"></h:outputText>
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="Last activity" />
+						</f:facet>
+						<h:outputText value="#{protege.lastActivity}">
+							<f:convertDateTime dateStyle="default" pattern="#{bundle.short_date_pattern}" />
+						</h:outputText>
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="#{bundle.dashboard_protege_mentor_review}" />
+						</f:facet>
+		         		 <a4j:commandLink value="Review" reRender="idmemberInfoDialog" action="#{protegeProfileViewHandler.loadMember}" oncomplete="Richfaces.showModalPanel('idmemberInfoDialog')">
+				             <a4j:actionparam name="MEMBER_ID" value="#{protege.memberId}"  />
+				             <a4j:actionparam name="action" value="VIEW"  />
+		            		 <rich:toolTip styleClass="tooltips_style"  >
+						          <span class="tooltips_span_style">
+						              View profile<br/>
+						          </span>
+						     </rich:toolTip>	
+						</a4j:commandLink>
+												
+					</rich:column>
+
+				</rich:subTable>
+
+			</rich:dataTable>
+
+		</rich:panel>
+		
+
+		<rich:panel id="idMentorAroundMePanel" headerClass="container_box_panel_header"  bodyClass="container_body_style" >
+			<f:facet name="header">
+			<h:panelGroup>
+				<h:outputText value="List of Mentors in 20 miles radious" /> 
+		         <h:outputLink  value="#{controllerBean.contextPath}/pages/secure/mentorSearch.faces">
+		           <h:outputText value=" [ Advanced search ] "/>
+		         </h:outputLink>				
+			</h:panelGroup>
+			</f:facet>
+			<h:panelGrid columns="1" width="100%" cellpadding="0" cellspacing="0" border="0">
+				<rich:dataTable  width="100%" id="idDataGrid3"  rowClasses=",container_even_row_style" rows="10" 
+			                value="#{protegeProfileViewHandler.mentorsAraoundProtege}" var="member" headerClass="table_column_style" cellpadding="0" cellspacing="0">
+		             <rich:column>
+			             <f:facet name="header">
+			                <h:outputText value="#{bundle.protege_search_name}" />
+			             </f:facet>
+			             <h:panelGroup>
+			             	<h:outputText value="#{member.firstName}" /><rich:spacer width="5"/> <h:outputText value="#{member.lastName}" />
+			             </h:panelGroup>
+				 			
+		             </rich:column>
+		             <rich:column>
+			             <f:facet name="header">
+			                 <h:outputText value="#{bundle.member_city}" />
+			             </f:facet>
+						<h:outputText value="#{member.city}" />
+		             </rich:column>	  
+		             <rich:column>
+			             <f:facet name="header">
+			                <h:outputText value="#{bundle.member_state}" />
+			             </f:facet>
+						<h:outputText value="#{member.stateUDV.udValuesDesc}" />
+		             </rich:column>
+		             <rich:column >
+			             <f:facet name="header">
+			               <h:outputText value="#{bundle.member_zip}" />
+			             </f:facet>
+				 		<h:outputText value="#{member.zip}" />	
+		             </rich:column>	  
+		             <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="#{bundle.member_country}" />
+			             </f:facet>
+						<h:outputText value="#{member.countryUDV.udValuesDesc}" />
+		             </rich:column>	
+		             <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="#{bundle.member_gender}" />
+			             </f:facet>
+						<h:outputText value="#{member.genderInd == 'M'?'Male':'Female'}" />      
+		             </rich:column>	
+
+		             <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="#{bundle.protege_search_profile}" />
+			             </f:facet>
+		         		 <a4j:commandLink  reRender="idmemberInfoDialog" action="#{protegeProfileViewHandler.loadMember}" oncomplete="Richfaces.showModalPanel('idmemberInfoDialog')">
+				             <a4j:actionparam name="MEMBER_ID" value="#{member.memberId}"  />
+				             <a4j:actionparam name="action" value="VIEW"  />
+			            	<h:graphicImage value="/images/member_view.png" align="middle" border="0" > 
+			            	</h:graphicImage>	
+		            		 <rich:toolTip styleClass="tooltips_style"  >
+						          <span class="tooltips_span_style">
+						              #{bundle.button_label_view_mentor}<br/>
+						          </span>
+						     </rich:toolTip>	
+						</a4j:commandLink>			             
+		             </rich:column>		
+		             		             	             		             		             
+		             		                      	   
+			      </rich:dataTable>		
+		        <rich:datascroller id="idDataScroller3" align="center"  for="idDataGrid3" maxPages="5" />
+			</h:panelGrid>			         
+		</rich:panel>
+						
+		
+				
 	</h:panelGrid>
 
 </ui:composition>
