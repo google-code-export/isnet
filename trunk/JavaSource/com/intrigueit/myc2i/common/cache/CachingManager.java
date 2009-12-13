@@ -18,6 +18,8 @@ public  class CachingManager {
 	private UDValuesService udService;
 	private static List<Long> protegeRequestActivityIds = null;
 	private static List<Long> mentorRequestActivityIds = null;
+	private static List<Long> mentorRequestActivityIdsForMentor = null;
+	
 	protected static final Logger log = Logger.getLogger( CachingManager.class );   
 	
 	@Autowired
@@ -44,6 +46,16 @@ public  class CachingManager {
 		
 		return protegeRequestActivityIds;
 	}
+	public Boolean isProtegeRequestAcityIdExist(Long id){
+		this.getProtegeRequestActivityIds();
+		for(Long val: protegeRequestActivityIds){
+			if(val.equals(id)){
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public Boolean isMentorRequestAcityIdExist(Long id){
 		this.getMentorRequestActivityIds();
 		for(Long val: mentorRequestActivityIds){
@@ -70,6 +82,23 @@ public  class CachingManager {
 			log.debug("from cache...");
 		}
 		return mentorRequestActivityIds;
+	}
+
+	public  List<Long> getMentorRequestActivityIdsForMentor() {
+		if(mentorRequestActivityIdsForMentor == null){
+			log.debug("from database...");
+			mentorRequestActivityIdsForMentor = new ArrayList<Long>();
+			List<UserDefinedValues> values  = this.udService.findByProperty("udValuesCategory", CommonConstants.ACTIVITY_LOG_MENTOR);
+			for(UserDefinedValues val: values){
+				if(val.getUdValuesValue().toLowerCase().equals(CommonConstants.ACTIVITY_TYPE_MENTOR_REQUEST.toLowerCase())){
+					mentorRequestActivityIdsForMentor.add(val.getUdValuesId());
+				}
+			}
+		}
+		else{
+			log.debug("from cache...");
+		}		
+		return mentorRequestActivityIdsForMentor;
 	}	
 	
 }
