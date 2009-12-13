@@ -73,12 +73,10 @@ public class ProtegeEvalMentorViewHandler extends BasePage implements Serializab
   }
 
   public void doSave() {
-    System.out.println("Mithun");
     setErrorMessage("");
     try {      
-      //if (this.getParameter(ServiceConstants.MENTOR_ID) != null) {
-      //String mentorId = (String) this.getParameter(ServiceConstants.MENTOR_ID);
-      String mentorId = "1";
+      if (this.getParameter(ServiceConstants.MENTOR_ID) != null) {
+      String mentorId = (String) this.getParameter(ServiceConstants.MENTOR_ID);
       Date dt = new Date();
         if (validate()) {
           this.currentProEvalMentor.setEvalDate(dt);
@@ -90,7 +88,7 @@ public class ProtegeEvalMentorViewHandler extends BasePage implements Serializab
           this.setErrorMessage(this.getText("update_success_message"));
           this.setMsgType(ServiceConstants.INFO);
         }
-      //}
+      }
     } catch (Exception e) {      
       if (this.currentProEvalMentor.getProtegeEvalOfMentorId() != null) {
         this.currentProEvalMentor.setProtegeEvalOfMentorId(null);
