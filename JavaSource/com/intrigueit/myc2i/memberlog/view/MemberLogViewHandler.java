@@ -142,6 +142,26 @@ public class MemberLogViewHandler extends BasePage implements Serializable {
 			log.error(ex.getMessage());
 		}
 	}	
+	public void initMemberLogForContact() {
+		try{
+			this.memberName = this.getRequest().getParameter("MEMBER_NAME");
+			String memberId = this.getRequest().getParameter("MEMBER_ID");
+			if(memberId == null){
+				return;
+			}
+			this.currentLog = new MemberLog();
+			this.currentLog.setToMemberId(Long.parseLong(memberId));
+			this.errMsgs.clear();
+			this.hasError = false;
+			this.showSearchBox = false;
+			this.isActivityTypeReadOnly = false;
+			
+			
+		}
+		catch(Exception ex){
+			log.error(ex.getMessage());
+		}
+	}	
 	@SuppressWarnings("unchecked")
 	public void saveMemberLog() {
 		String action = "";
