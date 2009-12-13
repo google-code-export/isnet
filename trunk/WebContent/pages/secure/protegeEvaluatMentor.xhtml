@@ -34,187 +34,94 @@
         </colgroup>
         <tbody>
           <tr class="listhead">
-            <td> <h:outputText value="#{bundle.protege_evaluat_mentor_factor}" /></td>
-            <td> <h:outputText value="#{bundle.protege_evaluat_mentor_vmuch_agree}" /></td>
-            <td> <h:outputText value="#{bundle.protege_evaluat_mentor_somewhat_agree}" /></td>
-            <td> <h:outputText value="#{bundle.protege_evaluat_mentor_neutral}" /></td>
-            <td> <h:outputText value="#{bundle.protege_evaluat_mentor_dagree}" /></td>
-            <td> <h:outputText value="#{bundle.protege_evaluat_mentor_vmuch_dagree}" /></td>
+            <td align="left"> <h:outputText value="#{bundle.protege_evaluat_mentor_factor}
+                    &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                    &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                    &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                    &#160;&#160;&#160;&#160;&#160;&#160; #{bundle.protege_evaluat_mentor_rating}" /></td>
+            <td align="center"> <h:outputText value="#{bundle.protege_evaluat_mentor_vmuch_agree}" /></td>
+            <td align="center"> <h:outputText value="#{bundle.protege_evaluat_mentor_somewhat_agree}" /></td>
+            <td align="center"> <h:outputText value="#{bundle.protege_evaluat_mentor_neutral}" /></td>
+            <td align="center"> <h:outputText value="#{bundle.protege_evaluat_mentor_dagree}" /></td>
+            <td align="center"> <h:outputText value="#{bundle.protege_evaluat_mentor_vmuch_dagree}" /></td>
           </tr>
         </tbody>
         <tbody>
-          <tr class="listhead">
-            <td> 
-            <h:outputText value="#{bundle.protege_evaluat_mentor_factor_one_text}" /> </td>
-            <td colspan="5">
-                <h:selectOneRadio id="factorOneRating" 
-                  value="#{proEvalManViewHandler.currentProEvalMentor.evalFactorOneRatingNum}">              
-                  <f:selectItem itemLabel="&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
-                    &#160;&#160;&#160;&#160;&#160;&#160;" 
-                    itemValue="10"  />
-                                      
-                  <f:selectItem itemLabel="&#160;&#160;&#160;&#160;&#160;&#160;&#160;
-                    &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
-                    &#160;&#160;&#160;&#160;&#160;" 
-                    itemValue="7"  />
-                    
-                  <f:selectItem itemLabel="&#160;&#160;&#160;&#160;&#160;&#160;&#160;
-                    &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;" 
-                    itemValue="5"  />
-                    
-                  <f:selectItem itemLabel="&#160;&#160;&#160;&#160;&#160;&#160;
-                  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;" 
-                    itemValue="3"  />
-                                
-                  <f:selectItem itemLabel="" 
-                    itemValue="1"  />
-                </h:selectOneRadio>
-            </td>  
+          <h:inputHidden id="oneRatingVal" value="#{proEvalManViewHandler.currentProEvalMentor.evalFactorOneRatingNum}"/>
+          <h:inputHidden id="twoRatingVal" value="#{proEvalManViewHandler.currentProEvalMentor.evalFactorTwoRatingNum}"/>
+          <h:inputHidden id="threeRatingVal" value="#{proEvalManViewHandler.currentProEvalMentor.evalFactorThreeRatingNum}"/>
+          <h:inputHidden id="fourRatingVal" value="#{proEvalManViewHandler.currentProEvalMentor.evalFactorFourRatingNum}"/>
+          <h:inputHidden id="fiveRatingVal" value="#{proEvalManViewHandler.currentProEvalMentor.evalFactorFiveRatingNum}"/>
+          <tr>
+          <td> <h:outputText value="#{bundle.protege_evaluat_mentor_factor_one_text}" /> </td>
+          <td align="center"><input type="radio" name="factorOneRating" value="10"
+            onclick="Common.setRadioValue('oneRatingVal',this.value)"/></td>
+          <td align="center"><input type="radio" name="factorOneRating" value="7"
+            onclick="Common.setRadioValue('oneRatingVal',this.value)"/></td>
+          <td align="center"><input type="radio" name="factorOneRating" value="5"
+            onclick="Common.setRadioValue('oneRatingVal',this.value)"/></td>
+          <td align="center"><input type="radio" name="factorOneRating" value="3"
+            onclick="Common.setRadioValue('oneRatingVal',this.value)"/></td>                  
+          <td align="center"><input type="radio" name="factorOneRating" value="1"
+            onclick="Common.setRadioValue('oneRatingVal',this.value)"/></td>               
           </tr>
           
-          <tr class="listhead">
+          <tr>
             <td> <h:outputText value="#{bundle.protege_evaluat_mentor_factor_two_text}" /> </td>
-            <td colspan="5">
-                <h:selectOneRadio id="factorTwoRating" 
-                  value="#{proEvalManViewHandler.currentProEvalMentor.evalFactorTwoRatingNum}">              
-                  <f:selectItem itemLabel="&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
-                    &#160;&#160;&#160;&#160;&#160;&#160;" 
-                    itemValue="10"  />
-                                      
-                  <f:selectItem itemLabel="&#160;&#160;&#160;&#160;&#160;&#160;&#160;
-                    &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
-                    &#160;&#160;&#160;&#160;&#160;" 
-                    itemValue="7"  />
-                    
-                  <f:selectItem itemLabel="&#160;&#160;&#160;&#160;&#160;&#160;&#160;
-                    &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;" 
-                    itemValue="5"  />
-                    
-                  <f:selectItem itemLabel="&#160;&#160;&#160;&#160;&#160;&#160;
-                  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;" 
-                    itemValue="3"  />
-                                
-                  <f:selectItem itemLabel="" 
-                    itemValue="1"  />
-                </h:selectOneRadio>
-            </td>  
-          </tr> 
-          
-          <tr class="listhead">
-            <td> <h:outputText value="#{bundle.protege_evaluat_mentor_factor_three_text}" /> </td>
-            <td colspan="5">
-                <h:selectOneRadio
-                  value="#{proEvalManViewHandler.currentProEvalMentor.evalFactorThreeRatingNum}">              
-                  <f:selectItem itemLabel="&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
-                    &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
-                    &#160;&#160;&#160;&#160;&#160;" 
-                    itemValue="10"  />
-                                      
-                  <f:selectItem itemLabel="&#160;&#160;&#160;&#160;&#160;&#160;&#160;
-                    &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
-                    &#160;&#160;&#160;&#160;&#160;" 
-                    itemValue="7"  />
-                    
-                  <f:selectItem itemLabel="&#160;&#160;&#160;&#160;&#160;&#160;&#160;
-                    &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;" 
-                    itemValue="5"  />
-                    
-                  <f:selectItem itemLabel="&#160;&#160;&#160;&#160;&#160;&#160;
-                  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;" 
-                    itemValue="3"  />
-                                
-                  <f:selectItem itemLabel="" 
-                    itemValue="1"  />
-                </h:selectOneRadio>
-            </td>  
-          </tr>
-          
-          <tr class="listhead">
-            <td> <h:outputText value="#{bundle.protege_evaluat_mentor_factor_four_text}" /> </td>
-            <td colspan="5">
-                <h:selectOneRadio
-                  value="#{proEvalManViewHandler.currentProEvalMentor.evalFactorFourRatingNum}">              
-                  <f:selectItem itemLabel="&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
-                    &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
-                    &#160;&#160;&#160;&#160;&#160;" 
-                    itemValue="10"  />
-                                      
-                  <f:selectItem itemLabel="&#160;&#160;&#160;&#160;&#160;&#160;&#160;
-                    &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
-                    &#160;&#160;&#160;&#160;&#160;" 
-                    itemValue="7"  />
-                    
-                  <f:selectItem itemLabel="&#160;&#160;&#160;&#160;&#160;&#160;&#160;
-                    &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;" 
-                    itemValue="5"  />
-                    
-                  <f:selectItem itemLabel="&#160;&#160;&#160;&#160;&#160;&#160;
-                  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;" 
-                    itemValue="3"  />
-                                
-                  <f:selectItem itemLabel="" 
-                    itemValue="1"  />
-                </h:selectOneRadio>
-            </td>  
+            <td align="center"><input type="radio" name="factorTwoRating" value="10"
+              onclick="Common.setRadioValue('twoRatingVal',this.value)"/></td>
+            <td align="center"><input type="radio" name="factorTwoRating" value="7"
+              onclick="Common.setRadioValue('twoRatingVal',this.value)"/></td>
+            <td align="center"><input type="radio" name="factorTwoRating" value="5"
+              onclick="Common.setRadioValue('twoRatingVal',this.value)"/></td>
+            <td align="center"><input type="radio" name="factorTwoRating" value="3"
+              onclick="Common.setRadioValue('twoRatingVal',this.value)"/></td>                  
+            <td align="center"><input type="radio" name="factorTwoRating" value="1"
+              onclick="Common.setRadioValue('twoRatingVal',this.value)"/></td>               
           </tr>   
           
-          <tr class="listhead">
-            <td> <h:outputText value="#{bundle.protege_evaluat_mentor_factor_five_text}" /> </td>
-            <td colspan="5">
-                <h:selectOneRadio
-                  value="#{proEvalManViewHandler.currentProEvalMentor.evalFactorFiveRatingNum}">              
-                  <f:selectItem itemLabel="&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
-                    &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
-                    &#160;&#160;&#160;&#160;&#160;" 
-                    itemValue="10"  />
-                                      
-                  <f:selectItem itemLabel="&#160;&#160;&#160;&#160;&#160;&#160;&#160;
-                    &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
-                    &#160;&#160;&#160;&#160;&#160;" 
-                    itemValue="7"  />
-                    
-                  <f:selectItem itemLabel="&#160;&#160;&#160;&#160;&#160;&#160;&#160;
-                    &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;" 
-                    itemValue="5"  />
-                    
-                  <f:selectItem itemLabel="&#160;&#160;&#160;&#160;&#160;&#160;
-                  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;" 
-                    itemValue="3"  />
-                                
-                  <f:selectItem itemLabel="" 
-                    itemValue="1"  />
-                </h:selectOneRadio>
-            </td>  
-          </tr>
+           <tr>
+            <td> <h:outputText value="#{bundle.protege_evaluat_mentor_factor_three_text}" /> </td>           
+            <td align="center"><input type="radio" name="factorThreeRating" value="10"
+              onclick="Common.setRadioValue('threeRatingVal',this.value)"/></td>
+            <td align="center"><input type="radio" name="factorThreeRating" value="7"
+              onclick="Common.setRadioValue('threeRatingVal',this.value)"/></td>
+            <td align="center"><input type="radio" name="factorThreeRating" value="5"
+              onclick="Common.setRadioValue('threeRatingVal',this.value)"/></td>
+            <td align="center"><input type="radio" name="factorThreeRating" value="3"
+              onclick="Common.setRadioValue('threeRatingVal',this.value)"/></td>                  
+            <td align="center"><input type="radio" name="factorThreeRating" value="1"
+              onclick="Common.setRadioValue('threeRatingVal',this.value)"/></td>               
+           </tr> 
+           
+           <tr>
+            <td> <h:outputText value="#{bundle.protege_evaluat_mentor_factor_four_text}" /> </td>           
+            <td align="center"><input type="radio" name="factorFourRating" value="10"
+              onclick="Common.setRadioValue('fourRatingVal',this.value)"/></td>
+            <td align="center"><input type="radio" name="factorFourRating" value="7"
+              onclick="Common.setRadioValue('fourRatingVal',this.value)"/></td>
+            <td align="center"><input type="radio" name="factorFourRating" value="5"
+              onclick="Common.setRadioValue('fourRatingVal',this.value)"/></td>
+            <td align="center"><input type="radio" name="factorFourRating" value="3"
+              onclick="Common.setRadioValue('fourRatingVal',this.value)"/></td>                  
+            <td align="center"><input type="radio" name="factorFourRating" value="1"
+              onclick="Common.setRadioValue('fourRatingVal',this.value)"/></td>               
+           </tr>
+           
+           <tr>
+            <td> <h:outputText value="#{bundle.protege_evaluat_mentor_factor_five_text}" /> </td>           
+            <td align="center"><input type="radio" name="factorFiveRating" value="10"
+              onclick="Common.setRadioValue('fiveRatingVal',this.value)"/></td>
+            <td align="center"><input type="radio" name="factorFiveRating" value="7"
+              onclick="Common.setRadioValue('fiveRatingVal',this.value)"/></td>
+            <td align="center"><input type="radio" name="factorFiveRating" value="5"
+              onclick="Common.setRadioValue('fiveRatingVal',this.value)"/></td>
+            <td align="center"><input type="radio" name="factorFiveRating" value="3"
+              onclick="Common.setRadioValue('fiveRatingVal',this.value)"/></td>                  
+            <td align="center"><input type="radio" name="factorFiveRating" value="1"
+              onclick="Common.setRadioValue('fiveRatingVal',this.value)"/></td>               
+           </tr> 
           
-           <tr class="listhead">
-            <td> <h:outputText value="#{bundle.protege_evaluat_mentor_factor_six_text}" /> </td>
-            <td colspan="5">
-                <h:selectOneRadio
-                  value="#{proEvalManViewHandler.currentProEvalMentor.evalFactorSixRatingNum}">              
-                  <f:selectItem itemLabel="&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
-                    &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
-                    &#160;&#160;&#160;&#160;&#160;" 
-                    itemValue="10"  />
-                                      
-                  <f:selectItem itemLabel="&#160;&#160;&#160;&#160;&#160;&#160;&#160;
-                    &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
-                    &#160;&#160;&#160;&#160;&#160;" 
-                    itemValue="7"  />
-                    
-                  <f:selectItem itemLabel="&#160;&#160;&#160;&#160;&#160;&#160;&#160;
-                    &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;" 
-                    itemValue="5"  />
-                    
-                  <f:selectItem itemLabel="&#160;&#160;&#160;&#160;&#160;&#160;
-                  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;" 
-                    itemValue="3"  />
-                                
-                  <f:selectItem itemLabel="" 
-                    itemValue="1"  />
-                </h:selectOneRadio>
-            </td>  
-          </tr>                               
         </tbody>        
       </table>      
       <rich:spacer width="100%" height="15"/>    
@@ -232,7 +139,10 @@
           &#160;&#160;
            <a4j:commandButton value="#{bundle.button_clear}" action="#{proEvalManViewHandler.doClear}" 
             onclick="forceSBlockUI(ajaxProcessMsg);" styleClass="ibutton" style="background:#F8F3D3;" 
-            oncomplete="forceSUnblockUI();" reRender="idErrorPanel,idSectionsCon"/>
+            oncomplete="forceSUnblockUI();" reRender="idErrorPanel,idSectionsCon">
+            <f:param value="#{facesContext.externalContext.request.parameterMap['mentorId'][0]}" 
+              name="mentorId"/> 
+            </a4j:commandButton>
           </h:panelGroup>
         </h:panelGrid>
       </rich:panel>    
