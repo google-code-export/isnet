@@ -1,5 +1,6 @@
 package com.intrigueit.myc2i.memberlog.service;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.intrigueit.myc2i.common.CommonConstants;
+import com.intrigueit.myc2i.common.cache.CachingManager;
 import com.intrigueit.myc2i.memberlog.dao.MemberLogDao;
 import com.intrigueit.myc2i.memberlog.domain.MemberLog;
 
@@ -15,6 +17,7 @@ import com.intrigueit.myc2i.memberlog.domain.MemberLog;
 public class MemberLogServiceImpl implements MemberLogService{
 
 	private MemberLogDao memberLogDao;
+	private CachingManager cacheMan;
 	
 	@Autowired
 	public MemberLogServiceImpl(MemberLogDao memberLogDao) {
@@ -106,6 +109,31 @@ public class MemberLogServiceImpl implements MemberLogService{
 		String clause = " upper(t.status) = ?1 and t.toMemberId=?2";
 		return memberLogDao.loadByClause(clause, new Object[]{CommonConstants.ACTIVITY_STATUS.PENDING.toString(),memberId});
 	}
+	
+	public List<MemberLog> getProtegePendingMentorRequests(Long memberId) {
+		String clause = " upper(t.status) = ?1 and t.toMemberId=?2";
+		List<MemberLog> memberLogs =  memberLogDao.loadByClause(clause, new Object[]{CommonConstants.ACTIVITY_STATUS.PENDING.toString(),memberId});
+		List<MemberLog> logs = new ArrayList<MemberLog>();
+
+		for(MemberLog log: memberLogs){
+			if(cacheMan.isMentorRequestAcityIdExist(log.getMemberActivityType())){
+				logs.add(log);
+			}
+		}
+		return logs;
+	}	
+	public List<MemberLog> getProtegePendingActivities(Long memberId) {
+		String clause = " upper(t.status) = ?1 and t.toMemberId=?2";
+		List<MemberLog> memberLogs =  memberLogDao.loadByClause(clause, new Object[]{CommonConstants.ACTIVITY_STATUS.PENDING.toString(),memberId});
+		List<MemberLog> logs = new ArrayList<MemberLog>();
+
+		for(MemberLog log: memberLogs){
+			if(!cacheMan.isMentorRequestAcityIdExist(log.getMemberActivityType())){
+				logs.add(log);
+			}
+		}
+		return logs;
+	}
 
 
 	@Override
@@ -137,6 +165,11 @@ public class MemberLogServiceImpl implements MemberLogService{
 		String clause = " (t.fromMemberId=?1 or  t.toMemberId=?1) and t.memberLogDateTime > ?2 ";
 		List<MemberLog> logs = memberLogDao.loadByClause(clause, new Object[]{memberId,cal.getTime()});
 		return logs;
+	}
+
+	@Autowired
+	public void setCacheMan(CachingManager cacheMan) {
+		this.cacheMan = cacheMan;
 	}	
 	
 }
