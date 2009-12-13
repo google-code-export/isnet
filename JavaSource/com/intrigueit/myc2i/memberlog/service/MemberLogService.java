@@ -47,7 +47,11 @@ public interface MemberLogService {
 	
 	public List<MemberLog> getProtegePendingMentorRequests(Long memberId);
 	
+	public List<MemberLog> getMentorPendingProtegeRequests(Long memberId);
 	
+	public List<MemberLog> getMentorPendingActivities(Long memberId);
+	
+	public List<MemberLog> getMentorPendingMentorRequests(Long memberId);
 	
 	
 }
