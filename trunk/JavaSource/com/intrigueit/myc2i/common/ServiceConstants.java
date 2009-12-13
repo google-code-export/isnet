@@ -8,6 +8,7 @@ public class ServiceConstants {
   public static final String MENTOR = "MENTOR";
   public static final String PROTEGE = "PROTEGE";
   public static final String RECORD_ID = "recordId";
+  public static final String MENTOR_ID = "menterId";
   public static final String RECORD_TYPE = "recordType";
   public static final String EXTRA_PARAM = "extraParam";
   public static final String ACTION = "action";  
