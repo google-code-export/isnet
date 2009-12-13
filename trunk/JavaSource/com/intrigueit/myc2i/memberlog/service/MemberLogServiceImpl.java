@@ -116,9 +116,10 @@ public class MemberLogServiceImpl implements MemberLogService{
 		List<MemberLog> logs = new ArrayList<MemberLog>();
 
 		for(MemberLog log: memberLogs){
-			if(cacheMan.isMentorRequestAcityIdExist(log.getMemberActivityType())){
+			if(log.getUserDefinedValues().getUdValuesValue().toLowerCase().equals(CommonConstants.ACTIVITY_TYPE_MENTOR_REQUEST.toLowerCase()) &&
+					log.getUserDefinedValues().getUdValuesCategory().equals(CommonConstants.ACTIVITY_LOG_MENTOR)){
 				logs.add(log);
-			}
+			}	
 		}
 		return logs;
 	}	
@@ -128,14 +129,68 @@ public class MemberLogServiceImpl implements MemberLogService{
 		List<MemberLog> logs = new ArrayList<MemberLog>();
 
 		for(MemberLog log: memberLogs){
-			if(!cacheMan.isMentorRequestAcityIdExist(log.getMemberActivityType())){
+			if(!log.getUserDefinedValues().getUdValuesValue().toLowerCase().equals(CommonConstants.ACTIVITY_TYPE_MENTOR_REQUEST.toLowerCase())){
 				logs.add(log);
 			}
 		}
 		return logs;
 	}
 
+	/**
+	 * Return list of all pending request for mentor
+	 * @param memberId
+	 * @return
+	 */
+	public List<MemberLog> getMentorPendingProtegeRequests(Long memberId) {
+		String clause = " upper(t.status) = ?1 and t.toMemberId=?2";
+		List<MemberLog> memberLogs =  memberLogDao.loadByClause(clause, new Object[]{CommonConstants.ACTIVITY_STATUS.PENDING.toString(),memberId});
+		List<MemberLog> logs = new ArrayList<MemberLog>();
 
+		for(MemberLog log: memberLogs){
+
+			if(log.getUserDefinedValues().getUdValuesValue().toLowerCase().equals(CommonConstants.ACTIVITY_TYPE_PROTEGE_REQUEST.toLowerCase()) &&
+					log.getUserDefinedValues().getUdValuesCategory().equals(CommonConstants.ACTIVITY_LOG_PROTEGE)){
+				logs.add(log);
+			}			
+		}
+		return logs;
+	}
+	
+	public List<MemberLog> getMentorPendingMentorRequests(Long memberId) {
+		String clause = " upper(t.status) = ?1 and t.toMemberId=?2";
+		List<MemberLog> memberLogs =  memberLogDao.loadByClause(clause, new Object[]{CommonConstants.ACTIVITY_STATUS.PENDING.toString(),memberId});
+		List<MemberLog> logs = new ArrayList<MemberLog>();
+
+		for(MemberLog log: memberLogs){
+			if(log.getUserDefinedValues().getUdValuesValue().toLowerCase().equals(CommonConstants.ACTIVITY_TYPE_MENTOR_REQUEST.toLowerCase()) &&
+					log.getUserDefinedValues().getUdValuesCategory().equals(CommonConstants.ACTIVITY_LOG_MENTOR)){
+				logs.add(log);
+			}
+
+			
+		}
+		return logs;
+	}	
+	/**
+	 * @param memberId
+	 * @return
+	 */
+	public List<MemberLog> getMentorPendingActivities(Long memberId) {
+		String clause = " upper(t.status) = ?1 and t.toMemberId=?2";
+		List<MemberLog> memberLogs =  memberLogDao.loadByClause(clause, new Object[]{CommonConstants.ACTIVITY_STATUS.PENDING.toString(),memberId});
+		List<MemberLog> logs = new ArrayList<MemberLog>();
+
+		for(MemberLog log: memberLogs){
+			if(!log.getUserDefinedValues().getUdValuesValue().toLowerCase().equals(CommonConstants.ACTIVITY_TYPE_MENTOR_REQUEST.toLowerCase()) 
+					&& !log.getUserDefinedValues().getUdValuesValue().toLowerCase().equals(CommonConstants.ACTIVITY_TYPE_PROTEGE_REQUEST.toLowerCase())){
+				logs.add(log);
+			}
+
+			
+		}
+		return logs;
+	}
+	
 	@Override
 	public List<MemberLog> getAllMentorReleaseLog(Long memberId,Long logTypeId) {
 		String clause = " t.memberActivityType = ?1 and t.fromMemberId=?2";
