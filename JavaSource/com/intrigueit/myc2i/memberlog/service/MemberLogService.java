@@ -43,6 +43,10 @@ public interface MemberLogService {
 	
 	public List<MemberLog> getRecentConversation(Long memberId);
 	
+	public List<MemberLog> getProtegePendingActivities(Long memberId);
+	
+	public List<MemberLog> getProtegePendingMentorRequests(Long memberId);
+	
 	
 	
 	
