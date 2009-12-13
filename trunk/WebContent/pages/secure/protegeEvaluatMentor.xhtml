@@ -44,7 +44,8 @@
         </tbody>
         <tbody>
           <tr class="listhead">
-            <td> <h:outputText value="#{bundle.protege_evaluat_mentor_factor_one_text}" /> </td>
+            <td> 
+            <h:outputText value="#{bundle.protege_evaluat_mentor_factor_one_text}" /> </td>
             <td colspan="5">
                 <h:selectOneRadio id="factorOneRating" 
                   value="#{proEvalManViewHandler.currentProEvalMentor.evalFactorOneRatingNum}">              
@@ -219,15 +220,21 @@
       <rich:spacer width="100%" height="15"/>    
       <rich:panel styleClass="action_panel">
         <h:panelGrid border="0" cellpadding="1" rowClasses="secf_rowcalss"
-          styleClass="text_align_center" columns="2">
-        <a4j:commandButton value="#{bundle.button_submit_label}" action="#{proEvalManViewHandler.doSave}" 
-          onclick="forceSBlockUI(ajaxProcessMsg);" styleClass="ibutton" style="background:#F8F3D3;" 
-          oncomplete="forceSUnblockUI();"
-          reRender="idErrorPanel"/>
-          <a4j:commandButton value="#{bundle.button_clear}" action="#{proEvalManViewHandler.doClear}" 
-          onclick="forceSBlockUI(ajaxProcessMsg);" styleClass="ibutton" style="background:#F8F3D3;" 
-          oncomplete="forceSUnblockUI();" reRender="idErrorPanel,idSectionsCon"/>
-        </h:panelGrid>  
+          styleClass="text_align_center" columns="1" width="90%">
+        <h:panelGroup>
+          <a4j:commandButton value="#{bundle.button_submit_label}" action="#{proEvalManViewHandler.doSave}" 
+            onclick="forceSBlockUI(ajaxProcessMsg);" styleClass="ibutton" style="background:#F8F3D3;" 
+            oncomplete="forceSUnblockUI();"
+            reRender="idErrorPanel">
+            <f:param value="#{facesContext.externalContext.request.parameterMap['mentorId'][0]}" 
+              name="mentorId"/>           
+          </a4j:commandButton>
+          &#160;&#160;
+           <a4j:commandButton value="#{bundle.button_clear}" action="#{proEvalManViewHandler.doClear}" 
+            onclick="forceSBlockUI(ajaxProcessMsg);" styleClass="ibutton" style="background:#F8F3D3;" 
+            oncomplete="forceSUnblockUI();" reRender="idErrorPanel,idSectionsCon"/>
+          </h:panelGroup>
+        </h:panelGrid>
       </rich:panel>    
       <rich:spacer width="100%" height="5"/>
     </h:panelGroup>
