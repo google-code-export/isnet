@@ -103,7 +103,7 @@
 							<h:outputText value="#{bundle.dashboard_mentor_last_activity}" />
 						</rich:column>
 						<rich:column styleClass="dashboard_report_mentor_header">
-							<h:outputText value="#{bundle.member_dashboard_log}" />
+							<h:outputText value="Action" />
 						</rich:column>
 					</rich:columnGroup>
 				</f:facet>
@@ -124,9 +124,31 @@
 					</h:outputText>
 				</h:column>
 				<h:column>
-					<h:commandLink value="Log" />
+		         		 <a4j:commandLink value="Review" reRender="idmemberInfoDialog" action="#{protegeProfileViewHandler.loadMember}" oncomplete="Richfaces.showModalPanel('idmemberInfoDialog')">
+				             <a4j:actionparam name="MEMBER_ID" value="#{report.mentor.memberId}"  />
+				             <a4j:actionparam name="action" value="VIEW"  />
+		            		 <rich:toolTip styleClass="tooltips_style"  >
+						          <span class="tooltips_span_style">
+						              View profile<br/>
+						          </span>
+						     </rich:toolTip>	
+						</a4j:commandLink>
+						<rich:spacer width="12"/>
+						
+		         		 <a4j:commandLink  reRender="idmemberLogDialog" action="#{memberLogViewHandler.initMemberLogForContact}" oncomplete="Richfaces.showModalPanel('idmemberLogDialog')">
+				              <a4j:actionparam name="MEMBER_ID" value="#{report.mentor.memberId}"  />
+				              <a4j:actionparam name="MEMBER_NAME" value="#{report.mentor.firstName} #{report.mentor.lastName} "  />
+		            		 <rich:toolTip styleClass="tooltips_style"  >
+						          <span class="tooltips_span_style">
+						            Click here to contact<br/>
+						          </span>
+						     </rich:toolTip>	
+						        <h:outputText value="Contact" border="0" />		
+						</a4j:commandLink>
+										
+										
 				</h:column>
-				<rich:subTable rowClasses="odd-row,even-row" var="protege"
+				<rich:subTable rowClasses="odd-row,even-row" var="protege" 
 					value="#{report.proteges}">
 					<rich:column rowspan="1">
 						<f:facet name="header">
@@ -134,7 +156,7 @@
 						</f:facet>
 						<h:outputText value=""></h:outputText>
 					</rich:column>
-					<rich:column>
+					<rich:column style="text-align:left;">
 						<f:facet name="header">
 							<h:outputText value="First name" />
 						</f:facet>
@@ -148,7 +170,7 @@
 					</rich:column>
 					<rich:column>
 						<f:facet name="header">
-							<h:outputText value="Last activity" />
+							<h:outputText value="Last activity date" />
 						</f:facet>
 						<h:outputText value="#{protege.lastActivity}">
 							<f:convertDateTime dateStyle="default" pattern="#{bundle.short_date_pattern}" />
@@ -156,7 +178,7 @@
 					</rich:column>
 					<rich:column>
 						<f:facet name="header">
-							<h:outputText value="#{bundle.dashboard_protege_mentor_review}" />
+							<h:outputText value="Action" />
 						</f:facet>
 		         		 <a4j:commandLink value="Review" reRender="idmemberInfoDialog" action="#{protegeProfileViewHandler.loadMember}" oncomplete="Richfaces.showModalPanel('idmemberInfoDialog')">
 				             <a4j:actionparam name="MEMBER_ID" value="#{protege.memberId}"  />
@@ -167,6 +189,18 @@
 						          </span>
 						     </rich:toolTip>	
 						</a4j:commandLink>
+						<rich:spacer width="12"/>
+						
+		         		 <a4j:commandLink  reRender="idmemberLogDialog" action="#{memberLogViewHandler.initMemberLogForContact}" oncomplete="Richfaces.showModalPanel('idmemberLogDialog')">
+				              <a4j:actionparam name="MEMBER_ID" value="#{protege.memberId}"  />
+				              <a4j:actionparam name="MEMBER_NAME" value="#{protege.firstName} #{protege.lastName} "  />
+		            		 <rich:toolTip styleClass="tooltips_style"  >
+						          <span class="tooltips_span_style">
+						            Click here to contact<br/>
+						          </span>
+						     </rich:toolTip>	
+						        <h:outputText value="Contact" border="0" />		
+						</a4j:commandLink>						
 												
 					</rich:column>
 
