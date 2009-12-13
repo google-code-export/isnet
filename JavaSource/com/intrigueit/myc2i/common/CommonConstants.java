@@ -31,6 +31,10 @@ public class CommonConstants {
     public static final Long ROLE_GUEST = 22L;
     
     public static final Long ACTIVITY_TYPE_MESSAGE = 27L;
+    
+    public static final String ACTIVITY_LOG_MENTOR = "ACTIVITY_LOG_MENTOR";
+    public static final String ACTIVITY_LOG_PROTEGE = "ACTIVITY_LOG_PROTEGE";
+    
     public static final String ACTIVITY_TYPE_MENTOR_REQUEST = "Mentor Request";
     public static final String ACTIVITY_TYPE_PROTEGE_REQUEST = "Protege Request";
     //public static final Long ACTIVITY_TYPE_MENTOR_RELEASE = 24L;
