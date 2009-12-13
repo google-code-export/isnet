@@ -14,6 +14,12 @@ var orginalText = ""
 var isCheck = true;
 var searchBoxObj = "";
 
+Common.setRadioValue = function ( id, value ) {
+	var obj = document.getElementById("idMainForm:"+id);
+	if ( obj && value ) {
+		obj.value = value; 
+	}
+}
 Common.resetSearchValue = function(noRecordMsg) {
   if(!searchBoxObj) return;
   var searchBoxVal = searchBoxObj.value;
