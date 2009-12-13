@@ -278,13 +278,13 @@ public class ViewDataProvider extends BasePage {
 		if(this.getMember().getTypeId().equals(CommonConstants.PROTEGE)){
 			udvList = this.udService.findByProperty("udValuesCategory", "ACTIVITY_LOG_PROTEGE");
 			for (UserDefinedValues userDefinedValues : udvList) {
-				activityList.add(new SelectItem(userDefinedValues.getUdValuesId()+"",userDefinedValues.getUdValuesValue().toString()));
+				activityList.add(new SelectItem(userDefinedValues.getUdValuesId()+"",userDefinedValues.getUdValuesDesc().toString()));
 			}
 			
 		}else{
 			udvList = this.udService.findByProperty("udValuesCategory", "ACTIVITY_LOG_MENTOR");
 			for (UserDefinedValues userDefinedValues : udvList) {
-				activityList.add(new SelectItem(userDefinedValues.getUdValuesId()+"",userDefinedValues.getUdValuesValue().toString()));
+				activityList.add(new SelectItem(userDefinedValues.getUdValuesId()+"",userDefinedValues.getUdValuesDesc().toString()));
 			}			
 		}
 	}
