@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.intrigueit.myc2i.common.CommonConstants;
+import com.intrigueit.myc2i.common.cache.CachingManager;
 import com.intrigueit.myc2i.common.view.BasePage;
 import com.intrigueit.myc2i.dashboard.report.MemberReport;
 import com.intrigueit.myc2i.member.domain.Member;
@@ -26,6 +27,8 @@ import com.intrigueit.myc2i.utility.Emailer;
 @Scope("session")
 public class DashboardViewHandler extends BasePage implements Serializable{
 
+	private static final long serialVersionUID = -418368951400766088L;
+
 	/** Most voted story */
 	private String mostVotedStory;
 	
@@ -38,17 +41,23 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 	
 	/** Get all pending request of member */
 	private List<MemberLog> pendingRequests;
+	private List<MemberLog> protegePendingActivity;
+	private List<MemberLog> protegePendingMentorRequests;
 	
 	/** What new list */
 	private List<UserDefinedValues> whatNewList;
 	private List<UserDefinedValues> islamicTerms;
 	private List<UserDefinedValues> importantLinks;
 	
+	private List<Member> mentorsAraoundProtege;
+	
 	/** Services ref */
 	private StoryService storyService;
 	private MemberLogService logService;
 	private UDValuesService udService;
 	private MemberService memberService;
+
+	
 	private List<MemberReport> mentorReport;
 	private List<Member> idleMentors;
 	private String note;
@@ -459,6 +468,34 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 
 	public void setAction(String action) {
 		this.action = action;
+	}
+	
+	public List<MemberLog> getProtegePendingActivity() {
+		try{
+			this.protegePendingActivity = this.logService.getProtegePendingActivities(this.getMember().getMemberId());
+		}
+		catch(Exception ex){
+			log.error(ex.getCause());
+		}
+		return protegePendingActivity;
+	}
+
+	public void setProtegePendingActivity(List<MemberLog> protegePendingActivity) {
+		this.protegePendingActivity = protegePendingActivity;
+	}
+
+	public List<MemberLog> getProtegePendingMentorRequests() {
+		try{
+			this.protegePendingMentorRequests= this.logService.getProtegePendingMentorRequests(this.getMember().getMemberId());
+		}
+		catch(Exception ex){
+			log.error(ex.getCause());
+		}		
+		return protegePendingMentorRequests;
+	}
+
+	public void setProtegePendingMentorRequests(List<MemberLog> protegePendingMentorRequests) {
+		this.protegePendingMentorRequests = protegePendingMentorRequests;
 	}
 
 	
