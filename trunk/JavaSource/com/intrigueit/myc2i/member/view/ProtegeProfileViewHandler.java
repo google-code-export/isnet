@@ -253,8 +253,10 @@ public class ProtegeProfileViewHandler extends BasePage{
 		try{
 			this.protegeCurrentMentor.clear();
 			Member me = this.memberService.findById(this.getMember().getMemberId());
-			Member mem = this.memberService.findById(me.getMentoredByMemberId());
-			this.protegeCurrentMentor.add(mem);
+			if(me.getMentoredByMemberId()!= null){
+				Member mem = this.memberService.findById(me.getMentoredByMemberId());
+				this.protegeCurrentMentor.add(mem);
+			}
 		}
 		catch(Exception ex){
 			log.error(ex.getMessage());
