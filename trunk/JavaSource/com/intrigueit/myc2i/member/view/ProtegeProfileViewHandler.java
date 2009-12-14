@@ -16,6 +16,7 @@ import com.intrigueit.myc2i.member.service.MemberService;
 import com.intrigueit.myc2i.memberlog.domain.MemberLog;
 import com.intrigueit.myc2i.memberlog.service.MemberLogService;
 import com.intrigueit.myc2i.membersearch.dao.MemberSearchDao;
+import com.intrigueit.myc2i.udvalues.domain.UserDefinedValues;
 import com.intrigueit.myc2i.udvalues.service.UDValuesService;
 import com.intrigueit.myc2i.utility.Emailer;
 import com.intrigueit.myc2i.zipcode.ZipCodeUtil;
@@ -84,6 +85,9 @@ public class ProtegeProfileViewHandler extends BasePage{
 		return zipCodes;
 	}
 	
+	/**
+	 * create mentor release by protege
+	 */
 	public void releaseMentor(){
 		String memberId = this.getParameter("MEMBER_ID");
 		if(memberId == null || memberId.equals("")){
@@ -100,23 +104,36 @@ public class ProtegeProfileViewHandler extends BasePage{
 			this.memberService.update(protege);
 			this.getSession().setAttribute(CommonConstants.SESSION_MEMBER_KEY, protege);
 			
-			this.createMentorReleaseLog(mentor);
-			
-			String msgBody = this.getText("email_mentor_release_body",new String[]{ this.getMember().getFirstName() +" "+ this.getMember().getLastName()});
-			String emailSubject = this.getText("email_mentor_release_subject");
-			
-			this.sendConfirmationEmail(mentor.getEmail(),msgBody,emailSubject);
+			MemberLog log =  this.createMentorReleaseLog(mentor);
+			if( log != null){
+				String msgBody = this.getText("email_mentor_release_body",new String[]{ this.getMember().getFirstName() +" "+ this.getMember().getLastName()});
+				String emailSubject = this.getText("email_mentor_release_subject");
+				this.sendConfirmationEmail(mentor.getEmail(),msgBody,emailSubject);				
+			}
+
 			
 		}
 		catch(Exception ex){
 			log.error(ex.getMessage());
 		}		
 	}
+
+	private UserDefinedValues getMyUserDefinedValue(){
+		List<UserDefinedValues> types = udService.findByProperty("udValuesValue", CommonConstants.ACTIVITY_TYPE_PROTEGE_RELEASE);
+		for(UserDefinedValues val: types){
+			if(this.getMember().getTypeId().equals(CommonConstants.PROTEGE)){
+				if(val.getUdValuesCategory().equals(CommonConstants.ACTIVITY_LOG_PROTEGE)){
+					return val;
+				}
+			}
+		}
+		return null;
+	}
 	
-	private void createMentorReleaseLog(Member mentor){
+	private MemberLog createMentorReleaseLog(Member mentor){
 		try{
 			
-			Long mentorReleaseTypeId = this.udService.getUDValue("udValuesValue", CommonConstants.ACTIVITY_TYPE_MENTOR_RELEASE).getUdValuesId();
+			Long mentorReleaseTypeId = getMyUserDefinedValue().getUdValuesId();
 					
 			MemberLog log = new MemberLog();
 			log.setFromMemberId(this.getMember().getMemberId());
@@ -135,12 +152,17 @@ public class ProtegeProfileViewHandler extends BasePage{
 			log.setMemberLogDateTime(new Timestamp(dt.getTime()));	
 			
 			this.logService.save(log);
+			return log;
 			
 		}
 		catch(Exception ex){
 			log.error(ex.getMessage());
 		}
+		return null;
 	}
+	/**
+	 * Release protege by mentor
+	 */
 	public void releaseProtege(){
 		String memberId = this.getParameter("MEMBER_ID");
 		if(memberId == null || memberId.equals("")){
@@ -155,19 +177,19 @@ public class ProtegeProfileViewHandler extends BasePage{
 			protege.setMentoredByMemberId(null);
 			this.memberService.update(protege);
 			
-			this.createReleaseLog(protege);
-			
-			String msgBody = this.getText("email_protege_release_body",new String[]{ this.getMember().getFirstName() +" "+ this.getMember().getLastName()});
-			String emailSubject = this.getText("email_protege_release_subject");
-			
-			this.sendConfirmationEmail(protege.getEmail(), msgBody,emailSubject);
+			MemberLog log = this.createProtegeReleaseLog(protege);
+			if(log != null){
+				String msgBody = this.getText("email_protege_release_body",new String[]{ this.getMember().getFirstName() +" "+ this.getMember().getLastName()});
+				String emailSubject = this.getText("email_protege_release_subject");
+				this.sendConfirmationEmail(protege.getEmail(), msgBody,emailSubject);
+			}
 			
 		}
 		catch(Exception ex){
 			log.error(ex.getMessage());
 		}
 	}
-	private void createReleaseLog(Member protege){
+	private MemberLog createProtegeReleaseLog(Member protege){
 		try{
 			
 			Long mentorReleaseTypeId = this.udService.getUDValue("udValuesValue", CommonConstants.ACTIVITY_TYPE_MENTOR_RELEASE).getUdValuesId();
@@ -190,11 +212,13 @@ public class ProtegeProfileViewHandler extends BasePage{
 			log.setMemberLogDateTime(new Timestamp(dt.getTime()));	
 			
 			this.logService.save(log);
+			return log;
 			
 		}
 		catch(Exception ex){
 			log.error(ex.getMessage());
 		}
+		return null;
 	}
 	/** Send release email to protege */
 	private void sendConfirmationEmail(String email,String msgBody,String emailSubject)throws Exception{
