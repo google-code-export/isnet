@@ -123,7 +123,8 @@ public class CommonValidator extends BasePage {
 			if (member.getEthinicity()==-1) {
 			  this.appendErrorMessage(errorMessage,"member_validation_ethinicity");
       }			
-			if (member.getMaritalStatus().equals("-1")) {
+			if (member.getMaritalStatus()!=null && member.getMaritalStatus().equals("-1") 
+			    && !memberType.equals(ServiceConstants.PROTEGE)) {
 			  this.appendErrorMessage(errorMessage,"member_validation_marital_status");
       }			
 			
