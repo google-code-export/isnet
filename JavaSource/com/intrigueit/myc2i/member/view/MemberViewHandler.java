@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.intrigueit.myc2i.common.CommonConstants;
+import com.intrigueit.myc2i.common.ServiceConstants;
 import com.intrigueit.myc2i.common.utility.CryptographicUtility;
 import com.intrigueit.myc2i.common.utility.PassPhrase;
 import com.intrigueit.myc2i.common.view.BasePage;
@@ -195,7 +196,7 @@ public class MemberViewHandler extends BasePage implements Serializable{
 			this.errMsgs.add( this.getText("member_validation_email_address"));
 		}
 		/** Check the member profession */
-		if(CommonValidator.isEmpty(this.getCurrentMember().getProfession())){
+		if(CommonValidator.isInvalidListItem(this.getCurrentMember().getProfession())){
 			this.errMsgs.add( this.getText("member_validation_profession"));
 		}	
 		/** Check the Year of birth*/
@@ -213,6 +214,12 @@ public class MemberViewHandler extends BasePage implements Serializable{
 		if(CommonValidator.isInvalidListItem(this.getCurrentMember().getEthinicity())){
 			this.errMsgs.add( this.getText("member_validation_ethinicity"));
 		}
+		
+		if (this.getCurrentMember().getMaritalStatus()!=null 
+		    && this.getCurrentMember().getMaritalStatus().equals("-1") 
+        && this.getCurrentMember().getTypeId() != CommonConstants.PROTEGE) {
+		  this.errMsgs.add( this.getText("member_validation_marital_status"));
+    }   
 /*		*//** Check the valid password *//*
 		if(!CommonValidator.isValidPassword(this.getCurrentMember().getPassword())){
 			this.errMsgs.add( this.getText("member_validation_password"));
