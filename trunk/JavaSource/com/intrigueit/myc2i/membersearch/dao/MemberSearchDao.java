@@ -37,7 +37,7 @@ public class MemberSearchDao {
 	    double lonn = bd.doubleValue();
 	    
 		List<String> codes = new ArrayList<String>();
-		String SQL = "select zipcode from zipcodedata where   "+ distance +" > distance("+ latt +","+ lonn +",LATITUDE,LONGITUDE) order by zipcode";
+		String SQL = "select zipcode from zipcodedata where   "+ distance +" >= distance("+ latt +","+ lonn +",LATITUDE,LONGITUDE) order by zipcode";
 		try {
 
 			conn = dataSource.getConnection();
