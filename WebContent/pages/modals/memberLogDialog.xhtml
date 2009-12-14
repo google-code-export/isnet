@@ -42,6 +42,8 @@
 
               <h:selectOneMenu disabled="#{memberLogViewHandler.isActivityTypeReadOnly}" id="idActivityType"  value="#{memberLogViewHandler.currentLog.memberActivityType}" styleClass="form_input_select_medium">
                <f:selectItems value="#{memberLogViewHandler.viewDataProvider.activityList}" />
+				 <a4j:support event="onchange" action="#{memberLogViewHandler.itemChanged}" ajaxSingle="true" reRender="idTopic,idBody"/>
+               
               </h:selectOneMenu>  
 
             <h:outputText value="#{bundle.activity_log_subject}" />
