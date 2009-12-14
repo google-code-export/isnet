@@ -1,8 +1,6 @@
 package com.intrigueit.myc2i.membersearch.view;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -124,28 +122,7 @@ public class MemberSearchViewHandler extends BasePage {
 		return clause;
 		
 	}
-	private List<String> getZipCodes(){
-		List<String> zipCodes = new ArrayList<String>();
-		
-		try{
-			//String memberZipCode = this.getMember().getZip().toString();
-			ZipCode srcZip = this.zipCodeService.findById(this.getSrcZipCode());
-			List<ZipCode> desZipCodes = this.zipCodeService.findAll();
-			ZipCodeUtil util = new ZipCodeUtil();
-			for(ZipCode zip: desZipCodes){
-				Double distance = util.getDistance(srcZip, zip);
-				if(distance <= this.dist){
-					//log.debug("From: "+srcZip.getZipCode() + " Des: "+ zip.getZipCode()+" dis(M): "+ distance);
-					zipCodes.add(zip.getZipCode());
-				}
-				
-			}
-		}
-		catch(Exception ex){
-			
-		}
-		return zipCodes;
-	}
+
 	public MemberService getMemberService() {
 		return memberService;
 	}
