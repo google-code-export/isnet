@@ -61,6 +61,18 @@ public class MemberLogViewHandler extends BasePage implements Serializable {
 		this.udService = udService;
 	}
 
+	public void itemChanged(){
+		try{
+			UserDefinedValues ud = udService.loadById(this.currentLog.getMemberActivityType());
+			this.currentLog.setTopic(ud.getUdValuesDesc());
+			this.currentLog.setMemberLogEntryDescription(ud.getUdValuesDesc());
+			
+		}
+		catch(Exception ex){
+			ex.printStackTrace();
+		}
+
+	}
 	public void initMemberLog() {
 		this.currentLog = new MemberLog();
 		this.errMsgs.clear();
@@ -85,6 +97,22 @@ public class MemberLogViewHandler extends BasePage implements Serializable {
 			log.error(ex.getMessage());
 		}
 	}
+	private UserDefinedValues getMyUserDefinedValue(){
+		List<UserDefinedValues> types = udService.findByProperty("udValuesValue", CommonConstants.ACTIVITY_TYPE_PROTEGE_REQUEST);
+		for(UserDefinedValues val: types){
+			if(this.getMember().getTypeId().equals(CommonConstants.PROTEGE)){
+				if(val.getUdValuesCategory().equals(CommonConstants.ACTIVITY_LOG_PROTEGE)){
+					return val;
+				}
+			}
+			if(this.getMember().getTypeId().equals(CommonConstants.MENTOR)){
+				if(val.getUdValuesCategory().equals(CommonConstants.ACTIVITY_LOG_MENTOR)){
+					return val;
+				}
+			}			
+		}
+		return null;
+	}
 	public void initMemberLogForProtegeRequest() {
 		try{
 			this.memberName = this.getRequest().getParameter("MEMBER_NAME");
@@ -93,11 +121,8 @@ public class MemberLogViewHandler extends BasePage implements Serializable {
 				return;
 			}
 
-			UserDefinedValues actType = null;
-			List<UserDefinedValues> types = udService.findByProperty("udValuesValue", CommonConstants.ACTIVITY_TYPE_PROTEGE_REQUEST);
-			if(types != null && types.size() > 0){
-				actType = types.get(0);
-			}
+			UserDefinedValues actType = this.getMyUserDefinedValue();
+			this.log.debug(actType.getUdValuesDesc()+ ""+ actType.getUdValuesCategory());
 			
 			this.currentLog = new MemberLog();
 			this.currentLog.setToMemberId(Long.parseLong(memberId));
@@ -122,8 +147,9 @@ public class MemberLogViewHandler extends BasePage implements Serializable {
 				return;
 			}
 			UserDefinedValues actType = null;
-			List<UserDefinedValues> types = udService.findByProperty("udValuesValue", CommonConstants.ACTIVITY_TYPE_MENTOR_REQUEST);
+			List<UserDefinedValues> types = udService.findByProperty("udValuesValue", CommonConstants.ACTIVITY_TYPE_PROTEGE_REQUEST);
 			if(types != null && types.size() > 0){
+				
 				actType = types.get(0);
 			}
 			
@@ -142,6 +168,7 @@ public class MemberLogViewHandler extends BasePage implements Serializable {
 			log.error(ex.getMessage());
 		}
 	}	
+	
 	public void initMemberLogForContact() {
 		try{
 			this.memberName = this.getRequest().getParameter("MEMBER_NAME");
