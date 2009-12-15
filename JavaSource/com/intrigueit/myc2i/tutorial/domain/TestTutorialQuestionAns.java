@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.validator.Length;
 
@@ -97,6 +98,9 @@ public class TestTutorialQuestionAns implements Serializable {
 
   @Column(name="RECORD_LAST_UPDATED_DATE")
   private Date recordLastUpdatedDate;
+  
+  @Transient
+  private String examinerAns;
   
   public TestTutorialQuestionAns() {
     super();
@@ -402,4 +406,19 @@ public class TestTutorialQuestionAns implements Serializable {
     this.videoFileName = videoFileName;
   }
 
+  /**
+   * @return the examinerAns
+   */
+  public String getExaminerAns() {
+    return examinerAns;
+  }
+
+  /**
+   * @param examinerAns the examinerAns to set
+   */
+  public void setExaminerAns(String examinerAns) {
+    this.examinerAns = examinerAns;
+  }
+  
+  
 }
