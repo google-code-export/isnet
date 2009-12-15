@@ -14,33 +14,13 @@
       <f:facet name="controls">
                 <h:graphicImage value="/images/close.png" style="cursor:pointer" onclick="Richfaces.hideModalPanel('idmemberActivityLogDetailDialog')" />
           </f:facet>              
-         <a4j:form id="memberLogForm">
+         <a4j:form id="memberLogForm2">
          <h:panelGroup id="idmemberLogDialogContainer">
 
         <rich:panel styleClass="popup_window_outer_panel_style" id="idPopupPanel">
 
 				<rich:dataTable  width="100%" id="idDataGrid"  rowClasses=",container_even_row_style" rows="10"  
 			                value="#{memberLogViewHandler.memberLastWeekLogs}" var="log" headerClass="table_column_style" cellpadding="0" cellspacing="0">
-<!-- 
-		             <rich:column>
-			             <f:facet name="header">
-			               <h:outputText value="From"/>
-			             </f:facet>
-				 			<h:outputText value="#{log.fromMember.firstName} #{log.fromMember.lastName}" />
-		             </rich:column>		             
-		             <rich:column>
-			             <f:facet name="header">
-			               <h:outputText value="To"/>
-			             </f:facet>
-				 			<h:outputText value="#{log.toMember.firstName} #{log.toMember.lastName}" />
-		             </rich:column>
-		             <rich:column>
-			             <f:facet name="header">
-			               <h:outputText value="#{bundle.activity_type}"/>
-			             </f:facet>
-				 			<h:outputText value="#{log.userDefinedValues.udValuesValue}" />
-		             </rich:column>	
-		              -->
 		             <rich:column>
 			             <f:facet name="header">
 			               <h:outputText value="#{bundle.activity_subject}"/>
