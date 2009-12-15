@@ -43,12 +43,60 @@ public class ModulePlayer extends BasePage{
   	
   	private Boolean hasQuestionAns;
   	
+  	private Date examStartDate;
+  	
   	private TestResultService testService;
   	private TestResultDetailsService testDetailsService;
   	
+  	public void saveTestResult() {      
+  	  int totalQuestion  = 0;
+  	  int tCorrectAns  = 0;
+  	  try {
+        if ( this.tutorials != null ) {
+          TestResult testResult = new TestResult();
+          Set<TestResultDetails> testDetailsList = new HashSet<TestResultDetails>();
+          for(TestTutorialQuestionAns tQuestionAns : this.tutorials) {            
+            if(tQuestionAns.getQuestion() != null && !tQuestionAns.getQuestion().equals("")){
+              totalQuestion++;
+              TestResultDetails testDetails = new TestResultDetails();
+              if ((tQuestionAns.getQuestionCorrectAnswer() != null && tQuestionAns.getExaminerAns()!=null)
+                  && (tQuestionAns.getQuestionCorrectAnswer().equals(tQuestionAns.getExaminerAns()))) {
+                testDetails.setIsCorrect(true);
+                tCorrectAns++;
+              } else {
+                testDetails.setIsCorrect(false);
+              }
+              testDetails.setRecordCreatorId(this.getMember().getMemberId()+"");
+              testDetails.setRecordCreateDate(new Date());
+              testDetails.setLastUpdatedDate(new Date());
+              testDetails.setRecordUpdatorId(this.getMember().getMemberId()+"");
+              testDetails.setMemberAns(tQuestionAns.getExaminerAns());
+              testDetails.setQuestionId(tQuestionAns.getQuestionAnsId());              
+              testDetails.setTestResult(testResult);
+              testDetailsList.add(testDetails);
+            }
+          }          
+          testResult.setModuleId(module.getModulesId());
+          testResult.setDocumentId(module.getDocumentId());
+          testResult.setMemberId(this.getMember().getMemberId());
+          testResult.setStartTime(this.getExamStartDate());
+          testResult.setEndTime(new Date());
+          testResult.setTotalQuestions(new Long(totalQuestion));
+          testResult.setTotalCorrect(new Long(tCorrectAns));
+          testResult.setIsPassed(true);
+          testResult.setRecordCreatorId(this.getMember().getMemberId()+"");
+          testResult.setRecordCreateDate(new Date());
+          testResult.setLastUpdatedDate(new Date());
+          testResult.setRecordUpdatorId(this.getMember().getMemberId()+"");
+          testResult.setTestResultDetails(testDetailsList);
+          this.testService.save(testResult);
+        }
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+  	}
   	
-  	public void saveTestResult(){
-  		
+  	public void XsaveTestResult() {  		
   		try{
   			TestResult test = new TestResult();
   			test.setModuleId(module.getModulesId());
@@ -177,6 +225,7 @@ public class ModulePlayer extends BasePage{
   		}
   	}
 	public void init(){
+	  this.setExamStartDate(new Date());
 		String moduleId = this.getRequest().getParameter("moduleId");
 		if(moduleId == null || moduleId.equals("")){
 			return;
@@ -234,7 +283,6 @@ public class ModulePlayer extends BasePage{
 		this.pageContent = pageContent;
 	}
 
-
 	public MediaBean getMediaBean() {
 		return mediaBean;
 	}
@@ -291,5 +339,18 @@ public class ModulePlayer extends BasePage{
 	public void setTestDetailsService(TestResultDetailsService testDetailsService) {
 		this.testDetailsService = testDetailsService;
 	}
-	
+
+  /**
+   * @return the examStartDate
+   */
+  public Date getExamStartDate() {
+    return examStartDate;
+  }
+
+  /**
+   * @param examStartDate the examStartDate to set
+   */
+  public void setExamStartDate(Date examStartDate) {
+    this.examStartDate = examStartDate;
+  }	
 }
