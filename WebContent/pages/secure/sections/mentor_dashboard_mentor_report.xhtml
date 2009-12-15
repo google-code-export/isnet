@@ -173,10 +173,10 @@
 						     </rich:toolTip>	
 						</a4j:commandLink>
 						 -->
-         <h:outputLink style="font-weight:bolder;"  value="#{controllerBean.contextPath}/pages/secure/mentorLogReview.faces">
-           <h:outputText value=" Log"/>
-           <a4j:actionparam name="MEMBER_ID" value="#{report.mentor.memberId}"  />
-         </h:outputLink>						
+		         <h:outputLink style="font-weight:bolder;"  value="#{controllerBean.contextPath}/pages/secure/mentorLogReview.faces">
+		           <h:outputText value=" Log"/>
+		           <a4j:actionparam name="MEMBER_ID" value="#{report.mentor.memberId}"  />
+		         </h:outputLink>						
 											
 				</h:column>
 				<rich:subTable rowClasses="odd-row,even-row" var="protege"
@@ -201,9 +201,9 @@
 					</rich:column>
 					<rich:column>
 						<f:facet name="header">
-							<h:outputText value="#{bundle.dashboard_protege_mentor_date}" />
+							<h:outputText value="#{bundle.dashboard_protege_mentor_last_activity}" />
 						</f:facet>
-						<h:outputText value="#{protege.mentoredByDate}">
+						<h:outputText value="#{protege.lastActivity}">
 							<f:convertDateTime dateStyle="default" pattern="#{bundle.short_date_pattern}" />
 						</h:outputText>
 					</rich:column>
