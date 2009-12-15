@@ -1,16 +1,13 @@
 package com.intrigueit.myc2i.tutotialtest.domain;
 
 import java.util.Date;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -19,7 +16,12 @@ import javax.persistence.Table;
 @Table(name = "TUTORIAL_TEST_DETAILS")
 public class TestResultDetails implements java.io.Serializable{
 
-	@Id
+	/**
+   * 
+   */
+  private static final long serialVersionUID = -2311910343080435672L;
+
+  @Id
 	@Column(name = "ID")
 	@GeneratedValue(generator = "TutorialTestDetailSeq")
 	@SequenceGenerator(name = "TutorialTestDetailSeq", sequenceName = "TUTORIAL_TEST_DETAILS_ID_SEQ", allocationSize = 1, initialValue = 1)
