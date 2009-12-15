@@ -482,7 +482,7 @@ public class MemberLogViewHandler extends BasePage implements Serializable {
 		this.isActivityTypeReadOnly = isActivityTypeReadOnly;
 	}
 
-	public List<MemberLog> getMemberLastWeekLogsxxx() {
+	public List<MemberLog> getMemberLastWeekLogs() {
 		this.initRecentLog();
 		return memberLastWeekLogs;
 	}
