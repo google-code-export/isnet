@@ -58,7 +58,7 @@
 
 					<rich:panel rendered="#{modulePlayer.hasQuestionAns}" id="idQuestionPanel" headerClass="container_box_panel_header"  bodyClass="container_body_style">
 						<f:facet name="header"><h:outputText value="#{modulePlayer.currentPage.question}" /> </f:facet>
-						<h:selectOneRadio layout="pageDirection">
+						<h:selectOneRadio layout="pageDirection" value="#{modulePlayer.currentPage.examinerAns}">
 						  <f:selectItem  itemLabel="#{modulePlayer.currentPage.questionOptionAnswerA}" itemValue="A" />
 						  <f:selectItem  itemLabel="#{modulePlayer.currentPage.questionOptionAnswerB}" itemValue="B" />
 						  <f:selectItem  itemLabel="#{modulePlayer.currentPage.questionOptionAnswerC}" itemValue="C" />
@@ -79,8 +79,7 @@
 		<table>
 			<tr>
 				<td>
-					<h:commandButton action="#{modulePlayer.playFirstPage}" value="First">
-						
+					<h:commandButton action="#{modulePlayer.playFirstPage}" value="First">						
 					</h:commandButton>
 				
 				</td>
