@@ -13,7 +13,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.intrigueit.myc2i.common.CommonConstants;
-import com.intrigueit.myc2i.common.ServiceConstants;
 import com.intrigueit.myc2i.common.utility.CryptographicUtility;
 import com.intrigueit.myc2i.common.utility.PassPhrase;
 import com.intrigueit.myc2i.common.view.BasePage;
