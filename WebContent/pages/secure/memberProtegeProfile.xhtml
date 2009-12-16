@@ -84,7 +84,7 @@
 						     </rich:toolTip>	
 						</a4j:commandLink>
 						<rich:spacer width="5"/>
-		         		 <a4j:commandLink  reRender="idDataGrid,idDataScroller" action="#{protegeProfileViewHandler.releaseProtege}" >
+		         		 <a4j:commandLink  onclick="forceBlockUI(ajaxProcessMsg);"   oncomplete="forceUnblockUI();" reRender="idDataGrid,idDataScroller" action="#{protegeProfileViewHandler.releaseProtege}" >
 				            <a4j:actionparam name="MEMBER_ID" value="#{protege.memberId}"  />
 				            <a4j:actionparam name="action" value="RELEASE"  />
 			            	<h:graphicImage value="/images/member_release.png" align="middle" border="0" > 
