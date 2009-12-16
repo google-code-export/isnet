@@ -1,3 +1,6 @@
+
+ALTER TABLE MEMBER ADD (LAST_ACTIVITY  DATE);
+
 -- alter table APPLICATION_PAGES
 alter table APPLICATION_PAGES add constraint "APPLICATION_PAGES_PK" primary key ("PAGE_ID");
 
