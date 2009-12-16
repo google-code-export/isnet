@@ -248,7 +248,7 @@ public class MemberViewHandler extends BasePage implements Serializable{
 		this.currentMember = currentMember;
 	}
 	public List<SelectItem> getStatesList() {
-		return viewDataProvider.getStateList();
+		return getViewDataProvider().getStateList();
 	}
 	
 	public List<SelectItem> getCountryList() {
@@ -261,7 +261,7 @@ public class MemberViewHandler extends BasePage implements Serializable{
 
 	public ArrayList<SelectItem> getMartialStatusList() {
 		if(martialStatusList == null){
-			this.martialStatusList = this.viewDataProvider.getMaritialStatusList();
+			this.martialStatusList = this.getViewDataProvider().getMaritialStatusList();
 		}
 		return martialStatusList;
 	}
@@ -278,11 +278,11 @@ public class MemberViewHandler extends BasePage implements Serializable{
 		this.birthYearlist = birthYearlist;
 	}
 	public List<SelectItem> getProfessionList() {
-		return viewDataProvider.getProfessionList();
+		return getViewDataProvider().getProfessionList();
 	}
 
 	public List<SelectItem> getMadhabList() {
-		return this.viewDataProvider.getMadhabList();
+		return this.getViewDataProvider().getMadhabList();
 	}
 
 	public ArrayList<SelectItem> getKnowledgeLevelList() {
@@ -296,7 +296,7 @@ public class MemberViewHandler extends BasePage implements Serializable{
 	}
 	
 	public List<SelectItem> getReligionList() {
-		return this.viewDataProvider.getReligionList();
+		return this.getViewDataProvider().getReligionList();
 	}
 
 	public String backToLogin(){
