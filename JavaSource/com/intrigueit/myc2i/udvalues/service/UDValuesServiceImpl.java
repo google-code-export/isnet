@@ -72,5 +72,8 @@ public class UDValuesServiceImpl implements UDValuesService {
 		}
 		return null;
 	    
+	}
+	public List<UserDefinedValues> getUDValues(String sql) {
+	    return udValuesDao.loadByQuery(sql, new Object[]{});
 	}	
 }

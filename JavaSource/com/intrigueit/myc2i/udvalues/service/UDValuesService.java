@@ -25,4 +25,6 @@ public interface UDValuesService {
   public UserDefinedValues getUDValue(String propertyName,Object value);
 
   public boolean isUDValueExist(Long recordId, String categoryName, String value);
+  
+  public List<UserDefinedValues> getUDValues(String sql);
 }
