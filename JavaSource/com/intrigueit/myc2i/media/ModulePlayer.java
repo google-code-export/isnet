@@ -48,6 +48,17 @@ public class ModulePlayer extends BasePage{
   	private TestResultService testService;
   	private TestResultDetailsService testDetailsService;
   	
+  	private String initPage;
+  	
+  	public String getInitPage() {
+  		this.getInit();
+  		return initPage;
+  	}
+
+  	public void setInitPage(String initPage) {
+  		this.initPage = initPage;
+  	}	
+  	
   	public void saveTestResult() {      
   	  int totalQuestion  = 0;
   	  int tCorrectAns  = 0;
@@ -224,8 +235,9 @@ public class ModulePlayer extends BasePage{
   			ex.printStackTrace();
   		}
   	}
-	public void init(){
-	  this.setExamStartDate(new Date());
+	public void getInit(){
+	  System.out.println("hummm ...");
+		this.setExamStartDate(new Date());
 		String moduleId = this.getRequest().getParameter("moduleId");
 		if(moduleId == null || moduleId.equals("")){
 			return;
@@ -352,5 +364,7 @@ public class ModulePlayer extends BasePage{
    */
   public void setExamStartDate(Date examStartDate) {
     this.examStartDate = examStartDate;
-  }	
+  }
+
+
 }
