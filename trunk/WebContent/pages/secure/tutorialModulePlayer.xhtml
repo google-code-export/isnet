@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:a4j="http://richfaces.org/a4j"
+	  xmlns:c="http://java.sun.com/jstl/core"
+	  xmlns:rich="http://richfaces.org/rich"      
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+      
+   		
+		<head>
+		<title><ui:insert name="pageTitle">Page Title</ui:insert></title>
+		<style type="text/css">
+			body {
+				  font-family: Verdana, Arial, Helvetica, sans-serif;
+				  font-size: 14px;
+			}
+			.header {
+				  font-family: Verdana, Arial, Helvetica, sans-serif;
+				  font-size: 18px;
+			}
+			.bottom {
+				  font-family: Verdana, Arial, Helvetica, sans-serif;
+				  font-size: 9px;
+				  text-align: center;
+				  vertical-align: middle;
+				  color: #8E969D;
+			}
+      .radioright td {
+        text-align: left;
+      }
+      .radioright td input {
+        float: left;
+      }      
+		</style>		
+		</head>
+
+<body bgcolor="#ffffff">
+<h:form>
+<h:inputHidden value="#{modulePlayer.initPage}" />
+<table style="border:1px solid #CAD6E0"  align="center" cellpadding="0" cellspacing="0" border="0" width="400">
+<tbody>
+
+	<tr>
+		<td class="header" height="42" align="center" valign="middle" width="100%" bgcolor="#E4EBEB">
+			<h:graphicImage value="/images/tutorial_title.png" />
+		</td>
+	</tr>
+	<tr>
+		<td height="1" width="100%" bgcolor="#CAD6E0"></td>
+	</tr>	
+
+	<tr>
+		<td width="100%"  colspan="2">
+			<table width="100%" style="height:150px" align="left" cellpadding="0" cellspacing="0" border="1">
+			<tbody>
+				<tr>
+					<td align="center" width="100%" valign="middle">
+					<rich:panel id="idContainer">
+						<h:panelGroup  rendered="#{!modulePlayer.hasQuestionAns}">
+							<h:outputText id="idContainerxxx" value="#{modulePlayer.mediaBean.pageContent}" escape="false" />
+						</h:panelGroup>					
+					</rich:panel>
+
+					<rich:panel rendered="#{modulePlayer.hasQuestionAns}" id="idQuestionPanel" headerClass="container_box_panel_header"  bodyClass="container_body_style">
+						<f:facet name="header"><h:outputText value="#{modulePlayer.currentPage.question}" /> </f:facet>
+						<h:selectOneRadio styleClass="radioright" layout="pageDirection" value="#{modulePlayer.currentPage.examinerAns}">
+						  <f:selectItem itemLabel="#{modulePlayer.currentPage.questionOptionAnswerA}" itemValue="A" />
+						  <f:selectItem itemLabel="#{modulePlayer.currentPage.questionOptionAnswerB}" itemValue="B" />
+						  <f:selectItem itemLabel="#{modulePlayer.currentPage.questionOptionAnswerC}" itemValue="C" />
+						  <f:selectItem itemLabel="#{modulePlayer.currentPage.questionOptionAnswerD}" itemValue="D" />
+						  <f:selectItem itemLabel="#{modulePlayer.currentPage.questionOptionAnswerE}" itemValue="E" />
+						  <f:selectItem itemLabel="#{modulePlayer.currentPage.questionOptionAnswerF}" itemValue="F" />
+						</h:selectOneRadio>						
+					</rich:panel>
+					</td>
+				</tr>
+			</tbody>
+			</table>
+		</td>
+	</tr>	
+	
+	<tr>
+		<td colspan="2" align="center"  valign="bottom" height="1" width="100%" bgcolor="#FFFBEF">
+		<table>
+			<tr>
+				<td>
+					<h:commandButton action="#{modulePlayer.playFirstPage}" value="First">						
+					</h:commandButton>
+				
+				</td>
+				<td>
+					<h:commandButton action="#{modulePlayer.playPreviousPage}" value="Previous">
+					
+					</h:commandButton>
+				
+				</td>				
+				<td>
+					<h:commandButton value="Stop" action="#{modulePlayer.saveTestResult}">
+						
+					</h:commandButton>
+				</td>
+
+				<td>
+					<h:commandButton action="#{modulePlayer.playNextPage}" value="Next">
+						
+					</h:commandButton>				
+				</td>
+				<td>
+					<h:commandButton action="#{modulePlayer.playLastPage}" value="Last">
+					</h:commandButton>
+				
+				</td>
+			</tr>
+		</table>
+		
+		</td>
+	</tr>
+</tbody>
+</table>
+</h:form>
+</body>
+		
+</html>
