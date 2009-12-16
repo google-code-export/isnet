@@ -14,14 +14,16 @@ public interface GenericDao<T, ID extends Serializable> {
 	void delete(T entity);
 
 	List<T> loadAll();
-
+	
+	List<T> loadByQuery(String sql, Object[] params);
+	
 	List<T> loadByClause(String clause, Object[] params);
 	
 	List<T> loadTopResultsByClause(int top, String clause, Object[] params);
 	
-	public List<T> loadTopResultsByConditions(int top,String clause, Object[] params);
+	List<T> loadTopResultsByConditions(int top,String clause, Object[] params);
 
-	public boolean isDuplicateRecord(String clause);
+	boolean isDuplicateRecord(String clause);
 
-	public boolean isDuplicateRecord(String clause, Object[] params);
+	boolean isDuplicateRecord(String clause, Object[] params);
 }
