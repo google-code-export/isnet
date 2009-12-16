@@ -75,6 +75,16 @@ public abstract class GenericDaoImpl<T, ID extends Serializable> implements
 		}
 		return query.getResultList();
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<T> loadByQuery(String sql, Object[] params) {
+		Query query = entityManager.createQuery(sql);
+		/** bind parameters */
+		for (int i = 0; params != null && i < params.length; i++) {
+			query.setParameter(i + 1, params[i]);
+		}
+		return query.getResultList();
+	}	
 	@SuppressWarnings("unchecked")
 	public List<T> loadTopResultsByClause(int top,String clause, Object[] params) {
 		String hsql = "Select t from " + persistentClass.getName()
