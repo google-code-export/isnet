@@ -33,8 +33,8 @@
             <td style="width: 40%;" align="center">
               <h:outputText value="#{bundle.user_define_values_category_name}"/>
             </td>
-            <td style="width: 200px;" align="left">
-              <h:selectOneMenu styleClass="dropdown" id="categoryName"
+            <td style="width: 400px;" align="left">
+              <h:selectOneMenu  id="categoryName"
                 value="#{udvViewHandler.categoryName}" >
                 <f:selectItems value="#{udvViewHandler.categoryList}"/>
                 <a4j:support event="onchange" action="#{udvViewHandler.getUDValuesByCategory}"
