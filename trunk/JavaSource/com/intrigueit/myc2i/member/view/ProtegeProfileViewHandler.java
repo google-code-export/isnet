@@ -315,10 +315,10 @@ public class ProtegeProfileViewHandler extends BasePage{
 			List<MemberLog> logs1 = this.logService.getAllProtegeReleaseLog(this.getMember().getMemberId(),protegeReleaseTypeId);
 			List<MemberLog> logs2 = this.logService.getAllMentorReleaseLog(this.getMember().getMemberId(),mentorReleaseTypeId);
 			for(MemberLog log : logs1){
-				ids.add(log.getFromMemberId().toString());
+				ids.add(log.getToMemberId().toString());
 			}
 			for(MemberLog log: logs2){
-				ids.add(log.getToMemberId().toString());
+				ids.add(log.getFromMemberId().toString());
 			}
 			
 		}
