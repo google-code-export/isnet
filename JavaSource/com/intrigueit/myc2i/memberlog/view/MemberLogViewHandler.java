@@ -113,6 +113,22 @@ public class MemberLogViewHandler extends BasePage implements Serializable {
 		}
 		return null;
 	}
+	private UserDefinedValues getMentorRequestUserDefinedValue(){
+		List<UserDefinedValues> types = udService.findByProperty("udValuesValue", CommonConstants.ACTIVITY_TYPE_MENTOR_REQUEST);
+		for(UserDefinedValues val: types){
+			if(this.getMember().getTypeId().equals(CommonConstants.PROTEGE)){
+				if(val.getUdValuesCategory().equals(CommonConstants.ACTIVITY_LOG_PROTEGE)){
+					return val;
+				}
+			}
+			if(this.getMember().getTypeId().equals(CommonConstants.MENTOR)){
+				if(val.getUdValuesCategory().equals(CommonConstants.ACTIVITY_LOG_MENTOR)){
+					return val;
+				}
+			}			
+		}
+		return null;
+	}	
 	public void initMemberLogForProtegeRequest() {
 		try{
 			this.memberName = this.getRequest().getParameter("MEMBER_NAME");
@@ -139,7 +155,7 @@ public class MemberLogViewHandler extends BasePage implements Serializable {
 			log.error(ex.getMessage());
 		}
 	}
-	public void initMemberLogForMentorRequest() {
+	public void initMemberLogForMentorRequestxxxx() {
 		try{
 			this.memberName = this.getRequest().getParameter("MEMBER_NAME");
 			String memberId = this.getRequest().getParameter("MEMBER_ID");
@@ -168,7 +184,30 @@ public class MemberLogViewHandler extends BasePage implements Serializable {
 			log.error(ex.getMessage());
 		}
 	}	
-	
+	public void initMemberLogForMentorRequest2() {
+		try{
+			this.memberName = this.getRequest().getParameter("MEMBER_NAME");
+			String memberId = this.getRequest().getParameter("MEMBER_ID");
+			if(memberId == null){
+				return;
+			}
+			UserDefinedValues actType = getMentorRequestUserDefinedValue();
+
+			this.currentLog = new MemberLog();
+			this.currentLog.setToMemberId(Long.parseLong(memberId));
+			this.currentLog.setMemberActivityType(actType.getUdValuesId());
+			this.currentLog.setTopic(this.getText("acitivity_log_mentor_request_sub"));
+			this.errMsgs.clear();
+			this.hasError = false;
+			this.showSearchBox = false;
+			this.isActivityTypeReadOnly = true;
+			
+			
+		}
+		catch(Exception ex){
+			log.error(ex.getMessage());
+		}
+	}	
 	public void initMemberLogForContact() {
 		try{
 			this.memberName = this.getRequest().getParameter("MEMBER_NAME");
