@@ -45,7 +45,7 @@
 				</td>	
 				<td>
 					<a4j:commandButton  onclick="forceBlockUI(ajaxProcessMsg);"   oncomplete="forceUnblockUI();" value="#{bundle.button_label_search}" action="#{memberSearchViewHandler.executeSearch}" reRender="idResultPanel">
-						<f:param name="SEARCH_TYPE" value="LEAD_MENTOR"/>
+						<f:param name="SEARCH_TYPE" value="MENTOR"/>
 					</a4j:commandButton>
 				</td>
 				<td width="25%"></td>							      
@@ -74,7 +74,7 @@
 		<rich:panel id="idResultPanel" headerClass="container_box_panel_header"  bodyClass="container_body_style" >
 			<f:facet name="header"><h:outputText value="#{bundle.protege_lead_mentor_result}" /> </f:facet>
 			<h:panelGrid columns="1" width="100%" cellpadding="0" cellspacing="0" border="0">
-				<rich:dataTable  width="100%" id="idDataGrid"  rowClasses=",container_even_row_style" rows="5" 
+				<rich:dataTable  width="100%" id="idDataGrid"  rowClasses=",container_even_row_style" rows="10" 
 			                value="#{memberSearchViewHandler.members}" var="member" headerClass="table_column_style" cellpadding="0" cellspacing="0">
 		             <rich:column>
 			             <f:facet name="header">
@@ -142,7 +142,7 @@
 			             <f:facet name="header">
 			               <h:outputText value="#{bundle.protege_search_add_protege}" />
 			             </f:facet>
-		         		 <a4j:commandLink value="#{bundle.button_label_send_request}"  reRender="idmemberLogDialog" action="#{memberLogViewHandler.initMemberLogForProtegeRequest}" oncomplete="Richfaces.showModalPanel('idmemberLogDialog')">
+		         		 <a4j:commandLink value="#{bundle.button_label_send_request}"  reRender="idmemberLogDialog" action="#{memberLogViewHandler.initMemberLogForProtegeRequestForLeadMentor}" oncomplete="Richfaces.showModalPanel('idmemberLogDialog')">
 				             <a4j:actionparam name="MEMBER_ID" value="#{member.memberId}"  />
 				              <a4j:actionparam name="MEMBER_NAME" value="#{member.firstName} #{member.lastName} "  />
 		            		 <rich:toolTip styleClass="tooltips_style"  >
