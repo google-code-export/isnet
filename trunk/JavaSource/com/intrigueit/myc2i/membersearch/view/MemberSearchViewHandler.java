@@ -69,9 +69,6 @@ public class MemberSearchViewHandler extends BasePage {
 			if(searchType.equals("PROTEGE")){
 				clause = " t.mentoredByMemberId IS NULL and t.typeId =17";
 			}
-			else if(searchType.equals("LEAD_MENTOR")){
-				clause = " t.typeId =16";
-			}
 			else if(searchType.equals("MENTOR")){
 				clause = " t.typeId =15";
 			}
