@@ -155,6 +155,33 @@ public class MemberLogViewHandler extends BasePage implements Serializable {
 			log.error(ex.getMessage());
 		}
 	}
+	public void initMemberLogForProtegeRequestForLeadMentor() {
+		try{
+			this.memberName = this.getRequest().getParameter("MEMBER_NAME");
+			String memberId = this.getRequest().getParameter("MEMBER_ID");
+			if(memberId == null){
+				return;
+			}
+
+			UserDefinedValues actType = this.getMyUserDefinedValue();
+			this.log.debug(actType.getUdValuesDesc()+ ""+ actType.getUdValuesCategory());
+			
+			this.currentLog = new MemberLog();
+			this.currentLog.setToMemberId(Long.parseLong(memberId));
+			this.currentLog.setMemberActivityType(actType.getUdValuesId());
+			this.currentLog.setTopic(this.getText("acitivity_log_protege_request_formentor_sub"));
+			this.currentLog.setMemberLogEntryDescription(this.getText("acitivity_log_protege_request_formentor_body"));
+			this.errMsgs.clear();
+			this.hasError = false;
+			this.showSearchBox = false;
+			this.isActivityTypeReadOnly = true;
+			
+			
+		}
+		catch(Exception ex){
+			log.error(ex.getMessage());
+		}
+	}	
 	public void initMemberLogForMentorRequestxxxx() {
 		try{
 			this.memberName = this.getRequest().getParameter("MEMBER_NAME");
