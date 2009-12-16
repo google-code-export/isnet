@@ -53,5 +53,6 @@ public interface MemberLogService {
 	
 	public List<MemberLog> getMentorPendingMentorRequests(Long memberId);
 	
+	public List<MemberLog> loadByQuery(String sql, Object[] params);
 	
 }

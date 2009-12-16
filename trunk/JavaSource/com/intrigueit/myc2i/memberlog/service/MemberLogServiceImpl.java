@@ -110,6 +110,9 @@ public class MemberLogServiceImpl implements MemberLogService{
 		return memberLogDao.loadByClause(clause, new Object[]{CommonConstants.ACTIVITY_STATUS.PENDING.toString(),memberId});
 	}
 	
+	public List<MemberLog> loadByQuery(String sql, Object[] params){
+		return memberLogDao.loadByQuery(sql, params);
+	}
 	public List<MemberLog> getProtegePendingMentorRequests(Long memberId) {
 		String clause = " upper(t.status) = ?1 and t.toMemberId=?2";
 		List<MemberLog> memberLogs =  memberLogDao.loadByClause(clause, new Object[]{CommonConstants.ACTIVITY_STATUS.PENDING.toString(),memberId});
