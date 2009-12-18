@@ -442,8 +442,7 @@ public class ModulePlayer extends BasePage{
   			ex.printStackTrace();
   		}
   	}
-	public void getInit(){
-	  this.setExamStartDate(new Date());
+	public void getInit(){	  
 	  if (this.getMember()!=null && this.getMember().getTypeId().equals(CommonConstants.PROTEGE)) {
       this.disabledNext = true;
       this.disabledLast = true;
@@ -453,6 +452,7 @@ public class ModulePlayer extends BasePage{
 			return;
 		}		
 		try {			
+		  this.setExamStartDate(new Date());
 		  this.showFirst = true;
 	    this.showPrevious = true;
 	    this.showStop = true;
