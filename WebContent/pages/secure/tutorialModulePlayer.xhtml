@@ -31,16 +31,29 @@
       }
       .radioright td input {
         float: left;
-      }      
-		</style>		
+      }
+      .ibutton{ border: 1px solid #152a4d; background-color: #c6d3dc; font-size: 9pt; font-weight: bold;
+          color: #11358B; padding-top:2px; padding-bottom:2px; padding-left:5px; padding-right:5px;}
+      .prompt{font-size: 9pt; font-weight: normal; color: #375e9f;
+      padding-left: 10px;text-align: left; vertical-align: middle;}
+      .note{font-size: 9pt; font-weight: normal; color: red; font-style:italic;
+        padding-left: 10px;text-align: left; vertical-align: middle;}      
+		</style>
+      <script type="text/javascript" >
+      function enabledButton(){
+        var nextBtn = document.getElementById("idTModuleForm:idNext");
+        var lastBtn = document.getElementById("idTModuleForm:idLast");
+        if ( nextBtn ) nextBtn.disabled = false;
+        if ( lastBtn ) lastBtn.disabled = false;
+      }    
+      </script>
 		</head>
 
 <body bgcolor="#ffffff">
-<h:form>
+<h:form id="idTModuleForm">
 <h:inputHidden value="#{modulePlayer.initPage}" />
 <table style="border:1px solid #CAD6E0"  align="center" cellpadding="0" cellspacing="0" border="0" width="400">
 <tbody>
-
 	<tr>
 		<td class="header" height="42" align="center" valign="middle" width="100%" bgcolor="#E4EBEB">
 			<h:graphicImage value="/images/tutorial_title.png" />
@@ -52,27 +65,98 @@
 
 	<tr>
 		<td width="100%"  colspan="2">
-			<table width="100%" style="height:150px" align="left" cellpadding="0" cellspacing="0" border="1">
+			<table width="100%" style="height:150px;border:1px solid #FFFFEF" align="left" cellpadding="0" cellspacing="0" 
+        border="0">
 			<tbody>
 				<tr>
 					<td align="center" width="100%" valign="middle">
 					<rich:panel id="idContainer">
 						<h:panelGroup  rendered="#{!modulePlayer.hasQuestionAns}">
 							<h:outputText id="idContainerxxx" value="#{modulePlayer.mediaBean.pageContent}" escape="false" />
-						</h:panelGroup>					
+						</h:panelGroup>
 					</rich:panel>
-
-					<rich:panel rendered="#{modulePlayer.hasQuestionAns}" id="idQuestionPanel" headerClass="container_box_panel_header"  bodyClass="container_body_style">
-						<f:facet name="header"><h:outputText value="#{modulePlayer.currentPage.question}" /> </f:facet>
-						<h:selectOneRadio styleClass="radioright" layout="pageDirection" value="#{modulePlayer.currentPage.examinerAns}">
-						  <f:selectItem itemLabel="#{modulePlayer.currentPage.questionOptionAnswerA}" itemValue="A" />
-						  <f:selectItem itemLabel="#{modulePlayer.currentPage.questionOptionAnswerB}" itemValue="B" />
-						  <f:selectItem itemLabel="#{modulePlayer.currentPage.questionOptionAnswerC}" itemValue="C" />
-						  <f:selectItem itemLabel="#{modulePlayer.currentPage.questionOptionAnswerD}" itemValue="D" />
-						  <f:selectItem itemLabel="#{modulePlayer.currentPage.questionOptionAnswerE}" itemValue="E" />
-						  <f:selectItem itemLabel="#{modulePlayer.currentPage.questionOptionAnswerF}" itemValue="F" />
-						</h:selectOneRadio>						
-					</rich:panel>
+          <h:panelGroup rendered="#{modulePlayer.hasQuestionAns}">
+  					<rich:panel id="idQuestionPanel" rendered="#{modulePlayer.notEndExam}" 
+              headerClass="container_box_panel_header"  bodyClass="container_body_style">
+  						<f:facet name="header"><h:outputText value="#{modulePlayer.currentPage.question}" /> </f:facet>
+  						<h:selectOneRadio styleClass="radioright" layout="pageDirection" value="#{modulePlayer.currentPage.examinerAns}">
+  						  <f:selectItem itemLabel="#{modulePlayer.currentPage.questionOptionAnswerA}" itemValue="A" />
+  						  <f:selectItem itemLabel="#{modulePlayer.currentPage.questionOptionAnswerB}" itemValue="B" />
+  						  <f:selectItem itemLabel="#{modulePlayer.currentPage.questionOptionAnswerC}" itemValue="C" />
+  						  <f:selectItem itemLabel="#{modulePlayer.currentPage.questionOptionAnswerD}" itemValue="D" />
+  						  <f:selectItem itemLabel="#{modulePlayer.currentPage.questionOptionAnswerE}" itemValue="E" />
+  						  <f:selectItem itemLabel="#{modulePlayer.currentPage.questionOptionAnswerF}" itemValue="F" />
+  						</h:selectOneRadio>						
+  					</rich:panel>
+            
+            <rich:panel id="idResultPanel" rendered="#{!modulePlayer.notEndExam}"> 
+              <f:facet name="header">
+                <h:outputText style="font-size: 11pt; font-weight: bold;" value="Test Result" /> 
+              </f:facet>
+              <table cellpadding="0" cellspacing="0" border="0" align="center">
+                <colgroup>
+                  <col width="30%"/>
+                  <col width="50%"/>
+                </colgroup>
+                <tr>
+                  <td colspan="2" class="prompt">
+                    Your have successful completed your test. The test details are followings:
+                  </td>
+                </tr>
+                <tr>
+                  <td class="prompt">
+                    <h:outputText value="Number of question" />
+                  </td>                  
+                  <td class="prompt">
+                    <h:outputText value="#{modulePlayer.noOfQuestion}" />
+                  </td>
+                </tr>
+                
+                <tr>
+                  <td class="prompt">
+                    <h:outputText value="Number of correct answer" />
+                  </td>                  
+                  <td class="prompt">
+                    <h:outputText value="#{modulePlayer.noOfCorrectAns}" />
+                  </td>
+                </tr>
+                
+                <tr>
+                  <td class="prompt">
+                    <h:outputText value="Total marks" />
+                  </td>                  
+                  <td class="prompt">
+                    <h:outputText value="#{modulePlayer.perOfMarks}" />
+                  </td>
+                </tr>
+                
+                <tr>
+                  <td class="prompt">
+                    <h:outputText value="Status" />
+                  </td>                  
+                  <td class="prompt">
+                    <h:outputText value="#{modulePlayer.passStatus}" />
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2">
+                    &#160;
+                  </td>
+                 </tr>
+                <tr>
+                  <td colspan="2" class="note">
+                    <h:outputText value="Note: An email has been sent to your account with details test result." />
+                  </td>                  
+                </tr>
+                <tr>
+                  <td colspan="2">
+                    &#160;
+                  </td>
+                 </tr>
+              </table>            
+            </rich:panel>
+            
+           </h:panelGroup>
 					</td>
 				</tr>
 			</tbody>
@@ -81,44 +165,50 @@
 	</tr>	
 	
 	<tr>
-		<td colspan="2" align="center"  valign="bottom" height="1" width="100%" bgcolor="#FFFBEF">
-		<table>
+		<td colspan="2" align="center"  valign="bottom" height="1" width="100%" bgcolor="#FFF7DF">
+		<h:panelGroup id="idAction">
+    <table>
 			<tr>
 				<td>
-					<h:commandButton action="#{modulePlayer.playFirstPage}" value="First">						
+					<h:commandButton action="#{modulePlayer.playFirstPage}" value="First"
+            rendered="#{modulePlayer.showFirst}" styleClass="ibutton">						
 					</h:commandButton>
 				
 				</td>
 				<td>
-					<h:commandButton action="#{modulePlayer.playPreviousPage}" value="Previous">
-					
+					<h:commandButton action="#{modulePlayer.playPreviousPage}" value="Previous"
+            rendered="#{modulePlayer.showPrevious}" styleClass="ibutton">					
 					</h:commandButton>
 				
 				</td>				
 				<td>
-					<h:commandButton value="Stop" action="#{modulePlayer.saveTestResult}">
-						
+					<h:commandButton value="Stop" action="#{modulePlayer.processResult}"
+            rendered="#{modulePlayer.showStop}" styleClass="ibutton">						
 					</h:commandButton>
 				</td>
 
 				<td>
-					<h:commandButton action="#{modulePlayer.playNextPage}" value="Next">
-						
+					<h:commandButton id="idNext" action="#{modulePlayer.playNextPage}" value="Next" 
+            disabled="#{modulePlayer.disabledNext}" rendered="#{modulePlayer.showNext}" styleClass="ibutton">						
 					</h:commandButton>				
 				</td>
 				<td>
-					<h:commandButton action="#{modulePlayer.playLastPage}" value="Last">
+					<h:commandButton id="idLast" action="#{modulePlayer.playLastPage}" value="Last"
+            disabled="#{modulePlayer.disabledLast}" rendered="#{modulePlayer.showLast}" styleClass="ibutton">
 					</h:commandButton>
 				
 				</td>
 			</tr>
 		</table>
-		
+		</h:panelGroup>
 		</td>
 	</tr>
 </tbody>
 </table>
 </h:form>
+<script type="text/javascript" >
+  setTimeout("enabledButton();",5000);
+</script>
 </body>
 		
 </html>
