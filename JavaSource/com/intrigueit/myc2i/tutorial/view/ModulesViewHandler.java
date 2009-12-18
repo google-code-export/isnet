@@ -54,11 +54,11 @@ public class ModulesViewHandler extends BasePage implements Serializable {
 	public List<TestTutorialModules> getModules() {
 		try {
 			if (modules == null) {
-				modules = modulesService.loadAll();
+				modules = modulesService.findByProperty("memberTypeIndicator",this.getMember().getTypeId());
 			}
 
 		} catch (Exception ex) {
-
+		  ex.printStackTrace();
 		}
 		return modules;
 	}
