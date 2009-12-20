@@ -44,5 +44,10 @@ public class CommonConstants {
     public static final String STORY_PROTEGE = "PROTEGE";
     public static final String SYSTEM_USER_ID = "-1";
     
-    public final static String  USER_PRIVILEGE_PAGES = "USER_PRIVILEGE_PAGES";	
+    public final static String  USER_PRIVILEGE_PAGES = "USER_PRIVILEGE_PAGES";
+    
+    public static final String FIRST = "FIRST";
+    public static final String PREVIOUS = "PREVIOUS";
+    public static final String NEXT = "NEXT";
+    public static final String LAST = "LAST";
 }
