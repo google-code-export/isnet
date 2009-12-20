@@ -70,6 +70,7 @@ public class MediaBean {
         	throw ex;
         } 
 	}
+	
 	public void play(){
 		try{
 			if(sClip == null){
@@ -81,6 +82,18 @@ public class MediaBean {
 			ex.printStackTrace();
 		}
 	}
+	
+	public void pause(){
+    try{
+      if(sClip == null){
+        return;
+      }
+      sClip.stop();
+    }
+    catch(Exception ex){
+      ex.printStackTrace();
+    }
+  }
 	
 	public void dispose(){
 		try{

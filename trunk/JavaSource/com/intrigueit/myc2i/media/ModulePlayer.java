@@ -53,18 +53,45 @@ public class ModulePlayer extends BasePage{
   	private String initPage;
   	private boolean disabledNext;
   	private boolean disabledLast;
-  	private boolean showFirst = true;
-  	private boolean showPrevious = true;
-  	private boolean showStop = true;
   	private boolean showNext = true;
-  	private boolean showLast = true;
-  	private boolean notEndExam = true;
+  	private boolean notEndPlay = true;
   	private Integer noOfQuestion;
   	private Integer noOfCorrectAns;
   	private String passStatus;
   	private Integer perOfMarks;
+  	private boolean playing = true;
+  	private String currentAction = "";
+  	
   	
   	/**
+     * @return the currentAction
+     */
+    public String getCurrentAction() {
+      return currentAction;
+    }
+
+    /**
+     * @param currentAction the currentAction to set
+     */
+    public void setCurrentAction(String currentAction) {
+      this.currentAction = currentAction;
+    }
+
+    /**
+     * @return the playing
+     */
+    public boolean isPlaying() {
+      return playing;
+    }
+
+    /**
+     * @param playing the playing to set
+     */
+    public void setPlaying(boolean playing) {
+      this.playing = playing;
+    }
+
+    /**
      * @return the disabledLast
      */
     public boolean isDisabledLast() {
@@ -137,15 +164,15 @@ public class ModulePlayer extends BasePage{
     /**
      * @return the notEndExam
      */
-    public boolean isNotEndExam() {
-      return notEndExam;
+    public boolean isNotEndPlay() {
+      return notEndPlay;
     }
 
     /**
-     * @param notEndExam the notEndExam to set
+     * @param notEndPlay the notEndPlay to set
      */
-    public void setNotEndExam(boolean notEndExam) {
-      this.notEndExam = notEndExam;
+    public void setNotEndPlay(boolean notEndPlay) {
+      this.notEndPlay = notEndPlay;
     }
 
     /**
@@ -160,50 +187,8 @@ public class ModulePlayer extends BasePage{
      */
     public void setDisabledNext(boolean disabledNext) {
       this.disabledNext = disabledNext;
-    }    
+    }
     
-    /**
-     * @return the showFirst
-     */
-    public boolean isShowFirst() {
-      return showFirst;
-    }
-
-    /**
-     * @param showFirst the showFirst to set
-     */
-    public void setShowFirst(boolean showFirst) {
-      this.showFirst = showFirst;
-    }
-
-    /**
-     * @return the showPrevious
-     */
-    public boolean isShowPrevious() {
-      return showPrevious;
-    }
-
-    /**
-     * @param showPrevious the showPrevious to set
-     */
-    public void setShowPrevious(boolean showPrevious) {
-      this.showPrevious = showPrevious;
-    }
-
-    /**
-     * @return the showStop
-     */
-    public boolean isShowStop() {
-      return showStop;
-    }
-
-    /**
-     * @param showStop the showStop to set
-     */
-    public void setShowStop(boolean showStop) {
-      this.showStop = showStop;
-    }
-
     /**
      * @return the showNext
      */
@@ -217,21 +202,7 @@ public class ModulePlayer extends BasePage{
     public void setShowNext(boolean showNext) {
       this.showNext = showNext;
     }
-
-    /**
-     * @return the showLast
-     */
-    public boolean isShowLast() {
-      return showLast;
-    }
-
-    /**
-     * @param showLast the showLast to set
-     */
-    public void setShowLast(boolean showLast) {
-      this.showLast = showLast;
-    }
-
+    
     public String getInitPage() {
   		this.getInit();
   		return initPage;
@@ -364,8 +335,9 @@ public class ModulePlayer extends BasePage{
   		}
   	}
 	public void playPreviousPage(){
-		try{
-			//log.debug(this.hasQuestionAns);
+	  this.currentAction = CommonConstants.PREVIOUS;
+	  try{
+	    this.notEndPlay = true;
 			log.debug("Playing previous page");
 			if(pageIndex > 0){
 				pageIndex -= 1;
@@ -380,9 +352,11 @@ public class ModulePlayer extends BasePage{
 		log.debug("index:"+pageIndex);
 	}
 	public void playFirstPage(){
-		try{
+	  this.notEndPlay = true;
+	  this.currentAction = CommonConstants.FIRST;
+	  try{
 			pageIndex  = 0;
-  			this.currentPage = this.tutorials.get(pageIndex);
+  		this.currentPage = this.tutorials.get(pageIndex);
 			this.renderPage();	
 		}
 		catch(Exception ex){
@@ -391,15 +365,16 @@ public class ModulePlayer extends BasePage{
 	}	
 	
 	public void playNextPage(){
-		try{
+		this.currentAction = CommonConstants.NEXT;
+	  try{
 			if(pageIndex < tutorials.size()-1){
 				pageIndex += 1;
 				log.debug("index:"+pageIndex);
 	  		this.currentPage = this.tutorials.get(pageIndex);
 				this.renderPage();
 			} else {
-			  if (this.getMember()!=null && this.getMember().getTypeId().equals(CommonConstants.MENTOR)) {
-			    this.notEndExam = false;
+			  this.notEndPlay = false;
+			  if (this.getMember()!=null && this.getMember().getTypeId().equals(CommonConstants.MENTOR)) {			    
 			    this.showNext = false;
 			    this.processResult();	        
 			  }
@@ -411,9 +386,10 @@ public class ModulePlayer extends BasePage{
 		log.debug("index:"+pageIndex);
 	}
 	public void playLastPage(){
-		try{
+	  this.currentAction = CommonConstants.LAST;
+	  try{
 			pageIndex  = tutorials.size()-1;
-  			this.currentPage = this.tutorials.get(pageIndex);
+  		this.currentPage = this.tutorials.get(pageIndex);
 			this.renderPage();			
 		}
 		catch(Exception ex){
@@ -442,34 +418,58 @@ public class ModulePlayer extends BasePage{
   			ex.printStackTrace();
   		}
   	}
-	public void getInit(){	  
-	  if (this.getMember()!=null && this.getMember().getTypeId().equals(CommonConstants.PROTEGE)) {
-      this.disabledNext = true;
-      this.disabledLast = true;
+  	
+  	public void startPlaying() {
+  	  try {
+  	    mediaBean.play();
+  	    this.playing = true;
+  	  } catch (Exception e) {
+        e.printStackTrace();
+      }
+  	}
+  	
+  	public void stopPlaying() {
+      try {
+        mediaBean.pause();
+        this.playing = false; 
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
     }
-		String moduleId = this.getRequest().getParameter("moduleId");
-		if(moduleId == null || moduleId.equals("")){
-			return;
-		}		
-		try {			
-		  this.setExamStartDate(new Date());
-		  this.showFirst = true;
-	    this.showPrevious = true;
-	    this.showStop = true;
-	    this.showNext = true;
-	    this.showLast = true;
-	    this.notEndExam = true;
-		  module =  this.modulesService.loadById(Long.parseLong(moduleId));
-			tutorials = this.questionService.getTutorialByModule(module.getModulesId());
-			this.pageIndex = -1;
-			this.hasQuestionAns = false;
-			this.playModuleIntroduction();
-		}
-		catch(Exception ex){
-			ex.printStackTrace();
-		}
+  	public void getInit(){	  
+  	  this.enableDisabledBtn();
+  	  String moduleId = this.getRequest().getParameter("moduleId");
+  		if(moduleId == null || moduleId.equals("")){
+  			return;
+  		}		
+  		try {			
+  		  this.setExamStartDate(new Date());
+  	    this.showNext = true;
+  	    this.notEndPlay = true;
+  		  module =  this.modulesService.loadById(Long.parseLong(moduleId));
+  			tutorials = this.questionService.getTutorialByModule(module.getModulesId());
+  			this.pageIndex = -1;
+  			this.hasQuestionAns = false;
+  			this.playModuleIntroduction();
+  		}
+  		catch(Exception ex){
+  			ex.printStackTrace();
+  		}
 	}
 	
+  public void enableDisabledBtn() {
+    if ((this.getMember()!=null && this.getMember().getTypeId().equals(CommonConstants.PROTEGE))
+        && (this.currentAction.equals("") || this.currentAction.equals(CommonConstants.NEXT)) 
+        && (this.notEndPlay)) {
+      this.disabledNext = true;
+      this.disabledLast = true;
+    } else {
+      this.disabledNext = false;
+      this.disabledLast = false;
+    }
+      
+  }
+  
 	public TestTutorialModules getModule() {
 		return module;
 	}
@@ -535,38 +535,15 @@ public class ModulePlayer extends BasePage{
 		this.hasQuestionAns = hasQuestionAns;
 	}
 
-	public void XdecideQuestion() {
-		this.hasQuestionAns = true;
-		if(this.currentPage == null){
-			this.hasQuestionAns = false;
-		}
-		if(this.getCurrentPage().getQuestion() ==null || this.currentPage.getQuestion().equals("")){
-			this.hasQuestionAns = false;
-		}
-		log.debug(this.hasQuestionAns);
-	}
-	
 	public void decideQuestion() {
     this.hasQuestionAns = true;
     if((this.currentPage == null) || 
         (this.getCurrentPage().getQuestion() ==null || this.currentPage.getQuestion().equals(""))){
       this.hasQuestionAns = false;
-    } else {
-      if ( this.showFirst ) {
-        this.showFirst = false;
-        this.showPrevious = false;
-        this.showStop = false;
-        //this.showNext = true;
-        this.showLast = false;        
-      }
-    }
+    } 
     log.debug(this.hasQuestionAns);
   }
-	/*
-	public void setHasQuestionAns(Boolean hasQuestionAns) {
-		this.hasQuestionAns = hasQuestionAns;
-	}	*/
-
+	
 	public TestResultService getTestService() {
 		return testService;
 	}
