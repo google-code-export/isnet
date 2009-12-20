@@ -70,13 +70,18 @@
 			<tbody>
 				<tr>
 					<td align="center" width="100%" valign="middle">
-					<rich:panel id="idContainer">
-						<h:panelGroup  rendered="#{!modulePlayer.hasQuestionAns}">
+					<rich:panel id="idContainer" rendered="#{!modulePlayer.hasQuestionAns}">
+						<f:facet name="header">
+              <h:outputText styleClass="note" rendered="#{!modulePlayer.notEndPlay}" 
+               value="Warning: This is a last page. Please go back if you like to review." /> 
+            </f:facet>
+            
+            <h:panelGroup>
 							<h:outputText id="idContainerxxx" value="#{modulePlayer.mediaBean.pageContent}" escape="false" />
 						</h:panelGroup>
 					</rich:panel>
           <h:panelGroup rendered="#{modulePlayer.hasQuestionAns}">
-  					<rich:panel id="idQuestionPanel" rendered="#{modulePlayer.notEndExam}" 
+  					<rich:panel id="idQuestionPanel" rendered="#{modulePlayer.notEndPlay}" 
               headerClass="container_box_panel_header"  bodyClass="container_body_style">
   						<f:facet name="header"><h:outputText value="#{modulePlayer.currentPage.question}" /> </f:facet>
   						<h:selectOneRadio styleClass="radioright" layout="pageDirection" value="#{modulePlayer.currentPage.examinerAns}">
@@ -89,7 +94,7 @@
   						</h:selectOneRadio>						
   					</rich:panel>
             
-            <rich:panel id="idResultPanel" rendered="#{!modulePlayer.notEndExam}"> 
+            <rich:panel id="idResultPanel" rendered="#{!modulePlayer.notEndPlay}"> 
               <f:facet name="header">
                 <h:outputText style="font-size: 11pt; font-weight: bold;" value="Test Result" /> 
               </f:facet>
@@ -171,22 +176,28 @@
 			<tr>
 				<td>
 					<h:commandButton action="#{modulePlayer.playFirstPage}" value="First"
-            rendered="#{modulePlayer.showFirst}" styleClass="ibutton">						
+            rendered="#{!modulePlayer.hasQuestionAns}" styleClass="ibutton">						
 					</h:commandButton>
 				
 				</td>
 				<td>
 					<h:commandButton action="#{modulePlayer.playPreviousPage}" value="Previous"
-            rendered="#{modulePlayer.showPrevious}" styleClass="ibutton">					
+            rendered="#{!modulePlayer.hasQuestionAns}" styleClass="ibutton">					
 					</h:commandButton>
 				
 				</td>				
 				<td>
-					<h:commandButton value="Stop" action="#{modulePlayer.processResult}"
-            rendered="#{modulePlayer.showStop}" styleClass="ibutton">						
+					<h:commandButton value="Stop" action="#{modulePlayer.stopPlaying}"
+            rendered="#{!modulePlayer.hasQuestionAns and modulePlayer.playing}" styleClass="ibutton">						
 					</h:commandButton>
 				</td>
-
+        
+        <td>
+          <h:commandButton value="Start" action="#{modulePlayer.startPlaying}"
+            rendered="#{!modulePlayer.hasQuestionAns and !modulePlayer.playing}" styleClass="ibutton">            
+          </h:commandButton>
+        </td>
+                  
 				<td>
 					<h:commandButton id="idNext" action="#{modulePlayer.playNextPage}" value="Next" 
             disabled="#{modulePlayer.disabledNext}" rendered="#{modulePlayer.showNext}" styleClass="ibutton">						
@@ -194,7 +205,7 @@
 				</td>
 				<td>
 					<h:commandButton id="idLast" action="#{modulePlayer.playLastPage}" value="Last"
-            disabled="#{modulePlayer.disabledLast}" rendered="#{modulePlayer.showLast}" styleClass="ibutton">
+            disabled="#{modulePlayer.disabledLast}" rendered="#{!modulePlayer.hasQuestionAns}" styleClass="ibutton">
 					</h:commandButton>
 				
 				</td>
