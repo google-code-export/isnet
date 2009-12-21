@@ -25,6 +25,7 @@ import com.intrigueit.myc2i.common.view.CommonValidator;
 import com.intrigueit.myc2i.common.view.ViewDataProvider;
 import com.intrigueit.myc2i.member.domain.Member;
 import com.intrigueit.myc2i.member.service.MemberService;
+import com.intrigueit.myc2i.memberlog.service.MemberLogService;
 import com.intrigueit.myc2i.utility.Emailer;
 
 @Component("userManageViewHandler")
@@ -41,6 +42,7 @@ public class UserManageViewHandler extends BasePage implements Serializable {
       .getLogger(UserManageViewHandler.class);
 
   private MemberService memberService;
+  private MemberLogService memberLogService;
   private Member currentMember;
   private ListDataModel memberLines;
   private SearchBean searchBean;
@@ -114,9 +116,10 @@ public class UserManageViewHandler extends BasePage implements Serializable {
 
   @Autowired
   public UserManageViewHandler(MemberService memberService,
-      ViewDataProvider viewDataProvider) {
+      ViewDataProvider viewDataProvider,MemberLogService memberLogService) {
     this.memberService = memberService;
     this.viewDataProvider = viewDataProvider;
+    this.memberLogService = memberLogService;
     commonValidator = new CommonValidator();
     this.initialize();
   }
@@ -357,6 +360,8 @@ public class UserManageViewHandler extends BasePage implements Serializable {
       try {
         int rowIndex = getMemberLines().getRowIndex();
         Member member = memberService.findById(Long.parseLong(recordId));
+        this.memberLogService.deleteMemLogByFrMemId(member.getMemberId());
+        this.memberLogService.deleteMemLogByToMemId(member.getMemberId());
         this.memberService.delete(member);
         List<Member> itemList = (List<Member>) getMemberLines()
             .getWrappedData();

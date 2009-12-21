@@ -55,4 +55,6 @@ public interface MemberLogService {
 	
 	public List<MemberLog> loadByQuery(String sql, Object[] params);
 	
+	public Integer deleteMemLogByFrMemId(Long memberId);
+	public Integer deleteMemLogByToMemId(Long memberId);
 }
