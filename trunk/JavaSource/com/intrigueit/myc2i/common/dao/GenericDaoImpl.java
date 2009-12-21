@@ -55,7 +55,7 @@ public abstract class GenericDaoImpl<T, ID extends Serializable> implements
 	public void delete(T entity) {
 		entityManager.remove(entity);
 	}
-
+	 
 	@SuppressWarnings("unchecked")
 	public List<T> loadAll() {
 		return entityManager.createQuery(
@@ -133,4 +133,17 @@ public abstract class GenericDaoImpl<T, ID extends Serializable> implements
 		List<T> recordList = query.getResultList();
 		return recordList.size() > 0;
 	}
+	
+	public Integer deleteByClause(String clause, Object[] params) {
+    String hsql = "DELETE FROM " + persistentClass.getName()
+        + " t where " + clause;
+    //log.debug(hsql);
+    Query query = entityManager.createQuery(hsql);
+    /** bind parameters */
+    for (int i = 0; params != null && i < params.length; i++) {
+      query.setParameter(i + 1, params[i]);
+    }
+    log.debug(query.toString());
+    return query.executeUpdate();
+  }
 }
