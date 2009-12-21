@@ -80,7 +80,7 @@ public class PasswordRecoveryViewHanndler extends BasePage implements Serializab
 			this.memberService.update(member);
 			
 			CryptographicUtility crp = new CryptographicUtility();
-			//this.sendConfirmationEmail(member.getEmail(), crp.getDeccryptedText(member.getPassword()));
+			this.sendConfirmationEmail(member.getEmail(), crp.getDeccryptedText(member.getPassword()));
 			this.setSuccessMessage(this.getText("password_recovery_confirmation_message"));
 			this.resetFields();
 		}
