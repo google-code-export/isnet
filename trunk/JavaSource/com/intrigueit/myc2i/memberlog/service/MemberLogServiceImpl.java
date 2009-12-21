@@ -224,7 +224,19 @@ public class MemberLogServiceImpl implements MemberLogService{
 		List<MemberLog> logs = memberLogDao.loadByClause(clause, new Object[]{memberId,cal.getTime()});
 		return logs;
 	}
-
+	
+	@Override
+  public Integer deleteMemLogByFrMemId(Long memberId) {
+    String clause = " t.fromMemberId=?1 ";
+    return memberLogDao.deleteByClause(clause, new Object[] {memberId}); 
+  }
+	
+	@Override
+  public Integer deleteMemLogByToMemId(Long memberId) {
+    String clause = " t.toMemberId=?1 ";
+    return memberLogDao.deleteByClause(clause, new Object[] {memberId}); 
+  }
+	
 	@Autowired
 	public void setCacheMan(CachingManager cacheMan) {
 		this.cacheMan = cacheMan;
