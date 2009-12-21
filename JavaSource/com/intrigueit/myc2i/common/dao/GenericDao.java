@@ -26,4 +26,6 @@ public interface GenericDao<T, ID extends Serializable> {
 	boolean isDuplicateRecord(String clause);
 
 	boolean isDuplicateRecord(String clause, Object[] params);
+	
+	public Integer deleteByClause(String clause, Object[] params);
 }
