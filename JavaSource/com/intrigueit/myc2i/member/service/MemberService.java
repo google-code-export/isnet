@@ -11,9 +11,9 @@ import com.intrigueit.myc2i.role.domain.RolePageAccess;
 public interface MemberService {
 
 
-  public void save(Member entity);
+	public void save(Member entity);
 
-  public void delete(Member entity);
+  	public void delete(Member entity);
 
 	public Member update(Member entity);
 	
