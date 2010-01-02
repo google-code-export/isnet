@@ -75,9 +75,9 @@ public class PasswordRecoveryViewHanndler extends BasePage implements Serializab
 			}
 			
 			Date dt = new Date();
-			member.setRecordCreate(dt);
-			member.setLastUpdated(dt);
-			this.memberService.update(member);
+			//member.setRecordCreate(dt);
+			//member.setLastUpdated(dt);
+			//this.memberService.update(member);
 			
 			CryptographicUtility crp = new CryptographicUtility();
 			this.sendConfirmationEmail(member.getEmail(), crp.getDeccryptedText(member.getPassword()));
