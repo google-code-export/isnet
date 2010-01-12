@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- 
+ * @author Mithun 2009/08/07 Created.
+ * @version $Revision: 1.0
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+	 xmlns:ui="http://java.sun.com/jsf/facelets"
+	 xmlns:h="http://java.sun.com/jsf/html"
+	 xmlns:f="http://java.sun.com/jsf/core"
+	 xmlns:a4j="http://richfaces.org/a4j"
+   xmlns:rowBar="http://www.myc2i.com/jsf/rowToolBar"
+   xmlns:ccmp="http://www.myc2i.com/jsf/commoncmp"
+ 	 xmlns:c="http://java.sun.com/jstl/core"
+ 	 xmlns:rich="http://richfaces.org/rich">
+
+<ui:composition template="myrestmpl.xhtml">
+	<ui:param name="moduleTitle" value="#{bundle.top_navigation_app_management} >> #{bundle.left_navigation_item_vendor}"></ui:param>
+  <ui:param name="headerText" value="#{bundle.vendor_management}"></ui:param>
+  <ui:param name="userType" value="M"></ui:param>
+ <ui:define name="commonInfo">
+	</ui:define>
+	<ui:define name="js">
+		<script></script>
+	</ui:define>
+  <ui:define name="body">    
+    <h:panelGroup id="idSectionsCon">
+      <table width="100%" align="center">
+         <tbody>
+           <tr>             
+            <td class="col_half" align="center">
+              <b> Coming soon... </b>
+            </td>
+           </tr>
+         </tbody>
+       </table> 
+    </h:panelGroup>  
+  </ui:define>
+</ui:composition>
+</html>

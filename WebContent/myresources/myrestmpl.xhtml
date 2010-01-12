@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:a4j="http://richfaces.org/a4j"
+  xmlns:c="http://java.sun.com/jstl/core"
+  xmlns:rich="http://richfaces.org/rich">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml; charset=UTF-8"/>
+    <title>
+      <h:outputText value="MyC2i :: My Resources" />
+    </title>
+    <a4j:outputPanel id="idStyleClass">
+      <link rel="STYLESHEET" type="text/css" href="#{controllerBean.contextPath}/#{controllerBean.cssPath}/myc2i.css"/>
+      <link rel="STYLESHEET" type="text/css" href="#{controllerBean.contextPath}/#{controllerBean.cssPath}/richtools.css"/>
+       <link rel="STYLESHEET" type="text/css" href="#{controllerBean.contextPath}/#{controllerBean.cssPath}/common.css"/>
+    </a4j:outputPanel>
+    <a4j:loadScript src="/js/jquery/jquery-1.2.js"/>
+    <a4j:loadScript src="/js/jquery/jquery.blockUI.js"/>
+    <a4j:loadScript src="/js/jquery/jqconfig.js"/>
+    <a4j:loadScript src="/js/common.js" />
+    <script>
+      /* define diffrent message for ajax loading*/
+      var ajaxLoadingMsg = "Loading...";
+      var ajaxProcessMsg = "Processing...";
+      var ajaxWaitMsg = "Please wait...";
+      var ajaxUpdateMsg = "Updating...";
+      var ajaxCreateCrt = "Creating...";
+      var ajaxAddMsg = "Adding...";
+      var ajaxPrepareMsg = "Preparing...";
+      var ajaxSearchingMentor="Searching for mentors. Please wait...";
+    </script>
+    <ui:insert name="js"></ui:insert>
+  </head>
+
+  <body>
+    <a4j:outputPanel layout="block" id="idResMainBlock">
+      <f:view id="idResMainView">
+       <f:loadBundle basename="ApplicationResources" var="bundle"/>
+        <h:form id="idResMainForm">
+        <c:set var="imagesPath" value="#{controllerBean.imagesPath}" />
+        <h:inputHidden id="idContextPath" value="#{controllerBean.contextPath}" />
+          <div class="viewcontainer mainBlock" id="idMainContainer">
+          <h:panelGroup id="idHContainer">
+            <ui:include src="myresheader.xhtml" />
+            </h:panelGroup>
+            <h:panelGroup id="idMenuContainer">
+              <div class="menu_container">
+                <ui:include src="myrestopnav.xhtml">
+                  <ui:param name="userType" value="M"></ui:param>
+                </ui:include>
+              </div>
+            </h:panelGroup>
+         <div id="inner-container" class="clearfix" style="border: 0px solid red;">
+          <div id="content" style="border: 0px solid red;">
+          <h:panelGrid styleClass="body_content" width="99%" columns="2" border="0" cellpadding="0" 
+            cellspacing="0" columnClasses="resleftside,middle" rowClasses="rowinput">
+            <h:column>
+            	<ui:include src="myresleftside.xhtml">
+                <ui:param name="userType" value="${userType}"></ui:param>
+              </ui:include>
+            </h:column>
+            <h:column>
+              <div class="form" style="border:0px solid red;margin-top:5px;" >
+                <div class="formHead"><h:outputText value="My Resource" /></div>
+                <div class="formFields formBorder wideLabels">
+                  <ui:insert name="body">Body</ui:insert>
+                </div>
+              </div>
+            </h:column>
+          </h:panelGrid>
+        </div>
+      </div>
+      <h:panelGroup id="idFContainer">
+        <ui:include src="/templates/include/footer.xhtml" >
+          <ui:param name="userType" value="${userType}"></ui:param>
+        </ui:include>
+      </h:panelGroup>
+        </div>
+        <ui:insert name="jsFunction"></ui:insert>
+        </h:form>
+        <ui:insert name="modalPanels"></ui:insert>
+      </f:view>
+    </a4j:outputPanel>
+</body>
+</html>
