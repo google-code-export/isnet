@@ -1,0 +1,61 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+	     xmlns:rich="http://richfaces.org/rich">
+  <ui:composition>
+   <div id="idLeftSide" style="border:0;">
+    <div id="sidebar">      
+      <h:panelGroup id="ltop_gdbsectionA">
+        <h:panelGroup id="idAppManagePanel" rendered="${userType eq 'M'}">
+          <ul class="sidemenu">            
+            <li>
+              <h:outputLink styleClass="menu_item_clink" 
+                value="#{controllerBean.contextPath}/myresources/mentorResBooks.faces">
+                <h:outputText value="Books"/>
+              </h:outputLink>
+            </li>
+            <li>
+              <h:outputLink styleClass="menu_item_clink" 
+                value="#{controllerBean.contextPath}/myresources/undercon.faces">
+                <h:outputText value="DVDs"/>
+              </h:outputLink>
+            </li>
+            <li>
+              <h:outputLink styleClass="menu_item_clink" 
+                value="#{controllerBean.contextPath}/myresources/undercon.faces">
+                <h:outputText value="Compact Discs"/>
+              </h:outputLink>
+            </li>            
+         </ul>
+        </h:panelGroup>
+        
+        <h:panelGroup rendered="${userType eq 'P'}">
+          <ul class="sidemenu">            
+            <li>
+              <h:outputLink styleClass="menu_item_clink" 
+                value="#{controllerBean.contextPath}/myresources/protegeResBooks.faces">
+                <h:outputText value="Books"/>
+              </h:outputLink>
+            </li>
+            <li>
+              <h:outputLink styleClass="menu_item_clink" 
+                value="#{controllerBean.contextPath}/myresources/undercon.faces">
+                <h:outputText value="DVDs"/>
+              </h:outputLink>
+            </li>
+            <li>
+              <h:outputLink styleClass="menu_item_clink" 
+                value="#{controllerBean.contextPath}/myresources/undercon.faces">
+                <h:outputText value="Compact Discs"/>
+              </h:outputLink>
+            </li>            
+         </ul>
+        </h:panelGroup>
+        
+      </h:panelGroup>
+    </div>
+  </div>
+</ui:composition>
+</html>
