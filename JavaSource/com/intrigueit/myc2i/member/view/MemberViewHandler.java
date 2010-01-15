@@ -214,11 +214,11 @@ public class MemberViewHandler extends BasePage implements Serializable{
 			this.errMsgs.add( this.getText("member_validation_ethinicity"));
 		}
 		
-		if (this.getCurrentMember().getMaritalStatus()!=null 
+/*		if (this.getCurrentMember().getMaritalStatus()!=null 
 		    && this.getCurrentMember().getMaritalStatus().equals("-1") 
         && this.getCurrentMember().getTypeId() != CommonConstants.PROTEGE) {
 		  this.errMsgs.add( this.getText("member_validation_marital_status"));
-    }   
+    } */  
 /*		*//** Check the valid password *//*
 		if(!CommonValidator.isValidPassword(this.getCurrentMember().getPassword())){
 			this.errMsgs.add( this.getText("member_validation_password"));
