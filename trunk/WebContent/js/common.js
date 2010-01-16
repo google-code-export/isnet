@@ -14,6 +14,13 @@ var orginalText = ""
 var isCheck = true;
 var searchBoxObj = "";
 
+function showTutorial(URL) {
+	var leftVal = (screen.width - 800) / 2;
+	var topVal = (screen.height - 650) / 2;
+	var args = "width=800,height=500,resizable=yes,left="+leftVal+",top="+topVal+"";
+	window.open(URL,'WinName',args);
+}
+
 Common.setRadioValue = function ( id, value ) {
 	var obj = document.getElementById("idMainForm:"+id);
 	if ( obj && value ) {
