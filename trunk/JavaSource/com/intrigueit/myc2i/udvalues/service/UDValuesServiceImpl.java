@@ -44,8 +44,8 @@ public class UDValuesServiceImpl implements UDValuesService {
 	  return udValuesDao.getCategories();
 	}
 	public List<UserDefinedValues> findByProperty(String propertyName, Object value) {
-    String clause = " t."+propertyName+" = ?1 ";
-    return udValuesDao.loadByClause(clause, new Object[]{value});
+		String clause = " t."+propertyName+" = ?1 order by t.udValuesDesc ASC ";
+		return udValuesDao.loadByClause(clause, new Object[]{value});
   }
 	
 	@Override
