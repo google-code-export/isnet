@@ -187,7 +187,8 @@ public class Member implements java.io.Serializable {
 	}
 
 	public Member() {
-		super();
+		this.childrenInd = "N";
+		this.genderInd = "M";
 	}
 
 	public void setMemberId(Long memberId) {
