@@ -74,7 +74,7 @@ public class PasswordRecoveryViewHanndler extends BasePage implements Serializab
 				return;
 			}
 			
-			Date dt = new Date();
+			//Date dt = new Date();
 			//member.setRecordCreate(dt);
 			//member.setLastUpdated(dt);
 			//this.memberService.update(member);
