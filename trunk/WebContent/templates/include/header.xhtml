@@ -34,7 +34,7 @@
 								  <h:outputText
 								    value="|"/>
 							</h:outputLabel>            
-							  <h:commandLink  styleClass=""  style="text-decoration:none;">
+							  <h:commandLink  styleClass=""  style="text-decoration:none;" onclick="window.open('#{controllerBean.contextPath}/static/privacyPolicy.html','mywindow');">
 								  <h:outputText id="idPrivacyPolicy" 
 								    value="#{bundle.top_navigation_privacy_policy}"/>
 							</h:commandLink>							
@@ -42,10 +42,10 @@
 								  <h:outputText
 								    value="|"/>
 							</h:outputLabel>
-							  <h:commandLink  styleClass=""  style="text-decoration:none;">
-								  <h:outputText id="idContactus" 
-								    value="#{bundle.top_navigation_contact_us}"/>
-							</h:commandLink>
+
+				            <h:outputLink styleClass=""  style="text-decoration:none;" value="#{controllerBean.contextPath}/contactUs.faces">
+				              <h:outputText id="idContactus" value="#{bundle.top_navigation_contact_us}"/>
+				            </h:outputLink>							
 							
 			          </h:panelGroup>
 				  	</td>
