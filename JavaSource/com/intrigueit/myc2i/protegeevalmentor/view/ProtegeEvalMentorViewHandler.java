@@ -2,6 +2,7 @@ package com.intrigueit.myc2i.protegeevalmentor.view;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,32 @@ public class ProtegeEvalMentorViewHandler extends BasePage implements Serializab
   private ProtegeEvalMentorService protegeEvalMentorService;
   private ProtegeEvaluationOfMentor currentProEvalMentor;  
   String evalFactorSixRatingNum;
+  private String init;
+  
+  /**
+   * @return the init
+   */
+  public String getInit() {
+    if (this.getMember()!= null && this.getMember().getMentoredByMemberId() == null) {
+      setErrorMessage(this.getText("protege_evaluat_mentor_no_mentor_errmsg"));
+    } else {
+      List<ProtegeEvaluationOfMentor> objList = protegeEvalMentorService.findByProperty("mentorMemberId",new Long(this.getMember().getMentoredByMemberId()));
+      if ( objList != null && !objList.isEmpty()) {
+        System.out.println(":::::::::"+objList.get(0));
+        this.setCurrentProEvalMentor(objList.get(0));        
+      }
+      setSecHeaderMsg("");
+    }
+    return init;
+  }
+
+  /**
+   * @param init the init to set
+   */
+  public void setInit(String init) {
+    this.init = init;
+  }
+
   /**
    * @return the evalFactorSixRatingNum
    */
@@ -47,7 +74,11 @@ public class ProtegeEvalMentorViewHandler extends BasePage implements Serializab
   }
 
   public void initialize() {
-    setSecHeaderMsg("");
+    if (this.getMember()!= null && this.getMember().getMentoredByMemberId() == null) {
+      setErrorMessage(this.getText("protege_evaluat_mentor_no_mentor_errmsg"));
+    } else {
+      setSecHeaderMsg("");
+    }    
   }
   
   public boolean validate() {
@@ -75,20 +106,25 @@ public class ProtegeEvalMentorViewHandler extends BasePage implements Serializab
   public void doSave() {
     setErrorMessage("");
     try {      
-      if (this.getParameter(ServiceConstants.MENTOR_ID) != null) {
-      String mentorId = (String) this.getParameter(ServiceConstants.MENTOR_ID);
-      Date dt = new Date();
+      //if (this.getParameter(ServiceConstants.MENTOR_ID) != null) {
+      //String mentorId = (String) this.getParameter(ServiceConstants.MENTOR_ID);
+      Long mentorId = this.getMember().getMentoredByMemberId();
+      if ( mentorId !=null ) {
+        Date dt = new Date();
         if (validate()) {
           this.currentProEvalMentor.setEvalDate(dt);
           this.currentProEvalMentor.setProtegeMemberId(this.getMember().getMemberId());
-          this.currentProEvalMentor.setMentorMemberId(Long.parseLong(mentorId));
+          this.currentProEvalMentor.setMentorMemberId(mentorId);
           protegeEvalMentorService.save(this.currentProEvalMentor);
           logger.debug("Added and clear form...");
-          this.setCurrentProEvalMentor(new ProtegeEvaluationOfMentor());
+          //this.setCurrentProEvalMentor(new ProtegeEvaluationOfMentor());
           this.setErrorMessage(this.getText("added_success_message"));
           this.setMsgType(ServiceConstants.INFO);
         }
+      } else {
+        setErrorMessage(this.getText("protege_evaluat_mentor_no_mentor_errmsg"));
       }
+      //}
     } catch (Exception e) {      
       if (this.currentProEvalMentor.getProtegeEvalOfMentorId() != null) {
         this.currentProEvalMentor.setProtegeEvalOfMentorId(null);
