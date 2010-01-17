@@ -21,6 +21,33 @@ function showTutorial(URL) {
 	window.open(URL,'WinName',args);
 }
 
+Common.setEvalValue = function () {
+	var rating = document.getElementById("idMainForm:oneRatingVal");
+	if ( rating ) setRValue(document.idMainForm.factorOneRating,rating.value);
+	
+	rating = document.getElementById("idMainForm:twoRatingVal");
+	if ( rating ) setRValue(document.idMainForm.factorTwoRating,rating.value);
+	
+	rating = document.getElementById("idMainForm:threeRatingVal");
+	if ( rating ) setRValue(document.idMainForm.factorThreeRating,rating.value);
+	
+	rating = document.getElementById("idMainForm:fourRatingVal");
+	if ( rating ) setRValue(document.idMainForm.factorFourRating,rating.value);
+	
+	rating = document.getElementById("idMainForm:fiveRatingVal");
+	if ( rating ) setRValue(document.idMainForm.factorFiveRating,rating.value);
+}
+
+function setRValue(obj,value) {
+  if(!obj) return;
+  for(var i = 0; i < obj.length; i++) {
+	  if(obj[i].value == value) {
+		obj[i].checked = true;
+		return;
+	}
+  }	
+}
+
 Common.setRadioValue = function ( id, value ) {
 	var obj = document.getElementById("idMainForm:"+id);
 	if ( obj && value ) {
