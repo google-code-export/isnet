@@ -96,7 +96,13 @@ a:hover {
 	width: 20%;
 	vertical-align: top;
 	}
-.middle {width: 60%;vertical-align: top;}
+
+.resleftside {
+  width: 15%;
+  vertical-align: top;
+}
+	
+.middle {width: 65%;vertical-align: top;}
 .rightside {width: 20%;vertical-align: top;}
 
 .admin_leftside {width: 20%;vertical-align: top;}
