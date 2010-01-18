@@ -33,13 +33,17 @@ public class ProtegeEvalMentorViewHandler extends BasePage implements Serializab
    * @return the init
    */
   public String getInit() {
+    this.setActionType(ServiceConstants.ADD);
     if (this.getMember()!= null && this.getMember().getMentoredByMemberId() == null) {
-      setErrorMessage(this.getText("protege_evaluat_mentor_no_mentor_errmsg"));
+      this.setCurrentProEvalMentor(new ProtegeEvaluationOfMentor());
+      //setErrorMessage(this.getText("protege_evaluat_mentor_no_mentor_errmsg"));
     } else {
-      List<ProtegeEvaluationOfMentor> objList = protegeEvalMentorService.findByProperty("mentorMemberId",new Long(this.getMember().getMentoredByMemberId()));
-      if ( objList != null && !objList.isEmpty()) {
-        System.out.println(":::::::::"+objList.get(0));
-        this.setCurrentProEvalMentor(objList.get(0));        
+      if (this.getMember()!= null && this.getMember().getMentoredByMemberId() != null) {        
+        List<ProtegeEvaluationOfMentor> objList = protegeEvalMentorService.findByProperty("mentorMemberId",this.getMember().getMentoredByMemberId());
+        if ( objList != null && !objList.isEmpty()) {
+          this.setActionType(ServiceConstants.UPDATE);
+          this.setCurrentProEvalMentor(objList.get(0));        
+        }
       }
       setSecHeaderMsg("");
     }
@@ -73,12 +77,8 @@ public class ProtegeEvalMentorViewHandler extends BasePage implements Serializab
     this.initialize();
   }
 
-  public void initialize() {
-    if (this.getMember()!= null && this.getMember().getMentoredByMemberId() == null) {
-      setErrorMessage(this.getText("protege_evaluat_mentor_no_mentor_errmsg"));
-    } else {
-      setSecHeaderMsg("");
-    }    
+  public void initialize() {    
+    setSecHeaderMsg("");
   }
   
   public boolean validate() {
@@ -118,7 +118,12 @@ public class ProtegeEvalMentorViewHandler extends BasePage implements Serializab
           protegeEvalMentorService.save(this.currentProEvalMentor);
           logger.debug("Added and clear form...");
           //this.setCurrentProEvalMentor(new ProtegeEvaluationOfMentor());
-          this.setErrorMessage(this.getText("added_success_message"));
+          if(this.getActionType().equals(ServiceConstants.UPDATE)) {
+        	  this.setErrorMessage(this.getText("update_success_message"));  
+          } else {
+        	  this.setErrorMessage(this.getText("added_success_message"));
+          }
+          
           this.setMsgType(ServiceConstants.INFO);
         }
       } else {
@@ -137,6 +142,7 @@ public class ProtegeEvalMentorViewHandler extends BasePage implements Serializab
   
   public void doClear() {
     logger.debug("Clear form...");
+    setErrorMessage("");
     this.setCurrentProEvalMentor(new ProtegeEvaluationOfMentor());
   }
   /**
