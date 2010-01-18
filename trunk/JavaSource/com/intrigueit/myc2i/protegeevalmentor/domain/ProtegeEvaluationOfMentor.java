@@ -64,19 +64,19 @@ public class ProtegeEvaluationOfMentor implements java.io.Serializable {
   private String evalFactorSixText;
 	
 	@Column(name = "EVAL_FACTOR_ONE_RATING_NUM")
-  private Long evalFactorOneRatingNum;
+  private Long evalFactorOneRatingNum = new Long(-1);
 	
 	@Column(name = "EVAL_FACTOR_TWO_RATING_NUM")
-  private Long evalFactorTwoRatingNum;
+  private Long evalFactorTwoRatingNum = new Long(-1);
 	
 	@Column(name = "EVAL_FACTOR_THREE_RATING_NUM")
-  private Long evalFactorThreeRatingNum;
+  private Long evalFactorThreeRatingNum = new Long(-1);
 	
 	@Column(name = "EVAL_FACTOR_FOUR_RATING_NUM")
-  private Long evalFactorFourRatingNum;
+  private Long evalFactorFourRatingNum = new Long(-1);
 	
 	@Column(name = "EVAL_FACTOR_FIVE_RATING_NUM")
-  private Long evalFactorFiveRatingNum;
+  private Long evalFactorFiveRatingNum = new Long(-1);
 	
 	@Column(name = "EVAL_FACTOR_SIX_RATING_NUM")
   private Long evalFactorSixRatingNum;
