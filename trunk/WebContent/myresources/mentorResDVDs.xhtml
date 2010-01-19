@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- 
+ * @author Mithun 2009/08/07 Created.
+ * @version $Revision: 1.0
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+	 xmlns:ui="http://java.sun.com/jsf/facelets"
+	 xmlns:h="http://java.sun.com/jsf/html"
+	 xmlns:f="http://java.sun.com/jsf/core"
+	 xmlns:a4j="http://richfaces.org/a4j"
+ 	 xmlns:c="http://java.sun.com/jstl/core"
+ 	 xmlns:rich="http://richfaces.org/rich">
+
+<ui:composition template="myrestmpl.xhtml">
+	<ui:param name="moduleTitle" value="#{bundle.top_navigation_app_management} >> #{bundle.left_navigation_item_vendor}"></ui:param>
+  <ui:param name="headerText" value="#{bundle.vendor_management}"></ui:param>
+  <ui:param name="userType" value="M"></ui:param>
+ <ui:define name="commonInfo">
+	</ui:define>
+	<ui:define name="js">
+		<script></script>
+	</ui:define>
+  <ui:define name="body">    
+    <h:panelGroup id="idSectionsCon">
+      <table width="100%">
+         <tbody>
+           <tr>
+             <!-- Start  books-->
+            <td class="col_half">
+              <div class="dr-pnl rich-panel " id="j_id103:j_id105">
+                <div class="dr-pnl-h rich-panel-header container_box_panel_header" id="j_id103:j_id105_header">Available DVDs</div>
+                <div class="dr-pnl-b rich-panel-body container_body_style" id="j_id103:j_id105_body">
+                  <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <table class="dr-table rich-table " id="j_id103:idDataGrid" border="0" cellpadding="0" cellspacing="0" width="100%">
+                            <colgroup span="1"></colgroup>
+                            <tbody id="j_id103:idDataGrid:tb">
+                              <!--  How to tell others about Islam -->
+                              <tr class="dr-table-row rich-table-row dr-table-firstrow rich-table-firstrow ">
+                                <td class="dr-table-cell rich-table-cell " id="j_id103:idDataGrid:0:j_id108">
+                                  <table>
+                                    <tbody>
+                                      <tr>
+                                        <td>
+                                          <img id="j_id103:idDataGrid:0:j_id110" 
+                                          src="resources/dvd_gazzali.gif" />
+                                        </td>
+                                        <td>
+                                          <table>
+                                            <tbody>
+                                              <tr>
+                                                <td>
+                                               Al-Ghazali : The Alchemist of Happiness DVD
+                                                </td>
+                                              </tr>
+                                                <tr>
+                                                <td><span style="font-weight: bold;">Price: $</span>24.95</td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </td>
+                              </tr>
+                              <!--  End How to tell others about Islam -->
+                              
+                              <!--  Dawah -->
+                              <tr class="dr-table-row rich-table-row dr-table-firstrow rich-table-firstrow ">
+                                <td class="dr-table-cell rich-table-cell " id="j_id103:idDataGrid:0:j_id108">
+                                  <table>
+                                    <tbody>
+                                      <tr>
+                                        <td>
+                                          <img id="j_id103:idDataGrid:0:j_id110" 
+                                          src="resources/dvd_noah.gif" />
+                                        </td>
+                                        <td>
+                                          <table>
+                                            <tbody>
+                                              <tr>
+                                                <td>
+                                                Islam and Democracy by Hamza Yusuf and  Noah Feldman
+                                                </td>
+                                              </tr>
+
+                                              <tr>
+                                                <td><span style="font-weight: bold;">Price: $</span>13.95</td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </td>
+                              </tr>
+                                
+                            </tbody>
+                          </table>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </td>
+           </tr>
+         </tbody>
+       </table> 
+            
+                
+    </h:panelGroup>  
+  </ui:define>
+</ui:composition>
+</html>
