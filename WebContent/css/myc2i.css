@@ -98,11 +98,10 @@ a:hover {
 	}
 
 .resleftside {
-  width: 100px;
+  width: 15%;
   vertical-align: top;
 }
-.resmiddle {width: 400px;vertical-align: top;}
-
+	
 .middle {width: 65%;vertical-align: top;}
 .rightside {width: 20%;vertical-align: top;}
 
