@@ -44,19 +44,22 @@ public class TestResult implements java.io.Serializable{
 	@Column(name = "TEST_START_TIME", nullable = true)
 	private Date startTime;
 	
-	@Column(name = "TEST_END_TIME", nullable = true)	
+	@Column(name = "TEST_END_TIME")	
 	private Date endTime;
 	
-	@Column(name = "TOTAL_QUESTIONS", nullable = false)		
+	@Column(name = "TOTAL_QUESTIONS")		
 	private Long totalQuestions;
 	
-	@Column(name = "TOTAL_CORRECT", nullable = false)		
+	@Column(name = "TOTAL_CORRECT")		
 	private Long totalCorrect;
 	
-	@Column(name = "IS_PASSED", nullable = false)		
+	@Column(name = "IS_PASSED")		
 	private Boolean isPassed;
 	
-	@Column(name = "RECORD_CREATOR_ID", nullable = false)		
+	@Column(name = "IS_COMPLETED")    
+  private String isCompleted;
+	
+  @Column(name = "RECORD_CREATOR_ID", nullable = false)		
 	private String recordCreatorId;
 	
 	@Column(name = "RECORD_CREATE_DATE", nullable = true)		
@@ -147,7 +150,21 @@ public class TestResult implements java.io.Serializable{
 	public void setIsPassed(Boolean isPassed) {
 		this.isPassed = isPassed;
 	}
+	
+	/**
+   * @return the isCompleted
+   */
+  public String getIsCompleted() {
+    return isCompleted;
+  }
 
+  /**
+   * @param isCompleted the isCompleted to set
+   */
+  public void setIsCompleted(String isCompleted) {
+    this.isCompleted = isCompleted;
+  }
+  
 	public String getRecordCreatorId() {
 		return recordCreatorId;
 	}
