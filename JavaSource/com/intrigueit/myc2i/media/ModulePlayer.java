@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.intrigueit.myc2i.common.CommonConstants;
+import com.intrigueit.myc2i.common.ServiceConstants;
 import com.intrigueit.myc2i.common.view.BasePage;
 import com.intrigueit.myc2i.tutorial.domain.TestTutorialModules;
 import com.intrigueit.myc2i.tutorial.domain.TestTutorialQuestionAns;
@@ -61,8 +62,7 @@ public class ModulePlayer extends BasePage{
   	private Integer perOfMarks;
   	private boolean playing = true;
   	private String currentAction = "";
-  	
-  	
+  	  	
   	/**
      * @return the currentAction
      */
@@ -212,62 +212,68 @@ public class ModulePlayer extends BasePage{
   		this.initPage = initPage;
   	}	
   	
-  	public void processResult() {      
+  	public void processResult(String userType) {
   	  int totalQuestion  = 0;
   	  int tCorrectAns  = 0;
   	  try {
         if ( this.tutorials != null ) {
           TestResult testResult = new TestResult();
-          Set<TestResultDetails> testDetailsList = new HashSet<TestResultDetails>();
-          for(TestTutorialQuestionAns tQuestionAns : this.tutorials) {            
-            if(tQuestionAns.getQuestion() != null && !tQuestionAns.getQuestion().equals("")){
-              totalQuestion++;
-              TestResultDetails testDetails = new TestResultDetails();
-              if ((tQuestionAns.getQuestionCorrectAnswer() != null && tQuestionAns.getExaminerAns()!=null)
-                  && (tQuestionAns.getQuestionCorrectAnswer().equals(tQuestionAns.getExaminerAns()))) {
-                testDetails.setIsCorrect(true);
-                tCorrectAns++;
-              } else {
-                testDetails.setIsCorrect(false);
+          if (userType.equals(ServiceConstants.MENTOR)) {
+            Set<TestResultDetails> testDetailsList = new HashSet<TestResultDetails>();
+            for(TestTutorialQuestionAns tQuestionAns : this.tutorials) {            
+              if(tQuestionAns.getQuestion() != null && !tQuestionAns.getQuestion().equals("")){
+                totalQuestion++;
+                TestResultDetails testDetails = new TestResultDetails();
+                if ((tQuestionAns.getQuestionCorrectAnswer() != null && tQuestionAns.getExaminerAns()!=null)
+                    && (tQuestionAns.getQuestionCorrectAnswer().equals(tQuestionAns.getExaminerAns()))) {
+                  testDetails.setIsCorrect(true);
+                  tCorrectAns++;
+                } else {
+                  testDetails.setIsCorrect(false);
+                }
+                testDetails.setRecordCreatorId(this.getMember().getMemberId()+"");
+                testDetails.setRecordCreateDate(new Date());
+                testDetails.setLastUpdatedDate(new Date());
+                testDetails.setRecordUpdatorId(this.getMember().getMemberId()+"");
+                testDetails.setMemberAns(tQuestionAns.getExaminerAns());
+                testDetails.setQuestionId(tQuestionAns.getQuestionAnsId());              
+                testDetails.setTestResult(testResult);
+                testDetailsList.add(testDetails);
               }
-              testDetails.setRecordCreatorId(this.getMember().getMemberId()+"");
-              testDetails.setRecordCreateDate(new Date());
-              testDetails.setLastUpdatedDate(new Date());
-              testDetails.setRecordUpdatorId(this.getMember().getMemberId()+"");
-              testDetails.setMemberAns(tQuestionAns.getExaminerAns());
-              testDetails.setQuestionId(tQuestionAns.getQuestionAnsId());              
-              testDetails.setTestResult(testResult);
-              testDetailsList.add(testDetails);
             }
-          }          
+            testResult.setTestResultDetails(testDetailsList);
+            testResult.setTotalQuestions(new Long(totalQuestion));
+            testResult.setTotalCorrect(new Long(tCorrectAns));
+            testResult.setIsPassed(true);
+          } 
+          testResult.setIsCompleted("Y");
           testResult.setModuleId(module.getModulesId());
           testResult.setDocumentId(module.getDocumentId());
           testResult.setMemberId(this.getMember().getMemberId());
           testResult.setStartTime(this.getExamStartDate());
-          testResult.setEndTime(new Date());
-          testResult.setTotalQuestions(new Long(totalQuestion));
-          testResult.setTotalCorrect(new Long(tCorrectAns));
-          testResult.setIsPassed(true);
+          testResult.setEndTime(new Date());          
           testResult.setRecordCreatorId(this.getMember().getMemberId()+"");
           testResult.setRecordCreateDate(new Date());
           testResult.setLastUpdatedDate(new Date());
-          testResult.setRecordUpdatorId(this.getMember().getMemberId()+"");
-          testResult.setTestResultDetails(testDetailsList);
+          testResult.setRecordUpdatorId(this.getMember().getMemberId()+"");          
           this.testService.save(testResult);
-          this.noOfQuestion = totalQuestion;
-          this.noOfCorrectAns = tCorrectAns;
-          this.perOfMarks = tCorrectAns * 100 / totalQuestion; 
           
-          Integer passMarks = 60;
-          if (this.getText("tutorial_pass_marks") != null && !this.getText("tutorial_pass_marks").isEmpty()) {
-            passMarks = Integer.parseInt(this.getText("tutorial_pass_marks"));
-          }
-          this.passStatus = this.getText("tutorial_fail_status");
-          if ( this.perOfMarks >= passMarks ) this.passStatus = this.getText("tutorial_pass_status");;
-          sendNotification(this.getMember().getEmail(),
-              this.getText("tutorial_test_email_sub"),
-              this.getText("tutorial_test_email_body",
-                  new String[]{this.getMember().getFirstName(),""+perOfMarks}));
+          if (userType.equals(ServiceConstants.MENTOR)) {
+            this.noOfQuestion = totalQuestion;
+            this.noOfCorrectAns = tCorrectAns;
+            this.perOfMarks = tCorrectAns * 100 / totalQuestion; 
+            
+            Integer passMarks = 60;
+            if (this.getText("tutorial_pass_marks") != null && !this.getText("tutorial_pass_marks").isEmpty()) {
+              passMarks = Integer.parseInt(this.getText("tutorial_pass_marks"));
+            }
+            this.passStatus = this.getText("tutorial_fail_status");
+            if ( this.perOfMarks >= passMarks ) this.passStatus = this.getText("tutorial_pass_status");;
+            sendNotification(this.getMember().getEmail(),
+                this.getText("tutorial_test_email_sub"),
+                this.getText("tutorial_test_email_body",
+                    new String[]{this.getMember().getFirstName(),""+perOfMarks}));
+          }   
         }
       } catch (Exception e) {
         e.printStackTrace();
@@ -376,7 +382,9 @@ public class ModulePlayer extends BasePage{
 			  this.notEndPlay = false;
 			  if (this.getMember()!=null && this.getMember().getTypeId().equals(CommonConstants.MENTOR)) {			    
 			    this.showNext = false;
-			    this.processResult();	        
+			    this.processResult(ServiceConstants.MENTOR);	        
+			  } else if (this.getMember()!=null && this.getMember().getTypeId().equals(CommonConstants.PROTEGE)) {
+			    this.processResult(ServiceConstants.PROTEGE);
 			  }
 			}
 		}
