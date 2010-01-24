@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.intrigueit.myc2i.common.CommonConstants;
 import com.intrigueit.myc2i.common.view.BasePage;
 import com.intrigueit.myc2i.member.domain.Member;
 import com.intrigueit.myc2i.member.service.MemberService;
@@ -67,20 +68,28 @@ public class MemberSearchViewHandler extends BasePage {
 				return;
 			}
 			if(searchType.equals("PROTEGE")){
-				clause = " t.mentoredByMemberId IS NULL and t.typeId =17";
+				clause = " t.mentoredByMemberId IS NULL and t.typeId ="+ CommonConstants.PROTEGE +"";
 			}
 			else if(searchType.equals("MENTOR")){
-				clause = " t.typeId =15";
+				clause = " t.typeId ="+ CommonConstants.MENTOR +"";
 			}
+			String conditions = null;
+			
 			String zipcode = this.getValidZipCode();
 			if(zipcode == null ||  zipcode.equals("") ||  zipcode.equals("0")){
-				return;
+				conditions = this.getClause(new ArrayList<String>(),clause);	
+				if(conditions.equals(clause)){
+					return;
+				}
+			}
+			else{
+				ZipCode srcZip = this.zipCodeService.findById(zipcode);
+				List<String> zipCodes = this.memberSearchDao.fetchZipCode(srcZip.getLatitude(), srcZip.getLongitude(), this.dist);
+				
+				conditions = this.getClause(zipCodes,clause);				
 			}
 
-			ZipCode srcZip = this.zipCodeService.findById(zipcode);
-			List<String> zipCodes = this.memberSearchDao.fetchZipCode(srcZip.getLatitude(), srcZip.getLongitude(), this.dist);
-			
-			String conditions = this.getClause(zipCodes,clause);
+
 			if(conditions != null && !conditions.equals("")){
 				this.members = this.memberService.getMemberByDynamicHsql(conditions);
 				if(this.members != null){
