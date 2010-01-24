@@ -49,6 +49,21 @@ public class MyProfileViewHandler extends BasePage implements Serializable {
   private ArrayList<SelectItem> question2List;
   private Hashtable<String, String> memberTypeHash;
   private String userType;
+  private String selTabName;  
+  
+  /**
+   * @return the selTabName
+   */
+  public String getSelTabName() {
+    return selTabName;
+  }
+
+  /**
+   * @param selTabName the selTabName to set
+   */
+  public void setSelTabName(String selTabName) {
+    this.selTabName = selTabName;
+  }
 
   @Autowired
   public MyProfileViewHandler(MemberService memberService,
@@ -82,11 +97,14 @@ public class MyProfileViewHandler extends BasePage implements Serializable {
   public boolean validate() {
     logger.debug(" Validating member ");
     StringBuffer errorMessage = new StringBuffer();
+    StringBuffer tabName = new StringBuffer();
+    tabName.append("P");
     boolean flag = commonValidator.validateMember(this.currentMember,
-        getUserType(), ServiceConstants.UPDATE, confirmPass, errorMessage);
+        getUserType(), ServiceConstants.UPDATE, confirmPass, errorMessage,tabName);
     if (!flag)
       setErrorMessage(this.getText("common_error_header")
           + errorMessage.toString());
+    this.setSelTabName(tabName.toString());
     return flag;
   }
 
