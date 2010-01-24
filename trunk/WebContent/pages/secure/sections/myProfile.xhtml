@@ -16,8 +16,8 @@
    <h:panelGroup id="idSectionsCon">
    <c:set var="currentEBean" value="#{myProfileViewHandler.currentMember}"></c:set>  
    <h:panelGroup id="idUserEditPanelGroup">
-      <rich:tabPanel switchType="client">
-        <rich:tab label="Basic Information">
+      <rich:tabPanel switchType="client" value="#{myProfileViewHandler.selTabName}">
+        <rich:tab label="Basic Information" name="idBasicInformation">
         <h:panelGrid columns="2" id="idBasicInfo" border="0" columnClasses="prompt,data,errprompt"
           rowClasses="rowinput" width="100%">
           <h:outputLabel>
@@ -209,7 +209,7 @@
           </h:panelGroup>          
         </h:panelGrid>
         </rich:tab>
-        <rich:tab label="Security Questions">
+        <rich:tab label="Security Questions" name="seqQueTab">
           <h:panelGrid columns="2" id="idSsecurityQuestion" border="0" columnClasses="prompt,data,errprompt"
           rowClasses="rowinput" width="100%">
               <h:outputLabel>
