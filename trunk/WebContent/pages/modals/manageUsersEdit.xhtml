@@ -13,8 +13,8 @@
 	 <rich:spacer width="100%" height="20"/>
 	 <c:set var="currentEBean" value="#{userManageViewHandler.currentMember}"></c:set>	 
    <h:panelGroup id="idUserEditPanelGroup">
-   <rich:tabPanel switchType="client" selectedTab="idBasicInformation">
-   <rich:tab name="idLoginInfo" label="Login Information" rendered="#{userManageViewHandler.actionType eq 'A'}">
+   <rich:tabPanel switchType="client" selectedTab="#{userManageViewHandler.selTabName}" id="idUserEditTabPanel">
+   <rich:tab name="idLoginInfoTab" label="Login Information" rendered="#{userManageViewHandler.actionType eq 'A'}">
       <h:panelGrid columns="2" id="idloginInfo" border="0" columnClasses="prompt,data,errprompt"
         rowClasses="rowinput" width="100%">
         <h:outputLabel >
@@ -36,7 +36,7 @@
         
       </h:panelGrid>
    </rich:tab>
-    <rich:tab label="Basic Information" id="idBasicInformation">
+    <rich:tab label="Basic Information" id="idBasicInformation" name="idBasicInformation">
       <h:panelGrid columns="2" id="idBasicInfo" border="0" columnClasses="prompt,data,errprompt"
         rowClasses="rowinput" width="100%">
         <h:outputText value="#{bundle.member_type}"/>
@@ -158,7 +158,7 @@
          styleClass="form_input_text_medium"/>
 	    </h:panelGrid>
     </rich:tab>
-    <rich:tab label="Details Information">
+    <rich:tab label="Details Information" name="idDetailsInfoTab">
       <h:panelGrid columns="2" id="idDetailsInfo" border="0" columnClasses="prompt,data,errprompt"
         rowClasses="rowinput" width="100%">              
         <h:outputLabel>
@@ -264,7 +264,7 @@
         
       </h:panelGrid>
     </rich:tab>
-    <rich:tab label="Security Question">
+    <rich:tab label="Security Question" name="seqQueTab">
         <h:panelGrid columns="2" id="idSsecurityQuestion" border="0" columnClasses="prompt,data,errprompt"
         rowClasses="rowinput" width="100%">
             <h:outputLabel>
@@ -299,7 +299,7 @@
     <ccmp:secactcmp controlBean="#{userManageViewHandler}" modalId="idUserEdit" 
       actionType="#{userManageViewHandler.actionType}"
       addAction = "addUser" updateAction = "updateUser"  reloadAction = "preUpdateUser"
-      reRenderIds="#{userManageViewHandler.reRenderIds}"/>
+      reRenderIds="#{userManageViewHandler.reRenderIds},idUserEditContainer"/>
     <rich:spacer width="100%" height="5"/>
     </rich:panel>
   </ui:composition>
