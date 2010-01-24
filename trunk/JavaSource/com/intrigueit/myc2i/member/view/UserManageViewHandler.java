@@ -60,6 +60,22 @@ public class UserManageViewHandler extends BasePage implements Serializable {
   private String userType;
   private Hashtable<String, String> memberTypeHash;
   private boolean isUserTypeReadOnly;
+  private String selTabName;
+  
+  /**
+   * @return the selTabName
+   */
+  public String getSelTabName() {
+    return selTabName;
+  }
+
+  /**
+   * @param selTabName the selTabName to set
+   */
+  public void setSelTabName(String selTabName) {
+    this.selTabName = selTabName;
+  }
+
   /**
    * @return the isUserTypeReadOnly
    */
@@ -155,11 +171,13 @@ public class UserManageViewHandler extends BasePage implements Serializable {
   public boolean validate() {
     logger.debug(" Validating member ");
     StringBuffer errorMessage = new StringBuffer();
+    StringBuffer tabName = new StringBuffer();
     boolean flag = commonValidator.validateMember(this.currentMember,this.getUserType(),
-        action, confirmPass, errorMessage);
+        action, confirmPass, errorMessage,tabName);
     if (!flag)
       setErrorMessage(this.getText("common_error_header")
           + errorMessage.toString());
+    this.setSelTabName(tabName.toString());
     return flag;
   }
 
