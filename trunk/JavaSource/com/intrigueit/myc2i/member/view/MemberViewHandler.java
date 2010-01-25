@@ -236,9 +236,9 @@ public class MemberViewHandler extends BasePage implements Serializable{
 		}		
 	}
 	private void validationPhase3(){
-		if(CommonValidator.isInvalidListItem(this.getCurrentMember().getMazhab())){
+/*		if(CommonValidator.isInvalidListItem(this.getCurrentMember().getMazhab())){
 			this.errMsgs.add( this.getText("member_validation_madhab"));
-		}
+		}*/
 	
 	}
 	public Member getCurrentMember() {
