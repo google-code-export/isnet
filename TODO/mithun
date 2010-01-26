@@ -1,28 +1,8 @@
-ModulePlayer.java
-TestTutorialQuestionAns.java
-TestResult.java
-TestResultDetails.java
-memberTutorial.xhtml
-protegeTutorial.xhtml
-tutorialModulePlayer.xhtml
+Server MySql Issues::: http://localhost:5560/isqlplus/
+http://www.myc2i.com/myc2i/
+http://code.google.com/p/isnet/issues/list
 
-1. Page title        Done       
-2. Autocomplete for member search(member log) donr
-3. Complete profile and introduce for all done
-4. Member exservice code need to marge in memberservice. done
-5. Check css for all  
-6. Table header as like success stories
-7. Document for how to implement tutorial
+New installation issues.
 
-
-Please see the issues:
-
-public List<MemberLog> findByProperties (String fromDate, String toDate ) {
- function name is consistent with parameters. All check all your code  done
- 
- ***My profile State, gender do not show desire value. dont see any problem
- 
- Why myProfileViewHandle.java start with lower case????? (Was an mistake)
- 
- WARN :[2009-10-12 22:44:32,566]  com.intrigueit.myc2i.memberlog.view.MemberLogViewHandler (BasePage.java:117) - Missing key for 'header_msg_contact_us'
- 
+1.delete and create TUTORIAL_TEST table
+2.
