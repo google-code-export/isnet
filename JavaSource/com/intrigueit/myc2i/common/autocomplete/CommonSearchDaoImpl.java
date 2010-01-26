@@ -55,7 +55,7 @@ public class CommonSearchDaoImpl extends GenericDaoImpl<CommonSearchDataTmp,Long
       while (it.hasNext()) {
         Member obj = (Member) it.next();
         resultList.add(new CommonSearchDataTmp(""+obj.getMemberId(),
-            EscapeChars.forHTML(obj.getFirstName()),EscapeChars.forHTML(obj.getFirstName())));
+            EscapeChars.forHTML(obj.getFirstName()),EscapeChars.forHTML(obj.getLastName())));
       }
     }
     return resultList;
