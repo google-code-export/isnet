@@ -150,7 +150,10 @@ public class MemberSearchViewHandler extends BasePage {
 		this.dist = dist;
 	}
 	public String getSrcZipCode() {
-		return srcZipCode;
+		if (this.getMember()!=null){
+		  return this.getMember().getZip();
+		}
+	  return srcZipCode;
 	}
 	public void setSrcZipCode(String srcZipCode) {
 		this.srcZipCode = srcZipCode;
