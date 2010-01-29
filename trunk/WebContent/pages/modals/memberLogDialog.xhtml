@@ -32,8 +32,9 @@
           <h:panelGrid columns="2" id="gridMemberLog" width="100%">
             <h:outputText value="To"/>
             <h:panelGroup rendered="#{memberLogViewHandler.showSearchBox}">
-	            <ccmp:searchcmp  searchBean="#{memberLogViewHandler.currentLog}" msgLabel="Member" extConds=""
-	              displayField="memberDesc" hidIdField="toMemberId" searchObj="MT" isRequired="true"/>
+	            <ccmp:searchcmp  searchBean="#{memberLogViewHandler.currentLog}" msgLabel="Member" 
+	            	extConds="memberId != #{memberLogViewHandler.member.memberId}"
+	              	displayField="memberDesc" hidIdField="toMemberId" searchObj="MT" isRequired="true"/>
              </h:panelGroup>
             <h:panelGroup rendered="#{! memberLogViewHandler.showSearchBox}">
 	            <h:outputText value="#{memberLogViewHandler.memberName}" />
