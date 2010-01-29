@@ -13,6 +13,7 @@ import com.intrigueit.myc2i.common.view.BasePage;
 import com.intrigueit.myc2i.common.view.CommonValidator;
 import com.intrigueit.myc2i.member.domain.Member;
 import com.intrigueit.myc2i.member.service.MemberService;
+import com.intrigueit.myc2i.utility.Emailer;
 
 @Component("myChgPasswordViewHandler")
 @Scope("session")
@@ -196,6 +197,15 @@ public class MyChgPasswordViewHandler extends BasePage implements Serializable {
 				memberService.update(this.currentMember);
 				this.setErrorMessage(this.getText("update_password_success_message"));
 				this.setMsgType(ServiceConstants.INFO);
+				
+				if (this.currentMember.getEmail()!=null) {
+          sendNotification(this.currentMember.getEmail(),
+              this.getText("email_password_change_confirmation_subject"),
+              this.getText("email_password_change_confirmation_body",
+                  new String[]{this.currentMember.getEmail(),
+                  this.getOldPassword()}));
+        }
+				
 			}
 		} catch (Exception e) {
 			setErrorMessage(this.getText("common_system_error"));
@@ -204,6 +214,19 @@ public class MyChgPasswordViewHandler extends BasePage implements Serializable {
 		}
 	}
 
+	/** Send confirmation email to member */
+  public void sendNotification(String email, String emailSubject,String msgBody)throws Exception {
+    /**Send email notification */
+    try {
+      Emailer emailer = new Emailer(email, msgBody,emailSubject);
+      emailer.setContentType("text/html");
+      emailer.sendEmail();
+    } catch (Exception e) {
+      logger.debug("Failed to sending notification email");
+      e.printStackTrace();
+    }
+  }
+  
 	/**
 	 * @return the currentMember
 	 */
