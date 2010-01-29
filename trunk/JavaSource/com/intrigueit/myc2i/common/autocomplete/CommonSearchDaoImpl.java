@@ -31,7 +31,7 @@ public class CommonSearchDaoImpl extends GenericDaoImpl<CommonSearchDataTmp,Long
 			totalResult = 100;
 			if(tableName!=null) {
 				if (tableName.equals(ServiceConstants.MEMBER_TABLE)) {
-					resultList = searchMember(searchText);
+					resultList = searchMember(searchText,extConds);
 				}
 			}
 		} catch (Exception e) {
@@ -41,7 +41,7 @@ public class CommonSearchDaoImpl extends GenericDaoImpl<CommonSearchDataTmp,Long
 	}
 
   @SuppressWarnings("unchecked")
-  private ArrayList<CommonSearchDataTmp> searchMember(String searchText) throws Exception {
+  private ArrayList<CommonSearchDataTmp> searchMember(String searchText,String extConds) throws Exception {
   	ArrayList<CommonSearchDataTmp> resultList = new ArrayList<CommonSearchDataTmp>();
   	if (searchText == null || searchText.equals(""))
       return resultList;
@@ -49,6 +49,8 @@ public class CommonSearchDaoImpl extends GenericDaoImpl<CommonSearchDataTmp,Long
     StringBuffer clause = new StringBuffer();
     clause.append(" upper(t.firstName) like ?1");
     value.add("%"+searchText.toUpperCase()+"%");
+    if (extConds != null && !extConds.isEmpty()) clause.append(" and "+extConds);
+      
     List recordList = this.loadByClause("MEMBER", clause.toString(), value.toArray()); 
     if (recordList!= null && !recordList.isEmpty()) {
       Iterator it = recordList.iterator();
