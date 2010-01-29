@@ -12,12 +12,21 @@
       
 			 <table width="100%" border="0" cellpadding="0" cellspacing="0" >
 			    <tr>
-			      <td height="87px" class="banner">
-				  <table width="96%" border="0" style="margin-top: 15px;">
+			      <td height="88px" class="banner">
+				  <table width="96%" border="0" >
 				  <tr>
-				  	<td></td>
+				  	<td align="left" >
+					  	<h:commandLink >
+							<h:graphicImage value="/images/logo.png" align="middle" border="0" style="height: 80px;" /> 				  	
+					  	</h:commandLink>
+				  	</td>
 				  	<td align="right" >
-
+						<table width="100%" border="0" cellpadding="0" cellspacing="0">
+							<tr>
+							<td height="15px"></td>
+							</tr>
+							<tr>
+								<td>
 			          <h:panelGroup>
 				            <h:commandLink action="#{authenticationViewHandler.logOutUser}" value="#{bundle.top_navigation_sign_out}"  rendered="#{authenticationViewHandler.isLogged}">
 				            </h:commandLink>
@@ -42,12 +51,14 @@
 								  <h:outputText
 								    value="|"/>
 							</h:outputLabel>
-
 				            <h:outputLink styleClass=""  style="text-decoration:none;" value="#{controllerBean.contextPath}/contactUs.faces">
 				              <h:outputText id="idContactus" value="#{bundle.top_navigation_contact_us}"/>
 				            </h:outputLink>							
-							
-			          </h:panelGroup>
+			          </h:panelGroup>								
+								</td>
+									
+							</tr>
+						</table>
 				  	</td>
 				  </tr>
 				  </table>
