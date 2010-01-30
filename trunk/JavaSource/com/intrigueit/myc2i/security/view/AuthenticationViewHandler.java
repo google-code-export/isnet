@@ -66,6 +66,8 @@ public class AuthenticationViewHandler extends BasePage implements Serializable 
 	private String errMessage;
 
 	private Boolean isLogged;
+	
+	private String homePageUrl;
 
 	/**
 	 * @param memberService
@@ -74,6 +76,8 @@ public class AuthenticationViewHandler extends BasePage implements Serializable 
 	public AuthenticationViewHandler(MemberService memberService) {
 		this.memberService = memberService;
 		menu = new Menu();
+		this.homePageUrl = "/login.faces";
+		
 	}
 
 	private void storeInCokie() {
@@ -230,12 +234,15 @@ public class AuthenticationViewHandler extends BasePage implements Serializable 
 		} else {
 			if (member.getTypeId() == 15L || member.getTypeId() == 16L) {
 				this.menu.setMentorTopMenu(true);
+				this.homePageUrl = "/pages/secure/mentorDashboard.faces";
 				return ViewConstant.TO_MENTOR_DASHBOARD;
 			} else if (member.getTypeId() == 18L) {
 				this.menu.setAdminTopMenu(true);
+				this.homePageUrl = "/pages/secure/udValueView.faces";
 				return ViewConstant.TO_ADMIN_HOME;
 			} else if (member.getTypeId() == 17L) {
 				this.menu.setGuestTopMenu(true);
+				this.homePageUrl = "/pages/secure/protegeDashboard.faces";
 				return ViewConstant.TO_PROTEGE_DASHBOARD;
 			}
 		}
@@ -372,6 +379,14 @@ public class AuthenticationViewHandler extends BasePage implements Serializable 
 	@Autowired
 	public void setUdService(UDValuesService udService) {
 		this.udService = udService;
+	}
+
+	public String getHomePageUrl() {
+		return homePageUrl;
+	}
+
+	public void setHomePageUrl(String homePageUrl) {
+		this.homePageUrl = homePageUrl;
 	}
 
 }
