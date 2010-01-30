@@ -16,9 +16,10 @@
 				  <table width="96%" border="0" >
 				  <tr>
 				  	<td align="left" >
-					  	<h:commandLink >
-							<h:graphicImage value="/images/logo.png" align="middle" border="0" style="height: 80px;" /> 				  	
-					  	</h:commandLink>
+
+			            <h:outputLink   value="#{controllerBean.contextPath}#{authenticationViewHandler.homePageUrl}">
+<h:graphicImage value="/images/logo.png" align="middle" border="0" style="height: 80px;" /> 				  				             
+			            </h:outputLink>						  	
 				  	</td>
 				  	<td align="right" >
 						<table width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -26,7 +27,7 @@
 							<td height="15px"></td>
 							</tr>
 							<tr>
-								<td>
+								<td align="right">
 			          <h:panelGroup>
 				            <h:commandLink action="#{authenticationViewHandler.logOutUser}" value="#{bundle.top_navigation_sign_out}"  rendered="#{authenticationViewHandler.isLogged}">
 				            </h:commandLink>
