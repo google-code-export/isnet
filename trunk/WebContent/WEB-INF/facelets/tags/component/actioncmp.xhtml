@@ -10,14 +10,14 @@
       <rich:panel styleClass="action_panel" id="${modalId}Ctrl">              
         <h:panelGroup>
             <a4j:commandButton id="idUpdate" value="Update"  action="${controlBean[updateAction]}"
-              oncomplete="forceSUnblockUI()" onclick="forceSBlockUI(ajaxProcessMsg);" 
+              oncomplete="forceUnblockUI()" onclick="forceBlockUI(ajaxProcessMsg);" 
               reRender="idErrorPanel,idErrorHead,idErrorMsg,${reRenderIds}"
               styleClass="ibutton" style="background:#F8F3D3;">
               <f:param value="${extraParam}" name="extraParam"/>
             </a4j:commandButton>
             
             <a4j:commandButton id="idCancel" value="Cancel" action="${controlBean[cancelAction]}"
-            oncomplete="forceSUnblockUI()" onclick="forceSBlockUI(ajaxProcessMsg);" 
+            oncomplete="forceUnblockUI()" onclick="forceBlockUI(ajaxProcessMsg);" 
             reRender="idErrorPanel,${reRenderIds}" styleClass="ibutton" style="background:#F8F3D3;"/>        
         </h:panelGroup>
     </rich:panel>
