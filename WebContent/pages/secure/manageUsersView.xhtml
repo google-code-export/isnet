@@ -59,7 +59,7 @@
           <h:outputText value=""/>
           <a4j:commandButton value="#{bundle.common_search}" styleClass="ibutton" style="background:#F8F3D3;"
             action="#{userManageViewHandler.loadMembersByCriteria}" reRender="MEMBER_LINES"
-            onclick="forceSBlockUI(ajaxProcessMsg);" oncomplete="forceSUnblockUI();"/>
+            onclick="forceBlockUI(ajaxProcessMsg);" oncomplete="forceUnblockUI();"/>
               
         </h:panelGrid>
       </h:panelGroup>
