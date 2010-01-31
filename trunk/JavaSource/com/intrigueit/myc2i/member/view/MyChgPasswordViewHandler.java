@@ -203,7 +203,7 @@ public class MyChgPasswordViewHandler extends BasePage implements Serializable {
               this.getText("email_password_change_confirmation_subject"),
               this.getText("email_password_change_confirmation_body",
                   new String[]{this.currentMember.getEmail(),
-                  this.getOldPassword()}));
+                  this.getNewPassword()}));
         }
 				
 			}
