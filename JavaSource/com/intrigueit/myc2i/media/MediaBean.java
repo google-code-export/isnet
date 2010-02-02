@@ -16,7 +16,25 @@ public class MediaBean {
 	private Clip sClip;
 	
 	private String pageContent;
+	
+	private String audioFilePath;
+  private String vedioFilePath;
+  
+  public String getAudioFilePath() {
+    return audioFilePath;
+  }
 
+  public void setAudioFilePath(String audioFilePath) {
+    this.audioFilePath = audioFilePath;
+  }
+
+  public String getVedioFilePath() {
+    return vedioFilePath;
+  }
+
+  public void setVedioFilePath(String vedioFilePath) {
+    this.vedioFilePath = vedioFilePath;
+  }   
 
 	/**
 	 * 
