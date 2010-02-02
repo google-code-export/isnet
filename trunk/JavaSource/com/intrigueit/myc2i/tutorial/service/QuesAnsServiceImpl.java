@@ -100,7 +100,7 @@ public class QuesAnsServiceImpl implements QuestionAnsService {
 
   @Override
   public List<TestTutorialQuestionAns> getTutorialByModule(Long mdouleId) {
-    String clause = " t.modulesId" + " =?1 ";
+    String clause = " t.modulesId" + " =?1 order by pageNumber asc";
     return questionAnsDao.loadByClause(clause, new Object[] { mdouleId });
   }
 }
