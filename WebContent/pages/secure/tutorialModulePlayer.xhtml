@@ -52,6 +52,7 @@
 <body bgcolor="#ffffff">
 <h:form id="idTModuleForm">
 <h:inputHidden value="#{modulePlayer.initPage}" />
+<h:outputText  value="#{modulePlayer.mediaBean.audioFilePath}" />
 <table style="border:1px solid #CAD6E0"  align="center" cellpadding="0" cellspacing="0" border="0" width="400">
 <tbody>
 	<tr>
@@ -92,7 +93,15 @@
             </h:panelGroup>
                
             <h:panelGroup rendered="#{modulePlayer.notEndPlay}">
-							<h:outputText id="idContainerxxx" value="#{modulePlayer.mediaBean.pageContent}" escape="false" />
+							<div style="border: 0px solid red;background-color: white;">
+                <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
+                   codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0">
+                  <param name="quality" value="high"/>
+                  <embed src="#{controllerBean.contextPath}/#{modulePlayer.mediaBean.audioFilePath}" quality="high" 
+                    pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="900" height="600">
+                  </embed>
+                </object>
+              </div>
 						</h:panelGroup>
 					</rich:panel>
           <h:panelGroup rendered="#{modulePlayer.hasQuestionAns}">
