@@ -32,37 +32,37 @@ public class ModulePlayer extends BasePage{
 	
 	private List<TestTutorialQuestionAns> tutorials;
 	
-  	private ModulesService modulesService;
+	private ModulesService modulesService;
+	
+	private QuestionAnsService questionService;
+	
+	private String modulePlay;
+	
+	private MediaBean mediaBean;
+	
+	private int pageIndex = -1;
+	
+	private String pageContent;
+	
+	private Boolean hasQuestionAns;
+	
+	private Date examStartDate;
+	
+	private TestResultService testService;
+	private TestResultDetailsService testDetailsService;
+	
+	private String initPage;
+	private boolean disabledNext;
+	private boolean disabledLast;
+	private boolean showNext = true;
+	private boolean notEndPlay = true;
+	private Integer noOfQuestion;
+	private Integer noOfCorrectAns;
+	private String passStatus;
+  private Integer perOfMarks;
+  private boolean playing = true;
+  private String currentAction = "";    
   	
-  	private QuestionAnsService questionService;
-  	
-  	private String modulePlay;
-  	
-  	private MediaBean mediaBean;
-  	
-  	private int pageIndex = -1;
-  	
-  	private String pageContent;
-  	
-  	private Boolean hasQuestionAns;
-  	
-  	private Date examStartDate;
-  	
-  	private TestResultService testService;
-  	private TestResultDetailsService testDetailsService;
-  	
-  	private String initPage;
-  	private boolean disabledNext;
-  	private boolean disabledLast;
-  	private boolean showNext = true;
-  	private boolean notEndPlay = true;
-  	private Integer noOfQuestion;
-  	private Integer noOfCorrectAns;
-  	private String passStatus;
-  	private Integer perOfMarks;
-  	private boolean playing = true;
-  	private String currentAction = "";
-  	  	
   	/**
      * @return the currentAction
      */
@@ -332,9 +332,11 @@ public class ModulePlayer extends BasePage{
   		try{
   			this.decideQuestion();
   			mediaBean.dispose();
-  			mediaBean = new MediaBean(this.currentPage.getPageAudio());
-  			mediaBean.play();
+  			//@@@mediaBean = new MediaBean(this.currentPage.getPageAudio());
+  			//@@@mediaBean.play();
   			mediaBean.setPageContent(this.currentPage.getPageText());
+  			mediaBean.setAudioFilePath(this.currentPage.getAudioFileName());
+  			System.out.println(mediaBean.getAudioFilePath());
   		}
   		catch(Exception ex){
   			ex.printStackTrace();
@@ -406,10 +408,13 @@ public class ModulePlayer extends BasePage{
 	}	
   	private void playModuleIntroduction(){
   		try{
-  			mediaBean = new MediaBean(this.getModule().getModuleIntroAudio());
-  			mediaBean.play();
+  			//@@@mediaBean = new MediaBean(this.getModule().getModuleIntroAudio());
+  			//@@@mediaBean.play();
+  		  mediaBean = new MediaBean();
   			mediaBean.setPageContent(this.getModule().getModuleText());
-			this.setCurrentPage(null);
+  			mediaBean.setAudioFilePath(this.getModule().getAudioFileName());
+  			System.out.println(":::"+this.getModule().getAudioFileName());
+  			this.setCurrentPage(null);
   		}
   		catch(Exception ex){
   			ex.printStackTrace();
