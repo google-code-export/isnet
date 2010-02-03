@@ -48,6 +48,7 @@ public class MemberSearchViewHandler extends BasePage {
 	private void reset(){
 		this.msg = "";
 		this.members.clear();
+		this.recordCount = 0;
 	}
 	private String getValidZipCode(){
 		Long zipCode = 0L;
