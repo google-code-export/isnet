@@ -18,7 +18,7 @@ import com.intrigueit.myc2i.zipcode.domain.ZipCode;
 import com.intrigueit.myc2i.zipcode.service.ZipCodeService;
 
 @Component("memberSearchViewHandler")
-@Scope("session")
+@Scope("request")
 public class MemberSearchViewHandler extends BasePage {
 
 	private MemberService memberService;
