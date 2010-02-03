@@ -26,6 +26,15 @@
       <rich:spacer width="100%" height="10"/>
       <h:panelGroup id="idTopCon">
           <table border="0" cellspacing="0" cellpadding="0" width="98%">
+           <tr>
+            	<td align="left"> 
+            		<h:outputText  value="#{memberSearchViewHandler.init}" />
+	      		</td>
+	      		<td colspan="5">
+					<h:outputText id="idMsgPanel" style="color: red;" value="#{memberSearchViewHandler.msg}" />
+				</td>	
+
+           </tr>             
           	<tr>
             	<td align="left"> 
             		<h:outputText value="#{bundle.protege_search_distance}" />
@@ -45,7 +54,7 @@
 					<h:inputText value="#{memberSearchViewHandler.srcZipCode}" />
 				</td>	
 				<td>
-					<a4j:commandButton onclick="forceBlockUI(ajaxSearchingMentor);"   oncomplete="forceUnblockUI();" value="#{bundle.button_label_search}" action="#{memberSearchViewHandler.executeSearch}" reRender="idResultPanel">
+					<a4j:commandButton onclick="forceBlockUI(ajaxSearchingMentor);"   oncomplete="forceUnblockUI();" value="#{bundle.button_label_search}" action="#{memberSearchViewHandler.executeSearch}" reRender="idResultPanel,idMsgPanel">
 						<f:param name="SEARCH_TYPE" value="MENTOR"/>
 					</a4j:commandButton>
 				</td>
