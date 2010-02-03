@@ -18,7 +18,7 @@ import com.intrigueit.myc2i.zipcode.domain.ZipCode;
 import com.intrigueit.myc2i.zipcode.service.ZipCodeService;
 
 @Component("memberSearchViewHandler")
-@Scope("request")
+@Scope("session")
 public class MemberSearchViewHandler extends BasePage {
 
 	private MemberService memberService;
@@ -32,6 +32,7 @@ public class MemberSearchViewHandler extends BasePage {
 	
 	private List<Member> members;
 	private String msg;
+	private String init;
 	
 	
 	/**
@@ -84,6 +85,9 @@ public class MemberSearchViewHandler extends BasePage {
 			}
 			else{
 				ZipCode srcZip = this.zipCodeService.findById(zipcode);
+				if(srcZip == null){
+					throw new Exception("Not a valid zip code.");
+				}
 				List<String> zipCodes = this.memberSearchDao.fetchZipCode(srcZip.getLatitude(), srcZip.getLongitude(), this.dist);
 				
 				conditions = this.getClause(zipCodes,clause);				
@@ -180,6 +184,15 @@ public class MemberSearchViewHandler extends BasePage {
 	@Autowired
 	public void setMemberSearchDao(MemberSearchDao memberSearchDao) {
 		this.memberSearchDao = memberSearchDao;
+	}
+
+	public String getMsg() {
+		return msg;
+	}
+
+	public String getInit() {
+		if(this.members != null) reset();
+		return init;
 	}
 
 
