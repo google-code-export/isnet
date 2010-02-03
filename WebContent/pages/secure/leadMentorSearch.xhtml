@@ -72,7 +72,7 @@
       
       <rich:spacer width="100%" height="20"/>
 		<rich:panel id="idResultPanel" headerClass="container_box_panel_header"  bodyClass="container_body_style" >
-			<f:facet name="header"><h:outputText value="#{bundle.protege_lead_mentor_result}" /> </f:facet>
+			<f:facet name="header"><h:outputText value="#{bundle.protege_lead_mentor_result}: #{memberSearchViewHandler.recordCount}" />  </f:facet>
 			<h:panelGrid columns="1" width="100%" cellpadding="0" cellspacing="0" border="0">
 				<rich:dataTable  width="100%" id="idDataGrid"  rowClasses=",container_even_row_style" rows="10" 
 			                value="#{memberSearchViewHandler.members}" var="member" headerClass="table_column_style" cellpadding="0" cellspacing="0">
@@ -140,7 +140,7 @@
 
 		             <rich:column>
 			             <f:facet name="header">
-			               <h:outputText value="#{bundle.protege_search_add_protege}" />
+			               <h:outputText value="Add Lead Mentor" />
 			             </f:facet>
 		         		 <a4j:commandLink value="#{bundle.button_label_send_request}"  reRender="idmemberLogDialog" action="#{memberLogViewHandler.initMemberLogForProtegeRequestForLeadMentor}" oncomplete="Richfaces.showModalPanel('idmemberLogDialog')">
 				             <a4j:actionparam name="MEMBER_ID" value="#{member.memberId}"  />
