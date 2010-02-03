@@ -150,8 +150,8 @@ public class MemberSearchViewHandler extends BasePage {
 		this.dist = dist;
 	}
 	public String getSrcZipCode() {
-		if (this.getMember()!=null){
-		  return this.getMember().getZip();
+		if(this.srcZipCode == null || this.srcZipCode.equals("")){
+			this.srcZipCode = this.getMember().getZip();
 		}
 	  return srcZipCode;
 	}
