@@ -21,3 +21,31 @@ var ModalHelper =  {
 	}		
   
   };
+
+function wordCounter(count){
+	var y = $("memberStoryForm:idBody").value;
+
+	var r = 0;
+	var a = y.replace(/\s/g,' ');
+	a = a.split(' ');
+	var len = a.length;
+	var z = 0;
+	var cont = '';
+	for (z=0; z<len; z++) {
+		if (a[z].length > 0) r++;		
+		if(cont == ''){
+			cont = a[z];
+		}else{
+			cont = cont + ' '+ a[z];
+		}
+		if( r >= count){
+			$("memberStoryForm:idBody").value = cont;
+			$("memberStoryForm:idCharCounter").value = count-r;
+			return false;
+		}
+
+	}
+	
+	$("memberStoryForm:idCharCounter").value = count-r;
+
+}	
