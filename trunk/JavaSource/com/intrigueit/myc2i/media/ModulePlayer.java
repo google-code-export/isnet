@@ -336,7 +336,6 @@ public class ModulePlayer extends BasePage{
   			//@@@mediaBean.play();
   			mediaBean.setPageContent(this.currentPage.getPageText());
   			mediaBean.setAudioFilePath(this.currentPage.getAudioFileName());
-  			System.out.println(mediaBean.getAudioFilePath());
   		}
   		catch(Exception ex){
   			ex.printStackTrace();
@@ -413,7 +412,6 @@ public class ModulePlayer extends BasePage{
   		  mediaBean = new MediaBean();
   			mediaBean.setPageContent(this.getModule().getModuleText());
   			mediaBean.setAudioFilePath(this.getModule().getAudioFileName());
-  			System.out.println(":::"+this.getModule().getAudioFileName());
   			this.setCurrentPage(null);
   		}
   		catch(Exception ex){
