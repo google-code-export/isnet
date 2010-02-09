@@ -56,10 +56,10 @@ public class QuesAnsServiceImpl implements QuestionAnsService {
     clause
         .append(
             "SELECT NEW TestTutorialQuestionAns(tq.questionAnsId,tq.pageNumber,tq.pageTitle)")
-        .append(" FROM TestTutorialQuestionAns tq");
+        .append(" FROM TestTutorialQuestionAns tq ");
 
     if (moduleId != null && !moduleId.isEmpty()) {
-      clause.append(" where tq.modulesId =" + moduleId);
+      clause.append(" where tq.modulesId =" + moduleId+" order by tq.pageNumber asc");
     }
     return questionAnsDao.findByProperties(clause.toString());
   }
