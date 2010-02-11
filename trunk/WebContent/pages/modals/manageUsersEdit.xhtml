@@ -15,6 +15,10 @@
    <h:panelGroup id="idUserEditPanelGroup">
    <rich:tabPanel switchType="client" selectedTab="#{userManageViewHandler.selTabName}" id="idUserEditTabPanel">
    <rich:tab name="idLoginInfoTab" label="Login Information" rendered="#{userManageViewHandler.actionType eq 'A'}">
+      <h:panelGrid columns="1" border="0" width="100%">
+        <h:outputText style="padding-left: 5pt;font-size: -1;color: #6f6f6f;
+        text-align: left; font-family:arial,sans-serif" value="#{bundle.member_validation_password}" />
+      </h:panelGrid>
       <h:panelGrid columns="2" id="idloginInfo" border="0" columnClasses="prompt,data,errprompt"
         rowClasses="rowinput" width="100%">
         <h:outputLabel >
