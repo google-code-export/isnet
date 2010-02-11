@@ -75,6 +75,21 @@ public class MyChgPasswordViewHandler extends BasePage implements Serializable {
 			errorMessage.append(this.getText("common_system_error"));
 			isValid = false;	
 		}
+		if (this.getOldPassword().isEmpty()) {
+      errorMessage.append(this.appendErrorMessage("member_validation_old_password"));
+      isValid = false;
+    }
+		
+		if (this.getNewPassword().isEmpty()) {
+		  errorMessage.append(this.appendErrorMessage("member_validation_new_password"));
+      isValid = false;
+		}
+		
+		if (this.getConfirmPassword().isEmpty()) {
+      errorMessage.append(this.appendErrorMessage("member_validation_confirm_password"));
+      isValid = false;
+    }
+		
 		String oldPass = crp.getDeccryptedText(this.currentMember.getPassword());
 		if (oldPass == null || !oldPass.equals(this.getOldPassword())) {
 			errorMessage.append(this.appendErrorMessage("change_password_validation_old_password_invalid"));
@@ -83,11 +98,7 @@ public class MyChgPasswordViewHandler extends BasePage implements Serializable {
 		if (!CommonValidator.isValidPassword(this.getNewPassword())) {
 			errorMessage.append(this.appendErrorMessage("member_validation_password"));
 			isValid = false;			
-		}
-		if (!CommonValidator.isValidPassword(this.getConfirmPassword())) {
-			errorMessage.append(this.appendErrorMessage("member_validation_password"));
-			isValid = false;			
-		}
+		}		
 		if(!this.getConfirmPassword().equals(this.getNewPassword())){
 			errorMessage.append(this.appendErrorMessage("member_validation_password_dont_match"));
 			isValid = false;			
