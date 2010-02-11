@@ -39,7 +39,7 @@
       .note{font-size: 9pt; font-weight: normal; color: red; font-style:italic;
         padding-left: 10px;text-align: left; vertical-align: middle;}      
 		</style>
-    <script type="text/javascript" src="/myc2i_v1.7/js/flowplayer-3.1.4.min.js"></script>
+    <a4j:loadScript src="/js/flowplayer-3.1.4.min.js" />
     <script type="text/javascript" >
         function enabledButton(){
           var nextBtn = document.getElementById("idTModuleForm:idNext");
@@ -54,7 +54,6 @@
 <body bgcolor="#ffffff">
 <h:form id="idTModuleForm">
 <h:inputHidden value="#{modulePlayer.initPage}" />
-<h:outputText value="#{controllerBean.contextPath}" />
 
 <table style="border:1px solid #CAD6E0"  align="center" cellpadding="0" cellspacing="0" border="0" width="400">
 <tbody>
