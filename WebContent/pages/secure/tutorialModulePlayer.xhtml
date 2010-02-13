@@ -1,17 +1,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-	  xmlns:a4j="http://richfaces.org/a4j"
-	  xmlns:c="http://java.sun.com/jstl/core"
-	  xmlns:rich="http://richfaces.org/rich"      
-      xmlns:ui="http://java.sun.com/jsf/facelets">
-      
-   		
-		<head>
-		<title><ui:insert name="pageTitle">Page Title</ui:insert></title>
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:a4j="http://richfaces.org/a4j"
+  xmlns:c="http://java.sun.com/jstl/core"
+  xmlns:rich="http://richfaces.org/rich"      
+  xmlns:ui="http://java.sun.com/jsf/facelets">
+  <head>
+    <title><ui:insert name="pageTitle">Page Title</ui:insert></title>
 		<style type="text/css">
-			body {
+		  body {
 				  font-family: Verdana, Arial, Helvetica, sans-serif;
 				  font-size: 14px;
 			}
@@ -34,230 +32,227 @@
       }
       .ibutton{ border: 1px solid #152a4d; background-color: #c6d3dc; font-size: 9pt; font-weight: bold;
           color: #11358B; padding-top:2px; padding-bottom:2px; padding-left:5px; padding-right:5px;}
+      
       .prompt{font-size: 9pt; font-weight: normal; color: #375e9f;
       padding-left: 10px;text-align: left; vertical-align: middle;}
+      
       .note{font-size: 9pt; font-weight: normal; color: red; font-style:italic;
-        padding-left: 10px;text-align: left; vertical-align: middle;}      
+        padding-left: 10px;text-align: left; vertical-align: middle;}
+      
+      .tutorial_container{
+        background-color:#efefef;
+        width:600px;
+        margin:3px auto;
+        padding:50px 50px 50px 50px;
+        min-height:400px;
+        border:2px solid #fff;
+        outline:1px solid #ccc;
+        text-align:left;
+      }  
+              
 		</style>
     <a4j:loadScript src="/js/flowplayer-3.1.4.min.js" />
     <script type="text/javascript" >
-        function enabledButton(){
-          var nextBtn = document.getElementById("idTModuleForm:idNext");
-          var lastBtn = document.getElementById("idTModuleForm:idLast");
-          if ( nextBtn ) nextBtn.disabled = false;
-          if ( lastBtn ) lastBtn.disabled = false;
-        }            
-      </script>
-     
-		</head>
+      function enabledButton(){
+        var nextBtn = document.getElementById("idTModuleForm:idNext");
+        var lastBtn = document.getElementById("idTModuleForm:idLast");
+        if ( nextBtn ) nextBtn.disabled = false;
+        if ( lastBtn ) lastBtn.disabled = false;
+      }            
+    </script>
+	</head>
 
-<body bgcolor="#ffffff">
-<h:form id="idTModuleForm">
-<h:inputHidden value="#{modulePlayer.initPage}" />
-
-<table style="border:1px solid #CAD6E0"  align="center" cellpadding="0" cellspacing="0" border="0" width="400">
-<tbody>
-	<!-- tr>
-		<td class="header" height="42" align="center" valign="middle" width="100%" bgcolor="#E4EBEB">
-			<h:graphicImage value="/images/tutorial_title.png" />
-		</td>
-	</tr-->
-	<tr>
-		<td height="1" width="100%" bgcolor="#CAD6E0"></td>
-	</tr>	
-
-	<tr>
-		<td width="100%"  colspan="2">
-			<table width="100%" style="height:150px;border:1px solid #FFFFEF" align="left" cellpadding="0" cellspacing="0" 
-        border="0">
-			<tbody>
-				<tr>
-					<td align="center" width="100%" valign="middle">
-					<rich:panel id="idContainer" rendered="#{!modulePlayer.hasQuestionAns}">
-						<f:facet name="header">              
-              <h:panelGroup rendered="#{!modulePlayer.notEndPlay}">
-                <h:outputText style="font-size: 11pt; font-weight: bold;" value="Tutorial" />
-              </h:panelGroup> 
-            </f:facet>
-            <h:panelGroup rendered="#{!modulePlayer.notEndPlay}">
-              <table cellpadding="0" cellspacing="0" border="0" align="center">
-                <colgroup>
-                  <col width="30%"/>
-                  <col width="50%"/>
-                </colgroup>
-                <tr>
-                  <td colspan="2" style="font-size: 9pt; font-weight: bold; color: #375e9f;
-                      padding-left: 10px;text-align: center;">
-                    You have successfully completed your tutorial. Please go back if you like to review.
-                  </td>
-                </tr>                  
-              </table>
-            </h:panelGroup>
-               
-            <h:panelGroup rendered="#{modulePlayer.notEndPlay}">
-							<div style="border: 0px solid red;background-color: white;">
-                <!-- object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
-                   codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0">
-                  <param name="quality" value="high"/>
-                  <embed src="#{controllerBean.contextPath}/#{modulePlayer.mediaBean.audioFilePath}" quality="high" 
-                    pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="900" height="600">
-                  </embed>
-                </object-->
-                <div id="page">
-                    <!-- this A tag is where your Flowplayer will be placed. it can be anywhere -->
-                    <a  
-                       href="http://e1h13.simplecdn.net/flowplayer/flowplayer.flvxxx"  
-                       style="display:block;width:520px;height:330px"  
-                       id="player"> 
+  <body bgcolor="#ffffff">
+  <h:form id="idTModuleForm">
+    <h:inputHidden value="#{modulePlayer.initPage}" />
+    <table style="border:1px solid #CAD6E0"  align="center" cellpadding="0" 
+      cellspacing="0" border="0" width="400">
+    <tbody>
+    	<!-- tr>
+    		<td class="header" height="42" align="center" valign="middle" width="100%" bgcolor="#E4EBEB">
+    			<h:graphicImage value="/images/tutorial_title.png" />
+    		</td>
+    	</tr-->
+    	<tr>
+    		<td height="1" width="100%" bgcolor="#CAD6E0"></td>
+    	</tr>
+    	<tr>
+    		<td width="100%"  colspan="2">
+    			<table width="100%" style="border:1px solid #FFFFEF" align="left" cellpadding="0" cellspacing="0" 
+            border="0">
+    			<tbody>
+    				<tr>
+    					<td align="center" width="100%" valign="middle">
+    					<rich:panel id="idContainer" rendered="#{!modulePlayer.hasQuestionAns}">
+    						<f:facet name="header">              
+                  <h:panelGroup rendered="#{!modulePlayer.notEndPlay}">
+                    <h:outputText style="font-size: 11pt; font-weight: bold;" value="Tutorial" />
+                  </h:panelGroup> 
+                </f:facet>
+                <h:panelGroup rendered="#{!modulePlayer.notEndPlay}">
+                  <table cellpadding="0" cellspacing="0" border="0" align="center">
+                    <colgroup>
+                      <col width="30%"/>
+                      <col width="50%"/>
+                    </colgroup>
+                    <tr>
+                      <td colspan="2" style="font-size: 9pt; font-weight: bold; color: #375e9f;
+                          padding-left: 10px;text-align: center;">
+                        You have successfully completed your tutorial. Please go back if you like to review.
+                      </td>
+                    </tr>                  
+                  </table>
+                </h:panelGroup>                   
+                <h:panelGroup rendered="#{modulePlayer.notEndPlay}">
+                  <div class="tutorial_container">
+                    <a href="http://e1h13.simplecdn.net/flowplayer/flowplayer.flv"
+                       style="display:block;width:600px;height:400px" id="player"> 
                     </a>
-                  <!-- this will install flowplayer inside previous A- tag. -->
-                  <script>
-                    flowplayer("player", "#{controllerBean.contextPath}/#{modulePlayer.mediaBean.audioFilePath}");
-                  </script>
-                </div>
-             </div>   
-						</h:panelGroup>
-					</rich:panel>
-          <h:panelGroup rendered="#{modulePlayer.hasQuestionAns}">
-  					<rich:panel id="idQuestionPanel" rendered="#{modulePlayer.notEndPlay}" 
-              headerClass="container_box_panel_header"  bodyClass="container_body_style">
-  						<f:facet name="header"><h:outputText value="#{modulePlayer.currentPage.question}" /> </f:facet>
-  						<h:selectOneRadio styleClass="radioright" layout="pageDirection" value="#{modulePlayer.currentPage.examinerAns}">
-  						  <f:selectItem itemLabel="#{modulePlayer.currentPage.questionOptionAnswerA}" itemValue="A" />
-  						  <f:selectItem itemLabel="#{modulePlayer.currentPage.questionOptionAnswerB}" itemValue="B" />
-  						  <f:selectItem itemLabel="#{modulePlayer.currentPage.questionOptionAnswerC}" itemValue="C" />
-  						  <f:selectItem itemLabel="#{modulePlayer.currentPage.questionOptionAnswerD}" itemValue="D" />
-  						  <f:selectItem itemLabel="#{modulePlayer.currentPage.questionOptionAnswerE}" itemValue="E" />
-  						  <f:selectItem itemLabel="#{modulePlayer.currentPage.questionOptionAnswerF}" itemValue="F" />
-  						</h:selectOneRadio>						
-  					</rich:panel>
+                    <script>
+                      flowplayer("player", "#{controllerBean.contextPath}/#{modulePlayer.mediaBean.audioFilePath}");
+                    </script>
+                  </div>
+    						</h:panelGroup>
+    					</rich:panel>
+              <h:panelGroup rendered="#{modulePlayer.hasQuestionAns}">
+      					<rich:panel id="idQuestionPanel" rendered="#{modulePlayer.notEndPlay}" 
+                  headerClass="container_box_panel_header"  bodyClass="container_body_style">
+      						<f:facet name="header"><h:outputText value="#{modulePlayer.currentPage.question}" /> </f:facet>
+      						<h:selectOneRadio styleClass="radioright" layout="pageDirection" value="#{modulePlayer.currentPage.examinerAns}">
+      						  <f:selectItem itemLabel="#{modulePlayer.currentPage.questionOptionAnswerA}" itemValue="A" />
+      						  <f:selectItem itemLabel="#{modulePlayer.currentPage.questionOptionAnswerB}" itemValue="B" />
+      						  <f:selectItem itemLabel="#{modulePlayer.currentPage.questionOptionAnswerC}" itemValue="C" />
+      						  <f:selectItem itemLabel="#{modulePlayer.currentPage.questionOptionAnswerD}" itemValue="D" />
+      						  <f:selectItem itemLabel="#{modulePlayer.currentPage.questionOptionAnswerE}" itemValue="E" />
+      						  <f:selectItem itemLabel="#{modulePlayer.currentPage.questionOptionAnswerF}" itemValue="F" />
+      						</h:selectOneRadio>						
+      					</rich:panel>
+                
+                <rich:panel id="idResultPanel" rendered="#{!modulePlayer.notEndPlay}"> 
+                  <f:facet name="header">
+                    <h:outputText style="font-size: 11pt; font-weight: bold;" value="Test Result" /> 
+                  </f:facet>
+                  <table cellpadding="0" cellspacing="0" border="0" align="center">
+                    <colgroup>
+                      <col width="30%"/>
+                      <col width="50%"/>
+                    </colgroup>
+                    <tr>
+                      <td colspan="2" class="prompt">
+                        Your have successful completed your test. The test details are followings:
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="prompt">
+                        <h:outputText value="Number of question" />
+                      </td>                  
+                      <td class="prompt">
+                        <h:outputText value="#{modulePlayer.noOfQuestion}" />
+                      </td>
+                    </tr>
+                    
+                    <tr>
+                      <td class="prompt">
+                        <h:outputText value="Number of correct answer" />
+                      </td>                  
+                      <td class="prompt">
+                        <h:outputText value="#{modulePlayer.noOfCorrectAns}" />
+                      </td>
+                    </tr>
+                    
+                    <tr>
+                      <td class="prompt">
+                        <h:outputText value="Total marks" />
+                      </td>                  
+                      <td class="prompt">
+                        <h:outputText value="#{modulePlayer.perOfMarks}" />
+                      </td>
+                    </tr>
+                    
+                    <tr>
+                      <td class="prompt">
+                        <h:outputText value="Status" />
+                      </td>                  
+                      <td class="prompt">
+                        <h:outputText value="#{modulePlayer.passStatus}" />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="2">
+                        &#160;
+                      </td>
+                     </tr>
+                    <tr>
+                      <td colspan="2" class="note">
+                        <h:outputText value="Note: An email has been sent to your account with details test result." />
+                      </td>                  
+                    </tr>
+                    <tr>
+                      <td colspan="2">
+                        &#160;
+                      </td>
+                     </tr>
+                  </table>            
+                </rich:panel>
+                
+               </h:panelGroup>
+    					</td>
+    				</tr>
+    			</tbody>
+    			</table>
+    		</td>
+    	</tr>	
+    	
+    	<tr>
+    		<td colspan="2" align="center"  valign="bottom" height="1" width="100%" bgcolor="#FFF7DF">
+    		<h:panelGroup id="idAction">
+        <table>
+    			<tr>
+    				<td>
+    					<h:commandButton action="#{modulePlayer.playFirstPage}" value="First"
+                rendered="#{!modulePlayer.hasQuestionAns}" styleClass="ibutton">						
+    					</h:commandButton>
+    				
+    				</td>
+    				<td>
+    					<h:commandButton action="#{modulePlayer.playPreviousPage}" value="Previous"
+                rendered="#{!modulePlayer.hasQuestionAns}" styleClass="ibutton">					
+    					</h:commandButton>
+    				
+    				</td>				
+    				<td>
+    					<h:commandButton value="Stop" action="#{modulePlayer.stopPlaying}"
+                rendered="#{!modulePlayer.hasQuestionAns and modulePlayer.playing}" styleClass="ibutton">						
+    					</h:commandButton>
+    				</td>
             
-            <rich:panel id="idResultPanel" rendered="#{!modulePlayer.notEndPlay}"> 
-              <f:facet name="header">
-                <h:outputText style="font-size: 11pt; font-weight: bold;" value="Test Result" /> 
-              </f:facet>
-              <table cellpadding="0" cellspacing="0" border="0" align="center">
-                <colgroup>
-                  <col width="30%"/>
-                  <col width="50%"/>
-                </colgroup>
-                <tr>
-                  <td colspan="2" class="prompt">
-                    Your have successful completed your test. The test details are followings:
-                  </td>
-                </tr>
-                <tr>
-                  <td class="prompt">
-                    <h:outputText value="Number of question" />
-                  </td>                  
-                  <td class="prompt">
-                    <h:outputText value="#{modulePlayer.noOfQuestion}" />
-                  </td>
-                </tr>
-                
-                <tr>
-                  <td class="prompt">
-                    <h:outputText value="Number of correct answer" />
-                  </td>                  
-                  <td class="prompt">
-                    <h:outputText value="#{modulePlayer.noOfCorrectAns}" />
-                  </td>
-                </tr>
-                
-                <tr>
-                  <td class="prompt">
-                    <h:outputText value="Total marks" />
-                  </td>                  
-                  <td class="prompt">
-                    <h:outputText value="#{modulePlayer.perOfMarks}" />
-                  </td>
-                </tr>
-                
-                <tr>
-                  <td class="prompt">
-                    <h:outputText value="Status" />
-                  </td>                  
-                  <td class="prompt">
-                    <h:outputText value="#{modulePlayer.passStatus}" />
-                  </td>
-                </tr>
-                <tr>
-                  <td colspan="2">
-                    &#160;
-                  </td>
-                 </tr>
-                <tr>
-                  <td colspan="2" class="note">
-                    <h:outputText value="Note: An email has been sent to your account with details test result." />
-                  </td>                  
-                </tr>
-                <tr>
-                  <td colspan="2">
-                    &#160;
-                  </td>
-                 </tr>
-              </table>            
-            </rich:panel>
-            
-           </h:panelGroup>
-					</td>
-				</tr>
-			</tbody>
-			</table>
-		</td>
-	</tr>	
-	
-	<tr>
-		<td colspan="2" align="center"  valign="bottom" height="1" width="100%" bgcolor="#FFF7DF">
-		<h:panelGroup id="idAction">
-    <table>
-			<tr>
-				<td>
-					<h:commandButton action="#{modulePlayer.playFirstPage}" value="First"
-            rendered="#{!modulePlayer.hasQuestionAns}" styleClass="ibutton">						
-					</h:commandButton>
-				
-				</td>
-				<td>
-					<h:commandButton action="#{modulePlayer.playPreviousPage}" value="Previous"
-            rendered="#{!modulePlayer.hasQuestionAns}" styleClass="ibutton">					
-					</h:commandButton>
-				
-				</td>				
-				<td>
-					<h:commandButton value="Stop" action="#{modulePlayer.stopPlaying}"
-            rendered="#{!modulePlayer.hasQuestionAns and modulePlayer.playing}" styleClass="ibutton">						
-					</h:commandButton>
-				</td>
-        
-        <td>
-          <h:commandButton value="Start" action="#{modulePlayer.startPlaying}"
-            rendered="#{!modulePlayer.hasQuestionAns and !modulePlayer.playing}" styleClass="ibutton">            
-          </h:commandButton>
-        </td>
-                  
-				<td>
-					<h:commandButton id="idNext" action="#{modulePlayer.playNextPage}" value="Next" 
-            disabled="#{modulePlayer.disabledNext}" rendered="#{modulePlayer.showNext}" styleClass="ibutton">						
-					</h:commandButton>				
-				</td>
-				<td>
-					<h:commandButton id="idLast" action="#{modulePlayer.playLastPage}" value="Last"
-            disabled="#{modulePlayer.disabledLast}" rendered="#{!modulePlayer.hasQuestionAns}" styleClass="ibutton">
-					</h:commandButton>				
-				</td>
-			</tr>
-		</table>
-		</h:panelGroup>
-		</td>
-	</tr>
-</tbody>
-</table>
-</h:form>
-<script type="text/javascript" >
-  //setTimeout("enabledButton();",7);
-  setTimeout("enabledButton();",10000);
-</script>
-</body>
-		
+            <td>
+              <h:commandButton value="Start" action="#{modulePlayer.startPlaying}"
+                rendered="#{!modulePlayer.hasQuestionAns and !modulePlayer.playing}" styleClass="ibutton">            
+              </h:commandButton>
+            </td>
+                      
+    				<td>
+    					<h:commandButton id="idNext" action="#{modulePlayer.playNextPage}" value="Next" 
+                disabled="#{modulePlayer.disabledNext}" rendered="#{modulePlayer.showNext}" styleClass="ibutton">						
+    					</h:commandButton>				
+    				</td>
+    				<td>
+    					<h:commandButton id="idLast" action="#{modulePlayer.playLastPage}" value="Last"
+                disabled="#{modulePlayer.disabledLast}" rendered="#{!modulePlayer.hasQuestionAns}" styleClass="ibutton">
+    					</h:commandButton>				
+    				</td>
+    			</tr>
+    		</table>
+    		</h:panelGroup>
+    		</td>
+    	</tr>
+    </tbody>
+    </table>
+  </h:form>
+  <script type="text/javascript" >
+    //setTimeout("enabledButton();",7);
+    setTimeout("enabledButton();",10000);
+  </script>
+  </body>		
 </html>
