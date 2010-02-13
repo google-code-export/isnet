@@ -45,11 +45,20 @@
 				<h:panelGrid columns="1" width="100%" border="0" cellpadding="0" cellspacing="0">
           		<!-- Login Box -->
           		<rich:panel  headerClass="login_box_panel_header"  bodyClass="login_box_panel">
-          			<f:facet name="header"> <h:outputText value="#{bundle.login_page_login_box_title}" /></f:facet>
-          			<h:panelGrid columns="2" width="100%">
-          				<h:outputText value="#{bundle.login_page_login_email}" />
+          			<f:facet name="header">                   
+                  <h:panelGroup>  
+                  <h:outputText value="#{bundle.login_page_login_box_title}" />
+                  <br />
+                  <h:outputText style="font-size:8pt;color: #6f6f6f;font-weight: normal;
+                     text-align:center;font-family:arial,sans-serif" value="#{bundle.login_page_case_sensitive}" />
+                   </h:panelGroup> 
+                </f:facet> 
+                <rich:spacer width="100%" height="4"/>
+                <h:panelGrid columns="2" width="100%">          				                     
+                  <h:outputText value="#{bundle.login_page_login_email}" />
           				<h:inputText id="idLoginEamilId" value="#{authenticationViewHandler.userEmailId}" styleClass="login_box_input"/>
-          				<h:outputText value="#{bundle.login_page_login_password}" />
+                  
+                  <h:outputText value="#{bundle.login_page_login_password}" />
           				<h:inputSecret id="idLoginPass" value="#{authenticationViewHandler.password}" styleClass="login_box_input"/>
           				<h:outputText value="" />
           				<h:panelGroup>
