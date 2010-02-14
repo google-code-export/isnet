@@ -22,8 +22,14 @@
 							  	<h:outputText    value="Contact Us"/>
 							</h:outputLabel>
 						</f:facet>
-					<h:outputText value="MyC2I.com" />
-					<h:outputText value="Richardson, TX 75081" />
+						
+						<a4j:outputPanel layout="block">
+							<h:outputText value="#{bundle.contact_us_line1}" /> <br/>
+							<h:outputText value="#{bundle.contact_us_line2}" /><br/>
+							<h:outputText value="#{bundle.contact_us_line3}" /><br/>
+						
+						</a4j:outputPanel>
+
 					
 
 				</rich:panel>
