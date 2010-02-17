@@ -594,9 +594,6 @@ public class Member implements java.io.Serializable {
 	public void setStateUDV(UserDefinedValues stateUDV) {
 		this.stateUDV = stateUDV;
 	}
-	
-
-
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "MEMBER_COUNTRY", nullable = false, insertable = false, updatable = false)
@@ -617,9 +614,5 @@ public class Member implements java.io.Serializable {
 	public void setLastActivity(Date lastActivity) {
 		this.lastActivity = lastActivity;
 	}
-	
-
-
-
 
 }
