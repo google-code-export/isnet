@@ -12,7 +12,7 @@
  <ui:param name="moduleTitle" value="Protege Tutorial"></ui:param>
  <ui:param name="userType" value="M"></ui:param>
  <ui:param name="moduleType" value="MH"></ui:param>
-  <ui:param name="refManageBean" value="#{udvViewHandler}"></ui:param>
+ <ui:param name="refManageBean" value="#{udvViewHandler}"></ui:param>
  <ui:param name="headerText" value="Da'wah Certification"></ui:param>
  
   <ui:define name="js">
@@ -49,26 +49,25 @@
           
       </h:panelGroup>
       
-      <rich:spacer width="100%" height="10"/>
+    <rich:spacer width="100%" height="10"/>
 		<rich:panel headerClass="container_box_panel_header"  bodyClass="container_body_style" >
 			<f:facet name="header"><h:outputText value="Tutorial Modules" /> </f:facet>
 			<h:panelGrid columns="1" width="100%" cellpadding="0" cellspacing="0" border="0">
 				<h:dataTable value="#{modulesViewHandler.modules}" var="module">
-		             <rich:column>
-			       		 <a4j:commandLink onclick="showTutorial('${controllerBean.contextPath}/pages/secure/tutorialModulePlayer.faces?moduleId=${module.modulesId}')">
-				             <a4j:actionparam name="moduleId" value="#{module.modulesId}"/>
-				             <a4j:actionparam name="load" value="1"/>
-			            	<h:graphicImage value="/images/play_tutorial.png" align="middle" border="0" > 
-			            	</h:graphicImage>	
-		            		 <rich:toolTip styleClass="tooltips_style"  >
-						          <span class="tooltips_span_style">
-						              #{bundle.member_tutorial_play}<br/>
-						          </span>
-						     </rich:toolTip>	
-						</a4j:commandLink>
-												             
-		             </rich:column>		             
-		             <rich:column>
+           <rich:column>
+	       		 <a4j:commandLink onclick="showTutorial('${controllerBean.contextPath}/pages/secure/tutorialModulePlayer.faces?moduleId=${module.modulesId}')">
+		             <a4j:actionparam name="moduleId" value="#{module.modulesId}"/>
+		             <a4j:actionparam name="load" value="1"/>
+	            	<h:graphicImage value="/images/play_tutorial.png" align="middle" border="0" > 
+	            	</h:graphicImage>	
+            		 <rich:toolTip styleClass="tooltips_style"  >
+				          <span class="tooltips_span_style">
+				              #{bundle.member_tutorial_play}<br/>
+				          </span>
+				        </rich:toolTip>	
+				     </a4j:commandLink>												             
+            </rich:column>		             
+		        <rich:column>
 				 			<h:outputText value="#{module.moduleName}" />
 		             </rich:column>
 		             <rich:column>
@@ -76,10 +75,8 @@
 		             </rich:column>		             
 		             <rich:column>
 				 			<h:outputText  value="#{module.moduleTitle}" />
-		             </rich:column>		
-		             				
+		        </rich:column>
 				</h:dataTable>
-
 			</h:panelGrid>			 	        
 		</rich:panel>
 	    

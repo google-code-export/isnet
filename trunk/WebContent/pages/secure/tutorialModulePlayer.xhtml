@@ -48,8 +48,7 @@
         border:2px solid #fff;
         outline:1px solid #ccc;
         text-align:left;
-      }  
-              
+      }              
 		</style>
     <a4j:loadScript src="/js/flowplayer-3.1.4.min.js" />
     <script type="text/javascript" >
@@ -58,7 +57,7 @@
         var lastBtn = document.getElementById("idTModuleForm:idLast");
         if ( nextBtn ) nextBtn.disabled = false;
         if ( lastBtn ) lastBtn.disabled = false;
-      }            
+      }                  
     </script>
 	</head>
 
@@ -98,7 +97,7 @@
                     <tr>
                       <td colspan="2" style="font-size: 9pt; font-weight: bold; color: #375e9f;
                           padding-left: 10px;text-align: center;">
-                        You have successfully completed your tutorial. Please go back if you like to review.
+                        Congratulation! You have successfully completed your tutorial.
                       </td>
                     </tr>                  
                   </table>
@@ -106,10 +105,16 @@
                 <h:panelGroup rendered="#{modulePlayer.notEndPlay}">
                   <div class="tutorial_container">
                     <a href="http://e1h13.simplecdn.net/flowplayer/flowplayer.flv"
-                       style="display:block;width:600px;height:400px" id="player"> 
+                       style="display:block;width:600px;height:400px" id="player">
                     </a>
                     <script>
                       flowplayer("player", "#{controllerBean.contextPath}/#{modulePlayer.mediaBean.audioFilePath}");
+                      /*flowplayer("player", "#{controllerBean.contextPath}/#{modulePlayer.mediaBean.audioFilePath}", { 
+                      clip: {  
+                          autoPlay: false,  
+                          autoBuffering: true
+                          } 
+                      });*/
                     </script>
                   </div>
     						</h:panelGroup>
@@ -210,38 +215,29 @@
     			<tr>
     				<td>
     					<h:commandButton action="#{modulePlayer.playFirstPage}" value="First"
-                rendered="#{!modulePlayer.hasQuestionAns}" styleClass="ibutton">						
+                rendered="#{!modulePlayer.hasQuestionAns and modulePlayer.notEndPlay}" styleClass="ibutton">						
     					</h:commandButton>
     				
     				</td>
     				<td>
     					<h:commandButton action="#{modulePlayer.playPreviousPage}" value="Previous"
-                rendered="#{!modulePlayer.hasQuestionAns}" styleClass="ibutton">					
+                rendered="#{!modulePlayer.hasQuestionAns and modulePlayer.notEndPlay}" styleClass="ibutton">					
     					</h:commandButton>
-    				
-    				</td>				
-    				<td>
-    					<h:commandButton value="Stop" action="#{modulePlayer.stopPlaying}"
-                rendered="#{!modulePlayer.hasQuestionAns and modulePlayer.playing}" styleClass="ibutton">						
-    					</h:commandButton>
-    				</td>
-            
-            <td>
-              <h:commandButton value="Start" action="#{modulePlayer.startPlaying}"
-                rendered="#{!modulePlayer.hasQuestionAns and !modulePlayer.playing}" styleClass="ibutton">            
-              </h:commandButton>
-            </td>
-                      
+    				</td>          
     				<td>
     					<h:commandButton id="idNext" action="#{modulePlayer.playNextPage}" value="Next" 
-                disabled="#{modulePlayer.disabledNext}" rendered="#{modulePlayer.showNext}" styleClass="ibutton">						
+                disabled="#{modulePlayer.disabledNext}" 
+                rendered="#{modulePlayer.notEndPlay}" styleClass="ibutton">						
     					</h:commandButton>				
     				</td>
+            
     				<td>
     					<h:commandButton id="idLast" action="#{modulePlayer.playLastPage}" value="Last"
-                disabled="#{modulePlayer.disabledLast}" rendered="#{!modulePlayer.hasQuestionAns}" styleClass="ibutton">
+                disabled="#{modulePlayer.disabledLast}" 
+                rendered="#{!modulePlayer.hasQuestionAns and modulePlayer.notEndPlay}" styleClass="ibutton">
     					</h:commandButton>				
     				</td>
+            
     			</tr>
     		</table>
     		</h:panelGroup>
@@ -251,7 +247,6 @@
     </table>
   </h:form>
   <script type="text/javascript" >
-    //setTimeout("enabledButton();",7);
     setTimeout("enabledButton();",10000);
   </script>
   </body>		
