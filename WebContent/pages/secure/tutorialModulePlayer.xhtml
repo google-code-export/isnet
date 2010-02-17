@@ -48,6 +48,15 @@
         border:2px solid #fff;
         outline:1px solid #ccc;
         text-align:left;
+      }
+      /* wrapper defines canvas size by the aid of padding property */ 
+      #player { 
+        display:block; 
+        height:400px; 
+        width:520px; 
+        padding:20px 20px; 
+        background:#123 url(/images/h600.png) repeat-x; 
+        text-align:center; 
       }              
 		</style>
     <a4j:loadScript src="/js/flowplayer-3.1.4.min.js" />
@@ -108,13 +117,39 @@
                        style="display:block;width:600px;height:400px" id="player">
                     </a>
                     <script>
-                      flowplayer("player", "#{controllerBean.contextPath}/#{modulePlayer.mediaBean.audioFilePath}");
+                      //flowplayer("player", "#{controllerBean.contextPath}/#{modulePlayer.mediaBean.audioFilePath}");
                       /*flowplayer("player", "#{controllerBean.contextPath}/#{modulePlayer.mediaBean.audioFilePath}", { 
                       clip: {  
                           autoPlay: false,  
                           autoBuffering: true
                           } 
                       });*/
+                      /*flowplayer("player", "#{controllerBean.contextPath}/#{modulePlayer.mediaBean.audioFilePath}", { 
+                        
+                        // stop at first frame 
+                        clip: { 
+                            scaling: 'fit',  
+                            autoPlay: false, 
+                            autoBuffering: true 
+                        }, 
+                         
+                        // "hello world" canvas background 
+                        canvas:  { 
+                            background: '#000000 url(/swf/hello2.swf) no-repeat 30 10', 
+                            backgroundGradient: 'none', 
+                            border:'2px solid #778899' 
+                        }, 
+                         
+                        // a little opacity so that the text is shown trough 
+                        screen: { 
+                            opacity: 0.8         
+                        },  
+                         
+                        // disable plugins. not our focus to learn here. 
+                        plugins: { 
+                            controls: null 
+                        } 
+                    });*/
                     </script>
                   </div>
     						</h:panelGroup>
