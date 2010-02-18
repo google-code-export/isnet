@@ -111,7 +111,7 @@
                 </h:panelGroup>                   
                 <h:panelGroup rendered="#{modulePlayer.notEndPlay}">
                   <div class="tutorial_container">
-                    <a href="http://e1h13.simplecdn.net/flowplayer/flowplayer.flv"
+                    <a href="#{controllerBean.contextPath}/#{modulePlayer.mediaBean.audioFilePath}"
                        style="display:block;width:600px;height:400px" id="player">
                     </a>
                     <script>                     
