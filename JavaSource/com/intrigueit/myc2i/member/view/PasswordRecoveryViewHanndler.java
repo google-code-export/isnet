@@ -59,7 +59,7 @@ public class PasswordRecoveryViewHanndler extends BasePage implements Serializab
 				this.hasError = true;
 				return;
 			}
-			Member member = this.memberService.findByProperty("email", this.getEmail()).get(0);
+			Member member = this.memberService.loadMemberByEmail(this.getEmail());
 			
 			this.invalidSecurityQuestion(member);
 			if(this.errMsgs.size()>0){
