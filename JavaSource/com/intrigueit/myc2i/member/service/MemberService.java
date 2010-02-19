@@ -25,6 +25,8 @@ public interface MemberService {
 	
 	public Boolean isMemberExist(String email);
 	
+	public Member loadMemberByEmail(String email);
+	
 	public List<Member> getMentorProtege(Long mentorId);
 	
 	public List<Member> getMemberByDynamicHsql(String hsql);
