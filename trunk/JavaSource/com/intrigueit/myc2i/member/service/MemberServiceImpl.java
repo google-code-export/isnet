@@ -38,7 +38,15 @@ public class MemberServiceImpl implements MemberService {
     String clause = " t." + propertyName + " = ?1 ";
     return memberDao.loadByClause(clause, new Object[] { value });
   }
-
+  
+  public Member loadMemberByEmail(String email){
+	    String clause = " lower(t.email) = ?1 ";
+	    List<Member> members = memberDao.loadByClause(clause, new Object[] { email.toLowerCase() });
+	    if(members.size() > 0){
+	    	return members.get(0);
+	    }
+	    return null;
+  }
   public void save(Member entity) {
     memberDao.persist(entity);
 
@@ -151,5 +159,6 @@ public class MemberServiceImpl implements MemberService {
   public List<RolePageAccess> loadUserPrivilegePages(Long memberTypeId) {
     return memberDao.loadUserPrivilegePages(memberTypeId);
   }
+
   
 }
