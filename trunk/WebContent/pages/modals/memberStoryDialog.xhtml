@@ -8,7 +8,7 @@
     xmlns:c="http://java.sun.com/jstl/core">
 	<ui:composition>
 
-		<rich:modalPanel id="idmemberStoryDialog" minHeight="450" minWidth="470" onshow="javascript:limiter();">
+		<rich:modalPanel id="idmemberStoryDialog" minHeight="550" minWidth="570" onshow="javascript:wordCounter(500);">
 			<f:facet name="header"><h:outputText value="#{bundle.success_story_modal_title}"/></f:facet>
 			<f:facet name="controls">
               	<h:graphicImage value="/images/close.png" style="cursor:pointer" onclick="Richfaces.hideModalPanel('idmemberStoryDialog')" />
@@ -36,7 +36,7 @@
 						<h:inputText id="idMemberStoryTitle" value="#{storyViewHandler.currentStory.storyTitle}" styleClass="form_input_text_medium"></h:inputText>
 
 						<h:outputText value="#{bundle.success_story_details}" />						    
-					    <h:inputTextarea onkeyup="javascript:limiter();" id="idBody" rows="10"  value="#{storyViewHandler.currentStory.memberStoryDescription}" styleClass="form_input_text_medium_large"></h:inputTextarea>
+					    <h:inputTextarea cols="50" onkeyup="javascript:wordCounter(500);" id="idBody" rows="20"  value="#{storyViewHandler.currentStory.memberStoryDescription}" ></h:inputTextarea>
 						
 						<h:outputText value="" />
 						<h:panelGroup>
