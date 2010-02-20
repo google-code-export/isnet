@@ -16,23 +16,7 @@
   <ui:param name="refManageBean" value="#{udvViewHandler}"></ui:param>
   <ui:define name="js">
   		<script type="text/javascript" src="#{controllerBean.contextPath}/js/Modalhelper.js"> </script>   
-		<script type="text/javascript" >
-		//Edit the counter/limiter value as your wish
-		var count = "500";   //Example: var count = "175";
-		function limiter(){
-			//var tex = document.getElementById('idBody').value;
-			var tex = $("memberStoryForm:idBody").value;
-			var len = tex.length;
-			if(len > count){
-			        tex = tex.substring(0,count);
-			        $("memberStoryForm:idBody").value = tex;
-			        return false;
-			}
-			$("memberStoryForm:idCharCounter").value = count-len;
-		}
-		
-		</script>
-  		 
+ 		 
  </ui:define>
  
   <ui:define name="body">    
