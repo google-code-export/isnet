@@ -4,9 +4,9 @@ import com.intrigueit.myc2i.tutotialtest.domain.TestResult;
 
 public interface TestResultService {
 	
-    public void save(TestResult entity);
+  public void save(TestResult entity);
 
-    public void delete(TestResult entity);
+  public void delete(TestResult entity);
 
 	public void update(TestResult entity);
 	
