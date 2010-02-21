@@ -39,23 +39,16 @@
       .note{font-size: 9pt; font-weight: normal; color: red; font-style:italic;
         padding-left: 10px;text-align: left; vertical-align: middle;}
       
-      .tutorial_container{
+      .tutorial_container {        
+        text-align:center;
         background-color:#efefef;
-        width:640px;
-        margin:3px auto;
-        padding:40px 40px 40px 40px;
-        min-height:400px;
-        border:2px solid #fff;
+        margin:1px auto;
+        padding:1px 1px 1px 1px;
+        border:1px solid #fff;
         outline:1px solid #ccc;
-        text-align:left;
+        text-align:center;
       }
-      /* wrapper defines canvas size by the aid of padding property */ 
-      #player { 
-        display:block;
-        padding:20px 20px; 
-        background:threedshadow; 
-        text-align:center; 
-      }              
+                
 		</style>
     <a4j:loadScript src="/js/flowplayer-3.1.4.min.js" />
     <script type="text/javascript" >
@@ -72,19 +65,18 @@
   <h:form id="idTModuleForm">
     <h:inputHidden value="#{modulePlayer.initPage}" />
     <table style="border:1px solid #CAD6E0"  align="center" cellpadding="0" 
-      cellspacing="0" border="0" width="400">
+      cellspacing="0" border="0">
     <tbody>
-    	<!-- tr>
-    		<td class="header" height="42" align="center" valign="middle" width="100%" bgcolor="#E4EBEB">
-    			<h:graphicImage value="/images/tutorial_title.png" />
-    		</td>
-    	</tr-->
-    	<tr>
-    		<td height="1" width="100%" bgcolor="#CAD6E0"></td>
-    	</tr>
+    	<h:panelGroup rendered="#{!modulePlayer.notEndPlay}">
+        <tr>
+      		<td class="header" height="42" align="center" valign="middle" width="100%" bgcolor="#E4EBEB">
+      			<h:graphicImage value="/images/tutorial_title.png" />
+      		</td>
+      	</tr>
+      </h:panelGroup>    	
     	<tr>
     		<td width="100%"  colspan="2">
-    			<table width="100%" style="border:1px solid #FFFFEF" align="left" cellpadding="0" cellspacing="0" 
+    			<table width="100%" style="border:0px solid white;" align="center" cellpadding="0" cellspacing="0" 
             border="0">
     			<tbody>
     				<tr>
@@ -112,14 +104,20 @@
                 <h:panelGroup rendered="#{modulePlayer.notEndPlay}">
                   <div class="tutorial_container">
                     <a href="#{controllerBean.contextPath}/#{modulePlayer.mediaBean.audioFilePath}"
-                       style="display:block;width:600px;height:400px" id="player">
+                       style="display:block;width:960px;height:720px;background-color: white;background: white;" id="player">
                     </a>
-                    <script>                     
-                     flowplayer("player", "#{controllerBean.contextPath}/#{modulePlayer.mediaBean.audioFilePath}", { 
-                      clip: { 
-                       scaling: 'fit' 
-                      } 
-                     }); 
+                    <script>                                           
+                      /*flowplayer("player", "#{controllerBean.contextPath}/#{modulePlayer.mediaBean.audioFilePath}", { 
+                       clip: { 
+                        scaling: 'fit' 
+                       }                      
+                      });*/
+                      flowplayer("player", { 
+                        src: "#{controllerBean.contextPath}/#{modulePlayer.mediaBean.audioFilePath}", bgcolor: "#ffffff" 
+                      },
+                      { 
+                        // player config 
+                      });   
                     </script>
                   </div>
     						</h:panelGroup>
