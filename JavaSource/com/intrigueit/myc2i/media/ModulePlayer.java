@@ -57,7 +57,7 @@ public class ModulePlayer extends BasePage{
 		this.initPage = initPage;
 	}	
 	
-	public void processResult(String userType) {
+	public void processResult() {
 	  int totalQuestion  = 0;
 	  int tCorrectAns  = 0;
 	  try {
@@ -103,7 +103,7 @@ public class ModulePlayer extends BasePage{
         testResult.setRecordUpdatorId(this.getMember().getMemberId()+"");          
         this.testService.save(testResult);
         
-        if (userType.equals(ServiceConstants.MENTOR)) {
+        if ( hasQuestionAns ) {
           this.noOfQuestion = totalQuestion;
           this.noOfCorrectAns = tCorrectAns;
           this.perOfMarks = tCorrectAns * 100 / totalQuestion; 
@@ -188,9 +188,7 @@ public class ModulePlayer extends BasePage{
 				this.renderPage();
 			} else {
 			  this.notEndPlay = false;
-			  if ( this.getMember()!=null && hasQuestionAns ) {
-			    this.processResult(ServiceConstants.MENTOR);
-			  }
+			  this.processResult();
 			}
 		} catch(Exception ex){
 			ex.printStackTrace();
