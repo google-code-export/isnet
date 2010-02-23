@@ -51,7 +51,7 @@ a:hover {
 .medium_text{ display:inline; background-color: #ffffff; color: #000000; border: #7aa0c5 1px solid;
               font-size: 9pt; width: 225px; padding-left: 2pt;}
 .long_text{ display:inline; background-color: #ffffff; color: #000000; border: #7aa0c5 1px solid;
-            font-size: 9pt; width: 550px; padding-left: 2pt;}
+            font-size: 9pt; width: 350px; padding-left: 2pt;}
 .url_text{ display:inline; background-color: #ffffff; color: #000000; border: #7aa0c5 1px solid;
            font-size: 9pt; width: 420px; padding-left: 2pt;}
 .dropdown{ 
