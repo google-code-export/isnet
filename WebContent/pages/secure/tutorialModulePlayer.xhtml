@@ -106,12 +106,7 @@
                     <a href="#{controllerBean.contextPath}/#{modulePlayer.mediaBean.audioFilePath}"
                        style="display:block;width:960px;height:720px;background-color: white;background: white;" id="player">
                     </a>
-                    <script>                                           
-                      /*flowplayer("player", "#{controllerBean.contextPath}/#{modulePlayer.mediaBean.audioFilePath}", { 
-                       clip: { 
-                        scaling: 'fit' 
-                       }                      
-                      });*/
+                    <script>
                       flowplayer("player", { 
                         src: "#{controllerBean.contextPath}/#{modulePlayer.mediaBean.audioFilePath}", bgcolor: "#ffffff" 
                       },
