@@ -41,7 +41,7 @@
             <h:outputText value="#{bundle.tutorial_qa_question}" />
             <span class="required_field"></span>
            </h:panelGroup>
-           <h:inputText styleClass="medium_text" value="#{currentEBean.question}" id="question"> 
+           <h:inputText styleClass="long_text" value="#{currentEBean.question}" id="question"> 
             <rich:ajaxValidator event="onblur" />
            </h:inputText>
            <rich:message for="question" />
@@ -60,7 +60,7 @@
             <h:outputText value="#{bundle.tutorial_qa_options_ans_a}" />
             <span class="required_field"></span>
            </h:panelGroup>
-           <h:inputText styleClass="medium_text" value="#{currentEBean.questionOptionAnswerA}" id="questionOptionAnswerA">
+           <h:inputText styleClass="long_text" value="#{currentEBean.questionOptionAnswerA}" id="questionOptionAnswerA">
             <rich:ajaxValidator event="onblur" />
            </h:inputText>
            <rich:message for="questionOptionAnswerA" /> 
@@ -69,7 +69,7 @@
             <h:outputText value="#{bundle.tutorial_qa_options_ans_b}" />
             <span class="required_field"></span>
            </h:panelGroup>
-           <h:inputText styleClass="medium_text" value="#{currentEBean.questionOptionAnswerB}" 
+           <h:inputText styleClass="long_text" value="#{currentEBean.questionOptionAnswerB}" 
             id="questionOptionAnswerB">
             <rich:ajaxValidator event="onblur" />
            </h:inputText>
@@ -79,7 +79,7 @@
             <h:outputText value="#{bundle.tutorial_qa_options_ans_c}" />
             <span class="required_field"></span>
            </h:panelGroup>
-           <h:inputText styleClass="medium_text" value="#{currentEBean.questionOptionAnswerC}" id="questionOptionAnswerC">
+           <h:inputText styleClass="long_text" value="#{currentEBean.questionOptionAnswerC}" id="questionOptionAnswerC">
             <rich:ajaxValidator event="onblur" />
            </h:inputText>
            <rich:message for="questionOptionAnswerC" />
@@ -88,7 +88,7 @@
             <h:outputText value="#{bundle.tutorial_qa_options_ans_d}" />
             <span class="required_field"></span>
            </h:panelGroup>
-           <h:inputText styleClass="medium_text" value="#{currentEBean.questionOptionAnswerD}" id="questionOptionAnswerD">
+           <h:inputText styleClass="long_text" value="#{currentEBean.questionOptionAnswerD}" id="questionOptionAnswerD">
             <rich:ajaxValidator event="onblur" />
            </h:inputText>
            <rich:message for="questionOptionAnswerD" />
@@ -97,7 +97,7 @@
             <h:outputText value="#{bundle.tutorial_qa_options_ans_e}" />
             <span class="required_field"></span>
            </h:panelGroup>
-           <h:inputText styleClass="medium_text" value="#{currentEBean.questionOptionAnswerE}" id="questionOptionAnswerE">
+           <h:inputText styleClass="long_text" value="#{currentEBean.questionOptionAnswerE}" id="questionOptionAnswerE">
             <rich:ajaxValidator event="onblur" />
            </h:inputText>
            <rich:message for="questionOptionAnswerE" />
@@ -106,7 +106,7 @@
             <h:outputText value="#{bundle.tutorial_qa_options_ans_f}" />
             <span class="required_field"></span>
            </h:panelGroup>
-           <h:inputText styleClass="medium_text" value="#{currentEBean.questionOptionAnswerF}" id="questionOptionAnswerF">
+           <h:inputText styleClass="long_text" value="#{currentEBean.questionOptionAnswerF}" id="questionOptionAnswerF">
             <rich:ajaxValidator event="onblur" />
            </h:inputText>
            <rich:message for="questionOptionAnswerF" />
@@ -116,7 +116,7 @@
             <span class="required_field">&#160;</span>
            </h:panelGroup>
            <h:panelGroup id="idAudioFile">
-             <h:inputText styleClass="short_text"
+             <h:inputText styleClass="medium_text"
                 value="#{currentEBean.audioFileName}"/>        
              <ccmp:uploadlink prompt="" uploadModalId="idAudioUpload" imgTitle="#{bundle.common_upload_audio}"/>
            </h:panelGroup>
@@ -127,7 +127,7 @@
             <span class="required_field">&#160;</span>
            </h:panelGroup>
            <h:panelGroup id="idVideoFile">
-             <h:inputText styleClass="short_text"
+             <h:inputText styleClass="medium_text"
                 value="#{currentEBean.videoFileName}"/>        
              <ccmp:uploadlink prompt="" uploadModalId="idVideoUpload" imgTitle="#{bundle.common_upload_video}"/>
            </h:panelGroup>
