@@ -29,7 +29,7 @@ Insert into TEST_TUTORIAL_MODULES (TEST_TUTORIAL_MODULES_ID, TEST_TUTORIAL_DOCUM
 Values
    (1, 1, 'N', 15, 'Module 1 - Da''wah Workshop',NULL, NULL, 'Test', '1', 
    TO_DATE('09/13/2009 05:43:34', 'MM/DD/YYYY HH24:MI:SS'), 
-   '1', TO_DATE('09/30/2009 23:09:34', 'MM/DD/YYYY HH24:MI:SS'), NULL, 'pages/secure/media/m_1.swf', NULL,'Da''wah Workshop');
+   '1', TO_DATE('09/30/2009 23:09:34', 'MM/DD/YYYY HH24:MI:SS'), NULL, 'pages/secure/media/m1/m_1_page_1.swf', NULL,'Da''wah Workshop');
 Insert into TEST_TUTORIAL_MODULES (TEST_TUTORIAL_MODULES_ID, TEST_TUTORIAL_DOCUMENT_ID, TEST_INDICATOR, MEMBER_TYPE_INDICATOR, MODULE_NAME, 
     MODULE_INTRO_AUDIO, MODULE_INTRO_VIDEO, MODULE_TEXT, RECORD_CREATOR_ID, RECORD_CREATE_DATE, 
     RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, CONTENTS, AUDIO_FILE_NAME, VIDEO_FILE_NAME,MODULE_TITLE)
@@ -43,7 +43,7 @@ Insert into TEST_TUTORIAL_MODULES (TEST_TUTORIAL_MODULES_ID, TEST_TUTORIAL_DOCUM
 Values
    (3, 1, 'N', 15, 'Module 3 - Goals and Types of Da''wah',NULL, NULL, 'Test', '1', 
    TO_DATE('09/13/2009 05:43:34', 'MM/DD/YYYY HH24:MI:SS'), 
-   '1', TO_DATE('09/30/2009 23:09:34', 'MM/DD/YYYY HH24:MI:SS'), NULL, 'pages/secure/media/m_3_page_1.swf', NULL,'Goals and Types of Da''wah');
+   '1', TO_DATE('09/30/2009 23:09:34', 'MM/DD/YYYY HH24:MI:SS'), NULL, 'pages/secure/media/m3/m_3_page_1.swf', NULL,'Goals and Types of Da''wah');
 Insert into TEST_TUTORIAL_MODULES (TEST_TUTORIAL_MODULES_ID, TEST_TUTORIAL_DOCUMENT_ID, TEST_INDICATOR, MEMBER_TYPE_INDICATOR, MODULE_NAME, 
     MODULE_INTRO_AUDIO, MODULE_INTRO_VIDEO, MODULE_TEXT, RECORD_CREATOR_ID, RECORD_CREATE_DATE, 
     RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, CONTENTS, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
@@ -51,7 +51,7 @@ Insert into TEST_TUTORIAL_MODULES (TEST_TUTORIAL_MODULES_ID, TEST_TUTORIAL_DOCUM
 Values
    (4, 1, 'N', 15, 'Module 4 - Da''wah As Marketing',NULL, NULL, 'Test', '1', 
    TO_DATE('09/13/2009 05:43:34', 'MM/DD/YYYY HH24:MI:SS'), 
-   '1', TO_DATE('09/30/2009 23:09:34', 'MM/DD/YYYY HH24:MI:SS'), NULL, 'pages/secure/media/m_4_page_1.swf', NULL,'Da''wah As Marketing');
+   '1', TO_DATE('09/30/2009 23:09:34', 'MM/DD/YYYY HH24:MI:SS'), NULL, 'pages/secure/media/m4/m_4_page_1.swf', NULL,'Da''wah As Marketing');
 Insert into TEST_TUTORIAL_MODULES (TEST_TUTORIAL_MODULES_ID, TEST_TUTORIAL_DOCUMENT_ID, TEST_INDICATOR, MEMBER_TYPE_INDICATOR, MODULE_NAME, 
     MODULE_INTRO_AUDIO, MODULE_INTRO_VIDEO, MODULE_TEXT, RECORD_CREATOR_ID, RECORD_CREATE_DATE, 
     RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, CONTENTS, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
@@ -95,32 +95,6 @@ Values
    TO_DATE('09/13/2009 05:43:34', 'MM/DD/YYYY HH24:MI:SS'), 
    '1', TO_DATE('09/30/2009 23:09:34', 'MM/DD/YYYY HH24:MI:SS'), NULL, 'pages/secure/media/m101/m_101_page_1.swf', NULL,'Islam 101');
 
--- Mentor question and answer module.
-Insert into TEST_TUTORIAL_MODULES (TEST_TUTORIAL_MODULES_ID, TEST_TUTORIAL_DOCUMENT_ID, TEST_INDICATOR, MEMBER_TYPE_INDICATOR, MODULE_NAME, 
-    MODULE_INTRO_AUDIO, MODULE_INTRO_VIDEO, MODULE_TEXT, RECORD_CREATOR_ID, RECORD_CREATE_DATE, 
-    RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, CONTENTS, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
-    MODULE_TITLE)
-Values
-   (10, 3, 'Y', 15, 'Question and Answer Module -1',NULL, NULL, 'Test', '1', 
-   TO_DATE('09/13/2009 05:43:34', 'MM/DD/YYYY HH24:MI:SS'), 
-   '1', TO_DATE('09/30/2009 23:09:34', 'MM/DD/YYYY HH24:MI:SS'), NULL, '', NULL,'Question and Answer Module -1');
-Insert into TEST_TUTORIAL_MODULES (TEST_TUTORIAL_MODULES_ID, TEST_TUTORIAL_DOCUMENT_ID, TEST_INDICATOR, MEMBER_TYPE_INDICATOR, MODULE_NAME, 
-    MODULE_INTRO_AUDIO, MODULE_INTRO_VIDEO, MODULE_TEXT, RECORD_CREATOR_ID, RECORD_CREATE_DATE, 
-    RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, CONTENTS, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
-    MODULE_TITLE)
-Values
-   (11, 3, 'Y', 15, 'Question and Answer Module -2',NULL, NULL, 'Test', '1', 
-   TO_DATE('09/13/2009 05:43:34', 'MM/DD/YYYY HH24:MI:SS'), 
-   '1', TO_DATE('09/30/2009 23:09:34', 'MM/DD/YYYY HH24:MI:SS'), NULL, '', NULL,'Question and Answer Module -2');
-Insert into TEST_TUTORIAL_MODULES (TEST_TUTORIAL_MODULES_ID, TEST_TUTORIAL_DOCUMENT_ID, TEST_INDICATOR, MEMBER_TYPE_INDICATOR, MODULE_NAME, 
-    MODULE_INTRO_AUDIO, MODULE_INTRO_VIDEO, MODULE_TEXT, RECORD_CREATOR_ID, RECORD_CREATE_DATE, 
-    RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, CONTENTS, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
-    MODULE_TITLE)
-Values
-   (12, 3, 'Y', 15, 'Question and Answer Module -3',NULL, NULL, 'Test', '1', 
-   TO_DATE('09/13/2009 05:43:34', 'MM/DD/YYYY HH24:MI:SS'), 
-   '1', TO_DATE('09/30/2009 23:09:34', 'MM/DD/YYYY HH24:MI:SS'), NULL, '', NULL,'Question and Answer Module -3');
-
 -- Tutorial page for module 1
 Insert into TEST_TUTORIAL_QUESTION_ANS
    (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
@@ -130,7 +104,7 @@ Insert into TEST_TUTORIAL_QUESTION_ANS
     PAGE_TITLE, ISQUESTION)
 Values (1, 1, 1, NULL, NULL,NULL, NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, '1', 
     TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m_1_page_1.swf', NULL,'Online Da''wah Workshop', NULL);
+    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m1/m_1_page_2.swf', NULL,'Online Da''wah Workshop', NULL);
 Insert into TEST_TUTORIAL_QUESTION_ANS
    (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
     PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
@@ -139,7 +113,7 @@ Insert into TEST_TUTORIAL_QUESTION_ANS
     PAGE_TITLE, ISQUESTION)
 Values (2, 1, 2, NULL, NULL,NULL, NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, '1', 
     TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m_1_page_2.swf', NULL,'The Importance of da''wah', NULL);    
+    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m1/m_1_page_3.swf', NULL,'The Importance of da''wah', NULL);    
 Insert into TEST_TUTORIAL_QUESTION_ANS
    (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
     PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
@@ -148,7 +122,7 @@ Insert into TEST_TUTORIAL_QUESTION_ANS
     PAGE_TITLE, ISQUESTION)
 Values (3, 1, 3, NULL, NULL,NULL, NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, '1', 
     TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m_1_page_3.swf', NULL,'Lessons from the qur''an -1', NULL);
+    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m1/m_1_page_4.swf', NULL,'Lessons from the qur''an -1', NULL);
 Insert into TEST_TUTORIAL_QUESTION_ANS
    (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
     PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
@@ -157,7 +131,7 @@ Insert into TEST_TUTORIAL_QUESTION_ANS
     PAGE_TITLE, ISQUESTION)
 Values (4, 1, 4, NULL, NULL,NULL, NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, '1', 
     TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m_1_page_4.swf', NULL,'Lessons from the qur''an -2', NULL);
+    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m1/m_1_page_5.swf', NULL,'Lessons from the qur''an -2', NULL);
 Insert into TEST_TUTORIAL_QUESTION_ANS
    (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
     PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
@@ -166,7 +140,7 @@ Insert into TEST_TUTORIAL_QUESTION_ANS
     PAGE_TITLE, ISQUESTION)
 Values (5, 1, 5, NULL, NULL,NULL, NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, '1', 
     TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m_1_page_5.swf', NULL,'Lessons from the qur''an -3', NULL);
+    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m1/m_1_page_6.swf', NULL,'Lessons from the qur''an -3', NULL);
 Insert into TEST_TUTORIAL_QUESTION_ANS
    (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
     PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
@@ -175,7 +149,7 @@ Insert into TEST_TUTORIAL_QUESTION_ANS
     PAGE_TITLE, ISQUESTION)
 Values (6, 1, 6, NULL, NULL,NULL, NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, '1', 
     TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m_1_page_6.swf', NULL,'Lessons from the qur''an -3', NULL);    
+    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m1/m_1_page_7.swf', NULL,'Lessons from the qur''an -3', NULL);    
 Insert into TEST_TUTORIAL_QUESTION_ANS
    (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
     PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
@@ -184,8 +158,188 @@ Insert into TEST_TUTORIAL_QUESTION_ANS
     PAGE_TITLE, ISQUESTION)
 Values (7, 1, 7, NULL, NULL,NULL, NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, '1', 
     TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m_1_page_7.swf', NULL,'Lessons from the Ahadith', NULL); 
-    
+    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m1/m_1_page_8.swf', NULL,'Lessons from the Ahadith', NULL); 
+-- Question and answer module -1    
+Insert into TEST_TUTORIAL_QUESTION_ANS
+   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
+    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
+    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
+    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
+    PAGE_TITLE, ISQUESTION)
+Values (197, 1, 8, NULL, NULL,NULL,
+    'According to Qur''an 3:104, who are the ones who shall prosper?', 
+    'C', 
+    'A) Those who perform extra prayers.', 
+    'B) Those who marry and raise pious children.',
+    'C) Those who call others to righteousness, encourage goodness, and forbid evil.', 
+    'D) Those who read the Qur''an in Arabic.', 
+    'E) All of the above.', 
+    'F) None of the above.', 
+    '1', 
+    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
+    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'According to Qur''an 3:104', NULL);    
+Insert into TEST_TUTORIAL_QUESTION_ANS
+   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
+    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
+    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
+    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
+    PAGE_TITLE, ISQUESTION)
+Values (198, 1, 9, NULL, NULL,NULL,
+    'Qur''an 41:33 asks, "And who is better in speech than he who"', 
+    'D', 
+    'A) Refrains from backbiting.', 
+    'B) Speaks fluent Arabic.',
+    'C) Reads the Qur''an daily.',
+    'D) Invites others to believe and submit to God.',
+    'E) All of the above.',
+    'F) None of the above.',
+    '1', 
+    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
+    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'Qur''an 41:33 asks,', NULL);    
+Insert into TEST_TUTORIAL_QUESTION_ANS
+   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
+    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
+    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
+    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
+    PAGE_TITLE, ISQUESTION)
+Values (199, 1, 10, NULL, NULL,NULL, 
+    'When addressing the People of the Book, Qur''an 3:64 told Prophet Muhammad -pbuh- to tell them:', 
+    'F', 
+    'A) To submit to Islamic shari''a or be damned.', 
+    'B) To dress modestly.',
+    'C) To avoid alcohol.', 
+    'D) To give up their own scripture.', 
+    'E) All of the above.',
+    'F) None of the above.',
+    '1', 
+    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
+    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'When addressing the People of the Book', NULL);    
+Insert into TEST_TUTORIAL_QUESTION_ANS
+   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
+    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
+    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
+    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
+    PAGE_TITLE, ISQUESTION)
+Values (200, 1, 11, NULL, NULL,NULL,
+    'Qur''an 2:143 informs us that God has made the Muslim ummah a moderate community that we:',
+    'D',
+    'A) May avoid extremes in worship.',
+    'B) Assume leadership over non-Muslims.',
+    'C) May prosper.',
+    'D) Be a witness to humanity.',
+    'E) All of the above.',
+    'F) None of the above.',
+    '1', 
+    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
+    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'Qur''an 2:143 informs us that God has made the Muslim..', NULL);    
+Insert into TEST_TUTORIAL_QUESTION_ANS
+   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
+    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
+    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
+    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
+    PAGE_TITLE, ISQUESTION)
+Values (201, 1, 12, NULL, NULL,NULL,
+    'Qur''an 16:125 states that we should:',
+    'F',
+    'A) Aggressively confront and combat the belief systems of non-Muslims.',
+    'B) Tell non-Muslims that they are going to Hell.',
+    'C) Make non-Muslims pay the jizya.',
+    'D) Let non-Muslims know how stupid they are for believing as they do.',
+    'E) All of the above.',
+    'F) None of the above.',
+    '1', 
+    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
+    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'Qur''an 16:125 states that we should', NULL);    
+Insert into TEST_TUTORIAL_QUESTION_ANS
+   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
+    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
+    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
+    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
+    PAGE_TITLE, ISQUESTION)
+Values (202, 1, 13, NULL, NULL,NULL, 
+    'In inviting others to Islam, we should:',
+    'E',
+    'A) Use wisdom.',
+    'B) Preach in a beautiful manner.',
+    'C) Reason with them in the best possible ways. ',
+    'D) Be gracious.',
+    'E) All of the above.',
+    'F) None of the above.',
+    '1', 
+    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
+    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'In inviting others to Islam, we should', NULL);    
+Insert into TEST_TUTORIAL_QUESTION_ANS
+   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
+    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
+    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
+    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
+    PAGE_TITLE, ISQUESTION)
+Values (203, 1, 14, NULL, NULL,NULL, 
+    'Prophet Muhammad -pbuh- was told that he wouldn''t have fulfilled God''s mission for him if he didn''t: ',
+    'A',
+    'A) Proclaim the message of Islam.',
+    'B) Become the leader for both Muslims and non-Muslims.  ',
+    'C) Migrate to Madina.',
+    'D) Establish the Covenant of Madina.  ',
+    'E) All of the above. ',
+    'F) None of the above.',
+    '1', 
+    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
+    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'Prophet Muhammad -pbuh- was told that', NULL);    
+Insert into TEST_TUTORIAL_QUESTION_ANS
+   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
+    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
+    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
+    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
+    PAGE_TITLE, ISQUESTION)
+Values (204, 1, 15, NULL, NULL,NULL,
+    'In inviting the People of the Book to Islam, we should:', 
+    'E',
+    'A) Refrain from disputatious arguments.',
+    'B) Say that we believe in the revelation that has come down to them.',
+    'C) Acknowledge that "our God and your God is one."',
+    'D) State that we bow down to God. ',
+    'E) All of the above.',
+    'F) None of the above.',
+    '1', 
+    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
+    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'In inviting the People of the Book', NULL);    
+Insert into TEST_TUTORIAL_QUESTION_ANS
+   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
+    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
+    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
+    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
+    PAGE_TITLE, ISQUESTION)
+Values (205, 1, 16, NULL, NULL,NULL,
+    'The Prophet -pbuh- instructed us to convey the message of the Qur''an, even if',
+    'B',
+    'A) We lack good knowledge of it.  ',
+    'B) It is only one verse that we convey. ',
+    'C) Others do not want to hear it.',
+    'D) We verbally attack others in the manner in which we convey it.',
+    'E) All of the above.',
+    'F) None of the above.',
+    '1', 
+    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
+    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'The Prophet -pbuh- instructed us to convey', NULL);    
+Insert into TEST_TUTORIAL_QUESTION_ANS
+   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
+    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
+    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
+    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
+    PAGE_TITLE, ISQUESTION)
+Values (206, 1, 17, NULL, NULL,NULL,
+    'Before attempting to teach Islam to others, we should:',
+    'A',
+    'A) Learn the required precepts of Islam and the Qur''an.',
+    'B) Make wudu.',
+    'C) Say two rakat of prayer.',
+    'D) Be able to read and understand the Qur''an in Arabic.',
+    'E) All of the above.',
+    'F) None of the above.',
+    '1', 
+    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
+    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'Before attempting to teach Islam', NULL);    
 -- Tutorial page for module 2    
 Insert into TEST_TUTORIAL_QUESTION_ANS
    (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
@@ -358,7 +512,494 @@ Insert into TEST_TUTORIAL_QUESTION_ANS
 Values (26, 2, 19, NULL, NULL,NULL, NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, '1', 
     TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
     'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m2/m_2_page_20.swf', NULL,'Forcing the Youth to be Foreigners', NULL);
-    
+-- Tutorial module 2 question and answer    
+Insert into TEST_TUTORIAL_QUESTION_ANS
+   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
+    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
+    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
+    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
+    PAGE_TITLE, ISQUESTION)
+Values (208, 2, 20, NULL, NULL,NULL,
+    'For Americans who may be searching for Islam, which of the following is a challenge that may block their way?',
+    'B',
+    'A) An American society that emphasizes a decadent lifestyle.',
+    'B) Unfriendly mosques.',
+    'C) Inability to read Arabic.',
+    'D) The challenge of living an Islamic lifestyle.',
+    'E) All of the above.',
+    'F) None of the above.',
+    '1', 
+    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
+    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'For Americans who may be searching for Islam', NULL);
+Insert into TEST_TUTORIAL_QUESTION_ANS
+   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
+    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
+    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
+    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
+    PAGE_TITLE, ISQUESTION)
+Values (209, 2, 21, NULL, NULL,NULL,
+    'For Americans who may be searching for Islam, which of the following is a challenge that may block their way?',
+    'A',
+    'A) Distortions of Islam by the media and on the internet.',
+    'B) A lack of objective books and reading material on Islam.',
+    'C) A Friday work schedule.',
+    'D) The relatively small size of the Muslim ummah in America.',
+    'E) All of the above.',
+    'F) None of the above.',
+    '1', 
+    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
+    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'For Americans who may be searching for Islam', NULL);
+Insert into TEST_TUTORIAL_QUESTION_ANS
+   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
+    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
+    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
+    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
+    PAGE_TITLE, ISQUESTION)
+Values (210, 2, 22, NULL, NULL,NULL,
+    'Based upon the research reported in Module #2, which of the following are among the negative stereotypes about Muslims that may hinder someone fromsearching for Islam?',
+    'E',
+    'A) Muslims are more likely to be sexist than are Christians.',
+    'B) Muslims are more likely to be unforgiving than are Christians.',
+    'C) Muslims are more likely to be violent than are Christians.',
+    'D) Muslims are less likely to be educated than are Christians.',
+    'E) All of the above.',
+    'F) None of the above.',
+    '1', 
+    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
+    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'Based upon the research reported in Module #2', NULL);
+Insert into TEST_TUTORIAL_QUESTION_ANS
+   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
+    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
+    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
+    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
+    PAGE_TITLE, ISQUESTION)
+Values (211, 2, 23, NULL, NULL,NULL,
+    'Based upon the research reported in Module #2, which of the following are among the negative stereotypes about Muslims that may hinder someone from searching for Islam?',
+    'E',
+    'A) Muslims are more likely to be isolated than are Christians.',
+    'B) Muslims are more likely to be persecuted than are Christians.',
+    'C) Muslims are less likely to be compassionate than are Christians.',
+    'D) Muslims are less likely to be educated than are Christians.',
+    'E) All of the above.',
+    'F) None of the above.',
+    '1', 
+    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
+    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'Based upon the research reported in Module #2', NULL);
+Insert into TEST_TUTORIAL_QUESTION_ANS
+   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
+    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
+    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
+    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
+    PAGE_TITLE, ISQUESTION)
+Values (212, 2, 24, NULL, NULL,NULL,
+    'Based upon the research reported in Module #2, which of the following are among the negative stereotypes about Muslims that may hinder someone from searching for Islam?',
+    'E',
+    'A) Muslims are more likely to be vengeful than are Christians.',
+    'B) Muslims are less likely to be caring than are Christians.',
+    'C)  Muslims are less likely to be accepting than are Christians.',
+    'D) Muslims are less likely to be educated than are Christians. ',
+    'E) All of the above.',
+    'F) None of the above.',
+    '1', 
+    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
+    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'Based upon the research reported in Module #2', NULL);
+Insert into TEST_TUTORIAL_QUESTION_ANS
+   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
+    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
+    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
+    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
+    PAGE_TITLE, ISQUESTION)
+Values (213, 2, 25, NULL, NULL,NULL,
+    'Based upon the research reported in Module #2, which negative stereotype about Muslims appears to be the strongest?',
+    'A',
+    'A) Muslims are sexist.',
+    'B) Muslims are unforgiving.',
+    'C) Muslims are vengeful.',
+    'D) Muslims are lacking in compassion.',
+    'E) Muslims are uneducated.',
+    'F) All of the above.',
+    '1', 
+    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
+    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'Based upon the research reported in Module #2', NULL);
+Insert into TEST_TUTORIAL_QUESTION_ANS
+   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
+    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
+    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
+    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
+    PAGE_TITLE, ISQUESTION)
+Values (214, 2, 26, NULL, NULL,NULL,
+    'Unfriendly mosques are best accounted for by:',
+    'D',
+    'A) Negative stereotypes fostered by the American media.',
+    'B) American society''s bias against Muslims.',
+    'C) A lack of finances.',
+    'D) The behavior of those Muslims attending those mosques.',
+    'E) All of the above.',
+    'F) None of the above.',
+    '1', 
+    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
+    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'Unfriendly mosques are best accounted for by', NULL);
+Insert into TEST_TUTORIAL_QUESTION_ANS
+   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
+    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
+    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
+    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
+    PAGE_TITLE, ISQUESTION)
+Values (215, 2, 27, NULL, NULL,NULL,
+    'Unfriendly mosques are frequently characterized by:',
+    'E',
+    'A) Failure to provide a listing in the Yellow Pages.',
+    'B) Failure to greet visitors in a friendly, warm, and caring manner.',
+    'C) Failure to explain the prayer service to the visitor.',
+    'D) Failure to obtain follow-up information name, phone number, and address) from the visitor.',
+    'E) All of the above.',
+    'F) None of the above.',
+    '1', 
+    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
+    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'Unfriendly mosques are frequently characterized by', NULL);
+Insert into TEST_TUTORIAL_QUESTION_ANS
+   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
+    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
+    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
+    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
+    PAGE_TITLE, ISQUESTION)
+Values (216, 2, 28, NULL, NULL,NULL,
+    'Many converts complain that the day they say shahadah they are welcomed and congratulated by many Muslims but are thereafter often ignored in the mosque',
+    'C',
+    'A) A false perception by new converts.',
+    'B) The hypersensitivity of new converts.',
+    'C) An unfriendly mosque. ',
+    'D) The new convert''s inability to speak Arabic or Urdu.',
+    'E) All of the above.',
+    'F) None of the above.',
+    '1', 
+    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
+    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'Many converts complain that the day', NULL);
+Insert into TEST_TUTORIAL_QUESTION_ANS
+   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
+    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
+    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
+    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
+    PAGE_TITLE, ISQUESTION)
+Values (217, 2, 29, NULL, NULL,NULL,
+    'Among the many distortions and/or fabrications about Islam propagated by the media or over the internet is the claim that:',
+    'B',
+    'A) Self-proclaimed Muslims were involved in the attacks of 9/11. ',
+    'B) Allah is nothing more than an Arab moon god. ',
+    'C) Muslim women are discriminated against in some "Muslim" countries.',
+    'D) So-called "honor killings" occur in some "Muslim" countries.',
+    'E) All of the above.',
+    'F) None of the above.',
+    '1', 
+    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
+    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'Among the many distortions and/or fabrications about', NULL);
+Insert into TEST_TUTORIAL_QUESTION_ANS
+   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
+    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
+    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
+    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
+    PAGE_TITLE, ISQUESTION)
+Values (218, 2, 30, NULL, NULL,NULL,
+    'To combat media and internet distortions about Islam, we need to:',
+    'D',
+    'A) Advise people against using the internet.',
+    'B) Propagate our own distortions about other religions.',
+    'C) Attack the press and media as being anti-Islamic.',
+    'D) Develop and mass distribute a set and standardized refutation of such distortions as soon as such distortions come to our attention.',
+    'E) All of the above.',
+    'F) None of the above.',
+    '1', 
+    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
+    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'To combat media and internet', NULL);
+Insert into TEST_TUTORIAL_QUESTION_ANS
+   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
+    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
+    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
+    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
+    PAGE_TITLE, ISQUESTION)
+Values (219, 2, 31, NULL, NULL,NULL,
+    'For many Americans, one of the obstacles they face on their journey to Islam is:',
+    'E',
+    'A) Realizing that they don''t need to renounce their American national identity in order to adopt an Islamic religious identity.',
+    'B) Giving up their former religious identity.',
+    'C) The contrast some members of the ummah make between being a Muslim and being an American.',
+    'D) The perception that Allah is some cult deity other than God.',
+    'E) All of the above.',
+    'F) None of the above.',
+    '1', 
+    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
+    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'For many Americans', NULL);
+Insert into TEST_TUTORIAL_QUESTION_ANS
+   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
+    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
+    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
+    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
+    PAGE_TITLE, ISQUESTION)
+Values (220, 2, 32, NULL, NULL,NULL,
+    'In pointing out that America was not founded as a Christian nation, we can point to the fact that at the time America was founded, the number of adult Americans belonging to a church was:',
+    'A',
+    'A) Less than 15%.  ',
+    'B) About 25%.  ',
+    'C) About 35%.  ',
+    'D) About 40%. ',
+    'E) About 45%.  ',
+    'F) Just over 50%.',
+    '1', 
+    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
+    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'In pointing out that America was not founded', NULL);
+Insert into TEST_TUTORIAL_QUESTION_ANS
+   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
+    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
+    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
+    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
+    PAGE_TITLE, ISQUESTION)
+Values (221, 2,33, NULL, NULL,NULL,
+    'In pointing out that America was not founded as a Christian nation, we can point to the fact that upon becoming president: ',
+    'F',
+    'A) None of our first two presidents belonged to a church.',
+    'B) None of our first three presidents belonged to a church.',
+    'C) None of our first four presidents belonged to a church.',
+    'D) None of our first five presidents belonged to a church.',
+    'E) None of our first six presidents belonged to a church.',
+    'F) None of our first seven presidents belonged to a church.',
+    '1', 
+    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
+    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'In pointing out that America was not founded', NULL);
+Insert into TEST_TUTORIAL_QUESTION_ANS
+   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
+    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
+    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
+    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
+    PAGE_TITLE, ISQUESTION)
+Values (222, 2, 34, NULL, NULL,NULL,
+    'In pointing out that America was not founded as a Christian nation, we can point to the fact that George Washington was not a Christian but was an:',
+    'B',
+    'A) Atheist.',
+    'B) Deist.',
+    'C) Unitarian.',
+    'D) Agnostic.',
+    'E) Buddhist.',
+    'F) None of the above.',
+    '1', 
+    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
+    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'In pointing out that America was not founded', NULL);
+Insert into TEST_TUTORIAL_QUESTION_ANS
+   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
+    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
+    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
+    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
+    PAGE_TITLE, ISQUESTION)
+Values (223, 2, 35, NULL, NULL,NULL,
+    'In pointing out that America was not founded as a Christian nation, we can point to the fact that Thomas Jefferson was not a Christian but was an:',
+    'B',
+    'A) Atheist.',
+    'B) Deist.',
+    'C) Unitarian.',
+    'D) Agnostic.',
+    'E) Buddhist.',
+    'F) None of the above.',
+    '1', 
+    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
+    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'In pointing out that America was not founded', NULL);
+Insert into TEST_TUTORIAL_QUESTION_ANS
+   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
+    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
+    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
+    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
+    PAGE_TITLE, ISQUESTION)
+Values (224, 2, 36, NULL, NULL,NULL,
+    'In pointing out that America was not founded as a Christian nation, we can point to the fact that Benjamin Franklin was not a Christian but was an:',
+    'B',
+    'A) Atheist.',
+    'B) Deist.',
+    'C) Unitarian.',
+    'D) Agnostic.',
+    'E) Buddhist.',
+    'F) None of the above.',
+    '1', 
+    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
+    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'In pointing out that America was not founded', NULL);
+Insert into TEST_TUTORIAL_QUESTION_ANS
+   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
+    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
+    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
+    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
+    PAGE_TITLE, ISQUESTION)
+Values (225, 2, 37, NULL, NULL,NULL,
+    'In pointing out that America was not founded as a Christian nation, we can point to the fact that the statement that "the Government of the United States is not, in any sense, founded on the Christian religion" is found in the:',
+    'C',
+    'A) Constitution.',
+    'B) Declaration of Independence.',
+    'C) 1797 Treaty of Tripoli.',
+    'D) Federalist Papers.',
+    'E) Articles of Confederation.',
+    'F) None of the above.',
+    '1', 
+    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
+    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'In pointing out that America was not founded', NULL);
+
+Insert into TEST_TUTORIAL_QUESTION_ANS
+   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
+    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
+    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
+    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
+    PAGE_TITLE, ISQUESTION)
+Values (226, 2, 38, NULL, NULL,NULL,
+    'About what percentage of new converts no longer are regular participants in the mosque after one year from conversion?',
+    'D',
+    'A) 23%.',
+    'B) 35%.',
+    'C) 47%.',
+    'D) 58%.',
+    'E) 65%.',
+    'F) None of the above.',
+    '1', 
+    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
+    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'About what percentage of new converts no longer', NULL);
+Insert into TEST_TUTORIAL_QUESTION_ANS
+   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
+    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
+    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
+    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
+    PAGE_TITLE, ISQUESTION)
+Values (227, 2, 39, NULL, NULL,NULL,
+    'According to Br Jeffrey Lang, about what percentage of Muslims in America are totally alienated from their local mosques?',
+    'F',
+    'A) 30%.',
+    'B) 40%',
+    'C) 50%',
+    'D) 60%',
+    'E) 70%',
+    'F) 80%',
+    '1', 
+    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
+    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'According to Br Jeffrey Lang, about what percentage', NULL);
+Insert into TEST_TUTORIAL_QUESTION_ANS
+   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
+    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
+    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
+    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
+    PAGE_TITLE, ISQUESTION)
+Values (228, 2, 40, NULL, NULL,NULL,
+    'Many new converts to Islam face loss of:',
+    'A',
+    'A) Social support.',
+    'B) Financial resources.',
+    'C) Vocational advancement.',
+    'D) Spiritual satisfaction.',
+    'E) All of the above.',
+    'F) None of the above.',
+    '1', 
+    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
+    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'Many new converts to Islam face loss of', NULL);
+Insert into TEST_TUTORIAL_QUESTION_ANS
+   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
+    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
+    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
+    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
+    PAGE_TITLE, ISQUESTION)
+Values (229, 2, 41, NULL, NULL,NULL,
+    'To help new converts who may be disowned or rejected by their families and former friends, which of the following need to be implemented?',
+    'E',
+    'A) Local mosques need to sponsor regular  or at least biweekly social events e.g., potluck suppers and not simply educational classes.',
+    'B) Family-on-family socializing in which several families within the established ummah take the new convert under their wing, having him over for meals etc. on an at least weekly basis.',
+    'C) Include the new convert''s non-Muslim spouse in all social events without pressuring her to convert.',
+    'D) Replace the new convert''s lost social support system.',
+    'E) All of the above.',
+    'F) None of the above.',
+    '1', 
+    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
+    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'To help new converts who may be disowned', NULL);
+Insert into TEST_TUTORIAL_QUESTION_ANS
+   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
+    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
+    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
+    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
+    PAGE_TITLE, ISQUESTION)
+Values (230, 2, 42, NULL, NULL,NULL,
+    'One of the things that sometimes drives new converts and the second generation of Muslims in America away from Islam is ',
+    'A',
+    'A) Focusing almost exclusively on prohibitions.',
+    'B) Stressing Islam''s message of love.',
+    'C) Praying five times a day.',
+    'D) Having to pay zakat.',
+    'E) All of the above.',
+    'F) None of the above.',
+    '1', 
+    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
+    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'One of the things that sometimes drives new converts', NULL);
+Insert into TEST_TUTORIAL_QUESTION_ANS
+   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
+    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
+    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
+    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
+    PAGE_TITLE, ISQUESTION)
+Values (231, 2, 43, NULL, NULL,NULL,
+    'Telling new converts that they have to adopt Arabic/Islamic names and to start wearing non-Western clothing is one example of:',
+    'C',
+    'A) Proper instruction in Islam.',
+    'B) Helping the new converts to adjust.',
+    'C) How to drive them away from Islam.',
+    'D) Unifying the ummah.',
+    'E) All of the above.',
+    'F) None of the above.',
+    '1', 
+    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
+    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'Telling new converts that they have to adopt', NULL);
+Insert into TEST_TUTORIAL_QUESTION_ANS
+   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
+    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
+    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
+    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
+    PAGE_TITLE, ISQUESTION)
+Values (232, 2, 44, NULL, NULL,NULL,
+    'Which of the following are ways in which the ummah can drive Muslims and potential Muslims away from the mosque and maybe from Islam?',
+    'E',
+    'A) Criticizing a sister''s colorful dress as being unIslamic.',
+    'B) Telling someone that none of their prayers have ever counted because he or she is not praying correctly.',
+    'C) Verbally berating someone for sitting with the soles of his feet in the direction of qiblah.',
+    'D) Focusing too much are prohibitions and not enough on Islam''s positive message of love and compassion.',
+    'E) All of the above.',
+    'E) None of the above.',
+    '1', 
+    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
+    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'Which of the following are ways in which the ummah', NULL);
+Insert into TEST_TUTORIAL_QUESTION_ANS
+   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
+    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
+    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
+    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
+    PAGE_TITLE, ISQUESTION)
+Values (233, 2, 45, NULL, NULL,NULL,
+    'What percentage of mosques say that they are trying to preserve a unique ethnic or national heritage and thus driving away those Muslims who do not fit into that heritage?',
+    'C',
+    'A) 10%',
+    'B) 18%',
+    'C) 27%',
+    'D) 35%',
+    'E) 43%',
+    'F) Over 50%.',
+    '1', 
+    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
+    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'What percentage of mosques say that they are trying', NULL);
+Insert into TEST_TUTORIAL_QUESTION_ANS
+   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
+    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
+    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
+    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
+    PAGE_TITLE, ISQUESTION)
+Values (234, 2, 46, NULL, NULL,NULL,
+    'Muslim youth raised in America are most likely to develop an American national/cultural identity, regardless of the country of origin of their parents.Pressure to get them to conform to their parents'' foreign country of origin is likely to result in: ',
+    'E',
+    'A) The youth pretending to be something they are not in front of their parents.',
+    'B) The youth feeling like they are in the real world only when they are not around their parents and perhaps not around Muslims in general.',
+    'C) The youth feeling like their parents are trying to impose an alien and foreign culture on them.',
+    'D) The youth rejecting Islam when they reject their parents'' national/cultural identity.',
+    'E) All of the above. ',
+    'F) None of the above.',
+    '1', 
+    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
+    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'Muslim youth raised in America are most likely', NULL);    
 -- Tutorial page for module 3
 Insert into TEST_TUTORIAL_QUESTION_ANS
    (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
@@ -368,7 +1009,7 @@ Insert into TEST_TUTORIAL_QUESTION_ANS
     PAGE_TITLE, ISQUESTION)
 Values (27, 3, 1, NULL, NULL,NULL, NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, '1', 
     TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m_3_page_2.swf', NULL,'Module 3 - Goals and Types of Da''wah', NULL);
+    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m3/m_3_page_2.swf', NULL,'Module 3 - Goals and Types of Da''wah', NULL);
 Insert into TEST_TUTORIAL_QUESTION_ANS
    (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
     PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
@@ -377,7 +1018,7 @@ Insert into TEST_TUTORIAL_QUESTION_ANS
     PAGE_TITLE, ISQUESTION)
 Values (28, 3, 2, NULL, NULL,NULL, NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, '1', 
     TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m_3_page_3.swf', NULL,'Module 3 - Goals of Da''wah', NULL);
+    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m3/m_3_page_3.swf', NULL,'Module 3 - Goals of Da''wah', NULL);
 Insert into TEST_TUTORIAL_QUESTION_ANS
    (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
     PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
@@ -386,7 +1027,7 @@ Insert into TEST_TUTORIAL_QUESTION_ANS
     PAGE_TITLE, ISQUESTION)
 Values (29, 3, 3, NULL, NULL,NULL, NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, '1', 
     TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m_3_page_4.swf', NULL,'Types of Da''wah', NULL);
+    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m3/m_3_page_4.swf', NULL,'Types of Da''wah', NULL);
 Insert into TEST_TUTORIAL_QUESTION_ANS
    (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
     PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
@@ -395,7 +1036,7 @@ Insert into TEST_TUTORIAL_QUESTION_ANS
     PAGE_TITLE, ISQUESTION)
 Values (30, 3, 4, NULL, NULL,NULL, NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, '1', 
     TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m_3_page_5.swf', NULL,'The Role of Behavior', NULL);
+    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m3/m_3_page_5.swf', NULL,'The Role of Behavior', NULL);
 Insert into TEST_TUTORIAL_QUESTION_ANS
    (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
     PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
@@ -404,7 +1045,7 @@ Insert into TEST_TUTORIAL_QUESTION_ANS
     PAGE_TITLE, ISQUESTION)
 Values (31, 3, 5, NULL, NULL,NULL, NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, '1', 
     TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m_3_page_6.swf', NULL,'The Role of Behavior -Some Positive Examples #1', NULL);
+    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m3/m_3_page_6.swf', NULL,'The Role of Behavior -Some Positive Examples #1', NULL);
 Insert into TEST_TUTORIAL_QUESTION_ANS
    (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
     PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
@@ -413,7 +1054,7 @@ Insert into TEST_TUTORIAL_QUESTION_ANS
     PAGE_TITLE, ISQUESTION)
 Values (32, 3, 6, NULL, NULL,NULL, NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, '1', 
     TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m_3_page_7.swf', NULL,'The Role of Behavior -Some Positive Examples #2', NULL);
+    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m3/m_3_page_7.swf', NULL,'The Role of Behavior -Some Positive Examples #2', NULL);
 Insert into TEST_TUTORIAL_QUESTION_ANS
    (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
     PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
@@ -422,7 +1063,7 @@ Insert into TEST_TUTORIAL_QUESTION_ANS
     PAGE_TITLE, ISQUESTION)
 Values (33, 3, 7, NULL, NULL,NULL, NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, '1', 
     TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m_3_page_8.swf', NULL,'The Role of Behavior -Some Positive Examples #3', NULL);
+    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m3/m_3_page_8.swf', NULL,'The Role of Behavior -Some Positive Examples #3', NULL);
 Insert into TEST_TUTORIAL_QUESTION_ANS
    (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
     PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
@@ -431,7 +1072,7 @@ Insert into TEST_TUTORIAL_QUESTION_ANS
     PAGE_TITLE, ISQUESTION)
 Values (34, 3, 8, NULL, NULL,NULL, NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, '1', 
     TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m_3_page_9.swf', NULL,'The Role of Behavior -Some Positive Examples #4', NULL);
+    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m3/m_3_page_9.swf', NULL,'The Role of Behavior -Some Positive Examples #4', NULL);
 Insert into TEST_TUTORIAL_QUESTION_ANS
    (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
     PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
@@ -440,7 +1081,7 @@ Insert into TEST_TUTORIAL_QUESTION_ANS
     PAGE_TITLE, ISQUESTION)
 Values (35, 3, 9, NULL, NULL,NULL, NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, '1', 
     TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m_3_page_10.swf', NULL,'The Role of Behavior -Some Positive Examples #5', NULL);
+    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m3/m_3_page_10.swf', NULL,'The Role of Behavior -Some Positive Examples #5', NULL);
 Insert into TEST_TUTORIAL_QUESTION_ANS
    (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
     PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
@@ -449,7 +1090,7 @@ Insert into TEST_TUTORIAL_QUESTION_ANS
     PAGE_TITLE, ISQUESTION)
 Values (36, 3, 10, NULL, NULL,NULL, NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, '1', 
     TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m_3_page_11.swf', NULL,'The Role of Behavior -Some Negative Examples #1', NULL);
+    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m3/m_3_page_11.swf', NULL,'The Role of Behavior -Some Negative Examples #1', NULL);
 Insert into TEST_TUTORIAL_QUESTION_ANS
    (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
     PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
@@ -458,7 +1099,7 @@ Insert into TEST_TUTORIAL_QUESTION_ANS
     PAGE_TITLE, ISQUESTION)
 Values (37, 3, 11, NULL, NULL,NULL, NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, '1', 
     TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m_3_page_12.swf', NULL,'The Role of Behavior -Some Negative Examples #2', NULL);
+    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m3/m_3_page_12.swf', NULL,'The Role of Behavior -Some Negative Examples #2', NULL);
 Insert into TEST_TUTORIAL_QUESTION_ANS
    (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
     PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
@@ -467,7 +1108,7 @@ Insert into TEST_TUTORIAL_QUESTION_ANS
     PAGE_TITLE, ISQUESTION)
 Values (38, 3, 12, NULL, NULL,NULL, NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, '1', 
     TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m_3_page_13.swf', NULL,'The Role of Behavior -Some Negative Examples #3', NULL);
+    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m3/m_3_page_13.swf', NULL,'The Role of Behavior -Some Negative Examples #3', NULL);
 Insert into TEST_TUTORIAL_QUESTION_ANS
    (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
     PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
@@ -476,7 +1117,7 @@ Insert into TEST_TUTORIAL_QUESTION_ANS
     PAGE_TITLE, ISQUESTION)
 Values (39, 3, 13, NULL, NULL,NULL, NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, '1', 
     TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m_3_page_14.swf', NULL,'The Role of Behavior -Some Outreach Examples', NULL);
+    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m3/m_3_page_14.swf', NULL,'The Role of Behavior -Some Outreach Examples', NULL);
 Insert into TEST_TUTORIAL_QUESTION_ANS
    (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
     PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
@@ -485,7 +1126,7 @@ Insert into TEST_TUTORIAL_QUESTION_ANS
     PAGE_TITLE, ISQUESTION)
 Values (40, 3, 14, NULL, NULL,NULL, NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, '1', 
     TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m_3_page_15.swf', NULL,'Informal and Indirect Da''wah-Indirect Da wah Speech, Interjections, and Asides..', NULL);
+    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m3/m_3_page_15.swf', NULL,'Informal and Indirect Da''wah-Indirect Da wah Speech, Interjections, and Asides..', NULL);
 Insert into TEST_TUTORIAL_QUESTION_ANS
    (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
     PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
@@ -494,7 +1135,7 @@ Insert into TEST_TUTORIAL_QUESTION_ANS
     PAGE_TITLE, ISQUESTION)
 Values (41, 3, 15, NULL, NULL,NULL, NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, '1', 
     TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m_3_page_16.swf', NULL,'  Informal and Indirect Da''wah- Da wah Forming a Horizontal Relationship', NULL);
+    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m3/m_3_page_16.swf', NULL,'  Informal and Indirect Da''wah- Da wah Forming a Horizontal Relationship', NULL);
 Insert into TEST_TUTORIAL_QUESTION_ANS
    (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
     PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
@@ -503,7 +1144,7 @@ Insert into TEST_TUTORIAL_QUESTION_ANS
     PAGE_TITLE, ISQUESTION)
 Values (42, 3, 16, NULL, NULL,NULL, NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, '1', 
     TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m_3_page_17.swf', NULL,'Etiquette of Informal and Indirect Da''wah', NULL);
+    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m3/m_3_page_17.swf', NULL,'Etiquette of Informal and Indirect Da''wah', NULL);
 Insert into TEST_TUTORIAL_QUESTION_ANS
    (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
     PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
@@ -512,7 +1153,7 @@ Insert into TEST_TUTORIAL_QUESTION_ANS
     PAGE_TITLE, ISQUESTION)
 Values (43, 3, 17, NULL, NULL,NULL, NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, '1', 
     TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m_3_page_18.swf', NULL,'Questions to Ask Yourself in Doing Informal and Indirect Da''wah', NULL);
+    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m3/m_3_page_18.swf', NULL,'Questions to Ask Yourself in Doing Informal and Indirect Da''wah', NULL);
 Insert into TEST_TUTORIAL_QUESTION_ANS
    (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
     PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
@@ -521,7 +1162,7 @@ Insert into TEST_TUTORIAL_QUESTION_ANS
     PAGE_TITLE, ISQUESTION)
 Values (44, 3, 18, NULL, NULL,NULL, NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, '1', 
     TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m_3_page_19.swf', NULL,'Formal and Direct Presentations', NULL);
+    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m3/m_3_page_19.swf', NULL,'Formal and Direct Presentations', NULL);
 Insert into TEST_TUTORIAL_QUESTION_ANS
    (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
     PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
@@ -530,7 +1171,7 @@ Insert into TEST_TUTORIAL_QUESTION_ANS
     PAGE_TITLE, ISQUESTION)
 Values (45, 3, 19, NULL, NULL,NULL, NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, '1', 
     TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m_3_page_20.swf', NULL,'Formal and Direct Presentations', NULL);
+    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m3/m_3_page_20.swf', NULL,'Formal and Direct Presentations', NULL);
 Insert into TEST_TUTORIAL_QUESTION_ANS
    (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
     PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
@@ -539,7 +1180,7 @@ Insert into TEST_TUTORIAL_QUESTION_ANS
     PAGE_TITLE, ISQUESTION)
 Values (46, 3, 20, NULL, NULL,NULL, NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, '1', 
     TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m_3_page_21.swf', NULL,'Formal and Direct Presentations con''t.', NULL);
+    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m3/m_3_page_21.swf', NULL,'Formal and Direct Presentations con''t.', NULL);
 Insert into TEST_TUTORIAL_QUESTION_ANS
    (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
     PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
@@ -548,7 +1189,7 @@ Insert into TEST_TUTORIAL_QUESTION_ANS
     PAGE_TITLE, ISQUESTION)
 Values (47, 3, 21, NULL, NULL,NULL, NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, '1', 
     TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m_3_page_22.swf', NULL,'Formal and Direct Presentations', NULL);
+    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m3/m_3_page_22.swf', NULL,'Formal and Direct Presentations', NULL);
 Insert into TEST_TUTORIAL_QUESTION_ANS
    (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
     PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
@@ -557,7 +1198,7 @@ Insert into TEST_TUTORIAL_QUESTION_ANS
     PAGE_TITLE, ISQUESTION)
 Values (48, 3, 22, NULL, NULL,NULL, NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, '1', 
     TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m_3_page_23.swf', NULL,'Formal and Direct Presentations', NULL);
+    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m3/m_3_page_23.swf', NULL,'Formal and Direct Presentations', NULL);
 
 -- Tutorial module 4 data
 Insert into TEST_TUTORIAL_QUESTION_ANS
@@ -568,7 +1209,7 @@ Insert into TEST_TUTORIAL_QUESTION_ANS
     PAGE_TITLE, ISQUESTION)
 Values (49, 4, 1, NULL, NULL,NULL, NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, '1', 
     TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m_4_page_2.swf', NULL,'Module 4 -Da''wah As Marketing', NULL);
+    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m4/m_4_page_2.swf', NULL,'Module 4 -Da''wah As Marketing', NULL);
 Insert into TEST_TUTORIAL_QUESTION_ANS
    (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
     PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
@@ -577,7 +1218,7 @@ Insert into TEST_TUTORIAL_QUESTION_ANS
     PAGE_TITLE, ISQUESTION)
 Values (50, 4, 2, NULL, NULL,NULL, NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, '1', 
     TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m_4_page_3.swf', NULL,'Module 4 -Da''wah As Marketing', NULL);
+    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m4/m_4_page_3.swf', NULL,'Module 4 -Da''wah As Marketing', NULL);
 Insert into TEST_TUTORIAL_QUESTION_ANS
    (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
     PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
@@ -586,7 +1227,7 @@ Insert into TEST_TUTORIAL_QUESTION_ANS
     PAGE_TITLE, ISQUESTION)
 Values (51, 4, 3, NULL, NULL,NULL, NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, '1', 
     TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m_4_page_4.swf', NULL,'Market v. Product', NULL);
+    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m4/m_4_page_4.swf', NULL,'Market v. Product', NULL);
 Insert into TEST_TUTORIAL_QUESTION_ANS
    (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
     PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
@@ -595,7 +1236,7 @@ Insert into TEST_TUTORIAL_QUESTION_ANS
     PAGE_TITLE, ISQUESTION)
 Values (52, 4, 4, NULL, NULL,NULL, NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, '1', 
     TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m_4_page_5.swf', NULL,'A SWOT Analysis', NULL);
+    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m4/m_4_page_5.swf', NULL,'A SWOT Analysis', NULL);
 Insert into TEST_TUTORIAL_QUESTION_ANS
    (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
     PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
@@ -604,7 +1245,7 @@ Insert into TEST_TUTORIAL_QUESTION_ANS
     PAGE_TITLE, ISQUESTION)
 Values (53, 4, 5, NULL, NULL,NULL, NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, '1', 
     TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m_4_page_6.swf', NULL,'SWOT - Strengths', NULL);
+    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m4/m_4_page_6.swf', NULL,'SWOT - Strengths', NULL);
 Insert into TEST_TUTORIAL_QUESTION_ANS
    (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
     PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
@@ -613,7 +1254,7 @@ Insert into TEST_TUTORIAL_QUESTION_ANS
     PAGE_TITLE, ISQUESTION)
 Values (54, 4, 6, NULL, NULL,NULL, NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, '1', 
     TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m_4_page_7.swf', NULL,'SWOT - Weaknesses', NULL);
+    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m4/m_4_page_7.swf', NULL,'SWOT - Weaknesses', NULL);
 Insert into TEST_TUTORIAL_QUESTION_ANS
    (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
     PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
@@ -622,7 +1263,7 @@ Insert into TEST_TUTORIAL_QUESTION_ANS
     PAGE_TITLE, ISQUESTION)
 Values (55, 4, 7, NULL, NULL,NULL, NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, '1', 
     TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m_4_page_8.swf', NULL,'SWOT - Opportunities', NULL);
+    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m4/m_4_page_8.swf', NULL,'SWOT - Opportunities', NULL);
 Insert into TEST_TUTORIAL_QUESTION_ANS
    (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
     PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
@@ -631,7 +1272,7 @@ Insert into TEST_TUTORIAL_QUESTION_ANS
     PAGE_TITLE, ISQUESTION)
 Values (56, 4, 8, NULL, NULL,NULL, NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, '1', 
     TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m_4_page_9.swf', NULL,'SWOT - Threats', NULL);
+    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m4/m_4_page_9.swf', NULL,'SWOT - Threats', NULL);
 Insert into TEST_TUTORIAL_QUESTION_ANS
    (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
     PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
@@ -640,7 +1281,7 @@ Insert into TEST_TUTORIAL_QUESTION_ANS
     PAGE_TITLE, ISQUESTION)
 Values (57, 4, 9, NULL, NULL,NULL, NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, '1', 
     TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m_4_page_10.swf', NULL,'STPs of Da''wah', NULL);
+    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m4/m_4_page_10.swf', NULL,'STPs of Da''wah', NULL);
 Insert into TEST_TUTORIAL_QUESTION_ANS
    (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
     PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
@@ -649,7 +1290,7 @@ Insert into TEST_TUTORIAL_QUESTION_ANS
     PAGE_TITLE, ISQUESTION)
 Values (58, 4, 10, NULL, NULL,NULL, NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, '1', 
     TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m_4_page_11.swf', NULL,'Evaluate Efforts', NULL);
+    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m4/m_4_page_11.swf', NULL,'Evaluate Efforts', NULL);
 Insert into TEST_TUTORIAL_QUESTION_ANS
    (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
     PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
@@ -658,7 +1299,7 @@ Insert into TEST_TUTORIAL_QUESTION_ANS
     PAGE_TITLE, ISQUESTION)
 Values (59, 4, 11, NULL, NULL,NULL, NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, '1', 
     TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m_4_page_12.swf', NULL,'Things to Ask Yoursel', NULL);
+    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m4/m_4_page_12.swf', NULL,'Things to Ask Yoursel', NULL);
 Insert into TEST_TUTORIAL_QUESTION_ANS
    (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
     PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
@@ -667,7 +1308,7 @@ Insert into TEST_TUTORIAL_QUESTION_ANS
     PAGE_TITLE, ISQUESTION)
 Values (60, 4, 12, NULL, NULL,NULL, NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, '1', 
     TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m_4_page_13.swf', NULL,'Things to Ask Yourself', NULL);
+    'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m4/m_4_page_13.swf', NULL,'Things to Ask Yourself', NULL);
 
 --Tutorial module 5 data
 Insert into TEST_TUTORIAL_QUESTION_ANS
@@ -1903,674 +2544,4 @@ Values (196, 9, 7, NULL, NULL,NULL, NULL, NULL, NULL, NULL,NULL, NULL, NULL, NUL
     TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
     'MM/DD/YYYY HH24:MI:SS'), 'pages/secure/media/m101/m_101_page_7.swf', NULL,'', NULL);
     
--- Question and answer module -1    
-Insert into TEST_TUTORIAL_QUESTION_ANS
-   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
-    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
-    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
-    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
-    PAGE_TITLE, ISQUESTION)
-Values (197, 10, 1, NULL, NULL,NULL,
-    'According to Qur''an 3:104, who are the ones who shall prosper?', 
-    'C', 
-    'A) Those who perform extra prayers.', 
-    'B) Those who marry and raise pious children.',
-    'C) Those who call others to righteousness, encourage goodness, and forbid evil.', 
-    'D) Those who read the Qur''an in Arabic.', 
-    'E) All of the above.', 
-    'F) None of the above.', 
-    '1', 
-    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'According to Qur''an 3:104', NULL);    
-Insert into TEST_TUTORIAL_QUESTION_ANS
-   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
-    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
-    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
-    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
-    PAGE_TITLE, ISQUESTION)
-Values (198, 10, 2, NULL, NULL,NULL,
-    'Qur''an 41:33 asks, "And who is better in speech than he who"', 
-    'D', 
-    'A) Refrains from backbiting.', 
-    'B) Speaks fluent Arabic.',
-    'C) Reads the Qur’an daily.',
-    'D) Invites others to believe and submit to God.',
-    'E) All of the above.',
-    'F) None of the above.',
-    '1', 
-    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'Qur''an 41:33 asks,', NULL);    
-Insert into TEST_TUTORIAL_QUESTION_ANS
-   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
-    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
-    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
-    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
-    PAGE_TITLE, ISQUESTION)
-Values (199, 10, 3, NULL, NULL,NULL, 
-    'When addressing the People of the Book, Qur''an 3:64 told Prophet Muhammad -pbuh- to tell them:', 
-    'F', 
-    'A) To submit to Islamic shari''a or be damned.', 
-    'B) To dress modestly.',
-    'C) To avoid alcohol.', 
-    'D) To give up their own scripture.', 
-    'E) All of the above.',
-    'F) None of the above.',
-    '1', 
-    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'When addressing the People of the Book', NULL);    
-Insert into TEST_TUTORIAL_QUESTION_ANS
-   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
-    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
-    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
-    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
-    PAGE_TITLE, ISQUESTION)
-Values (200, 10, 4, NULL, NULL,NULL,
-    'Qur''an 2:143 informs us that God has made the Muslim ummah a moderate community that we:',
-    'D',
-    'A) May avoid extremes in worship.',
-    'B) Assume leadership over non-Muslims.',
-    'C) May prosper.',
-    'D) Be a witness to humanity.',
-    'E) All of the above.',
-    'F) None of the above.',
-    '1', 
-    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'Qur''an 2:143 informs us that God has made the Muslim..', NULL);    
-Insert into TEST_TUTORIAL_QUESTION_ANS
-   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
-    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
-    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
-    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
-    PAGE_TITLE, ISQUESTION)
-Values (201, 10, 5, NULL, NULL,NULL,
-    'Qur''an 16:125 states that we should:',
-    'F',
-    'A) Aggressively confront and combat the belief systems of non-Muslims.',
-    'B) Tell non-Muslims that they are going to Hell.',
-    'C) Make non-Muslims pay the jizya.',
-    'D) Let non-Muslims know how stupid they are for believing as they do.',
-    'E) All of the above.',
-    'F) None of the above.',
-    '1', 
-    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'Qur''an 16:125 states that we should', NULL);    
-Insert into TEST_TUTORIAL_QUESTION_ANS
-   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
-    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
-    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
-    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
-    PAGE_TITLE, ISQUESTION)
-Values (202, 10, 6, NULL, NULL,NULL, 
-    'In inviting others to Islam, we should:',
-    'E',
-    'A) Use wisdom.',
-    'B) Preach in a beautiful manner.',
-    'C) Reason with them in the best possible ways. ',
-    'D) Be gracious.',
-    'E) All of the above.',
-    'F) None of the above.',
-    '1', 
-    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'In inviting others to Islam, we should', NULL);    
-Insert into TEST_TUTORIAL_QUESTION_ANS
-   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
-    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
-    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
-    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
-    PAGE_TITLE, ISQUESTION)
-Values (203, 10, 7, NULL, NULL,NULL, 
-    'Prophet Muhammad -pbuh- was told that he wouldn''t have fulfilled God''s mission for him if he didn''t: ',
-    'A',
-    'A) Proclaim the message of Islam.',
-    'B) Become the leader for both Muslims and non-Muslims.  ',
-    'C) Migrate to Madina.',
-    'D) Establish the Covenant of Madina.  ',
-    'E) All of the above. ',
-    'F) None of the above.',
-    '1', 
-    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'Prophet Muhammad -pbuh- was told that', NULL);    
-Insert into TEST_TUTORIAL_QUESTION_ANS
-   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
-    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
-    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
-    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
-    PAGE_TITLE, ISQUESTION)
-Values (204, 10, 8, NULL, NULL,NULL,
-    'In inviting the People of the Book to Islam, we should:', 
-    'E',
-    'A) Refrain from disputatious arguments.',
-    'B) Say that we believe in the revelation that has come down to them.',
-    'C) Acknowledge that "our God and your God is one."',
-    'D) State that we bow down to God. ',
-    'E) All of the above.',
-    'F) None of the above.',
-    '1', 
-    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'In inviting the People of the Book', NULL);    
-Insert into TEST_TUTORIAL_QUESTION_ANS
-   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
-    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
-    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
-    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
-    PAGE_TITLE, ISQUESTION)
-Values (205, 10, 9, NULL, NULL,NULL,
-    'The Prophet -pbuh- instructed us to convey the message of the Qur''an, even if',
-    'B',
-    'A) We lack good knowledge of it.  ',
-    'B) It is only one verse that we convey. ',
-    'C) Others do not want to hear it.',
-    'D) We verbally attack others in the manner in which we convey it.',
-    'E) All of the above.',
-    'F) None of the above.',
-    '1', 
-    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'The Prophet -pbuh- instructed us to convey', NULL);    
-Insert into TEST_TUTORIAL_QUESTION_ANS
-   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
-    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
-    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
-    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
-    PAGE_TITLE, ISQUESTION)
-Values (206, 10, 10, NULL, NULL,NULL,
-    'Before attempting to teach Islam to others, we should:',
-    'A',
-    'A) Learn the required precepts of Islam and the Qur’an.',
-    'B) Make wudu.',
-    'C) Say two rakat of prayer.',
-    'D) Be able to read and understand the Qur’an in Arabic.',
-    'E) All of the above. ',
-    'F) None of the above.',
-    '1', 
-    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'Before attempting to teach Islam', NULL);
-
--- Tutorial module 2 question and answer    
-Insert into TEST_TUTORIAL_QUESTION_ANS
-   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
-    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
-    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
-    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
-    PAGE_TITLE, ISQUESTION)
-Values (208, 11, 1, NULL, NULL,NULL,
-    'For Americans who may be searching for Islam, which of the following is a challenge that may block their way?',
-    'B',
-    'A) An American society that emphasizes a decadent lifestyle.',
-    'B) Unfriendly mosques.',
-    'C) Inability to read Arabic.',
-    'D) The challenge of living an Islamic lifestyle.',
-    'E) All of the above.',
-    'F) None of the above.',
-    '1', 
-    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'For Americans who may be searching for Islam', NULL);
-Insert into TEST_TUTORIAL_QUESTION_ANS
-   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
-    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
-    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
-    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
-    PAGE_TITLE, ISQUESTION)
-Values (209, 11, 2, NULL, NULL,NULL,
-    'For Americans who may be searching for Islam, which of the following is a challenge that may block their way?',
-    'A',
-    'A) Distortions of Islam by the media and on the internet.',
-    'B) A lack of objective books and reading material on Islam.',
-    'C) A Friday work schedule.',
-    'D) The relatively small size of the Muslim ummah in America.',
-    'E) All of the above.',
-    'F) None of the above.',
-    '1', 
-    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'For Americans who may be searching for Islam', NULL);
-Insert into TEST_TUTORIAL_QUESTION_ANS
-   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
-    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
-    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
-    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
-    PAGE_TITLE, ISQUESTION)
-Values (210, 11, 3, NULL, NULL,NULL,
-    'Based upon the research reported in Module #2, which of the following are among the negative stereotypes about Muslims that may hinder someone fromsearching for Islam?',
-    'E',
-    'A) Muslims are more likely to be sexist than are Christians.',
-    'B) Muslims are more likely to be unforgiving than are Christians.',
-    'C) Muslims are more likely to be violent than are Christians.',
-    'D) Muslims are less likely to be educated than are Christians.',
-    'E) All of the above.',
-    'F) None of the above.',
-    '1', 
-    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'Based upon the research reported in Module #2', NULL);
-Insert into TEST_TUTORIAL_QUESTION_ANS
-   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
-    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
-    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
-    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
-    PAGE_TITLE, ISQUESTION)
-Values (211, 11, 4, NULL, NULL,NULL,
-    'Based upon the research reported in Module #2, which of the following are among the negative stereotypes about Muslims that may hinder someone from searching for Islam?',
-    'E',
-    'A) Muslims are more likely to be isolated than are Christians.',
-    'B) Muslims are more likely to be persecuted than are Christians.',
-    'C) Muslims are less likely to be compassionate than are Christians.',
-    'D) Muslims are less likely to be educated than are Christians.',
-    'E) All of the above.',
-    'F) None of the above.',
-    '1', 
-    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'Based upon the research reported in Module #2', NULL);
-Insert into TEST_TUTORIAL_QUESTION_ANS
-   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
-    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
-    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
-    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
-    PAGE_TITLE, ISQUESTION)
-Values (212, 11, 5, NULL, NULL,NULL,
-    'Based upon the research reported in Module #2, which of the following are among the negative stereotypes about Muslims that may hinder someone from searching for Islam?',
-    'E',
-    'A) Muslims are more likely to be vengeful than are Christians.',
-    'B) Muslims are less likely to be caring than are Christians.',
-    'C)  Muslims are less likely to be accepting than are Christians.',
-    'D) Muslims are less likely to be educated than are Christians. ',
-    'E) All of the above.',
-    'F) None of the above.',
-    '1', 
-    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'Based upon the research reported in Module #2', NULL);
-Insert into TEST_TUTORIAL_QUESTION_ANS
-   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
-    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
-    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
-    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
-    PAGE_TITLE, ISQUESTION)
-Values (213, 11, 6, NULL, NULL,NULL,
-    'Based upon the research reported in Module #2, which negative stereotype about Muslims appears to be the strongest?',
-    'A',
-    'A) Muslims are sexist.',
-    'B) Muslims are unforgiving.',
-    'C) Muslims are vengeful.',
-    'D) Muslims are lacking in compassion.',
-    'E) Muslims are uneducated.',
-    'F) All of the above.',
-    '1', 
-    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'Based upon the research reported in Module #2', NULL);
-Insert into TEST_TUTORIAL_QUESTION_ANS
-   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
-    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
-    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
-    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
-    PAGE_TITLE, ISQUESTION)
-Values (214, 11, 7, NULL, NULL,NULL,
-    'Unfriendly mosques are best accounted for by:',
-    'D',
-    'A) Negative stereotypes fostered by the American media.',
-    'B) American society''s bias against Muslims.',
-    'C) A lack of finances.',
-    'D) The behavior of those Muslims attending those mosques.',
-    'E) All of the above.',
-    'F) None of the above.',
-    '1', 
-    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'Unfriendly mosques are best accounted for by', NULL);
-Insert into TEST_TUTORIAL_QUESTION_ANS
-   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
-    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
-    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
-    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
-    PAGE_TITLE, ISQUESTION)
-Values (215, 11, 8, NULL, NULL,NULL,
-    'Unfriendly mosques are frequently characterized by:',
-    'E',
-    'A) Failure to provide a listing in the Yellow Pages.',
-    'B) Failure to greet visitors in a friendly, warm, and caring manner.',
-    'C) Failure to explain the prayer service to the visitor.',
-    'D) Failure to obtain follow-up information name, phone number, and address) from the visitor.',
-    'E) All of the above.',
-    'F) None of the above.',
-    '1', 
-    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'Unfriendly mosques are frequently characterized by', NULL);
-Insert into TEST_TUTORIAL_QUESTION_ANS
-   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
-    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
-    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
-    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
-    PAGE_TITLE, ISQUESTION)
-Values (216, 11, 9, NULL, NULL,NULL,
-    'Many converts complain that the day they say shahadah they are welcomed and congratulated by many Muslims but are thereafter often ignored in the mosque',
-    'C',
-    'A) A false perception by new converts.',
-    'B) The hypersensitivity of new converts.',
-    'C) An unfriendly mosque. ',
-    'D) The new convert''s inability to speak Arabic or Urdu.',
-    'E) All of the above.',
-    'F) None of the above.',
-    '1', 
-    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'Many converts complain that the day', NULL);
-Insert into TEST_TUTORIAL_QUESTION_ANS
-   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
-    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
-    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
-    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
-    PAGE_TITLE, ISQUESTION)
-Values (217, 11, 10, NULL, NULL,NULL,
-    'Among the many distortions and/or fabrications about Islam propagated by the media or over the internet is the claim that:',
-    'B',
-    'A) Self-proclaimed Muslims were involved in the attacks of 9/11. ',
-    'B) Allah is nothing more than an Arab moon god. ',
-    'C) Muslim women are discriminated against in some "Muslim" countries.',
-    'D) So-called "honor killings" occur in some "Muslim" countries.',
-    'E) All of the above.',
-    'F) None of the above.',
-    '1', 
-    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'Among the many distortions and/or fabrications about', NULL);
-Insert into TEST_TUTORIAL_QUESTION_ANS
-   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
-    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
-    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
-    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
-    PAGE_TITLE, ISQUESTION)
-Values (218, 11, 11, NULL, NULL,NULL,
-    'To combat media and internet distortions about Islam, we need to:',
-    'D',
-    'A) Advise people against using the internet.',
-    'B) Propagate our own distortions about other religions.',
-    'C) Attack the press and media as being anti-Islamic.',
-    'D) Develop and mass distribute a set and standardized refutation of such distortions as soon as such distortions come to our attention.',
-    'E) All of the above.',
-    'F) None of the above.',
-    '1', 
-    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'To combat media and internet', NULL);
-Insert into TEST_TUTORIAL_QUESTION_ANS
-   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
-    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
-    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
-    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
-    PAGE_TITLE, ISQUESTION)
-Values (219, 11, 12, NULL, NULL,NULL,
-    'For many Americans, one of the obstacles they face on their journey to Islam is:',
-    'E',
-    'A) Realizing that they don''t need to renounce their American national identity in order to adopt an Islamic religious identity.',
-    'B) Giving up their former religious identity.',
-    'C) The contrast some members of the ummah make between being a Muslim and being an American.',
-    'D) The perception that Allah is some cult deity other than God.',
-    'E) All of the above.',
-    'F) None of the above.',
-    '1', 
-    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'For many Americans', NULL);
-Insert into TEST_TUTORIAL_QUESTION_ANS
-   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
-    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
-    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
-    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
-    PAGE_TITLE, ISQUESTION)
-Values (220, 11, 13, NULL, NULL,NULL,
-    'In pointing out that America was not founded as a Christian nation, we can point to the fact that at the time America was founded, the number of adult Americans belonging to a church was:',
-    'A',
-    'A) Less than 15%.  ',
-    'B) About 25%.  ',
-    'C) About 35%.  ',
-    'D) About 40%. ',
-    'E) About 45%.  ',
-    'F) Just over 50%.',
-    '1', 
-    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'In pointing out that America was not founded', NULL);
-Insert into TEST_TUTORIAL_QUESTION_ANS
-   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
-    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
-    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
-    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
-    PAGE_TITLE, ISQUESTION)
-Values (221, 11,14, NULL, NULL,NULL,
-    'In pointing out that America was not founded as a Christian nation, we can point to the fact that upon becoming president: ',
-    'F',
-    'A) None of our first two presidents belonged to a church.',
-    'B) None of our first three presidents belonged to a church.',
-    'C) None of our first four presidents belonged to a church.',
-    'D) None of our first five presidents belonged to a church.',
-    'E) None of our first six presidents belonged to a church.',
-    'F) None of our first seven presidents belonged to a church.',
-    '1', 
-    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'In pointing out that America was not founded', NULL);
-Insert into TEST_TUTORIAL_QUESTION_ANS
-   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
-    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
-    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
-    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
-    PAGE_TITLE, ISQUESTION)
-Values (222, 11, 15, NULL, NULL,NULL,
-    'In pointing out that America was not founded as a Christian nation, we can point to the fact that George Washington was not a Christian but was an:',
-    'B',
-    'A) Atheist.',
-    'B) Deist.',
-    'C) Unitarian.',
-    'D) Agnostic.',
-    'E) Buddhist.',
-    'F) None of the above.',
-    '1', 
-    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'In pointing out that America was not founded', NULL);
-Insert into TEST_TUTORIAL_QUESTION_ANS
-   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
-    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
-    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
-    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
-    PAGE_TITLE, ISQUESTION)
-Values (223, 11, 16, NULL, NULL,NULL,
-    'In pointing out that America was not founded as a Christian nation, we can point to the fact that Thomas Jefferson was not a Christian but was an:',
-    'B',
-    'A) Atheist.',
-    'B) Deist.',
-    'C) Unitarian.',
-    'D) Agnostic.',
-    'E) Buddhist.',
-    'F) None of the above.',
-    '1', 
-    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'In pointing out that America was not founded', NULL);
-Insert into TEST_TUTORIAL_QUESTION_ANS
-   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
-    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
-    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
-    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
-    PAGE_TITLE, ISQUESTION)
-Values (224, 11, 17, NULL, NULL,NULL,
-    'In pointing out that America was not founded as a Christian nation, we can point to the fact that Benjamin Franklin was not a Christian but was an:',
-    'B',
-    'A) Atheist.',
-    'B) Deist.',
-    'C) Unitarian.',
-    'D) Agnostic.',
-    'E) Buddhist.',
-    'F) None of the above.',
-    '1', 
-    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'In pointing out that America was not founded', NULL);
-Insert into TEST_TUTORIAL_QUESTION_ANS
-   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
-    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
-    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
-    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
-    PAGE_TITLE, ISQUESTION)
-Values (225, 11, 18, NULL, NULL,NULL,
-    'In pointing out that America was not founded as a Christian nation, we can point to the fact that the statement that "the Government of the United States is not, in any sense, founded on the Christian religion" is found in the:',
-    'C',
-    'A) Constitution.',
-    'B) Declaration of Independence.',
-    'C) 1797 Treaty of Tripoli.',
-    'D) Federalist Papers.',
-    'E) Articles of Confederation.',
-    'F) None of the above.',
-    '1', 
-    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'In pointing out that America was not founded', NULL);
-
-Insert into TEST_TUTORIAL_QUESTION_ANS
-   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
-    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
-    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
-    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
-    PAGE_TITLE, ISQUESTION)
-Values (226, 11, 19, NULL, NULL,NULL,
-    'About what percentage of new converts no longer are regular participants in the mosque after one year from conversion?',
-    'D',
-    'A) 23%.',
-    'B) 35%.',
-    'C) 47%.',
-    'D) 58%.',
-    'E) 65%.',
-    'F) None of the above.',
-    '1', 
-    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'About what percentage of new converts no longer', NULL);
-Insert into TEST_TUTORIAL_QUESTION_ANS
-   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
-    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
-    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
-    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
-    PAGE_TITLE, ISQUESTION)
-Values (227, 11, 20, NULL, NULL,NULL,
-    'According to Br Jeffrey Lang, about what percentage of Muslims in America are totally alienated from their local mosques?',
-    'F',
-    'A) 30%.',
-    'B) 40%',
-    'C) 50%',
-    'D) 60%',
-    'E) 70%',
-    'F) 80%',
-    '1', 
-    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'According to Br Jeffrey Lang, about what percentage', NULL);
-Insert into TEST_TUTORIAL_QUESTION_ANS
-   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
-    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
-    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
-    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
-    PAGE_TITLE, ISQUESTION)
-Values (228, 11, 21, NULL, NULL,NULL,
-    'Many new converts to Islam face loss of:',
-    'A',
-    'A) Social support.',
-    'B) Financial resources.',
-    'C) Vocational advancement.',
-    'D) Spiritual satisfaction.',
-    'E) All of the above.',
-    'F) None of the above.',
-    '1', 
-    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'Many new converts to Islam face loss of', NULL);
-Insert into TEST_TUTORIAL_QUESTION_ANS
-   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
-    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
-    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
-    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
-    PAGE_TITLE, ISQUESTION)
-Values (229, 11, 22, NULL, NULL,NULL,
-    'To help new converts who may be disowned or rejected by their families and former friends, which of the following need to be implemented?',
-    'E',
-    'A) Local mosques need to sponsor regular  or at least biweekly social events e.g., potluck suppers and not simply educational classes.',
-    'B) Family-on-family socializing in which several families within the established ummah take the new convert under their wing, having him over for meals etc. on an at least weekly basis.',
-    'C) Include the new convert’s non-Muslim spouse in all social events without pressuring her to convert.',
-    'D) Replace the new convert’s lost social support system.',
-    'E) All of the above.',
-    'F) None of the above.',
-    '1', 
-    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'To help new converts who may be disowned', NULL);
-Insert into TEST_TUTORIAL_QUESTION_ANS
-   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
-    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
-    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
-    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
-    PAGE_TITLE, ISQUESTION)
-Values (230, 11, 23, NULL, NULL,NULL,
-    'One of the things that sometimes drives new converts and the second generation of Muslims in America away from Islam is ',
-    'A',
-    'A) Focusing almost exclusively on prohibitions.',
-    'B) Stressing Islam’s message of love.',
-    'C) Praying five times a day.',
-    'D) Having to pay zakat.',
-    'E) All of the above.',
-    'F) None of the above.',
-    '1', 
-    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'One of the things that sometimes drives new converts', NULL);
-Insert into TEST_TUTORIAL_QUESTION_ANS
-   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
-    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
-    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
-    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
-    PAGE_TITLE, ISQUESTION)
-Values (231, 11, 24, NULL, NULL,NULL,
-    'Telling new converts that they have to adopt Arabic/Islamic names and to start wearing non-Western clothing is one example of:',
-    'C',
-    'A) Proper instruction in Islam.',
-    'B) Helping the new converts to adjust.',
-    'C) How to drive them away from Islam.',
-    'D) Unifying the ummah.',
-    'E) All of the above.',
-    'F) None of the above.',
-    '1', 
-    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'Telling new converts that they have to adopt', NULL);
-Insert into TEST_TUTORIAL_QUESTION_ANS
-   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
-    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
-    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
-    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
-    PAGE_TITLE, ISQUESTION)
-Values (232, 11, 25, NULL, NULL,NULL,
-    'Which of the following are ways in which the ummah can drive Muslims and potential Muslims away from the mosque and maybe from Islam?',
-    'E',
-    'A) Criticizing a sister’s colorful dress as being unIslamic.',
-    'B) Telling someone that none of their prayers have ever counted because he or she is not praying correctly.',
-    'C) Verbally berating someone for sitting with the soles of his feet in the direction of qiblah.',
-    'D) Focusing too much are prohibitions and not enough on Islam’s positive message of love and compassion.',
-    'E) All of the above.',
-    'E) None of the above.',
-    '1', 
-    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'Which of the following are ways in which the ummah', NULL);
-Insert into TEST_TUTORIAL_QUESTION_ANS
-   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
-    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
-    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
-    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
-    PAGE_TITLE, ISQUESTION)
-Values (233, 11, 26, NULL, NULL,NULL,
-    'What percentage of mosques say that they are trying to preserve a unique ethnic or national heritage and thus driving away those Muslims who do not fit into that heritage?',
-    'C',
-    'A) 10%',
-    'B) 18%',
-    'C) 27%',
-    'D) 35%',
-    'E) 43%',
-    'F) Over 50%. ',
-    '1', 
-    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'What percentage of mosques say that they are trying', NULL);
-Insert into TEST_TUTORIAL_QUESTION_ANS
-   (TEST_TUTORIAL_QUESTION_ANS_ID, TEST_TUTORIAL_MODULES_ID, PAGE_NUMBER, PAGE_TEXT, PAGE_AUDIO, 
-    PAGE_VIDEO, QUESTION, QUESTION_CORRECT_ANSWER, QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, 
-    QUESTION_OPTION_ANSWER_C, QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID, 
-    RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME, VIDEO_FILE_NAME, 
-    PAGE_TITLE, ISQUESTION)
-Values (234, 11, 27, NULL, NULL,NULL,
-    'Muslim youth raised in America are most likely to develop an American national/cultural identity, regardless of the country of origin of their parents.Pressure to get them to conform to their parents'' foreign country of origin is likely to result in: ',
-    'E',
-    'A) The youth pretending to be something they are not in front of their parents.',
-    'B) The youth feeling like they are in the real world only when they are not around their parents and perhaps not around Muslims in general.',
-    'C) The youth feeling like their parents are trying to impose an alien and foreign culture on them.',
-    'D) The youth rejecting Islam when they reject their parents’ national/cultural identity.',
-    'E) All of the above. ',
-    'F) None of the above.',
-    '1', 
-    TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 
-    'MM/DD/YYYY HH24:MI:SS'), '', NULL,'Muslim youth raised in America are most likely', NULL);    
 commit;
