@@ -7,7 +7,7 @@
   xmlns:rich="http://richfaces.org/rich"      
   xmlns:ui="http://java.sun.com/jsf/facelets">
   <head>
-    <title><ui:insert name="pageTitle">Page Title</ui:insert></title>
+    <title><ui:insert name="pageTitle">Online Tutorial</ui:insert></title>
 		<style type="text/css">
 		  body {
 				  font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -42,13 +42,19 @@
       .tutorial_container {        
         text-align:center;
         background-color:#efefef;
-        margin:1px auto;
-        padding:1px 1px 1px 1px;
-        border:1px solid #fff;
-        outline:1px solid #ccc;
-        text-align:center;
+        margin:0px auto;
+        padding:0px 0px 0px 0px;
+        border:0px solid #fff;
+        outline:0px solid #ccc;
+        text-align:center;        
       }
-                
+      .quBody {
+        text-align: left;
+      } 
+      .qaHeader {
+        .padding-left: 5px;
+        text-align: left;
+      }         
 		</style>
     <a4j:loadScript src="/js/flowplayer-3.1.4.min.js" />
     <script type="text/javascript" >
@@ -64,10 +70,10 @@
   <body bgcolor="#ffffff">
   <h:form id="idTModuleForm">
     <h:inputHidden value="#{modulePlayer.initPage}" />
-    <table style="border:1px solid #CAD6E0"  align="center" cellpadding="0" 
+    <table style="border:0px solid #CAD6E0"  align="center" cellpadding="0" 
       cellspacing="0" border="0">
     <tbody>
-    	<h:panelGroup rendered="#{!modulePlayer.notEndPlay}">
+    	<h:panelGroup rendered="#{!modulePlayer.notEndPlay or modulePlayer.hasQuestionAns}">
         <tr>
       		<td class="header" height="42" align="center" valign="middle" width="100%" bgcolor="#E4EBEB">
       			<h:graphicImage value="/images/tutorial_title.png" />
@@ -119,7 +125,7 @@
     					</rich:panel>
               <h:panelGroup rendered="#{modulePlayer.hasQuestionAns}">
       					<rich:panel id="idQuestionPanel" rendered="#{modulePlayer.notEndPlay}" 
-                  headerClass="container_box_panel_header"  bodyClass="container_body_style">
+                  headerClass="qaHeader"  bodyClass="quBody">
       						<f:facet name="header"><h:outputText value="#{modulePlayer.currentPage.question}" /> </f:facet>
       						<h:selectOneRadio styleClass="radioright" layout="pageDirection" value="#{modulePlayer.currentPage.examinerAns}">
       						  <f:selectItem itemLabel="#{modulePlayer.currentPage.questionOptionAnswerA}" itemValue="A" />
