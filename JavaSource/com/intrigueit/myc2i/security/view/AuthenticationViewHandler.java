@@ -212,11 +212,11 @@ public class AuthenticationViewHandler extends BasePage implements Serializable 
 		if (emailId.equals("") || pass.equals("")) {
 			return null;
 		}
-		List<Member> mems = this.memberService.findByProperty("email", emailId);
-		if (mems == null || mems.size() < 1) {
+		member = this.memberService.loadMemberByEmail(emailId);
+		if (member == null ) {
 			return null;
 		}
-		member = mems.get(0);
+
 		CryptographicUtility crpUtil = new CryptographicUtility();
 		String decPass = crpUtil.getDeccryptedText(member.getPassword());
 		if (!pass.equals(decPass)) {
