@@ -583,7 +583,7 @@ public class Member implements java.io.Serializable {
 		this.mentoredByDate = mentoredByDate;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "MEMBER_STATE", nullable = false, insertable = false, updatable = false)
 	private UserDefinedValues stateUDV;
 
@@ -595,7 +595,7 @@ public class Member implements java.io.Serializable {
 		this.stateUDV = stateUDV;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "MEMBER_COUNTRY", nullable = false, insertable = false, updatable = false)
 	private UserDefinedValues countryUDV;
 
