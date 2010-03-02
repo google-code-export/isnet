@@ -44,12 +44,12 @@
 								<h:outputLabel styleClass="top_panel_psep"
 									rendered="#{authenticationViewHandler.isLogged}">
 									<h:outputText value="|" />
-								</h:outputLabel>
-								<h:commandLink styleClass="" style="text-decoration:none;"
-									onclick="window.open('#{controllerBean.contextPath}/static/privacyPolicy.html','mywindow');">
-									<h:outputText id="idPrivacyPolicy"
-										value="#{bundle.top_navigation_privacy_policy}" />
-								</h:commandLink>
+								</h:outputLabel>								
+                <h:outputLink styleClass="" style="text-decoration:none;"
+                  value="#{controllerBean.contextPath}/privacyPolicy.faces">
+                  <h:outputText id="idPrivacyPolicy"
+                    value="#{bundle.top_navigation_privacy_policy}" />
+                </h:outputLink>
 								<h:outputLabel styleClass="top_panel_psep">
 									<h:outputText value="|" />
 								</h:outputLabel>
