@@ -34,16 +34,16 @@ public class TestResultDetails implements java.io.Serializable{
 	@Column(name = "QUESTION_ID", nullable = false)	
 	private Long questionId;
 	
-	@Column(name = "MENTOR_ANSWER", nullable = false)	
-	private String memberAns;
-	
-	@Column(name = "IS_CORRECT", nullable = false)	
+	@Column(name = "MENTOR_ANSWER")	
+	private String mentorAns;	
+
+  @Column(name = "IS_CORRECT", nullable = false)	
 	private Boolean isCorrect;
 	
 	@Column(name = "RECORD_CREATOR_ID", nullable = false)		
 	private String recordCreatorId;
 	
-	@Column(name = "RECORD_CREATE_DATE", nullable = true)		
+	@Column(name = "RECORD_CREATE_DATE", nullable = true)
 	private Date recordCreateDate;
 
 	@Column(name = "RECORD_LAST_UPDATER_ID", nullable = false)	
@@ -75,15 +75,21 @@ public class TestResultDetails implements java.io.Serializable{
 	public void setQuestionId(Long questionId) {
 		this.questionId = questionId;
 	}
+	
+	/**
+   * @return the mentorAns
+   */
+  public String getMentorAns() {
+    return mentorAns;
+  }
 
-	public String getMemberAns() {
-		return memberAns;
-	}
-
-	public void setMemberAns(String memberAns) {
-		this.memberAns = memberAns;
-	}
-
+  /**
+   * @param mentorAns the mentorAns to set
+   */
+  public void setMentorAns(String mentorAns) {
+    this.mentorAns = mentorAns;
+  }
+  
 	public Boolean getIsCorrect() {
 		return isCorrect;
 	}
