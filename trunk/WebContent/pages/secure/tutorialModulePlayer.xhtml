@@ -119,8 +119,9 @@
                     </colgroup>
                     <tr>
                       <td colspan="2" style="font-size: 9pt; font-weight: bold; color: #375e9f;
-                          padding-left: 10px;text-align: center;">
+                          padding-left: 10px;text-align: center;">                        
                         Congratulation! You have successfully completed your tutorial.
+                        <rich:spacer width="100%" height="20"/>
                       </td>
                     </tr>                  
                   </table>
@@ -218,7 +219,7 @@
                       <td colspan="2">
                         &#160;
                       </td>
-                     </tr>
+                     </tr>                     
                   </table>            
                 </rich:panel>
                 
@@ -231,7 +232,7 @@
     	</tr>	
     	
     	<tr>
-    		<td colspan="2" align="center"  valign="bottom" height="1" width="100%" bgcolor="#FFF7DF">
+    	 <td colspan="2" align="center"  valign="bottom" height="1" width="100%" bgcolor="#FFF7DF">           
     		<h:panelGroup id="idAction">
         <table>
     			<tr>
@@ -259,6 +260,12 @@
                 rendered="#{!modulePlayer.hasQuestionAns and modulePlayer.notEndPlay}" styleClass="ibutton">
     					</h:commandButton>				
     				</td>
+            
+            <td>
+              <h:commandButton id="idClose" value="Close" onclick="javascript:window.close();" type="ibutton"
+                styleClass="ibutton" rendered="#{!modulePlayer.notEndPlay}">
+              </h:commandButton>        
+            </td>
             
     			</tr>
     		</table>
