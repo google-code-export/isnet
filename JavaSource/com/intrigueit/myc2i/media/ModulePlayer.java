@@ -80,7 +80,7 @@ public class ModulePlayer extends BasePage{
               testDetails.setRecordCreateDate(new Date());
               testDetails.setLastUpdatedDate(new Date());
               testDetails.setRecordUpdatorId(this.getMember().getMemberId()+"");
-              testDetails.setMemberAns(tQuestionAns.getExaminerAns());
+              testDetails.setMentorAns(tQuestionAns.getExaminerAns());
               testDetails.setQuestionId(tQuestionAns.getQuestionAnsId());              
               testDetails.setTestResult(testResult);
               testDetailsList.add(testDetails);
@@ -114,10 +114,10 @@ public class ModulePlayer extends BasePage{
           }
           this.passStatus = this.getText("tutorial_fail_status");
           if ( this.perOfMarks >= passMarks ) this.passStatus = this.getText("tutorial_pass_status");
-          sendNotification(this.getMember().getEmail(),
+         /* sendNotification(this.getMember().getEmail(),
               this.getText("tutorial_test_email_sub"),
               this.getText("tutorial_test_email_body",
-                  new String[]{this.getMember().getFirstName(),""+perOfMarks}));
+                  new String[]{this.getMember().getFirstName(),""+perOfMarks}));*/
         }   
       }
     } catch (Exception e) {
