@@ -344,14 +344,19 @@ div#content {
 .listcontainer {
   width:100%;
   cellpadding:0px;
-  cellspacing:0px;
-  overflow: hidden;
+  cellspacing:0px; 
   text-align: left;
   margin:0px;
   padding:0px;
   border: 0px solid #F7F7F7;
   vertical-align: top;
+  table-layout: fixed;
+  overflow: hidden;
 }
+.fixedlayout {
+   overflow: hidden;
+}
+
 .listheader {
   background: #DFD5B5; 
 }
