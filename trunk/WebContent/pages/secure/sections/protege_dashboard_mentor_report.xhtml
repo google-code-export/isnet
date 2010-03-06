@@ -64,7 +64,7 @@
 				</h:column>					
 				<h:column>
 					<a4j:commandButton oncomplete="Richfaces.showModalPanel('idRequestNoteDialog')"
-						value="#{bundle.button_label_accept}">
+						value="#{bundle.button_label_confirm}">
 						<a4j:actionparam name="logId"  value="#{log.memberLogId}" assignTo="#{dashboardViewHandler.logId}" />
 						<a4j:actionparam name="act"  value="1" assignTo="#{dashboardViewHandler.action}" />
 					</a4j:commandButton>
@@ -124,28 +124,26 @@
 					</h:outputText>
 				</h:column>
 				<h:column>
-		         		 <a4j:commandLink value="Review" reRender="idmemberInfoDialog" action="#{protegeProfileViewHandler.loadMember}" oncomplete="Richfaces.showModalPanel('idmemberInfoDialog')">
-				             <a4j:actionparam name="MEMBER_ID" value="#{report.mentor.memberId}"  />
-				             <a4j:actionparam name="action" value="VIEW"  />
-		            		 <rich:toolTip styleClass="tooltips_style"  >
-						          <span class="tooltips_span_style">
-						              View profile<br/>
-						          </span>
-						     </rich:toolTip>	
-						</a4j:commandLink>
-						<rich:spacer width="12"/>
-						
-		         		 <a4j:commandLink  reRender="idmemberLogDialog" action="#{memberLogViewHandler.initMemberLogForContact}" oncomplete="Richfaces.showModalPanel('idmemberLogDialog')">
-				              <a4j:actionparam name="MEMBER_ID" value="#{report.mentor.memberId}"  />
-				              <a4j:actionparam name="MEMBER_NAME" value="#{report.mentor.firstName} #{report.mentor.lastName} "  />
-		            		 <rich:toolTip styleClass="tooltips_style"  >
-						          <span class="tooltips_span_style">
-						            Click here to contact<br/>
-						          </span>
-						     </rich:toolTip>	
-						        <h:outputText value="Contact" border="0" />		
-						</a4j:commandLink>
-										
+     		 <a4j:commandLink value="View Profile" reRender="idmemberInfoDialog" action="#{protegeProfileViewHandler.loadMember}" oncomplete="Richfaces.showModalPanel('idmemberInfoDialog')">
+             <a4j:actionparam name="MEMBER_ID" value="#{report.mentor.memberId}"  />
+             <a4j:actionparam name="action" value="VIEW"  />
+        		 <rich:toolTip styleClass="tooltips_style"  >
+              <span class="tooltips_span_style">
+                  View profile<br/>
+              </span>
+            </rich:toolTip>	
+         </a4j:commandLink>
+				 <rich:spacer width="12"/>						
+     		 <a4j:commandLink  reRender="idmemberLogDialog" action="#{memberLogViewHandler.initMemberLogForContact}" oncomplete="Richfaces.showModalPanel('idmemberLogDialog')">
+              <a4j:actionparam name="MEMBER_ID" value="#{report.mentor.memberId}"  />
+              <a4j:actionparam name="MEMBER_NAME" value="#{report.mentor.firstName} #{report.mentor.lastName} "  />
+        		 <rich:toolTip styleClass="tooltips_style"  >
+		            <span class="tooltips_span_style">
+		              Click here for new message<br/>
+		            </span>
+		          </rich:toolTip>	
+		        <h:outputText value="New Message" border="0" />		
+		     </a4j:commandLink>										
 										
 				</h:column>
 				<rich:subTable rowClasses="odd-row,even-row" var="protege" 
@@ -180,7 +178,7 @@
 						<f:facet name="header">
 							<h:outputText value="Action" />
 						</f:facet>
-		         		 <a4j:commandLink value="Review" reRender="idmemberInfoDialog" action="#{protegeProfileViewHandler.loadMember}" oncomplete="Richfaces.showModalPanel('idmemberInfoDialog')">
+		         		 <a4j:commandLink value="View Profile" reRender="idmemberInfoDialog" action="#{protegeProfileViewHandler.loadMember}" oncomplete="Richfaces.showModalPanel('idmemberInfoDialog')">
 				             <a4j:actionparam name="MEMBER_ID" value="#{protege.memberId}"  />
 				             <a4j:actionparam name="action" value="VIEW"  />
 		            		 <rich:toolTip styleClass="tooltips_style"  >
@@ -189,17 +187,16 @@
 						          </span>
 						     </rich:toolTip>	
 						</a4j:commandLink>
-						<rich:spacer width="12"/>
-						
+						<rich:spacer width="12"/>						
 		         		 <a4j:commandLink  reRender="idmemberLogDialog" action="#{memberLogViewHandler.initMemberLogForContact}" oncomplete="Richfaces.showModalPanel('idmemberLogDialog')">
 				              <a4j:actionparam name="MEMBER_ID" value="#{protege.memberId}"  />
 				              <a4j:actionparam name="MEMBER_NAME" value="#{protege.firstName} #{protege.lastName} "  />
 		            		 <rich:toolTip styleClass="tooltips_style"  >
 						          <span class="tooltips_span_style">
-						            Click here to contact<br/>
+						            Click here for new message<br/>
 						          </span>
 						     </rich:toolTip>	
-						        <h:outputText value="Contact" border="0" />		
+						        <h:outputText value="New Message" border="0" />		
 						</a4j:commandLink>						
 												
 					</rich:column>
