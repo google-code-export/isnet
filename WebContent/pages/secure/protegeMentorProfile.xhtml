@@ -257,8 +257,10 @@
 		<rich:panel headerClass="container_box_panel_header"  bodyClass="container_body_style" >
 			<f:facet name="header"><h:outputText value="Protege log" /> </f:facet>
 			<h:panelGrid columns="1" width="100%" cellpadding="0" cellspacing="0" border="0">
-				<rich:dataTable  width="100%" id="idDataGridOldLog"  rowClasses=",container_even_row_style" rows="10"  columnsWidth="120,"
-			                value="#{protegeProfileViewHandler.protegeLogs}" var="log" headerClass="table_column_style" cellpadding="0" cellspacing="0">
+				<rich:dataTable width="100%" id="idDataGridOldLog" styleClass="listcontainer"  
+          rowClasses=",container_even_row_style" rows="10"  columnsWidth="120,"
+			    value="#{protegeProfileViewHandler.protegeLogs}" var="log" 
+          headerClass="table_column_style" cellpadding="0" cellspacing="0" columnClasses="fixedlayout">
 		             <rich:column>
 			             <f:facet name="header">
 			               <h:outputText value="#{bundle.activity_date_time}"/>

@@ -24,21 +24,6 @@
     <h:panelGroup id="idSectionsCon">
       <rich:spacer width="100%" height="10"/>
       <h:panelGroup id="idTopCon">
-          <table border="0" cellspacing="0" cellpadding="0" width="98%">
-           <tr>
-            <td align="right">
-		      <a4j:commandLink styleClass="table_control_normal_style" action="#{memberLogViewHandler.initMemberLog}" reRender="idmemberLogDialog"  oncomplete="Richfaces.showModalPanel('idmemberLogDialog')">
-		            <a4j:actionparam name="activityId" value="-1"  />
-		           	<h:graphicImage value="/images/new.png" align="middle" border="0" />	
-		          		 <rich:toolTip styleClass="tooltips_style"  >
-				          <span class="tooltips_span_style">#{bundle.activity_log_add_new}.<br/></span>
-				     </rich:toolTip>	
-				     <rich:spacer width="3"/>
-				     <h:outputText value="#{bundle.activity_log_add_new}" border="0" />			            	
-				</a4j:commandLink>			
-            </td>
-           </tr>
-          </table>
           
       </h:panelGroup>
       
@@ -79,24 +64,7 @@
 			               <h:outputText value="#{bundle.activity_log_body}"/>
 			             </f:facet>
 				 			<h:outputText escape="false" value="#{log.memberLogEntryDescription}" />
-		             </rich:column>	   
-		             <rich:column>
-			             <f:facet name="header">
-			               <h:outputText value="#{bundle.common_label_action}"/>
-			             </f:facet>		             
-						<rich:spacer width="5"/>
-		         		 <a4j:commandLink  reRender="idDataGrid,idDataScroller" action="#{memberLogViewHandler.deleteMemberLog}" >
-				            <a4j:actionparam name="recordId" value="#{log.memberLogId}"  />
-				            <a4j:actionparam name="action" value="DELETE"  />
-			            	<h:graphicImage value="/images/delete.png" align="middle" border="0" > 
-			            	</h:graphicImage>	
-		            		 <rich:toolTip styleClass="tooltips_style"  >
-						          <span class="tooltips_span_style">
-						              Delete this log<br/>
-						          </span>
-						     </rich:toolTip>	
-						</a4j:commandLink>									             
-		             </rich:column>		                     	   
+		             </rich:column>          	   
 			      </rich:dataTable>		
 		        <rich:datascroller id="idDataScroller" align="center"  for="idDataGrid" maxPages="5" />
 			</h:panelGrid>			         
