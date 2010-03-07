@@ -33,6 +33,7 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 	
 	/** Wining story */
 	private String winningStory;
+	private Long winningStoryId;
 	private String winner;
 	
 	/** Top ten stories */
@@ -348,8 +349,9 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 			}
 			MemberStory winStory = this.storyService.getWiningStory(type);
 			if(winStory != null){
-				this.winningStory = winStory.getMemberStoryDescription();
-				this.winner = "Winner:"+ winStory.getMember().getFirstName() +" "+ winStory.getMember().getLastName();
+				this.winningStory = winStory.getStoryTitle();
+				this.winner = "Winner: "+ winStory.getMember().getFirstName() +" "+ winStory.getMember().getLastName();
+				this.setWinningStoryId(winStory.getMemberStoryId());				
 			}
 		}
 		catch(Exception ex){
@@ -365,15 +367,28 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 	}
 
 	public String getWinningStory() {
-		this.loadWinningStroy();
 		return winningStory;
 	}
 
 	public void setWinningStory(String winningStory) {
 		this.winningStory = winningStory;
-	}
+	}	
+	
+	/**
+   * @return the winningStoryId
+   */
+  public Long getWinningStoryId() {
+    return winningStoryId;
+  }
 
-	public List<MemberStory> getTopTenStories() {
+  /**
+   * @param winningStoryId the winningStoryId to set
+   */
+  public void setWinningStoryId(Long winningStoryId) {
+    this.winningStoryId = winningStoryId;
+  }
+
+  public List<MemberStory> getTopTenStories() {
 		try{
 			String type = "MENTOR";
 			if(this.getMember().getTypeId().equals(CommonConstants.PROTEGE)){
@@ -499,7 +514,8 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 	}
 
 	public String getWinner() {
-		return winner;
+    this.loadWinningStroy();
+	  return winner;
 	}
 
 	public void setWinner(String winner) {
