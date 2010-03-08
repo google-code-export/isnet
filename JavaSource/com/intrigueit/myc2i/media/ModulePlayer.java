@@ -4,13 +4,10 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-
 import com.intrigueit.myc2i.common.CommonConstants;
-import com.intrigueit.myc2i.common.ServiceConstants;
 import com.intrigueit.myc2i.common.view.BasePage;
 import com.intrigueit.myc2i.tutorial.domain.TestTutorialModules;
 import com.intrigueit.myc2i.tutorial.domain.TestTutorialQuestionAns;
@@ -47,7 +44,22 @@ public class ModulePlayer extends BasePage{
 	private String passStatus;
   private Integer perOfMarks;
   private String currentAction = "";
+  private Integer lastViewedPageIndex = 0;
   
+  /**
+   * @return the lastViewedPageIndex
+   */
+  public Integer getLastViewedPageIndex() {
+    return lastViewedPageIndex;
+  }
+
+  /**
+   * @param lastViewedPageIndex the lastViewedPageIndex to set
+   */
+  public void setLastViewedPageIndex(Integer lastViewedPageIndex) {
+    this.lastViewedPageIndex = lastViewedPageIndex;
+  }
+
   public String getInitPage() {
 		this.getInit();
 		return initPage;
@@ -183,6 +195,7 @@ public class ModulePlayer extends BasePage{
 	  try{
 			if( pageIndex < tutorials.size()-1 ){
 				pageIndex += 1;
+				if ( lastViewedPageIndex <= pageIndex ) lastViewedPageIndex = pageIndex;
 				log.debug("index:"+pageIndex);
 	  		this.currentPage = this.tutorials.get(pageIndex);
 				this.renderPage();
@@ -198,7 +211,8 @@ public class ModulePlayer extends BasePage{
 	public void playLastPage(){
 	  this.currentAction = CommonConstants.LAST;
 	  try{
-			pageIndex  = tutorials.size()-1;
+			//pageIndex  = tutorials.size()-1;
+	    if (pageIndex != -1) pageIndex = this.lastViewedPageIndex;
   		this.currentPage = this.tutorials.get(pageIndex);
 			this.renderPage();			
 		}
@@ -208,6 +222,7 @@ public class ModulePlayer extends BasePage{
 	}	
   	private void playModuleIntroduction(){
   		try {
+  		  this.lastViewedPageIndex = 0;
   		  mediaBean = new MediaBean();
   			mediaBean.setPageContent(this.getModule().getModuleText());
   			mediaBean.setAudioFilePath(this.getModule().getAudioFileName());
