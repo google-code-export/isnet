@@ -266,7 +266,7 @@
             
             <td>
               <h:commandButton id="idClose" value="Close" onclick="javascript:window.close();" type="ibutton"
-                styleClass="ibutton" rendered="#{!modulePlayer.notEndPlay}">
+                styleClass="ibutton" rendered="#{!modulePlayer.notEndPlay}" title="Close tutorial">
               </h:commandButton>        
             </td>
             
@@ -279,8 +279,7 @@
     </table>
   </h:form>
   <script type="text/javascript" >
-    //setTimeout("enabledButton();",10000);
-    setTimeout("enabledButton();",1);
+    setTimeout("enabledButton();",10000);
   </script>
   </body>		
 </html>
