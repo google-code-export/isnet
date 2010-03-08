@@ -238,26 +238,29 @@
     			<tr>
     				<td>
     					<h:commandButton action="#{modulePlayer.playFirstPage}" value="First"
-                rendered="#{!modulePlayer.hasQuestionAns and modulePlayer.notEndPlay}" styleClass="ibutton">						
+                rendered="#{!modulePlayer.hasQuestionAns and modulePlayer.notEndPlay}" styleClass="ibutton"
+                title = "First page">						
     					</h:commandButton>
     				
     				</td>
     				<td>
     					<h:commandButton action="#{modulePlayer.playPreviousPage}" value="Previous"
-                rendered="#{!modulePlayer.hasQuestionAns and modulePlayer.notEndPlay}" styleClass="ibutton">					
+                rendered="#{!modulePlayer.hasQuestionAns and modulePlayer.notEndPlay}" styleClass="ibutton"
+                title="Previous page">					
     					</h:commandButton>
     				</td>          
     				<td>
     					<h:commandButton id="idNext" action="#{modulePlayer.playNextPage}" value="Next" 
                 disabled="#{modulePlayer.disabledNext}" 
-                rendered="#{modulePlayer.notEndPlay}" styleClass="ibutton">						
+                rendered="#{modulePlayer.notEndPlay}" styleClass="ibutton" title="Next page">						
     					</h:commandButton>				
     				</td>
             
     				<td>
     					<h:commandButton id="idLast" action="#{modulePlayer.playLastPage}" value="Last"
                 disabled="#{modulePlayer.disabledLast}" 
-                rendered="#{!modulePlayer.hasQuestionAns and modulePlayer.notEndPlay}" styleClass="ibutton">
+                rendered="#{!modulePlayer.hasQuestionAns and modulePlayer.notEndPlay}" styleClass="ibutton"
+                title="Last viewed page in the proper timeout order">
     					</h:commandButton>				
     				</td>
             
@@ -276,7 +279,8 @@
     </table>
   </h:form>
   <script type="text/javascript" >
-    setTimeout("enabledButton();",10000);
+    //setTimeout("enabledButton();",10000);
+    setTimeout("enabledButton();",1);
   </script>
   </body>		
 </html>
