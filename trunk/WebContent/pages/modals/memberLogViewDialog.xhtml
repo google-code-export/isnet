@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:a4j="http://richfaces.org/a4j"
+   xmlns:rich="http://richfaces.org/rich"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:c="http://java.sun.com/jstl/core">
+	<ui:composition>
+    <rich:modalPanel id="idmemberLogViewDialog" minHeight="300" minWidth="450" >      
+      <f:facet name="header"><h:outputText value="#{bundle.activity_log_activity_view_title}"/></f:facet>
+      <f:facet name="controls">
+                <h:graphicImage value="/images/close.png" style="cursor:pointer" onclick="Richfaces.hideModalPanel('idmemberLogViewDialog')" />
+          </f:facet>              
+         <a4j:form id="memberLogViewForm">
+         <h:panelGroup id="idmemberLogDialogContainer">
+
+        <rich:panel styleClass="popup_window_outer_panel_style" id="idPopupPanel">
+                              
+          <h:panelGrid columns="2" id="gridMemberLog" width="100%">
+            <h:outputText value="From"/>
+            <h:panelGroup >
+	            <h:inputText readonly="true" id="idFromMember" value="#{memberLogViewHandler.currentLog.fromMember.firstName} #{memberLogViewHandler.currentLog.fromMember.lastName}" styleClass="form_input_text_medium"></h:inputText> 
+             </h:panelGroup> 
+                                                   
+            <h:outputText value="To"/>
+            <h:panelGroup >
+	            <h:inputText readonly="true" id="idToMember" value="#{memberLogViewHandler.currentLog.toMember.firstName} #{memberLogViewHandler.currentLog.toMember.lastName}" styleClass="form_input_text_medium"></h:inputText> 
+             </h:panelGroup>
+             
+            <h:outputText value="#{bundle.activity_log_subject}" />
+            <h:inputText readonly="true" id="idTopic" value="#{memberLogViewHandler.currentLog.topic}" styleClass="form_input_text_medium"></h:inputText> 
+            
+            <h:outputText value="#{bundle.activity_log_body}" />                
+              <h:inputTextarea readonly="true" id="idBody" rows="6"  value="#{memberLogViewHandler.currentLog.memberLogEntryDescription}" styleClass="form_input_text_medium"></h:inputTextarea>
+            <h:outputText value=""/>
+            
+            <h:panelGroup>
+              <a4j:commandButton value="#{bundle.button_close_label}" onclick="Richfaces.hideModalPanel('idmemberLogViewDialog')" />    
+            </h:panelGroup>       
+          </h:panelGrid>
+        </rich:panel>
+        </h:panelGroup>
+      </a4j:form>      
+    </rich:modalPanel>  
+  </ui:composition>
+</html>
