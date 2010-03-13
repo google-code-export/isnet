@@ -233,6 +233,9 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 			int memberProtege = this.memberService.getMentorProtegeCout(log.getFromMemberId());
 			if (memberProtege >= 5) return;
 			
+			if(this.isProtegeAlreadyAssociated(log.getToMember())){
+				return;
+			}
 			if(log != null){
 				this.updateProtege(log.getToMemberId(),log.getFromMemberId());
 			}		
@@ -246,17 +249,28 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 			log.error(ex.getMessage());
 		}		
 	}
+	public Boolean isProtegeAlreadyAssociated(Member protege){
+		if(protege.getMentoredByMemberId() != null ){
+			return true;
+		}
+		return false;
+	}
 	public void acceptProtegeRequest(){
 		try{
 			int memberProtege = this.memberService.getMentorProtegeCout(this.getMember().getMemberId());
 			if (memberProtege >= 5) return;
 			
 			MemberLog log = this.updateRequestStatus(CommonConstants.ACTIVITY_STATUS.ACCEPTED.toString());
+			
+			if(this.isProtegeAlreadyAssociated(log.getFromMember())){
+				return;
+			}
 			if(log != null){
 				this.updateProtege(log.getFromMemberId(),log.getToMemberId());
 			}		
 			String msgBody = this.getText("email_protege_request_accept_body",new String[]{ this.getMember().getFirstName() +" "+ this.getMember().getLastName(),this.getNote()});
 			String emailSubject = this.getText("email_protege_request_accepted_subject");
+			
 			this.log.debug(log.getFromMember().getEmail());
 			this.sendConfirmationEmail(log.getFromMember().getEmail(), msgBody,emailSubject);			
 		}
