@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import com.intrigueit.myc2i.common.CommonConstants;
 import com.intrigueit.myc2i.common.view.BasePage;
+import com.intrigueit.myc2i.common.view.CommonValidator;
 import com.intrigueit.myc2i.story.domain.MemberStory;
 import com.intrigueit.myc2i.story.service.StoryService;
 import com.intrigueit.myc2i.udvalues.domain.UserDefinedValues;
@@ -48,6 +49,7 @@ public class StoryViewHandler extends BasePage implements Serializable{
 	private String ddDay = "0";
 	
 	private List<MemberStory> voteStoryList;
+	private Boolean hasError;
 	
 	
 
@@ -157,9 +159,23 @@ public class StoryViewHandler extends BasePage implements Serializable{
 		}
 	}
 	
+	private boolean validate(){
+		if(CommonValidator.isEmpty(this.currentStory.getStoryTitle())){
+			return false;
+		}
+		if(CommonValidator.isEmpty(this.currentStory.getMemberStoryDescription())){
+			return false;
+		}
+		return true;
+	}
 	/** Add/Edit/Delete success story */
 	public void saveStory(){
+		this.hasError = false;
 		try{
+			if(!validate()){
+				this.hasError = true;
+				return;
+			}
 			if(this.ACTION.equals(CommonConstants.ADD)){
 				
 				this.currentStory.setCategory(CommonConstants.STORY_MENTOR);
@@ -176,6 +192,7 @@ public class StoryViewHandler extends BasePage implements Serializable{
 		catch(Exception ex){
 			log.error(ex.getMessage());
 			ex.printStackTrace();
+			this.hasError = true;
 		}
 	}
 	public void removeObject(){
@@ -194,6 +211,7 @@ public class StoryViewHandler extends BasePage implements Serializable{
 		
 	}
 	private void initNewDialog(){
+		this.hasError = false;
 		this.currentStory = new MemberStory();
 		this.currentStory.setMemberPermissionToPublish(CommonConstants.STATUS.No.toString());
 		this.currentStory.setApprovedForPublishInd(CommonConstants.STATUS.No.toString());
@@ -208,6 +226,7 @@ public class StoryViewHandler extends BasePage implements Serializable{
 	}
 	/** Initialize modal dialog */
 	public void initializeDialog(){
+		this.hasError = false;
 		try{
 			String storyId = this.getParameter(ID_PRM);
 			String action = this.getParameter(ACTION_PRM);
@@ -322,6 +341,12 @@ public class StoryViewHandler extends BasePage implements Serializable{
 			ex.printStackTrace();
 			log.error(ex.getMessage());
 		}
+	}
+	public Boolean getHasError() {
+		return hasError;
+	}
+	public void setHasError(Boolean hasError) {
+		this.hasError = hasError;
 	}
 
 }
