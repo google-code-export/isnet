@@ -61,6 +61,18 @@ public class MemberLogViewHandler extends BasePage implements Serializable {
 		this.udService = udService;
 	}
 
+	public void initMemberLogViewDialog(){
+		String activityId = this.getRequest().getParameter("LOG_ID");
+		if(activityId == null){
+			return;
+		}
+		try{
+			this.currentLog = this.memberLogService.findById(Long.parseLong(activityId));
+		}
+		catch(Exception ex){
+			log.error(ex.getMessage());
+		}
+	}
 	public void itemChanged(){
 		try{
 			UserDefinedValues ud = udService.loadById(this.currentLog.getMemberActivityType());
