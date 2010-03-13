@@ -25,7 +25,9 @@
 					<h:outputText value="sent a " />
 				</h:column>
 				<h:column>
-					<h:outputText value="#{log.topic}" />
+					<a4j:commandLink value="#{log.topic}"  reRender="idmemberLogViewDialog" action="#{memberLogViewHandler.initMemberLogViewDialog}" oncomplete="Richfaces.showModalPanel('idmemberLogViewDialog')">
+					    <a4j:actionparam name="LOG_ID" value="#{log.memberLogId}"  />
+					</a4j:commandLink>
 				</h:column>				
 				<h:column>
 					<a4j:commandButton oncomplete="Richfaces.showModalPanel('idRequestNoteDialog')"
