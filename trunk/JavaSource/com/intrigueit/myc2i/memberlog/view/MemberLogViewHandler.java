@@ -44,6 +44,7 @@ public class MemberLogViewHandler extends BasePage implements Serializable {
 	private List<MemberLog> memberLastWeekLogs;
 	private List<SelectItem> mentorList;
 	private MemberLog currentLog;
+	private MemberLog currentLog2;
 	private ViewDataProvider viewDataProvider;
 	private ListDataModel messageLines;
 	private Date fromDate;
@@ -67,7 +68,7 @@ public class MemberLogViewHandler extends BasePage implements Serializable {
 			return;
 		}
 		try{
-			this.currentLog = this.memberLogService.findById(Long.parseLong(activityId));
+			this.currentLog2 = this.memberLogService.findById(Long.parseLong(activityId));
 		}
 		catch(Exception ex){
 			log.error(ex.getMessage());
@@ -312,6 +313,7 @@ public class MemberLogViewHandler extends BasePage implements Serializable {
 			String emailSub = this.udService.loadById(this.currentLog.getMemberActivityType()).getUdValuesValue();
 
 			this.sendConfirmationEmail(emailSub, proteemail);
+			this.currentLog = new MemberLog();
 
 		} catch (Exception ex) {
 			this.errMsgs.add(this.getText("common_error_system_level"));
@@ -575,6 +577,14 @@ public class MemberLogViewHandler extends BasePage implements Serializable {
 
 	public void setDdDay(String ddDay) {
 		this.ddDay = ddDay;
+	}
+
+	public MemberLog getCurrentLog2() {
+		return currentLog2;
+	}
+
+	public void setCurrentLog2(MemberLog currentLog2) {
+		this.currentLog2 = currentLog2;
 	}
 
 }
