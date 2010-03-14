@@ -19,22 +19,16 @@ public interface StoryService {
 	
 	public List<MemberStory> findMyAllStories(Long memberId);
 	
-	public List<MemberStory> findTopTenStories(String type);
-	
-	public List<MemberStory> findTopTenMentorStories();
-	
-	public List<MemberStory> findTopTenProtegeStories();
-	
-	public MemberStory getMostVotedStory();
+	public List<MemberStory> findTopTenStories(String type,int range);
 	
 	public MemberStory getWiningStory(String type);
 	
-	public List<MemberStory> findMostVotedAndLatestStories(String type);
+	public List<MemberStory> findMostVotedAndLatestStories(String type,int range);
 	
 	public List<MemberStory> findUnpublishProtegeStories(Date date);
 	
-	public MemberStory getWeeklyMentorWiningStory();
+	public MemberStory getWeeklyMentorWiningStory(int range);
 	
-	public MemberStory getWeeklyProtegeWiningStory();
+	public MemberStory getWeeklyProtegeWiningStory(int range);
 	
 }
