@@ -51,6 +51,8 @@ public class StoryViewHandler extends BasePage implements Serializable{
 	private List<MemberStory> voteStoryList;
 	private Boolean hasError;
 	
+	private int currStoryIndex;
+	
 	
 
 	@Autowired
@@ -58,6 +60,24 @@ public class StoryViewHandler extends BasePage implements Serializable{
 		this.storyService = storyService;
 		this.udService = udService;
 		this.currentStory = new MemberStory();
+		this.currStoryIndex = 0;
+	}
+	
+	public void previous(){
+		try{
+			this.currStoryIndex -= 5;
+		}
+		catch(Exception ex){
+			log.error(ex.getMessage());
+		}		
+	}
+	public void next(){
+		try{
+			this.currStoryIndex += 5;
+		}
+		catch(Exception ex){
+			log.error(ex.getMessage());
+		}
 	}
 	public void approveStory(){
 		String storyId = this.getParameter("storyId");
@@ -140,7 +160,11 @@ public class StoryViewHandler extends BasePage implements Serializable{
 			}else{
 				type = CommonConstants.STORY_MENTOR;
 			}
-			this.voteStoryList = this.storyService.findMostVotedAndLatestStories(type);
+			UserDefinedValues dayFrom = this.udService.getUDValue("udValuesCategory", "STORY_RANGE");
+			
+			int range = CommonValidator.isEmpty(dayFrom.getUdValuesValue())? 7 : Integer.parseInt(dayFrom.getUdValuesValue());
+			
+			this.voteStoryList = this.storyService.findMostVotedAndLatestStories(type,range);
 
 		}
 		catch(Exception ex){
@@ -221,7 +245,7 @@ public class StoryViewHandler extends BasePage implements Serializable{
 		this.currentStory.setRecordLastUpdatedDate(new java.sql.Timestamp(dt.getTime()));
 		this.currentStory.setRecordCreatorId(this.getMember().getMemberId().toString());
 		this.currentStory.setRecordLastUpdaterId(this.getMember().getMemberId().toString());
-		
+		this.currentStory.setNumberOfVotesReceived(0L);
 		this.currentStory.setMember(this.getMember());
 	}
 	/** Initialize modal dialog */
