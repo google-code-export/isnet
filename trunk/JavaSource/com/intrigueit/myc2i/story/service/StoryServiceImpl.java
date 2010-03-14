@@ -54,15 +54,19 @@ public class StoryServiceImpl implements StoryService{
 	}
 
 	@Override
-	public List<MemberStory> findTopTenStories(String type) {
-		String clause = " where lower(t.approvedForPublishInd)=?1 and t.category=?2 and t.weekWinnerIndicator IS NULL ORDER BY t.numberOfVotesReceived DESC ";
-		return this.stroyDao.loadTopResultsByConditions(10, clause, new Object[]{"yes",type});
+	public List<MemberStory> findTopTenStories(String type,int range) {
+		//String clause = " where lower(t.approvedForPublishInd)=?1 and t.category=?2 and t.weekWinnerIndicator IS NULL ORDER BY t.numberOfVotesReceived DESC ";
+		//return this.stroyDao.loadTopResultsByConditions(10, clause, new Object[]{"yes",type});
+		Date date = this.getWeekFirstDay(range);
+		String clause = " where lower(t.approvedForPublishInd)=?1 and t.category=?2 and t.approvalDate > ?3 ORDER BY t.numberOfVotesReceived DESC";
+		List<MemberStory> stories  = this.stroyDao.loadTopResultsByConditions(10, clause, new Object[]{"yes",type,date});
+		return stories;
 	}
 
-	@Override
+/*	@Override
 	public MemberStory getMostVotedStory() {
 		return this.stroyDao.loadById(7L);
-	}
+	}*/
 
 	@Override
 	public MemberStory getWiningStory(String type) {
@@ -71,32 +75,22 @@ public class StoryServiceImpl implements StoryService{
 		return stories.get(0);
 	}
 
-	@Override
-	public List<MemberStory> findTopTenMentorStories() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<MemberStory> findTopTenProtegeStories() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	private Date getWeekFirstDay(){
+	private Date getWeekFirstDay(int weekday){
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(new Date());
+/*		if(weekday == 0){
+			weekday = cal.get(Calendar.DAY_OF_WEEK) + 1 ;
+		}*/
 
-		int weekday = cal.get(Calendar.DAY_OF_WEEK) + 1 ;
 		cal.add(Calendar.DAY_OF_YEAR, -weekday);
 
 		return cal.getTime();
 	}
 	@Override
-	public List<MemberStory> findMostVotedAndLatestStories(String type) {
-		Date date = this.getWeekFirstDay();
+	public List<MemberStory> findMostVotedAndLatestStories(String type,int range) {
+		Date date = this.getWeekFirstDay(range);
 		String clause = " where lower(t.approvedForPublishInd)=?1 and t.category=?2 and t.approvalDate > ?3 ORDER BY t.approvalDate DESC ";
-		List<MemberStory> stories  = this.stroyDao.loadTopResultsByConditions(50, clause, new Object[]{"yes",type,date});
+		List<MemberStory> stories  = this.stroyDao.loadTopResultsByConditions(500, clause, new Object[]{"yes",type,date});
 		return stories;
 	}
 
@@ -108,8 +102,8 @@ public class StoryServiceImpl implements StoryService{
 	}
 
 	@Override
-	public MemberStory getWeeklyMentorWiningStory() {
-		Date date = this.getWeekFirstDay();
+	public MemberStory getWeeklyMentorWiningStory(int range) {
+		Date date = this.getWeekFirstDay(range);
 		String clause = " where t.numberOfVotesReceived IS NOT NULL and t.weekWinnerIndicator IS NULL and lower(t.approvedForPublishInd)=?1 and t.category=?2 and t.approvalDate > ?3  ORDER BY t.numberOfVotesReceived DESC t.approvalDate DESC ";
 		List<MemberStory> stories  = this.stroyDao.loadTopResultsByConditions(50, clause, new Object[]{"yes","MENTOR",date});
 		for(MemberStory story: stories){
@@ -121,8 +115,8 @@ public class StoryServiceImpl implements StoryService{
 	}
 
 	@Override
-	public MemberStory getWeeklyProtegeWiningStory() {
-		Date date = this.getWeekFirstDay();
+	public MemberStory getWeeklyProtegeWiningStory(int range) {
+		Date date = this.getWeekFirstDay(range);
 		String clause = " where t.numberOfVotesReceived IS NOT NULL and t.weekWinnerIndicator IS NULL and lower(t.approvedForPublishInd)=?1 and t.category=?2 and t.approvalDate > ?3 ORDER BY t.numberOfVotesReceived DESC t.approvalDate DESC ";
 		List<MemberStory> stories  = this.stroyDao.loadTopResultsByConditions(50, clause, new Object[]{"yes","PROTEGE",date});
 		for(MemberStory story: stories){
