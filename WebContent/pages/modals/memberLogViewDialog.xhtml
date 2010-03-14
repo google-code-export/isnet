@@ -21,19 +21,19 @@
           <h:panelGrid columns="2" id="gridMemberLog" width="100%">
             <h:outputText value="From"/>
             <h:panelGroup >
-	            <h:inputText readonly="true" id="idFromMember" value="#{memberLogViewHandler.currentLog.fromMember.firstName} #{memberLogViewHandler.currentLog.fromMember.lastName}" styleClass="form_input_text_medium"></h:inputText> 
+	            <h:inputText readonly="true" id="idFromMember" value="#{memberLogViewHandler.currentLog2.fromMember.firstName} #{memberLogViewHandler.currentLog2.fromMember.lastName}" styleClass="form_input_text_medium"></h:inputText> 
              </h:panelGroup> 
                                                    
             <h:outputText value="To"/>
             <h:panelGroup >
-	            <h:inputText readonly="true" id="idToMember" value="#{memberLogViewHandler.currentLog.toMember.firstName} #{memberLogViewHandler.currentLog.toMember.lastName}" styleClass="form_input_text_medium"></h:inputText> 
+	            <h:inputText readonly="true" id="idToMember" value="#{memberLogViewHandler.currentLog2.toMember.firstName} #{memberLogViewHandler.currentLog2.toMember.lastName}" styleClass="form_input_text_medium"></h:inputText> 
              </h:panelGroup>
              
             <h:outputText value="#{bundle.activity_log_subject}" />
-            <h:inputText readonly="true" id="idTopic" value="#{memberLogViewHandler.currentLog.topic}" styleClass="form_input_text_medium"></h:inputText> 
+            <h:inputText readonly="true" id="idTopic" value="#{memberLogViewHandler.currentLog2.topic}" styleClass="form_input_text_medium"></h:inputText> 
             
             <h:outputText value="#{bundle.activity_log_body}" />                
-              <h:inputTextarea readonly="true" id="idBody" rows="6"  value="#{memberLogViewHandler.currentLog.memberLogEntryDescription}" styleClass="form_input_text_medium"></h:inputTextarea>
+              <h:inputTextarea readonly="true" id="idBody" rows="6"  value="#{memberLogViewHandler.currentLog2.memberLogEntryDescription}" styleClass="form_input_text_medium"></h:inputTextarea>
             <h:outputText value=""/>
             
             <h:panelGroup>
