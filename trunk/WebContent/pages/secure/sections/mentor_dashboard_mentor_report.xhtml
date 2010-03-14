@@ -64,8 +64,10 @@
 					<h:outputText value="sent a " />
 				</h:column>
 				<h:column>
-					<h:outputText value="#{log.topic}" />
-				</h:column>				
+					<a4j:commandLink value="#{log.topic}"  reRender="idmemberLogViewDialog" action="#{memberLogViewHandler.initMemberLogViewDialog}" oncomplete="Richfaces.showModalPanel('idmemberLogViewDialog')">
+					    <a4j:actionparam name="LOG_ID" value="#{log.memberLogId}"  />
+					</a4j:commandLink>
+				</h:column>					
 				<h:column>
 					<a4j:commandButton oncomplete="Richfaces.showModalPanel('idRequestNoteDialog')"
 						value="#{bundle.button_label_accept}">
@@ -100,7 +102,9 @@
 					<h:outputText value="sent a " />
 				</h:column>
 				<h:column>
-					<h:outputText value="#{log.topic}" />
+					<a4j:commandLink value="#{log.topic}"  reRender="idmemberLogViewDialog" action="#{memberLogViewHandler.initMemberLogViewDialog}" oncomplete="Richfaces.showModalPanel('idmemberLogViewDialog')">
+					    <a4j:actionparam name="LOG_ID" value="#{log.memberLogId}"  />
+					</a4j:commandLink>
 				</h:column>					
 				<h:column>
 					<a4j:commandButton oncomplete="Richfaces.showModalPanel('idRequestNoteDialog')"
@@ -124,7 +128,7 @@
 			<f:facet name="header">
 				<h:outputText value="#{bundle.dashboard_mentor_reporting}" />
 			</f:facet>
-			<rich:dataTable
+			<rich:dataTable id="idReportGrid"
 				rowClasses="dashboard_report_row_odd,dashboard_report_row_even"
 				cellpadding="0" cellspacing="0" width="100%" border="0" var="report"
 				value="#{dashboardViewHandler.mentorReport}">
