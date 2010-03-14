@@ -110,6 +110,18 @@ public abstract class GenericDaoImpl<T, ID extends Serializable> implements
 		}
 		return query.getResultList();
 	}	
+	public List<T> loadTopResultsByConditions(int first,int resultSize,String clause, Object[] params) {
+		String hsql = "Select t from " + persistentClass.getName()
+				+ " t " + clause;
+		Query query = entityManager.createQuery(hsql);
+		query.setFirstResult(first);
+		query.setMaxResults(resultSize);
+		/** bind parameters */
+		for (int i = 0; params != null && i < params.length; i++) {
+			query.setParameter(i + 1, params[i]);
+		}
+		return query.getResultList();
+	}
 	@SuppressWarnings("unchecked")
 	public boolean isDuplicateRecord(String clause) {
 		String hsql = "Select t from " + persistentClass.getName()
