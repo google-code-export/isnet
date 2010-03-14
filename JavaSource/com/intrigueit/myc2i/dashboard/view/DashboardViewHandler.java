@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import com.intrigueit.myc2i.common.CommonConstants;
 import com.intrigueit.myc2i.common.view.BasePage;
+import com.intrigueit.myc2i.common.view.CommonValidator;
 import com.intrigueit.myc2i.dashboard.report.MemberReport;
 import com.intrigueit.myc2i.member.domain.Member;
 import com.intrigueit.myc2i.member.service.MemberService;
@@ -351,9 +352,9 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 	 * 
 	 */
 	public DashboardViewHandler() {
-		this.mostVotedStory = "Quoting a witness from \"Balkh\", in his famous work entitled \"Kafi\", the celebrated scholar \"Kulayni\" relates the following";
-		this.winningStory = "Quoting a witness from \"Balkh\", in his famous work entitled \"Kafi\", the celebrated scholar \"Kulayni\" relates the following ";
-		this.winner = "Winner: Ahmmed Ibne Jafer";
+		//this.mostVotedStory = "Quoting a witness from \"Balkh\", in his famous work entitled \"Kafi\", the celebrated scholar \"Kulayni\" relates the following";
+		//this.winningStory = "Quoting a witness from \"Balkh\", in his famous work entitled \"Kafi\", the celebrated scholar \"Kulayni\" relates the following ";
+		//this.winner = "Winner: Ahmmed Ibne Jafer";
 	}
 	private void loadWinningStroy(){
 		try{
@@ -408,7 +409,11 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 			if(this.getMember().getTypeId().equals(CommonConstants.PROTEGE)){
 				type = "PROTEGE";
 			}			
-			this.topTenStories = this.storyService.findTopTenStories(type);
+			UserDefinedValues dayFrom = this.udService.getUDValue("udValuesCategory", "STORY_RANGE");
+			
+			int range = CommonValidator.isEmpty(dayFrom.getUdValuesValue())? 7 : Integer.parseInt(dayFrom.getUdValuesValue());
+						
+			this.topTenStories = this.storyService.findTopTenStories(type,range);
 		}
 		catch(Exception ex){
 			log.error(ex.getMessage());
