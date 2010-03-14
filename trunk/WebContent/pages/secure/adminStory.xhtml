@@ -77,14 +77,14 @@
 						     </rich:toolTip>	
 						</a4j:commandLink>
 						<rich:spacer width="5"/>
-		         		 <a4j:commandLink rendered="#{story.storyError}"  reRender="idDataGrid,idDataScroller" action="#{storyViewHandler.approveStory}" >
+		         		 <a4j:commandLink   reRender="idDataGrid,idDataScroller" action="#{storyViewHandler.approveStory}" >
 				            <a4j:actionparam name="storyId" value="#{story.memberStoryId}"  />
 				            <a4j:actionparam name="action" value="REJECT"  />
 			            	<h:graphicImage value="/images/delete.png" align="middle" border="0" > 
 			            	</h:graphicImage>	
 		            		 <rich:toolTip styleClass="tooltips_style"  >
 						          <span class="tooltips_span_style">
-						              Click here to remove story.<br/>
+						              Click here to reject story.<br/>
 						          </span>
 						     </rich:toolTip>	
 						</a4j:commandLink>									             
