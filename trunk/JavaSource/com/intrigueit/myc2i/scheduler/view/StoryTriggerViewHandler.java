@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.intrigueit.myc2i.common.view.BasePage;
+import com.intrigueit.myc2i.common.view.CommonValidator;
 import com.intrigueit.myc2i.member.service.MemberService;
 import com.intrigueit.myc2i.story.domain.MemberStory;
 import com.intrigueit.myc2i.story.service.StoryService;
@@ -50,7 +51,11 @@ public class StoryTriggerViewHandler extends BasePage{
 			String accountEmail = this.getMyc2iAccountEmailAccount();
 			log.debug("Calling scheduler....");
 			
-			this.mentorStory = this.storyService.getWeeklyMentorWiningStory();
+			UserDefinedValues dayFrom = this.udService.getUDValue("udValuesCategory", "STORY_RANGE");
+			
+			int range = CommonValidator.isEmpty(dayFrom.getUdValuesValue())? 7 : Integer.parseInt(dayFrom.getUdValuesValue());
+			
+			this.mentorStory = this.storyService.getWeeklyMentorWiningStory(range);
 			if(this.mentorStory != null){
 				this.mentorStory.setWeekWinnerIndicator(new Date());
 				this.storyService.update(this.mentorStory);
@@ -67,7 +72,7 @@ public class StoryTriggerViewHandler extends BasePage{
 				this.sendConfirmationEmail(sub, body, accountEmail);
 			}
 
-			this.protegeStory = this.storyService.getWeeklyProtegeWiningStory();
+			this.protegeStory = this.storyService.getWeeklyProtegeWiningStory(range);
 			if(this.protegeStory != null){
 				this.protegeStory.setWeekWinnerIndicator(new Date());
 				this.storyService.update(this.protegeStory);
