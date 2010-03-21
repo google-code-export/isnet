@@ -175,14 +175,14 @@ public class MemberLogViewHandler extends BasePage implements Serializable {
 			if(memberId == null){
 				return;
 			}
-
-			UserDefinedValues actType = this.getMyUserDefinedValue();
+			List<UserDefinedValues> types = udService.findByProperty("udValuesValue", CommonConstants.ACTIVITY_TYPE_LEAD_MENTOR_REQUEST);
+			UserDefinedValues actType = types.get(0);
 			this.log.debug(actType.getUdValuesDesc()+ ""+ actType.getUdValuesCategory());
 			
 			this.currentLog = new MemberLog();
 			this.currentLog.setToMemberId(Long.parseLong(memberId));
 			this.currentLog.setMemberActivityType(actType.getUdValuesId());
-			this.currentLog.setTopic(this.getText("acitivity_log_protege_request_formentor_sub"));
+			this.currentLog.setTopic(this.getText("acitivity_log_mentor_request_to_lead_mentor_sub"));
 			this.currentLog.setMemberLogEntryDescription(this.getText("acitivity_log_protege_request_formentor_body"));
 			this.errMsgs.clear();
 			this.hasError = false;
