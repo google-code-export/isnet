@@ -48,6 +48,7 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 	private List<MemberLog> mentorPendingActivity;
 	private List<MemberLog> mentorPendingProtegerRequests;
 	private List<MemberLog> mentorPendingMentorRequests;
+	private List<MemberLog> mentorPendingLeadMentorRequests;
 	
 	/** What new list */
 	private List<UserDefinedValues> whatNewList;
@@ -181,6 +182,9 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 				else if(mLog.getUserDefinedValues().getUdValuesValue().toLowerCase().equals(CommonConstants.ACTIVITY_TYPE_PROTEGE_REQUEST.toLowerCase())){
 					this.acceptProtegeRequest();
 				}
+				else if(mLog.getUserDefinedValues().getUdValuesValue().toLowerCase().equals(CommonConstants.ACTIVITY_TYPE_LEAD_MENTOR_REQUEST.toLowerCase())){
+					this.acceptLeadMentorRequest();
+				}				
 				else{
 					this.acceptOtherRequest();
 				}				
@@ -256,6 +260,31 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 		}
 		return false;
 	}
+	
+	public void acceptLeadMentorRequest(){
+		try{
+			int memberProtege = this.memberService.getMentorProtegeCout(this.getMember().getMemberId());
+			if (memberProtege >= 5) return;
+			
+			MemberLog log = this.updateRequestStatus(CommonConstants.ACTIVITY_STATUS.ACCEPTED.toString());
+			
+			if(this.isProtegeAlreadyAssociated(log.getFromMember())){
+				return;
+			}
+			if(log != null){
+				this.updateProtege(log.getFromMemberId(),log.getToMemberId());
+			}		
+			String msgBody = this.getText("email_lead_mentor_request_accept_body",new String[]{ this.getMember().getFirstName() +" "+ this.getMember().getLastName(),this.getNote()});
+			String emailSubject = this.getText("email_lead_mentor_request_accepted_subject");
+			
+			this.log.debug(log.getFromMember().getEmail());
+			this.sendConfirmationEmail(log.getFromMember().getEmail(), msgBody,emailSubject);			
+		}
+		catch(Exception ex){
+			log.error(ex.getMessage());
+		}
+	
+	}	
 	public void acceptProtegeRequest(){
 		try{
 			int memberProtege = this.memberService.getMentorProtegeCout(this.getMember().getMemberId());
@@ -644,6 +673,21 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 	public void setMentorPendingMentorRequests(
 			List<MemberLog> mentorPendingMentorRequests) {
 		this.mentorPendingMentorRequests = mentorPendingMentorRequests;
+	}
+
+	public List<MemberLog> getMentorPendingLeadMentorRequests() {
+		try{
+			this.mentorPendingLeadMentorRequests = this.logService.getMentorPendingLeadMentorRequests(this.getMember().getMemberId());
+		}
+		catch(Exception ex){
+			log.error(ex.getCause());
+		}				
+		return mentorPendingLeadMentorRequests;
+	}
+
+	public void setMentorPendingLeadMentorRequests(
+			List<MemberLog> mentorPendingLeadMentorRequests) {
+		this.mentorPendingLeadMentorRequests = mentorPendingLeadMentorRequests;
 	}
 
 
