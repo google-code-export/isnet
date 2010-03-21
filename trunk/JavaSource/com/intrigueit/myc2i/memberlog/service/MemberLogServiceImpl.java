@@ -174,6 +174,22 @@ public class MemberLogServiceImpl implements MemberLogService{
 		}
 		return logs;
 	}	
+	public List<MemberLog> getMentorPendingLeadMentorRequests(Long memberId) {
+		String clause = " upper(t.status) = ?1 and t.toMemberId=?2";
+		List<MemberLog> memberLogs =  memberLogDao.loadByClause(clause, new Object[]{CommonConstants.ACTIVITY_STATUS.PENDING.toString(),memberId});
+		List<MemberLog> logs = new ArrayList<MemberLog>();
+
+		for(MemberLog log: memberLogs){
+			if(log.getUserDefinedValues().getUdValuesValue().toLowerCase().equals(CommonConstants.ACTIVITY_TYPE_LEAD_MENTOR_REQUEST.toLowerCase()) &&
+					log.getUserDefinedValues().getUdValuesCategory().equals(CommonConstants.ACTIVITY_LOG_MENTOR)){
+				logs.add(log);
+			}
+
+			
+		}
+		return logs;
+	}
+	
 	/**
 	 * @param memberId
 	 * @return
@@ -185,7 +201,9 @@ public class MemberLogServiceImpl implements MemberLogService{
 
 		for(MemberLog log: memberLogs){
 			if(!log.getUserDefinedValues().getUdValuesValue().toLowerCase().equals(CommonConstants.ACTIVITY_TYPE_MENTOR_REQUEST.toLowerCase()) 
-					&& !log.getUserDefinedValues().getUdValuesValue().toLowerCase().equals(CommonConstants.ACTIVITY_TYPE_PROTEGE_REQUEST.toLowerCase())){
+					&& !log.getUserDefinedValues().getUdValuesValue().toLowerCase().equals(CommonConstants.ACTIVITY_TYPE_PROTEGE_REQUEST.toLowerCase())
+					&& !log.getUserDefinedValues().getUdValuesValue().toLowerCase().equals(CommonConstants.ACTIVITY_TYPE_LEAD_MENTOR_REQUEST.toLowerCase())
+					){
 				logs.add(log);
 			}
 
