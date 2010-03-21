@@ -35,6 +35,7 @@ public class CommonConstants {
     public static final String ACTIVITY_LOG_MENTOR = "ACTIVITY_LOG_MENTOR";
     public static final String ACTIVITY_LOG_PROTEGE = "ACTIVITY_LOG_PROTEGE";
     
+    public static final String ACTIVITY_TYPE_LEAD_MENTOR_REQUEST = "Lead Mentor Request";
     public static final String ACTIVITY_TYPE_MENTOR_REQUEST = "Mentor Request";
     public static final String ACTIVITY_TYPE_PROTEGE_REQUEST = "Protege Request";
     public static final String ACTIVITY_TYPE_MENTOR_RELEASE = "Mentor Release";
