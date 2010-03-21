@@ -53,6 +53,8 @@ public interface MemberLogService {
 	
 	public List<MemberLog> getMentorPendingMentorRequests(Long memberId);
 	
+	public List<MemberLog> getMentorPendingLeadMentorRequests(Long memberId);
+	
 	public List<MemberLog> loadByQuery(String sql, Object[] params);
 	
 	public Integer deleteMemLogByFrMemId(Long memberId);
