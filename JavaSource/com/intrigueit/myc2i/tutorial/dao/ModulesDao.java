@@ -8,7 +8,11 @@ import com.intrigueit.myc2i.tutorial.domain.TestTutorialModules;
 
 
 public interface ModulesDao extends GenericDao<TestTutorialModules,Long>{
-  public ArrayList<String> getCategories();
-  public List<TestTutorialModules> findByProperties(String hsql);
+  
+	public ArrayList<String> getCategories();
+  
+	public List<TestTutorialModules> findByProperties(String hsql);
+  
+	public List<TestTutorialModules> findModulesByUserType(Long type);
   
 }
