@@ -23,6 +23,9 @@ import com.intrigueit.myc2i.tutorial.domain.TestTutorialDocument;
 import com.intrigueit.myc2i.tutorial.domain.TestTutorialModules;
 import com.intrigueit.myc2i.tutorial.service.DocumentService;
 import com.intrigueit.myc2i.tutorial.service.ModulesService;
+import com.intrigueit.myc2i.tutorialtest.domain.TestResult;
+import com.intrigueit.myc2i.tutorialtest.service.TestResultService;
+
 
 @Component("modulesViewHandler")
 @Scope("session")
@@ -41,7 +44,7 @@ public class ModulesViewHandler extends BasePage implements Serializable {
   private DocumentService documentService;
   private TestTutorialModules currentModules;
   private ArrayList<SelectItem> usersList;
-  List<SelectItem> documentList;
+  private List<SelectItem> documentList;
   private ListDataModel modulesLines;
   private String userType;
   private String documentId;
@@ -49,18 +52,61 @@ public class ModulesViewHandler extends BasePage implements Serializable {
   private FileUploadBean fileUploadBean;
   private ViewDataProvider viewDataProvider;
 
-	private List<TestTutorialModules> modules;
+  private TestResultService testResltService;
+  
+  private List<TestTutorialModules> modules;
+  
 
-	public List<TestTutorialModules> getModules() {
+   public List<TestTutorialModules> getModules() {
 		try {
+			
+			List<TestResult> results = this.loadUserTestModules();
+			
 			if (modules == null) {
-				modules = modulesService.findByProperty("memberTypeIndicator",this.getMember().getTypeId());
+				modules = modulesService.findModulesByUserType(this.getMember().getTypeId());
+			}
+			this.modules.get(0).setTestStatus(true);
+			for(int index= 1;index < modules.size() ;index++){
+				if(isModulePassed(results, modules.get(index-1))){
+					modules.get(index).setTestStatus(true);
+				}
+				else{
+					modules.get(index).setTestStatus(false);
+				}
 			}
 
+
 		} catch (Exception ex) {
-		  ex.printStackTrace();
+			ex.printStackTrace();
 		}
 		return modules;
+	}
+   
+    private Boolean isModulePassed(List<TestResult> results,TestTutorialModules module ){
+    	/** If test result empty then no tutorial is completed. */
+    	if(results == null || results.size()== 0){
+    		return false;
+    	}
+    	/** If module name found in result set then this module is passed */
+    	for(TestResult res: results){
+    		if(res.getModuleId().equals(module.getModulesId()) && res.getIsPassed()){
+    			return true;
+    		}
+    	}
+    	/** Otherwise no modules completed. */
+    	return false;
+    }
+	private List<TestResult> loadUserTestModules(){
+		List<TestResult> results = null;
+		try{
+			results = testResltService.findUserTestResult( this.getMember().getMemberId());
+			//results = testResltService.findAll();
+			
+		}
+		catch(Exception ex){
+			log.error(" Error during loading user test modules: "+ ex.getMessage());
+		}
+		return results;
 	}
 
 	public void setModules(List<TestTutorialModules> modules) {
@@ -469,6 +515,11 @@ public class ModulesViewHandler extends BasePage implements Serializable {
    */
   public void setFileUploadBean(FileUploadBean fileUploadBean) {
     this.fileUploadBean = fileUploadBean;
+  }
+
+  @Autowired
+  public void setTestResltService(TestResultService testResltService) {
+	this.testResltService = testResltService;
   }
 
 }
