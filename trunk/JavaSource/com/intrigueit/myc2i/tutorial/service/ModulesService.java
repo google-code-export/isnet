@@ -20,6 +20,8 @@ public interface ModulesService {
 
 	public ArrayList<String> getCategories();
 
+	public List<TestTutorialModules> findModulesByUserType(Long type);
+	
 	public List<TestTutorialModules> findByProperty(String propertyName,
 			Object value);
 
