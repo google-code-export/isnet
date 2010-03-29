@@ -67,7 +67,7 @@ public abstract class GenericDaoImpl<T, ID extends Serializable> implements
 	public List<T> loadByClause(String clause, Object[] params) {
 		String hsql = "Select t from " + persistentClass.getName()
 				+ " t where " + clause;
-		//log.debug(hsql);
+		log.debug(hsql);
 		Query query = entityManager.createQuery(hsql);
 		/** bind parameters */
 		for (int i = 0; params != null && i < params.length; i++) {
