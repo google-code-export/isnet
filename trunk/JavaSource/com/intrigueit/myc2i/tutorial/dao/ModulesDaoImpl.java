@@ -13,25 +13,34 @@ import com.intrigueit.myc2i.tutorial.domain.TestTutorialModules;
 
 @Repository
 @Transactional
-public class ModulesDaoImpl extends GenericDaoImpl<TestTutorialModules,Long> implements ModulesDao{
-  
-  @SuppressWarnings("unchecked")
-  @Override
-  public ArrayList<String> getCategories() {
-    String hsql = "select distinct(itemEIndicator) from TrainingItem ";
-    log.debug(hsql);
-    Query query = entityManager.createQuery(hsql);
-    ArrayList<String> categoryList = (ArrayList<String>)query.getResultList();
-    if ( categoryList == null ) {
-      return new ArrayList<String>();
-    }
-    return categoryList;
-  }
-  
-  @SuppressWarnings("unchecked")
-  @Override
-  public List<TestTutorialModules> findByProperties(String hsql) {
-    Query query = entityManager.createQuery(hsql);
-    return query.getResultList();
-  }  
+public class ModulesDaoImpl extends GenericDaoImpl<TestTutorialModules, Long>
+		implements ModulesDao {
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public ArrayList<String> getCategories() {
+		String hsql = "select distinct(itemEIndicator) from TrainingItem ";
+		log.debug(hsql);
+		Query query = entityManager.createQuery(hsql);
+		ArrayList<String> categoryList = (ArrayList<String>) query
+				.getResultList();
+		if (categoryList == null) {
+			return new ArrayList<String>();
+		}
+		return categoryList;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<TestTutorialModules> findByProperties(String hsql) {
+		Query query = entityManager.createQuery(hsql);
+		return query.getResultList();
+	}
+
+	@Override
+	public List<TestTutorialModules> findModulesByUserType(Long type) {
+	  	String clause = " t.memberTypeIndicator =?1 ORDER BY t.modulesId ASC";
+	  	List<TestTutorialModules> modules =  loadByClause(clause, new Object[] {type});
+		return modules;
+	}
 }
