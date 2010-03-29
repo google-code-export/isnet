@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.validator.Length;
 import org.hibernate.validator.NotEmpty;
@@ -84,6 +85,12 @@ public class TestTutorialModules implements Serializable {
 
   @Column(name="RECORD_LAST_UPDATED_DATE")
   private Date recordLastUpdatedDate;
+  
+  @Column( name= "SERIAL")
+  private Long serial;
+  
+  @Transient
+  private Boolean testStatus;
 
   public TestTutorialModules() {
     super();
@@ -304,5 +311,21 @@ public class TestTutorialModules implements Serializable {
   public void setRecordLastUpdatedDate(Date recordLastUpdatedDate) {
     this.recordLastUpdatedDate = recordLastUpdatedDate;
   }
+
+public Boolean getTestStatus() {
+	return testStatus;
+}
+
+public void setTestStatus(Boolean testStatus) {
+	this.testStatus = testStatus;
+}
+
+public Long getSerial() {
+	return serial;
+}
+
+public void setSerial(Long serial) {
+	this.serial = serial;
+}
 
 }
