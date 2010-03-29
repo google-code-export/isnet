@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.intrigueit.myc2i.member.domain.Member;
 import com.intrigueit.myc2i.tutorial.dao.ModulesDao;
 import com.intrigueit.myc2i.tutorial.domain.TestTutorialModules;
 
@@ -51,26 +52,29 @@ public class ModulesServiceImpl implements ModulesService {
 		return modulesDao.loadByClause(clause, new Object[] { value });
 	}
 
-	public List<TestTutorialModules> findByProperties(String docTypeId, String userId) {
-    StringBuffer clause = new StringBuffer();
-    clause.append("SELECT NEW TestTutorialModules(tm.modulesId,tm.moduleName,tm.moduleTitle,tm.testIndicator)")
-    .append(" FROM TestTutorialModules tm") ;
-    
-    boolean useWhere = true;  
-    if (docTypeId != null && !docTypeId.isEmpty()) {
-      clause.append(" where tm.documentId ="+docTypeId);
-      useWhere = false;
-    }
-    if (userId!= null && !userId.isEmpty()) {
-      if ( useWhere ) {
-        clause.append(" where ");
-      } else {
-        clause.append(" and ");
-      }
-      clause.append(" tm.memberTypeIndicator ="+userId);
-    }
-    return modulesDao.findByProperties(clause.toString());
-  }
+	public List<TestTutorialModules> findByProperties(String docTypeId,
+			String userId) {
+		StringBuffer clause = new StringBuffer();
+		clause
+				.append(
+						"SELECT NEW TestTutorialModules(tm.modulesId,tm.moduleName,tm.moduleTitle,tm.testIndicator)")
+				.append(" FROM TestTutorialModules tm");
+
+		boolean useWhere = true;
+		if (docTypeId != null && !docTypeId.isEmpty()) {
+			clause.append(" where tm.documentId =" + docTypeId);
+			useWhere = false;
+		}
+		if (userId != null && !userId.isEmpty()) {
+			if (useWhere) {
+				clause.append(" where ");
+			} else {
+				clause.append(" and ");
+			}
+			clause.append(" tm.memberTypeIndicator =" + userId);
+		}
+		return modulesDao.findByProperties(clause.toString());
+	}
 
 	@Override
 	public boolean isModuleExist(Long recordId, Long docId, String moduleName) {
@@ -84,5 +88,11 @@ public class ModulesServiceImpl implements ModulesService {
 			value.add(recordId);
 		}
 		return modulesDao.isDuplicateRecord(clause.toString(), value.toArray());
+	}
+
+	@Override
+	public List<TestTutorialModules> findModulesByUserType(Long type) {
+		List<TestTutorialModules> modules = modulesDao.findModulesByUserType(type);
+		return modules;
 	}
 }
