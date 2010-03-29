@@ -13,10 +13,10 @@ import com.intrigueit.myc2i.tutorial.domain.TestTutorialModules;
 import com.intrigueit.myc2i.tutorial.domain.TestTutorialQuestionAns;
 import com.intrigueit.myc2i.tutorial.service.ModulesService;
 import com.intrigueit.myc2i.tutorial.service.QuestionAnsService;
-import com.intrigueit.myc2i.tutotialtest.domain.TestResult;
-import com.intrigueit.myc2i.tutotialtest.domain.TestResultDetails;
-import com.intrigueit.myc2i.tutotialtest.service.TestResultDetailsService;
-import com.intrigueit.myc2i.tutotialtest.service.TestResultService;
+import com.intrigueit.myc2i.tutorialtest.domain.TestResult;
+import com.intrigueit.myc2i.tutorialtest.domain.TestResultDetails;
+import com.intrigueit.myc2i.tutorialtest.service.TestResultDetailsService;
+import com.intrigueit.myc2i.tutorialtest.service.TestResultService;
 import com.intrigueit.myc2i.utility.Emailer;
 
 @Component("modulePlayer")
@@ -28,13 +28,18 @@ public class ModulePlayer extends BasePage{
 	private List<TestTutorialQuestionAns> tutorials;	
 	private ModulesService modulesService;	
 	private QuestionAnsService questionService;	
-	private MediaBean mediaBean;	
+	//private MediaBean mediaBean;	
+	
+	/** Flash slide path */
+	private String flashSlidePath;
+	
 	private int pageIndex = -1;	
 	private String pageContent;	
 	private Boolean hasQuestionAns;	
 	private Date examStartDate;	
 	private TestResultService testService;
 	private TestResultDetailsService testDetailsService;	
+	
 	private String initPage;
 	private boolean disabledNext;
 	private boolean disabledLast;
@@ -42,9 +47,9 @@ public class ModulePlayer extends BasePage{
 	private Integer noOfQuestion;
 	private Integer noOfCorrectAns;
 	private String passStatus;
-  private Integer perOfMarks;
-  private String currentAction = "";
-  private Integer lastViewedPageIndex = 0;
+    private Integer perOfMarks;
+    private String currentAction = "";
+    private Integer lastViewedPageIndex = 0;
   
   /**
    * @return the lastViewedPageIndex
@@ -103,7 +108,7 @@ public class ModulePlayer extends BasePage{
           testResult.setTotalCorrect(new Long(tCorrectAns));
           testResult.setIsPassed(true);
         } 
-        testResult.setIsCompleted("Y");
+        testResult.setIsCompleted(true);
         testResult.setModuleId(module.getModulesId());
         testResult.setDocumentId(module.getDocumentId());
         testResult.setMemberId(this.getMember().getMemberId());
@@ -112,7 +117,8 @@ public class ModulePlayer extends BasePage{
         testResult.setRecordCreatorId(this.getMember().getMemberId()+"");
         testResult.setRecordCreateDate(new Date());
         testResult.setLastUpdatedDate(new Date());
-        testResult.setRecordUpdatorId(this.getMember().getMemberId()+"");          
+        testResult.setRecordUpdatorId(this.getMember().getMemberId()+"");       
+        
         this.testService.save(testResult);
         
         if ( hasQuestionAns ) {
@@ -153,8 +159,11 @@ public class ModulePlayer extends BasePage{
   public void renderPage(){
 		try {
 			this.decideQuestion();
-			mediaBean.setPageContent(this.currentPage.getPageText());
-			mediaBean.setAudioFilePath(this.currentPage.getAudioFileName());
+			
+			//mediaBean.setPageContent(this.currentPage.getPageText());
+			//mediaBean.setAudioFilePath(this.currentPage.getAudioFileName());
+			this.setFlashSlidePath(this.currentPage.getAudioFileName());
+			
 		} catch(Exception ex){
 			ex.printStackTrace();
 		}
@@ -195,14 +204,21 @@ public class ModulePlayer extends BasePage{
 	  try{
 			if( pageIndex < tutorials.size()-1 ){
 				pageIndex += 1;
-				if ( lastViewedPageIndex <= pageIndex ) lastViewedPageIndex = pageIndex;
+				if ( lastViewedPageIndex <= pageIndex ){
+					lastViewedPageIndex = pageIndex;
+				}
 				log.debug("index:"+pageIndex);
-	  		this.currentPage = this.tutorials.get(pageIndex);
+				
+				this.currentPage = this.tutorials.get(pageIndex);
 				this.renderPage();
+				
 			} else {
-			  this.notEndPlay = false;
-			  this.processResult();
+				this.notEndPlay = false;
+			    this.processResult();
 			}
+			
+			this.saveCurrentStage();
+			
 		} catch(Exception ex){
 			ex.printStackTrace();
 		}
@@ -220,13 +236,60 @@ public class ModulePlayer extends BasePage{
 			
 		}
 	}	
+	
+	/**
+	 * Create a new Test result object
+	 * 
+	 * @return a new TestResult object
+	 */
+	private TestResult createNewTestResult(){
+		
+		TestResult result = new TestResult();
+		result.setDocumentId(this.module.getDocumentId());
+		result.setLastUpdatedDate(new Date());
+		result.setMemberId(this.getMember().getMemberId());
+		result.setModuleId(this.module.getModulesId());
+		result.setRecordCreateDate(new Date());
+		result.setRecordCreatorId(this.getMember().getMemberId().toString());
+		result.setRecordUpdatorId(this.getMember().getMemberId().toString());
+		result.setIsCompleted(false);
+		result.setIsPassed(false);
+		
+		return result;
+	}
+	
+	/**
+	 * Save the current stage of the module
+	 */
+	private void saveCurrentStage(){
+		try{
+			
+			TestResult result = getUserModuleTestResult(this.getMember().getMemberId(), this.module.getModulesId());
+			if(result == null){
+				result = this.createNewTestResult();
+				this.testService.save(result);
+			}
+			
+			result.setLastAccessPage(Long.parseLong(this.pageIndex+""));
+			this.testService.update(result);
+			
+			log.debug(result.getLastAccessPage());
+		}
+		catch(Exception ex){
+			log.error(" Error occur while storing tutorial current state: "+ ex.getMessage());
+		}
+	}
+	
+	private TestResult getUserModuleTestResult(Long userId, Long moduleId)throws Exception{
+		return this.testService.loadUserModuleResult(this.getMember().getMemberId(), this.module.getModulesId());
+	}
+	
   	private void playModuleIntroduction(){
   		try {
   		  this.lastViewedPageIndex = 0;
-  		  mediaBean = new MediaBean();
-  			mediaBean.setPageContent(this.getModule().getModuleText());
-  			mediaBean.setAudioFilePath(this.getModule().getAudioFileName());
+  			this.setFlashSlidePath(this.getModule().getAudioFileName());
   			this.setCurrentPage(null);
+  			
   		} catch(Exception ex){
   			ex.printStackTrace();
   		}
@@ -242,21 +305,7 @@ public class ModulePlayer extends BasePage{
   		}
   	}
   	
-  	public void startPlaying() {
-  	  try {
-  	    mediaBean.play();
-  	  } catch (Exception e) {
-        e.printStackTrace();
-      }
-  	}
-  	
-  	public void stopPlaying() {
-      try {
-        mediaBean.pause(); 
-      } catch (Exception e) {
-        e.printStackTrace();
-      }
-    }
+
   	public void getInit(){	  
   	  this.enableDisabledBtn();
   	  String moduleId = this.getRequest().getParameter("moduleId");
@@ -264,18 +313,45 @@ public class ModulePlayer extends BasePage{
   			return;
   		}		
   		try {			
-  		  this.setExamStartDate(new Date());
-  	    this.notEndPlay = true;
-  		  module =  this.modulesService.loadById(Long.parseLong(moduleId));
+  		    this.setExamStartDate(new Date());
+  	        this.notEndPlay = true;
+  		    module =  this.modulesService.loadById(Long.parseLong(moduleId));
   			tutorials = this.questionService.getTutorialByModule(module.getModulesId());
-  			this.pageIndex = -1;
+  	
+  			this.pageIndex = getLastPageIndex();
+  			
   			this.hasQuestionAns = false;
-  			this.playModuleIntroduction();
+  			
+  			if(this.pageIndex == -1){
+  				this.playModuleIntroduction();
+  			}else{
+  				this.currentPage = this.tutorials.get(pageIndex);
+  				this.renderPage();
+  			}
+  			
   		}
   		catch(Exception ex){
   			ex.printStackTrace();
   		}
 	}
+  	
+  	/**
+  	 * @return the persisted last page index
+  	 */
+  	private int getLastPageIndex(){
+  		try{
+  			TestResult result = this.getUserModuleTestResult(this.getMember().getMemberId(), this.module.getModulesId());
+  			
+  			if(result!= null){
+  				return Integer.parseInt(result.getLastAccessPage()+"");
+  			}
+  		}
+  		catch(Exception ex){
+  			log.error("Error while getting last page access index "+ex.getMessage());
+  		}
+  		/** If no index save then start from -1*/
+  		return -1;
+  	}
 	
   public void enableDisabledBtn() {
     if ((this.getMember()!=null && this.getMember().getTypeId().equals(CommonConstants.PROTEGE))
@@ -434,15 +510,6 @@ public class ModulePlayer extends BasePage{
 		this.pageContent = pageContent;
 	}
 
-	public MediaBean getMediaBean() {
-		return mediaBean;
-	}
-
-
-	public void setMediaBean(MediaBean mediaBean) {
-		this.mediaBean = mediaBean;
-	}
-
 	public QuestionAnsService getQuestionService() {
 		return questionService;
 	}
@@ -498,6 +565,14 @@ public class ModulePlayer extends BasePage{
   public void setExamStartDate(Date examStartDate) {
     this.examStartDate = examStartDate;
   }
+
+public String getFlashSlidePath() {
+	return flashSlidePath;
+}
+
+public void setFlashSlidePath(String flashSlidePath) {
+	this.flashSlidePath = flashSlidePath;
+}
 
 
 }
