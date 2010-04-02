@@ -55,7 +55,9 @@
 			<h:panelGrid columns="1" width="100%" cellpadding="0" cellspacing="0" border="0">
 				<h:dataTable value="#{modulesViewHandler.modules}" var="module">
            <rich:column>
-	       		 <a4j:commandLink onclick="showTutorial('${controllerBean.contextPath}/pages/secure/tutorialModulePlayer.faces?moduleId=${module.modulesId}')">
+           	<h:panelGroup>
+           	
+	       		 <a4j:commandLink  rendered="#{ module.testStatus}" onclick="showTutorial('${controllerBean.contextPath}/pages/secure/tutorialModulePlayer.faces?moduleId=${module.modulesId}')">
 		             <a4j:actionparam name="moduleId" value="#{module.modulesId}"/>
 		             <a4j:actionparam name="load" value="1"/>
 	            	<h:graphicImage value="/images/play_tutorial.png" align="middle" border="0" > 
@@ -65,7 +67,19 @@
 				              #{bundle.member_tutorial_play}<br/>
 				          </span>
 				        </rich:toolTip>	
-				     </a4j:commandLink>												             
+				     </a4j:commandLink>	 
+				     
+				    <a4j:commandLink rendered="#{ ! module.testStatus}">
+	            	<h:graphicImage value="/images/tutorial_disable_play.png" align="middle" border="0" > 
+	            	</h:graphicImage>	
+            		 <rich:toolTip styleClass="tooltips_style"  >
+				          <span class="tooltips_span_style">
+				             Please complete the previous tutorial first<br/>
+				          </span>
+				        </rich:toolTip>	
+				     </a4j:commandLink>	
+           	</h:panelGroup>
+											             
             </rich:column>		             
 		        <rich:column>
 				 			<h:outputText value="#{module.moduleName}" />
