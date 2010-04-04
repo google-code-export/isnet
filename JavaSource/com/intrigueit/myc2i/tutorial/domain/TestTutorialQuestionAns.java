@@ -100,7 +100,7 @@ public class TestTutorialQuestionAns implements Serializable {
   private Date recordLastUpdatedDate;
   
   @Transient
-  private String examinerAns;
+  private String examineeAns;
   
   public TestTutorialQuestionAns() {
     super();
@@ -406,19 +406,14 @@ public class TestTutorialQuestionAns implements Serializable {
     this.videoFileName = videoFileName;
   }
 
-  /**
-   * @return the examinerAns
-   */
-  public String getExaminerAns() {
-    return examinerAns;
-  }
+public String getExamineeAns() {
+	return examineeAns;
+}
 
-  /**
-   * @param examinerAns the examinerAns to set
-   */
-  public void setExaminerAns(String examinerAns) {
-    this.examinerAns = examinerAns;
-  }
-  
+public void setExamineeAns(String examineeAns) {
+	this.examineeAns = examineeAns;
+}
+
+
   
 }
