@@ -150,10 +150,16 @@ public class ModulePlayer extends BasePage {
 		return false;
 	}
 
-	private void calculateTestResult() {
+	private boolean isCompletedTest() {
 		try {
 			TestResult result = getUserModuleTestResult(this.getMember()
 					.getMemberId(), this.module.getModulesId());
+			
+			/** No question answer */
+			if(result == null || result.getTestResultDetails() == null || result.getTestResultDetails().size()== 0){
+				return false;
+			}
+			
 			int totalCorrectAnswer = this.getTotalCorrectAnswer(result);
 			int totalQuestions = result.getTestResultDetails().size();
 			int percentOfCorrect = this.getExamPercenetOfMark(result);
@@ -210,6 +216,7 @@ public class ModulePlayer extends BasePage {
 					+ ex.getMessage());
 			ex.printStackTrace();
 		}
+		return true;
 	}
 
 	private void updateUIDate(int noOfQuestion, int correctAns, int percentMarks) {
@@ -334,7 +341,13 @@ public class ModulePlayer extends BasePage {
 			else {
 				this.notEndPlay = false;
 
-				this.calculateTestResult();
+				boolean isCompleted = this.isCompletedTest();
+				
+				/** No question answer just say tutorial is completed */
+				if(!isCompleted){
+					this.pageIndex  = 0;
+					this.saveCurrentStage();
+				}
 			}
 
 		} catch (Exception ex) {
@@ -441,7 +454,9 @@ public class ModulePlayer extends BasePage {
 			TestResult result = getUserModuleTestResult(this.getMember()
 					.getMemberId(), this.module.getModulesId());
 			result.setLastAccessPage(Long.parseLong(this.pageIndex + ""));
-
+			if(!this.notEndPlay){
+				result.setIsCompleted(true);
+			}
 			this.testService.update(result);
 
 			log.debug(result.getLastAccessPage());
