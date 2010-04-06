@@ -30,8 +30,8 @@
   <body>
     <a4j:outputPanel layout="block" id="idResMainBlock">
       <f:view id="idResMainView">
-       <f:loadBundle basename="ApplicationResources" var="bundle"/>
-        <h:form id="idResMainForm">
+       <f:loadBundle basename="ApplicationResources" var="bundle"/>      
+       <h:panelGroup id="idResMainForm">       
         <c:set var="imagesPath" value="#{controllerBean.imagesPath}" />
         <h:inputHidden id="idContextPath" value="#{controllerBean.contextPath}" />
           <div class="viewcontainer mainBlock" id="idMainContainer">
@@ -57,6 +57,9 @@
               <div class="form" style="border:0px solid red;margin-top:5px;" >
                 <div class="formHead"><h:outputText value="My Resources" /></div>
                 <div class="formFields formBorder wideLabels">
+                  <div style="text-align: right;">
+                    <ui:include src="viewCart.xhtml"/>
+                  </div>
                   <ui:insert name="body">Body</ui:insert>
                 </div>
               </div>
@@ -71,7 +74,7 @@
       </h:panelGroup>
         </div>
         <ui:insert name="jsFunction"></ui:insert>
-        </h:form>
+        </h:panelGroup>
         <ui:insert name="modalPanels"></ui:insert>
       </f:view>
     </a4j:outputPanel>
