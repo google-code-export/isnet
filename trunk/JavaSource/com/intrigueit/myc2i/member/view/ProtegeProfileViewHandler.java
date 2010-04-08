@@ -119,23 +119,19 @@ public class ProtegeProfileViewHandler extends BasePage{
 
 	private UserDefinedValues getMyProtegeActivityUserDefinedValue(){
 		List<UserDefinedValues> types = udService.findByProperty("udValuesValue", CommonConstants.ACTIVITY_TYPE_PROTEGE_RELEASE);
-		for(UserDefinedValues val: types){
-			if(this.getMember().getTypeId().equals(CommonConstants.PROTEGE)){
-				if(val.getUdValuesCategory().equals(CommonConstants.ACTIVITY_LOG_PROTEGE)){
-					return val;
-				}
-			}
+		for(UserDefinedValues val: types){			
+			if(val.getUdValuesCategory().equals(CommonConstants.ACTIVITY_LOG_PROTEGE)){
+				return val;
+			}			
 		}
 		return null;
 	}
 	private UserDefinedValues getMyMentorActivityUserDefinedValue(){
 		List<UserDefinedValues> types = udService.findByProperty("udValuesValue", CommonConstants.ACTIVITY_TYPE_MENTOR_RELEASE);
-		for(UserDefinedValues val: types){
-			if(this.getMember().getTypeId().equals(CommonConstants.MENTOR)){
-				if(val.getUdValuesCategory().equals(CommonConstants.ACTIVITY_LOG_MENTOR)){
-					return val;
-				}
-			}
+		for(UserDefinedValues val: types){			
+			if(val.getUdValuesCategory().equals(CommonConstants.ACTIVITY_LOG_MENTOR)){
+				return val;
+			}			
 		}
 		return null;
 	}	
@@ -143,7 +139,7 @@ public class ProtegeProfileViewHandler extends BasePage{
 	private MemberLog createMentorReleaseLog(Member mentor){
 		try{
 			
-			Long mentorReleaseTypeId = getMyProtegeActivityUserDefinedValue().getUdValuesId();
+			Long mentorReleaseTypeId = getMyMentorActivityUserDefinedValue().getUdValuesId();
 					
 			MemberLog log = new MemberLog();
 			log.setFromMemberId(this.getMember().getMemberId());
@@ -167,6 +163,7 @@ public class ProtegeProfileViewHandler extends BasePage{
 		}
 		catch(Exception ex){
 			log.error(ex.getMessage());
+			ex.printStackTrace();
 		}
 		return null;
 	}
@@ -200,14 +197,12 @@ public class ProtegeProfileViewHandler extends BasePage{
 		}
 	}
 	private MemberLog createProtegeReleaseLog(Member protege){
-		try{
-			
-			Long mentorReleaseTypeId = getMyMentorActivityUserDefinedValue().getUdValuesId();
-						
+		try {			
+			Long protegeReleaseTypeId = getMyProtegeActivityUserDefinedValue().getUdValuesId();
 			MemberLog log = new MemberLog();
 			log.setFromMemberId(this.getMember().getMemberId());
 			log.setToMemberId(protege.getMemberId());
-			log.setMemberActivityType(mentorReleaseTypeId);
+			log.setMemberActivityType(protegeReleaseTypeId);
 			log.setTopic(this.getText("activity_log_release_sub"));
 			log.setMemberLogEntryDescription(this.getText("activity_log_release_body"));
 			
