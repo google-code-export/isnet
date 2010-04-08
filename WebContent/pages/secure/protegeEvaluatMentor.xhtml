@@ -148,13 +148,18 @@
         </h:panelGrid>
       </rich:panel>    
       <rich:spacer width="100%" height="5"/>
-    </h:panelGroup>
+    </h:panelGroup>    
     <script type="text/javascript" >
       Common.setEvalValue();
+      setTimeout("resetErrorPanel();",1000);      
     </script>
   </ui:define>
+  <ui:define name="jsFunction">
+    <a4j:jsFunction name="resetErrorPanel" reRender="idErrorPanelCon">
+    </a4j:jsFunction>      
+  </ui:define>
   <ui:define name="modalPanels">    
-  </ui:define> 
-  
+  </ui:define>
 </ui:composition>
+  
 </html>
