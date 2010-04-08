@@ -61,7 +61,8 @@ public class UserManageViewHandler extends BasePage implements Serializable {
   private Hashtable<String, String> memberTypeHash;
   private boolean isUserTypeReadOnly;
   private String selTabName;
-  
+  private ArrayList<SelectItem> question1List;
+  private ArrayList<SelectItem> question2List;
   /**
    * @return the selTabName
    */
@@ -548,5 +549,27 @@ public class UserManageViewHandler extends BasePage implements Serializable {
 
   public void setConfirmPass(String confirmPass) {
     this.confirmPass = confirmPass;
+  }
+  
+  public ArrayList<SelectItem> getQuestion1List() {
+    if (question1List == null) {
+      this.question1List = viewDataProvider.getQuestionList();
+    }
+    return question1List;
+  }
+
+  public void setQuestion1List(ArrayList<SelectItem> question1List) {
+    this.question1List = question1List;
+  }
+
+  public ArrayList<SelectItem> getQuestion2List() {
+    if (question2List == null) {
+      this.question2List = viewDataProvider.getQuestionList();
+    }
+    return question2List;
+  }
+
+  public void setQuestion2List(ArrayList<SelectItem> question2List) {
+    this.question2List = question2List;
   }
 }
