@@ -50,13 +50,13 @@ public class ProtegeEvalMentorViewHandler extends BasePage implements
    * @return the init
    */
   public String getInit() {    
-    if (this.getMember() != null) {
+	  this.setActionType(ServiceConstants.ADD);
+	  if (this.getMember() != null) {
       Member member = memberService.findById(this.getMember().getMemberId());
       if (member.getMentoredByMemberId() == null) {
-        this.setCurrentProEvalMentor(new ProtegeEvaluationOfMentor());
-        this.setActionType(ServiceConstants.ADD);
-        setErrorMessage(this.getText("protege_evaluat_mentor_errmsg"));
-      } else {
+        this.setCurrentProEvalMentor(new ProtegeEvaluationOfMentor());        
+				setErrorMessage(this.getText("protege_evaluat_mentor_errmsg"));
+			} else {
         List<ProtegeEvaluationOfMentor> objList = protegeEvalMentorService
             .findByProperty("mentorMemberId", this.getMember()
                 .getMentoredByMemberId());
