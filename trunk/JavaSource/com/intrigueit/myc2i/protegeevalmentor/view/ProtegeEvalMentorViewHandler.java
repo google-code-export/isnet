@@ -44,12 +44,15 @@ public class ProtegeEvalMentorViewHandler extends BasePage implements
 
   public void initialize() {
     setSecHeaderMsg("");
+    setErrorMessage("");
   }
 
   /**
    * @return the init
    */
   public String getInit() {    
+	  setSecHeaderMsg("");
+      setErrorMessage("");
 	  this.setActionType(ServiceConstants.ADD);
 	  if (this.getMember() != null) {
       Member member = memberService.findById(this.getMember().getMemberId());
@@ -63,9 +66,7 @@ public class ProtegeEvalMentorViewHandler extends BasePage implements
         if (objList != null && !objList.isEmpty()) {
           this.setActionType(ServiceConstants.UPDATE);
           this.setCurrentProEvalMentor(objList.get(0));
-        }
-        setSecHeaderMsg("");
-        setErrorMessage("");
+        }        
       }
     }
     return init;
