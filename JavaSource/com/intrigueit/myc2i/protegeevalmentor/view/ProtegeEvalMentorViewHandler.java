@@ -11,13 +11,16 @@ import org.springframework.stereotype.Component;
 
 import com.intrigueit.myc2i.common.ServiceConstants;
 import com.intrigueit.myc2i.common.view.BasePage;
+import com.intrigueit.myc2i.member.domain.Member;
+import com.intrigueit.myc2i.member.service.MemberService;
 import com.intrigueit.myc2i.protegeevalmentor.domain.ProtegeEvaluationOfMentor;
 import com.intrigueit.myc2i.protegeevalmentor.service.ProtegeEvalMentorService;
 
 @Component("proEvalManViewHandler")
 @Scope("session")
-public class ProtegeEvalMentorViewHandler extends BasePage implements Serializable {
- 
+public class ProtegeEvalMentorViewHandler extends BasePage implements
+    Serializable {
+
   private static final long serialVersionUID = -3717630038942130642L;
 
   /** Initialize the Logger */
@@ -25,33 +28,52 @@ public class ProtegeEvalMentorViewHandler extends BasePage implements Serializab
       .getLogger(ProtegeEvalMentorViewHandler.class);
 
   private ProtegeEvalMentorService protegeEvalMentorService;
-  private ProtegeEvaluationOfMentor currentProEvalMentor;  
+  private ProtegeEvaluationOfMentor currentProEvalMentor;
+  private MemberService memberService;
   String evalFactorSixRatingNum;
   private String init;
-  
+
+  @Autowired
+  public ProtegeEvalMentorViewHandler(
+      ProtegeEvalMentorService protegeEvalMentorService,
+      MemberService memberService) {
+    this.protegeEvalMentorService = protegeEvalMentorService;
+    this.memberService = memberService;
+    this.initialize();
+  }
+
+  public void initialize() {
+    setSecHeaderMsg("");
+  }
+
   /**
    * @return the init
    */
-  public String getInit() {
-    this.setActionType(ServiceConstants.ADD);
-    if (this.getMember()!= null && this.getMember().getMentoredByMemberId() == null) {
-      this.setCurrentProEvalMentor(new ProtegeEvaluationOfMentor());
-      //setErrorMessage(this.getText("protege_evaluat_mentor_no_mentor_errmsg"));
-    } else {
-      if (this.getMember()!= null && this.getMember().getMentoredByMemberId() != null) {        
-        List<ProtegeEvaluationOfMentor> objList = protegeEvalMentorService.findByProperty("mentorMemberId",this.getMember().getMentoredByMemberId());
-        if ( objList != null && !objList.isEmpty()) {
+  public String getInit() {    
+    if (this.getMember() != null) {
+      Member member = memberService.findById(this.getMember().getMemberId());
+      if (member.getMentoredByMemberId() == null) {
+        this.setCurrentProEvalMentor(new ProtegeEvaluationOfMentor());
+        this.setActionType(ServiceConstants.ADD);
+        setErrorMessage(this.getText("protege_evaluat_mentor_errmsg"));
+      } else {
+        List<ProtegeEvaluationOfMentor> objList = protegeEvalMentorService
+            .findByProperty("mentorMemberId", this.getMember()
+                .getMentoredByMemberId());
+        if (objList != null && !objList.isEmpty()) {
           this.setActionType(ServiceConstants.UPDATE);
-          this.setCurrentProEvalMentor(objList.get(0));        
+          this.setCurrentProEvalMentor(objList.get(0));
         }
+        setSecHeaderMsg("");
+        setErrorMessage("");
       }
-      setSecHeaderMsg("");
     }
     return init;
   }
 
   /**
-   * @param init the init to set
+   * @param init
+   *          the init to set
    */
   public void setInit(String init) {
     this.init = init;
@@ -65,22 +87,13 @@ public class ProtegeEvalMentorViewHandler extends BasePage implements Serializab
   }
 
   /**
-   * @param evalFactorSixRatingNum the evalFactorSixRatingNum to set
+   * @param evalFactorSixRatingNum
+   *          the evalFactorSixRatingNum to set
    */
   public void setEvalFactorSixRatingNum(String evalFactorSixRatingNum) {
     this.evalFactorSixRatingNum = evalFactorSixRatingNum;
   }
 
-  @Autowired
-  public ProtegeEvalMentorViewHandler(ProtegeEvalMentorService protegeEvalMentorService) {
-    this.protegeEvalMentorService = protegeEvalMentorService;
-    this.initialize();
-  }
-
-  public void initialize() {    
-    setSecHeaderMsg("");
-  }
-  
   public boolean validate() {
     logger.debug(" Validating user define values ");
     boolean flag = true;
@@ -89,13 +102,14 @@ public class ProtegeEvalMentorViewHandler extends BasePage implements Serializab
       errorMessage.append(this.getText("common_system_error"));
       return false;
     } else {
-      /*if (this.currentProEvalMentor.getEvalFactorSixRatingNum() == null
-          && this.currentProEvalMentor.getEvalFactorSixRatingNum() !=0) {
-        errorMessage.append(this.getText("common_error_prefix"))
-            .append(" ").append(
-                this.getText("protege_evaluat_mentor_factor_six_text"));
-        flag = false;
-      }*/
+      /*
+       * if (this.currentProEvalMentor.getEvalFactorSixRatingNum() == null &&
+       * this.currentProEvalMentor.getEvalFactorSixRatingNum() !=0) {
+       * errorMessage.append(this.getText("common_error_prefix"))
+       * .append(" ").append(
+       * this.getText("protege_evaluat_mentor_factor_six_text")); flag = false;
+       * }
+       */
     }
     if (!flag)
       setErrorMessage(this.getText("common_error_header")
@@ -105,32 +119,35 @@ public class ProtegeEvalMentorViewHandler extends BasePage implements Serializab
 
   public void doSave() {
     setErrorMessage("");
-    try {      
-      //if (this.getParameter(ServiceConstants.MENTOR_ID) != null) {
-      //String mentorId = (String) this.getParameter(ServiceConstants.MENTOR_ID);
+    try {
+      // if (this.getParameter(ServiceConstants.MENTOR_ID) != null) {
+      // String mentorId = (String)
+      // this.getParameter(ServiceConstants.MENTOR_ID);
       Long mentorId = this.getMember().getMentoredByMemberId();
-      if ( mentorId !=null ) {
+      if (mentorId != null) {
         Date dt = new Date();
         if (validate()) {
           this.currentProEvalMentor.setEvalDate(dt);
-          this.currentProEvalMentor.setProtegeMemberId(this.getMember().getMemberId());
+          this.currentProEvalMentor.setProtegeMemberId(this.getMember()
+              .getMemberId());
           this.currentProEvalMentor.setMentorMemberId(mentorId);
           protegeEvalMentorService.save(this.currentProEvalMentor);
           logger.debug("Added and clear form...");
-          //this.setCurrentProEvalMentor(new ProtegeEvaluationOfMentor());
-          if(this.getActionType().equals(ServiceConstants.UPDATE)) {
-        	  this.setErrorMessage(this.getText("update_success_message"));  
+          // this.setCurrentProEvalMentor(new
+          // ProtegeEvaluationOfMentor());
+          if (this.getActionType().equals(ServiceConstants.UPDATE)) {
+            this.setErrorMessage(this.getText("update_success_message"));
           } else {
-        	  this.setErrorMessage(this.getText("added_success_message"));
+            this.setErrorMessage(this.getText("added_success_message"));
           }
-          
+
           this.setMsgType(ServiceConstants.INFO);
         }
       } else {
         setErrorMessage(this.getText("protege_evaluat_mentor_no_mentor_errmsg"));
       }
-      //}
-    } catch (Exception e) {      
+      // }
+    } catch (Exception e) {
       if (this.currentProEvalMentor.getProtegeEvalOfMentorId() != null) {
         this.currentProEvalMentor.setProtegeEvalOfMentorId(null);
       }
@@ -139,31 +156,30 @@ public class ProtegeEvalMentorViewHandler extends BasePage implements Serializab
       e.printStackTrace();
     }
   }
-  
+
   public void doClear() {
     logger.debug("Clear form...");
     setErrorMessage("");
     this.setCurrentProEvalMentor(new ProtegeEvaluationOfMentor());
   }
+
   /**
    * @return the currentProEvalMentor
    */
   public ProtegeEvaluationOfMentor getCurrentProEvalMentor() {
-    if ( currentProEvalMentor == null ) {
+    if (currentProEvalMentor == null) {
       currentProEvalMentor = new ProtegeEvaluationOfMentor();
     }
     return currentProEvalMentor;
   }
 
   /**
-   * @param currentProEvalMentor the currentProEvalMentor to set
+   * @param currentProEvalMentor
+   *          the currentProEvalMentor to set
    */
   public void setCurrentProEvalMentor(
       ProtegeEvaluationOfMentor currentProEvalMentor) {
     this.currentProEvalMentor = currentProEvalMentor;
   }
 
-
-  
-  
 }
