@@ -171,7 +171,7 @@ public boolean isMembershipExpired(Long memberId, int expiryDateLimit) {
 	//System.out.println("Membership expiry: "+ member.getMemberShipExpiryDate());
 	
 	/** Already registered member but membership expired */
-	if(member.getMemberShipExpiryDate() != null && member.getMemberShipExpiryDate().after(cal.getTime())){
+	if(member.getMemberShipExpiryDate() != null && cal.getTime().after(member.getMemberShipExpiryDate())){
 		return true;
 	}
 
