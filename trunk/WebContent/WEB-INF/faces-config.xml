@@ -70,6 +70,11 @@
    <to-view-id>/pages/secure/protegeDashboard.xhtml</to-view-id>
    <redirect/>
   </navigation-case>
+  <navigation-case>
+   <from-outcome>TO_MENTOR_PAYMENT_PAGE</from-outcome>
+   <to-view-id>/pages/secure/mentorPayment.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
  </navigation-rule>
  <navigation-rule>
   <from-view-id>/pages/secure/changePassword.xhtml</from-view-id>
