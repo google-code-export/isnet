@@ -21,7 +21,6 @@ public class CommonConstants {
     public static final String DELETE = "DELETE";
     
     public static final Long MENTOR = 15L;
-    public static final Long LEAD_MENTOR = 16L;
     public static final Long PROTEGE = 17L;
     public static final Long ADMIN = 18L;
     
