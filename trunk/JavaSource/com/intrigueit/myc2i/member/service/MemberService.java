@@ -40,4 +40,7 @@ public interface MemberService {
 	public List<Member> loadProtegeWithoutMentor();
 	
 	public List<RolePageAccess> loadUserPrivilegePages(Long memberTypeId);
+	
+	public boolean isMembershipExpired(Long memberId, int expiryDateLimit);
+	
 }
