@@ -27,6 +27,7 @@ import com.intrigueit.myc2i.common.view.ViewConstant;
 import com.intrigueit.myc2i.member.domain.Member;
 import com.intrigueit.myc2i.member.service.MemberService;
 import com.intrigueit.myc2i.role.domain.RolePageAccess;
+import com.intrigueit.myc2i.security.MentorTopMenu;
 import com.intrigueit.myc2i.security.Menu;
 import com.intrigueit.myc2i.udvalues.service.UDValuesService;
 
@@ -35,6 +36,8 @@ import com.intrigueit.myc2i.udvalues.service.UDValuesService;
 public class AuthenticationViewHandler extends BasePage implements Serializable {
 
 	private Menu menu;
+	
+	private MentorTopMenu mentorTopMenu;
 
 	private Boolean checked;
 
@@ -130,8 +133,6 @@ public class AuthenticationViewHandler extends BasePage implements Serializable 
 		try {
 			Member member = this.getValidUser();
 			if (member != null) {
-				// this.getSession().setAttribute(CommonConstants.CURRENT_MEMMBER,
-				// member);
 				this.setMemberinSession(member);
 				this.setUserPrivilegePages(member.getTypeId());
 				navOutCome = this.getHomePageAddress(member);
@@ -192,11 +193,9 @@ public class AuthenticationViewHandler extends BasePage implements Serializable 
 	}
 
 	private void setMemberinSession(Member member) {
-		HttpSession session = getRequest().getSession();
-
+		HttpSession session = getRequest().getSession(true);
 		session.setAttribute(CommonConstants.SESSION_MEMBER_KEY, member);
-		session.setAttribute(CommonConstants.SESSION_MEMBER_EMAIL, member
-				.getEmail());
+		session.setAttribute(CommonConstants.SESSION_MEMBER_EMAIL, member.getEmail());
 	}
 
 	/**
@@ -228,22 +227,48 @@ public class AuthenticationViewHandler extends BasePage implements Serializable 
 	/**
 	 * */
 	public String getHomePageAddress(Member member) {
-
+		this.mentorTopMenu = new MentorTopMenu();
 		if (isFirstTimeLogin(member)) {
 			return ViewConstant.OUT_COME_PASSWORD_CHANGE;
 		} else {
-			if (member.getTypeId() == 15L || member.getTypeId() == 16L) {
+			if (member.getTypeId().equals(CommonConstants.MENTOR)) {
 				this.menu.setMentorTopMenu(true);
+				
+				int memberShipExpiry = 30;
+				
+				System.out.println(memberShipExpiry);
+				
+				try{
+					memberShipExpiry = Integer.parseInt(this.getText("membership_expiry_period"));
+				}
+				catch(NumberFormatException nEx){
+					log.error("Fail to load free evaluation period time from resource file: "+ nEx.getMessage());
+				}
+				if(this.memberService.isMembershipExpired(member.getMemberId(), memberShipExpiry)){
+					this.homePageUrl = "/pages/secure/mentorPayment.faces";
+		
+					this.mentorTopMenu.setDashBoard(false);
+					this.mentorTopMenu.setMyResource(false);
+					this.mentorTopMenu.setAskQuestion(false);
+					
+					return ViewConstant.TO_MENTOR_PAYMENT_PAGE;
+				}
+				
 				this.homePageUrl = "/pages/secure/mentorDashboard.faces";
 				return ViewConstant.TO_MENTOR_DASHBOARD;
-			} else if (member.getTypeId() == 18L) {
+				
+			} else if (member.getTypeId().equals(CommonConstants.ADMIN)) {
+				
 				this.menu.setAdminTopMenu(true);
 				this.homePageUrl = "/pages/secure/udValueView.faces";
 				return ViewConstant.TO_ADMIN_HOME;
-			} else if (member.getTypeId() == 17L) {
+				
+			} else if (member.getTypeId().equals(CommonConstants.PROTEGE)) {
+				
 				this.menu.setGuestTopMenu(true);
 				this.homePageUrl = "/pages/secure/protegeDashboard.faces";
 				return ViewConstant.TO_PROTEGE_DASHBOARD;
+				
 			}
 		}
 		return "";
@@ -387,6 +412,14 @@ public class AuthenticationViewHandler extends BasePage implements Serializable 
 
 	public void setHomePageUrl(String homePageUrl) {
 		this.homePageUrl = homePageUrl;
+	}
+
+	public MentorTopMenu getMentorTopMenu() {
+		return mentorTopMenu;
+	}
+
+	public void setMentorTopMenu(MentorTopMenu mentorTopMenu) {
+		this.mentorTopMenu = mentorTopMenu;
 	}
 
 }
