@@ -57,7 +57,7 @@ public class PayPalNavigator extends HttpServlet {
 				 
 				 myc2iPath = request.getContextPath() + "/pages/secure/protegeDashboard.faces";
 			 }
-			 else if(member.getTypeId().equals(CommonConstants.MENTOR) || member.getTypeId().equals(CommonConstants.LEAD_MENTOR)){
+			 else if(member.getTypeId().equals(CommonConstants.MENTOR)){
 				 
 				 myc2iPath = request.getContextPath() + "/pages/secure/mentorDashboard.faces";
 			 }
