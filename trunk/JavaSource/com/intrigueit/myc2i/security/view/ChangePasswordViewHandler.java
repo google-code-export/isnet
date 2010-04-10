@@ -73,7 +73,7 @@ public class ChangePasswordViewHandler extends BasePage  implements Serializable
 			this.modifyMember(dbMember);
 			this.sendConfirmationEmail(dbMember.getEmail(), newPassword);
 
-			if(member.getTypeId().equals(CommonConstants.MENTOR) || member.getTypeId().equals(CommonConstants.LEAD_MENTOR)){
+			if(member.getTypeId().equals(CommonConstants.MENTOR)){
 				return ViewConstant.TO_MENTOR_DASHBOARD;
 			}
 			else if(member.getTypeId().equals(CommonConstants.ADMIN)){
