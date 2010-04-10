@@ -30,14 +30,14 @@
            <c:if test="${authenticationViewHandler.mentorTopMenu.myResource}">
 	          <li>
 	            <h:outputLink styleClass="menu_item_clink" 
-	              value="#{controllerBean.contextPath}/pages/secure/mentorResources.faces">
+	              value="#{controllerBean.contextPath}/myresources/mentorResBooks.faces">
 	              <h:outputText value="#{bundle.top_navigation_mentor_resource}"/>
 	            </h:outputLink>
 	          </li>
 	          <li><a href="" >|</a></li>
            </c:if>
            
-          <c:if test="${authenticationViewHandler.mentorTopMenu.myResource}"> 
+          <c:if test="${authenticationViewHandler.mentorTopMenu.askQuestion}"> 
 	          <li>
 	            <h:outputLink styleClass="menu_item_clink" 
 	              value="#{controllerBean.contextPath}/pages/secure/memberAskAQuestion.faces">
