@@ -1,6 +1,8 @@
 package com.intrigueit.myc2i.member.service;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -159,6 +161,35 @@ public class MemberServiceImpl implements MemberService {
   public List<RolePageAccess> loadUserPrivilegePages(Long memberTypeId) {
     return memberDao.loadUserPrivilegePages(memberTypeId);
   }
+
+@Override
+public boolean isMembershipExpired(Long memberId, int expiryDateLimit) {
+	Member member = memberDao.loadById(memberId);
+	Calendar cal = Calendar.getInstance();
+	cal.setTime(new Date());
+	
+	//System.out.println("Membership expiry: "+ member.getMemberShipExpiryDate());
+	
+	/** Already registered member but membership expired */
+	if(member.getMemberShipExpiryDate() != null && member.getMemberShipExpiryDate().after(cal.getTime())){
+		return true;
+	}
+
+	Calendar calReg = Calendar.getInstance();
+	calReg.setTime(member.getRecordCreate());
+	
+	calReg.add(Calendar.DAY_OF_YEAR, expiryDateLimit);
+	//System.out.println("Evaluation period date: "+calReg.getTime());
+	//System.out.println("Current date: "+cal.getTime());
+	
+	
+	/** Not yet registered first time but free evaluation period expired */
+	if(member.getMemberShipExpiryDate() == null && cal.getTime().after(calReg.getTime())){
+		return true;
+	}
+	
+	return false;
+}
 
   
 }
