@@ -230,7 +230,8 @@ public class AuthenticationViewHandler extends BasePage implements Serializable 
 		this.mentorTopMenu = new MentorTopMenu();
 		if (isFirstTimeLogin(member)) {
 			return ViewConstant.OUT_COME_PASSWORD_CHANGE;
-		} else {
+		} 
+		else{
 			if (member.getTypeId().equals(CommonConstants.MENTOR)) {
 				this.menu.setMentorTopMenu(true);
 				
