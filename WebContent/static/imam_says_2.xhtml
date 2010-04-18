@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	 xmlns:ui="http://java.sun.com/jsf/facelets"
+	 xmlns:h="http://java.sun.com/jsf/html"
+	 xmlns:f="http://java.sun.com/jsf/core"
+	 xmlns:a4j="http://richfaces.org/a4j"
+ 	xmlns:c="http://java.sun.com/jstl/core"
+ 	xmlns:rich="http://richfaces.org/rich">
+
+	<ui:composition template="../templates/basictemplate.xhtml">
+	<ui:param name="moduleTitle" value="Imam Says"></ui:param>
+ 		<ui:param name="userType" value="Public">
+ 	</ui:param>
+ 	<ui:define name="js">
+ 		<a4j:loadScript src="../js/flowplayer-3.1.4.min.js" />
+ 	</ui:define>
+ 	<ui:define name="style">
+	 	/* remove ugly system borders links */
+		a img 	{ 	border:0 }
+		a:active { 	outline:none; }
+		:focus   { -moz-outline-style:none; }
+	 	
+ 	</ui:define>
+
+	<ui:define name="body">
+	<h:panelGrid columns="3" columnClasses="reg_page_column1,reg_page_column2,reg_page_column3" width="100%">
+					<h:outputText value="" />
+					<h:panelGroup>
+					<rich:panel style="width:'auto'"  id="idPanelContainer" headerClass="panel_header" bodyClass="panel_content_body" styleClass="content_panel">
+						<f:facet name="header">
+							<h:outputLabel id="idHeaderMessage" >
+							  	<h:outputText    value="Imam says..."/>
+							</h:outputLabel>
+						</f:facet>
+
+
+	<div id="page">
+		
+		<h2>Dr. Ahmad Sakr</h2>
+	
+
+		<!-- this A tag is where your Flowplayer will be placed. it can be anywhere -->
+		<a  
+			 href="../resources/video/Dr_Sakr.flv"  
+			 style="display:block;width:520px;height:330px"  
+			 id="player"> 
+		</a> 
+	
+		<!-- this will install flowplayer inside previous A- tag. -->
+		<script>
+			flowplayer("player", "../resources/swf/flowplayer-3.1.5.swf");
+		</script>
+	
+
+
+	</div>		
+
+
+					
+
+				</rich:panel>
+				
+						
+				</h:panelGroup>
+				<h:outputText value="" />			
+	</h:panelGrid>	   
+  </ui:define>
+   	
+	</ui:composition>
+
+</html>
