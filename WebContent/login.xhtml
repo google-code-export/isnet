@@ -16,7 +16,7 @@
           <h:panelGrid width="100%"  columns="3" border="0" cellpadding="0" cellspacing="0"   columnClasses="login_page_column1,login_page_column2,login_page_column3" >
           
           <h:panelGrid columns="1" width="100%" valign="center" border="0" cellpadding="0" cellspacing="0">
-            <rich:spacer height="150"/>
+            <rich:spacer height="240"/>
 			<h:panelGrid columns="1" width="100%" border="0" columnClasses="center_align_col">
 				<h:outputLink value="#{controllerBean.contextPath}/guestRegister.faces"> 
 					<h:graphicImage value="/images/address_book3.png" /> 
@@ -51,6 +51,7 @@
                    </h:panelGroup> 
                 </f:facet> 
                 <rich:spacer width="100%" height="4"/>
+                
                 <h:panelGrid columns="2" width="100%">          				                     
                   <h:outputText value="#{bundle.login_page_login_email}" />
           				<h:inputText id="idLoginEamilId" value="#{authenticationViewHandler.userEmailId}" styleClass="login_box_input"/>
@@ -74,10 +75,26 @@
          			</h:panelGrid>         			
 				</rich:panel>
 				<h:panelGrid columns="1"  width="100%" border="0" >
-				<rich:spacer height="10"/>
-				<rich:spacer height="10"/>
-				<rich:spacer height="10"/>		
+				
+				 <rich:spacer height="10"/>
+				 
+				<h:panelGrid columns="1" width="100%" border="0" columnClasses="center_align_col">
+					<h:outputLink value="#{controllerBean.contextPath}/static/imam_says_1.faces"> 
+						<h:graphicImage value="/images/picture_imam_zaid.png" /> 
+						<h:outputText value="Imam Zaid Sakir Says..." /> 
+					</h:outputLink>		
+				</h:panelGrid>
+	
 
+				<h:panelGrid columns="1" width="100%" border="0" columnClasses="center_align_col">
+					<h:outputLink value="#{controllerBean.contextPath}/static/imam_says_2.faces"> 
+						<h:graphicImage value="/images/picture_imam_sakr.png" /> 
+						<h:outputText value="Dr Ahmad Sakr Says..." /> 
+					</h:outputLink>		
+				</h:panelGrid>
+				
+				 <rich:spacer height="20"/>
+				 
 				<h:panelGrid columns="1" width="100%" border="0" columnClasses="center_align_col">
 					<h:outputLink value="#{controllerBean.contextPath}/mentorRegister.faces"> 
 						<h:graphicImage value="/images/address_book2.png" /> 
