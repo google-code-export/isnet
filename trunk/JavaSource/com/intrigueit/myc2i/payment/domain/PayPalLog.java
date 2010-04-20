@@ -52,9 +52,12 @@ public class PayPalLog implements Serializable{
 	@Column( name = "NOTIFY_VERSION")
 	private Double notifyVersion;
 	
-	@Column( name = "MEMBER_ID ")
+	@Column( name = "MEMBER_ID")
 	private Long memberId;
-
+	
+	@Column( name = "VERIFY_STATUS")
+	private String verifyStatus;
+	
 	public Long getIpnLogId() {
 		return ipnLogId;
 	}
@@ -141,6 +144,20 @@ public class PayPalLog implements Serializable{
 
 	public void setMemberId(Long memberId) {
 		this.memberId = memberId;
+	}
+
+	/**
+	 * @return the verifyStatus
+	 */
+	public String getVerifyStatus() {
+		return verifyStatus;
+	}
+
+	/**
+	 * @param verifyStatus the verifyStatus to set
+	 */
+	public void setVerifyStatus(String verifyStatus) {
+		this.verifyStatus = verifyStatus;
 	}
 	
 	
