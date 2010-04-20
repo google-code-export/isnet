@@ -22,238 +22,280 @@ import com.intrigueit.myc2i.utility.Emailer;
 
 @Component("chapterViewHandler")
 @Scope("session")
-public class ChapterViewHandler extends BasePage implements Serializable {	
-  
-  /**
-   * Generated serial version ID
-   */
-  private static final long serialVersionUID = -463590747959332517L;
+public class ChapterViewHandler extends BasePage implements Serializable {
 
-  /** Initialize the Logger */
-  protected static final Logger logger = Logger.getLogger( ChapterViewHandler.class );
-  
-  private ChapterService chapterService;
+	/**
+	 * Generated serial version ID
+	 */
+	private static final long serialVersionUID = -463590747959332517L;
+
+	/** Initialize the Logger */
+	protected static final Logger logger = Logger
+			.getLogger(ChapterViewHandler.class);
+
+	private ChapterService chapterService;
 	private LocalChapter currentChapter;
-	private SearchBean searchBean;	
+	private SearchBean searchBean;
 	List<SelectItem> categoryList;
 	private ListDataModel chapterLines;
 	private String categoryName;
 	private ViewDataProvider viewDataProvider;
-		
-  @Autowired
+
+	@Autowired
 	public ChapterViewHandler(ChapterService chapterService,
-      ViewDataProvider viewDataProvider) {
+			ViewDataProvider viewDataProvider) {
 		this.chapterService = chapterService;
 		this.viewDataProvider = viewDataProvider;
 		this.initializeChapter();
 	}
 
-	public void initializeChapter(){		
-	  setSecHeaderMsg("");
-	  loadChapters();
+	public void initializeChapter() {
+		setSecHeaderMsg("");
+		loadChapters();
 	}
 
 	public void loadChapters() {
-    try {
-      List<LocalChapter> chapterList = chapterService.loadAll();
-      getChapterLines().setWrappedData(chapterList);
-    } catch (Exception e) {
-      logger.error(" Unable to load chapters "+e.getMessage());
-      e.printStackTrace();
-    }
-  }
-	
-	public boolean validate () {
-	  logger.debug(" Validating chapter ");
-	  boolean flag = true;
-	  StringBuffer errorMessage = new StringBuffer();
-	  if ( this.currentChapter == null ) {
-	    errorMessage.append(this.getText("common_system_error"));
-	    return false;
-		} else {
-      if (chapterService.isRecordExist(this.currentChapter.getChapterId(),
-          this.currentChapter.getChapterName())){
-        errorMessage.append(this.getText("common_error_prefix")).append(" ")
-                  .append(this.getText("chapter_exist"));
-        flag = false;       
-      }
-      if (this.currentChapter.getLeadMemberId() == 0) {
-        errorMessage.append(this.getText("common_error_prefix")).append(" ")
-        .append(this.getText("select_lead_chapter"));
-        flag = false;
-      }
-    }
-    if (!flag) setErrorMessage(this.getText("common_error_header") + errorMessage.toString());
-	  return flag;
-	}	
-	
-	public void loadChapterByCriteria() {
-		logger.debug(" Load chapter by search critariya ");    
 		try {
-		  SearchBean value = getSearchBean();
-		  List<LocalChapter> chapterList = chapterService.findByProperties(value);
-		  getChapterLines().setWrappedData(chapterList);
+			List<LocalChapter> chapterList = chapterService.loadAll();
+			getChapterLines().setWrappedData(chapterList);
 		} catch (Exception e) {
-      logger.error(" Unable to load chapter by search :"+e.getMessage());
-      e.printStackTrace();
-    }
-	}
-	
-	public void setCommonData ( String action ) {       
-	  setSecHeaderMsg("");
-	  try {
-      Date dt = new Date();           
-      this.currentChapter.setRecordLastUpdaterId(""+this.getMember().getMemberId());    
-      this.currentChapter.setRecordLastUpdatedDate(dt);
-      if (action.equals(ServiceConstants.ADD )) {
-        this.currentChapter.setRecordCreatorId(""+this.getMember().getMemberId());
-        this.currentChapter.setRecordCreatedDate(dt);
-      }
-    } catch (Exception e) {
-      setSecHeaderMsg(this.getText("invalid_seesion_message"));
-      logger.error(" Unable to load chapter by search critariya :"+e.getMessage());
-      e.printStackTrace();
-    }
-  }
-	
-	public void preAddChapter () {
-	  logger.debug(" Preparing chapter for adding new record ");
-	  setErrorMessage("");
-		try {		  
-		  this.currentChapter = new LocalChapter();		  		  
-			this.setCommonData(ServiceConstants.ADD);
-			setSecHeaderMsg(this.getText("header_msg_manage_chapter") + " " + this.getText("header_msg_add"));
-			setActionType(ServiceConstants.ADD);
-			setReRenderIds("CHAPTER_LINES");
-		} catch (Exception e) {
-		  setErrorMessage(this.getText("common_system_error"));
-		  logger.error(e.getMessage());
+			logger.error(" Unable to load chapters " + e.getMessage());
 			e.printStackTrace();
 		}
 	}
-	
-	@SuppressWarnings("unchecked")
-	public void addChapter () {
-	  logger.debug(" Adding chapter into database ");
-	  setErrorMessage("");
-		try {		  
-		  this.currentChapter = getCurrentChapter();
-      if(validate()) {
-        if (this.currentChapter.getChapterCountry().equals("-1")) this.currentChapter.setChapterCountry(null);
-        if (this.currentChapter.getChapterState().equals("-1")) this.currentChapter.setChapterState(null);
-        if (this.currentChapter.getLeadMemberId() == 0) this.currentChapter.setLeadMemberId(null);
-        this.chapterService.addChapter(this.currentChapter);        
-        List<LocalChapter> chapterList = (List<LocalChapter>) getChapterLines().getWrappedData();
-        chapterList.add(this.chapterService.loadById(this.currentChapter.getChapterId()));
+
+	public boolean validate() {
+		logger.debug(" Validating chapter ");
+		boolean flag = true;
+		StringBuffer errorMessage = new StringBuffer();
+		if (this.currentChapter == null) {
+			errorMessage.append(this.getText("common_system_error"));
+			return false;
+		} else {
+			if (chapterService.isRecordExist(
+					this.currentChapter.getChapterId(), this.currentChapter
+							.getChapterName())) {
+				errorMessage.append(this.getText("common_error_prefix"))
+						.append(" ").append(this.getText("chapter_exist"));
+				flag = false;
+			}
+			if (this.currentChapter.getLeadMemberId() == 0) {
+				errorMessage.append(this.getText("common_error_prefix"))
+						.append(" ")
+						.append(this.getText("select_lead_chapter"));
+				flag = false;
+			}
+		}
+		if (!flag)
+			setErrorMessage(this.getText("common_error_header")
+					+ errorMessage.toString());
+		return flag;
+	}
+
+	public void loadChapterByCriteria() {
+		logger.debug(" Load chapter by search critariya ");
+		try {
+			SearchBean value = getSearchBean();
+			List<LocalChapter> chapterList = chapterService
+					.findByProperties(value);
+			getChapterLines().setWrappedData(chapterList);
+		} catch (Exception e) {
+			logger
+					.error(" Unable to load chapter by search :"
+							+ e.getMessage());
+			e.printStackTrace();
+		}
+	}
+
+	public void setCommonData(String action) {
+		setSecHeaderMsg("");
+		try {
+			Date dt = new Date();
+			this.currentChapter.setRecordLastUpdaterId(""
+					+ this.getMember().getMemberId());
+			this.currentChapter.setRecordLastUpdatedDate(dt);
+			if (action.equals(ServiceConstants.ADD)) {
+				this.currentChapter.setRecordCreatorId(""
+						+ this.getMember().getMemberId());
+				this.currentChapter.setRecordCreatedDate(dt);
 			}
 		} catch (Exception e) {
-		  if (this.currentChapter.getChapterId() != null) {
-        this.currentChapter.setChapterId(null);
-      }
-		  setErrorMessage(this.getText("common_system_error"));
+			setSecHeaderMsg(this.getText("invalid_seesion_message"));
+			logger.error(" Unable to load chapter by search critariya :"
+					+ e.getMessage());
+			e.printStackTrace();
+		}
+	}
+
+	public void preAddChapter() {
+		logger.debug(" Preparing chapter for adding new record ");
+		setErrorMessage("");
+		try {
+			this.currentChapter = new LocalChapter();
+			this.setCommonData(ServiceConstants.ADD);
+			setSecHeaderMsg(this.getText("header_msg_manage_chapter") + " "
+					+ this.getText("header_msg_add"));
+			setActionType(ServiceConstants.ADD);
+			setReRenderIds("CHAPTER_LINES");
+		} catch (Exception e) {
+			setErrorMessage(this.getText("common_system_error"));
 			logger.error(e.getMessage());
 			e.printStackTrace();
-		}		
+		}
 	}
-	
+
+	@SuppressWarnings("unchecked")
+	public void addChapter() {
+		logger.debug(" Adding chapter into database ");
+		setErrorMessage("");
+		try {
+			this.currentChapter = getCurrentChapter();
+			if (validate()) {
+				if (this.currentChapter.getChapterCountry().equals("-1"))
+					this.currentChapter.setChapterCountry(null);
+				if (this.currentChapter.getChapterState().equals("-1"))
+					this.currentChapter.setChapterState(null);
+				if (this.currentChapter.getLeadMemberId() == 0)
+					this.currentChapter.setLeadMemberId(null);
+				this.chapterService.addChapter(this.currentChapter);
+				List<LocalChapter> chapterList = (List<LocalChapter>) getChapterLines()
+						.getWrappedData();
+				chapterList.add(this.chapterService
+						.loadById(this.currentChapter.getChapterId()));
+				sendNotification(this.currentChapter.getLeadMember().getEmail(),
+		  		        this.getText("chapter_add_notification_subject"),
+		  		        this.getText("chapter_add_notification_body",
+		                  new String[]{this.currentChapter.getLeadMember().getFirstName(),
+		  		            this.currentChapter.getChapterName()}));
+			}
+		} catch (Exception e) {
+			if (this.currentChapter.getChapterId() != null) {
+				this.currentChapter.setChapterId(null);
+			}
+			setErrorMessage(this.getText("common_system_error"));
+			logger.error(e.getMessage());
+			e.printStackTrace();
+		}
+	}
+
 	public void preUpdateChapter() {
 		setErrorMessage("");
 		logger.debug(" Preparing chapter for updating ");
-		if(this.getParameter(ServiceConstants.RECORD_ID)!=null) {
-  		String recordId = (String) this.getParameter(ServiceConstants.RECORD_ID);
-  		try {
-  			this.currentChapter = chapterService.loadById(Long.parseLong(recordId));
-  			this.currentChapter.setLeadMemberName(this.currentChapter.getLeadMember().getFirstName());
-  			this.setCommonData(ServiceConstants.UPDATE);
-  			setSecHeaderMsg(this.getText("header_msg_manage_chapter") + " " + this.getText("header_msg_update"));
+		if (this.getParameter(ServiceConstants.RECORD_ID) != null) {
+			String recordId = (String) this
+					.getParameter(ServiceConstants.RECORD_ID);
+			try {
+				this.currentChapter = chapterService.loadById(Long
+						.parseLong(recordId));
+				this.currentChapter.setLeadMemberName(this.currentChapter
+						.getLeadMember().getFirstName());
+				this.setCommonData(ServiceConstants.UPDATE);
+				setSecHeaderMsg(this.getText("header_msg_manage_chapter") + " "
+						+ this.getText("header_msg_update"));
 				setActionType(ServiceConstants.UPDATE);
 				setReRenderIds("CHAPTER_LINES");
 				setRowIndex(getChapterLines().getRowIndex());
 			} catch (Exception e) {
-			  setErrorMessage(this.getText("common_system_error"));
-			  logger.error(e.getMessage());
+				setErrorMessage(this.getText("common_system_error"));
+				logger.error(e.getMessage());
 				e.printStackTrace();
 			}
-  	}
+		}
 	}
-	
+
 	public void updateChapter() {
-	  logger.debug(" Updating chapter ");
-	  setErrorMessage("");
-	  try {
+		logger.debug(" Updating chapter ");
+		setErrorMessage("");
+		try {
 			this.currentChapter = getCurrentChapter();
-  		if(validate()) {
-		    int rowIdx = getRowIndex();  		    
-		    Date dt = new Date();
-        this.currentChapter.setRecordLastUpdatedDate(dt);
-		    if (this.currentChapter.getChapterCountry().equals("-1")) this.currentChapter.setChapterCountry(null);
-		    if (this.currentChapter.getChapterState().equals("-1")) this.currentChapter.setChapterState(null);
-		    if (this.currentChapter.getLeadMemberId() == 0) this.currentChapter.setLeadMemberId(null);
-        System.out.println(this.currentChapter.getChapterId());
-		    chapterService.updateChapter(this.currentChapter);
-		    putObjInList(rowIdx,chapterService.loadById(this.currentChapter.getChapterId()));
-		    if (this.currentChapter.getLeadMember()!=null && this.currentChapter.getLeadMember().getEmail()!=null) {
-  		    sendNotification(this.currentChapter.getLeadMember().getEmail(),
-  		        this.getText("chapter_update_notification_subject"),
-  		        this.getText("chapter_update_notification_body",
-                  new String[]{this.currentChapter.getLeadMember().getFirstName(),
-  		            this.currentChapter.getChapterName()}));
-		    }
-		    System.out.println(this.currentChapter.getChapterId());
-		  }
+			if (validate()) {
+				int rowIdx = getRowIndex();
+				Date dt = new Date();
+				this.currentChapter.setRecordLastUpdatedDate(dt);
+				if (this.currentChapter.getChapterCountry().equals("-1"))
+					this.currentChapter.setChapterCountry(null);
+				if (this.currentChapter.getChapterState().equals("-1"))
+					this.currentChapter.setChapterState(null);
+				if (this.currentChapter.getLeadMemberId() == 0)
+					this.currentChapter.setLeadMemberId(null);
+				System.out.println(this.currentChapter.getChapterId());
+				chapterService.updateChapter(this.currentChapter);
+				putObjInList(rowIdx, chapterService
+						.loadById(this.currentChapter.getChapterId()));
+				if (this.currentChapter.getLeadMember() != null
+						&& this.currentChapter.getLeadMember().getEmail() != null) {
+					sendNotification(this.currentChapter.getLeadMember()
+							.getEmail(), this
+							.getText("chapter_update_notification_subject"),
+							this.getText("chapter_update_notification_body",
+									new String[]{
+											this.currentChapter.getLeadMember()
+													.getFirstName(),
+											this.currentChapter
+													.getChapterName()}));
+				}
+			}
 		} catch (Exception e) {
-		  setErrorMessage(this.getText("common_system_error"));
+			setErrorMessage(this.getText("common_system_error"));
 			logger.error(e.getMessage());
 			e.printStackTrace();
 		}
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public void deleteChapter() {
-	  logger.debug(" Deleting chapter from database ");
-	  setErrorMessage("");
-	  if(this.getParameter(ServiceConstants.RECORD_ID)!=null) {
-  		String recordId = (String) this.getParameter(ServiceConstants.RECORD_ID);
-  		try {  			
+		logger.debug(" Deleting chapter from database ");
+		setErrorMessage("");
+		if (this.getParameter(ServiceConstants.RECORD_ID) != null) {
+			String recordId = (String) this
+					.getParameter(ServiceConstants.RECORD_ID);
+			try {
 				int rowIndex = getChapterLines().getRowIndex();
-				LocalChapter chapter = this.chapterService.loadById(Long.parseLong(recordId));
+				LocalChapter chapter = this.chapterService.loadById(Long
+						.parseLong(recordId));
 				chapterService.deleteChapter(chapter);
-				List<LocalChapter> udvList = (List<LocalChapter>) getChapterLines().getWrappedData();
+				List<LocalChapter> udvList = (List<LocalChapter>) getChapterLines()
+						.getWrappedData();
 				udvList.remove(rowIndex);
-				if (chapter.getLeadMember()!=null && chapter.getLeadMember().getEmail()!=null) {
-  				sendNotification(chapter.getLeadMember().getEmail(),
-              this.getText("chapter_delete_notification_subject"),
-              this.getText("chapter_delete_notification_body",
-                  new String[]{chapter.getLeadMember().getFirstName(),chapter.getChapterName()}));
+				if (chapter.getLeadMember() != null
+						&& chapter.getLeadMember().getEmail() != null) {
+					sendNotification(chapter.getLeadMember().getEmail(), this
+							.getText("chapter_delete_notification_subject"),
+							this.getText("chapter_delete_notification_body",
+									new String[]{
+											chapter.getLeadMember()
+													.getFirstName(),
+											chapter.getChapterName()}));
 				}
 			} catch (Exception e) {
-			  setErrorMessage(this.getText("common_system_error"));
+				setErrorMessage(this.getText("common_system_error"));
 				logger.error(e.getMessage());
 				e.printStackTrace();
 			}
-  	}
+		}
 	}
-	
+
 	/** Send confirmation email to member */
-  public void sendNotification(String email, String emailSubject,String msgBody)throws Exception {
-    /**Send email notification */
-    try {
-      Emailer emailer = new Emailer(email, msgBody,emailSubject);
-      emailer.setContentType("text/html");
-      emailer.sendEmail();
-    } catch (Exception e) {
-      logger.debug("Failed to sending notification email");
-      e.printStackTrace();
-    }
-  }
-  
-  
+	public void sendNotification(String email, String emailSubject,
+			String msgBody) throws Exception {
+		/** Send email notification */
+		try {
+			Emailer emailer = new Emailer(email, msgBody, emailSubject);
+			emailer.setContentType("text/html");
+			emailer.sendEmail();
+		} catch (Exception e) {
+			logger.debug("Failed to sending notification email");
+			e.printStackTrace();
+		}
+	}
+
 	@SuppressWarnings("unchecked")
-	private void putObjInList(int idx,Object fetchObj) {
-		List<LocalChapter> list = (List<LocalChapter>) getChapterLines().getWrappedData();
+	private void putObjInList(int idx, Object fetchObj) {
+		List<LocalChapter> list = (List<LocalChapter>) getChapterLines()
+				.getWrappedData();
 		list.remove(idx);
 		list.add(idx, (LocalChapter) fetchObj);
-  }
+	}
 
 	/**
 	 * @return the currentChapter
@@ -266,11 +308,12 @@ public class ChapterViewHandler extends BasePage implements Serializable {
 	}
 
 	/**
-	 * @param currentChapter the currentChapter to set
+	 * @param currentChapter
+	 *            the currentChapter to set
 	 */
 	public void setCurrentChapter(LocalChapter currentChapter) {
 		this.currentChapter = currentChapter;
-	}	
+	}
 	/**
 	 * @return the categoryId
 	 */
@@ -279,7 +322,8 @@ public class ChapterViewHandler extends BasePage implements Serializable {
 	}
 
 	/**
-	 * @param categoryId the categoryId to set
+	 * @param categoryId
+	 *            the categoryId to set
 	 */
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
@@ -289,36 +333,37 @@ public class ChapterViewHandler extends BasePage implements Serializable {
 	 * @return the chapterLines
 	 */
 	public ListDataModel getChapterLines() {
-		if(chapterLines == null){
+		if (chapterLines == null) {
 			chapterLines = new ListDataModel();
 		}
 		return chapterLines;
 	}
-	
+
 	/**
-	 * @param chapterLines the chapterLines to set
+	 * @param chapterLines
+	 *            the chapterLines to set
 	 */
 	public void setChapterLines(ListDataModel chapterLines) {
 		this.chapterLines = chapterLines;
-	}	
-	
+	}
+
 	public SearchBean getSearchBean() {
-    if (searchBean == null) {
-      searchBean = new SearchBean();
-    }
-    return searchBean;
-  }
+		if (searchBean == null) {
+			searchBean = new SearchBean();
+		}
+		return searchBean;
+	}
 
-  public void setSearchBean(SearchBean searchBean) {
-    this.searchBean = searchBean;
-  }
-  
-  public List<SelectItem> getStatesList() {
-    return viewDataProvider.getStateList();
-  }
+	public void setSearchBean(SearchBean searchBean) {
+		this.searchBean = searchBean;
+	}
 
-  public List<SelectItem> getCountryList() {
-    return this.viewDataProvider.getCountryList();
-  }
+	public List<SelectItem> getStatesList() {
+		return viewDataProvider.getStateList();
+	}
+
+	public List<SelectItem> getCountryList() {
+		return this.viewDataProvider.getCountryList();
+	}
 
 }
