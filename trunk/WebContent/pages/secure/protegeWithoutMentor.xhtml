@@ -78,17 +78,17 @@
               <rich:column width="70px" style="text-align:left;" valign="top">
                 <h:outputText value="#{bundle.member_last_name}" />
               </rich:column>
+              <rich:column width="75px" style="text-align:left;" valign="top">
+                <h:outputText value="#{bundle.member_address}" />
+              </rich:column>
               <rich:column width="45px" style="text-align:left;" valign="top">
                 <h:outputText value="#{bundle.member_city}" />
               </rich:column>
               <rich:column width="45px" style="text-align:left;" valign="top">
-                <h:outputText value="#{member.stateUDV.udValuesValue}" />
+                <h:outputText value="#{bundle.member_state}" />
               </rich:column>
               <rich:column width="45px" style="text-align:left;" valign="top">
                 <h:outputText value="#{bundle.member_zip}" />
-              </rich:column>
-              <rich:column width="45px" style="text-align:left;" valign="top">
-                <h:outputText value="#{bundle.member_country}" />
               </rich:column>
               <rich:column width="35px" style="text-align:left;" valign="top">
                 <h:outputText value="#{bundle.member_phone}" />
@@ -105,16 +105,16 @@
            <h:outputText value="#{protege.lastName}" />
          </rich:column>
          <rich:column>
+           <h:outputText value="#{protege.streetAddress}" />
+         </rich:column>
+         <rich:column>
            <h:outputText value="#{protege.city}" />
          </rich:column>
          <rich:column>
-           <h:outputText value="#{protege.state}" />
+           <h:outputText value="#{protege.stateUDV.udValuesValue}" />
          </rich:column>
          <rich:column>
            <h:outputText value="#{protege.zip}" />
-         </rich:column>         
-         <rich:column>
-           <h:outputText value="#{protege.country}" />
          </rich:column>
          <rich:column style="text-align:center;vertical-align:middle;">
            <h:outputText value="#{protege.homePhoneNumber}" />
