@@ -198,7 +198,7 @@ public class ProtegeViewHandler extends BasePage implements Serializable {
 					sendNotification(mentor.getEmail(),
 			  		        this.getText("assign_mentor_to_protege_sub"),
 			  		        this.getText("assign_mentor_to_protege_bodytomentor",
-			                  new String[]{mentor.getFirstName()+ " " + mentor.getLastName()}));
+			                  new String[]{mentor.getFirstName()+ " " + mentor.getLastName(),this.currentProtege.getFirstName()+ " " + this.currentProtege.getLastName()}));
 					logger.debug(" Protege assigned to mentor ");
 				}
 			}
