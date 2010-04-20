@@ -56,6 +56,14 @@
           <h:outputText value="#{bundle.member_city}"/>
           <h:inputText id="idCity" styleClass="name" value="#{searchBean.city}"/>
           
+          <h:outputText  value=""/>
+          <h:panelGroup>
+            <h:selectBooleanCheckbox id="idShowAll" title="Show all members" 
+              value="#{searchBean.extraProps}" />
+            <rich:spacer width="5"></rich:spacer>
+            <h:outputText  value="#{bundle.show_all}"/>
+          </h:panelGroup>
+          
           <h:outputText value=""/>
           <a4j:commandButton value="#{bundle.common_search}" styleClass="ibutton" style="background:#F8F3D3;"
             action="#{updatePaymentViewHandler.loadMembersByCriteria}" reRender="MEMBER_LINES"
