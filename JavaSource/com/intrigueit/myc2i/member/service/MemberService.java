@@ -43,4 +43,5 @@ public interface MemberService {
 	
 	public boolean isMembershipExpired(Long memberId, int expiryDateLimit);
 	
+	public List<Member> findUnVerifiedMember();
 }
