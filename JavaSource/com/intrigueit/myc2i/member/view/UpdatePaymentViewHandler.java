@@ -93,7 +93,8 @@ public class UpdatePaymentViewHandler extends BasePage implements Serializable {
 	public void loadAllMembers() {   
     try {
       logger.debug(" Load Members ");    
-      List<Member> memberList = memberService.findAll();
+      //List<Member> memberList = memberService.findAll();
+      List<Member> memberList = memberService.findUnVerifiedMember();
       getMemberLines().setWrappedData(memberList);
     }catch (Exception ex) {
       logger.error("Unable to load Members:"+ex.getMessage());
@@ -105,7 +106,12 @@ public class UpdatePaymentViewHandler extends BasePage implements Serializable {
     try {
       logger.debug(" Load Members by search critariya ");    
       SearchBean value = getSearchBean();
-      System.out.println(value.getRecordId());
+      if (searchBean.getExtraProps() != null
+				&& !searchBean.getExtraProps().equals("true")) {
+			searchBean.setExtraProps("memberId in (select distinct(memberId) from PayPalLog where verifyStatus is null)");
+      } else {
+    	  searchBean.setExtraProps("");  
+      }
       List<Member> memberList = memberService.findByProperties(value);
       getMemberLines().setWrappedData(memberList);
     }catch (Exception ex) {
@@ -188,7 +194,13 @@ public class UpdatePaymentViewHandler extends BasePage implements Serializable {
         cal.setTime(nextMemberExpDate);
         cal.add(Calendar.YEAR,1);
         this.currentMember.setMemberShipExpiryDate(cal.getTime());
+        this.lastPayPalLog.setVerifyStatus("Y"); 
         memberService.update(this.currentMember);
+        payPalLogService.update(lastPayPalLog);
+        if (searchBean.getExtraProps() != null
+				&& !searchBean.getExtraProps().equals("true")) {
+        	this.loadAllMembers();
+        }
       }
     } catch (Exception e) {
       setErrorMessage(this.getText("common_system_error"));
