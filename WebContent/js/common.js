@@ -14,6 +14,15 @@ var orginalText = ""
 var isCheck = true;
 var searchBoxObj = "";
 
+onConfirm = function (){
+  var ok = confirm("Are you sure you want to delete this record.");
+  if( ok ) {
+    forceBlockUI(ajaxProcessMsg);
+  } else {
+    return "return false;";
+  }
+}
+
 function showTutorial(URL) {
 	var leftVal = (screen.width - 800) / 2;
 	var topVal = (screen.height - 650) / 2;
