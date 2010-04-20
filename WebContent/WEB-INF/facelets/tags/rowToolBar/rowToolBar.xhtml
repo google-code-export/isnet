@@ -11,6 +11,11 @@
     <c:if test="${not empty editTitle}">
       <c:set var="titleEdit" value="${editTitle}" />
     </c:if>      
+    
+    <c:set var="jsConfirm" value="forceBlockUI(ajaxProcessMsg);" />
+    <c:if test="${not empty confirmDialog}">
+      <c:set var="jsConfirm" value="eval(onConfirm())" />
+    </c:if>
       
     <h:panelGroup>
       <h:panelGroup>
@@ -26,7 +31,7 @@
         </a4j:commandLink>
       </h:panelGroup>
       <h:panelGroup rendered="${aDeleteRecord ne ''}">
-        <a4j:commandLink  rendered="true" onclick="forceBlockUI(ajaxProcessMsg);"
+        <a4j:commandLink  rendered="true" onclick="${jsConfirm}"
             action="#{refManageBean[aDeleteRecord]}"
             oncomplete="forceUnblockUI();" reRender="${sectionId},idErrorPanel" styleClass="menu_item_clink">
             <f:param name="recordId" value="${recordId}"/>
