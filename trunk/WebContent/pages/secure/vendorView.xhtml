@@ -70,7 +70,7 @@
          <rich:column style="text-align:center;vertical-align:middle;">
            <rowBar:rowToolBar recordId="#{vendor.vendorId}"
            sectionId="VENDOR_LINES" modalPanelId="idVendorEdit" parentComp="secVENDOR_LINES"
-           aUpdateRecord="preUpdateVendor" aDeleteRecord="deleteVendor"/>
+           aUpdateRecord="preUpdateVendor" aDeleteRecord="deleteVendor" confirmDialog="Y"/>
          </rich:column>
         </rich:dataTable>
         <rich:datascroller id="idDataScroller" align="center"  for="idVendorLines" maxPages="7" />
