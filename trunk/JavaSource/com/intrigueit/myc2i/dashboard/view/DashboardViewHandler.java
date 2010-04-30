@@ -33,9 +33,14 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 	private String mostVotedStory;
 	
 	/** Wining story */
-	private String winningStory;
+	//private String winningStory;
+	private Long winningViewPointId;
+	private String viewPointWinner;
+	private String winningViewPointPreview;
+	
 	private Long winningStoryId;
-	private String winner;
+	private String storyWinner;
+	private String winningStoryPreview;
 	
 	/** Top ten stories */
 	private List<MemberStory> topTenStories;
@@ -71,7 +76,7 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 	private String logId;
 	private String action;
 	
-	private String winningStoryPreview;
+	
 	
 
 	/** Send release email to protege */
@@ -387,23 +392,26 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 	 * 
 	 */
 	public DashboardViewHandler() {
-		//this.mostVotedStory = "Quoting a witness from \"Balkh\", in his famous work entitled \"Kafi\", the celebrated scholar \"Kulayni\" relates the following";
-		//this.winningStory = "Quoting a witness from \"Balkh\", in his famous work entitled \"Kafi\", the celebrated scholar \"Kulayni\" relates the following ";
-		//this.winner = "Winner: Ahmmed Ibne Jafer";
+
 	}
 	private void loadWinningStroy(){
 		try{
-			String type = "MENTOR";
-			if(this.getMember().getTypeId().equals(CommonConstants.PROTEGE)){
-				type = "PROTEGE";
-			}
-			MemberStory winStory = this.storyService.getWiningStory(type);
+
+			MemberStory winStory = this.storyService.getWiningStory(CommonConstants.STORY_MENTOR);
+			MemberStory winViewPoint = this.storyService.getWiningStory(CommonConstants.STORY_PROTEGE);
+			
 			if(winStory != null){
-				this.winningStory = winStory.getStoryTitle();
-				this.winner = "Winner: "+ winStory.getMember().getFirstName() +" "+ winStory.getMember().getLastName();
+
+				this.storyWinner = "Winner: "+ winStory.getMember().getFirstName() +" "+ winStory.getMember().getLastName();
 				this.setWinningStoryId(winStory.getMemberStoryId());
 				int length = winStory.getMemberStoryDescription().length()/3;
 				this.winningStoryPreview = winStory.getMemberStoryDescription().substring(0, length);
+			}
+			if(winViewPoint != null){
+				this.viewPointWinner = "Winner: "+ winViewPoint.getMember().getFirstName() +" "+ winViewPoint.getMember().getLastName();
+				this.setWinningViewPointId(winViewPoint.getMemberStoryId());
+				int length = winViewPoint.getMemberStoryDescription().length()/3;
+				this.winningViewPointPreview = winViewPoint.getMemberStoryDescription().substring(0, length);				
 			}
 		}
 		catch(Exception ex){
@@ -418,13 +426,6 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 		this.mostVotedStory = mostVotedStory;
 	}
 
-	public String getWinningStory() {
-		return winningStory;
-	}
-
-	public void setWinningStory(String winningStory) {
-		this.winningStory = winningStory;
-	}	
 	
 	/**
    * @return the winningStoryId
@@ -566,15 +567,6 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 		this.idleMentors = idleMentors;
 	}
 
-	public String getWinner() {
-    this.loadWinningStroy();
-	  return winner;
-	}
-
-	public void setWinner(String winner) {
-		this.winner = winner;
-	}
-
 	public String getNote() {
 		return note;
 	}
@@ -701,6 +693,39 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 
 	public void setWinningStoryPreview(String winningStoryPreview) {
 		this.winningStoryPreview = winningStoryPreview;
+	}
+
+	public Long getWinningViewPointId() {
+		return winningViewPointId;
+	}
+
+	public void setWinningViewPointId(Long winningViewPointId) {
+		this.winningViewPointId = winningViewPointId;
+	}
+
+	public String getViewPointWinner() {
+		return viewPointWinner;
+	}
+
+	public void setViewPointWinner(String viewPointWinner) {
+		this.viewPointWinner = viewPointWinner;
+	}
+
+	public String getWinningViewPointPreview() {
+		return winningViewPointPreview;
+	}
+
+	public void setWinningViewPointPreview(String winningViewPointPreview) {
+		this.winningViewPointPreview = winningViewPointPreview;
+	}
+
+	public String getStoryWinner() {
+		this.loadWinningStroy();
+		return storyWinner;
+	}
+
+	public void setStoryWinner(String storyWinner) {
+		this.storyWinner = storyWinner;
 	}
 
 
