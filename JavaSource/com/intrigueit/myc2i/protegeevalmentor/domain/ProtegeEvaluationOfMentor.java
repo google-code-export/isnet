@@ -10,9 +10,14 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+
+import com.intrigueit.myc2i.member.domain.Member;
 
 /**
  * This class represent the MyC2i ProtegeEvaluationOfMentor entity
@@ -40,7 +45,7 @@ public class ProtegeEvaluationOfMentor implements java.io.Serializable {
 	private Long mentorMemberId;
 	
 	@Column(name = "PROTEGE_MEMBER_ID")
-  private Long protegeMemberId;
+	private Long protegeMemberId;
 	
 	@Column(name = "EVAL_DATE")
 	private Date evalDate;
@@ -83,6 +88,17 @@ public class ProtegeEvaluationOfMentor implements java.io.Serializable {
 	
 	@Column(name = "EVAL_FACTOR_TOTAL_RATING_NUM")
   private Long evalFactorTotalRatingNum;
+	
+
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "MENTOR_MEMBER_ID", nullable = false, insertable = false, updatable = false)
+	private Member mentor;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "PROTEGE_MEMBER_ID", nullable = false, insertable = false, updatable = false)
+	private Member protege;
+
 
   /**
    * @return the protegeEvalOfMentorId
@@ -321,5 +337,21 @@ public class ProtegeEvaluationOfMentor implements java.io.Serializable {
   public void setEvalFactorTotalRatingNum(Long evalFactorTotalRatingNum) {
     this.evalFactorTotalRatingNum = evalFactorTotalRatingNum;
   }
+
+public Member getMentor() {
+	return mentor;
+}
+
+public void setMentor(Member mentor) {
+	this.mentor = mentor;
+}
+
+public Member getProtege() {
+	return protege;
+}
+
+public void setProtege(Member protege) {
+	this.protege = protege;
+}
 	
 }
