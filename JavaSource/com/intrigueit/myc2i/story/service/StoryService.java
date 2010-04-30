@@ -19,11 +19,11 @@ public interface StoryService {
 	
 	public List<MemberStory> findMyAllStories(Long memberId);
 	
-	public List<MemberStory> findTopTenStories(String type,int range);
+	public List<MemberStory> findTopTenStories(int range);
 	
 	public MemberStory getWiningStory(String type);
 	
-	public List<MemberStory> findMostVotedAndLatestStories(String type,int range);
+	public List<MemberStory> findMostVotedAndLatestStories(int range);
 	
 	public List<MemberStory> findUnpublishProtegeStories(Date date);
 	
