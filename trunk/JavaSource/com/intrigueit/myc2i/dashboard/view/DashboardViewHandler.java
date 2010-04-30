@@ -70,6 +70,9 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 	private String note;
 	private String logId;
 	private String action;
+	
+	private String winningStoryPreview;
+	
 
 	/** Send release email to protege */
 	private void sendConfirmationEmail(String email,String msgBody,String emailSubject)throws Exception{
@@ -398,7 +401,9 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 			if(winStory != null){
 				this.winningStory = winStory.getStoryTitle();
 				this.winner = "Winner: "+ winStory.getMember().getFirstName() +" "+ winStory.getMember().getLastName();
-				this.setWinningStoryId(winStory.getMemberStoryId());				
+				this.setWinningStoryId(winStory.getMemberStoryId());
+				int length = winStory.getMemberStoryDescription().length()/3;
+				this.winningStoryPreview = winStory.getMemberStoryDescription().substring(0, length);
 			}
 		}
 		catch(Exception ex){
@@ -437,15 +442,12 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 
   public List<MemberStory> getTopTenStories() {
 		try{
-			String type = "MENTOR";
-			if(this.getMember().getTypeId().equals(CommonConstants.PROTEGE)){
-				type = "PROTEGE";
-			}			
+		
 			UserDefinedValues dayFrom = this.udService.getUDValue("udValuesCategory", "STORY_RANGE");
 			
 			int range = CommonValidator.isEmpty(dayFrom.getUdValuesValue())? 7 : Integer.parseInt(dayFrom.getUdValuesValue());
 						
-			this.topTenStories = this.storyService.findTopTenStories(type,range);
+			this.topTenStories = this.storyService.findTopTenStories(range);
 		}
 		catch(Exception ex){
 			log.error(ex.getMessage());
@@ -691,6 +693,14 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 	public void setMentorPendingLeadMentorRequests(
 			List<MemberLog> mentorPendingLeadMentorRequests) {
 		this.mentorPendingLeadMentorRequests = mentorPendingLeadMentorRequests;
+	}
+
+	public String getWinningStoryPreview() {
+		return winningStoryPreview;
+	}
+
+	public void setWinningStoryPreview(String winningStoryPreview) {
+		this.winningStoryPreview = winningStoryPreview;
 	}
 
 
