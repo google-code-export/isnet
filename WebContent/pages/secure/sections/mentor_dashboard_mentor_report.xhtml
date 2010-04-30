@@ -173,7 +173,7 @@
 
 		         <h:outputLink style="font-weight:bolder;"  value="#{controllerBean.contextPath}/pages/secure/mentorEvaluationReview.faces">
 		           <h:outputText value=" #{bundle.member_dashboard_feedback}"/>
-		           <a4j:actionparam name="MEMBER_ID" value="#{report.mentor.memberId}"  />
+		           <a4j:actionparam name="MENTOR_ID" value="#{report.mentor.memberId}"  />
 		         </h:outputLink>
 		         
 		         <h:outputLink style="font-weight:bolder;"  value="#{controllerBean.contextPath}/pages/secure/mentorLogReview.faces">
@@ -218,12 +218,12 @@
 
 				         <h:outputLink style="font-weight:bolder;"  value="#{controllerBean.contextPath}/pages/secure/mentorEvaluationReview.faces">
 				           <h:outputText value=" #{bundle.member_dashboard_feedback}"/>
-				           <a4j:actionparam name="MEMBER_ID" value="#{report.mentor.memberId}"  />
+				           <a4j:actionparam name="PROTEGE_ID" value="#{protege.memberId}"  />
 				         </h:outputLink>
 				         
 				         <h:outputLink style="font-weight:bolder;"  value="#{controllerBean.contextPath}/pages/secure/mentorLogReview.faces">
 				         <h:outputText value=" #{bundle.member_dashboard_activity}"/>
-				           <a4j:actionparam name="MEMBER_ID" value="#{report.mentor.memberId}"  />
+				           <a4j:actionparam name="MEMBER_ID" value="#{protege.memberId}"  />
 				         </h:outputLink>						
 
 						
@@ -234,8 +234,8 @@
 			</rich:dataTable>
 
 		</rich:panel>
-		
-		<rich:panel style="width:'auto';margin-top: 0px;"
+		<!-- 
+		<rich:panel style="width:'auto';margin-top: 0px;" rendered="false"
 			headerClass="container_gold_header" bodyClass="container_body_style">
 			<f:facet name="header">
 				<h:outputText value="#{bundle.dashboard_protege_no_activity}" />
@@ -288,7 +288,7 @@
 				
 				</rich:dataTable>
 		</rich:panel>		
-		
+		-->
 	</h:panelGrid>
 
 </ui:composition>
