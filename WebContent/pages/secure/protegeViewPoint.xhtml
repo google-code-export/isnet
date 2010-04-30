@@ -5,8 +5,6 @@
 	 xmlns:h="http://java.sun.com/jsf/html"
 	 xmlns:f="http://java.sun.com/jsf/core"
 	 xmlns:a4j="http://richfaces.org/a4j"
-   xmlns:rowBar="http://www.myc2i.com/jsf/rowToolBar"
-   xmlns:ccmp="http://www.myc2i.com/jsf/commoncmp"
  	 xmlns:c="http://java.sun.com/jstl/core"
  	 xmlns:rich="http://richfaces.org/rich">
 
@@ -27,7 +25,7 @@
           <table border="0" cellspacing="0" cellpadding="0" width="98%">
            <tr>
             <td align="right">
-		      <a4j:commandLink styleClass="table_control_normal_style" action="#{storyViewHandler.initializeDialog}" reRender="idprotegeStoryDialog"  oncomplete="Richfaces.showModalPanel('idprotegeStoryDialog')">
+		      <a4j:commandLink rendered="#{storyViewHandler.completedTutorial}" styleClass="table_control_normal_style" action="#{storyViewHandler.initializeDialog}" reRender="idprotegeStoryDialog"  oncomplete="Richfaces.showModalPanel('idprotegeStoryDialog')">
 		           	<a4j:actionparam name="storyId" value="-1"  />
 				    <a4j:actionparam name="action" value="ADD"  />
 		           	<h:graphicImage value="/images/new.png" align="middle" border="0" />	
@@ -36,7 +34,15 @@
 				     </rich:toolTip>	
 				     <rich:spacer width="3"/>
 				     <h:outputText value="Create new viewpoint" border="0" />			            	
-				</a4j:commandLink>			
+				</a4j:commandLink>
+		      <a4j:commandLink rendered="#{!storyViewHandler.completedTutorial}" styleClass="table_control_normal_style" >
+		           	<h:graphicImage value="/images/new.png" align="middle" border="0" />	
+		          		 <rich:toolTip styleClass="tooltips_style"  >
+				          <span class="tooltips_span_style">Please complete tutorial to submit viewpoint<br/></span>
+				     </rich:toolTip>	
+				     <rich:spacer width="3"/>
+				     <h:outputText value="Create new viewpoint" border="0" />			            	
+				</a4j:commandLink>								
             </td>
            </tr>
           </table>
