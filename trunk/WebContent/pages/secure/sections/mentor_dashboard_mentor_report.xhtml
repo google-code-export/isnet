@@ -128,7 +128,7 @@
 			<f:facet name="header">
 				<h:outputText value="#{bundle.dashboard_mentor_reporting}" />
 			</f:facet>
-			<rich:dataTable id="idReportGrid"
+			<rich:dataTable id="idReportGrid" headerClass="col_1,col_1"  columnClasses="col_1,col_1"
 				rowClasses="dashboard_report_row_odd,dashboard_report_row_even"
 				cellpadding="0" cellspacing="0" width="100%" border="0" var="report"
 				value="#{dashboardViewHandler.mentorReport}">
@@ -140,52 +140,49 @@
 						<rich:column styleClass="dashboard_report_mentor_header">
 							<h:outputText value="#{bundle.member_last_name}" />
 						</rich:column>
-						<rich:column styleClass="dashboard_report_mentor_header">
-							<h:outputText value="#{bundle.member_certification}" />
-						</rich:column>
+
 						<rich:column styleClass="dashboard_report_mentor_header">
 							<h:outputText value="#{bundle.member_cert_valid}" />
 						</rich:column>
 						<rich:column styleClass="dashboard_report_mentor_header">
-							<h:outputText value="#{bundle.member_dashboard_log}" />
+							<h:outputText value="" />
+						</rich:column>						
+						<rich:column styleClass="dashboard_report_mentor_header">
+							<h:outputText value="#{bundle.member_dashboard_review_all}" />
 						</rich:column>
 					</rich:columnGroup>
 				</f:facet>
 				<h:column>
 					<h:outputText value="#{report.mentor.firstName}" />
 				</h:column>
-				<h:column>
+				<h:column >
 					<h:outputText value="#{report.mentor.lastName}" />
-				</h:column>
-				<h:column>
-					<h:outputText value="#{report.mentor.certificationDate}">
-						<f:convertDateTime dateStyle="default" pattern="#{bundle.short_date_pattern}" />
-					</h:outputText>
 				</h:column>
 				<h:column>
 					<h:outputText value="#{report.mentor.memberShipExpiryDate}">
 						<f:convertDateTime dateStyle="default" pattern="#{bundle.short_date_pattern}" />
 					</h:outputText>
-				</h:column>
+				</h:column>				
 				<h:column>
-				<!-- 
-		         		 <a4j:commandLink value="Log"  reRender="idmemberActivityLogDetailDialog"  oncomplete="Richfaces.showModalPanel('idmemberActivityLogDetailDialog')">
-				             <a4j:actionparam name="MEMBER_ID" value="#{report.mentor.memberId}"  />
-				             <a4j:actionparam name="action" value="VIEW"  />
-		            		 <rich:toolTip styleClass="tooltips_style"  >
-						          <span class="tooltips_span_style">
-						              Show Recent Activity of Member<br/>
-						          </span>
-						     </rich:toolTip>	
-						</a4j:commandLink>
-						 -->
+					<h:outputText value="">
+						
+					</h:outputText>
+				</h:column>
+
+				<h:column>
+
+		         <h:outputLink style="font-weight:bolder;"  value="#{controllerBean.contextPath}/pages/secure/mentorEvaluationReview.faces">
+		           <h:outputText value=" #{bundle.member_dashboard_feedback}"/>
+		           <a4j:actionparam name="MEMBER_ID" value="#{report.mentor.memberId}"  />
+		         </h:outputLink>
+		         
 		         <h:outputLink style="font-weight:bolder;"  value="#{controllerBean.contextPath}/pages/secure/mentorLogReview.faces">
-		           <h:outputText value=" Log"/>
+		         <h:outputText value=" #{bundle.member_dashboard_activity}"/>
 		           <a4j:actionparam name="MEMBER_ID" value="#{report.mentor.memberId}"  />
 		         </h:outputLink>						
 											
 				</h:column>
-				<rich:subTable rowClasses="odd-row,even-row" var="protege"
+				<rich:subTable rowClasses="odd-row,even-row" var="protege" headerClass="col_1,col_1,col_1,col_1,col_1"
 					value="#{report.proteges}">
 					<rich:column rowspan="1">
 						<f:facet name="header">
@@ -193,19 +190,19 @@
 						</f:facet>
 						<h:outputText value=""></h:outputText>
 					</rich:column>
-					<rich:column>
+					<rich:column styleClass="col_1">
 						<f:facet name="header">
 							<h:outputText value="#{bundle.dashboard_protege_first_name}" />
 						</f:facet>
 						<h:outputText value="#{protege.firstName}"></h:outputText>
 					</rich:column>
-					<rich:column>
+					<rich:column styleClass="col_1">
 						<f:facet name="header">
 							<h:outputText value="#{bundle.dashboard_protege_last_name}" />
 						</f:facet>
 						<h:outputText value="#{protege.lastName}"></h:outputText>
 					</rich:column>
-					<rich:column>
+					<rich:column styleClass="col_1" >
 						<f:facet name="header">
 							<h:outputText value="#{bundle.dashboard_protege_mentor_last_activity}" />
 						</f:facet>
@@ -213,19 +210,22 @@
 							<f:convertDateTime dateStyle="default" pattern="#{bundle.short_date_pattern}" />
 						</h:outputText>
 					</rich:column>
-					<rich:column>
+					<rich:column styleClass="col_1">
 						<f:facet name="header">
-							<h:outputText value="#{bundle.dashboard_protege_mentor_review}" />
+							<h:outputText value="Review Individual" />
 						</f:facet>
-		         		 <a4j:commandLink value="Review" reRender="idmemberInfoDialog" action="#{protegeProfileViewHandler.loadMember}" oncomplete="Richfaces.showModalPanel('idmemberInfoDialog')">
-				             <a4j:actionparam name="MEMBER_ID" value="#{protege.memberId}"  />
-				             <a4j:actionparam name="action" value="VIEW"  />
-		            		 <rich:toolTip styleClass="tooltips_style"  >
-						          <span class="tooltips_span_style">
-						              View profile<br/>
-						          </span>
-						     </rich:toolTip>	
-						</a4j:commandLink>
+
+
+				         <h:outputLink style="font-weight:bolder;"  value="#{controllerBean.contextPath}/pages/secure/mentorEvaluationReview.faces">
+				           <h:outputText value=" #{bundle.member_dashboard_feedback}"/>
+				           <a4j:actionparam name="MEMBER_ID" value="#{report.mentor.memberId}"  />
+				         </h:outputLink>
+				         
+				         <h:outputLink style="font-weight:bolder;"  value="#{controllerBean.contextPath}/pages/secure/mentorLogReview.faces">
+				         <h:outputText value=" #{bundle.member_dashboard_activity}"/>
+				           <a4j:actionparam name="MEMBER_ID" value="#{report.mentor.memberId}"  />
+				         </h:outputLink>						
+
 						
 					</rich:column>
 
