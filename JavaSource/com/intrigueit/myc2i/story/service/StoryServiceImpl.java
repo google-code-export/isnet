@@ -54,12 +54,10 @@ public class StoryServiceImpl implements StoryService{
 	}
 
 	@Override
-	public List<MemberStory> findTopTenStories(String type,int range) {
-		//String clause = " where lower(t.approvedForPublishInd)=?1 and t.category=?2 and t.weekWinnerIndicator IS NULL ORDER BY t.numberOfVotesReceived DESC ";
-		//return this.stroyDao.loadTopResultsByConditions(10, clause, new Object[]{"yes",type});
+	public List<MemberStory> findTopTenStories(int range) {
 		Date date = this.getWeekFirstDay(range);
-		String clause = " where lower(t.approvedForPublishInd)=?1 and t.category=?2 and t.approvalDate > ?3 ORDER BY t.numberOfVotesReceived DESC";
-		List<MemberStory> stories  = this.stroyDao.loadTopResultsByConditions(10, clause, new Object[]{"yes",type,date});
+		String clause = " where lower(t.approvedForPublishInd)=?1 and t.approvalDate > ?2 ORDER BY t.numberOfVotesReceived DESC";
+		List<MemberStory> stories  = this.stroyDao.loadTopResultsByConditions(10, clause, new Object[]{"yes",date});
 		return stories;
 	}
 
@@ -87,10 +85,10 @@ public class StoryServiceImpl implements StoryService{
 		return cal.getTime();
 	}
 	@Override
-	public List<MemberStory> findMostVotedAndLatestStories(String type,int range) {
+	public List<MemberStory> findMostVotedAndLatestStories(int range) {
 		Date date = this.getWeekFirstDay(range);
-		String clause = " where lower(t.approvedForPublishInd)=?1 and t.category=?2 and t.approvalDate > ?3 ORDER BY t.approvalDate DESC ";
-		List<MemberStory> stories  = this.stroyDao.loadTopResultsByConditions(500, clause, new Object[]{"yes",type,date});
+		String clause = " where lower(t.approvedForPublishInd)=?1 and t.approvalDate > ?2 ORDER BY t.approvalDate DESC ";
+		List<MemberStory> stories  = this.stroyDao.loadTopResultsByConditions(500, clause, new Object[]{"yes",date});
 		return stories;
 	}
 
