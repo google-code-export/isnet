@@ -97,7 +97,7 @@
 			             <f:facet name="header">
 			               <h:outputText value="Action" />
 			             </f:facet>
-		         		 <a4j:commandLink  onclick="forceBlockUI(ajaxProcessMsg);"   oncomplete="forceUnblockUI();" value="#{bundle.button_label_release_mentor}"  reRender="idCurrentMentorPanel" action="#{protegeProfileViewHandler.releaseMentor}" >
+		         		 <a4j:commandLink  onclick="forceBlockUI(ajaxProcessMsg);"   oncomplete="forceUnblockUI();" value="#{bundle.button_label_release_mentor}"  reRender="idCurrentMentorPanel,idPreviousMentorPanel" action="#{protegeProfileViewHandler.releaseMentor}" >
 				             <a4j:actionparam name="MEMBER_ID" value="#{member.memberId}"  />
 		            		 <rich:toolTip styleClass="tooltips_style"  >
 						          <span class="tooltips_span_style">
