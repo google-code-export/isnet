@@ -15,6 +15,9 @@ import com.intrigueit.myc2i.common.view.BasePage;
 import com.intrigueit.myc2i.common.view.CommonValidator;
 import com.intrigueit.myc2i.story.domain.MemberStory;
 import com.intrigueit.myc2i.story.service.StoryService;
+import com.intrigueit.myc2i.tutorialtest.domain.TestResult;
+import com.intrigueit.myc2i.tutorialtest.domain.TestResultDetails;
+import com.intrigueit.myc2i.tutorialtest.service.TestResultService;
 import com.intrigueit.myc2i.udvalues.domain.UserDefinedValues;
 import com.intrigueit.myc2i.udvalues.service.UDValuesService;
 
@@ -53,6 +56,9 @@ public class StoryViewHandler extends BasePage implements Serializable{
 	
 	private int currStoryIndex;
 	
+	private boolean completedTutorial;
+	
+	private TestResultService testResultService;
 	
 
 	@Autowired
@@ -366,6 +372,31 @@ public class StoryViewHandler extends BasePage implements Serializable{
 	}
 	public void setHasError(Boolean hasError) {
 		this.hasError = hasError;
+	}
+
+	public boolean isCompletedTutorial() {
+		try{
+			TestResult test = this.testResultService.loadUserModuleResult(this.getMember().getMemberId(),9L);
+			if(test == null){
+				this.completedTutorial = false;
+			}else{
+				this.completedTutorial = true;
+			}
+			
+		}
+		catch(Exception ex){
+			ex.printStackTrace();
+		}
+		return completedTutorial;
+	}
+
+	public void setCompletedTutorial(boolean completedTutorial) {
+		this.completedTutorial = completedTutorial;
+	}
+
+	@Autowired
+	public void setTestResultService(TestResultService testResultService) {
+		this.testResultService = testResultService;
 	}
 
 }
