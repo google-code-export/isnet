@@ -34,12 +34,14 @@
 			</h:dataTable>			
 		</rich:panel>
 		
-		<!-- Top ten stories -->
+		<!-- Winning stories -->
 		<rich:panel style="width:'auto';margin-top: 3px;" headerClass="container_gold_header"  bodyClass="container_body_style" >
 		  <f:facet name="header"><h:outputText value="#{bundle.dashboard_mentor_winning_story}" /></f:facet>
 		  
 			<h:outputText value="#{dashboardViewHandler.winner}" /><br/>
-			<a4j:commandLink value="#{dashboardViewHandler.winningStory}" action="#{storyViewHandler.initializeDialog}"  
+			<h:outputText value="Story:" /><br/>
+			<h:outputText value="#{dashboardViewHandler.winningStoryPreview}" /><br/>
+			<a4j:commandLink value="Show full story..." action="#{storyViewHandler.initializeDialog}"  
         reRender="idStoryDialog"  oncomplete="Richfaces.showModalPanel('idStoryDialog')">
        
        <a4j:actionparam name="storyId" value="#{dashboardViewHandler.winningStoryId}"  />
