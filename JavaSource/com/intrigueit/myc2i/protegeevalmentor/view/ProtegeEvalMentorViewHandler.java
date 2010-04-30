@@ -196,16 +196,18 @@ public class ProtegeEvalMentorViewHandler extends BasePage implements
 	}
 
 	public ArrayList<ProtegeEvaluationOfMentor> getEvaluations() {
-		String memberId = this.getRequest().getParameter("MEMBER_ID");
-		if(memberId == null){
-			return null;
-		}		
+		String mentorId = this.getRequest().getParameter("MENTOR_ID");
+		String protegeId = this.getRequest().getParameter("PROTEGE_ID");
+		
 		try{
 			
-			evaluations =  (ArrayList<ProtegeEvaluationOfMentor>) this.protegeEvalMentorService.findByProperty("mentorMemberId", Long.parseLong(memberId));
-/*			if(this.evaluations == null){
-				this.evaluations = new ArrayList<ProtegeEvaluationOfMentor>();
-			}*/
+			if(mentorId != null && !mentorId.equals("")){
+				evaluations =  (ArrayList<ProtegeEvaluationOfMentor>) this.protegeEvalMentorService.findByProperty("mentorMemberId", Long.parseLong(mentorId));
+			}
+			if(protegeId != null && !protegeId.equals("")){
+				evaluations =  (ArrayList<ProtegeEvaluationOfMentor>) this.protegeEvalMentorService.findByProperty("protegeMemberId", Long.parseLong(protegeId));
+			}
+
 		}
 		catch(Exception ex){
 			log.error(ex.getMessage());
