@@ -1,0 +1,76 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:a4j="http://richfaces.org/a4j"
+   xmlns:rich="http://richfaces.org/rich">
+<ui:composition>
+
+    <h:panelGroup id="idSectionsCon">
+      <rich:spacer width="100%" height="5"/>
+
+      <rich:spacer width="100%" height="10"/>
+
+		<rich:panel headerClass="container_box_panel_header"  bodyClass="container_body_style">
+
+				<rich:dataTable  width="100%" id="idDataGrid" rowClasses=",container_even_row_style" rows="10"  headerClass="table_column_style"
+			                value="#{proEvalManViewHandler.evaluations}" var="feeback" cellpadding="0" cellspacing="0">
+		            <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="Protege Name"/>
+			             </f:facet>
+				 			<h:outputText value="#{feeback.protege.firstName} #{feeback.protege.lastName}" />
+		             </rich:column>	
+		            <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="Courteous"/>
+			             </f:facet>
+				 			<ui:include src="ratingContent.xhtml" >
+				 				 <ui:param name="factor" value="#{feeback.evalFactorOneRatingNum}"></ui:param>
+				 			</ui:include>
+		             </rich:column>			
+		            <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="Knowledgeable"/>
+			             </f:facet>
+				 			<ui:include src="ratingContent.xhtml" >
+				 				 <ui:param name="factor" value="#{feeback.evalFactorTwoRatingNum}"></ui:param>
+				 			</ui:include>
+		             </rich:column>	
+		            <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="Respectful of privacy"/>
+			             </f:facet>
+				 			<ui:include src="ratingContent.xhtml" >
+				 				 <ui:param name="factor" value="#{feeback.evalFactorThreeRatingNum}"></ui:param>
+				 			</ui:include>
+		             </rich:column>	
+		            <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="Recommend to others"/>
+			             </f:facet>
+				 			<ui:include src="ratingContent.xhtml" >
+				 				 <ui:param name="factor" value="#{feeback.evalFactorFourRatingNum}"></ui:param>
+				 			</ui:include>
+		             </rich:column>		
+		            <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="Invited me to Mentor's home"/>
+			             </f:facet>
+				 			<ui:include src="ratingContent.xhtml" >
+				 				 <ui:param name="factor" value="#{feeback.evalFactorFiveRatingNum}"></ui:param>
+				 			</ui:include>
+				 			
+		             </rich:column>		             
+
+			      </rich:dataTable>		
+		        <rich:datascroller id="idDataScroller" align="center"  for="idDataGrid" maxPages="5" />
+                              
+         
+        </rich:panel>
+	    
+
+    </h:panelGroup>    
+
+</ui:composition>
+</html>
