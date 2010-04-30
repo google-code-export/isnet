@@ -74,17 +74,24 @@
 				 			<f:convertDateTime dateStyle="default" pattern="#{bundle.long_date_pattern}"/>
 				 			</h:outputText>
 		             </rich:column>
-		             <rich:column >
-			             <f:facet name="header">
-			               <h:outputText value="#{bundle.activity_log_body}"/>
-			             </f:facet>
-				 			<h:outputText escape="false" value="#{log.memberLogEntryDescription}" />
-		             </rich:column>	 
+
 		             <rich:column>
 			             <f:facet name="header">
 			               <h:outputText value="#{bundle.common_label_action}"/>
-			             </f:facet>		             
-						<rich:spacer width="5"/>
+			             </f:facet>	
+
+		         		 <a4j:commandLink  reRender="idDataGrid,idDataScroller,idmemberLogViewDialog"   action="#{memberLogViewHandler.initMemberLogViewDialog}" oncomplete="Richfaces.showModalPanel('idmemberLogViewDialog')" >
+				              <a4j:actionparam name="LOG_ID" value="#{log.memberLogId}"  />
+				            <a4j:actionparam name="action" value="VIEW"  />
+			            	<h:graphicImage value="/images/combo_box_search.gif" align="middle" border="0" > 
+			            	</h:graphicImage>	
+		            		 <rich:toolTip styleClass="tooltips_style"  >
+						          <span class="tooltips_span_style">
+						              View this log<br/>
+						          </span>
+						     </rich:toolTip>	
+						</a4j:commandLink>				             	             
+						<rich:spacer width="15"/>
 		         		 <a4j:commandLink  reRender="idDataGrid,idDataScroller" action="#{memberLogViewHandler.deleteMemberLog}" >
 				            <a4j:actionparam name="recordId" value="#{log.memberLogId}"  />
 				            <a4j:actionparam name="action" value="DELETE"  />
@@ -141,17 +148,24 @@
 				 			<f:convertDateTime dateStyle="default" pattern="#{bundle.long_date_pattern}"/>
 				 			</h:outputText>
 		             </rich:column>
-		             <rich:column >
-			             <f:facet name="header">
-			               <h:outputText value="#{bundle.activity_log_body}"/>
-			             </f:facet>
-				 			<h:outputText escape="false" value="#{log.memberLogEntryDescription}" />
-		             </rich:column>	
+
+
 		             <rich:column>
 			             <f:facet name="header">
 			               <h:outputText value="#{bundle.common_label_action}"/>
-			             </f:facet>		             
-						<rich:spacer width="5"/>
+			             </f:facet>		           
+		         		 <a4j:commandLink  reRender="idDataGrid,idDataScroller,idmemberLogViewDialog"   action="#{memberLogViewHandler.initMemberLogViewDialog}" oncomplete="Richfaces.showModalPanel('idmemberLogViewDialog')" >
+				              <a4j:actionparam name="LOG_ID" value="#{log.memberLogId}"  />
+				            <a4j:actionparam name="action" value="VIEW"  />
+			            	<h:graphicImage value="/images/combo_box_search.gif" align="middle" border="0" > 
+			            	</h:graphicImage>	
+		            		 <rich:toolTip styleClass="tooltips_style"  >
+						          <span class="tooltips_span_style">
+						              View this log<br/>
+						          </span>
+						     </rich:toolTip>	
+						</a4j:commandLink>				               
+						<rich:spacer width="15"/>
 		         		 <a4j:commandLink  reRender="idDataGridOldLog,idDataScrollerOldLog" action="#{memberLogViewHandler.deleteMemberLog}" >
 				            <a4j:actionparam name="recordId" value="#{log.memberLogId}"  />
 				            <a4j:actionparam name="action" value="DELETE"  />
@@ -174,8 +188,8 @@
   
   <ui:define name="modalPanels">
     <a4j:region>
-      <ui:include src="../modals/memberLogDialog.xhtml">
-      </ui:include>
+      <ui:include src="../modals/memberLogDialog.xhtml"></ui:include>
+      <ui:include src="../modals/memberLogViewDialog.xhtml" ></ui:include>
     </a4j:region>
   </ui:define>
 </ui:composition>
