@@ -37,23 +37,37 @@
 		<!-- Winning stories -->
 		<rich:panel style="width:'auto';margin-top: 3px;" headerClass="container_gold_header"  bodyClass="container_body_style" >
 		  <f:facet name="header"><h:outputText value="#{bundle.dashboard_mentor_winning_story}" /></f:facet>
-		  
-			<h:outputText value="#{dashboardViewHandler.winner}" /><br/>
-			<h:outputText value="Story:" /><br/>
+			<h:outputText value="#{dashboardViewHandler.storyWinner}" /><br/>
 			<h:outputText value="#{dashboardViewHandler.winningStoryPreview}" /><br/>
+			
 			<a4j:commandLink value="Show full story..." action="#{storyViewHandler.initializeDialog}"  
-        reRender="idStoryDialog"  oncomplete="Richfaces.showModalPanel('idStoryDialog')">
-       
-       <a4j:actionparam name="storyId" value="#{dashboardViewHandler.winningStoryId}"  />
-       <a4j:actionparam name="action" value="VIEW"/>
-       
-       <rich:toolTip styleClass="tooltips_style">
-          <span class="tooltips_span_style">
-            View wining story details<br/>
-          </span>
-        </rich:toolTip>  
-      </a4j:commandLink>
+		        reRender="idStoryDialog"  oncomplete="Richfaces.showModalPanel('idStoryDialog')">
+		       <a4j:actionparam name="storyId" value="#{dashboardViewHandler.winningStoryId}"  />
+		       <a4j:actionparam name="action" value="VIEW"/>
+		       <rich:toolTip styleClass="tooltips_style">
+		          <span class="tooltips_span_style">
+		            View wining story details<br/>
+		          </span>
+		        </rich:toolTip>  
+	      	</a4j:commandLink>
 		</rich:panel>
+		
+		<!-- Winning stories -->
+		<rich:panel style="width:'auto';margin-top: 3px;" headerClass="container_gold_header"  bodyClass="container_body_style" >
+		  <f:facet name="header"><h:outputText value="Winning viewpoint" /></f:facet>
+			<h:outputText value="#{dashboardViewHandler.viewPointWinner}" /><br/>
+			<h:outputText value="#{dashboardViewHandler.winningViewPointPreview}" /><br/>
+			<a4j:commandLink value="Show full viewPoint..." action="#{storyViewHandler.initializeDialog}"  
+		        reRender="idStoryDialog"  oncomplete="Richfaces.showModalPanel('idStoryDialog')">
+		       <a4j:actionparam name="storyId" value="#{dashboardViewHandler.winningViewPointId}"  />
+		       <a4j:actionparam name="action" value="VIEW"/>
+		       <rich:toolTip styleClass="tooltips_style">
+		          <span class="tooltips_span_style">
+		            View wining viewpoint details<br/>
+		          </span>
+		        </rich:toolTip>  
+	      	</a4j:commandLink>
+		</rich:panel>		
 		
 		<!-- Mentor success stories -->
 		<rich:panel style="width:'auto';margin-top: 3px;" headerClass="container_gold_header"  bodyClass="container_body_style" >
