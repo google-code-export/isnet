@@ -248,6 +248,9 @@
 		text-align: right;
 
 	}
+	.col_left{
+		text-align: left;
+	}
 	.login_box_input{
 	  width: 100px;
 	}
@@ -282,7 +285,7 @@
 	vertical-align: top;
 }
 .dashboard_report_mentor_header{
-	text-align: left;
+
 	background-color: #EFE8D1;
 }
 .dashboard_report_mentor_sub_header{
