@@ -92,16 +92,19 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 		}
 		
 	}
-	private void populateMentorReports(Member leadMentor){
+	private void populateMentorReports(Member currentMentor){
 		this.mentorReport = new ArrayList<MemberReport>();
-		
-		List<Member> members = this.memberService.getMentorProtege(leadMentor.getMemberId());
+				
+		List<Member> members = this.memberService.getMentorProtege(currentMentor.getMemberId());
 		for(Member mem: members){
 			MemberReport report = new MemberReport();
-			report.setMentor(mem);
-			List<Member> proteges = this.memberService.getMentorProtege(mem.getMemberId());
-			report.setProteges(proteges);
-			this.mentorReport.add(report);
+			if(mem.getTypeId().equals(CommonConstants.MENTOR)){
+				report.setMentor(mem);
+				List<Member> proteges = this.memberService.getMentorProtege(mem.getMemberId());
+				report.setProteges(proteges);
+				this.mentorReport.add(report);				
+			}
+			
 		}
 	}
 	private void populateProtegeMentorReports(Member leadMentor){
