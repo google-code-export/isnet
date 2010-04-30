@@ -214,14 +214,14 @@ public class MemberLogServiceImpl implements MemberLogService{
 	
 	@Override
 	public List<MemberLog> getAllMentorReleaseLog(Long memberId,Long logTypeId) {
-		String clause = " t.memberActivityType = ?1 and t.toMemberId=?2";
+		String clause = " t.memberActivityType = ?1 and t.fromMemberId=?2";
 		return memberLogDao.loadByClause(clause, new Object[]{logTypeId,memberId});
 	}
 
 
 	@Override
 	public List<MemberLog> getAllProtegeReleaseLog(Long memberId,Long logTypeId) {
-		String clause = " t.memberActivityType = ?1 and t.fromMemberId=?2";
+		String clause = " t.memberActivityType = ?1 and t.toMemberId=?2";
 		return memberLogDao.loadByClause(clause, new Object[]{logTypeId,memberId});
 	}
 
