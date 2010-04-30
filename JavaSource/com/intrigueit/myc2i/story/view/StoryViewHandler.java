@@ -154,17 +154,12 @@ public class StoryViewHandler extends BasePage implements Serializable{
 	private void loadVoteStoryList(){
 
 		try{
-			String type = this.getMember().getTypeId().toString();
-			if(type.equals(CommonConstants.PROTEGE.toString())){
-				type = CommonConstants.STORY_PROTEGE;
-			}else{
-				type = CommonConstants.STORY_MENTOR;
-			}
+
 			UserDefinedValues dayFrom = this.udService.getUDValue("udValuesCategory", "STORY_RANGE");
 			
 			int range = CommonValidator.isEmpty(dayFrom.getUdValuesValue())? 7 : Integer.parseInt(dayFrom.getUdValuesValue());
 			
-			this.voteStoryList = this.storyService.findMostVotedAndLatestStories(type,range);
+			this.voteStoryList = this.storyService.findMostVotedAndLatestStories(range);
 
 		}
 		catch(Exception ex){
