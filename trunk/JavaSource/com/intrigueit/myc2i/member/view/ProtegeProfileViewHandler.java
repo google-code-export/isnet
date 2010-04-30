@@ -118,7 +118,7 @@ public class ProtegeProfileViewHandler extends BasePage{
 	}
 
 	private UserDefinedValues getMyProtegeActivityUserDefinedValue(){
-		List<UserDefinedValues> types = udService.findByProperty("udValuesValue", CommonConstants.ACTIVITY_TYPE_PROTEGE_RELEASE);
+		List<UserDefinedValues> types = udService.findByProperty("udValuesValue", CommonConstants.ACTIVITY_TYPE_MENTOR_RELEASE);
 		for(UserDefinedValues val: types){			
 			if(val.getUdValuesCategory().equals(CommonConstants.ACTIVITY_LOG_PROTEGE)){
 				return val;
@@ -127,7 +127,7 @@ public class ProtegeProfileViewHandler extends BasePage{
 		return null;
 	}
 	private UserDefinedValues getMyMentorActivityUserDefinedValue(){
-		List<UserDefinedValues> types = udService.findByProperty("udValuesValue", CommonConstants.ACTIVITY_TYPE_MENTOR_RELEASE);
+		List<UserDefinedValues> types = udService.findByProperty("udValuesValue", CommonConstants.ACTIVITY_TYPE_PROTEGE_RELEASE);
 		for(UserDefinedValues val: types){			
 			if(val.getUdValuesCategory().equals(CommonConstants.ACTIVITY_LOG_MENTOR)){
 				return val;
@@ -139,7 +139,7 @@ public class ProtegeProfileViewHandler extends BasePage{
 	private MemberLog createMentorReleaseLog(Member mentor){
 		try{
 			
-			Long mentorReleaseTypeId = getMyMentorActivityUserDefinedValue().getUdValuesId();
+			Long mentorReleaseTypeId = getMyProtegeActivityUserDefinedValue().getUdValuesId();
 					
 			MemberLog log = new MemberLog();
 			log.setFromMemberId(this.getMember().getMemberId());
@@ -198,7 +198,7 @@ public class ProtegeProfileViewHandler extends BasePage{
 	}
 	private MemberLog createProtegeReleaseLog(Member protege){
 		try {			
-			Long protegeReleaseTypeId = getMyProtegeActivityUserDefinedValue().getUdValuesId();
+			Long protegeReleaseTypeId = getMyMentorActivityUserDefinedValue().getUdValuesId();
 			MemberLog log = new MemberLog();
 			log.setFromMemberId(this.getMember().getMemberId());
 			log.setToMemberId(protege.getMemberId());
@@ -300,20 +300,26 @@ public class ProtegeProfileViewHandler extends BasePage{
 	private List<String> getMentorsId(){
 		List<String> ids = new ArrayList<String>();
 		try{
-			Long protegeReleaseTypeId = this.udService.getUDValue("udValuesValue", CommonConstants.ACTIVITY_TYPE_PROTEGE_RELEASE).getUdValuesId();
-			//Long mentorReleaseTypeId = this.udService.getUDValue("udValuesValue", CommonConstants.ACTIVITY_TYPE_MENTOR_RELEASE).getUdValuesId();
+
+			String typ1Ids = "select t from "+ UserDefinedValues.class.getName() +" t where upper(t.udValuesValue)='"+CommonConstants.ACTIVITY_TYPE_MENTOR_RELEASE.toUpperCase()+"' and upper(t.udValuesCategory)='"+ CommonConstants.ACTIVITY_LOG_PROTEGE+"'";
 			
-			String typIds = "select t from "+ UserDefinedValues.class.getName() +" t where upper(t.udValuesValue)='"+CommonConstants.ACTIVITY_TYPE_MENTOR_RELEASE.toUpperCase()+"' and upper(t.udValuesCategory)='"+ CommonConstants.ACTIVITY_LOG_MENTOR+"'";
 			
-			Long mentorReleaseTypeId = this.udService.getUDValues(typIds).get(0).getUdValuesId();
+			String typ2Ids = "select t from "+ UserDefinedValues.class.getName() +" t where upper(t.udValuesValue)='"+CommonConstants.ACTIVITY_TYPE_PROTEGE_RELEASE.toUpperCase()+"' and upper(t.udValuesCategory)='"+ CommonConstants.ACTIVITY_LOG_MENTOR+"'";
+			
+			Long mentorReleaseTypeId = this.udService.getUDValues(typ1Ids).get(0).getUdValuesId();
+			
+			Long protegeReleaseTypeId = this.udService.getUDValues(typ2Ids).get(0).getUdValuesId();
 			
 			List<MemberLog> logs1 = this.logService.getAllProtegeReleaseLog(this.getMember().getMemberId(),protegeReleaseTypeId);
+			
+			//Log where Log from is protege and to is mentor and mentor release log
 			List<MemberLog> logs2 = this.logService.getAllMentorReleaseLog(this.getMember().getMemberId(),mentorReleaseTypeId);
+			
 			for(MemberLog log : logs1){
-				ids.add(log.getToMemberId().toString());
+				ids.add(log.getFromMemberId().toString());
 			}
 			for(MemberLog log: logs2){
-				ids.add(log.getFromMemberId().toString());
+				ids.add(log.getToMemberId().toString());
 			}
 			
 		}
