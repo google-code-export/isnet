@@ -48,11 +48,6 @@
           <h:outputText value="#{bundle.member_last_name}"/>
           <h:inputText id="idLastName" styleClass="medium_text" value="#{searchBean.lastName}"/>
           
-          <h:outputText value="#{bundle.member_state}"/>
-          <h:selectOneMenu id="idState" value="#{searchBean.state}" styleClass="form_input_text_medium"> 
-           <f:selectItems value="#{updatePaymentViewHandler.statesList}"/>             
-         </h:selectOneMenu>
-          
           <h:outputText value="#{bundle.member_city}"/>
           <h:inputText id="idCity" styleClass="name" value="#{searchBean.city}"/>
           
@@ -67,7 +62,7 @@
           <h:outputText value=""/>
           <a4j:commandButton value="#{bundle.common_search}" styleClass="ibutton" style="background:#F8F3D3;"
             action="#{updatePaymentViewHandler.loadMembersByCriteria}" reRender="MEMBER_LINES"
-            onclick="forceSBlockUI(ajaxProcessMsg);" oncomplete="forceSUnblockUI();"/>
+            onclick="forceBlockUI(ajaxProcessMsg);" oncomplete="forceUnblockUI();"/>
               
         </h:panelGrid>
       </h:panelGroup>
@@ -90,10 +85,7 @@
               </rich:column>
               <rich:column width="45px" style="text-align:left;" valign="top">
                 <h:outputText value="#{bundle.member_city}" />
-              </rich:column>
-              <rich:column width="25px" style="text-align:left;" valign="top">
-                <h:outputText value="#{bundle.member_state}" />
-              </rich:column>
+              </rich:column>              
               <rich:column width="25px" style="text-align:left;" valign="top">
                 <h:outputText value="#{bundle.member_zip}" />
               </rich:column>
