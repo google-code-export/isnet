@@ -60,7 +60,7 @@
           <h:outputText value=""/>
           <a4j:commandButton value="#{bundle.protege_search}" styleClass="ibutton" style="background:#F8F3D3;"
             action="#{protegeViewHandler.loadProtegesByCriteria}" reRender="PROTEGE_LINES"
-            onclick="forceSBlockUI(ajaxProcessMsg);" oncomplete="forceSUnblockUI();"/>
+            onclick="forceBlockUI(ajaxProcessMsg);" oncomplete="forceUnblockUI();"/>
               
         </h:panelGrid>
       </h:panelGroup>
@@ -83,10 +83,7 @@
               </rich:column>
               <rich:column width="45px" style="text-align:left;" valign="top">
                 <h:outputText value="#{bundle.member_city}" />
-              </rich:column>
-              <rich:column width="45px" style="text-align:left;" valign="top">
-                <h:outputText value="#{bundle.member_state}" />
-              </rich:column>
+              </rich:column>              
               <rich:column width="45px" style="text-align:left;" valign="top">
                 <h:outputText value="#{bundle.member_zip}" />
               </rich:column>
@@ -109,10 +106,7 @@
          </rich:column>
          <rich:column>
            <h:outputText value="#{protege.city}" />
-         </rich:column>
-         <rich:column>
-           <h:outputText value="#{protege.stateUDV.udValuesValue}" />
-         </rich:column>
+         </rich:column>         
          <rich:column>
            <h:outputText value="#{protege.zip}" />
          </rich:column>

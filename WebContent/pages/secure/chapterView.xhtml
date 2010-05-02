@@ -53,7 +53,7 @@
          <h:outputText value=""/>
           <a4j:commandButton value="#{bundle.chapter_search}" styleClass="ibutton" style="background:#F8F3D3;"
             action="#{chapterViewHandler.loadChapterByCriteria}" reRender="CHAPTER_LINES"
-            onclick="forceSBlockUI(ajaxProcessMsg);" oncomplete="forceSUnblockUI();"/>
+            onclick="forceBlockUI(ajaxProcessMsg);" oncomplete="forceUnblockUI();"/>
         </h:panelGrid>       
       </h:panelGroup>
               
@@ -76,16 +76,10 @@
               </rich:column>
               <rich:column width="40px" style="text-align:left;" valign="top">
                 <h:outputText value="#{bundle.chapter_city}" />
-              </rich:column>
-              <rich:column width="40px" style="text-align:left;" valign="top">
-                <h:outputText value="#{bundle.chapter_state}" />
-              </rich:column>
+              </rich:column>              
               <rich:column width="40px" style="text-align:left;" valign="top">
                 <h:outputText value="#{bundle.chapter_zip}" />
-              </rich:column>
-              <rich:column width="40px" style="text-align:left;" valign="top">
-                <h:outputText value="#{bundle.chapter_country}" />
-              </rich:column>
+              </rich:column>              
               <rich:column width="35px" style="text-align:left;" valign="top">
                 <h:outputText value="#{bundle.chapter_phone}" />
               </rich:column>              
@@ -102,15 +96,9 @@
          </rich:column>
          <rich:column>
            <h:outputText value="#{chapter.chapterCity}" />
-         </rich:column>
-         <rich:column>
-           <h:outputText value="#{chapter.stateUDV.udValuesValue}" />
-         </rich:column>
-         <rich:column>
-           <h:outputText value="#{chapter.chapterZip}" />
          </rich:column>         
          <rich:column>
-           <h:outputText value="#{chapter.countryUDV.udValuesValue}" />
+           <h:outputText value="#{chapter.chapterZip}" />
          </rich:column>
          <rich:column>
            <h:outputText value="#{chapter.chapterPhone}" />
