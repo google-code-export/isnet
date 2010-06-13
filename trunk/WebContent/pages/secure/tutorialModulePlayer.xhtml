@@ -83,6 +83,16 @@
         if ( lastBtn ) lastBtn.disabled = false;
       }                  
     </script>
+	<script language = "javascript">
+	function refreshparent()
+	{
+		if(!window.opener.location)
+		window.opener.location = self;
+		window.opener.location.reload();
+		window.close();
+	}
+	</script>
+
 	</head>
 
   <body bgcolor="#ffffff">
@@ -266,7 +276,7 @@
     				</td>
             
             <td>
-              <h:commandButton id="idClose" value="Close" onclick="javascript:window.close();" type="ibutton"
+              <h:commandButton id="idClose" value="Close" onclick="javascript:refreshparent();" type="ibutton"
                 styleClass="ibutton" rendered="#{!modulePlayer.notEndPlay}" title="Close tutorial">
               </h:commandButton>        
             </td>
