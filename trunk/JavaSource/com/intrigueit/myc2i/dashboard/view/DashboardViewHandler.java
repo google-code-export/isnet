@@ -60,8 +60,7 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 	private List<UserDefinedValues> islamicTerms;
 	private List<UserDefinedValues> importantLinks;
 	
-	private List<Member> mentorsAraoundProtege;
-	
+
 	/** Services ref */
 	private StoryService storyService;
 	private MemberLogService logService;
