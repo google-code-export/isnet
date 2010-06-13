@@ -75,6 +75,9 @@ public class MemberSearchViewHandler extends BasePage {
 			else if(searchType.equals("MENTOR")){
 				clause = " t.typeId ="+ CommonConstants.MENTOR +"";
 			}
+			
+			String currentMemberGender = this.getMember().getGenderInd();
+			clause = clause + " and t.genderInd='"+ currentMemberGender + "'"; 
 			String conditions = null;
 			
 			String zipcode = this.getValidZipCode();
