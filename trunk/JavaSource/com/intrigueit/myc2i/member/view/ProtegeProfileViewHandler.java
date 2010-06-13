@@ -53,6 +53,10 @@ public class ProtegeProfileViewHandler extends BasePage{
 	private void loadMentorAroundMe(){
 		String clause = null;
 		clause = " t.typeId ="+CommonConstants.MENTOR+"";
+		
+		String currentMemberGender = this.getMember().getGenderInd();
+		clause = clause + " and t.genderInd='"+ currentMemberGender + "'"; 
+		
 		try{
 			List<String> zipCodes = this.getZipCodes();
 			if(zipCodes.size() > 0){
