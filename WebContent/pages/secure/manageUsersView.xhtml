@@ -96,7 +96,9 @@
               <rich:column width="45px" style="text-align:left;" valign="top">
                 <h:outputText value="#{bundle.member_city}" />
               </rich:column>
-
+              <rich:column width="25px" style="text-align:left;" valign="top">
+                <h:outputText value="#{bundle.member_state}" />
+              </rich:column>
               <rich:column width="25px" style="text-align:left;" valign="top">
                 <h:outputText value="#{bundle.member_zip}" />
               </rich:column>
@@ -122,7 +124,10 @@
          </rich:column>
          <rich:column>
            <h:outputText value="#{member.city}" />
-         </rich:column>         
+         </rich:column>
+         <rich:column>
+           <h:outputText value="#{member.stateUDV.udValuesValue}" />
+         </rich:column>        
          <rich:column>
            <h:outputText value="#{member.zip}" />
          </rich:column>
