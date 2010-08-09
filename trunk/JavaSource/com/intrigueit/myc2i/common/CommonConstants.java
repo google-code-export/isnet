@@ -50,4 +50,6 @@ public class CommonConstants {
     public static final String PREVIOUS = "PREVIOUS";
     public static final String NEXT = "NEXT";
     public static final String LAST = "LAST";
+    
+    public static final String BACK_TO_LOGIN = "TO_LOGIN";
 }
