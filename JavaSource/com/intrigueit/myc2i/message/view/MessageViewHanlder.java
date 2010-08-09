@@ -6,10 +6,9 @@
  */
 package com.intrigueit.myc2i.message.view;
 
-import java.sql.Timestamp;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +20,7 @@ import com.intrigueit.myc2i.member.domain.Member;
 import com.intrigueit.myc2i.member.service.MemberService;
 import com.intrigueit.myc2i.message.domain.Message;
 import com.intrigueit.myc2i.message.domain.MessageConstant;
+import com.intrigueit.myc2i.message.domain.MessageConstant.MessageReadingStatus;
 import com.intrigueit.myc2i.message.service.MessageService;
 
 
@@ -51,6 +51,20 @@ public class MessageViewHanlder extends BasePage{
 	/** Error message */
 	private String errMessage;
 	
+	/** List of messages to view in a grid */
+	private List<Message> messages;
+	
+	
+	/** Load the list of all messages */
+	private void loadMessages(){
+		try{
+			this.messages = messageService.getConversation(this.getMember().getMemberId());
+			
+		}
+		catch(Exception ex){
+			ex.printStackTrace();
+		}
+	}
 	public void initMessageDialog(){
 		this.currentMessage = new Message();
 
@@ -69,6 +83,7 @@ public class MessageViewHanlder extends BasePage{
 			this.currentMessage.setReceiver(receivers);
 			this.currentMessage.setStatus(MessageConstant.MESSAGE_STATUS);
 			this.currentMessage.setCreatedTime(new Date());
+			this.currentMessage.setReadStatus(MessageReadingStatus.UNREAD.toString());
 			
 			this.addAuditField();
 			
@@ -111,6 +126,15 @@ public class MessageViewHanlder extends BasePage{
 	@Autowired
 	public void setMemberService(MemberService memberService) {
 		this.memberService = memberService;
+	}
+	public synchronized List<Message> getMessages() {
+		if(this.messages == null){
+			this.loadMessages();
+		}
+		return messages;
+	}
+	public void setMessages(List<Message> messages) {
+		this.messages = messages;
 	}
 	
 	
