@@ -81,6 +81,10 @@ public class Message implements java.io.Serializable {
 	@Column(name = "STATUS", nullable = false, length=10)
 	private String status;
 	
+	/** Message reading status */
+	@Column( name = "READ_STATUS", nullable= false, length=10)
+	private String readStatus;
+	
 	/** Record creator */
 	@Column(name = "RECORD_CREATOR_ID", nullable = true, length=100)
 	private String recordCreator;
@@ -210,6 +214,16 @@ public class Message implements java.io.Serializable {
 
 	public void setSenderId(Long senderId) {
 		this.senderId = senderId;
+	}
+
+
+	public String getReadStatus() {
+		return readStatus;
+	}
+
+
+	public void setReadStatus(String readStatus) {
+		this.readStatus = readStatus;
 	}
 
 
