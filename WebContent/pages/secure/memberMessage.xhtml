@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	 xmlns:ui="http://java.sun.com/jsf/facelets"
+	 xmlns:h="http://java.sun.com/jsf/html"
+	 xmlns:f="http://java.sun.com/jsf/core"
+	 xmlns:a4j="http://richfaces.org/a4j"
+   	 xmlns:rowBar="http://www.myc2i.com/jsf/rowToolBar"
+   	 xmlns:ccmp="http://www.myc2i.com/jsf/commoncmp"
+ 	 xmlns:c="http://java.sun.com/jstl/core"
+ 	 xmlns:rich="http://richfaces.org/rich">
+
+	 <ui:composition template="/templates/maintmpl.xhtml">
+	 <ui:param name="moduleTitle" value="#{bundle.page_title_protege_search}"></ui:param>
+	 <ui:param name="userType" value="M"></ui:param>
+	 <ui:param name="moduleType" value="MH"></ui:param>
+	 <ui:param name="headerText" value="Member Messages"></ui:param>
+	 <ui:param name="refManageBean" value="#{udvViewHandler}"></ui:param>
+ <ui:define name="js">
+  	<script type="text/javascript" src="#{controllerBean.contextPath}/js/Modalhelper.js"> </script>    
+ </ui:define>
+ 
+  <ui:define name="body">    
+    <h:panelGroup id="idSectionsCon">
+      <rich:spacer width="100%" height="10"/>
+      <h:panelGroup id="idTopCon">
+          <table border="0" cellspacing="3" cellpadding="0" width="98%">
+           <tr>
+            	<td align="left"> 
+            		<h:outputText  value="#{memberSearchViewHandler.init}" />
+	      		</td>
+	      		<td colspan="5" align="right">
+			      <a4j:commandLink styleClass="table_control_normal_style" action="#{messageHanlder.initMessageDialog}" reRender="idmessageDialog"  oncomplete="Richfaces.showModalPanel('idmessageDialog')">
+			            <a4j:actionparam name="activityId" value="-1"  />
+			           	<h:graphicImage value="/images/new.png" align="middle" border="0" />	
+			          		 <rich:toolTip styleClass="tooltips_style"  >
+					          <span class="tooltips_span_style">#{bundle.member_message_create_new_tool_tips}.<br/></span>
+					     </rich:toolTip>	
+					     <rich:spacer width="3"/>
+					     <h:outputText value="#{bundle.member_message_create_new}" border="0" />			            	
+					</a4j:commandLink>		
+				</td>	
+
+           </tr>           
+          	<tr>
+            	<td align="left" colspan="3"> 
+            		<a4j:commandButton  onclick="forceBlockUI(ajaxProcessMsg);"   oncomplete="forceUnblockUI();" value="#{bundle.button_mark_as_unread}" action="#{memberSearchViewHandler.executeSearch}" >
+						<f:param name="SEARCH_TYPE" value="PROTEGE"/>
+					</a4j:commandButton>
+					 <rich:spacer width="3"/>
+            		<a4j:commandButton  onclick="forceBlockUI(ajaxProcessMsg);"   oncomplete="forceUnblockUI();" value="#{bundle.button_report_spam}" action="#{memberSearchViewHandler.executeSearch}" >
+						<f:param name="SEARCH_TYPE" value="PROTEGE"/>
+					</a4j:commandButton>
+					 <rich:spacer width="3"/>
+            		<a4j:commandButton  onclick="forceBlockUI(ajaxProcessMsg);"   oncomplete="forceUnblockUI();" value="#{bundle.button_delete}" action="#{memberSearchViewHandler.executeSearch}" >
+						<f:param name="SEARCH_TYPE" value="PROTEGE"/>
+					</a4j:commandButton>										
+	      		</td>
+
+				<td colspan="2" align="right">
+            		<a4j:commandButton  onclick="forceBlockUI(ajaxProcessMsg);"   oncomplete="forceUnblockUI();" value="#{bundle.message_button_previous}" action="#{memberSearchViewHandler.executeSearch}" >
+						<f:param name="SEARCH_TYPE" value="PROTEGE"/>
+					</a4j:commandButton>
+					 <rich:spacer width="3"/>
+            		<a4j:commandButton  onclick="forceBlockUI(ajaxProcessMsg);"   oncomplete="forceUnblockUI();" value="#{bundle.message_button_next}" action="#{memberSearchViewHandler.executeSearch}" >
+						<f:param name="SEARCH_TYPE" value="PROTEGE"/>
+					</a4j:commandButton>					
+				 </td>							      
+           </tr>
+           
+          </table>
+          
+      </h:panelGroup>
+      
+      <rich:spacer width="100%" height="20"/>
+		<rich:panel id="idResultPanel" headerClass="container_box_panel_header"  bodyClass="container_body_style" >
+			<f:facet name="header"><h:outputText value="#{bundle.protege_search_result}: #{memberSearchViewHandler.recordCount}" /> </f:facet>
+			<h:panelGrid columns="1" width="100%" cellpadding="0" cellspacing="0" border="0">
+				<rich:dataTable  width="100%" id="idDataGrid"  rowClasses=",container_even_row_style" rows="25" 
+			                value="#{memberSearchViewHandler.members}" var="member" headerClass="table_column_style" cellpadding="0" cellspacing="0">
+		             <rich:column>
+			             <f:facet name="header">
+			                <h:outputText value="#{bundle.protege_search_name}" />
+			             </f:facet>
+			             <h:panelGroup>
+			             	<h:outputText value="#{member.firstName}" /><rich:spacer width="5"/> <h:outputText value="#{member.lastName}" />
+			             </h:panelGroup>
+				 			
+		             </rich:column>
+		             <rich:column>
+			             <f:facet name="header">
+			                 <h:outputText value="#{bundle.member_city}" />
+			             </f:facet>
+						<h:outputText value="#{member.city}" />
+		             </rich:column>	  
+		             <rich:column>
+			             <f:facet name="header">
+			                <h:outputText value="#{bundle.member_state}" />
+			             </f:facet>
+						<h:outputText value="#{member.stateUDV.udValuesDesc}" />
+		             </rich:column>
+		             <rich:column >
+			             <f:facet name="header">
+			               <h:outputText value="#{bundle.member_zip}" />
+			             </f:facet>
+				 		<h:outputText value="#{member.zip}" />	
+		             </rich:column>	  
+		             <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="#{bundle.member_gender}" />
+			             </f:facet>
+						<h:outputText value="#{member.genderInd == 'M'?'Male':'Female'}" />      
+		             </rich:column>	
+		             <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="#{bundle.member_birth_year}" />
+			             </f:facet>
+						<h:outputText value="#{member.birthYear}" />
+		             </rich:column>	
+		             <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="#{bundle.protege_search_profile}" />
+			             </f:facet>
+		         		 <a4j:commandLink  reRender="idmemberInfoDialog" action="#{protegeProfileViewHandler.loadMember}" oncomplete="Richfaces.showModalPanel('idmemberInfoDialog')">
+				             <a4j:actionparam name="MEMBER_ID" value="#{member.memberId}"  />
+				             <a4j:actionparam name="action" value="VIEW"  />
+			            	<h:graphicImage value="/images/member_view.png" align="middle" border="0" > 
+			            	</h:graphicImage>	
+		            		 <rich:toolTip styleClass="tooltips_style"  >
+						          <span class="tooltips_span_style">
+						              #{bundle.button_label_view}<br/>
+						          </span>
+						     </rich:toolTip>	
+						</a4j:commandLink>			             
+		             </rich:column>		
+
+		             <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="#{bundle.protege_search_add_protege}" />
+			             </f:facet>
+		         		 <a4j:commandLink value="#{bundle.button_label_send_request}"  reRender="idmemberLogDialog" action="#{memberLogViewHandler.initMemberLogForMentorRequest2}" oncomplete="Richfaces.showModalPanel('idmemberLogDialog')">
+				             <a4j:actionparam name="MEMBER_ID" value="#{member.memberId}"  />
+				              <a4j:actionparam name="MEMBER_NAME" value="#{member.firstName} #{member.lastName} "  />
+		            		 <rich:toolTip styleClass="tooltips_style"  >
+						          <span class="tooltips_span_style">
+						              #{bundle.button_tooltips_send_mentor_request}<br/>
+						          </span>
+						     </rich:toolTip>	
+						</a4j:commandLink>
+		             </rich:column>			             		             	             		             		             
+		             		                      	   
+			      </rich:dataTable>		
+		        <rich:datascroller id="idDataScroller" align="center"  for="idDataGrid" maxPages="5" />
+			</h:panelGrid>			         
+		</rich:panel>
+		
+    </h:panelGroup>    
+  </ui:define>
+    <ui:define name="modalPanels">
+    <a4j:region>
+      <ui:include src="../modals/memberInfoDialog.xhtml"></ui:include>
+      <ui:include src="../modals/messageDialog.xhtml" ></ui:include>
+    </a4j:region>
+    
+  </ui:define>
+
+</ui:composition>
+</html>
