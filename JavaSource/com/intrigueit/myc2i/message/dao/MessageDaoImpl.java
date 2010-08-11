@@ -32,9 +32,23 @@ public final class MessageDaoImpl  extends GenericDaoImpl<Message, Long> impleme
 	}
 
 	@Override
-	public List<Message> getConversationByReferenceMessage(Long refMessageId) {
-		String clause = " t.refMessageId = ?1 ORDER BY t.createdTime ASC ";
-		List<Message> messages = loadByClause(clause, new Object[] { refMessageId });
+	public List<Message> getConversationByReferenceMessage(Long ownerId,Long refMessageId) {
+		String clause = "t.ownerId = ?1 and t.refMessageId = ?2 ORDER BY t.createdTime ASC ";
+		List<Message> messages = loadByClause(clause, new Object[] {ownerId, refMessageId });
+		return messages;
+	}
+
+	@Override
+	public int deleteMessageById(Long messageId) {
+		String clause = " t.messageId = ?1 ";
+		int rowEffected = deleteByClause(clause, new Object[]{messageId});
+		return rowEffected;
+	}
+
+	@Override
+	public List<Message> getConversationByOwnerId(Long ownerId,String status) {
+		String clause = " t.ownerId = ?1 and t.status = ?2 ORDER BY t.createdTime ASC ";
+		List<Message> messages = loadByClause(clause, new Object[] { ownerId,status });
 		return messages;
 	}
 
