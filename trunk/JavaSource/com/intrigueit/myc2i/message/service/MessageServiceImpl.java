@@ -7,13 +7,17 @@
 package com.intrigueit.myc2i.message.service;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.intrigueit.myc2i.member.domain.Member;
 import com.intrigueit.myc2i.message.dao.MessageDao;
 import com.intrigueit.myc2i.message.domain.Message;
+import com.intrigueit.myc2i.message.domain.MessageConstant.MessageReadingStatus;
+import com.intrigueit.myc2i.message.domain.MessageConstant.MessageStatus;
 
 /**
  * This Class is the Service implementation of MessageService interface
@@ -46,13 +50,26 @@ public final class MessageServiceImpl implements MessageService {
 	}
 
 	@Override
-	public List<Message> getConversationByReferenceMessage(Long refMessageId) {
-		return this.messageDao.getConversationByReferenceMessage(refMessageId);
+	public List<Message> getConversationByReferenceMessage(Long ownerId,Long refMessageId) {
+		return this.messageDao.getConversationByReferenceMessage(ownerId,refMessageId);
 	}
 
 	@Override
 	public void save(Message entity) {
+		/** Save the first copy of this message */
 		this.messageDao.persist(entity);
+		
+		/** Now send the CC to each user */
+		Set<Member> list = entity.getReceiver();
+		for(Member member: list){
+			
+			Message msg = entity.copy();
+			msg.setMessageId(null);
+			msg.setOwnerId(member.getMemberId());
+			msg.setStatus(MessageStatus.RECEIVED.toString());
+			msg.setReadStatus(MessageReadingStatus.UNREAD.toString());
+			this.messageDao.persist(msg);
+		}
 	}
 
 	@Override
@@ -63,6 +80,17 @@ public final class MessageServiceImpl implements MessageService {
 	@Autowired
 	public void setMessageDao(MessageDao messageDao) {
 		this.messageDao = messageDao;
+	}
+
+	@Override
+	public Boolean removeMessage(Long messageId) {
+		int rowEffected = this.messageDao.deleteMessageById(messageId);
+		return rowEffected > 0;
+	}
+
+	@Override
+	public List<Message> getConversationByOwner(Long ownerId,String status) {
+		return this.messageDao.getConversationByOwnerId(ownerId,status);
 	}
 
 }
