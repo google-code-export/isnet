@@ -33,8 +33,8 @@ public final class MessageDaoImpl  extends GenericDaoImpl<Message, Long> impleme
 
 	@Override
 	public List<Message> getConversationByReferenceMessage(Long ownerId,Long refMessageId) {
-		String clause = "t.ownerId = ?1 and t.refMessageId = ?2 ORDER BY t.createdTime ASC ";
-		List<Message> messages = loadByClause(clause, new Object[] {ownerId, refMessageId });
+		String clause = "t.ownerId = ?1 and ( t.refMessageId = ?2 OR t.messageId = ?3) ORDER BY t.createdTime ASC ";
+		List<Message> messages = loadByClause(clause, new Object[] {ownerId, refMessageId, refMessageId });
 		return messages;
 	}
 
