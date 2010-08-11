@@ -24,8 +24,14 @@ public interface MessageDao extends GenericDao<Message,Long>{
 	/** Get the list of all conversation belongs to the member */
 	public List<Message> getConversation(Long senderId);
 	
+	/** Get the list of all conversation belongs to the member */
+	public List<Message> getConversationByOwnerId(Long ownerId,String status);	
+	
 	/** Get the list of all conversion based on reference message */
-	public List<Message> getConversationByReferenceMessage(Long refMessageId);
+	public List<Message> getConversationByReferenceMessage(Long ownerId,Long refMessageId);
+	
+	/** Remove message by message Id */
+	public int deleteMessageById(Long messageId);
 	
 	
 }
