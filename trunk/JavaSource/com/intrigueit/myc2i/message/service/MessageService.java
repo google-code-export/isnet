@@ -34,8 +34,14 @@ public interface MessageService {
 	/** Get the list of all conversation belongs to this sender */
 	public List<Message> getConversation(Long senderId);
 	
+	/** Get the list of all conversation belongs to this sender */
+	public List<Message> getConversationByOwner(Long ownerId, String status);
+	
 	/** Get the list of all conversion based on reference message */
-	public List<Message> getConversationByReferenceMessage(Long refMessageId);
+	public List<Message> getConversationByReferenceMessage(Long ownerId,Long refMessageId);
+	
+	/** Remove message by message Id */
+	public Boolean removeMessage(Long messageId);
 	
 	
 }
