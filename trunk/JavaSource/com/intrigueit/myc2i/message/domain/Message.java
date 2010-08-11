@@ -7,6 +7,7 @@
 package com.intrigueit.myc2i.message.domain;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -21,6 +22,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.intrigueit.myc2i.member.domain.Member;
 
@@ -61,12 +63,16 @@ public class Message implements java.io.Serializable {
 	/** Sender Id */
 	@Column(name = "SENDER_ID", nullable = false)
 	private Long senderId;
-		
+	
+	/**Message owner Id */
+	@Column(name = "OWNER_ID", nullable = false)
+	private Long ownerId;
+			
 	/** Message receivers */
-	@ManyToMany(fetch=FetchType.LAZY,cascade=CascadeType.PERSIST)
-	@JoinTable(name = "MESSAGE_RECEIVER", uniqueConstraints={},
-            joinColumns = {@JoinColumn(name = "MESSAGE_ID", unique=false,updatable= true)},
-            inverseJoinColumns = {@JoinColumn(name = "RECEIVER_MEMBER_ID", unique= false,updatable=true)})
+	@ManyToMany(fetch=FetchType.LAZY,cascade={CascadeType.ALL})
+	@JoinTable(name = "MESSAGE_RECEIVER",
+            joinColumns = {@JoinColumn(name = "MESSAGE_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "RECEIVER_MEMBER_ID")})
 	private Set<Member> receiver;
 	
 	/** Message subject */
@@ -101,10 +107,17 @@ public class Message implements java.io.Serializable {
 	@Column(name = "RECORD_LAST_UPDATED", nullable = true)
 	private Date recordLastUpdatedDate;
 	
-
-
+	/** Message short description to display is grid */
+	@Transient
+	private String shortDescription;
+	
+	/** Message checked flag */
+	@Transient
+	private boolean checked;
+		
 	/** default constructor */
 	public Message() {
+		this.checked = false;
 	}
 	
 
@@ -226,6 +239,67 @@ public class Message implements java.io.Serializable {
 		this.readStatus = readStatus;
 	}
 
+
+	public String getShortDescription() {
+		if(this.body.length() > MessageConstant.MESSAGE_PREVIEW_LENGTH){
+			return this.body.substring(0, MessageConstant.MESSAGE_PREVIEW_LENGTH)+" ...";
+		}
+		return this.body;
+	}
+
+
+	public boolean isChecked() {
+		return checked;
+	}
+
+
+	public void setChecked(boolean checked) {
+		this.checked = checked;
+	}
+
+
+	public void setShortDescription(String shortDescription) {
+		this.shortDescription = shortDescription;
+	}
+
+
+
+
+	
+	public Message copy() {
+		
+		Message message = new Message();
+		message.body = this.body;
+		message.createdTime = this.createdTime;
+		message.messageId = this.messageId;
+		message.ownerId = this.ownerId;
+		message.readStatus = this.readStatus;
+		message.receiver = new HashSet<Member>();
+		for(Member member: this.receiver){
+			message.receiver.add(member);
+		}
+		message.recordCreatedDate = this.recordCreatedDate;
+		message.recordCreator = this.recordCreator;
+		message.recordLastUpdatedDate = this.recordLastUpdatedDate;
+		message.recordLastUpdater = this.recordLastUpdater;
+		message.refMessageId = this.refMessageId;
+		message.sender = this.sender;
+		message.senderId = this.senderId;
+		message.status = this.status;
+		message.subject = this.subject;
+		
+		return message;
+	}
+
+
+	public Long getOwnerId() {
+		return ownerId;
+	}
+
+
+	public void setOwnerId(Long ownerId) {
+		this.ownerId = ownerId;
+	}
 
 
 }
