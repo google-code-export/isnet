@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	 xmlns:ui="http://java.sun.com/jsf/facelets"
+	 xmlns:h="http://java.sun.com/jsf/html"
+	 xmlns:f="http://java.sun.com/jsf/core"
+	 xmlns:a4j="http://richfaces.org/a4j"
+ 	 xmlns:rich="http://richfaces.org/rich">
+
+	 <ui:composition template="/templates/maintmpl.xhtml">
+	 <ui:param name="moduleTitle" value="#{bundle.page_title_protege_search}"></ui:param>
+	 <ui:param name="userType" value="M"></ui:param>
+	 <ui:param name="moduleType" value="MH"></ui:param>
+	 <ui:param name="headerText" value="Member Messages"></ui:param>
+	 <ui:param name="refManageBean" value="#{udvViewHandler}"></ui:param>
+ <ui:define name="js">
+  	<script type="text/javascript" src="#{controllerBean.contextPath}/js/Modalhelper.js"> </script>    
+ </ui:define>
+ 
+  <ui:define name="body">    
+    <h:panelGroup id="idSectionsCon">
+      <rich:spacer width="100%" height="10"/>
+      <h:panelGroup id="idTopCon">
+          <table border="0" cellspacing="0" cellpadding="0" width="100%">
+           <tr>
+            	<td align="left"> 
+            		
+	      		</td>
+	      		<td colspan="5" align="right">
+	
+				</td>	
+
+           </tr>           
+          	<tr bgcolor="#CFCFCF" style="height: 30px;">
+            	<td align="left" colspan="3" > 
+            		<a4j:commandButton style="margin-left: 5px;" onclick="forceBlockUI(ajaxProcessMsg);"   oncomplete="forceUnblockUI();" value="#{bundle.button_mark_as_unread}" action="#{messageHanlder.markAsUnRead}" reRender="idDataGrid" >
+					</a4j:commandButton>
+					 <rich:spacer width="3"/>
+            		<a4j:commandButton rendered="false"  onclick="forceBlockUI(ajaxProcessMsg);"   oncomplete="forceUnblockUI();" value="#{bundle.button_report_spam}" >
+						
+					</a4j:commandButton>
+					 <rich:spacer width="3"/>
+            		<a4j:commandButton  onclick="forceBlockUI(ajaxProcessMsg);"   oncomplete="forceUnblockUI();" value="#{bundle.button_delete}" action="#{messageHanlder.removeAllMessages}" reRender="idDataGrid">
+						<f:param name="SEARCH_TYPE" value="PROTEGE"/>
+					</a4j:commandButton>										
+	      		</td>
+
+				<td colspan="2" align="right">
+            		<a4j:commandButton  onclick="forceBlockUI(ajaxProcessMsg);"   oncomplete="forceUnblockUI();" value="#{bundle.message_button_previous}" action="#{memberSearchViewHandler.executeSearch}" >
+						<f:param name="SEARCH_TYPE" value="PROTEGE"/>
+					</a4j:commandButton>
+					 <rich:spacer width="3"/>
+            		<a4j:commandButton style="margin-right: 5px;" onclick="forceBlockUI(ajaxProcessMsg);"   oncomplete="forceUnblockUI();" value="#{bundle.message_button_next}" action="#{memberSearchViewHandler.executeSearch}" >
+					</a4j:commandButton>					
+				 </td>							      
+           </tr>
+           
+          </table>
+          
+      </h:panelGroup>
+      
+      <rich:spacer width="100%" height="20"/>
+		<rich:panel id="idResultPanel"   bodyClass="container_body_style" >
+			<f:facet name="header"><h:outputText value="Conversation between Alan Mama and You" /> </f:facet>
+			<h:panelGrid columns="1" width="100%" cellpadding="0" cellspacing="0" border="0">
+				<rich:dataTable  width="100%" id="idDataGrid"  rowClasses=",container_even_row_style" rows="25" 
+			                value="#{messageHanlder.relatedMessages}" var="message" headerClass="table_column_style" cellpadding="0" cellspacing="0">
+
+		             <rich:column>
+			             <h:panelGroup>		             	
+
+		         		 <a4j:commandLink value="#{message.sender.firstName} #{message.sender.lastName}" styleClass="#{ (message.readStatus eq 'UNREAD') ? 'title_text' :'title_text_read'}">
+				             <a4j:actionparam name="MESSAGE_ID" value="#{message.messageId}"  />		
+						</a4j:commandLink>      	
+			             	<br/>
+			             	<h:outputText  value="#{message.createdTime}" styleClass="sub_title_text">
+				 				<f:convertDateTime dateStyle="default" pattern="#{bundle.long_date_pattern}"/>
+				 			</h:outputText>
+			             </h:panelGroup>
+				 			
+		             </rich:column>		             
+
+		             
+
+
+
+
+			      </rich:dataTable>		
+		        <rich:datascroller id="idDataScroller" align="center"  for="idDataGrid" maxPages="5" />
+			</h:panelGrid>			         
+		</rich:panel>
+		
+    </h:panelGroup>    
+  </ui:define>
+    <ui:define name="modalPanels">
+    <a4j:region>
+      <ui:include src="../modals/memberInfoDialog.xhtml"></ui:include>
+      <ui:include src="../modals/messageDialog.xhtml" ></ui:include>
+    </a4j:region>
+    
+  </ui:define>
+
+</ui:composition>
+</html>
