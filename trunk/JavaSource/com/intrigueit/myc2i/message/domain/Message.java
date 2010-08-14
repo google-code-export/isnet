@@ -6,8 +6,10 @@
  */
 package com.intrigueit.myc2i.message.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -20,11 +22,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import com.intrigueit.myc2i.member.domain.Member;
+
 
 /**
  * This class represent the MyC2i Message entity
@@ -75,6 +79,9 @@ public class Message implements java.io.Serializable {
             inverseJoinColumns = {@JoinColumn(name = "RECEIVER_MEMBER_ID")})
 	private Set<Member> receiver;
 	
+	@OneToMany(mappedBy="message",targetEntity=MessageAttachment.class,fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	private Set<MessageAttachment> attachments;
+	
 	/** Message subject */
 	@Column(name = "SUBJECT", nullable = false, length=300)
 	private String subject;
@@ -114,6 +121,9 @@ public class Message implements java.io.Serializable {
 	/** Message checked flag */
 	@Transient
 	private boolean checked;
+	
+	@Transient
+	private List<MessageAttachment> tmpAttachments;
 		
 	/** default constructor */
 	public Message() {
@@ -274,10 +284,24 @@ public class Message implements java.io.Serializable {
 		message.messageId = this.messageId;
 		message.ownerId = this.ownerId;
 		message.readStatus = this.readStatus;
+		
+		/** Copy the receivers */
 		message.receiver = new HashSet<Member>();
 		for(Member member: this.receiver){
 			message.receiver.add(member);
 		}
+		
+		/** Copy the message attachment */
+		message.attachments = new HashSet<MessageAttachment>();
+		//message.tmpAttachments = new ArrayList<MessageAttachment>();
+		for(MessageAttachment attach: this.attachments){
+			MessageAttachment tmp = attach.copy();
+			tmp.setMessage(message);
+			tmp.setAttachmentId(null);
+			message.attachments.add(tmp);
+			//message.tmpAttachments.add(tmp);
+		}
+		
 		message.recordCreatedDate = this.recordCreatedDate;
 		message.recordCreator = this.recordCreator;
 		message.recordLastUpdatedDate = this.recordLastUpdatedDate;
@@ -299,6 +323,51 @@ public class Message implements java.io.Serializable {
 
 	public void setOwnerId(Long ownerId) {
 		this.ownerId = ownerId;
+	}
+
+
+	public Set<MessageAttachment> getAttachments() {
+		return attachments;
+	}
+
+
+	public void setAttachments(Set<MessageAttachment> attachments) {
+		this.attachments = attachments;
+	}
+
+
+	public List<MessageAttachment> getTmpAttachments() {
+		
+		if(this.tmpAttachments == null || this.tmpAttachments.size() == 0){
+			if(this.attachments != null){
+				this.tmpAttachments = new ArrayList<MessageAttachment>();
+				for(MessageAttachment file: this.attachments){
+					this.tmpAttachments.add(file);
+				}
+			}
+		}
+		return tmpAttachments;
+	}
+
+
+	public void setTmpAttachments(List<MessageAttachment> tmpAttachments) {
+		this.tmpAttachments = tmpAttachments;
+	}
+
+
+	public boolean isHasAttachment() {
+		if(this.getTmpAttachments() == null || this.tmpAttachments.size() == 0){
+			return false;
+		}
+		return true;
+	}
+
+
+	public boolean isHasMultipleRecipient() {
+		if(this.getReceiver()!= null && this.getReceiver().size() > 1){
+			return true;
+		}
+		return false;
 	}
 
 
