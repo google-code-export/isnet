@@ -6,6 +6,7 @@
  */
 package com.intrigueit.myc2i.message.view;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -19,6 +20,8 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.intrigueit.myc2i.common.view.BasePage;
+
+import com.intrigueit.myc2i.member.domain.KnownMember;
 import com.intrigueit.myc2i.member.domain.Member;
 import com.intrigueit.myc2i.member.service.MemberService;
 import com.intrigueit.myc2i.message.domain.AttachedFile;
@@ -315,10 +318,7 @@ public class MessageViewHanlder extends BasePage {
 			this.currentMessage
 					.setAttachments(new HashSet<MessageAttachment>());
 		}
-/*		if (this.currentMessage.getTmpAttachments() == null) {
-			this.currentMessage
-					.setTmpAttachments(new ArrayList<MessageAttachment>());
-		}*/
+
 		try {
 
 			AttachedFile file = this.getAttachmentHandler().getUploadedFile();
@@ -465,6 +465,20 @@ public class MessageViewHanlder extends BasePage {
 
 	public void setAttachmentHandler(AttachmentUploadHandler attachmentHandler) {
 		this.attachmentHandler = attachmentHandler;
+	}
+	public List<Member> autocompleteMemberName(Object suggest){
+		String pref = (String)suggest;
+		
+		log.debug(pref);
+		
+		List<Member> members = new ArrayList<Member>();
+		Member member = this.memberService.findById(this.getMember().getMemberId());
+		
+		for(KnownMember mem: member.getKnownMembers()){
+			members.add(mem.getFriend());
+		}
+		
+		return members;
 	}
 
 	/*
