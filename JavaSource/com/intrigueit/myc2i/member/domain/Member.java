@@ -7,7 +7,9 @@
 package com.intrigueit.myc2i.member.domain;
 
 import java.util.Date;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,6 +17,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Transient;
 
@@ -56,16 +59,16 @@ public class Member implements java.io.Serializable {
 	@Column(name = "MEMBER_LAST_NAME")
 	private String lastName;
 
-	@Column(name = "MEMBER_STREET_ADDRESS", length = 20)
+	@Column(name = "MEMBER_STREET_ADDRESS", length = 250)
 	private String streetAddress;
 
-	@Column(name = "MEMBER_CITY", length = 20)
+	@Column(name = "MEMBER_CITY", length = 250)
 	private String city;
 
-	@Column(name = "MEMBER_STATE", length = 20)
+	@Column(name = "MEMBER_STATE", length = 250)
 	private String state;
 	
-	@Column(name = "MEMBER_ZIP", precision = 22, scale = 0)
+	@Column(name = "MEMBER_ZIP")
 	private String zip;
 
 	@Column(name = "MEMBER_EMAIL")
@@ -181,6 +184,10 @@ public class Member implements java.io.Serializable {
 	
 	@Column(name = "LAST_ACTIVITY")
 	private Date lastActivity;
+	
+	@OneToMany(mappedBy="srcMember",targetEntity=KnownMember.class,fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	private Set<KnownMember> knownMembers;
+	
 
 	public Long getMemberId() {
 		return memberId;
@@ -613,6 +620,14 @@ public class Member implements java.io.Serializable {
 
 	public void setLastActivity(Date lastActivity) {
 		this.lastActivity = lastActivity;
+	}
+
+	public Set<KnownMember> getKnownMembers() {
+		return knownMembers;
+	}
+
+	public void setKnownMembers(Set<KnownMember> knownMembers) {
+		this.knownMembers = knownMembers;
 	}
 
 }
