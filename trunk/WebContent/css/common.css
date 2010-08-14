@@ -306,3 +306,32 @@
 	color: black;
 	font-size: small;
 }
+
+.title_text{
+	text-align: left;
+	color: blue;
+	font-size: 10 pt;
+	font-weight: bolder;
+}
+.title_text_read{
+	text-align: left;
+	color: gray;
+	font-size: 10 pt;
+	font-weight: bolder;
+}
+.sub_title_text{
+	text-align: left;
+	color: black;
+	font-size: 7 pt;
+}
+.col_1_msg_reply{
+
+	vertical-align: top;
+	text-align: right;
+	padding-right: 5px;
+}
+.col_2_msg_reply{
+
+	vertical-align: top;
+	text-align: left;
+}
