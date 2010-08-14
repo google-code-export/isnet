@@ -481,13 +481,5 @@ public class MessageViewHanlder extends BasePage {
 		return members;
 	}
 
-	/*
-	 * public List<MessageAttachment> getAttachments() { if(this.attachments ==
-	 * null){ this.attachments = new ArrayList<MessageAttachment>(); } return
-	 * attachments; }
-	 * 
-	 * public void setAttachments(List<MessageAttachment> attachments) {
-	 * this.attachments = attachments; }
-	 */
 
 }
