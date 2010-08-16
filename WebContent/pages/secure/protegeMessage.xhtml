@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:rich="http://richfaces.org/rich">
+
+<ui:composition template="/templates/maintmpl.xhtml">
+	<ui:param name="moduleTitle" value="Member Messages"></ui:param>
+	<ui:param name="userType" value="P"></ui:param>
+	<ui:param name="moduleType" value="PM"></ui:param>
+	<ui:param name="headerText" value="Member Messages"></ui:param>
+	<ui:param name="refManageBean" value="#{udvViewHandler}"></ui:param>
+	<ui:define name="js">
+	<script type="text/javascript"
+			src="#{controllerBean.contextPath}/js/Modalhelper.js"> 
+	</script>
+	</ui:define>
+
+	<ui:define name="body">
+		<h:panelGroup id="idSectionsCon">
+			<rich:spacer width="100%" height="3" />
+			<h:panelGroup id="idTopCon">
+				<ui:include src="./sections/messageTopPanel.xhtml" />
+			</h:panelGroup>
+			<rich:spacer width="100%" height="20" />
+			<ui:include src="./sections/messageGrid.xhtml" />
+		</h:panelGroup>
+	</ui:define>
+	
+	<ui:define name="modalPanels">
+		<a4j:region>
+			<ui:include src="../modals/attachFileDialog.xhtml"></ui:include>
+			<ui:include src="../modals/messageDialog.xhtml"></ui:include>
+		</a4j:region>
+
+	</ui:define>
+
+</ui:composition>
+</html>
