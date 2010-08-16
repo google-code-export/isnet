@@ -21,7 +21,7 @@ public class TestResultDetails implements java.io.Serializable{
    */
   private static final long serialVersionUID = -2311910343080435672L;
 
-  @Id
+    @Id
 	@Column(name = "ID")
 	@GeneratedValue(generator = "TutorialTestDetailSeq")
 	@SequenceGenerator(name = "TutorialTestDetailSeq", sequenceName = "TUTORIAL_TEST_DETAILS_ID_SEQ", allocationSize = 1, initialValue = 1)
