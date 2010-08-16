@@ -55,12 +55,12 @@
             		 <rich:spacer width="3"/>
             		<h:outputText value="Select: " /> 
             		<rich:spacer width="3"/>
-			      	<a4j:commandLink action="#{messageHanlder.selectAll}" reRender="idDataGridMsg" onclick="forceBlockUI(ajaxProcessMsg);"   oncomplete="forceUnblockUI();" >
+			      	<a4j:commandLink  onclick="forceBlockUI(ajaxProcessMsg);"   oncomplete="forceUnblockUI();" >
 					     <h:outputText value="All" border="0" />			            	
 					</a4j:commandLink>
 
 					 <rich:spacer width="5"/>
-			      	<a4j:commandLink  action="#{messageHanlder.selectNone}" reRender="idDataGridMsg" onclick="forceBlockUI(ajaxProcessMsg);"   oncomplete="forceUnblockUI();">
+			      	<a4j:commandLink   onclick="forceBlockUI(ajaxProcessMsg);"   oncomplete="forceUnblockUI();">
 					     <h:outputText value="None" border="0" />			            	
 					</a4j:commandLink>									
 	      		</td>
