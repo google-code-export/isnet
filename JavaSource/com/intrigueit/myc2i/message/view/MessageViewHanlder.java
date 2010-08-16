@@ -540,10 +540,17 @@ public class MessageViewHanlder extends BasePage {
 		log.debug(pref);
 		
 		List<Member> members = new ArrayList<Member>();
-		Member member = this.memberService.findById(this.getMember().getMemberId());
+		//Member member = this.memberService.findById(this.getMember().getMemberId());
 		
-		for(KnownMember mem: member.getKnownMembers()){
-			members.add(mem.getFriend());
+		//for(KnownMember mem: member.getKnownMembers()){
+		//	members.add(mem.getFriend());
+		//}
+		try{
+			members = memberService.getMyFriendList(this.getMember().getMemberId());
+			log.debug(" frieds size: "+ members.size());
+		}
+		catch(Exception ex){
+			ex.printStackTrace();
 		}
 		
 		return members;
