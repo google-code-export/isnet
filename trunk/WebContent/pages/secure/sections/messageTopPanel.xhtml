@@ -1,0 +1,84 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:a4j="http://richfaces.org/a4j"
+   xmlns:rich="http://richfaces.org/rich">
+<ui:composition>
+
+          <table border="0" cellspacing="0" cellpadding="0" width="100%">
+           <tr style="height: 25px;" >
+            	<td align="left"> 
+            		<h:outputText  value="" />
+	      		</td>
+	      		<td colspan="5" align="right">
+			      <a4j:commandLink style="margin-right: 5px;"  styleClass="table_control_normal_style" action="#{messageHanlder.initMessageDialog}" reRender="idmessageDialog"  oncomplete="Richfaces.showModalPanel('idmessageDialog')">
+			            <a4j:actionparam name="activityId" value="-1"  />
+			           	<h:graphicImage value="/images/new.png" align="middle" border="0" />	
+			          		 <rich:toolTip styleClass="tooltips_style"  >
+					          <span class="tooltips_span_style">#{bundle.member_message_create_new_tool_tips}.<br/></span>
+					     </rich:toolTip>	
+					     <rich:spacer width="3"/>
+					     <h:outputText value="#{bundle.member_message_create_new}" border="0" />			            	
+					</a4j:commandLink>		
+				</td>	
+
+           </tr>           
+          	<tr bgcolor="#CFCFCF" style="height: 30px;">
+            	<td align="left" colspan="3" > 
+            		 <rich:spacer width="3"/>
+            		<a4j:commandButton onclick="forceBlockUI(ajaxProcessMsg);"   oncomplete="forceUnblockUI();" value="#{bundle.button_mark_as_unread}" action="#{messageHanlder.markAsUnRead}" reRender="idDataGridMsg" >
+					
+					</a4j:commandButton>
+					
+					 <rich:spacer width="3"/>
+            		<a4j:commandButton rendered="false"  onclick="forceBlockUI(ajaxProcessMsg);"   oncomplete="forceUnblockUI();" value="#{bundle.button_report_spam}" >
+						
+					</a4j:commandButton>
+					 <rich:spacer width="3"/>
+            		<a4j:commandButton  onclick="forceBlockUI(ajaxProcessMsg);"   oncomplete="forceUnblockUI();" value="#{bundle.button_delete}" action="#{messageHanlder.removeAllMessages}" reRender="idDataGridMsg">
+
+					</a4j:commandButton>										
+	      		</td>
+
+				<td colspan="2" align="right">
+            		<a4j:commandButton  onclick="forceBlockUI(ajaxProcessMsg);"   oncomplete="forceUnblockUI();" value="#{bundle.message_button_previous}" action="#{memberSearchViewHandler.executeSearch}" >
+						<f:param name="SEARCH_TYPE" value="PROTEGE"/>
+					</a4j:commandButton>
+					 <rich:spacer width="3"/>
+            		<a4j:commandButton style="margin-right: 5px;" onclick="forceBlockUI(ajaxProcessMsg);"   oncomplete="forceUnblockUI();" value="#{bundle.message_button_next}" action="#{memberSearchViewHandler.executeSearch}" >
+					</a4j:commandButton>					
+				 </td>							      
+           </tr>
+          	<tr  style="height: 30px;">
+            	<td align="left" colspan="3" > 
+            		 <rich:spacer width="3"/>
+            		<h:outputText value="Select: " /> 
+            		<rich:spacer width="3"/>
+			      	<a4j:commandLink action="#{messageHanlder.selectAll}" reRender="idDataGridMsg" onclick="forceBlockUI(ajaxProcessMsg);"   oncomplete="forceUnblockUI();" >
+					     <h:outputText value="All" border="0" />			            	
+					</a4j:commandLink>
+
+					 <rich:spacer width="5"/>
+			      	<a4j:commandLink  action="#{messageHanlder.selectNone}" reRender="idDataGridMsg" onclick="forceBlockUI(ajaxProcessMsg);"   oncomplete="forceUnblockUI();">
+					     <h:outputText value="None" border="0" />			            	
+					</a4j:commandLink>									
+	      		</td>
+
+				<td colspan="2" align="right">
+				<h:outputText value="Show: " /> 
+			      	<a4j:commandLink >
+					     <h:outputText value="All" border="0" />			            	
+					</a4j:commandLink>
+
+					 <rich:spacer width="5"/>
+			      	<a4j:commandLink style="margin-right: 5px;" >
+					     <h:outputText value="Unread" border="0" />			            	
+					</a4j:commandLink>	
+							
+				 </td>							      
+           </tr>           
+           
+          </table>
+</ui:composition>
+</html>
