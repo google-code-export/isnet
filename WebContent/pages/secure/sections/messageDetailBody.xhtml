@@ -1,0 +1,92 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:a4j="http://richfaces.org/a4j"
+   xmlns:rich="http://richfaces.org/rich">
+<ui:composition>
+
+<rich:panel id="idResultPanel"   bodyClass="container_body_style" >
+			<f:facet name="header"><h:outputText value="Conversation between #{messageHanlder.msgOtherParticipients} and You" /> </f:facet>
+			<h:panelGrid columns="1" width="100%" cellpadding="0" cellspacing="0" border="0">
+				<rich:dataTable  width="100%" id="idDataGrid"  rowClasses=",container_even_row_style" rows="25" 
+			                value="#{messageHanlder.relatedMessages}" var="message" headerClass="table_column_style" cellpadding="0" cellspacing="0">
+
+		             <rich:column>
+			             <h:panelGroup>		             	
+			         		<a4j:commandLink value="#{message.sender.firstName} #{message.sender.lastName}" styleClass="title_text">	
+							</a4j:commandLink>      	
+			             	<rich:spacer width="8"/>
+			             	<h:outputText  value="#{message.createdTime}" styleClass="sub_title_text">
+				 				<f:convertDateTime dateStyle="default" pattern="#{bundle.long_date_pattern}"/>
+				 			</h:outputText>
+				 			<br/>
+				 			
+							<h:outputText escape="false"  value="#{message.body}" >
+				 				
+				 			</h:outputText>
+				 			<h:panelGroup rendered="#{message.hasAttachment}">
+				 			<br/>
+				 			<br/>
+				 			<h:outputText value="Attachment::" styleClass="title_text"/>
+				 			<br/>
+					      <h:dataTable 
+							                value="#{message.tmpAttachments}" var="attachment"  cellpadding="0" cellspacing="0">
+							<h:column>
+							<h:commandLink value="#{attachment.fileName}" action="#{messageHanlder.downloadAttachedFile}">
+								<f:param name="FILE" value="#{attachment.fileName}"/>
+							</h:commandLink>
+							</h:column>
+		
+						</h:dataTable>
+				 			</h:panelGroup>
+
+						 			
+			             </h:panelGroup>
+				 			
+		             </rich:column>		             
+
+			      </rich:dataTable>		
+			</h:panelGrid>	
+				
+	        <h:panelGrid columns="2" width="90%" cellpadding="0" cellspacing="0" border="0" columnClasses="col_1_msg_reply,column_class_center">
+	        
+	        <h:outputText value="Reply:" />
+
+            <a4j:outputPanel layout="block">
+               <rich:editor id="idBody" width="482" height="170" 
+          		   theme="simple" viewMode="visual"	value="#{messageHanlder.currentMessage.body}" >
+                                
+         			</rich:editor>
+            </a4j:outputPanel>	        
+	        
+	        <h:outputText value="Attachment:" />
+	        <h:panelGrid columns="2" width="100%" columnClasses="column_class_left,column_class_left" cellpadding="0" cellspacing="0" border="0">
+		        <a4j:commandButton  value="Attach File" reRender="idAttachDialog" oncomplete="Richfaces.showModalPanel('idAttachDialog')"/>
+		        <h:panelGroup>
+		        <h:commandButton rendered="#{! messageHanlder.currentMessage.hasMultipleRecipient}"  value="Reply"   action="#{messageHanlder.replyMessage}" />
+		        <h:commandButton  rendered="#{messageHanlder.currentMessage.hasMultipleRecipient}" value="Reply All" action="#{messageHanlder.replyMessage}" />
+		        </h:panelGroup>
+	        </h:panelGrid>
+	         <h:outputText value="" />  
+		      <rich:dataTable  width="100%" id="idAttachmentTable" columnClasses="col_2_msg_reply,col_1_msg_reply" 
+				                value="#{messageHanlder.currentMessage.tmpAttachments}" var="attachment"  cellpadding="0" cellspacing="0">
+				<h:column>
+				<h:commandLink value="#{attachment.fileName}" action="#{messageHanlder.downloadAttachedFile}">
+					<f:param name="FILE" value="#{attachment.fileName}"/>
+				</h:commandLink>
+				</h:column>
+				<h:column>
+				<a4j:commandLink value="Remove" action="#{messageHanlder.removeAttachedFile}" reRender="idAttachmentTable">
+					<f:param name="FILE" value="#{attachment.fileName}"/>
+				</a4j:commandLink>
+				</h:column>			
+			</rich:dataTable>
+
+     
+	        </h:panelGrid>
+
+
+		</rich:panel>
+</ui:composition>
+</html>
