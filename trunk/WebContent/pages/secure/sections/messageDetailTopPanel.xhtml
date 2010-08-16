@@ -1,0 +1,62 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:a4j="http://richfaces.org/a4j"
+   xmlns:rich="http://richfaces.org/rich">
+<ui:composition>
+
+          <table border="0" cellspacing="0" cellpadding="0" width="100%">
+           <tr style="height: 25px;" >
+            	<td align="left"> 
+            		<h:outputText  value="" />
+	      		</td>
+	      		<td colspan="5" align="right">
+			      <a4j:commandLink styleClass="table_control_normal_style" action="#{messageHanlder.initMessageDialog}" reRender="idmessageDialog"  oncomplete="Richfaces.showModalPanel('idmessageDialog')">
+			            <a4j:actionparam name="activityId" value="-1"  />
+			           	<h:graphicImage value="/images/new.png" align="middle" border="0" />	
+			          		 <rich:toolTip styleClass="tooltips_style"  >
+					          <span class="tooltips_span_style">#{bundle.member_message_create_new_tool_tips}.<br/></span>
+					     </rich:toolTip>	
+					     <rich:spacer width="3"/>
+					     <h:outputText value="#{bundle.member_message_create_new}" border="0" />			            	
+					</a4j:commandLink>		
+				</td>	
+
+           </tr>           
+          	<tr bgcolor="#CFCFCF" style="height: 30px;">
+            	<td align="left" colspan="2" > 
+            		<a4j:commandButton style="margin-left: 5px;"  value="Back to Messages" action="BACK_TO_MSG_MAIN_PAGE" >
+            		 <f:param  name="ID" value="#{messageHanlder.currentMessage.refMessageId}" />
+					</a4j:commandButton>           	
+
+					
+            		<a4j:commandButton style="margin-left: 5px;"  value="Mark as UnRead" action="#{messageHanlder.markMessageAsUnRead}"  >
+						 <f:param  name="ID" value="#{messageHanlder.currentMessage.refMessageId}" />
+					</a4j:commandButton>
+
+					
+					 <rich:spacer width="3"/>
+            		<a4j:commandButton rendered="false"   value="#{bundle.button_report_spam}" >
+						
+					</a4j:commandButton>
+					 <rich:spacer width="3"/>
+            		<a4j:commandButton   value="#{bundle.button_delete}" action="#{messageHanlder.deleteMessage}">
+						<f:param  name="ID" value="#{messageHanlder.currentMessage.refMessageId}" />
+					</a4j:commandButton>										
+	      		</td>
+
+				<td colspan="2" align="right">
+            		<a4j:commandButton  onclick="forceBlockUI(ajaxProcessMsg);"   oncomplete="forceUnblockUI();" value="#{bundle.message_button_previous}"  >
+						<f:param name="SEARCH_TYPE" value="PROTEGE"/>
+					</a4j:commandButton>
+					 <rich:spacer width="3"/>
+            		<a4j:commandButton style="margin-right: 5px;" onclick="forceBlockUI(ajaxProcessMsg);"   oncomplete="forceUnblockUI();" value="#{bundle.message_button_next}" >
+					</a4j:commandButton>					
+				 </td>							      
+           </tr>
+         
+           
+          </table>
+</ui:composition>
+</html>
