@@ -10,141 +10,22 @@
 	 <ui:composition template="/templates/maintmpl.xhtml">
 	 <ui:param name="moduleTitle" value="#{bundle.page_title_protege_search}"></ui:param>
 	 <ui:param name="userType" value="M"></ui:param>
-	 <ui:param name="moduleType" value="MH"></ui:param>
-	 <ui:param name="headerText" value="Member Messages"></ui:param>
+	 <ui:param name="moduleType" value="MM"></ui:param>
+	 <ui:param name="headerText" value="Member Message Detail"></ui:param>
 	 <ui:param name="refManageBean" value="#{udvViewHandler}"></ui:param>
- <ui:define name="js">
-  	<script type="text/javascript" src="#{controllerBean.contextPath}/js/Modalhelper.js"> </script>    
- </ui:define>
+	 <ui:define name="js">
+	  	<script type="text/javascript" src="#{controllerBean.contextPath}/js/Modalhelper.js"> </script>    
+	 </ui:define>
  
   <ui:define name="body">    
     <h:panelGroup id="idSectionsCon">
       <rich:spacer width="100%" height="10"/>
       <h:panelGroup id="idTopCon">
-          <table border="0" cellspacing="0" cellpadding="0" width="100%">
-           <tr>
-            	<td align="left"> 
-            		
-	      		</td>
-	      		<td colspan="5" align="right">
-	
-				</td>	
-
-           </tr>           
-          	<tr bgcolor="#CFCFCF" style="height: 30px;">
-            	<td align="left" colspan="2" > 
-            		<a4j:commandButton style="margin-left: 5px;"  value="Back to Messages" action="BACK_TO_MSG_MAIN_PAGE" >
-            		 <f:param  name="ID" value="#{messageHanlder.currentMessage.refMessageId}" />
-					</a4j:commandButton>           	
-
-					
-            		<a4j:commandButton style="margin-left: 5px;"  value="Mark as UnRead" action="#{messageHanlder.markMessageAsUnRead}"  >
-						 <f:param  name="ID" value="#{messageHanlder.currentMessage.refMessageId}" />
-					</a4j:commandButton>
-
-					
-					 <rich:spacer width="3"/>
-            		<a4j:commandButton rendered="false"   value="#{bundle.button_report_spam}" >
-						
-					</a4j:commandButton>
-					 <rich:spacer width="3"/>
-            		<a4j:commandButton   value="#{bundle.button_delete}" action="#{messageHanlder.deleteMessage}">
-						<f:param  name="ID" value="#{messageHanlder.currentMessage.refMessageId}" />
-					</a4j:commandButton>										
-	      		</td>
-
-				<td colspan="2" align="right">
-            		<a4j:commandButton  onclick="forceBlockUI(ajaxProcessMsg);"   oncomplete="forceUnblockUI();" value="#{bundle.message_button_previous}"  >
-						<f:param name="SEARCH_TYPE" value="PROTEGE"/>
-					</a4j:commandButton>
-					 <rich:spacer width="3"/>
-            		<a4j:commandButton style="margin-right: 5px;" onclick="forceBlockUI(ajaxProcessMsg);"   oncomplete="forceUnblockUI();" value="#{bundle.message_button_next}" >
-					</a4j:commandButton>					
-				 </td>							      
-           </tr>
-           
-          </table>
-          
+ 		<ui:include src="./sections/messageDetailTopPanel.xhtml" />
       </h:panelGroup>
       
       <rich:spacer width="100%" height="20"/>
-		<rich:panel id="idResultPanel"   bodyClass="container_body_style" >
-			<f:facet name="header"><h:outputText value="Conversation between Alan Mama and You" /> </f:facet>
-			<h:panelGrid columns="1" width="100%" cellpadding="0" cellspacing="0" border="0">
-				<rich:dataTable  width="100%" id="idDataGrid"  rowClasses=",container_even_row_style" rows="25" 
-			                value="#{messageHanlder.relatedMessages}" var="message" headerClass="table_column_style" cellpadding="0" cellspacing="0">
-
-		             <rich:column>
-			             <h:panelGroup>		             	
-			         		<a4j:commandLink value="#{message.sender.firstName} #{message.sender.lastName}" styleClass="title_text">	
-							</a4j:commandLink>      	
-			             	<rich:spacer width="8"/>
-			             	<h:outputText  value="#{message.createdTime}" styleClass="sub_title_text">
-				 				<f:convertDateTime dateStyle="default" pattern="#{bundle.long_date_pattern}"/>
-				 			</h:outputText>
-				 			<br/>
-				 			
-							<h:outputText escape="false"  value="#{message.body}" >
-				 				
-				 			</h:outputText>
-				 			<h:panelGroup rendered="#{message.hasAttachment}">
-				 			<br/>
-				 			<br/>
-				 			<h:outputText value="Attachment::" styleClass="title_text"/>
-				 			<br/>
-					      <h:dataTable 
-							                value="#{message.tmpAttachments}" var="attachment"  cellpadding="0" cellspacing="0">
-							<h:column>
-							<h:commandLink value="#{attachment.fileName}" action="#{messageHanlder.downloadAttachedFile}">
-								<f:param name="FILE" value="#{attachment.fileName}"/>
-							</h:commandLink>
-							</h:column>
-		
-						</h:dataTable>
-				 			</h:panelGroup>
-
-						 			
-			             </h:panelGroup>
-				 			
-		             </rich:column>		             
-
-			      </rich:dataTable>		
-			</h:panelGrid>	
-				
-	        <h:panelGrid columns="2" width="90%" cellpadding="0" cellspacing="0" border="0" columnClasses="col_1_msg_reply,col_2_msg_reply">
-	        
-	        <h:outputText value="Reply:" />
-	        <h:inputTextarea id="idBody" rows="6" value="#{messageHanlder.currentMessage.body}"   style="width: 100%;">
-	        </h:inputTextarea>
-	        
-	        <h:outputText value="Attachment:" />
-	        <h:panelGrid columns="2" width="100%" columnClasses="col_2_msg_reply,col_1_msg_reply" cellpadding="0" cellspacing="0" border="0">
-		        <a4j:commandButton  value="Attach File" reRender="idAttachDialog" oncomplete="Richfaces.showModalPanel('idAttachDialog')"/>
-		        <h:panelGroup>
-		        <a4j:commandButton rendered="#{! messageHanlder.currentMessage.hasMultipleRecipient}"  value="Reply" action="#{messageHanlder.replyMessage}" reRender="idResultPanel"/>
-		        <a4j:commandButton  rendered="#{messageHanlder.currentMessage.hasMultipleRecipient}" value="Reply All" action="#{messageHandler.replyMessage}" reRender="idDataGrid"/>
-		        </h:panelGroup>
-	        </h:panelGrid>
-	         <h:outputText value="" />  
-	      <rich:dataTable  width="100%" id="idAttachmentTable" columnClasses="col_2_msg_reply,col_1_msg_reply" 
-			                value="#{messageHanlder.currentMessage.tmpAttachments}" var="attachment"  cellpadding="0" cellspacing="0">
-			<h:column>
-			<h:commandLink value="#{attachment.fileName}" action="#{messageHanlder.downloadAttachedFile}">
-				<f:param name="FILE" value="#{attachment.fileName}"/>
-			</h:commandLink>
-			</h:column>
-			<h:column>
-			<a4j:commandLink value="Remove" action="#{messageHanlder.removeAttachedFile}" reRender="idAttachmentTable">
-				<f:param name="FILE" value="#{attachment.fileName}"/>
-			</a4j:commandLink>
-			</h:column>			
-		</rich:dataTable>
-
-     
-	        </h:panelGrid>
-
-
-		</rich:panel>
+	  <ui:include src="./sections/messageDetailBody.xhtml" />
 		
     </h:panelGroup>    
   </ui:define>
