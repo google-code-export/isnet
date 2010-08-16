@@ -6,6 +6,7 @@
  */
 package com.intrigueit.myc2i.message.view;
 
+import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -433,7 +434,7 @@ public class MessageViewHanlder extends BasePage {
 		try {
 
 			String url = "/export/ExportServlet?name=" + fileName;
-			String serverName = "localhost";// InetAddress.getLocalHost().getHostName();
+			String serverName = InetAddress.getLocalHost().getHostName();//"localhost";// 
 
 			final int port = this.getRequest().getServerPort();
 			url = "http://" + serverName + ":" + port + ""
