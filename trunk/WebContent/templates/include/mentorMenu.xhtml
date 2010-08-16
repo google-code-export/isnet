@@ -76,6 +76,24 @@
         --> 
                      
     </ul>
-   </h:panelGroup>       
+   </h:panelGroup>   
+   <h:panelGroup id="idMentorMessagePanel" rendered="${moduleType eq 'MM'}">
+     <ul class="sidemenu">
+       <li>
+         <h:outputLink styleClass="menu_item_clink" 
+           value="#{controllerBean.contextPath}/pages/secure/memberMessage.faces?folder=RECEIVED">
+           <h:outputText value="Inbox"/>
+         </h:outputLink>
+       </li>
+       <li>
+         <h:outputLink styleClass="menu_item_clink" 
+           value="#{controllerBean.contextPath}/pages/secure/memberMessage.faces?folder=SENT">
+           <h:outputText value="Sent Items"/>
+         </h:outputLink>
+       </li>  
+         
+    </ul>
+   </h:panelGroup>  
+          
 </ui:composition>
 </html>
