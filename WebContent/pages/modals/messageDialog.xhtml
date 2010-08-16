@@ -6,53 +6,121 @@
    xmlns:a4j="http://richfaces.org/a4j"
    xmlns:rich="http://richfaces.org/rich"
    xmlns:f="http://java.sun.com/jsf/core"
-   xmlns:c="http://java.sun.com/jstl/core"
-   xmlns:ccmp="http://www.myc2i.com/jsf/commoncmp">
+   xmlns:c="http://java.sun.com/jstl/core">
 	<ui:composition>
-    <rich:modalPanel id="idmessageDialog" minHeight="300" minWidth="450" >      
-      <f:facet name="header"><h:outputText value="#{bundle.activity_log_activity_title}"/></f:facet>
+	<script type="text/javascript">//<![CDATA[
+        function processObjectsChange() {
+            var member = $("memberMessageForm:text").value;
+            if(member){
+            	var splitedVal = member.split("::");
+            	if(splitedVal){
+                    var chunkLength = splitedVal.length;
+
+                    var lastMember = splitedVal[chunkLength-1];
+                    var memberId = splitedVal[chunkLength-2];
+                    var firstMember = splitedVal[0];
+                    updateServerList(memberId,lastMember);
+                    if(firstMember){
+                    	 $("memberMessageForm:text").value = firstMember+"[ "+ lastMember +" ], ";
+                    }
+                    else{
+                    	 $("memberMessageForm:text").value = "[ "+ lastMember +" ], ";
+                    }
+            	}
+            }
+        }
+
+    //]]></script>
+    <rich:modalPanel id="idmessageDialog"   domElementAttachment="parent"  autosized="true">      
+      <f:facet name="header"><h:outputText value="New Message"/></f:facet>
       <f:facet name="controls">
                 <h:graphicImage value="/images/close.png" style="cursor:pointer" onclick="Richfaces.hideModalPanel('idmessageDialog')" />
           </f:facet>              
-         <a4j:form id="memberMessageForm">
-         	<h:panelGroup id="idmemberLogDialogContainer">
-         	<h:inputHidden value="#{memberLogViewHandler.hasError}" id="errorCount"/>
-        	<rich:panel styleClass="popup_window_outer_panel_style" id="idPopupPanel">
+         <h:form id="memberMessageForm">
+          <rich:panel id="container">
+        	<h:inputHidden value="#{messageHanlder.hasError}" id="errorCount"/>
 
-	          <h:dataTable rendered="#{memberLogViewHandler.hasError}" value="#{memberLogViewHandler.errMsgs}" var="msg" width="100%" columnClasses="error_panel_left_col,error_panel_right_col">
-	             <f:facet name="header"><h:outputText  value="#{bundle.member_validation_header}"/> </f:facet>
+
+				<a4j:jsFunction name="updateServerList"  action="#{messageHanlder.test}">
+					<a4j:actionparam name="PRM1" 	/>
+					<a4j:actionparam name="PRM2" 	/>					
+				</a4j:jsFunction>
+	          <h:dataTable rendered="#{messageHanlder.hasError}" value="#{messageHanlder.errMsgs}" var="msg" width="100%" columnClasses="error_panel_left_col,error_panel_right_col">
+	             <f:facet name="header"><h:outputText  value="Please note the following errors"/> </f:facet>
 	            <h:column >
 	              <h:graphicImage value="/images/error2.png" boder="0" style="margin-top: 3px;"/>         
 	            </h:column>
 	            <h:column >
 	             <h:outputText  value="#{msg}"/>
 	            </h:column>         
-	          </h:dataTable>
-                              
+	          </h:dataTable>      
+	                                  
 	          <h:panelGrid columns="2" id="gridMemberMessage" width="100%">
-	            <h:outputText value="To"/>
-                <h:inputText id="idTo" value="" styleClass="form_input_text_medium"></h:inputText>                    
-	
-	
+	           <h:outputText value="To"/>
+	          <h:panelGroup>
+
+                <h:inputText  id="text" value="#{messageHanlder.toMemberNameList}" style="width: 380px;"></h:inputText>      
+                     
+
+                <rich:suggestionbox id="suggestionBoxId" for="text" tokens=",[]" 
+                    rules="#{autoComplateStyle.rules}"
+                    suggestionAction="#{messageHanlder.autocompleteMemberName}" var="result"
+                    fetchValue="::#{result.memberId}::#{result.firstName} #{result.lastName}" rows="#{autoComplateStyle.intRows}"
+                    first="#{autoComplateStyle.intFirst}"
+                    minChars="#{autoComplateStyle.minchars}"
+                    shadowOpacity="#{autoComplateStyle.shadowOpacity}"
+                    border="#{autoComplateStyle.border}" width="#{autoComplateStyle.width}"
+                    height="#{autoComplateStyle.height}"
+                    shadowDepth="#{autoComplateStyle.shadowDepth}"
+                    cellpadding="#{autoComplateStyle.cellpadding}"
+                    nothingLabel="No capitals found" columnClasses="center"
+                    usingSuggestObjects="false"
+                    onselect="processObjectsChange();"
+                    >
+                    <h:column>
+                        <h:outputText escape="false" value="#{result.firstName}" />
+                    </h:column>
+                    <h:column>
+                        <h:outputText escape="false" value="#{result.lastName}" />
+                    </h:column>                    
+
+                </rich:suggestionbox>                    
+
+				</h:panelGroup>
+				
 	            <h:outputText value="#{bundle.activity_log_subject}" />
-	            <h:inputText id="idTopic" value="#{messageHanlder.currentMessage.subject}" styleClass="form_input_text_medium"></h:inputText> 
+	            <h:inputText id="idTopic" value="#{messageHanlder.currentMessage.subject}" style="width: 380px;"></h:inputText> 
 	            
 	            <h:outputText value="#{bundle.activity_log_body}" />                
-	              <h:inputTextarea id="idBody" rows="6"  value="#{messageHanlder.currentMessage.body}" styleClass="form_input_text_medium"></h:inputTextarea>
-	                      
+	            <a4j:outputPanel layout="block">
+	               <rich:editor id="idBody" width="382" height="170" 
+           		   theme="simple" viewMode="visual"	value="#{messageHanlder.currentMessage.body}" >
+                                 
+          			</rich:editor>
+	            </a4j:outputPanel>
+	            <h:outputText value="Attachment:" />
+		        <a4j:commandButton  value="Attach File" reRender="idAttachDialog" oncomplete="Richfaces.showModalPanel('idAttachDialog')"/>
+ 
+				<h:outputText value=""/>
+
+				 <ui:include src="../secure/sections/attachedFiles.xhtml" />
+
+	        
+                   
 	            <h:outputText value=""/>
 	            <h:panelGroup>
-	              <a4j:commandButton onclick="forceBlockUI(ajaxWaitMsg);" action="#{messageHanlder.addNewMessage}"  value="#{bundle.message_button_send}" oncomplete="forceUnblockUI();ModalHelper.validateModal('memberLogForm','idmemberLogDialog')"  
-	                reRender="idDataGrid,idDataScroller,errorCount,idPopupPanel">
-	                <f:param name="action" value="${action}"/>                
-	              </a4j:commandButton>
-	              <a4j:commandButton value="#{bundle.message_button_cancel}" onclick="Richfaces.hideModalPanel('idmessageDialog')" />    
-	            </h:panelGroup>       
+		            <h:panelGrid columns="2" width="100%" columnClasses="column_class_right,column_class_left">
+		            	<a4j:commandButton onclick="forceBlockUI(ajaxWaitMsg);" action="#{messageHanlder.addNewMessage}"  value="#{bundle.message_button_send}" oncomplete="forceUnblockUI();ModalHelper.validateModal('memberMessageForm','idmessageDialog')"  
+		                reRender="container">               
+		              </a4j:commandButton>
+		              <a4j:commandButton value="#{bundle.message_button_cancel}" onclick="Richfaces.hideModalPanel('idmessageDialog')" />  
+		            </h:panelGrid>
+	            </h:panelGroup>  
+    
 	         </h:panelGrid>
-	         
-        </rich:panel>
-        </h:panelGroup>
-      </a4j:form>      
+
+		</rich:panel>
+      </h:form>      
     </rich:modalPanel>  
   </ui:composition>
 </html>
