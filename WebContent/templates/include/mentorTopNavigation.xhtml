@@ -26,8 +26,15 @@
             </h:outputLink>
           </li>
           <li><a href="" >|</a></li>
-          
-           <c:if test="${authenticationViewHandler.mentorTopMenu.myResource}">
+
+	          <li>
+	            <h:outputLink styleClass="menu_item_clink" 
+	              value="#{controllerBean.contextPath}/pages/secure/memberMessage.faces?folder=RECEIVED">
+	              <h:outputText value="My Messages"/>
+	            </h:outputLink>
+	          </li>
+	          <li><a href="" >|</a></li>          
+
 	          <li>
 	            <h:outputLink styleClass="menu_item_clink" 
 	              value="#{controllerBean.contextPath}/myresources/mentorResBooks.faces">
@@ -35,9 +42,9 @@
 	            </h:outputLink>
 	          </li>
 	          <li><a href="" >|</a></li>
-           </c:if>
+
            
-          <c:if test="${authenticationViewHandler.mentorTopMenu.askQuestion}"> 
+
 	          <li>
 	            <h:outputLink styleClass="menu_item_clink" 
 	              value="#{controllerBean.contextPath}/pages/secure/memberAskAQuestion.faces">
@@ -45,7 +52,7 @@
 	            </h:outputLink>
 	          </li> 
 	          <li><a href="" >|</a></li>
-          </c:if>
+
           
           <li>
             <h:outputLink styleClass="menu_item_clink" 
