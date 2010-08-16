@@ -1,0 +1,57 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:a4j="http://richfaces.org/a4j"
+   xmlns:rich="http://richfaces.org/rich">
+<ui:composition>
+
+			<h:panelGrid id="idMsgGrid" columns="1" width="100%" cellpadding="0" cellspacing="0" border="0">
+				<rich:dataTable  width="100%" id="idDataGridMsg"  rowClasses=",container_even_row_style" rows="25" columnsWidth="40,200,,50"
+			                value="#{messageHanlder.messages}" var="message" headerClass="table_column_style" cellpadding="0" cellspacing="0">
+		             <rich:column>
+			             <h:panelGroup>
+							<h:selectBooleanCheckbox  value="#{message.checked}"/>
+			             </h:panelGroup>
+				 			
+		             </rich:column>
+		             <rich:column>
+			             <h:panelGroup>		             	
+
+		         		 <a4j:commandLink  value="#{message.sender.firstName} #{message.sender.lastName}" styleClass="#{ (message.readStatus eq 'UNREAD') ? 'title_text' :'title_text_read'}">
+				             <a4j:actionparam name="MESSAGE_ID" value="#{message.messageId}"  />		
+						</a4j:commandLink>      	
+			             	<br/>
+			             	<h:outputText  value="#{message.createdTime}" styleClass="sub_title_text">
+				 				<f:convertDateTime dateStyle="default" pattern="#{bundle.long_date_pattern}"/>
+				 			</h:outputText>
+			             </h:panelGroup>
+				 			
+		             </rich:column>		             
+		             <rich:column>
+		         		 <h:commandLink value="#{message.subject}"  action="#{messageHanlder.readMessage}" styleClass="#{ (message.readStatus eq 'UNREAD') ? 'title_text' :'title_text_read'}">
+				          <f:param  name="ID" value="#{message.messageId}" />
+						</h:commandLink>		             
+
+						<br/>
+                    		<h:outputText escape="false"  value="#{message.shortDescription}"/>
+		             </rich:column>
+		             
+		             <rich:column>
+		         		 <a4j:commandLink action="#{messageHanlder.removeMessage}" reRender="idDataGridMsg">
+				             <f:param name="ID" value="#{message.messageId}" />
+			            	<h:graphicImage value="/images/close.png" align="middle" border="0" > 
+			            	</h:graphicImage>	
+		            		 <rich:toolTip styleClass="tooltips_style"  >
+						          <span class="tooltips_span_style">
+						              #{bundle.delete_message}<br/>
+						          </span>
+						     </rich:toolTip>	
+						</a4j:commandLink>			             
+		             </rich:column>		
+
+			      </rich:dataTable>		
+		        <rich:datascroller id="idDataScroller" align="center"  for="idDataGridMsg" maxPages="5" />
+			</h:panelGrid>	
+</ui:composition>
+</html>
