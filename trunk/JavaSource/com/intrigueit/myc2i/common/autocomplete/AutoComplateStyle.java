@@ -1,6 +1,7 @@
 package com.intrigueit.myc2i.common.autocomplete;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import org.richfaces.renderkit.html.SuggestionBoxRenderer;
 import org.springframework.context.annotation.Scope;
@@ -12,6 +13,8 @@ public class AutoComplateStyle implements Serializable {
 	private static final long serialVersionUID = 3126855679065836286L;
 
     /** Suggestion control attributes */
+    private ArrayList tokens;
+
     private String rows;
     private String first;
     private String cellspacing;
@@ -22,20 +25,18 @@ public class AutoComplateStyle implements Serializable {
     private boolean check;
     private String shadowDepth = Integer.toString(SuggestionBoxRenderer.SHADOW_DEPTH);
     private String border = "1";
-    private String width = "200";
+    private String width = "250";
     private String height = "150";
     private String shadowOpacity = "4";
-    private String noRecordMsg = "No record found for the search text.";
 
     public AutoComplateStyle() {
-
-      this.rows = "0";
-      this.first = "0";
-      this.cellspacing = "2";
-      this.cellpadding = "2";
-      this.minchars = "1";
-      this.frequency = "1";
-      this.rules = "none";
+        this.rows = "0";
+        this.first = "0";
+        this.cellspacing = "2";
+        this.cellpadding = "2";
+        this.minchars = "1";
+        this.frequency = "0";
+        this.rules = "none";
     }
     
     public String getCellpadding() {
@@ -114,8 +115,15 @@ public class AutoComplateStyle implements Serializable {
         this.rules = rules;
     }
 
+    public ArrayList getTokens() {
+        return tokens;
+    }
+
+    public void setTokens(ArrayList tokens) {
+        this.tokens = tokens;
+    }
+
     public void OnSelect() {
-        System.out.print("Onselect works!!!");
 
     }
 
@@ -158,13 +166,5 @@ public class AutoComplateStyle implements Serializable {
     public void setShadowOpacity(String shadowOpacity) {
         this.shadowOpacity = shadowOpacity;
     }
-    
-		public String getNoRecordMsg() {
-			return noRecordMsg;
-		}
-
-		public void setNoRecordMsg(String noRecordMsg) {
-			this.noRecordMsg = noRecordMsg;
-		}
 
 }
