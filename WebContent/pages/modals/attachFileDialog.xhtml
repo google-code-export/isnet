@@ -8,13 +8,13 @@
     xmlns:c="http://java.sun.com/jstl/core">
 	<ui:composition>
 
-		<rich:modalPanel id="idAttachDialog" minHeight="200" minWidth="400" autosized="true">
+		<rich:modalPanel id="idAttachDialog" minHeight="200" minWidth="400" zindex="1000" autosized="true">
 			<f:facet name="header"><h:outputText value="Attach File"/></f:facet>
 			<f:facet name="controls">
               	<h:graphicImage value="/images/close.png" style="cursor:pointer" onclick="Richfaces.hideModalPanel('idAttachDialog')" />
        		</f:facet>
 
-            <a4j:form id="attachFileForm" >
+            <h:form id="attachFileForm" >
             <c:set var="uploadBean" value="#{messageHanlder.attachmentHandler}"/>
 
 				<rich:panel styleClass="popup_window_outer_panel_style" id="idPopupPanel">
@@ -25,15 +25,16 @@
 	                immediateUpload="${uploadBean.autoUpload}" 
 	                allowFlash="${uploadBean.useFlash}">
 	                
-	                <a4j:support event="onuploadcomplete" 
-	                  action="#{messageHanlder.attachFile}" reRender="idAttachmentTable,idResultPanel"
+	                <a4j:support event="onuploadcomplete"
+	                  action="#{messageHanlder.attachFile}" reRender="idAttachmentTable"
 	                  oncomplete="Richfaces.hideModalPanel('idAttachDialog')"/>                
 	               </rich:fileUpload>					
 
 
 
 				</rich:panel>
-			</a4j:form>							
+				
+			</h:form>							
 		</rich:modalPanel>
 	
 	</ui:composition>
