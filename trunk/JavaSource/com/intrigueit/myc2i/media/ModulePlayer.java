@@ -4,9 +4,11 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+
 import com.intrigueit.myc2i.common.CommonConstants;
 import com.intrigueit.myc2i.common.view.BasePage;
 import com.intrigueit.myc2i.tutorial.domain.TestTutorialModules;
@@ -15,7 +17,6 @@ import com.intrigueit.myc2i.tutorial.service.ModulesService;
 import com.intrigueit.myc2i.tutorial.service.QuestionAnsService;
 import com.intrigueit.myc2i.tutorialtest.domain.TestResult;
 import com.intrigueit.myc2i.tutorialtest.domain.TestResultDetails;
-import com.intrigueit.myc2i.tutorialtest.service.TestResultDetailsService;
 import com.intrigueit.myc2i.tutorialtest.service.TestResultService;
 import com.intrigueit.myc2i.utility.Emailer;
 
