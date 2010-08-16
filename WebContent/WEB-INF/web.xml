@@ -146,7 +146,16 @@
  <login-config>
   <auth-method>BASIC</auth-method>
  </login-config>
-
+ 
+  <servlet>
+  <servlet-name>fileDownloader</servlet-name>
+  <servlet-class>com.intrigueit.myc2i.message.view.ExportServlet</servlet-class>
+ </servlet>
+   <servlet-mapping>
+  <servlet-name>fileDownloader</servlet-name>
+  <url-pattern>/export/*</url-pattern>
+ </servlet-mapping>
+ 
   <servlet>
     <description>PayPal IPN Listener</description>
     <display-name>PayPalTxnListener</display-name>
