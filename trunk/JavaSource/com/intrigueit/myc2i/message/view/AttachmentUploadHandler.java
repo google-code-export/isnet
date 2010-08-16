@@ -50,18 +50,32 @@ public class AttachmentUploadHandler {
 	    
 	    AttachedFile file = new AttachedFile();
 	    file.setLength(item.getData().length);
-	    file.setName(item.getFileName());
+	    String exactFileName = this.exactFileName(item.getFileName());
+	    file.setName(exactFileName);
 	    file.setData(item.getData());
 	    files.add(file);
 	    uploadsAvailable--;
 	    try{
-	    	writeToFile(item.getFileName(), item.getData());
+	    	writeToFile(exactFileName, item.getData());
 	    }
 	    catch(Exception ex){
 	    	ex.printStackTrace();
 	    }
 	}
-	
+	private String exactFileName(String fileWithFullPath){
+		/**This tricks is to fix the file up-loader bug in IE as it is
+		 * put the full file path as a file name */
+		int lastIndexOfSep = fileWithFullPath.lastIndexOf("\\");;
+		String shortFileName = "";
+		if(lastIndexOfSep >0){
+			shortFileName = fileWithFullPath.substring(lastIndexOfSep+1);
+		}
+		else{
+			shortFileName = fileWithFullPath;
+		}
+		
+		return shortFileName;
+	}
 	public String clearUploadData() {
 		files.clear();
 		setUploadsAvailable(5);
@@ -104,11 +118,12 @@ public class AttachmentUploadHandler {
 	public void setUseFlash(boolean useFlash) {
 		this.useFlash = useFlash;
 	}
-	public  void writeToFile(String fileName, byte data[])	throws IOException {
+	public  void writeToFile(final String fileName, byte data[])	throws IOException {
 		String me = "FileUtils.WriteToFile";
 		if (fileName == null) {
 			throw new IOException(me + ": filename is null");
 		}
+
 		ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
 		String imagePath = servletContext.getRealPath("");
 		String filePath = imagePath +""+DEFAULT_FILE_LOCATION+fileName;
