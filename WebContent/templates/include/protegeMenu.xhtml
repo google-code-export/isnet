@@ -63,6 +63,23 @@
        </li>  
                      
     </ul>
-   </h:panelGroup>       
+   </h:panelGroup>   
+   <h:panelGroup id="idProtegeMessagePanel" rendered="${moduleType eq 'PM'}">
+     <ul class="sidemenu">
+       <li>
+         <h:outputLink styleClass="menu_item_clink" 
+           value="#{controllerBean.contextPath}/pages/secure/protegeMessage.faces?folder=RECEIVED">
+           <h:outputText value="Inbox"/>
+         </h:outputLink>
+       </li>
+       <li>
+         <h:outputLink styleClass="menu_item_clink" 
+           value="#{controllerBean.contextPath}/pages/secure/protegeMessage.faces?folder=SENT">
+           <h:outputText value="Sent Items"/>
+         </h:outputLink>
+       </li>  
+         
+    </ul>
+   </h:panelGroup>         
 </ui:composition>
 </html>
