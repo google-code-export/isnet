@@ -114,17 +114,14 @@ public class Message implements java.io.Serializable {
 	@Column(name = "RECORD_LAST_UPDATED", nullable = true)
 	private Date recordLastUpdatedDate;
 	
-	/** Message short description to display is grid */
-	@Transient
-	private String shortDescription;
-	
 	/** Message checked flag */
 	@Transient
 	private boolean checked;
 	
 	@Transient
 	private List<MessageAttachment> tmpAttachments;
-		
+	
+	
 	/** default constructor */
 	public Message() {
 		this.checked = false;
@@ -268,10 +265,6 @@ public class Message implements java.io.Serializable {
 	}
 
 
-	public void setShortDescription(String shortDescription) {
-		this.shortDescription = shortDescription;
-	}
-
 
 
 
@@ -349,7 +342,6 @@ public class Message implements java.io.Serializable {
 		return tmpAttachments;
 	}
 
-
 	public void setTmpAttachments(List<MessageAttachment> tmpAttachments) {
 		this.tmpAttachments = tmpAttachments;
 	}
@@ -369,6 +361,7 @@ public class Message implements java.io.Serializable {
 		}
 		return false;
 	}
+
 
 
 }
