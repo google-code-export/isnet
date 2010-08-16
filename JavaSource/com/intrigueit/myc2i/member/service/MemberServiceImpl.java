@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 
 import com.intrigueit.myc2i.common.CommonConstants;
 import com.intrigueit.myc2i.common.domain.SearchBean;
+import com.intrigueit.myc2i.member.dao.KnownMemberDao;
 import com.intrigueit.myc2i.member.dao.MemberDao;
+import com.intrigueit.myc2i.member.domain.KnownMember;
 import com.intrigueit.myc2i.member.domain.Member;
 import com.intrigueit.myc2i.role.domain.RolePageAccess;
 
@@ -18,6 +20,8 @@ import com.intrigueit.myc2i.role.domain.RolePageAccess;
 public class MemberServiceImpl implements MemberService {
 
 	private MemberDao memberDao;
+	
+	private KnownMemberDao knownMemberDao;
 
 	@Autowired
 	public MemberServiceImpl(MemberDao memberDao) {
@@ -209,4 +213,23 @@ public class MemberServiceImpl implements MemberService {
 		String clause = "from MEMBER where memberId in (select distinct(memberId) from PayPalLog where verifyStatus is null)";
 		return memberDao.loadByQuery(clause.toString(), new Object[]{});
 	}
+
+	@Override
+	public List<Member> getMyFriendList(Long memberId) {
+		String clause = " t.srcMember.memberId =?1 ";
+
+		List<KnownMember> knMebers = knownMemberDao.loadByClause(clause,new Object[]{memberId});
+		List<Member> members = new ArrayList<Member>();
+		for(KnownMember mem: knMebers){
+			members.add(mem.getFriend());
+		}
+		return members;
+	}
+
+	@Autowired
+	public void setKnownMemberDao(KnownMemberDao knownMemberDao) {
+		this.knownMemberDao = knownMemberDao;
+	}
+
+
 }
