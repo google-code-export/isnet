@@ -21,6 +21,8 @@
 				<h:outputLink value="#{controllerBean.contextPath}/guestRegister.faces"> 
 					<h:graphicImage value="/images/address_book3.png" /> 
 					<h:outputText value="#{bundle.login_page_guest_signup}" /> 
+					<rich:spacer width="3"/>
+					<h:outputText style="font-weight: bolder;" value="( It's FREE )" /> 
 				</h:outputLink>			
 			</h:panelGrid>
 			 <rich:spacer height="7"/>
@@ -100,7 +102,9 @@
 					<h:outputLink value="#{controllerBean.contextPath}/mentorRegister.faces"> 
 						<h:graphicImage value="/images/address_book2.png" /> 
 						<h:outputText value="#{bundle.login_page_mentor_signup}" /> 
-					</h:outputLink>		
+						<rich:spacer width="3"/>
+						<h:outputText  style="font-weight: bolder;" value="( It's FREE )" /> 						
+					</h:outputLink>		 
 				</h:panelGrid>
 								
 				
