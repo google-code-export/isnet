@@ -28,10 +28,15 @@
           <li><a href="" >|</a></li>
 
 	          <li>
-	            <h:outputLink styleClass="menu_item_clink" 
+	            <h:outputLink styleClass="#{messageHanlder.unReadMessageCount ne '0'? 'menu_item_clink hight_lighted_menu' : 'menu_item_clink'} "  
 	              value="#{controllerBean.contextPath}/pages/secure/memberMessage.faces?folder=RECEIVED">
-	              <h:outputText value="My Messages"/>
+	               <h:outputText value="My Messages"/>
+	               <rich:spacer width="2"/>
+	               <h:outputText style="color: red; font-weight: bolder;" rendered="#{messageHanlder.unReadMessageCount ne '0'}" value="( #{messageHanlder.unReadMessageCount} )"/>
 	            </h:outputLink>
+
+	             <rich:spacer width="2"/>
+	             <h:graphicImage value="/images/message.png" boder="0" style="margin-top: 3px;"/>   
 	          </li>
 	          <li><a href="" >|</a></li>          
 
