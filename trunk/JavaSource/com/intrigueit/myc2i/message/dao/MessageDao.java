@@ -36,5 +36,7 @@ public interface MessageDao extends GenericDao<Message,Long>{
 	/** Remove message by message Id */
 	public int deleteMessageById(Long messageId);
 	
+	public int getMessageCount(Long ownerId, String status);
+	
 	
 }
