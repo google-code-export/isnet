@@ -52,4 +52,12 @@ public final class MessageDaoImpl  extends GenericDaoImpl<Message, Long> impleme
 		return messages;
 	}
 
+	@Override
+	public List<Message> getUnReadConversationByOwnerId(Long ownerId,
+			String status, String readStatus) {
+		String clause = " t.ownerId = ?1 and t.status = ?2 and t.readStatus =?3 ORDER BY t.createdTime DESC ";
+		List<Message> messages = loadByClause(clause, new Object[] { ownerId,status, readStatus });
+		return messages;
+	}
+
 }
