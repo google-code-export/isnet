@@ -60,4 +60,11 @@ public final class MessageDaoImpl  extends GenericDaoImpl<Message, Long> impleme
 		return messages;
 	}
 
+	@Override
+	public int getMessageCount(Long ownerId, String status) {
+		String clause = " t.ownerId = ?1 and t.readStatus= ?2  ";
+		int rowsCount = this.getRowCount(clause, new Object[] { ownerId,status });
+		return rowsCount;
+	}
+
 }
