@@ -9,6 +9,14 @@
    <h:panelGroup id="idMentorDashboardPanel" rendered="${moduleType eq 'MH'}">
      <ul class="sidemenu">
        <li>
+         <h:outputLink  styleClass="#{messageHanlder.unReadMessageCount ne '0'? 'menu_item_clink hight_lighted_menu' : 'menu_item_clink'} "
+           value="#{controllerBean.contextPath}/pages/secure/memberMessage.faces?folder=RECEIVED">
+			<h:outputText value="My Messages"/>
+	        <rich:spacer width="2"/>
+	        <h:outputText style="color: red; font-weight: bolder;" rendered="#{messageHanlder.unReadMessageCount ne '0'}" value="( #{messageHanlder.unReadMessageCount} )"/>
+         </h:outputLink>
+       </li>     
+       <li>
          <h:outputLink styleClass="menu_item_clink" 
            value="#{controllerBean.contextPath}/pages/secure/mentorDashboard.faces">
            <h:outputText value="#{bundle.left_navigation_mentor_dashboard}"/>
