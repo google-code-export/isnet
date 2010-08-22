@@ -29,6 +29,12 @@
             	}
             }
         }
+        function clearTooltips(){
+
+        	$("memberMessageForm:idToToolTips1").hide();
+        	$("memberMessageForm:idToToolTips2").hide();
+
+        }
 
     //]]></script>
     <rich:modalPanel id="idmessageDialog"   domElementAttachment="parent"  autosized="true">      
@@ -59,8 +65,12 @@
 	           <h:outputText value="To"/>
 	          <h:panelGroup>
 
-                <h:inputText  id="text" value="#{messageHanlder.toMemberNameList}" style="width: 380px;"></h:inputText>      
-                     
+              <h:inputText  id="text" value="#{messageHanlder.toMemberNameList}" style="width: 380px;" onfocus="clearTooltips()"></h:inputText>   
+                 
+              <h:outputText id="idToToolTips1" value="" />
+              <h:panelGroup id="idToToolTips2" style="boeder: 1px solid gray; height: 10px; ">
+              	Please enter user names or email addresses
+               </h:panelGroup>     
 
                 <rich:suggestionbox id="suggestionBoxId" for="text" tokens=",[]" 
                     rules="#{autoComplateStyle.rules}"
