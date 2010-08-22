@@ -147,15 +147,32 @@ public abstract class GenericDaoImpl<T, ID extends Serializable> implements
 	}
 	
 	public Integer deleteByClause(String clause, Object[] params) {
-    String hsql = "DELETE FROM " + persistentClass.getName()
-        + " t where " + clause;
-    //log.debug(hsql);
-    Query query = entityManager.createQuery(hsql);
-    /** bind parameters */
-    for (int i = 0; params != null && i < params.length; i++) {
-      query.setParameter(i + 1, params[i]);
-    }
-    log.debug(query.toString());
-    return query.executeUpdate();
+	    String hsql = "DELETE FROM " + persistentClass.getName()
+	        + " t where " + clause;
+	    //log.debug(hsql);
+	    Query query = entityManager.createQuery(hsql);
+	    /** bind parameters */
+	    for (int i = 0; params != null && i < params.length; i++) {
+	      query.setParameter(i + 1, params[i]);
+	    }
+	    //log.debug(query.toString());
+	    return query.executeUpdate();
   }
+	public int getRowCount(String clause, Object[] params) {
+		String hsql = "Select count(t)  from " + persistentClass.getName()
+		+ " t where " + clause;
+		//log.debug(hsql);
+		Query query = entityManager.createQuery(hsql);
+		/** bind parameters */
+		for (int i = 0; params != null && i < params.length; i++) {
+			query.setParameter(i + 1, params[i]);
+		}
+		List<T> recordList = query.getResultList();
+		int count = 0;
+		if(recordList != null && recordList.size() > 0){
+			count = Integer.parseInt(recordList.get(0).toString());
+		}
+		 
+		return count;
+	}
 }
