@@ -18,11 +18,11 @@ import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.collections.set.CompositeSet.SetMutator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.intrigueit.myc2i.common.CommonConstants;
 import com.intrigueit.myc2i.common.view.BasePage;
 import com.intrigueit.myc2i.member.domain.Member;
 import com.intrigueit.myc2i.member.service.MemberService;
@@ -78,6 +78,8 @@ public class MessageViewHanlder extends BasePage {
 	
 	/** No of unread message count in box */
 	private int unReadMessageCount =0;
+	
+	private String memberLinks;
 
 	
 	private void loadUnreadMessageCount(){
@@ -718,6 +720,17 @@ public class MessageViewHanlder extends BasePage {
 	}
 	public void setUnReadMessageCount(int unReadMessageCount) {
 		this.unReadMessageCount = unReadMessageCount;
+	}
+	public String getMemberLinks() {
+		if(this.getMember().getTypeId().equals(CommonConstants.PROTEGE)){
+			this.memberLinks = "protegeMessage.faces";
+		}else{
+			this.memberLinks = "memberMessage.faces";
+		}
+		return memberLinks;
+	}
+	public void setMemberLinks(String memberLinks) {
+		this.memberLinks = memberLinks;
 	}
 
 
