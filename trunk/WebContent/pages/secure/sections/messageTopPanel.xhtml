@@ -9,12 +9,24 @@
           <table border="0" cellspacing="0" cellpadding="0" width="100%">
            <tr style="height: 25px;" >
             	<td align="left"> 
-            		<h:outputText  value="" />
+            	 <rich:spacer width="3"/>
+		         <h:outputLink styleClass="#{messageHanlder.currentFolder eq 'RECEIVED'? 'menu_item_clink hight_lighted_menu' : 'menu_item_clink'} " 
+		           			value="#{controllerBean.contextPath}/pages/secure/#{messageHanlder.memberLinks}?folder=RECEIVED">
+		           	<h:graphicImage value="/images/received.png" align="middle" border="0" />	
+  					<h:outputText value="Received Item" border="0" />	
+		         </h:outputLink>
+
+				<rich:spacer width="5"/>
+		         <h:outputLink styleClass="#{messageHanlder.currentFolder eq 'SENT'? 'menu_item_clink hight_lighted_menu' : 'menu_item_clink'} "
+		           			value="#{controllerBean.contextPath}/pages/secure/#{messageHanlder.memberLinks}?folder=SENT">
+		           	<h:graphicImage value="/images/sent.png" align="middle" border="0" />	
+  					<h:outputText value="Sent Item" border="0" />	
+		         </h:outputLink>		         
 	      		</td>
 	      		<td colspan="5" align="right">
 			      <a4j:commandLink style="margin-right: 5px;"  styleClass="table_control_normal_style" action="#{messageHanlder.initMessageDialog}" reRender="idmessageDialog"  oncomplete="Richfaces.showModalPanel('idmessageDialog')">
 			            <a4j:actionparam name="activityId" value="-1"  />
-			           	<h:graphicImage value="/images/new.png" align="middle" border="0" />	
+			           	<h:graphicImage value="/images/mail_new.png" align="middle" border="0" />	
 			          		 <rich:toolTip styleClass="tooltips_style"  >
 					          <span class="tooltips_span_style">#{bundle.member_message_create_new_tool_tips}.<br/></span>
 					     </rich:toolTip>	
