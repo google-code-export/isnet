@@ -55,27 +55,27 @@
             		 <rich:spacer width="3"/>
             		<h:outputText value="Select: " /> 
             		<rich:spacer width="3"/>
-			      	<a4j:commandLink  onclick="forceBlockUI(ajaxProcessMsg);"   oncomplete="forceUnblockUI();" >
-					     <h:outputText value="All" border="0" />			            	
+            		
+			      	<a4j:commandLink  value="All"  action="#{messageHanlder.selectAllMessages}"  reRender="idDataGridMsg" onclick="forceBlockUI(ajaxProcessMsg);" oncomplete="forceUnblockUI();" >			            	
 					</a4j:commandLink>
 
 					 <rich:spacer width="5"/>
-			      	<a4j:commandLink   onclick="forceBlockUI(ajaxProcessMsg);"   oncomplete="forceUnblockUI();">
-					     <h:outputText value="None" border="0" />			            	
+			      	<a4j:commandLink value="None" action="#{messageHanlder.deSelectAllMessages}" reRender="idDataGridMsg"  onclick="forceBlockUI(ajaxProcessMsg);"   oncomplete="forceUnblockUI();">		            	
 					</a4j:commandLink>									
 	      		</td>
 
 				<td colspan="2" align="right">
+				<h:panelGroup id="idRightButtonPanel">
 				<h:outputText value="Show: " /> 
-			      	<a4j:commandLink >
+			      	<a4j:commandLink action="#{messageHanlder.showAllMessage}"  styleClass="#{(messageHanlder.showOnlyUnreadMsg eq 'false') ? 'msg_all' :''}" reRender="idDataGridMsg,idRightButtonPanel" onclick="forceBlockUI(ajaxProcessMsg);"   oncomplete="forceUnblockUI();">
 					     <h:outputText value="All" border="0" />			            	
 					</a4j:commandLink>
 
 					 <rich:spacer width="5"/>
-			      	<a4j:commandLink style="margin-right: 5px;" >
+			      	<a4j:commandLink styleClass="#{(messageHanlder.showOnlyUnreadMsg eq 'true') ? 'msg_all' :''}" style="margin-right: 5px;" action="#{messageHanlder.showUnReadMessages}" reRender="idDataGridMsg,idRightButtonPanel" onclick="forceBlockUI(ajaxProcessMsg);"   oncomplete="forceUnblockUI();">
 					     <h:outputText value="Unread" border="0" />			            	
 					</a4j:commandLink>	
-							
+				</h:panelGroup>			
 				 </td>							      
            </tr>           
            
