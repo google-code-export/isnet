@@ -48,71 +48,7 @@
   		 
  </ui:define> 
   <ui:define name="body">    
-	<h:form>
-	<h:panelGrid columns="1" width="100%" >
-	<h:panelGroup id="idSearchPanel">
-		<h:panelGrid columns="2" border="0" width="100%" columnClasses="column_class_right col_40,column_class_left col_60" >
-			<h:outputText value="#{bundle.member_ask_question_q_no}" />
-			<h:inputText value="#{questionViewHandler.questionNo}" styleClass="form_input_text_small" />
-			<h:outputText value="#{bundle.member_ask_question_topic}" />
-			<h:inputText value="#{questionViewHandler.topic}" styleClass="form_input_text_small" />
-			<h:outputText value="#{bundle.member_ask_question_keys}" />
-			<h:inputText value="#{questionViewHandler.term}" styleClass="form_input_text_medium"/>
-			<h:outputText value=""/>
-			<h:panelGroup>
-				<a4j:commandButton  onclick="forceBlockUI(ajaxQuestionsAns);"   oncomplete="forceUnblockUI();" value="#{bundle.button_label_search}" action="#{questionViewHandler.executeSearch}" reRender="idContainer"/>
-				<a4j:commandButton  value="#{bundle.button_clear}" action="#{questionViewHandler.resetFields}" reRender="idSearchPanel"/>
-			</h:panelGroup>						
-		</h:panelGrid>	
-</h:panelGroup>
-				<rich:panel id="idContainer" headerClass="container_box_panel_header"
-					bodyClass="container_body_style">
-					<f:facet name="header">
-						<h:outputText value="#{bundle.member_ask_question_result}" />
-					</f:facet>
-					<h:panelGrid columns="1" width="100%" cellpadding="0"
-						cellspacing="0" border="0">
-						<rich:dataTable width="100%" id="idDataGrid"
-							rowClasses=",container_even_row_style" rows="5"
-							columnsWidth="150," value="#{questionViewHandler.questions}"
-							var="entity" headerClass="table_column_style" cellpadding="0"
-							cellspacing="0">
-							<rich:column>
-								<f:facet name="header">
-									<h:outputText value="#{bundle.member_ask_question_reference}" />
-								</f:facet>
-								<h:panelGroup> 
-									<h:outputText value="#{entity.questionNo}" />
-									<h:outputText value="#{entity.questionReference}" />
-								 </h:panelGroup>
-								
-								
-							</rich:column>
-							<rich:column>
-								<f:facet name="header">
-									<h:outputText value="#{bundle.member_ask_question_topic}" />
-								</f:facet>
-								<h:outputText value="#{entity.topic}" />
-							</rich:column>
-
-							<rich:column>
-								<f:facet name="header">
-									<h:outputText value="#{bundle.member_ask_question_question}" />
-								</f:facet>
-								<h:panelGroup>
-									<h:outputText value="#{entity.question}" /> <rich:spacer width="3"/>
-									<h:commandLink  value="#{bundle.member_ask_question_ans_details}" onclick="#{entity.detailsQnALink}"/>								
-								</h:panelGroup>
-								
-							</rich:column>
-						</rich:dataTable>
-						<rich:datascroller id="idDataScroller" align="center"
-							for="idDataGrid" maxPages="5" />
-					</h:panelGrid>
-				</rich:panel>
-
-			</h:panelGrid>
-  </h:form>
+		<ui:include src="./sections/qaContent.xhtml"></ui:include>
   </ui:define>
   
 
