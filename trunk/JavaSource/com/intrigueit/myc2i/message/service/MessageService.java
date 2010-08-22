@@ -46,5 +46,8 @@ public interface MessageService {
 	/** Remove message by message Id */
 	public Boolean removeMessage(Long messageId);
 	
+	/** Return the no of unread message of user mail box */
+	public int getUnReadMessageByOwner(Long ownerId);
+	
 	
 }
