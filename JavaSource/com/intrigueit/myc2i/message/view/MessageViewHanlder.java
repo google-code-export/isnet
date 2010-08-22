@@ -23,7 +23,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.intrigueit.myc2i.common.view.BasePage;
-import com.intrigueit.myc2i.member.domain.KnownMember;
 import com.intrigueit.myc2i.member.domain.Member;
 import com.intrigueit.myc2i.member.service.MemberService;
 import com.intrigueit.myc2i.message.domain.AttachedFile;
@@ -57,8 +56,6 @@ public class MessageViewHanlder extends BasePage {
 
 	/** List of messages to view in a grid */
 	private List<Message> messages;
-	
-	private List<Message> messagesOut;
 
 	/** List of messages related to another message */
 	private List<Message> relatedMessages;
@@ -75,7 +72,10 @@ public class MessageViewHanlder extends BasePage {
 	private String currentFolder = null;
 	
 	private String msgOtherParticipients;
+	
+	private boolean showOnlyUnreadMsg = false;
 
+	
 	/** Load the list of all messages */
 	private void loadMessages() {
 		try {
@@ -87,6 +87,7 @@ public class MessageViewHanlder extends BasePage {
 				this.currentFolder = FOLDER;
 			}
 			log.debug("Loading message from: "+ this.currentFolder);
+			
 			this.messages = messageService.getConversationByOwner(this.getMember().getMemberId(), this.currentFolder);
 
 		} catch (Exception ex) {
@@ -94,12 +95,25 @@ public class MessageViewHanlder extends BasePage {
 		}
 	}
 	/** Load the list of all messages */
-	private void loadOutMessages() {
+	public void showUnReadMessages() {
 		try {
 
-			this.messagesOut = messageService.getConversationByOwner(this.getMember().getMemberId(), MessageStatus.SENT.toString());
+			log.debug("Loading message from: "+ this.currentFolder);
+			
+			this.messages = messageService.getUnReadConversationByOwner(this.getMember().getMemberId(), this.currentFolder);
+			
+			this.setShowOnlyUnreadMsg(true);
 
 		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+	}
+	public void showAllMessage(){
+		try{
+			this.setShowOnlyUnreadMsg(false);
+			this.messages = null;
+		}
+		catch(Exception ex){
 			ex.printStackTrace();
 		}
 	}
@@ -146,9 +160,10 @@ public class MessageViewHanlder extends BasePage {
 					message.setReadStatus(MessageReadingStatus.UNREAD
 							.toString());
 					this.messageService.update(message);
-					System.out.println(message.getReadStatus());
 				}
 			}
+			/** reset the all the messages */
+			this.messages = null;
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -163,15 +178,38 @@ public class MessageViewHanlder extends BasePage {
 
 				}
 			}
+			/** reset the all the messages */
+			this.messages = null;
+			
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
 	}
 
+	public void selectAllMessages(){
+		try{
+			for(Message message : this.messages){
+				message.setChecked(true);
+			}
+		}
+		catch(Exception ex){
+			log.error(ex.getMessage());
+		}
+	}
+	public void deSelectAllMessages(){
+		try{
+			for(Message message : this.messages){
+				message.setChecked(false);
+			}
+		}
+		catch(Exception ex){
+			log.error(ex.getMessage());
+		}
+	}
 	public String markMessageAsUnRead(){
 		try {
 			String id = this.getParameter("ID");
-			System.out.println(id);
+
 			if (id == null || id.equals("")) {
 				return null;
 			}
@@ -182,6 +220,7 @@ public class MessageViewHanlder extends BasePage {
 		}
 		return MessageConstant.BACK_TO_MSG_MAIN_PAGE;
 	}
+	
 	private Message changeReadingStatus(Long messageId,String status)throws Exception{
 		Message message = this.messageService.findById(messageId);
 		message.setReadStatus(status);
@@ -202,6 +241,9 @@ public class MessageViewHanlder extends BasePage {
 			Message message = this.changeReadingStatus(Long.parseLong(id), MessageReadingStatus.READ.toString());
 			
 			this.prepareReplyMessage(message);
+			
+			/** reset the all the messages */
+			this.messages = null;
 
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -497,9 +539,9 @@ public class MessageViewHanlder extends BasePage {
 	}
 
 	public synchronized List<Message> getMessages() {
-		// if(this.messages == null){
-		this.loadMessages();
-		// }
+		if(this.messages == null){
+			this.loadMessages();
+		}
 		return messages;
 	}
 
@@ -592,14 +634,6 @@ public class MessageViewHanlder extends BasePage {
 		this.toMemberNameList = toMemberNameList;
 	}
 
-	public List<Message> getMessagesOut() {
-		this.loadOutMessages();
-		return messagesOut;
-	}
-
-	public void setMessagesOut(List<Message> messagesOut) {
-		this.messagesOut = messagesOut;
-	}
 	public String getCurrentFolder() {
 		return currentFolder;
 	}
@@ -611,6 +645,12 @@ public class MessageViewHanlder extends BasePage {
 	}
 	public void setMsgOtherParticipients(String msgOtherParticipients) {
 		this.msgOtherParticipients = msgOtherParticipients;
+	}
+	public boolean isShowOnlyUnreadMsg() {
+		return showOnlyUnreadMsg;
+	}
+	public void setShowOnlyUnreadMsg(boolean showOnlyUnreadMsg) {
+		this.showOnlyUnreadMsg = showOnlyUnreadMsg;
 	}
 
 
