@@ -93,4 +93,10 @@ public final class MessageServiceImpl implements MessageService {
 		return this.messageDao.getConversationByOwnerId(ownerId,status);
 	}
 
+	@Override
+	public List<Message> getUnReadConversationByOwner(Long ownerId,
+			String status) {
+		return this.messageDao.getUnReadConversationByOwnerId(ownerId,status,MessageReadingStatus.UNREAD.toString());
+	}
+
 }
