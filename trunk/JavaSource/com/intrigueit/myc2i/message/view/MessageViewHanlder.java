@@ -18,6 +18,7 @@ import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.collections.set.CompositeSet.SetMutator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -74,8 +75,22 @@ public class MessageViewHanlder extends BasePage {
 	private String msgOtherParticipients;
 	
 	private boolean showOnlyUnreadMsg = false;
+	
+	/** No of unread message count in box */
+	private int unReadMessageCount =0;
 
 	
+	private void loadUnreadMessageCount(){
+		
+		try{
+			int count = this.messageService.getUnReadMessageByOwner(this.getMember().getMemberId());
+			this.unReadMessageCount = count;
+
+		}
+		catch(Exception ex){
+			log.error(ex.getMessage());
+		}
+	}
 	/** Load the list of all messages */
 	private void loadMessages() {
 		try {
@@ -326,14 +341,47 @@ public class MessageViewHanlder extends BasePage {
 			ex.printStackTrace();
 		}
 	}
-	private Set<Member> getReceivers(){
+	private Set<Member> getReceivers()throws Exception{
 		Set<Member> receivers = new HashSet<Member>();
 		
 		Set<Entry<Long, String>>  enty = this.getToMemberList().entrySet();
 		for(Entry<Long, String> ent : enty){
 			//log.debug(ent.getKey() +" ---------- " + ent.getValue());
 			Member member = this.memberService.findById(ent.getKey());
-			receivers.add(member);
+			
+			if(member != null){
+				receivers.add(member);
+			}
+		}
+		/** If to member list is empty */
+		if( this.getToMemberList().size() < 1){
+			receivers = this.getMembersFromEmail();
+		}
+		if( receivers == null || receivers.size() < 1){
+			throw new Exception("No valid destination address");
+		}
+		return receivers;
+	}
+	
+	/**
+	 * Populate the to member list from the email addresses
+	 * @return Set of to member list
+	 */
+	private Set<Member> getMembersFromEmail(){
+		if(this.toMemberNameList == null || this.toMemberNameList.equals("")){
+			return null;
+		}
+		String emailList[] = this.toMemberNameList.split(",");
+		if(emailList.length < 1){
+			return null;
+		}
+		Set<Member> receivers = new HashSet<Member>();
+		for(String email: emailList){
+			log.debug("-------->"+ email);
+			Member member = this.memberService.loadMemberByEmail(email.trim());
+			if(member != null){
+				receivers.add(member);
+			}
 		}
 		return receivers;
 	}
@@ -367,14 +415,18 @@ public class MessageViewHanlder extends BasePage {
 
 		if (this.isValidReceiver(message.getSenderId())) {
 			Member sender = this.memberService.findById(message.getSenderId());
-			receivers.add(sender);
+			if(sender != null){
+				receivers.add(sender);
+			}
 		}
 
 		for (Member member : message.getReceiver()) {
 			/**  */
 			if (this.isValidReceiver(member.getMemberId())) {
 				Member mem = this.memberService.findById(member.getMemberId());
-				receivers.add(mem);
+				if(mem != null){
+					receivers.add(mem);
+				}
 			}
 		}
 
@@ -539,7 +591,15 @@ public class MessageViewHanlder extends BasePage {
 	}
 
 	public synchronized List<Message> getMessages() {
+		
 		if(this.messages == null){
+			this.loadMessages();
+		}
+		
+		/** If folder name change then load message again */
+		String folder = this.getParameter("folder");
+		if(folder != null && !folder.equals(this.currentFolder)){
+			log.debug("Folder changed loading message again...");
 			this.loadMessages();
 		}
 		return messages;
@@ -651,6 +711,13 @@ public class MessageViewHanlder extends BasePage {
 	}
 	public void setShowOnlyUnreadMsg(boolean showOnlyUnreadMsg) {
 		this.showOnlyUnreadMsg = showOnlyUnreadMsg;
+	}
+	public int getUnReadMessageCount() {
+		this.loadUnreadMessageCount();
+		return unReadMessageCount;
+	}
+	public void setUnReadMessageCount(int unReadMessageCount) {
+		this.unReadMessageCount = unReadMessageCount;
 	}
 
 
