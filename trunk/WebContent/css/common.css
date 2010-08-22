@@ -335,3 +335,8 @@
 	vertical-align: top;
 	text-align: left;
 }
+.msg_all{
+	font-size: 1em;
+	font-weight: bold;
+	background-color: #DFDFDF;
+}
