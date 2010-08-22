@@ -25,23 +25,39 @@ public class QuestionViewHandler extends BasePage implements Serializable {
 	
 	private List<IslamCityQuestion> questions;
 	
+
+	
 	
 	public QuestionViewHandler() {
 		this.questions = new ArrayList<IslamCityQuestion>();
 	}
 
+	
 	/** Call search in Islam City */
 	public void executeSearch(){
 		try{
+			
+			this.resetMessage();
+			this.errMsgs = new ArrayList<String>();
+			
 			if(this.getTopic().equals("")){
+				this.setHasError(true);
+				this.getErrMsgs().add("Please enter search topic");
 				return;
 			}
 			log.debug( this.getActionURL());
 			SimpleDataExtractor de = new SimpleDataExtractor(this.getActionURL());
 			this.questions = de.extract();
+			
+			if(this.questions.size() < 1){
+				this.setHasError(true);
+				this.getErrMsgs().add("No Q&A found for the provided search text");
+			}
 		}
 		catch(Exception ex){
 			ex.printStackTrace();
+			this.setHasError(true);
+			this.getErrMsgs().add("Unable to find the search result");
 		}
 	}
 	
@@ -49,6 +65,8 @@ public class QuestionViewHandler extends BasePage implements Serializable {
 		this.questionNo = "";
 		this.topic = "";
 		this.term = "";
+		this.resetMessage();
+		this.questions.clear();
 	}
 
 	public String getQuestionNo() {
