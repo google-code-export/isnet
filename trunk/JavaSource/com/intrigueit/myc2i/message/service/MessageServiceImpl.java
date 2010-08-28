@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.intrigueit.myc2i.member.domain.Member;
 import com.intrigueit.myc2i.message.dao.MessageDao;
 import com.intrigueit.myc2i.message.domain.Message;
+import com.intrigueit.myc2i.message.domain.MessageConstant;
 import com.intrigueit.myc2i.message.domain.MessageConstant.MessageReadingStatus;
 import com.intrigueit.myc2i.message.domain.MessageConstant.MessageStatus;
 
@@ -89,14 +90,14 @@ public final class MessageServiceImpl implements MessageService {
 	}
 
 	@Override
-	public List<Message> getConversationByOwner(Long ownerId,String status) {
-		return this.messageDao.getConversationByOwnerId(ownerId,status);
+	public List<Message> getConversationByOwner(Long ownerId,String status,int startIndex) {
+		return this.messageDao.getConversationByOwnerId(ownerId,status,startIndex,MessageConstant.MESSAGE_PER_PAGE);
 	}
 
 	@Override
 	public List<Message> getUnReadConversationByOwner(Long ownerId,
-			String status) {
-		return this.messageDao.getUnReadConversationByOwnerId(ownerId,status,MessageReadingStatus.UNREAD.toString());
+			String status,int startIndex) {
+		return this.messageDao.getUnReadConversationByOwnerId(ownerId,status,MessageReadingStatus.UNREAD.toString(),startIndex,MessageConstant.MESSAGE_PER_PAGE);
 	}
 
 	@Override

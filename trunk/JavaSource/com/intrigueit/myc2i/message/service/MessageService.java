@@ -35,10 +35,10 @@ public interface MessageService {
 	public List<Message> getConversation(Long senderId);
 	
 	/** Get the list of all conversation belongs to this sender */
-	public List<Message> getConversationByOwner(Long ownerId, String status);
+	public List<Message> getConversationByOwner(Long ownerId, String status,int startIndex);
 	
 	/** Get the list of all conversation belongs to this sender */
-	public List<Message> getUnReadConversationByOwner(Long ownerId, String status);
+	public List<Message> getUnReadConversationByOwner(Long ownerId, String status,int startIndex);
 	
 	/** Get the list of all conversion based on reference message */
 	public List<Message> getConversationByReferenceMessage(Long ownerId,Long refMessageId);
