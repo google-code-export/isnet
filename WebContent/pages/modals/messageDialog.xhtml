@@ -121,7 +121,7 @@
 	            <h:panelGroup>
 		            <h:panelGrid columns="2" width="100%" columnClasses="column_class_right,column_class_left">
 		            	<a4j:commandButton onclick="forceBlockUI(ajaxWaitMsg);" action="#{messageHanlder.addNewMessage}"  value="#{bundle.message_button_send}" oncomplete="forceUnblockUI();ModalHelper.validateModal('memberMessageForm','idmessageDialog')"  
-		                reRender="container">               
+		                reRender="idDataGridMsg">               
 		              </a4j:commandButton>
 		              <a4j:commandButton value="#{bundle.message_button_cancel}" onclick="Richfaces.hideModalPanel('idmessageDialog')" />  
 		            </h:panelGrid>
