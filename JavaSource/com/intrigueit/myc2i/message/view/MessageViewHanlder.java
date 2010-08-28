@@ -384,6 +384,9 @@ public class MessageViewHanlder extends BasePageExtended {
 			this.addAuditField();
 
 			this.messageService.save(this.currentMessage);
+			
+			this.messages = this.getMessage();
+			
 		} catch (Exception ex) {
 			this.errMsgs.add(ex.getMessage());
 			this.hasError = true;
