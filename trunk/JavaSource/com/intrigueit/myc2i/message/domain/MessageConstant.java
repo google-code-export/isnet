@@ -8,7 +8,7 @@ public class MessageConstant {
 	}
 	
 	/** No of messages per page in message page */
-	public static final Integer MESSAGE_PER_PAGE = 20;
+	public static final Integer MESSAGE_PER_PAGE = 5;
 	
 	public static final String MESSAGE_INBOX = "INBOX";
 	public static final String MESSAGE_SENT = "SENT";
