@@ -51,27 +51,28 @@
 		             </rich:column>		             
 		             <rich:column>
 			             <f:facet name="header">
-			               <h:outputText value="#{bundle.member_address}"/>
+			               <h:outputText value="Last Activity"/>
 			             </f:facet>
-				 			<h:outputText  value="#{protege.streetAddress}" />
+				 			<h:outputText  value="#{protege.lastActivity}" >
+				 			<f:convertDateTime dateStyle="default" pattern="#{bundle.long_date_pattern}"/>
+				 			</h:outputText>
 		             </rich:column>
+		             	
 		             <rich:column>
 			             <f:facet name="header">
-			               <h:outputText value="#{bundle.member_city}"/>
+			               <h:outputText value="Activity Logs"/>
 			             </f:facet>
-				 			<h:outputText  value="#{protege.city}" />
+				         <h:outputLink style="font-weight:bolder;"  value="#{controllerBean.contextPath}/pages/secure/mentorLogReview.faces">
+		 					<a4j:actionparam name="MEMBER_ID" value="#{protege.memberId}"  />
+		 					<h:outputText value="View Detail"/>	
+				         </h:outputLink>	
 		             </rich:column>
-		             <rich:column>
-			             <f:facet name="header">
-			               <h:outputText value="#{bundle.protege_profile_email}"/>
-			             </f:facet>
-				 			<h:outputText  value="#{protege.email}" />
-		             </rich:column>			             	
-		             		             	  
+		             			             		             	  
 		             <rich:column>
 			             <f:facet name="header">
 			               <h:outputText value="#{bundle.common_label_action}"/>
-			             </f:facet>		             
+			             </f:facet>		    
+						<rich:spacer width="5"/>			                      
 		         		 <a4j:commandLink  reRender="idmemberInfoDialog" action="#{protegeProfileViewHandler.loadMember}" oncomplete="Richfaces.showModalPanel('idmemberInfoDialog')">
 				             <a4j:actionparam name="MEMBER_ID" value="#{protege.memberId}"  />
 				             <a4j:actionparam name="action" value="VIEW"  />
