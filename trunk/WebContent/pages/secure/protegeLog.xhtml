@@ -27,7 +27,7 @@
         <table border="0" cellspacing="0" cellpadding="0" width="98%">
          <tr>
           <td align="right">
-        <a4j:commandLink styleClass="table_control_normal_style" action="#{memberLogViewHandler.initMemberLog}" reRender="idmemberLogDialog"  oncomplete="Richfaces.showModalPanel('idmemberLogDialog')">
+        <a4j:commandLink rendered="false" styleClass="table_control_normal_style" action="#{memberLogViewHandler.initMemberLog}" reRender="idmemberLogDialog"  oncomplete="Richfaces.showModalPanel('idmemberLogDialog')">
               <a4j:actionparam name="activityId" value="-1"  />
               <h:graphicImage value="/images/new.png" align="middle" border="0" />  
                  <rich:toolTip styleClass="tooltips_style"  >
