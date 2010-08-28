@@ -46,17 +46,17 @@ public final class MessageDaoImpl  extends GenericDaoImpl<Message, Long> impleme
 	}
 
 	@Override
-	public List<Message> getConversationByOwnerId(Long ownerId,String status) {
-		String clause = " t.ownerId = ?1 and t.status = ?2 ORDER BY t.createdTime ASC ";
-		List<Message> messages = loadByClause(clause, new Object[] { ownerId,status });
+	public List<Message> getConversationByOwnerId(Long ownerId,String status,int startIndex, int pageSize) {
+		String clause = " where t.ownerId = ?1 and t.status = ?2 ORDER BY t.createdTime DESC ";
+		List<Message> messages = loadTopResultsByConditions(startIndex,pageSize, clause, new Object[] { ownerId,status });
 		return messages;
 	}
 
 	@Override
 	public List<Message> getUnReadConversationByOwnerId(Long ownerId,
-			String status, String readStatus) {
-		String clause = " t.ownerId = ?1 and t.status = ?2 and t.readStatus =?3 ORDER BY t.createdTime DESC ";
-		List<Message> messages = loadByClause(clause, new Object[] { ownerId,status, readStatus });
+			String status, String readStatus,int startIndex, int pageSize) {
+		String clause = " where t.ownerId = ?1 and t.status = ?2 and t.readStatus =?3 ORDER BY t.createdTime DESC ";
+		List<Message> messages = loadTopResultsByConditions(startIndex,pageSize,clause, new Object[] { ownerId,status, readStatus });
 		return messages;
 	}
 
