@@ -341,7 +341,10 @@ public class ModulePlayer extends BasePage {
 			 */
 			else {
 				this.notEndPlay = false;
-
+				
+				/** save the last page question before calculating question answer  */
+				this.saveQuestionAnswer();
+				
 				boolean isCompleted = this.isCompletedTest();
 				
 				/** No question answer just say tutorial is completed */
