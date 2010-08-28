@@ -9,12 +9,9 @@ package com.intrigueit.myc2i.message.view;
 import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
-import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -23,7 +20,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.intrigueit.myc2i.common.CommonConstants;
-import com.intrigueit.myc2i.common.view.BasePage;
+import com.intrigueit.myc2i.common.view.BasePageExtended;
 import com.intrigueit.myc2i.member.domain.Member;
 import com.intrigueit.myc2i.member.service.MemberService;
 import com.intrigueit.myc2i.message.domain.AttachedFile;
@@ -44,7 +41,7 @@ import com.intrigueit.myc2i.message.service.MessageService;
 
 @Component("messageHanlder")
 @Scope("session")
-public class MessageViewHanlder extends BasePage {
+public class MessageViewHanlder extends BasePageExtended {
 
 	/** Current Message stored */
 	private Message currentMessage;
@@ -66,9 +63,9 @@ public class MessageViewHanlder extends BasePage {
 	/** Attachment view handler reference */
 	private AttachmentUploadHandler attachmentHandler;
 
-	private String toMemberNameList = "";
+/*	private String toMemberNameList = "";
 	
-	private Map<Long, String> toMemberList = new HashMap<Long, String>();
+	private Map<Long, String> toMemberList = new HashMap<Long, String>();*/
 	
 	private String currentFolder = null;
 	
@@ -80,6 +77,9 @@ public class MessageViewHanlder extends BasePage {
 	private int unReadMessageCount =0;
 	
 	private String memberLinks;
+	
+	/** index for message pagination */
+	private int currentMessageIndex;
 
 	
 	private void loadUnreadMessageCount(){
@@ -99,27 +99,78 @@ public class MessageViewHanlder extends BasePage {
 			String FOLDER = this.getParameter("folder");
 
 			if (FOLDER == null || FOLDER.equals("")) {
-				//this.currentFolder =  ;
+				//
 			}else{
 				this.currentFolder = FOLDER;
+				this.currentMessageIndex = 0;
 			}
 			log.debug("Loading message from: "+ this.currentFolder);
 			
-			this.messages = messageService.getConversationByOwner(this.getMember().getMemberId(), this.currentFolder);
+			this.messages = messageService.getConversationByOwner(this.getMember().getMemberId(), this.currentFolder,this.currentMessageIndex);
 
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
 	}
+	
+	public void navigateToNextPage(){
+		try{
+			this.currentMessageIndex = this.currentMessageIndex + MessageConstant.MESSAGE_PER_PAGE;
+			
+			List<Message> msgs = getMessage();
+			
+			this.currentMessageIndex = this.currentMessageIndex  - MessageConstant.MESSAGE_PER_PAGE + msgs.size();
+			if(msgs.size() > 0){
+				this.messages = msgs;
+			}
+			
+			
+			log.debug(currentMessageIndex);
+		}
+		catch(Exception ex){
+			ex.printStackTrace();
+		}
+	}
+	private List<Message> getMessage()throws Exception {
+		
+		if(this.showOnlyUnreadMsg){
+			return messageService.getUnReadConversationByOwner(this.getMember().getMemberId(), this.currentFolder,this.currentMessageIndex);
+		}else{
+			return messageService.getConversationByOwner(this.getMember().getMemberId(), this.currentFolder,this.currentMessageIndex);
+		}
+	}
+	public void navigateToPreviousPage(){
+		try{
+			if(this.currentMessageIndex % MessageConstant.MESSAGE_PER_PAGE == 0){
+				
+				this.currentMessageIndex = this.currentMessageIndex - MessageConstant.MESSAGE_PER_PAGE;
+			}
+			else{
+				this.currentMessageIndex = this.currentMessageIndex - (this.currentMessageIndex % MessageConstant.MESSAGE_PER_PAGE);
+			}
+			if(this.currentMessageIndex < 0){
+				this.currentMessageIndex = 0;
+			}
+			List<Message> msgs = getMessage();
+			if(msgs.size() > 0){
+				this.messages = msgs;
+			}
+			log.debug(currentMessageIndex);
+		}
+		catch(Exception ex){
+			ex.printStackTrace();
+		}
+	}	
 	/** Load the list of all messages */
 	public void showUnReadMessages() {
 		try {
 
-			log.debug("Loading message from: "+ this.currentFolder);
-			
-			this.messages = messageService.getUnReadConversationByOwner(this.getMember().getMemberId(), this.currentFolder);
-			
+			this.currentMessageIndex = 0;
 			this.setShowOnlyUnreadMsg(true);
+			
+			log.debug("Loading unread message from: "+ this.currentFolder);
+			
+			this.messages = this.getMessage();
 
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -146,13 +197,7 @@ public class MessageViewHanlder extends BasePage {
 
 	}
 
-	/**
-	 * Clear the error message flags
-	 */
-	private void resetErrorMessage(){
-		this.hasError = false;
-		this.errMsgs.clear();
-	}
+
 	/**
 	 * Initialize message dialog
 	 */
@@ -163,7 +208,7 @@ public class MessageViewHanlder extends BasePage {
 		this.currentMessage.setBody("");
 		this.toMemberList.clear();
 		this.toMemberNameList = "";
-		this.resetErrorMessage();
+		this.resetMessage();
 
 	}
 
@@ -319,13 +364,13 @@ public class MessageViewHanlder extends BasePage {
 	public void addNewMessage() {
 		try {
 			
-			this.resetErrorMessage();
+			this.resetMessage();
 			if(this.checkError()){
 				this.hasError = true;
 				return;
 			}
 			this.currentMessage.setSenderId(this.getMember().getMemberId());
-			Set<Member> receivers = this.getReceivers();
+			Set<Member> receivers = getReceivers(memberService);
 
 			this.currentMessage.setOwnerId(this.getMember().getMemberId());
 			this.currentMessage.setReceiver(receivers);
@@ -343,51 +388,6 @@ public class MessageViewHanlder extends BasePage {
 			ex.printStackTrace();
 		}
 	}
-	private Set<Member> getReceivers()throws Exception{
-		Set<Member> receivers = new HashSet<Member>();
-		
-		Set<Entry<Long, String>>  enty = this.getToMemberList().entrySet();
-		for(Entry<Long, String> ent : enty){
-			//log.debug(ent.getKey() +" ---------- " + ent.getValue());
-			Member member = this.memberService.findById(ent.getKey());
-			
-			if(member != null){
-				receivers.add(member);
-			}
-		}
-		/** If to member list is empty */
-		if( this.getToMemberList().size() < 1){
-			receivers = this.getMembersFromEmail();
-		}
-		if( receivers == null || receivers.size() < 1){
-			throw new Exception("No valid destination address");
-		}
-		return receivers;
-	}
-	
-	/**
-	 * Populate the to member list from the email addresses
-	 * @return Set of to member list
-	 */
-	private Set<Member> getMembersFromEmail(){
-		if(this.toMemberNameList == null || this.toMemberNameList.equals("")){
-			return null;
-		}
-		String emailList[] = this.toMemberNameList.split(",");
-		if(emailList.length < 1){
-			return null;
-		}
-		Set<Member> receivers = new HashSet<Member>();
-		for(String email: emailList){
-			log.debug("-------->"+ email);
-			Member member = this.memberService.loadMemberByEmail(email.trim());
-			if(member != null){
-				receivers.add(member);
-			}
-		}
-		return receivers;
-	}
-
 	public void prepareReplyMessage(Message message) {
 		try {
 			
@@ -659,43 +659,6 @@ public class MessageViewHanlder extends BasePage {
 		
 		return members;
 	}
-	public void test(){
-		try{
-			log.debug("Item selected event :");
-			String prm1 = this.getParameter("PRM1");
-			String prm2 = this.getParameter("PRM2");
-			log.debug("++++"+prm1 + " ++++++++ "+ prm2);
-			if(prm1 == null || prm1.equals("")){
-				return;
-			}
-			Long memberId = Long.parseLong(prm1);
-			if(!toMemberList.containsKey(memberId)){
-				this.toMemberList.put(memberId, prm2);
-			}
-			
-		}
-		catch(Exception ex){
-			ex.printStackTrace();
-		}
-
-	}
-
-	public Map<Long, String> getToMemberList() {
-		return toMemberList;
-	}
-
-	public void setToMemberList(Map<Long, String> toMemberList) {
-		this.toMemberList = toMemberList;
-	}
-
-	public String getToMemberNameList() {
-		return toMemberNameList;
-	}
-
-	public void setToMemberNameList(String toMemberNameList) {
-		this.toMemberNameList = toMemberNameList;
-	}
-
 	public String getCurrentFolder() {
 		return currentFolder;
 	}
