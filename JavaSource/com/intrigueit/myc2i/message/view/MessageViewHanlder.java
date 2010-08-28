@@ -321,6 +321,7 @@ public class MessageViewHanlder extends BasePageExtended {
 				return null;
 			}
 			this.messageService.removeMessage(Long.parseLong(id));
+			this.messages = null;
 
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -336,6 +337,7 @@ public class MessageViewHanlder extends BasePageExtended {
 				return ;
 			}
 			this.messageService.removeMessage(Long.parseLong(id));
+			this.messages = null;
 
 		} catch (Exception ex) {
 			ex.printStackTrace();
