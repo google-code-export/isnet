@@ -54,11 +54,10 @@
 	      		</td>
 
 				<td colspan="2" align="right">
-            		<a4j:commandButton  onclick="forceBlockUI(ajaxProcessMsg);"   oncomplete="forceUnblockUI();" value="#{bundle.message_button_previous}" action="#{memberSearchViewHandler.executeSearch}" >
-						<f:param name="SEARCH_TYPE" value="PROTEGE"/>
+            		<a4j:commandButton  onclick="forceBlockUI(ajaxProcessMsg);"   oncomplete="forceUnblockUI();" value="#{bundle.message_button_previous}" action="#{messageHanlder.navigateToPreviousPage}" reRender="idDataGridMsg">
 					</a4j:commandButton>
 					 <rich:spacer width="3"/>
-            		<a4j:commandButton style="margin-right: 5px;" onclick="forceBlockUI(ajaxProcessMsg);"   oncomplete="forceUnblockUI();" value="#{bundle.message_button_next}" action="#{memberSearchViewHandler.executeSearch}" >
+            		<a4j:commandButton style="margin-right: 5px;" onclick="forceBlockUI(ajaxProcessMsg);"   oncomplete="forceUnblockUI();" value="#{bundle.message_button_next}" action="#{messageHanlder.navigateToNextPage}" reRender="idDataGridMsg" >
 					</a4j:commandButton>					
 				 </td>							      
            </tr>
