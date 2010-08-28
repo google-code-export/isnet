@@ -10,9 +10,21 @@
 	border: 1px solid #C3D2DF;
 	margin: 1px 0px 1px 0px;
 }
+.form_input_text_large
+{
+	width: 380px;
+	border: 1px solid #C3D2DF;
+	margin: 1px 0px 1px 0px;
+}
 .form_input_select_medium
 {
 	width: 201px;
+	border: 1px solid #C3D2DF;
+	margin: 1px 0px 1px 0px;
+}
+.form_input_select_large
+{
+	width: 355px;
 	border: 1px solid #C3D2DF;
 	margin: 1px 0px 1px 0px;
 }
