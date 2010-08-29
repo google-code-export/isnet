@@ -44,7 +44,7 @@
 						<h:dataTable border="0" value="#{dashboardViewHandler.importantLinks}" var="ud" 
 					    	columnClasses="," cellpadding="0" cellspacing="0" width="100%">
 							<h:column>
-								<h:outputLink  value="#{ud.udValuesDesc}" ><h:outputText value="#{ud.udValuesValue}"/></h:outputLink>
+								<h:outputLink target="_blank" value="#{ud.udValuesDesc}" ><h:outputText value="#{ud.udValuesValue}"/></h:outputLink>
 							</h:column>																	
 						</h:dataTable>		
 					</rich:panel>													
