@@ -18,56 +18,15 @@
       
       <h:panelGroup id="ltop_gdbsectionA" rendered="${userType eq 'A'}">
         <h:panelGroup id="idAppManagePanel" rendered="${moduleType eq 'AM'}">
-          <ul class="sidemenu">            
-             <li>
-              <h:outputLink styleClass="menu_item_clink" 
-                value="#{controllerBean.contextPath}/pages/secure/udValueView_n.faces">
-                <h:outputText value="#{bundle.left_navigation_user_defined_values} New"/>
-              </h:outputLink>
-            </li>
-            <li>
-              <h:outputLink styleClass="menu_item_clink" 
-                value="#{controllerBean.contextPath}/pages/secure/udValueView.faces">
-                <h:outputText value="#{bundle.left_navigation_user_defined_values}"/>
-              </h:outputLink>
-            </li>
-            <li>
-              <h:outputLink styleClass="menu_item_clink" 
-                value="#{controllerBean.contextPath}/pages/secure/vendorView.faces">
-                <h:outputText value="#{bundle.left_navigation_item_vendor}"/>
-              </h:outputLink>
-            </li>
-            <li>
-              <h:outputLink styleClass="menu_item_clink" 
-                value="#{controllerBean.contextPath}/pages/secure/trainingItemView.faces">
-                <h:outputText value="#{bundle.left_navigation_training_material}"/>
-              </h:outputLink>
-            </li>            
-            <li>
-              <h:outputLink styleClass="menu_item_clink" 
-                value="#{controllerBean.contextPath}/pages/secure/documentView.faces">
-                <h:outputText value="#{bundle.left_navigation_document_manage}"/>
-              </h:outputLink>
-            </li>            
-            <li>
-              <h:outputLink styleClass="menu_item_clink"
-                value="#{controllerBean.contextPath}/pages/secure/modulesView.faces">
-                <h:outputText value="#{bundle.left_navigation_tutorial_modules}"/>
-              </h:outputLink>
-            </li>
-            <li>
-              <h:outputLink styleClass="menu_item_clink"
-                value="#{controllerBean.contextPath}/pages/secure/qustionAnsView.faces">
-                <h:outputText value="#{bundle.left_navigation_tutorial_qa}"/>
-              </h:outputLink>
-            </li>
-            <li>
-              <h:outputLink styleClass="menu_item_clink"
-                value="#{controllerBean.contextPath}/pages/secure/adminStory.faces">
-                <h:outputText value="Approve Story"/>
-              </h:outputLink>
-            </li>            
-         </ul>
+          <ul class="menu"> 
+            <li><a href="javascript:void(0)" class="message"></a></li>
+            <li><a href="javascript:void(0)" class="dashboard"></a></li>
+            <li><a href="javascript:void(0)" class="profile"></a></li>
+            <li><a href="javascript:void(0)" class="search"></a></li>
+            <li><a href="javascript:void(0)" class="view"></a></li>
+            <li><a href="javascript:void(0)" class="log"></a></li>
+            <li><a href="javascript:void(0)" class="tutorial"></a></li>
+          </ul>
         </h:panelGroup>
         <h:panelGroup id="idUserManagePanel" rendered="${moduleType eq 'UM'}">
           <ul class="sidemenu">
