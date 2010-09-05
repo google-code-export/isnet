@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:a4j="http://richfaces.org/a4j"
+  xmlns:c="http://java.sun.com/jstl/core"
+  xmlns:rich="http://richfaces.org/rich">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml; charset=UTF-8"/>
+    <title>
+      <h:outputText value="MyC2i :: ${moduleTitle}" />
+    </title>  
+  
+  <c:set var="refColumns" value="3" />
+  <c:if test="${ not empty pageColumns}">
+    <c:set var="refColumns" value="${pageColumns}" />
+  </c:if>
+  
+  <c:when test="${userType eq 'A'}">
+    <c:set var="colClass" value="admin_leftside,admin_middle" />
+    <c:set var="showRightColumn" value="N" />
+  </c:when>
+  <c:choose>
+    <c:when test="${userType eq 'A'}">
+      <c:set var="colClass" value="admin_leftside,admin_middle" />
+      <c:set var="showRightColumn" value="N" />
+    </c:when>
+
+    <c:when test="${userType eq 'P' and empty pageColumns}">
+      <c:set var="colClass" value="admin_leftside,admin_middle" />
+      <c:set var="showRightColumn" value="N" />
+    </c:when>
+    
+    <c:when test="${userType eq 'P' and pageColumns eq '1'}">
+      <c:set var="colClass" value="middle" />
+      <c:set var="showRightColumn" value="N" />
+      <c:set var="showLeftColumn" value="N" />
+    </c:when>
+    
+    <c:when test="${userType eq 'MG'}">
+      <c:set var="colClass" value="middle" />
+      <c:set var="showRightColumn" value="N" />
+      <c:set var="showLeftColumn" value="N" />
+    </c:when>   
+     
+    <c:when test="${userType eq 'M'}">
+      <c:set var="colClass" value="admin_leftside,admin_middle" />
+      <c:set var="showRightColumn" value="N" />
+    </c:when>
+    
+    <c:otherwise>
+      <c:set var="colClass" value="leftside,middle,rightside" />
+    </c:otherwise>
+  </c:choose>
+
+    <a4j:outputPanel id="idStyleClass">
+      <link rel="STYLESHEET" type="text/css" href="#{controllerBean.contextPath}/#{controllerBean.cssPath}/myc2i_n.css"/>
+      <link rel="STYLESHEET" type="text/css" href="#{controllerBean.contextPath}/#{controllerBean.cssPath}/richtools.css"/>
+      <link rel="STYLESHEET" type="text/css" href="#{controllerBean.contextPath}/#{controllerBean.cssPath}/common.css"/>
+    </a4j:outputPanel>
+    <a4j:loadScript src="/js/jquery/jquery-1.2.js"/>
+    <a4j:loadScript src="/js/jquery/jquery.blockUI.js"/>
+    <a4j:loadScript src="/js/jquery/jqconfig.js"/>
+    <a4j:loadScript src="/js/common.js" />
+    <script>
+      /* define diffrent message for ajax loading*/
+      var ajaxLoadingMsg = "Loading...";
+      var ajaxProcessMsg = "Processing...";
+      var ajaxWaitMsg = "Please wait...";
+      var ajaxUpdateMsg = "Updating...";
+      var ajaxCreateCrt = "Creating...";
+      var ajaxAddMsg = "Adding...";
+      var ajaxPrepareMsg = "Preparing...";
+      var ajaxSearchingMentor="Searching for mentors. Please wait...";
+    </script>
+    <ui:insert name="js"></ui:insert>
+  </head>
+
+<body>
+  <a4j:outputPanel layout="block" id="idMainBlock" style="border: 0px solid red;">
+      <f:view id="idMainView">
+       <f:loadBundle basename="ApplicationResources" var="bundle"/>
+        <h:form id="idMainForm">
+          <c:set var="imagesPath" value="#{controllerBean.imagesPath}" />
+          <c:set var="contextPath" value="#{controllerBean.contextPath}" />
+          <h:inputHidden id="idContextPath" value="#{controllerBean.contextPath}" />
+  
+          <div id="container">
+            <div id="header">
+              <!-- start of top navigation -->
+              <div id="nav">
+                <ul>
+                  <li class="first"><a href="">alamin@versacomllc.com</a></li>
+                  <li><a href="">Privacy Policy</a></li>
+                  <li class="last"><a href="">Contact Us</a></li>
+                </ul>
+              </div>
+              <!-- end of top navigation -->
+            </div>
+            
+            <div id="announcements">
+              <div class="more">
+                <h2>Basic Auth Deprecation on August 16, 2010</h2>
+              </div>
+            </div>
+            
+            <div id="content">
+              <div class="row clearfix">
+                <div class="t-100">
+                  <div class="box title heading">
+                    <div id="logo_style" style="border: 0px solid red;">     
+                      <a href="http://www.google.com/">MyC2i</a>    
+                    </div>                    
+                    <h:graphicImage title="Clouds" value="${imagesPath}/clouds00.png" styleClass="clouds"/>
+                    <div class="faith"> 
+                      <h1 style="font-style: italic;">Upgrade Your Faith</h1> 
+                    </div>
+                    <div class="main-menu" >
+                      <p class="breadcrumb" style="margin-left: 60px;">
+                        <a href="">Home</a> &middot; 
+                        <a href="">My Account </a> &middot; 
+                        <a href="">My Resource</a>&middot; 
+                        <a href="">Ask a Question</a>&middot; 
+                        <a href="">Donation</a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="box t-100 subheading">
+                  <p style="font-size: 10px;" > </p>
+                </div>
+              </div>
+        
+              <div class="row clearfix t-100 box" style="border: 0px solid red;padding-top: 5px;background-color: #9EA9C9;">
+                <div class="t-25 last side" style="border: 0px solid red;">                  
+                  <ui:include src="/templates/include/leftside_n.xhtml"/>
+                </div>
+        
+                <div class="t-75 content" style="background-color: #ffffff;">
+                  <div class="formHead"><h:outputText value="${headerText}" /></div>
+                  <div class="formFields formBorder wideLabels">                  
+                    <ui:insert name="body">Body</ui:insert>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="footer">
+              <ul>
+                <li class="first">&copy; 2010 MyC2i</li>
+                <li><a href="http://twitter.com/about#about">About Us</a></li>
+                <li><a href="http://twitter.com/about#contact">Contact</a></li>
+              </ul>
+            </div>
+          </div>
+
+        </h:form>
+        <ui:insert name="modalPanels"></ui:insert>
+      </f:view>
+    </a4j:outputPanel>
+</body>
+</html>
