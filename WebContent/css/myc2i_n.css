@@ -1,6 +1,6 @@
 body {
   color: #082D3F;
-  background: #DEEFF6;
+  background: #BEC3C6;
   font: 14px Arial, sans-serif;
   text-shadow: 0 0 1px rgba(0, 0, 0, 0.01);
 }
@@ -885,7 +885,7 @@ div#all-announcements .see_more_announcements {
 }
 
 .odd-row { background-color: #FFFFFF; }
-.even-row { background-color: #EDEFF4; }
+.even-row { background-color: #F7F7F7; }
 .active-row { background-color: #E2F9E3; }
 .listcolumns_text {text-align: left;line-height: 18px;vertical-align: top;}
 .listcolumns_icon {vertical-align: top;padding:0px 0px 0px 0px;}
@@ -1060,6 +1060,6 @@ div#all-announcements .see_more_announcements {
   border: 0px solid red;
   padding-top: 5px;
   /* background-color: #9EA9C9; */
-  background:url(../images/body-text-bg_n.jpg);
+  background:url(../images/body-text-bg_n.png);
 }  
 /* @@@ end of old myc2i @@@*/
