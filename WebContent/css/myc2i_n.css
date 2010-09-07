@@ -132,7 +132,7 @@ a:hover {
   clear: both;
   display: block;
   width: 100%;
-   margin: 13px 0 15px 0; 
+  margin: 5px 0 3px 0; 
   height: 22px;
 
 }
@@ -198,6 +198,7 @@ a:hover {
 #header #nav ul li a {
   display: block;
   padding: 0 3px;
+  font-size: 12px;
 }
 
 #header #nav form {
@@ -386,7 +387,7 @@ a:hover {
   padding: 0 0 10px 0;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
-  margin-bottom: 20px !important;
+  margin-bottom: 10px !important;
   -webkit-border-bottom-left-radius: 5px !important;
   -webkit-border-bottom-right-radius: 5px !important;
   -moz-border-radius-bottomleft: 5px !important;
@@ -460,7 +461,14 @@ a:hover {
 }
 
 .box.title p.breadcrumb a:hover {
-  text-decoration: underline;
+  text-decoration: none;
+}
+
+/* new for font */
+p.breadcrumb a {
+  color: #C0DEED;
+  font-size: 12px;
+  font-weight: normal;
 }
 
 .side ul {
@@ -743,9 +751,9 @@ div#all-announcements .see_more_announcements {
     padding-right: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
-    border-top: 1px solid #8393BF; 
-    border-left: 1px solid #8393BF;
-    border-right: 1px solid #8393BF;
+    border-top: 1px solid #ADB7D2; 
+    border-left: 1px solid #ADB7D2;
+    border-right: 1px solid #ADB7D2;
     text-align:center; 
 }
 .formFields {
@@ -754,9 +762,9 @@ div#all-announcements .see_more_announcements {
     background-color: #fffff;
 }
 .formBorder {
-    border-left: 1px solid #8393BF;
-    border-right: 1px solid #8393BF;
-    border-bottom: 1px solid #8393BF;
+    border-left: 1px solid #ADB7D2;
+    border-right: 1px solid #ADB7D2;
+    border-bottom: 1px solid #ADB7D2;
 }
 
 .formControls {
@@ -876,9 +884,9 @@ div#all-announcements .see_more_announcements {
   background: #32498C;
 }
 
-.odd-row { background-color: #FCFFEF; }
-.even-row { background-color: #EFEFE0; }
-.active-row { background-color: #F9F7E0; }
+.odd-row { background-color: #FFFFFF; }
+.even-row { background-color: #EDEFF4; }
+.active-row { background-color: #E2F9E3; }
 .listcolumns_text {text-align: left;line-height: 18px;vertical-align: top;}
 .listcolumns_icon {vertical-align: top;padding:0px 0px 0px 0px;}
 .spacer{height: 2px; width: 100%;background-color: #EFEFEF;}
@@ -1049,6 +1057,9 @@ div#all-announcements .see_more_announcements {
   vertical-align: middle;
 }
 .body_bg {
-  
+  border: 0px solid red;
+  padding-top: 5px;
+  /* background-color: #9EA9C9; */
+  background:url(../images/body-text-bg_n.jpg);
 }  
 /* @@@ end of old myc2i @@@*/

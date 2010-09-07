@@ -1,0 +1,29 @@
+/** Use for modal panel body */
+.dr-mpnl-pnl-b{
+   padding : 0px;
+   background: #FFFCEF url(../images/2.jpg) 0 0 repeat-x;   
+}
+.dr-mpnl-pnl-h{
+   padding : 7px;
+   border-width: 0px;
+   border-style: solid;
+   background: #FFFCEF url(../images/2.jpg) 0 0 repeat-x;   
+}
+.rich-tab-inactive {
+    cursor: pointer;
+}
+.rich-tabpanel-content {
+    border-width: 1px 1px 1px 1px;
+    background-color: transparent;
+}
+.dr-subtable-headercell{
+	text-align: left;
+}
+
+.dr-table-cell {
+  border-bottom:1px solid #E9E9E9;
+  border-right:1px solid #E9E9E9;
+  color:#000000;
+  font-size:11px;
+  padding:4px;
+}
