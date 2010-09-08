@@ -4,7 +4,7 @@ body {
   font: 14px Arial, sans-serif;
   text-shadow: 0 0 1px rgba(0, 0, 0, 0.01);
 }
-ul.menu {
+table.menu {
   margin:0;
   overflow:hidden;
 }
@@ -14,11 +14,12 @@ ul.menu li {
   padding:0;
 }
 
-ul.menu li a { 
+ul.menu li aX { 
   text-indent:9999px;
   padding:0;
 }
 
+/*
 ul.menu li a.message:link, ul.menu li a.message:visited { 
   background: url(../images/message2.jpg) 0 0 no-repeat;
   width:180px;
@@ -28,6 +29,41 @@ ul.menu li a.message:link, ul.menu li a.message:visited {
 
 ul.menu li a.message:hover { 
   background: url(../images/message.jpg) 0 0 no-repeat;
+}
+*/
+.alink {
+  border: 0px;
+  padding: 0px;
+  margin: 0px;
+  vertical-align: center;
+}
+
+.lmenu_text{
+  font-size: 15px;
+  font-weight: bold;
+  color: white;
+}
+
+.lmenu_img{
+  
+}
+
+.lmenu{
+  background: url(../images/light.jpg) 0 0 no-repeat;
+  width:180px;
+  height:31px;
+  padding:0;
+}
+
+.lmenu:hover{
+  background: url(../images/dark.jpg) 0 0 no-repeat;
+  width:180px;
+  height:31px;
+  padding:0;
+}
+
+ul.menu li:hover { 
+  background: url(../images/dark.jpg) 0 0 no-repeat;
 }
 
 ul.menu li a.dashboard:link, ul.menu li a.dashboard:visited { 
@@ -854,7 +890,11 @@ div#all-announcements .see_more_announcements {
 .admin_leftside {width: 20%;vertical-align: top;}
 .admin_middle {width: 80%;vertical-align: top;}
 
-.menu_item_clink { 
+.menu_item_clink {
+  border: 0px;
+  padding: 0px;
+  margin: 0px;
+  vertical-align: center;
 }
 
 .text_align_left {
