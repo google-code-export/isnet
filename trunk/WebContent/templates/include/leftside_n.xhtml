@@ -18,14 +18,86 @@
       
       <h:panelGroup id="ltop_gdbsectionA" rendered="${userType eq 'A'}">
         <h:panelGroup id="idAppManagePanel" rendered="${moduleType eq 'AM'}">
-          <ul class="menu"> 
-            <li><a href="javascript:void(0)" class="message"></a></li>
-            <li><a href="javascript:void(0)" class="dashboard"></a></li>
-            <li><a href="javascript:void(0)" class="profile"></a></li>
-            <li><a href="javascript:void(0)" class="search"></a></li>
-            <li><a href="javascript:void(0)" class="log"></a></li>
-            <li><a href="javascript:void(0)" class="tutorial"></a></li>
-          </ul>
+          <table>
+            <tr>
+              <td class="lmenu" valign="middle">
+                <h:outputLink styleClass="alink" 
+                 value="#{controllerBean.contextPath}/pages/secure/manageUsersView.faces">
+                  <table>
+                    <tr>
+                      <td><h:graphicImage value="${imagesPath}/mail.png"/></td>                      
+                      <td class="lmenu_text">&#160;&#160;Message</td>
+                    </tr>
+                  </table>
+                </h:outputLink>                
+              </td>
+            </tr>
+            <tr>
+              <td class="lmenu" valign="middle">
+                <h:outputLink styleClass="alink" 
+                 value="#{controllerBean.contextPath}/pages/secure/manageUsersView.faces">
+                  <table>
+                    <tr>
+                      <td><h:graphicImage value="${imagesPath}/gauge.png"/></td>                      
+                      <td class="lmenu_text">&#160;&#160;Dashboard</td>
+                    </tr>
+                  </table>
+                </h:outputLink>                
+              </td>
+            </tr>
+            <tr>
+              <td class="lmenu" valign="middle">
+                <h:outputLink styleClass="alink" 
+                 value="#{controllerBean.contextPath}/pages/secure/manageUsersView.faces">
+                  <table>
+                    <tr>
+                      <td><h:graphicImage value="${imagesPath}/businessman.png"/></td>                      
+                      <td class="lmenu_text">&#160;&#160;Mentor Profile</td>
+                    </tr>
+                  </table>
+                </h:outputLink>                
+              </td>
+            </tr> 
+            <tr>
+              <td class="lmenu" valign="middle">
+                <h:outputLink styleClass="alink" 
+                 value="#{controllerBean.contextPath}/pages/secure/manageUsersView.faces">
+                  <table>
+                    <tr>
+                      <td><h:graphicImage value="${imagesPath}/businessman_find.png"/></td>                      
+                      <td class="lmenu_text">&#160;&#160;Mentor Search</td>
+                    </tr>
+                  </table>
+                </h:outputLink>                
+              </td>
+            </tr> 
+            <tr>
+              <td class="lmenu" valign="middle">
+                <h:outputLink styleClass="alink" 
+                 value="#{controllerBean.contextPath}/pages/secure/manageUsersView.faces">
+                  <table>
+                    <tr>
+                      <td><h:graphicImage value="${imagesPath}/calendar_preferences.png"/></td>                      
+                      <td class="lmenu_text">&#160;&#160;Activity Log</td>
+                    </tr>
+                  </table>
+                </h:outputLink>                
+              </td>
+            </tr>
+             <tr>
+              <td class="lmenu" valign="middle">
+                <h:outputLink styleClass="alink" 
+                 value="#{controllerBean.contextPath}/pages/secure/manageUsersView.faces">
+                  <table>
+                    <tr>
+                      <td><h:graphicImage value="${imagesPath}/certificate_new.png"/></td>                      
+                      <td class="lmenu_text">&#160;&#160;Tutorial</td>
+                    </tr>
+                  </table>
+                </h:outputLink>                
+              </td>
+            </tr>            
+          </table>         
         </h:panelGroup>
         <h:panelGroup id="idUserManagePanel" rendered="${moduleType eq 'UM'}">
           <ul class="sidemenu">
@@ -33,6 +105,9 @@
               <h:outputLink styleClass="menu_item_clink" 
                 value="#{controllerBean.contextPath}/pages/secure/manageUsersView.faces">
                 <h:outputText value="#{bundle.left_navigation_manage_user}"/>
+                <table>
+                  
+                </table>
               </h:outputLink>
             </li>
             <li>
