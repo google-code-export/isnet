@@ -89,6 +89,9 @@ public class TestTutorialModules implements Serializable {
   @Column( name= "SERIAL")
   private Long serial;
   
+  @Column( name= "TEST_QUESTIONS_COUNT")
+  private Integer moduleTestQuestions;
+  
   @Transient
   private Boolean testStatus;
 
@@ -326,6 +329,14 @@ public Long getSerial() {
 
 public void setSerial(Long serial) {
 	this.serial = serial;
+}
+
+public Integer getModuleTestQuestions() {
+	return moduleTestQuestions;
+}
+
+public void setModuleTestQuestions(Integer moduleTestQuestions) {
+	this.moduleTestQuestions = moduleTestQuestions;
 }
 
 }
