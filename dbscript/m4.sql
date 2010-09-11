@@ -163,7 +163,7 @@ Insert into TEST_TUTORIAL_QUESTION_ANS
     PAGE_TITLE, ISQUESTION)
  Values
    (266, 4, 14, NULL, NULL, 
-    NULL, 'In terms of the marketing of da''wah, our product is/are):', 'B', 'A) Our speakers.', 'B) Islam.', 
+    NULL, 'In terms of the marketing of da''wah, our product is/are:', 'B', 'A) Our speakers.', 'B) Islam.', 
     'C) Our literature.', 'D) Our local mosque.', 'E) All of the above.', 'F) None of the above.', '1', 
     TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), '1', TO_DATE('08/10/2009 02:02:22', 'MM/DD/YYYY HH24:MI:SS'), NULL, NULL, 
     NULL, NULL);
