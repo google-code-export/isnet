@@ -403,7 +403,7 @@ QUESTION_OPTION_ANSWER_A, QUESTION_OPTION_ANSWER_B, QUESTION_OPTION_ANSWER_C,
 QUESTION_OPTION_ANSWER_D, QUESTION_OPTION_ANSWER_E, QUESTION_OPTION_ANSWER_F, RECORD_CREATOR_ID,
 RECORD_CREATE_DATE, RECORD_LAST_UPDATER_ID, RECORD_LAST_UPDATED_DATE, AUDIO_FILE_NAME,
 VIDEO_FILE_NAME, PAGE_TITLE, ISQUESTION ) VALUES ( 
-363, 10, 38, NULL, NULL, NULL, 'Stories of Abraham''s -pbuh- life in Ur Bible, and in Makkah Qur''an) are examples of prophetic stories from the Bible and the Qur''an that complement each other with contradicting each other.'
+363, 10, 38, NULL, NULL, NULL, 'Stories of Abraham''s (pbuh) life in Ur (Qur''an), in Palestine (Bible), and in Makkah (Qur''an) are examples of prophetic stories from the Bible and the Qur’an that complement each other without contradicting each other.'
 , 'A', 'A) True', 'B) False', NULL, NULL, NULL, NULL, '1',  TO_Date( '08/10/2009 02:02:22 AM', 'MM/DD/YYYY HH:MI:SS AM')
 , '1',  TO_Date( '08/10/2009 02:02:22 AM', 'MM/DD/YYYY HH:MI:SS AM'), NULL, NULL, NULL
 , NULL); 
