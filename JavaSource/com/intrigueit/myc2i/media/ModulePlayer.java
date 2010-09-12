@@ -11,6 +11,8 @@ import org.springframework.stereotype.Component;
 
 import com.intrigueit.myc2i.common.CommonConstants;
 import com.intrigueit.myc2i.common.view.BasePage;
+import com.intrigueit.myc2i.email.HtmlEmailerTask;
+import com.intrigueit.myc2i.email.TaskExecutionPool;
 import com.intrigueit.myc2i.tutorial.domain.TestTutorialModules;
 import com.intrigueit.myc2i.tutorial.domain.TestTutorialQuestionAns;
 import com.intrigueit.myc2i.tutorial.service.ModulesService;
@@ -56,6 +58,10 @@ public class ModulePlayer extends BasePage {
 	private Integer perOfMarks;
 	private String currentAction = "";
 	private Integer lastViewedPageIndex = 0;
+	
+	private List<Integer> questionsIndexList;
+	private Integer questionParticipated = 0;
+	private Integer tutorialLastIndex;
 
 	private TestResult testResult;
 
@@ -124,11 +130,7 @@ public class ModulePlayer extends BasePage {
 	 * @return
 	 */
 	private boolean hasQuestion(TestTutorialQuestionAns tQuestionAns) {
-		if (tQuestionAns.getQuestion() != null
-				&& !tQuestionAns.getQuestion().equals("")) {
-			return true;
-		}
-		return false;
+		return PlayerHelper.hasQuestion(tQuestionAns);
 	}
 
 	/**
@@ -139,7 +141,7 @@ public class ModulePlayer extends BasePage {
 	 */
 	private boolean isValidAnswer(TestTutorialQuestionAns tQuestionAns) {
 
-		log.debug("right ans:" + tQuestionAns.getQuestionCorrectAnswer()
+		log.debug(""+tQuestionAns.getQuestionAnsId()+ " right ans:" + tQuestionAns.getQuestionCorrectAnswer()
 				+ "  user answer: " + tQuestionAns.getExamineeAns());
 
 		if ((tQuestionAns.getQuestionCorrectAnswer() != null && tQuestionAns
@@ -162,7 +164,7 @@ public class ModulePlayer extends BasePage {
 			}
 			
 			int totalCorrectAnswer = this.getTotalCorrectAnswer(result);
-			int totalQuestions = result.getTestResultDetails().size();
+			int totalQuestions = module.getModuleTestQuestions();//result.getTestResultDetails().size();
 			int percentOfCorrect = this.getExamPercenetOfMark(result);
 
 			int passMark = DEFAULT_PASS_MARKS;
@@ -201,7 +203,7 @@ public class ModulePlayer extends BasePage {
 			passStatus = (isPassed) ? this.getText("tutorial_pass_status")
 					: this.getText("tutorial_fail_status");
 			String msgSub = this.getText("tutorial_test_email_sub",
-					new String[] { "" + result.getModuleId() + "" });
+					new String[] { "" + module.getModuleName() + "" });
 			String memberName = this.getMember().getFirstName() + " "
 					+ this.getMember().getLastName();
 			String msgBody = this.getText("tutorial_test_email_body",
@@ -259,8 +261,14 @@ public class ModulePlayer extends BasePage {
 		/** Send email notification */
 		try {
 			Emailer emailer = new Emailer(email, msgBody, emailSubject);
-			emailer.setContentType("text/html");
-			emailer.sendEmail();
+			//emailer.setContentType("text/html");
+			//emailer.sendEmail();
+			/**Send email notification */
+
+			Runnable task = new HtmlEmailerTask(emailer);
+			TaskExecutionPool pool =  (TaskExecutionPool) this.getBean("taskPool");
+			pool.addTaskToPool(task);
+			
 		} catch (Exception e) {
 			log.debug("Failed to sending notification email");
 			e.printStackTrace();
@@ -315,8 +323,12 @@ public class ModulePlayer extends BasePage {
 	public void playNextPage() {
 		this.currentAction = CommonConstants.NEXT;
 		try {
-			if (pageIndex < tutorials.size() - 1) {
-
+			
+			log.debug("Last: "+tutorialLastIndex);
+			
+			/** Play only tutorial not question answer */
+			if (pageIndex < tutorialLastIndex) {
+				log.debug("playing slide : "+pageIndex);
 				/** Saving question answer before going to next page */
 				this.saveQuestionAnswer();
 
@@ -326,20 +338,42 @@ public class ModulePlayer extends BasePage {
 					lastViewedPageIndex = pageIndex;
 				}
 				log.debug("index:" + pageIndex);
-
+					
 				this.currentPage = this.tutorials.get(pageIndex);
+				
 
+				
 				this.renderPage();
 
 				/** Saving last access page */
 				this.saveCurrentStage();
 
 			}
+			else if(pageIndex >= tutorialLastIndex && questionParticipated < questionsIndexList.size()){
+				log.debug("playing question : "+questionParticipated);
+				// if current page is question answer, then select any random question which is not provided earlier
+				// and count the question which always less then module max question no
+
+				/** Saving question answer before going to next page */
+				this.saveQuestionAnswer();
+				
+				this.pageIndex = questionsIndexList.get(questionParticipated);
+				
+				this.currentPage = this.tutorials.get(pageIndex);
+				
+				this.renderPage();
+				
+				questionParticipated ++;
+				
+				/** Saving last access page */
+				this.saveCurrentStage();
+			}
 			/**
 			 * User reached last page, now calculate the question and answer
 			 * section
 			 */
 			else {
+				log.debug("exam end : "+questionParticipated);
 				this.notEndPlay = false;
 				
 				/** save the last page question before calculating question answer  */
@@ -504,11 +538,43 @@ public class ModulePlayer extends BasePage {
 					.getModulesId());
 
 			this.pageIndex = getLastPageIndex();
-
+			
+			Integer moduleQuestionSize = module.getModuleTestQuestions();
+			if(moduleQuestionSize== null){
+				moduleQuestionSize = 10; //default
+			}
+			Integer questionEnd = tutorials.size() -1;
+			int questionStart = PlayerHelper.getModuleQuestionStartIndex(tutorials);
+			if(this.pageIndex > questionStart){
+				this.pageIndex = questionStart;
+			}
+			log.debug(questionStart + " "+ questionEnd + " "+ moduleQuestionSize);
+			questionsIndexList = PlayerHelper.createRandomQuestionList(questionStart, questionEnd, moduleQuestionSize);
+			questionParticipated = 0;
+			
+			tutorialLastIndex = questionStart-1  ;
+			
+			log.debug(questionStart + " "+ questionEnd + " "+ moduleQuestionSize);
+			for(Integer i: questionsIndexList){
+				log.debug(i +" "+ tutorials.get(i).getQuestionAnsId() +" "+ tutorials.get(i).getQuestionCorrectAnswer());
+			}
 			this.hasQuestionAns = false;
 
 			this.currentPage = this.tutorials.get(pageIndex);
+			
+			//this.setCurrentQuestionPage();
+			
 			this.renderPage();
+			
+			
+			/** Clean previous result details */
+			log.debug("Cleaning previous result details"+this.getMember().getMemberId()+" "+ this.module.getModulesId() );
+			
+			TestResult result = getUserModuleTestResult(this.getMember()
+					.getMemberId(), this.module.getModulesId());
+
+			
+			this.testService.deleteResultDetails(result.getTutorialTestId());
 
 		} catch (Exception ex) {
 			ex.printStackTrace();
