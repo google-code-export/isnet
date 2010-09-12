@@ -4,14 +4,20 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.intrigueit.myc2i.tutorialtest.dao.TestResultDao;
+import com.intrigueit.myc2i.tutorialtest.dao.TestResultDetailsDao;
 import com.intrigueit.myc2i.tutorialtest.domain.TestResult;
+import com.intrigueit.myc2i.tutorialtest.domain.TestResultDetails;
 
 @Service
+@Transactional
 public class TestResultServiceImpl implements TestResultService{
 
 	private TestResultDao testResultDao;
+	
+	private TestResultDetailsDao testResultDetailDao;
 	
 	@Autowired
 	public TestResultServiceImpl(TestResultDao testResultDao) {
@@ -54,6 +60,18 @@ public class TestResultServiceImpl implements TestResultService{
 	@Override
 	public TestResult loadUserModuleResult(Long userId, Long moduleId) {
 		return testResultDao.loadUserModuleResult(userId, moduleId);
+	}
+
+	@Override
+	public int deleteResultDetails(Long testId) {
+		// TODO Auto-generated method stub
+		return this.testResultDetailDao.deleteResults(testId);
+		
+	}
+	
+	@Autowired
+	public void setTestResultDetailsDao(TestResultDetailsDao testResultDetailDao) {
+		this.testResultDetailDao = testResultDetailDao;
 	}
 
 }

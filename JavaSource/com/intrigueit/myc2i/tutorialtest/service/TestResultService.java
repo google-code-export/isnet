@@ -19,4 +19,6 @@ public interface TestResultService {
 	public List<TestResult> findAll();
 	
 	public TestResult loadUserModuleResult(Long userId, Long moduleId);
+	
+	public int deleteResultDetails(Long testId);
 }
