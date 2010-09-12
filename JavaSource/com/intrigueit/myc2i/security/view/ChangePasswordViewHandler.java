@@ -62,7 +62,7 @@ public class ChangePasswordViewHandler extends BasePage  implements Serializable
 		try{
 			this.errMsgs.clear();
 			Member member = this.getMember();
-			CryptographicUtility crp = new CryptographicUtility();
+			CryptographicUtility crp = CryptographicUtility.getInstance();
 			this.checkOldPassword(crp.getDeccryptedText(member.getPassword()));
 			this.validate();
 			if(this.errMsgs.size()>0){
@@ -112,7 +112,7 @@ public class ChangePasswordViewHandler extends BasePage  implements Serializable
 	 * @throws Exception
 	 */
 	private void modifyMember(Member member)throws Exception{
-		CryptographicUtility crp = new CryptographicUtility();
+		CryptographicUtility crp = CryptographicUtility.getInstance();
 		member.setLastUpdated(new Date());
 		member.setPassword(crp.getEncryptedText(this.newPassword));
 		member.setSecurityQuestion1(this.getSecurityQuestion1());

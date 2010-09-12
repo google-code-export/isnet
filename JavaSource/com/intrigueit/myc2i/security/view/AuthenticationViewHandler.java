@@ -85,7 +85,7 @@ public class AuthenticationViewHandler extends BasePage implements Serializable 
 
 	private void storeInCokie() {
 
-		CryptographicUtility crpUtil = new CryptographicUtility();
+		CryptographicUtility crpUtil = CryptographicUtility.getInstance();
 		try {
 			if (this.getChecked()) {
 				String pass = crpUtil.getEncryptedText(this.getPassword());
@@ -104,7 +104,7 @@ public class AuthenticationViewHandler extends BasePage implements Serializable 
 	}
 
 	private void restoreCokie() {
-		CryptographicUtility crpUtil = new CryptographicUtility();
+		CryptographicUtility crpUtil = CryptographicUtility.getInstance();
 		try {
 			String chk = this.getCookieValue(chk_cokie);
 			if (chk != null && !chk.equals("")) {
@@ -216,7 +216,7 @@ public class AuthenticationViewHandler extends BasePage implements Serializable 
 			return null;
 		}
 
-		CryptographicUtility crpUtil = new CryptographicUtility();
+		CryptographicUtility crpUtil = CryptographicUtility.getInstance();
 		String decPass = crpUtil.getDeccryptedText(member.getPassword());
 		if (!pass.equals(decPass)) {
 			return null;
