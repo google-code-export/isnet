@@ -99,6 +99,9 @@ public class TestTutorialQuestionAns implements Serializable {
   @Column(name="RECORD_LAST_UPDATED_DATE")
   private Date recordLastUpdatedDate;
   
+  @Column(name="ISQUESTION")
+  private Boolean isQuestion;
+  
   @Transient
   private String examineeAns;
   
@@ -412,6 +415,14 @@ public String getExamineeAns() {
 
 public void setExamineeAns(String examineeAns) {
 	this.examineeAns = examineeAns;
+}
+
+public Boolean getIsQuestion() {
+	return isQuestion;
+}
+
+public void setIsQuestion(Boolean isQuestion) {
+	this.isQuestion = isQuestion;
 }
 
 
