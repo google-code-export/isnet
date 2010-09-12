@@ -164,7 +164,7 @@ public class ModulePlayer extends BasePage {
 			}
 			
 			int totalCorrectAnswer = this.getTotalCorrectAnswer(result);
-			int totalQuestions = module.getModuleTestQuestions();//result.getTestResultDetails().size();
+			int totalQuestions = questionsIndexList.size();//result.getTestResultDetails().size();
 			int percentOfCorrect = this.getExamPercenetOfMark(result);
 
 			int passMark = DEFAULT_PASS_MARKS;

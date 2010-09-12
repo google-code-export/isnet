@@ -42,7 +42,7 @@ public class PlayerHelper {
 		}
 		
 		Collections.shuffle(questions);
-		if(questions.size() <= size){
+		if(questions.size() < size){
 			size = questions.size()-1;
 		}
 		return questions.subList(0, size);
