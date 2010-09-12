@@ -27,6 +27,10 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.codec.binary.Base64;
+import org.apache.log4j.Logger;
+
+import com.intrigueit.myc2i.email.EmailConfiguration;
+import com.intrigueit.myc2i.utility.ContextInfo;
 
 /**
  * The CryptographicUtility class is responsible for 
@@ -36,9 +40,50 @@ import org.apache.commons.codec.binary.Base64;
  * @author 		Shamim Ahmmed
  */
 public class CryptographicUtility {
-	private String fileName = "/WEB-INF/key.tmp";
 	
-    public SecretKey generateKey() throws Exception {
+
+	private static final String fileName=  "WEB-INF"+ System.getProperty( "file.separator" ) +"key.tmp";
+	
+	protected static final Logger logger = Logger.getLogger( CryptographicUtility.class );
+	
+	private static CryptographicUtility instance;
+	
+	private SecretKey secretKey;
+	
+	
+	public static CryptographicUtility getInstance(){
+		if(instance == null){
+			instance = new CryptographicUtility();
+		}
+		return instance;
+	}
+	
+    private CryptographicUtility() {
+		try{
+			 InputStream in = loadKeyFile();
+			 this.secretKey = readKeys(in);
+		}
+		catch(Exception ex){
+			logger.error(ex.getMessage(),ex);
+		}
+	}
+
+    private InputStream loadKeyFile(){
+
+   		 InputStream in = null;        
+
+			try {				
+				String filePath = ContextInfo.getContextRealPath() + fileName;
+				in = new FileInputStream(new File(filePath));
+
+			} catch (Exception ex) {
+				  logger.error(ex.getMessage(),ex);
+			}
+
+			return in;
+    }
+    
+	public SecretKey generateKey() throws Exception {
         try {
             KeyGenerator kg = KeyGenerator.getInstance("DES");
             kg.init(56);
@@ -149,51 +194,16 @@ public class CryptographicUtility {
         }
     }
 
+    
     public String getEncryptedText(String text) throws Exception{
-    	String encryptedText = "";
-    	CryptographicUtility p = new CryptographicUtility();
-    	try{
-    		 InputStream in = null;        
-    	       try {
-    	    	   in = FacesContext.getCurrentInstance().getExternalContext().getResourceAsStream(fileName);
-    	       } catch (Exception fnfe) {
-    	    	   writeKey();
-    	    	   in = FacesContext.getCurrentInstance().getExternalContext().getResourceAsStream(fileName);
-    	       }
-    	       if(in == null){
-    	    	   writeKey();
-    	    	   in = FacesContext.getCurrentInstance().getExternalContext().getResourceAsStream(fileName);
-    	       }
-    	       
-        	SecretKey sk = p.readKeys(in);
-        	encryptedText = p.encrypt(text, sk);
-    	}
-    	catch(Exception ex){
-    		throw ex;
-    	}
-    	return encryptedText;
-    	
+        return encrypt(text, this.secretKey);	
     }
+    
     public String getDeccryptedText(String text) throws Exception{
-    	String decryptedText = "";
-    	try{
-
-   		 InputStream in = null;        
-	       try {
-	    	   in = FacesContext.getCurrentInstance().getExternalContext().getResourceAsStream(fileName);
-	       } catch (Exception fnfe) {
-	           throw new Exception(fnfe);
-	       }
-            SecretKey sk = readKeys(in);
-            decryptedText = decrypt(text, sk);
-    	}
-    	catch(Exception ex){
-    		throw ex;
-    	}
-    	return decryptedText;
-    	
+    	return decrypt(text, this.secretKey);
+	
     }
-    public void writeKey(){
+/*    public void writeKeyx(){
     	CryptographicUtility password = new CryptographicUtility();
     	HttpServletRequest httpReq = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
     	String path = httpReq.getRealPath("")+""+fileName;
@@ -206,6 +216,14 @@ public class CryptographicUtility {
     	}
 
             
-    }
+    }*/
+
+	public SecretKey getSecretKey() {
+		return secretKey;
+	}
+
+	public void setSecretKey(SecretKey secretKey) {
+		this.secretKey = secretKey;
+	}
 
 }
