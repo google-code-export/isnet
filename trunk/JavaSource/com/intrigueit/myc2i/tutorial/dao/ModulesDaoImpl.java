@@ -39,7 +39,7 @@ public class ModulesDaoImpl extends GenericDaoImpl<TestTutorialModules, Long>
 
 	@Override
 	public List<TestTutorialModules> findModulesByUserType(Long type) {
-	  	String clause = " t.memberTypeIndicator =?1 ORDER BY t.modulesId ASC";
+	  	String clause = " t.memberTypeIndicator =?1 ORDER BY t.serial ASC";
 	  	List<TestTutorialModules> modules =  loadByClause(clause, new Object[] {type});
 		return modules;
 	}
