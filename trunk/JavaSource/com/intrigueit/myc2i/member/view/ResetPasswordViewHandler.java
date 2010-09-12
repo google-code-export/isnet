@@ -105,7 +105,7 @@ public class ResetPasswordViewHandler extends BasePage implements Serializable {
     if ( member == null ) {
       errorMessage.append(this.getText("common_system_error"));
     } else {      
-      CryptographicUtility crp = new CryptographicUtility();
+      CryptographicUtility crp = CryptographicUtility.getInstance();
       String oldPass = crp.getDeccryptedText(this.currentMember.getPassword());
       if (oldPass == null || !oldPass.equals(this.getOldPassword())) {
         this.appendErrorMessage(errorMessage,"change_password_validation_old_password_invalid");
@@ -149,7 +149,7 @@ public class ResetPasswordViewHandler extends BasePage implements Serializable {
     setErrorMessage("");
     try {
       if(validate(this.currentMember)) {         
-        CryptographicUtility crp = new CryptographicUtility();
+        CryptographicUtility crp = CryptographicUtility.getInstance();
         this.currentMember.setPassword(crp.getEncryptedText(this.getNewPassword()));
         memberService.update(this.currentMember);
         if (this.currentMember.getEmail()!=null) {
