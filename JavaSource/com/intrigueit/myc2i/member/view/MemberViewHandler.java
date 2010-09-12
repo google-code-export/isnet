@@ -82,7 +82,7 @@ public class MemberViewHandler extends BasePage implements Serializable{
 				return "";
 			}
 			
-			CryptographicUtility crpUtil = new CryptographicUtility();
+			CryptographicUtility crpUtil = CryptographicUtility.getInstance();
 			String plainPassword = PassPhrase.getNext();
 			this.currentMember.setPassword( crpUtil.getEncryptedText(plainPassword));
 			Date dt = new Date();
@@ -133,7 +133,7 @@ public class MemberViewHandler extends BasePage implements Serializable{
 				return "";
 			}
 
-			CryptographicUtility crpUtil = new CryptographicUtility();
+			CryptographicUtility crpUtil = CryptographicUtility.getInstance();
 			String plainPassword = PassPhrase.getNext();
 			this.currentMember.setPassword( crpUtil.getEncryptedText(plainPassword));
 			Date dt = new Date();

@@ -278,7 +278,7 @@ public class UserManageViewHandler extends BasePage implements Serializable {
       setErrorMessage("");
       if (validate()) {
         if (validationPhase2()) {
-          CryptographicUtility crp = new CryptographicUtility();
+          CryptographicUtility crp = CryptographicUtility.getInstance();
           this.currentMember.setPassword(crp
               .getEncryptedText(this.currentMember.getPassword()));
           if (this.currentMember.getCountry()!=null && this.currentMember.getCountry().equals("-1")) {

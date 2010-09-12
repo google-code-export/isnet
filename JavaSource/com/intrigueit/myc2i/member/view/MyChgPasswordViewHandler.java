@@ -68,7 +68,7 @@ public class MyChgPasswordViewHandler extends BasePage implements Serializable {
 	}
 	public boolean validated() throws Exception{
 		StringBuffer errorMessage = new StringBuffer();
-		CryptographicUtility crp = new CryptographicUtility();
+		CryptographicUtility crp = CryptographicUtility.getInstance();
 		boolean isValid = true;
 		
 		if (this.currentMember == null) {
@@ -161,7 +161,7 @@ public class MyChgPasswordViewHandler extends BasePage implements Serializable {
 				flag = false;
 			}
 			if (flag) {
-				CryptographicUtility crp = new CryptographicUtility();
+				CryptographicUtility crp = CryptographicUtility.getInstance();
 				String oldPass = crp.getDeccryptedText(this.currentMember
 						.getPassword());
 				if (oldPass == null || !oldPass.equals(this.getOldPassword())) {
@@ -203,7 +203,7 @@ public class MyChgPasswordViewHandler extends BasePage implements Serializable {
 		setErrorMessage("");
 		try {
 			if (validated()) {
-				CryptographicUtility crp = new CryptographicUtility();
+				CryptographicUtility crp = CryptographicUtility.getInstance();
 				this.currentMember.setPassword(crp.getEncryptedText(this.getNewPassword()));
 				memberService.update(this.currentMember);
 				this.setErrorMessage(this.getText("update_password_success_message"));
