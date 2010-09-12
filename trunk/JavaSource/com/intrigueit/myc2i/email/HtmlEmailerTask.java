@@ -24,8 +24,8 @@ public class HtmlEmailerTask extends EmailerTask{
 			String password = conf.getProperty("mail.password");
 			String from = conf.getProperty("mail.from");
 			
-			CryptographicUtility util = new CryptographicUtility();
-			password = util.getDeccryptedText(password);
+
+			password = CryptographicUtility.getInstance().getDeccryptedText(password);
 			
 		    HtmlEmail email = new HtmlEmail();
 		    email.setHostName(host);
