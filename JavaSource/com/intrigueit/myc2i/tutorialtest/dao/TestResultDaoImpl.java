@@ -3,13 +3,11 @@ package com.intrigueit.myc2i.tutorialtest.dao;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.intrigueit.myc2i.common.dao.GenericDaoImpl;
 import com.intrigueit.myc2i.tutorialtest.domain.TestResult;
 
 @Repository
-@Transactional
 public class TestResultDaoImpl extends GenericDaoImpl<TestResult,Long> implements TestResultDao{
 
 	@Override
