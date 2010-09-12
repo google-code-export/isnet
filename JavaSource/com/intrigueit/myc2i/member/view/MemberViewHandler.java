@@ -3,7 +3,9 @@ package com.intrigueit.myc2i.member.view;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.faces.model.SelectItem;
 
@@ -19,8 +21,13 @@ import com.intrigueit.myc2i.common.view.BasePage;
 import com.intrigueit.myc2i.common.view.CommonValidator;
 import com.intrigueit.myc2i.common.view.ViewConstant;
 import com.intrigueit.myc2i.common.view.ViewDataProvider;
+import com.intrigueit.myc2i.email.EmailTemplate;
+import com.intrigueit.myc2i.email.EmailerTask;
+import com.intrigueit.myc2i.email.HtmlEmailerTask;
+import com.intrigueit.myc2i.email.TaskExecutionPool;
 import com.intrigueit.myc2i.member.domain.Member;
 import com.intrigueit.myc2i.member.service.MemberService;
+import com.intrigueit.myc2i.utility.ContextInfo;
 import com.intrigueit.myc2i.utility.Emailer;
 
 
@@ -87,7 +94,9 @@ public class MemberViewHandler extends BasePage implements Serializable{
 			this.currentMember.setMemberRoleId(CommonConstants.ROLE_GUEST);
 			this.currentMember.setAdminUserIndicator(CommonConstants.STATUS.No.toString());
 			this.memberService.save(this.currentMember);
-			this.sendConfirmationEmail(this.currentMember.getEmail(), plainPassword);
+			
+			
+			this.sendConfirmationEmail(this.currentMember.getEmail(), plainPassword, this.currentMember.getFirstName() + ""+ this.currentMember.getLastName());
 			
 			logger.debug("Mentor added: "+ this.currentMember.getMemberId());
 			this.currentMember= new Member();
@@ -137,7 +146,7 @@ public class MemberViewHandler extends BasePage implements Serializable{
 			this.currentMember.setAdminUserIndicator(CommonConstants.STATUS.No.toString());
 			
 			this.memberService.save(this.currentMember);
-			this.sendConfirmationEmail(this.currentMember.getEmail(), plainPassword);
+			this.sendConfirmationEmail(this.currentMember.getEmail(), plainPassword,this.currentMember.getFirstName() + " "+ this.currentMember.getLastName());
 
 			logger.debug("Guest added: "+ this.currentMember.getMemberId());
 			this.currentMember = new Member();
@@ -157,14 +166,22 @@ public class MemberViewHandler extends BasePage implements Serializable{
 	}
 	
 	/** Send confirmation email to member */
-	public void sendConfirmationEmail(String email, String password)throws Exception{
+	public void sendConfirmationEmail(String email, String password,String name)throws Exception{
+		String templateName = "email_reg.vm";
 		
-		String msgBody = this.getText("email_account_confirmation_body", new String[]{email,password});
+		Map<String, String> templateValues = new HashMap<String, String>();
+		templateValues.put("email", email);
+		templateValues.put("pass", password);
+		templateValues.put("name", name);
+		EmailTemplate template = new EmailTemplate(templateName,templateValues);
+		String msgBody = template.generate(); //this.getText("email_account_confirmation_body", new String[]{email,password});
 		String emailSubject = this.getText("email_account_confirmation_subject");
 		/**Send email notification */
 		Emailer emailer = new Emailer(email, msgBody,emailSubject);
-		emailer.setContentType("text/html");
-		emailer.sendEmail();		
+		Runnable task = new HtmlEmailerTask(emailer);
+		TaskExecutionPool pool =  (TaskExecutionPool) this.getBean("taskPool");
+		pool.addTaskToPool(task);
+
 	}
 	
 	public void validateMember(){
