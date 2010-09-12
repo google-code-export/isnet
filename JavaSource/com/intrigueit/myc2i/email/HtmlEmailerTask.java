@@ -5,6 +5,7 @@ import java.util.Properties;
 import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.HtmlEmail;
 
+import com.intrigueit.myc2i.common.utility.CryptographicUtility;
 import com.intrigueit.myc2i.utility.Emailer;
 
 public class HtmlEmailerTask extends EmailerTask{
@@ -22,6 +23,9 @@ public class HtmlEmailerTask extends EmailerTask{
 			String username = conf.getProperty("mail.user");
 			String password = conf.getProperty("mail.password");
 			String from = conf.getProperty("mail.from");
+			
+			CryptographicUtility util = new CryptographicUtility();
+			password = util.getDeccryptedText(password);
 			
 		    HtmlEmail email = new HtmlEmail();
 		    email.setHostName(host);
