@@ -231,5 +231,14 @@ public class MemberServiceImpl implements MemberService {
 		this.knownMemberDao = knownMemberDao;
 	}
 
+	@Override
+	public List<Member> getRecentlyJoinedMemberList() {
+		String clause = " t.mentoredByMemberId =?1 ";
+
+		List<Member> members = memberDao.loadByClause(clause,new Object[]{});
+
+		return members;
+	}
+
 
 }
