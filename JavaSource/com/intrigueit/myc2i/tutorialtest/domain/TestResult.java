@@ -27,7 +27,7 @@ public class TestResult implements java.io.Serializable{
 	@Column(name = "TUTORIAL_TEST_ID")
 	@GeneratedValue(generator = "TutorialTestSeq")
 	@SequenceGenerator(name = "TutorialTestSeq", sequenceName = "TUTORIAL_TEST_ID_SEQ", allocationSize = 1, initialValue = 1)
-	private Long TutorialTestId;
+	private Long tutorialTestId;
 
 	@OneToMany(mappedBy="testResult",targetEntity=TestResultDetails.class,fetch=FetchType.LAZY,cascade=CascadeType.ALL)
 	private Set<TestResultDetails> testResultDetails;
@@ -75,11 +75,11 @@ public class TestResult implements java.io.Serializable{
 	private Long lastAccessPage;
 
 	public Long getTutorialTestId() {
-		return TutorialTestId;
+		return tutorialTestId;
 	}
 
 	public void setTutorialTestId(Long tutorialTestId) {
-		TutorialTestId = tutorialTestId;
+		this.tutorialTestId = tutorialTestId;
 	}
 
 	public Set<TestResultDetails> getTestResultDetails() {
