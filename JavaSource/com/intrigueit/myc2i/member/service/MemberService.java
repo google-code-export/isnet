@@ -46,4 +46,7 @@ public interface MemberService {
 	public List<Member> findUnVerifiedMember();
 	
 	public List<Member> getMyFriendList(Long memberId);
+	
+	public List<Member> getRecentlyJoinedMemberList();
+	
 }
