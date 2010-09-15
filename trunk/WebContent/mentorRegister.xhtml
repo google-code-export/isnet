@@ -215,7 +215,8 @@
 								<h:selectBooleanCheckbox title=""  value="#{memberViewHandler.agree}" >
 											</h:selectBooleanCheckbox>
 								<rich:spacer width="5"></rich:spacer>										
-								<h:outputText  value="#{bundle.member_term_privacy_policy}"/>
+								<h:commandLink  value="#{bundle.member_term_privacy_policy}"  onclick="window.open('privacyPolicy.faces','Privacy Policy','width=800, height=600,top=20, left=70,scrollbars=yes,resizable=yes')"/>							
+								
 								
 							</h:panelGroup>	
 							
