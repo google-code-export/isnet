@@ -33,34 +33,36 @@
 							</h:outputLabel>
 						</f:facet>
 
-
-	<div id="page">
-		
-		<h2>Dr. Ahmad Sakr</h2>
-	
-
-		<!-- this A tag is where your Flowplayer will be placed. it can be anywhere -->
-		<a  
-			 href="../resources/video/Dr_Sakr.flv"  
-			 style="display:block;width:520px;height:330px"  
-			 id="player"> 
-		</a> 
-	
-		<!-- this will install flowplayer inside previous A- tag. -->
-		<script>
-			flowplayer("player", "../resources/swf/flowplayer-3.1.5.swf");
-		</script>
-	
-
-
-	</div>		
-
-
+						<div id="page" style="margin-left: 100px;">
+							
+							<h2>Dr. Ahmad Sakr</h2>
+						
 					
+							<!-- this A tag is where your Flowplayer will be placed. it can be anywhere -->
+							<a  
+								 href="../resources/video/Dr_Sakr.flv"  
+								 style="display:block;width:520px;height:330px"  
+								 id="player"> 
+							</a> 
+						
+							<!-- this will install flowplayer inside previous A- tag. -->
+							<script>
+								flowplayer("player", "../resources/swf/flowplayer-3.1.5.swf");
+							</script>
+						
+					
+					
+						</div>		
 
 				</rich:panel>
-				
-						
+
+					<rich:panel id="actionBox" bodyClass="panel_content_body">
+						<h:panelGrid columns="1" columnClasses="column_class_center" width="100%">
+
+								<h:commandButton action="#{navigationBean.backToLogin}"  value="#{bundle.common_label_back}"  />
+	
+						</h:panelGrid>				
+				</rich:panel>				
 				</h:panelGroup>
 				<h:outputText value="" />			
 	</h:panelGrid>	   
