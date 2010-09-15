@@ -14,6 +14,8 @@ import com.intrigueit.myc2i.common.utility.CryptographicUtility;
 import com.intrigueit.myc2i.common.view.BasePage;
 import com.intrigueit.myc2i.common.view.CommonValidator;
 import com.intrigueit.myc2i.common.view.ViewDataProvider;
+import com.intrigueit.myc2i.email.HtmlEmailerTask;
+import com.intrigueit.myc2i.email.TaskExecutionPool;
 import com.intrigueit.myc2i.member.domain.Member;
 import com.intrigueit.myc2i.member.service.MemberService;
 import com.intrigueit.myc2i.utility.Emailer;
@@ -48,6 +50,22 @@ public class PasswordRecoveryViewHanndler extends BasePage implements Serializab
 		this.memberService = memberService;
 	}
 	
+	public void loadQuestion(){
+		try{
+			Member member = this.memberService.loadMemberByEmail(this.getEmail());
+			if(member == null){
+				this.question1Id = "";
+				this.question2Id = "";
+				return;
+			}
+			this.question1Id = member.getSecurityQuestion1();
+			this.question2Id = member.getSecurityQuestion2();
+			
+		}
+		catch(Exception ex){
+			log.error(ex.getMessage(),ex);
+		}
+	}
 	public void recoverMyPassword(){
 		try{
 			
@@ -74,11 +92,6 @@ public class PasswordRecoveryViewHanndler extends BasePage implements Serializab
 				return;
 			}
 			
-			//Date dt = new Date();
-			//member.setRecordCreate(dt);
-			//member.setLastUpdated(dt);
-			//this.memberService.update(member);
-			
 			CryptographicUtility crp = CryptographicUtility.getInstance();
 			this.sendConfirmationEmail(member.getEmail(), crp.getDeccryptedText(member.getPassword()));
 			this.setSuccessMessage(this.getText("password_recovery_confirmation_message"));
@@ -103,8 +116,11 @@ public class PasswordRecoveryViewHanndler extends BasePage implements Serializab
 		String msgBody = this.getText("email_password_recovery_confirmation_body", new String[]{email,password});
 		/**Send email notification */
 		Emailer emailer = new Emailer(email, msgBody,emailSubject);
-		emailer.setContentType("text/html");
-		emailer.sendEmail();		
+
+		Runnable task = new HtmlEmailerTask(emailer);
+		TaskExecutionPool pool =  (TaskExecutionPool) this.getBean("taskPool");
+		pool.addTaskToPool(task);
+
 	}	
 	private void validateMemberInformation(Member member){
 		if(member == null ||
