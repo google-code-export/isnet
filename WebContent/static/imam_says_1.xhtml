@@ -34,7 +34,7 @@
 						</f:facet>
 
 
-	<div id="page">
+	<div id="page"  style="margin-left: 100px;">
 		
 		<h2>Imam Zaid Shakir</h2>
 	
@@ -59,7 +59,13 @@
 					
 
 				</rich:panel>
-				
+					<rich:panel id="actionBox" bodyClass="panel_content_body">
+						<h:panelGrid columns="1" columnClasses="column_class_center" width="100%">
+
+								<h:commandButton action="#{navigationBean.backToLogin}"  value="#{bundle.common_label_back}"  />
+	
+						</h:panelGrid>				
+				</rich:panel>
 						
 				</h:panelGroup>
 				<h:outputText value="" />			
