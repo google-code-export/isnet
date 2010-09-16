@@ -188,6 +188,8 @@ public class Member implements java.io.Serializable {
 	@OneToMany(mappedBy="srcMember",targetEntity=KnownMember.class,fetch=FetchType.LAZY,cascade=CascadeType.ALL)
 	private Set<KnownMember> knownMembers;
 	
+	@Column(name = "NEAREST_MASJID")
+	private String nearestMasjid;
 
 	public Long getMemberId() {
 		return memberId;
@@ -628,6 +630,14 @@ public class Member implements java.io.Serializable {
 
 	public void setKnownMembers(Set<KnownMember> knownMembers) {
 		this.knownMembers = knownMembers;
+	}
+
+	public String getNearestMasjid() {
+		return nearestMasjid;
+	}
+
+	public void setNearestMasjid(String nearestMasjid) {
+		this.nearestMasjid = nearestMasjid;
 	}
 
 }
