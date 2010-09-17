@@ -233,8 +233,9 @@ a:hover {
 
 #header #nav ul li a {
   display: block;
-  padding: 0 3px;
+  padding: 0 2px;
   font-size: 12px;
+  color: #006A8F;
 }
 
 #header #nav form {
@@ -304,7 +305,7 @@ a:hover {
 }
 
 #footer ul li a {
-  color: #659DBD;
+  color: #006A8F;  
 }
 
 #footer ul li a:hover {
@@ -423,7 +424,7 @@ a:hover {
   padding: 0 0 10px 0;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
-  margin-bottom: 10px !important;
+  margin-bottom: 7px !important;
   -webkit-border-bottom-left-radius: 5px !important;
   -webkit-border-bottom-right-radius: 5px !important;
   -moz-border-radius-bottomleft: 5px !important;
@@ -481,19 +482,19 @@ a:hover {
 .box.title p.breadcrumb {
   padding-top: 0;
   background: transparent;
-  color: #C0DEED;
+  color: #FFFFFF;
   font-size: 12px;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
 }
 
 .box.title p.breadcrumb strong {
-  color: #C0DEED;
+  color: #FFFFFF;
   font-weight: normal;
 }
 
 .box.title p.breadcrumb a {
-  color: #C0DEED;
+  color: #FFFFFF;
 }
 
 .box.title p.breadcrumb a:hover {
@@ -502,8 +503,8 @@ a:hover {
 
 /* new for font */
 p.breadcrumb a {
-  color: #C0DEED;
-  font-size: 12px;
+  color: #FFFFFF;
+  font-size: 13px;
   font-weight: normal;
 }
 
