@@ -15,7 +15,7 @@ import com.intrigueit.myc2i.qa.SimpleDataExtractor;
 @Scope("session")	
 public class QuestionViewHandler extends BasePage implements Serializable {
 
-	private String questionNo;
+	private String questionNo="";
 	
 	private String topic;
 	
