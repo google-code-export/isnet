@@ -92,9 +92,24 @@
               <!-- start of top navigation -->
               <div id="nav">
                 <ul>
-                  <li class="first"><a href="">alamin@versacomllc.com</a></li>
-                  <li><a href="">Privacy Policy</a></li>
-                  <li class="last"><a href="">Contact Us</a></li>
+                  <li class="first">
+                    <h:outputLink styleClass="alink" 
+                      value="#{controllerBean.contextPath}/pages/secure/manageUsersView.faces">
+                      <h:outputText value="alamin@versacomllc.com"/>
+                    </h:outputLink>
+                  </li>
+                  <li>
+                    <h:outputLink styleClass="alink" 
+                      value="#{controllerBean.contextPath}/pages/secure/manageUsersView.faces">
+                      <h:outputText value="Privacy Policy"/>
+                    </h:outputLink>
+                  </li>
+                  <li class="last">
+                    <h:outputLink styleClass="alink" 
+                      value="#{controllerBean.contextPath}/pages/secure/manageUsersView.faces">
+                      <h:outputText value="Contact Us"/>
+                    </h:outputLink>
+                  </li>
                 </ul>
               </div>
               <!-- end of top navigation -->
@@ -119,11 +134,30 @@
                     </div>
                     <div class="main-menu" >
                       <p class="breadcrumb" style="margin-left: 60px;">
-                        <a href="">Home</a> &#124;
-                        <a href="">My Account </a> &#124;
-                        <a href="">My Resource</a> &#124; 
-                        <a href="">Ask a Question</a> &#124;
-                        <a href="">Donation</a>
+                        <h:outputLink styleClass="menu_item_clink" 
+                          value="#{controllerBean.contextPath}/pages/secure/manageUsersView.faces">
+                          <h:outputText value="Home"/>
+                        </h:outputLink> &#124;&#160;
+                       
+                        <h:outputLink styleClass="alink" 
+                          value="#{controllerBean.contextPath}/pages/secure/manageUsersView.faces">
+                          <h:outputText value="My Account"/>
+                        </h:outputLink> &#124;&#160;
+                        
+                        <h:outputLink styleClass="alink" 
+                          value="#{controllerBean.contextPath}/pages/secure/manageUsersView.faces">
+                          <h:outputText value="My Resource"/>
+                        </h:outputLink> &#124;&#160;
+                        
+                        <h:outputLink styleClass="alink" 
+                          value="#{controllerBean.contextPath}/pages/secure/manageUsersView.faces">
+                          <h:outputText value="Ask a Question"/>
+                        </h:outputLink> &#124;&#160;
+                        
+                        <h:outputLink styleClass="alink" 
+                          value="#{controllerBean.contextPath}/pages/secure/manageUsersView.faces">
+                          <h:outputText value="Donation"/>
+                        </h:outputLink>
                       </p>
                     </div>
                   </div>
@@ -148,7 +182,7 @@
             </div>
             <div id="footer">
               <ul>
-                <li class="first">&copy; 2010 MyC2i</li>
+                <li class="first"><a href="http://twitter.com/about#about">&copy; 2010 MyC2i</a></li>
                 <li><a href="http://twitter.com/about#about">About Us</a></li>
                 <li><a href="http://twitter.com/about#contact">Contact</a></li>
               </ul>
