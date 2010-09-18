@@ -39,16 +39,45 @@
 			               <h:outputText value="Vote"/>
 			             </f:facet>		             
 						<rich:spacer width="5"/>
-		         		 <a4j:commandLink reRender="idDataGrid"  action="#{storyViewHandler.voteForStory}" >
-				            <f:param name="storyId" value="#{story.memberStoryId}"  />
-			            	<h:graphicImage value="/images/check.png" align="middle" border="0" > 
-			            	</h:graphicImage>	
-		            		 <rich:toolTip styleClass="tooltips_style"  >
-						          <span class="tooltips_span_style">
-						              Please click here to provide your vote.<br/>
-						          </span>
-						     </rich:toolTip>	
-						</a4j:commandLink>									             
+						<!-- panel for mentor  -->
+						<h:panelGroup rendered="#{userType eq 'M'}">
+			         		 <a4j:commandLink reRender="idDataGrid"  action="#{storyViewHandler.voteForStory}" >
+					            <f:param name="storyId" value="#{story.memberStoryId}"  />
+				            	<h:graphicImage value="/images/check.png" align="middle" border="0" > 
+				            	</h:graphicImage>	
+			            		 <rich:toolTip styleClass="tooltips_style"  >
+							          <span class="tooltips_span_style">
+							              Please click here to provide your vote.<br/>
+							          </span>
+							     </rich:toolTip>	
+							</a4j:commandLink>						
+						</h:panelGroup>
+						
+						<!-- panel for protege  -->
+						<h:panelGroup rendered="#{userType eq 'P'}">
+			         		 <a4j:commandLink reRender="idDataGrid" rendered="#{storyViewHandler.completedTutorial}"  action="#{storyViewHandler.voteForStory}" >
+					            <f:param name="storyId" value="#{story.memberStoryId}"  />
+				            	<h:graphicImage value="/images/check.png" align="middle" border="0" > 
+				            	</h:graphicImage>	
+			            		 <rich:toolTip styleClass="tooltips_style"  >
+							          <span class="tooltips_span_style">
+							              Please click here to provide your vote.<br/>
+							          </span>
+							     </rich:toolTip>	
+							</a4j:commandLink>
+			         		 <a4j:commandLink rendered="#{!storyViewHandler.completedTutorial}" >
+				            	<h:graphicImage value="/images/check.png" align="middle" border="0" > 
+				            	</h:graphicImage>	
+			            		 <rich:toolTip styleClass="tooltips_style"  >
+							          <span class="tooltips_span_style">
+							              Please complete the tutorial module to participate in vote.<br/>
+							          </span>
+							     </rich:toolTip>	
+							</a4j:commandLink>						
+						
+						</h:panelGroup>	
+						
+						<!-- panel for protege  -->					
 		             </rich:column>
           	   
 			      </rich:dataTable>		
