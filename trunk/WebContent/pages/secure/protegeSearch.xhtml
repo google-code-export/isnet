@@ -50,14 +50,14 @@
 					<h:outputText value="#{bundle.protege_search_distance1}" />	      
 	      		</td>
 				<td>
-					<h:inputText value="#{memberSearchViewHandler.srcZipCode}" disabled="#{!storyViewHandler.mentorCertified}"/>
+					<h:inputText value="#{memberSearchViewHandler.srcZipCode}" disabled="#{!memberToDoItem.completedProtegeTutorial}"/>
 				</td>	
 				<td>
-					<a4j:commandButton rendered="#{storyViewHandler.mentorCertified}"  onclick="forceBlockUI(ajaxProcessMsg);"   oncomplete="forceUnblockUI();" value="#{bundle.button_label_search}" action="#{memberSearchViewHandler.executeSearch}" reRender="idResultPanel,idMsgPanel">
+					<a4j:commandButton rendered="#{memberToDoItem.completedProtegeTutorial}"  onclick="forceBlockUI(ajaxProcessMsg);"   oncomplete="forceUnblockUI();" value="#{bundle.button_label_search}" action="#{memberSearchViewHandler.executeSearch}" reRender="idResultPanel,idMsgPanel">
 						<f:param name="SEARCH_TYPE" value="PROTEGE"/>
 					</a4j:commandButton>
 					
-         		 <a4j:commandButton value="#{bundle.button_label_search}"  rendered="#{!storyViewHandler.mentorCertified}" styleClass="table_control_normal_style">
+         		 <a4j:commandButton value="#{bundle.button_label_search}"  rendered="#{!memberToDoItem.completedProtegeTutorial}" styleClass="table_control_normal_style">
             		 <rich:toolTip styleClass="tooltips_style"  >
 				          <span class="tooltips_span_style">
 				             You must be a Certified Mentor to search for a #{bundle.app_protege}<br/>
