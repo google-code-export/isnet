@@ -54,14 +54,14 @@
 					<h:inputText value="#{memberSearchViewHandler.srcZipCode}" />
 				</td>	
 				<td>
-					<a4j:commandButton rendered="#{storyViewHandler.completedTutorial}" onclick="forceBlockUI(ajaxSearchingMentor);"   oncomplete="forceUnblockUI();" value="#{bundle.button_label_search}" action="#{memberSearchViewHandler.executeSearch}" reRender="idResultPanel,idMsgPanel">
+					<a4j:commandButton rendered="#{memberToDoItem.completedProtegeTutorial}" onclick="forceBlockUI(ajaxSearchingMentor);"   oncomplete="forceUnblockUI();" value="#{bundle.button_label_search}" action="#{memberSearchViewHandler.executeSearch}" reRender="idResultPanel,idMsgPanel">
 						<f:param name="SEARCH_TYPE" value="MENTOR"/>
 		          		 <rich:toolTip styleClass="tooltips_style"  >
 				          <span class="tooltips_span_style">Enter the zip code and find mentor around this zip code<br/></span>
 				        </rich:toolTip>						
 					</a4j:commandButton>
 					
-					<a4j:commandButton  rendered="#{!storyViewHandler.completedTutorial}" value="#{bundle.button_label_search}"  >
+					<a4j:commandButton  rendered="#{!memberToDoItem.completedProtegeTutorial}" value="#{bundle.button_label_search}"  >
 						
 		          		 <rich:toolTip styleClass="tooltips_style"  >
 				          <span class="tooltips_span_style">Please complete the tutorial to enable search option<br/></span>
