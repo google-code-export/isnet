@@ -13,6 +13,7 @@
 							<f:convertDateTime dateStyle="default" pattern="#{bundle.short_date_pattern}"/>
 						 </h:outputText>	
 					</rich:panel>
+					<ui:include src="./todoWidget.xhtml" />	
 					<!-- What new list -->
 					<rich:panel style="width:'auto';margin-top: 0px; text-align: left;" headerClass="container_gold_header"  bodyClass="container_body_style" >
 						<f:facet name="header"><h:outputText value="#{bundle.dashboard_mentor_what_new}" /></f:facet>
@@ -47,8 +48,9 @@
 								<h:outputLink target="_blank" value="#{ud.udValuesDesc}" ><h:outputText value="#{ud.udValuesValue}"/></h:outputLink>
 							</h:column>																	
 						</h:dataTable>		
-					</rich:panel>													
-														
+					</rich:panel>	
+																
+													
 				</h:panelGrid>
 
 </ui:composition>
