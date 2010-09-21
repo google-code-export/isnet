@@ -11,6 +11,7 @@ import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.List;
@@ -23,14 +24,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import com.intrigueit.myc2i.member.domain.Member;
 import com.intrigueit.myc2i.payment.domain.PayPalLog;
 import com.intrigueit.myc2i.payment.view.PaymentViewHandler;
-import com.intrigueit.myc2i.scheduler.SchedulerInit;
 import com.intrigueit.myc2i.udvalues.domain.UserDefinedValues;
 
 /**
@@ -171,6 +170,17 @@ public class PayPalTxnListener extends HttpServlet {
 				
 				/** Save the transaction log */
 				bean.getPayPalLogService().save(plog);
+				
+				/** Update member expiry date for 1 years */
+				Member member = bean.getMemberService().findById(plog.getMemberId());
+				
+				Calendar cal = Calendar.getInstance();
+				cal.setTime(new Date());
+				cal.add(Calendar.YEAR, 1);
+				member.setMemberShipExpiryDate(cal.getTime());
+				bean.getMemberService().save(member);
+				
+				
 				
 			}
 			catch(Exception ex){
