@@ -240,5 +240,10 @@ public class MemberServiceImpl implements MemberService {
 		return members;
 	}
 
+	@Override
+	public List<Member> getLeadMentorsMentorWaitingForCertification(Long mentorId) {
+		return memberDao.getLeadMentorMentorWaitingForCertification(mentorId);
+	}
+
 
 }

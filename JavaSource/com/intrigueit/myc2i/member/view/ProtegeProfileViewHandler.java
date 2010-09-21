@@ -2,6 +2,7 @@ package com.intrigueit.myc2i.member.view;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -36,6 +37,7 @@ public class ProtegeProfileViewHandler extends BasePage{
 	private List<MemberLog> protegeLogs;
 	private MemberSearchDao memberSearchDao;
 	private UDValuesService udService;
+	private List<Member> mentorWaitingCertification;
 	
 	/**
 	 * 
@@ -396,7 +398,49 @@ public class ProtegeProfileViewHandler extends BasePage{
 	public void setUdService(UDValuesService udService) {
 		this.udService = udService;
 	}
+
+	public List<Member> getMentorWaitingCertification() {
+		try{
+			this.mentorWaitingCertification = this.memberService.getLeadMentorsMentorWaitingForCertification(this.getMember().getMemberId());
+		}
+		catch(Exception ex){
+			log.error(ex.getMessage(),ex);
+		}
+		return mentorWaitingCertification;
+	}
+
+	public void setMentorWaitingCertification(
+			List<Member> mentorWaitingCertification) {
+		this.mentorWaitingCertification = mentorWaitingCertification;
+	}
 	
+	private String getMemberId(){
+		String memberId = this.getParameter("MEMBER_ID");
+		if(memberId == null || memberId.equals("")){
+			return "";
+		}
+		return memberId;
+	}
+	public void comfirmMentorCertification(){
+		try{
+			String memberId = this.getMemberId();
+			if(memberId.equals("")){
+				return;
+			}
+			Member member = this.memberService.findById(Long.parseLong(memberId));
+			member.setIsMemberCertified("YES");
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(new Date());
+			/** Set membership certification expiry for 1 year*/
+			cal.add(Calendar.YEAR, 1);
+			member.setCertificationDate(cal.getTime());
+			this.memberService.update(member);
+			
+		}
+		catch(Exception ex){
+			log.error(ex.getMessage(),ex);
+		}
+	}
 	
 	
 	

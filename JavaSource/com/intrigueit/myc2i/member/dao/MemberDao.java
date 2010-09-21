@@ -20,4 +20,7 @@ public interface MemberDao extends GenericDao<Member,Long>{
 	public List<Member> findByClause(String hsql);
 	
 	public List<RolePageAccess> loadUserPrivilegePages(Long memberTypeId);
+	
+	public List<Member> getLeadMentorMentorWaitingForCertification(Long mentorId);
+	
 }
