@@ -1,0 +1,88 @@
+<html>
+<body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0" bgcolor='#A7B4BF' >
+
+<STYLE>
+ .headerTop { background-color:#A7B4BF; border-top:0px solid #000000; border-bottom:0px solid #FFCC66; text-align:right; }
+ .adminText { font-size:10px; color:#FFFFCC; line-height:200%; font-family:verdana; text-decoration:none; }
+ .headerBar { background-color:#FFFFFF; border-top:0px solid #FFFFFF; border-bottom:0px solid #333333; }
+ .title { font-size:22px; font-weight:bold; color:#336600; font-family:arial; line-height:110%; }
+ .subTitle { font-size:11px; font-weight:normal; color:#666666; font-style:italic; font-family:arial; }
+ td { font-size:12px; color:#000000; line-height:150%; font-family:trebuchet ms; }
+ .footerRow { background-color:#FFFFCC; border-top:10px solid #FFFFFF; }
+ .footerText { font-size:10px; color:#333333; line-height:100%; font-family:verdana; }
+ a { color:#FF0000; color:#FF6600; color:#FF6600; }
+</STYLE>
+
+
+
+<table width="100%" cellpadding="10" cellspacing="0" class="backgroundTable"  >
+<tr>
+<td valign="top" align="center">
+
+<table width="550" cellpadding="0" cellspacing="0" border=0>
+<tr>
+<td style="background-color:#638A9F;border-top:0px solid #000000;border-bottom:0px solid #FFCC66;text-align:right;" align="center"><span style="font-size:10px;color:#FFFFCC;line-height:200%;font-family:verdana;text-decoration:none;">Email not displaying correctly? <a href="*|ARCHIVE|*" style="font-size:10px;color:#FFFFCC;line-height:200%;font-family:verdana;text-decoration:none;">View it in your browser.</a></span></td>
+
+</tr>
+ 
+
+</table>
+
+<table width="550" cellpadding="20" cellspacing="0" bgcolor="#FFFFFF">
+<tr>
+<td bgcolor="#FFFFFF" valign="top" style="font-size:12px;color:#000000;line-height:150%;font-family:trebuchet ms;">
+
+<p>
+<span style="font-size:22px;font-weight:bold;color:#336600;font-family:arial;line-height:110%;"> Dear $member_name</span><br>
+<br />
+<br />
+Congratulation, Your certification has been confirm by mentor, $mentor_name. You can now enjoy the full fetures of Myc2i like submit stories, search guest/protege etc. For more details please visit our site.
+</p>
+
+</td>
+</tr>
+
+<tr>
+<td style="background-color:#FFFFCC;border-top:10px solid #FFFFFF;" valign="top">
+<span style="font-size:10px;color:#333333;line-height:100%;font-family:verdana;">
+
+
+
+Thanks
+<br /><br />
+My2i Team
+</span>
+</td>
+</tr>
+
+<tr>
+<td>
+						<table cellspacing="0" cellpadding="0" width="100%">
+							<tbody>
+								<tr>
+									<td
+										style="border: 1px solid rgb(255, 226, 34); padding: 10px; background-color: rgb(255, 248, 204); color: rgb(51, 51, 51); font-size: 11px;">
+
+									To
+									confirm your account, please visit the following link:
+									<a style="color: rgb(59, 89, 152); text-decoration: none;"
+										href="$myc2i_link"
+										target="_blank" rel="nofollow"><span id="lw_1270461681_3"
+										class="yshortcuts">www.myc2i.org</span></a></td>
+								</tr>
+							</tbody>
+						</table>
+</td>
+</tr>
+
+</table>
+
+
+</td>
+</tr>
+
+</table>
+
+
+</body>
+</html>
