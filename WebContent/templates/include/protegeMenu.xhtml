@@ -6,88 +6,195 @@
 	xmlns:rich="http://richfaces.org/rich">
 <ui:composition>
  	<!-- Mentor Home Menu -->
-   <h:panelGroup id="idProtegeDashboardPanel" rendered="${moduleType eq 'PH'}">
-     <ul class="sidemenu">
-       <li>
-         <h:outputLink  styleClass="#{messageHanlder.unReadMessageCount ne '0'? 'menu_item_clink hight_lighted_menu' : 'menu_item_clink'} "
+  <h:panelGroup id="idProtegeDashboardPanel" rendered="${moduleType eq 'PH'}">
+    <table>
+      <tr>
+        <td class="lmenu" valign="middle">
+          <h:outputLink  styleClass="#{messageHanlder.unReadMessageCount ne '0'? 'menu_item_clink hight_lighted_menu' : 'menu_item_clink'} "
            value="#{controllerBean.contextPath}/pages/secure/protegeMessage.faces?folder=RECEIVED">
-			<h:outputText value="My Messages"/>
-	        <rich:spacer width="2"/>
-	        <h:outputText style="color: red; font-weight: bolder;" rendered="#{messageHanlder.unReadMessageCount ne '0'}" value="( #{messageHanlder.unReadMessageCount} )"/>
-         </h:outputLink>
-       </li>      
-       <li>
-         <h:outputLink styleClass="menu_item_clink" 
+            <table>
+              <tr>
+                <td><h:graphicImage value="${imagesPath}/mail.png"/></td>                      
+                <td class="lmenu_text">
+                  <h:outputText value="My Messages"/>
+                  <rich:spacer width="2"/>
+                  <h:outputText style="color: red; font-weight: bolder;" 
+                    rendered="#{messageHanlder.unReadMessageCount ne '0'}" 
+                    value="( #{messageHanlder.unReadMessageCount} )"/>
+                </td>
+              </tr>
+            </table>
+          </h:outputLink>                
+        </td>
+      </tr>
+      
+      <tr>
+        <td class="lmenu" valign="middle">
+          <h:outputLink styleClass="alink" 
            value="#{controllerBean.contextPath}/pages/secure/protegeDashboard.faces">
-           <h:outputText value="#{bundle.left_navigation_mentor_dashboard}"/>
-         </h:outputLink>
-       </li>
-       <li>
-         <h:outputLink styleClass="menu_item_clink" 
+            <table>
+              <tr>
+                <td><h:graphicImage value="${imagesPath}/gauge.png"/></td>                      
+                <td class="lmenu_text">
+                  &#160;<h:outputText value="#{bundle.left_navigation_mentor_dashboard}"/>
+                </td>
+              </tr>
+            </table>
+          </h:outputLink>                
+        </td>
+      </tr>
+      
+      <tr>
+        <td class="lmenu" valign="middle">
+          <h:outputLink styleClass="alink" 
            value="#{controllerBean.contextPath}/pages/secure/protegeMentorProfile.faces">
-           <h:outputText value="#{bundle.left_navigation_protege_mentor_profile}"/>
-         </h:outputLink>
-       </li>  
-       <li>
-         <h:outputLink styleClass="menu_item_clink" 
+            <table>
+              <tr>
+                <td><h:graphicImage value="${imagesPath}/businessman.png"/></td>                      
+                <td class="lmenu_text">
+                  &#160;<h:outputText value="#{bundle.left_navigation_protege_mentor_profile}"/>
+                </td>
+              </tr>
+            </table>
+          </h:outputLink>                
+        </td>
+      </tr>
+      
+      <tr>
+        <td class="lmenu" valign="middle">
+          <h:outputLink styleClass="alink" 
            value="#{controllerBean.contextPath}/pages/secure/mentorSearch.faces">
-           <h:outputText value="#{bundle.left_navigation_protege_mentor_search}"/>
-         </h:outputLink>
-       </li> 
-       <li>
-         <h:outputLink styleClass="menu_item_clink" 
+            <table>
+              <tr>
+                <td><h:graphicImage value="${imagesPath}/businessman_find.png"/></td>                      
+                <td class="lmenu_text">
+                  &#160;<h:outputText value="#{bundle.left_navigation_protege_mentor_search}"/>
+                </td>
+              </tr>
+            </table>
+          </h:outputLink>                
+        </td>
+      </tr>
+      
+      <tr>
+        <td class="lmenu" valign="middle">
+          <h:outputLink styleClass="alink" 
            value="#{controllerBean.contextPath}/pages/secure/protegeViewPoint.faces">
-           <h:outputText value="#{bundle.left_navigation_protege_viewpoint}"/>
-         </h:outputLink>
-       </li>                          
-       <li>
-         <h:outputLink styleClass="menu_item_clink" 
+            <table>
+              <tr>
+                <td><h:graphicImage value="${imagesPath}/note.png"/></td>                      
+                <td class="lmenu_text">
+                  &#160;<h:outputText value="#{bundle.left_navigation_protege_viewpoint}"/>
+                </td>
+              </tr>
+            </table>
+          </h:outputLink>                
+        </td>
+      </tr>
+      
+      <tr>
+        <td class="lmenu" valign="middle">
+          <h:outputLink styleClass="alink" 
            value="#{controllerBean.contextPath}/pages/secure/protegeLog.faces">
-           <h:outputText value="#{bundle.left_navigation_mentor_activity_log}"/>
-         </h:outputLink>
-       </li>   
-
-	   <li>
-         <h:outputLink styleClass="menu_item_clink" 
+            <table>
+              <tr>
+                <td><h:graphicImage value="${imagesPath}/calendar_preferences.png"/></td>                      
+                <td class="lmenu_text">
+                  &#160;<h:outputText value="#{bundle.left_navigation_mentor_activity_log}"/>
+                </td>
+              </tr>
+            </table>
+          </h:outputLink>                
+        </td>
+      </tr>
+      
+      <tr>
+        <td class="lmenu" valign="middle">
+          <h:outputLink styleClass="alink" 
            value="#{controllerBean.contextPath}/pages/secure/protegeTutorial.faces">
-           <h:outputText value="#{bundle.left_navigation_tutorial}"/>
-         </h:outputLink>
-       </li> 
-    </ul>
+            <table>
+              <tr>
+                <td><h:graphicImage value="${imagesPath}/tutorial.png"/></td>                      
+                <td class="lmenu_text">
+                  &#160;<h:outputText value="#{bundle.left_navigation_tutorial}"/>
+                </td>
+              </tr>
+            </table>
+          </h:outputLink>                
+        </td>
+      </tr>
+    </table>
    </h:panelGroup>
+   
    <h:panelGroup id="idProtegeAccountPanel" rendered="${moduleType eq 'PA'}">
-     <ul class="sidemenu">
-       <li>
-         <h:outputLink styleClass="menu_item_clink" 
-           value="#{controllerBean.contextPath}/pages/secure/protegeProfile.faces">
-           <h:outputText value="#{bundle.page_header_myaccount_profile}"/>
-         </h:outputLink>
-       </li>
-       <li>
-         <h:outputLink styleClass="menu_item_clink" 
-           value="#{controllerBean.contextPath}/pages/secure/protegeChangePassword.faces">
-           <h:outputText value="#{bundle.page_header_myaccount_change_password}"/>
-         </h:outputLink>
-       </li>  
-                     
-    </ul>
+     <table>
+        <tr>
+          <td class="lmenu" valign="middle">
+            <h:outputLink styleClass="alink" 
+             value="#{controllerBean.contextPath}/pages/secure/protegeProfile.faces">
+              <table>
+                <tr>
+                  <td><h:graphicImage value=""/></td>                      
+                  <td class="lmenu_text">
+                    &#160;<h:outputText value="#{bundle.page_header_myaccount_profile}"/>
+                  </td>
+                </tr>
+              </table>
+            </h:outputLink>                
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="lmenu" valign="middle">
+            <h:outputLink styleClass="alink" 
+             value="#{controllerBean.contextPath}/pages/secure/protegeChangePassword.faces">
+              <table>
+                <tr>
+                  <td><h:graphicImage value=""/></td>                      
+                  <td class="lmenu_text">
+                    &#160;<h:outputText value="#{bundle.page_header_myaccount_change_password}"/>
+                  </td>
+                </tr>
+              </table>
+            </h:outputLink>                
+          </td>
+        </tr>
+     </table>
    </h:panelGroup>   
    <h:panelGroup id="idProtegeMessagePanel" rendered="${moduleType eq 'PM'}">
-     <ul class="sidemenu">
-       <li>
-         <h:outputLink styleClass="menu_item_clink" 
-           value="#{controllerBean.contextPath}/pages/secure/protegeMessage.faces?folder=RECEIVED">
-           <h:outputText value="Inbox"/>
-         </h:outputLink>
-       </li>
-       <li>
-         <h:outputLink styleClass="menu_item_clink" 
-           value="#{controllerBean.contextPath}/pages/secure/protegeMessage.faces?folder=SENT">
-           <h:outputText value="Sent Items"/>
-         </h:outputLink>
-       </li>  
-         
-    </ul>
+     <table>
+        <tr>
+          <td class="lmenu" valign="middle">
+            <h:outputLink styleClass="alink" 
+             value="#{controllerBean.contextPath}/pages/secure/protegeMessage.faces?folder=RECEIVED">
+              <table>
+                <tr>
+                  <td><h:graphicImage value=""/></td>                      
+                  <td class="lmenu_text">
+                    &#160;<h:outputText value="Inbox"/>
+                  </td>
+                </tr>
+              </table>
+            </h:outputLink>                
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="lmenu" valign="middle">
+            <h:outputLink styleClass="alink" 
+             value="#{controllerBean.contextPath}/pages/secure/protegeMessage.faces?folder=SENT">
+              <table>
+                <tr>
+                  <td><h:graphicImage value=""/></td>                      
+                  <td class="lmenu_text">
+                    &#160;<h:outputText value="Sent Items"/>
+                  </td>
+                </tr>
+              </table>
+            </h:outputLink>                
+          </td>
+        </tr>
+      </table>    
    </h:panelGroup>         
 </ui:composition>
 </html>

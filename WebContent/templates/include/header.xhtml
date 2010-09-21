@@ -4,72 +4,38 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:a4j="http://richfaces.org/a4j"
 	xmlns:rich="http://richfaces.org/rich">
-<ui:composition>
-	<div id="header">
-	<div class="top"></div>
-	<div class="spacer"></div>
-	<div class="logo" style="border: 0px solid red;">
-
-	<table width="100%" border="0" cellpadding="0" cellspacing="0">
-		<tr>
-			<td height="88px" class="banner">
-			<table width="96%" border="0">
-				<tr>
-					<td align="left">
-						<h:outputLink
-							value="#{controllerBean.contextPath}#{authenticationViewHandler.homePageUrl}">
-							<h:graphicImage value="/images/logo.png" align="middle" border="0"	style="height: 80px;" />
-						</h:outputLink>
-					</td>
-					<td align="right">
-					<table width="100%" border="0" cellpadding="0" cellspacing="0">
-						<tr>
-							<td height="15px"></td>
-						</tr>
-						<tr>
-							<td align="right"><h:panelGroup>
-								<h:commandLink action="#{authenticationViewHandler.logOutUser}"
-									value="#{bundle.top_navigation_sign_out}"
-									rendered="#{authenticationViewHandler.isLogged}">
-								</h:commandLink>
-								<h:outputLabel styleClass="top_panel_psep"
-									rendered="#{authenticationViewHandler.isLogged}">
-									<h:outputText value="|" />
-								</h:outputLabel>
-								<h:outputLabel style="text-decoration:none;"
-									rendered="#{authenticationViewHandler.isLogged}">
-									<h:outputText value="#{authenticationViewHandler.userEmailId}" />
-								</h:outputLabel>
-
-								<h:outputLabel styleClass="top_panel_psep"
-									rendered="#{authenticationViewHandler.isLogged}">
-									<h:outputText value="|" />
-								</h:outputLabel>								
-                <h:outputLink styleClass="" style="text-decoration:none;"
-                  value="#{controllerBean.contextPath}/privacyPolicy.faces">
-                  <h:outputText id="idPrivacyPolicy"
-                    value="#{bundle.top_navigation_privacy_policy}" />
-                </h:outputLink>
-								<h:outputLabel styleClass="top_panel_psep">
-									<h:outputText value="|" />
-								</h:outputLabel>
-								<h:outputLink styleClass="" style="text-decoration:none;"
-									value="#{controllerBean.contextPath}/contactUs.faces">
-									<h:outputText id="idContactus"
-										value="#{bundle.top_navigation_contact_us}" />
-								</h:outputLink>
-							</h:panelGroup></td>
-
-						</tr>
-					</table>
-					</td>
-				</tr>
-			</table>
-			</td>
-		</tr>
-	</table>
-	</div>
-	</div>
-
+<ui:composition>	
+  <div id="header">              
+    <div id="nav">
+      <ul>
+        <li class="first">
+          <h:commandLink action="#{authenticationViewHandler.logOutUser}"
+            value="#{bundle.top_navigation_sign_out}"
+            rendered="#{authenticationViewHandler.isLogged}">
+          </h:commandLink>
+        </li>
+        <li>
+          <h:outputLabel style="text-decoration:none;"
+            rendered="#{authenticationViewHandler.isLogged}">
+            <h:outputText styleClass="toplink_text" value="#{authenticationViewHandler.userEmailId}" />
+          </h:outputLabel>
+        </li>
+        <li>
+          <h:outputLink styleClass="" style="text-decoration:none;"
+            value="#{controllerBean.contextPath}/privacyPolicy.faces">
+            <h:outputText id="idPrivacyPolicy"
+              value="#{bundle.top_navigation_privacy_policy}" />
+          </h:outputLink>
+        </li>
+        <li class="last">
+          <h:outputLink styleClass="" style="text-decoration:none;"
+            value="#{controllerBean.contextPath}/contactUs.faces">
+            <h:outputText id="idContactus"
+              value="#{bundle.top_navigation_contact_us}" />
+          </h:outputLink>
+        </li>
+      </ul>
+    </div>
+  </div>
 </ui:composition>
 </html>

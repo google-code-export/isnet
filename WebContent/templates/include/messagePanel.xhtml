@@ -11,24 +11,24 @@
   <rich:panel styleClass="error_panel" rendered="${errMsg ne ''}" >
     <f:facet name="header">
       <h:panelGroup id = "idMessageHeader">
-      <h:panelGrid columns="2" border="0" id="idErrorHead" columnClasses="errorhead_text,errorhead_icon"
+      <h:panelGrid columns="2" border="0" id="idErrorHead" columnClasses="errorhead_icon,errorhead_text"
         rendered="${refManageBean.msgType ne 'INFO'}">
-        <h:outputText value="Error Panel"/>
         <a4j:commandLink  action="${refManageBean.hideErrorPanel}" reRender="idErrorPanel" styleClass="menu_item_clink">
           <h:panelGroup>
-            <h:graphicImage value="#{controllerBean.imagesPath}/cross.png" styleClass="sec_toolbar_icon"/>
+            <h:graphicImage value="#{controllerBean.imagesPath}/cross.png" styleClass="sec_toolbar_icon" title="Close"/>
           </h:panelGroup>
-        </a4j:commandLink>
+        </a4j:commandLink> 
+        <h:outputText value="Error Panel"/>        
       </h:panelGrid>
       
-      <h:panelGrid columns="2" border="0" id="idinfoHead" columnClasses="infohead_text,infohead_icon"
+      <h:panelGrid columns="2" border="1" id="idinfoHead" columnClasses="infohead_icon,infohead_text"
         rendered="${refManageBean.msgType eq 'INFO'}">
-        <h:outputText value="Message Panel"/>
         <a4j:commandLink  action="${refManageBean.hideErrorPanel}" reRender="idErrorPanel" styleClass="menu_item_clink">
           <h:panelGroup>
-            <h:graphicImage value="#{controllerBean.imagesPath}/cross.png" styleClass="sec_toolbar_icon"/>
+            <h:graphicImage value="#{controllerBean.imagesPath}/cross.png" styleClass="sec_toolbar_icon" title="Close"/>
           </h:panelGroup>
         </a4j:commandLink>
+        <h:outputText value="Message Panel"/>        
       </h:panelGrid>
       </h:panelGroup>
     </f:facet>
