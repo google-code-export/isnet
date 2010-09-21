@@ -26,7 +26,7 @@
           <table border="0" cellspacing="0" cellpadding="0" width="98%">
            <tr>
             <td align="right">
-		      <a4j:commandLink rendered="#{storyViewHandler.mentorCertified}" styleClass="table_control_normal_style" action="#{storyViewHandler.initializeDialog}" reRender="idmemberStoryDialog"  oncomplete="Richfaces.showModalPanel('idmemberStoryDialog')">
+		      <a4j:commandLink rendered="#{memberToDoItem.mentorCertified}" styleClass="table_control_normal_style" action="#{storyViewHandler.initializeDialog}" reRender="idmemberStoryDialog"  oncomplete="Richfaces.showModalPanel('idmemberStoryDialog')">
 		           	<a4j:actionparam name="storyId" value="-1"  />
 				    <a4j:actionparam name="action" value="ADD"  />
 		           	<h:graphicImage value="/images/new.png" align="middle" border="0" />	
@@ -36,7 +36,7 @@
 				     <rich:spacer width="3"/>
 				     <h:outputText value="#{bundle.success_story_create_new}" border="0" />			            	
 				</a4j:commandLink>	
-         		 <a4j:commandLink rendered="#{!storyViewHandler.mentorCertified}" styleClass="table_control_normal_style">
+         		 <a4j:commandLink rendered="#{!memberToDoItem.mentorCertified}" styleClass="table_control_normal_style">
 	            	<h:graphicImage value="/images/new.png" align="middle" border="0" > 
 	            	</h:graphicImage>	
             		 <rich:toolTip styleClass="tooltips_style"  >
