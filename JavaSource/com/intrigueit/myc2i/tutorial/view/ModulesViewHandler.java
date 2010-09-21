@@ -55,7 +55,6 @@ public class ModulesViewHandler extends BasePage implements Serializable {
   private TestResultService testResltService;
   
   private List<TestTutorialModules> modules;
-  
 
    public List<TestTutorialModules> getModules() {
 		try {
@@ -521,5 +520,9 @@ public class ModulesViewHandler extends BasePage implements Serializable {
   public void setTestResltService(TestResultService testResltService) {
 	this.testResltService = testResltService;
   }
+
+
+
+
 
 }
