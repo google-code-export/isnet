@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.intrigueit.myc2i.common.view.BasePage;
+import com.intrigueit.myc2i.member.service.MemberService;
 import com.intrigueit.myc2i.payment.service.PayPalLogService;
 import com.intrigueit.myc2i.udvalues.domain.UserDefinedValues;
 import com.intrigueit.myc2i.udvalues.service.UDValuesService;
@@ -28,6 +29,7 @@ public class PaymentViewHandler extends BasePage {
 	/** Services ref */
 	private UDValuesService udService;
 	private PayPalLogService payPalLogService;
+	private MemberService memberService;
 	
 	
 	public UDValuesService getUdService() {
@@ -82,6 +84,15 @@ public class PaymentViewHandler extends BasePage {
 	@Autowired
 	public void setPayPalLogService(PayPalLogService payPalLogService) {
 		this.payPalLogService = payPalLogService;
+	}
+
+	public MemberService getMemberService() {
+		return memberService;
+	}
+	
+	@Autowired
+	public void setMemberService(MemberService memberService) {
+		this.memberService = memberService;
 	}
 
 
