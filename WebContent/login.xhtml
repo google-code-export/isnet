@@ -9,41 +9,47 @@
 
 <ui:composition template="/templates/basictemplate.xhtml">
 <f:loadBundle basename="ApplicationResources" var="bundle"/>
-	<ui:param name="moduleTitle" value="#{bundle.login_page_title}"></ui:param>
- 	<ui:param name="userType" value="Public"></ui:param>
-	<ui:define name="body">
-		 <h:inputHidden value="#{authenticationViewHandler.init}" />
-          <h:panelGrid width="100%"  columns="3" border="0" cellpadding="0" cellspacing="0"   columnClasses="login_page_column1,login_page_column2,login_page_column3" >
-          
-          <h:panelGrid columns="1" width="100%" valign="center" border="0" cellpadding="0" cellspacing="0">
-            <rich:spacer height="240"/>
-			<h:panelGrid columns="1" width="100%" border="0" columnClasses="center_align_col">
-				<h:outputLink value="#{controllerBean.contextPath}/guestRegister.faces"> 
-					<h:graphicImage value="/images/address_book3.png" /> 
-					<h:outputText value="#{bundle.login_page_guest_signup}" /> 
-					<rich:spacer width="3"/>
-					<h:outputText style="font-weight: bolder;" value="( It's FREE )" /> 
-				</h:outputLink>			
-			</h:panelGrid>
-			 <rich:spacer height="7"/>
-			<rich:panel headerClass="login_box_panel_header"  bodyClass="login_box_panel">
-			<f:facet name="header"><h:outputText value="#{bundle.login_page_success_stories}" /> </f:facet>
+  <ui:param name="moduleTitle" value="#{bundle.login_page_title}"></ui:param>
+  <ui:param name="userType" value="Public"></ui:param>
+  <ui:define name="body">
+    <h:inputHidden value="#{authenticationViewHandler.init}" />
+    <h:panelGrid width="100%"  columns="3" border="0" cellpadding="0" cellspacing="0" 
+      columnClasses="login_page_column1,login_page_column2,login_page_column3" >          
+      <h:panelGrid columns="1" width="100%" valign="center" border="0" cellpadding="0" cellspacing="0">
+        <h:panelGrid columns="1" width="100%" border="0" columnClasses="center_align_col">				  
+          <rich:spacer height="293"/>
+          <h:outputLink styleClass="alink"
+           value="#{controllerBean.contextPath}/guestRegister.faces">
+            <table>
+              <tr>
+                <td style="padding-left: 20px;"><h:graphicImage value="/images/address_book3.png"/></td>                      
+                <td class="lmenu_login_text">
+                  <h:outputText value="#{bundle.login_page_guest_signup}" /> 
+                  <rich:spacer width="3"/>
+                  <h:outputText style="font-weight: bolder;" value="( It's FREE )" />
+                </td>
+              </tr>
+            </table>
+          </h:outputLink>                
+        </h:panelGrid>
+			  <rich:spacer height="7"/>
+			  <rich:panel headerClass="login_box_panel_header"  bodyClass="login_box_panel">
+			   <f:facet name="header">
+          <h:outputText value="#{bundle.login_page_success_stories}" /> 
+         </f:facet>
+			   <h:outputText value="#{authenticationViewHandler.mentorStory}" />			         
+			  </rich:panel>            
+      </h:panelGrid>
 
-			        <h:outputText value="#{authenticationViewHandler.mentorStory}" />
-
-			         
-			</rich:panel>            
-          </h:panelGrid>
-
-            <!-- Center column -->
+     <!-- Center column -->
 			<div style="height: 600px;border: 0px solid red;background-color: white;">
 			 <iframe style="margin-right:0px;"
 			    src="http://www.myc2i.com/i/myc2i/intro_video.html" width="480" height="500"
 			    frameborder="0" scrolling="no" align="left">
 			 </iframe>
-			</div>
+			</div> 
             
-            <!-- Right Column -->
+      <!-- Right Column -->
 				<h:panelGrid columns="1" width="100%" border="0" cellpadding="0" cellspacing="0">
           		<!-- Login Box -->
           		<rich:panel  headerClass="login_box_panel_header"  bodyClass="login_box_panel">
@@ -81,32 +87,51 @@
 				 <rich:spacer height="10"/>
 				 
 				<h:panelGrid columns="1" width="100%" border="0" columnClasses="center_align_col">
-					<h:outputLink value="#{controllerBean.contextPath}/static/imam_says_1.faces"> 
-						<h:graphicImage value="/images/picture_imam_zaid.png" /> 
-						<h:outputText value="Imam Zaid Shakir Says..." /> 
-					</h:outputLink>		
+					<h:outputLink styleClass="alink" 
+           value="#{controllerBean.contextPath}/static/imam_says_1.faces">
+            <table>
+              <tr>
+                <td style="padding-left: 0px;"><h:graphicImage value="/images/picture_imam_zaid.png"/></td>                      
+                <td class="lmenu_login_text" valign="bottom">
+                  &#160;<h:outputText styleClass="lmenu_login_text" value=" Imam Zaid Shakir Says..." /> 
+                </td> 
+              </tr>
+            </table>
+          </h:outputLink>
 				</h:panelGrid>
 	
 
 				<h:panelGrid columns="1" width="100%" border="0" columnClasses="center_align_col">
-					<h:outputLink value="#{controllerBean.contextPath}/static/imam_says_2.faces"> 
-						<h:graphicImage value="/images/picture_imam_sakr.png" /> 
-						<h:outputText value=". " style="color: white;"/> 
-						<h:outputText value=" Dr Ahmad  Sakr Says ... " /> 
-					</h:outputLink>		
+					<h:outputLink styleClass="alink" 
+           value="#{controllerBean.contextPath}/static/imam_says_2.faces">
+            <table>
+              <tr>
+                <td style="padding-left: 0px;"><h:graphicImage value="/images/picture_imam_sakr.png"/></td>                      
+                <td class="lmenu_login_text" valign="bottom">
+                  &#160;<h:outputText styleClass="lmenu_login_text" value=" Dr. Ahmad  Sakr Says ... " /> 
+                </td> 
+              </tr>
+            </table>
+          </h:outputLink>		
 				</h:panelGrid>
 				
 				 <rich:spacer height="20"/>
 				 
 				<h:panelGrid columns="1" width="100%" border="0" columnClasses="center_align_col">
-					<h:outputLink value="#{controllerBean.contextPath}/mentorRegister.faces"> 
-						<h:graphicImage value="/images/address_book2.png" /> 
-						<h:outputText value="#{bundle.login_page_mentor_signup}" /> 
-						<rich:spacer width="3"/>
-						<h:outputText  style="font-weight: bolder;" value="( It's FREE )" /> 						
-					</h:outputLink>		 
-				</h:panelGrid>
-								
+					<h:outputLink styleClass="alink" 
+           value="#{controllerBean.contextPath}/mentorRegister.faces">
+            <table>
+              <tr>
+                <td style="padding-left: 18px;"><h:graphicImage value="/images/address_book2.png"/></td>                      
+                <td class="lmenu_login_text">
+                  <h:outputText value="#{bundle.login_page_mentor_signup}" /> 
+                  <rich:spacer width="3"/>
+                  <h:outputText  style="font-weight: bolder;" value="( It's FREE )" />
+                </td> 
+              </tr>
+            </table>
+          </h:outputLink> 
+				</h:panelGrid>								
 				
 				</h:panelGrid>
 				
