@@ -58,7 +58,7 @@
     <a4j:outputPanel id="idStyleClass">
       <link rel="STYLESHEET" type="text/css" href="#{controllerBean.contextPath}/#{controllerBean.cssPath}/myc2i.css"/>
       <link rel="STYLESHEET" type="text/css" href="#{controllerBean.contextPath}/#{controllerBean.cssPath}/richtools.css"/>
-       <link rel="STYLESHEET" type="text/css" href="#{controllerBean.contextPath}/#{controllerBean.cssPath}/common.css"/>
+      <link rel="STYLESHEET" type="text/css" href="#{controllerBean.contextPath}/#{controllerBean.cssPath}/common.css"/>
     </a4j:outputPanel>
     <a4j:loadScript src="/js/jquery/jquery-1.2.js"/>
     <a4j:loadScript src="/js/jquery/jquery.blockUI.js"/>
@@ -78,61 +78,66 @@
     <ui:insert name="js"></ui:insert>
   </head>
 
-  <body>
-    <a4j:outputPanel layout="block" id="idMainBlock" style="border: 0px solid red;">
+<body>
+  <a4j:outputPanel layout="block" id="idMainBlock" style="border: 0px solid red;">
       <f:view id="idMainView">
        <f:loadBundle basename="ApplicationResources" var="bundle"/>
         <h:form id="idMainForm">
-        <c:set var="imagesPath" value="#{controllerBean.imagesPath}" />
-        <h:inputHidden id="idContextPath" value="#{controllerBean.contextPath}" />
-          <div class="viewcontainer mainBlock" id="idMainContainer" style="border: 0px solid green;">
-          <h:panelGroup id="idHContainer">
-            <ui:include src="/templates/include/header.xhtml" />
-            </h:panelGroup>
-            <h:panelGroup id="idMenuContainer">
-              <div class="menu_container">
-                <ui:include src="/templates/include/topnav.xhtml">
-              <ui:param name="userType" value="${userType}"></ui:param>
-            </ui:include>
-              </div>
-            </h:panelGroup>
-         <div id="inner-container" class="clearfix" style="border: 0px solid green;">
-          <div id="content" style="border: 0px solid red;">
-          <h:panelGrid styleClass="body_content" width="99%" columns="${refColumns}" border="0" cellpadding="0" cellspacing="0"
-            columnClasses="${colClass}" rowClasses="rowinput">
-            <h:column rendered="${showLeftColumn ne 'N'}">
-            	<ui:include src="/templates/include/leftside.xhtml"/>
-            </h:column>
-            <h:column>
-              <div class="form" style="border:0px solid red;margin-top:5px;" >
-                <h:panelGroup id="idErrorPanelCon">
-                  <ui:include src="/templates/include/messagePanel.xhtml">
-                  </ui:include>
+          <c:set var="imagesPath" value="#{controllerBean.imagesPath}" />
+          <c:set var="contextPath" value="#{controllerBean.contextPath}" />
+          <h:inputHidden id="idContextPath" value="#{controllerBean.contextPath}" />
+            <div class="viewcontainer mainBlock" id="idMainContainer" style="border: 0px solid green;">
+              <div id="container">
+                <h:panelGroup id="idHContainer">
+                  <ui:include src="/templates/include/header.xhtml" />
                 </h:panelGroup>
-                <div class="formHead"><h:outputText value="${headerText}" /></div>
-                <div class="formFields formBorder wideLabels">
-                  <ui:insert name="body">Body</ui:insert>
-                  <div class="formControls wideLabels">
-                    <table>
-                      <tr><td align="center">&nbsp;</td></tr>
-                      <tr><td align="center">&nbsp;</td></tr>
-                      <tr><td align="center">&nbsp;</td></tr>
-                    </table>
+                
+                <div id="content">
+                  <div class="row clearfix">
+                    <div class="t-100">
+                      <div class="box title heading">
+                        <div id="logo_style" style="border: 0px solid red;">     
+                          <a href="http://www.google.com/">MyC2i</a>    
+                        </div>                    
+                        <h:graphicImage title="Clouds" value="${imagesPath}/clouds00.png" styleClass="clouds"/>
+                        <div class="faith"> 
+                          <h1 style="font-style: italic;">Upgrade Your Faith</h1> 
+                        </div>
+                        <h:panelGroup id="idMenuContainer">
+                          <ui:include src="/templates/include/topnav.xhtml">
+                            <ui:param name="userType" value="${userType}"></ui:param>
+                          </ui:include>      
+                        </h:panelGroup>                   
+                      </div>
+                    </div>
+                    <div class="box t-100 subheading">
+                      <p style="font-size: 10px;" > </p>
+                    </div>
+                  </div>
+            
+                  <div class="row clearfix t-100 box body_bg">
+                    <div class="t-25 last side" style="border: 0px solid red;">                  
+                      <ui:include src="/templates/include/leftside.xhtml"/>
+                    </div>
+            
+                    <div class="t-75 content" style="background-color: #ffffff;">
+                      <h:panelGroup id="idErrorPanelCon">
+                        <ui:include src="/templates/include/messagePanel.xhtml"></ui:include>
+                      </h:panelGroup>
+                      <div class="formHead"><h:outputText value="${headerText}" /></div>
+                      <div class="formFields formBorder wideLabels">                  
+                        <ui:insert name="body">Body</ui:insert>
+                      </div>
+                    </div>
                   </div>
                 </div>
+                <h:panelGroup id="idFContainer">
+                  <ui:include src="/templates/include/footer.xhtml" >
+                    <ui:param name="userType" value="${userType}"></ui:param>
+                  </ui:include>
+                </h:panelGroup>                
               </div>
-            </h:column>
-            <h:column rendered="${showRightColumn eq 'Y'}">&nbsp;</h:column>
-          </h:panelGrid>
-        </div>
-      </div>
-      <h:panelGroup id="idFContainer">
-        <ui:include src="/templates/include/footer.xhtml" >
-          <ui:param name="userType" value="${userType}"></ui:param>
-        </ui:include>
-      </h:panelGroup>
-        </div>
-        <ui:insert name="jsFunction"></ui:insert>
+            </div>
         </h:form>
         <ui:insert name="modalPanels"></ui:insert>
       </f:view>
