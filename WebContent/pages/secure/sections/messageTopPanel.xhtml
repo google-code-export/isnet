@@ -38,7 +38,7 @@
 					</h:panelGroup>
 					<!-- panel for protege  -->
 		      		<h:panelGroup rendered="#{userType eq 'P'}">
-					      <a4j:commandLink rendered="#{storyViewHandler.completedTutorial}" style="margin-right: 5px;"  styleClass="table_control_normal_style" action="#{messageHanlder.initMessageDialog}" reRender="idmessageDialog"  oncomplete="Richfaces.showModalPanel('idmessageDialog')">
+					      <a4j:commandLink rendered="#{memberToDoItem.completedProtegeTutorial}" style="margin-right: 5px;"  styleClass="table_control_normal_style" action="#{messageHanlder.initMessageDialog}" reRender="idmessageDialog"  oncomplete="Richfaces.showModalPanel('idmessageDialog')">
 					            <a4j:actionparam name="activityId" value="-1"  />
 					           	<h:graphicImage value="/images/mail_new.png" align="middle" border="0" />	
 					          		 <rich:toolTip styleClass="tooltips_style"  >
@@ -47,7 +47,7 @@
 							     <rich:spacer width="3"/>
 							     <h:outputText value="#{bundle.member_message_create_new}" border="0" />			            	
 							</a4j:commandLink>
-					      <a4j:commandLink rendered="#{!storyViewHandler.completedTutorial}" style="margin-right: 5px;"  styleClass="table_control_normal_style"   >
+					      <a4j:commandLink rendered="#{!memberToDoItem.completedProtegeTutorial}" style="margin-right: 5px;"  styleClass="table_control_normal_style"   >
 					           	<h:graphicImage value="/images/mail_new.png" align="middle" border="0" />	
 					          		 <rich:toolTip styleClass="tooltips_style"  >
 							          <span class="tooltips_span_style">Please complete the tutorial to enable new message option.<br/></span>
