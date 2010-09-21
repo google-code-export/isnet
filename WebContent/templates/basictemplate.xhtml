@@ -1,88 +1,95 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:a4j="http://richfaces.org/a4j"
- 	xmlns:c="http://java.sun.com/jstl/core"
- 	xmlns:rich="http://richfaces.org/rich">
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:a4j="http://richfaces.org/a4j"
+  xmlns:c="http://java.sun.com/jstl/core"
+  xmlns:rich="http://richfaces.org/rich">
   <head>
     <meta http-equiv="Content-Type" content="text/xhtml; charset=UTF-8"/>
-    <ui:insert name="meta"></ui:insert>
-		<title>
-		  <h:outputText value="#{bundle.app_title}" /><h:outputText value=" :: ${moduleTitle}" />
-  		</title>
-   
-		<a4j:outputPanel id="idStyleClass">
-		
-      	<link rel="STYLESHEET" type="text/css" href="#{controllerBean.contextPath}/#{controllerBean.cssPath}/myc2i.css"/>
-      	<link rel="STYLESHEET" type="text/css" href="#{controllerBean.contextPath}/#{controllerBean.cssPath}/menu_style.css"/>
-       	<link rel="STYLESHEET" type="text/css" href="#{controllerBean.contextPath}/#{controllerBean.cssPath}/common.css"/>
-		</a4j:outputPanel>
-	    <a4j:loadScript src="/js/jquery/jquery-1.2.js"/>
-	    <a4j:loadScript src="/js/jquery/jquery.blockUI.js"/>
-	    <a4j:loadScript src="/js/jquery/jqconfig.js"/>	
-	     <a4j:loadScript src="/js/Modalhelper.js"/>			
-	    <script>
-	      /* define diffrent message for ajax loading*/
-	      var ajaxLoadingMsg = "Loading...";
-	      var ajaxProcessMsg = "Processing...";
-	      var ajaxWaitMsg = "Please wait...";
-	      var ajaxUpdateMsg = "Updating...";
-	      var ajaxCreateCrt = "Creating...";
-	      var ajaxAddMsg = "Adding...";
-	      var ajaxPrepareMsg = "Preparing...";
-	    </script>	 
-	    <style type="text/css">   
-			<ui:insert name="style"></ui:insert>
-		</style>
-		<ui:insert name="js"></ui:insert>
-	</head>
-						
-	<body>
-						<div id="wait" style="background-color:white;position:absolute;top:10px;left:560px;width:90px;height:42px;border: 1px solid black;padding:20px;z-index: 1000;visibility: hidden;">
-						<h:graphicImage value="/images/wait.gif" style="position:relative;top:0px;left:27px" />
-						<br />Please wait...
-					</div>
-		<a4j:outputPanel layout="block" id="idMainBlock">
-			<f:view id="idMainView">
-				<c:set var="imagesPath" value="#{controllerBean.imagesPath}" />
-				<h:form id="idMainForm">
-    			<f:loadBundle basename="ApplicationResources" var="bundle"/>
-				<div class="viewcontainer mainBlock" id="idMainContainer">
-				
-          		<h:panelGroup id="idHContainer">
-            		<ui:include src="/templates/include/header.xhtml" />
-  				</h:panelGroup>
-  				  
-        	  <h:panelGroup id="idMenuContainer">
-		       <div class="menu_container">
-		         <ui:include src="/templates/include/topnav.xhtml">
-          			<ui:param name="userType" value="${userType}"></ui:param>
-        	     </ui:include>
-		      </div>
-  			  </h:panelGroup>
+    <title>
+      <h:outputText value="MyC2i :: ${moduleTitle}" />
+    </title>
+    <a4j:outputPanel id="idStyleClass">
+      <link rel="STYLESHEET" type="text/css" href="#{controllerBean.contextPath}/#{controllerBean.cssPath}/myc2i.css"/>
+      <link rel="STYLESHEET" type="text/css" href="#{controllerBean.contextPath}/#{controllerBean.cssPath}/richtools.css"/>
+      <link rel="STYLESHEET" type="text/css" href="#{controllerBean.contextPath}/#{controllerBean.cssPath}/common.css"/>
+    </a4j:outputPanel>
+    <a4j:loadScript src="/js/jquery/jquery-1.2.js"/>
+    <a4j:loadScript src="/js/jquery/jquery.blockUI.js"/>
+    <a4j:loadScript src="/js/jquery/jqconfig.js"/>
+    <a4j:loadScript src="/js/common.js" />
+    <script>
+      /* define diffrent message for ajax loading*/
+      var ajaxLoadingMsg = "Loading...";
+      var ajaxProcessMsg = "Processing...";
+      var ajaxWaitMsg = "Please wait...";
+      var ajaxUpdateMsg = "Updating...";
+      var ajaxCreateCrt = "Creating...";
+      var ajaxAddMsg = "Adding...";
+      var ajaxPrepareMsg = "Preparing...";
+      var ajaxSearchingMentor="Searching for mentors. Please wait...";
+    </script>
+    <ui:insert name="js"></ui:insert>
+  </head>
 
-  			  <div id="inner-container" class="clearfix" style="border: 0px solid red;">
-			        <div id="content" style="border: 0px solid red;">
-				          <h:panelGrid width="99%" styleClass="body_content" style="margin-left: 1px;"  columns="1" border="0" cellpadding="0" cellspacing="0">
-					                <ui:insert name="body">Body</ui:insert>
-				          </h:panelGrid>
-			        </div>
+<body>
+  <a4j:outputPanel layout="block" id="idMainBlock" style="border: 0px solid red;">
+      <f:view id="idMainView">
+       <f:loadBundle basename="ApplicationResources" var="bundle"/>
+        <h:form id="idMainForm">
+          <c:set var="imagesPath" value="#{controllerBean.imagesPath}" />
+          <c:set var="contextPath" value="#{controllerBean.contextPath}" />
+          <h:inputHidden id="idContextPath" value="#{controllerBean.contextPath}" />
+  
+          <div id="container">
+            <h:panelGroup id="idHContainer">
+              <ui:include src="/templates/include/header.xhtml" />
+            </h:panelGroup>
+            
+            <div id="content">
+              <div class="row clearfix">
+                <div class="t-100">
+                  <div class="box title heading">
+                    <div id="logo_style" style="border: 0px solid red;">     
+                      <a href="http://www.google.com/">MyC2i</a>    
+                    </div>                    
+                    <h:graphicImage title="Clouds" value="${imagesPath}/clouds00.png" styleClass="clouds"/>
+                    <div class="faith"> 
+                      <h1 style="font-style: italic;">Upgrade Your Faith</h1> 
+                    </div>
+                    <h:panelGroup id="idMenuContainer">
+                      <ui:include src="/templates/include/topnav.xhtml">
+                        <ui:param name="userType" value="${userType}"></ui:param>
+                      </ui:include>      
+                    </h:panelGroup>                   
+                  </div>
+                </div>
+                <div class="box t-100 subheading">
+                  <p style="font-size: 10px;" > </p>
+                </div>
+              </div>
+        
+              <div class="row clearfix t-100 box body_bg"> 
+                <div class="t-99 content" style="border:0px solid red;"> 
+                  <div class="formFields formBorder wideLabels">                  
+                    <ui:insert name="body">Body</ui:insert>
+                  </div>
+                </div>
+              </div>
+            </div>
+             <h:panelGroup id="idFContainer">
+              <ui:include src="/templates/include/footer.xhtml" >
+                <ui:param name="userType" value="${userType}"></ui:param>
+              </ui:include>
+             </h:panelGroup> 
+          </div>
 
-			        
-      			</div>
-		  		<h:panelGroup id="idFContainer">
-		        <ui:include src="/templates/include/footer.xhtml" >
-		          <ui:param name="userType" value="${userType}"></ui:param>
-		        </ui:include>
-		      </h:panelGroup>
-				</div>
-				<ui:insert name="jsFunction"></ui:insert>
-				</h:form>
-  				<ui:insert name="modalPanels"></ui:insert>
-			</f:view>
-		</a4j:outputPanel>
+        </h:form>
+        <ui:insert name="modalPanels"></ui:insert>
+      </f:view>
+    </a4j:outputPanel>
 </body>
 </html>
