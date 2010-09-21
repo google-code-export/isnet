@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	 xmlns:ui="http://java.sun.com/jsf/facelets"
+	 xmlns:h="http://java.sun.com/jsf/html"
+	 xmlns:f="http://java.sun.com/jsf/core"
+	 xmlns:a4j="http://richfaces.org/a4j"
+ 	 xmlns:c="http://java.sun.com/jstl/core"
+ 	 xmlns:rich="http://richfaces.org/rich">
+
+<ui:composition template="/templates/maintmpl.xhtml">
+ <ui:param name="moduleTitle" value="Mentor Certification"></ui:param>
+ <ui:param name="userType" value="M"></ui:param>
+ <ui:param name="moduleType" value="MH"></ui:param>
+  <ui:param name="refManageBean" value="#{udvViewHandler}"></ui:param>
+ <ui:param name="headerText" value="Mentor Waiting for Certification"></ui:param>
+ 
+
+  <ui:define name="body">    
+    <h:panelGroup id="idSectionsCon">
+      <rich:spacer width="100%" height="5"/>
+      <h:panelGroup id="idTopCon">
+          <table border="0" cellspacing="0" cellpadding="0" width="98%">
+           <tr>
+            <td align="center">
+            You have to arrange a personal interview with each mentor before the confirmation of certification
+            </td>
+           </tr>
+          </table>
+          
+      </h:panelGroup>
+      
+      <rich:spacer width="100%" height="10"/>
+		<rich:panel headerClass="container_box_panel_header"  bodyClass="container_body_style" >
+			<f:facet name="header"><h:outputText value="Mentor List" /> </f:facet>
+			<h:panelGrid columns="1" width="100%" cellpadding="0" cellspacing="0" border="0">
+				<rich:dataTable  width="100%" id="idDataGrid"  rowClasses=",container_even_row_style" rows="5"  columnsWidth="150,"
+			                value="#{protegeProfileViewHandler.mentorWaitingCertification}" var="protege" headerClass="table_column_style" cellpadding="0" cellspacing="0">
+		             <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="#{bundle.member_first_name}"/>
+			             </f:facet>
+				 			<h:outputText value="#{protege.firstName}" />
+		             </rich:column>
+		             <rich:column>
+			             <f:facet name="header">
+			                <h:outputText value="#{bundle.member_last_name}"/>
+			             </f:facet>
+				 			<h:outputText  value="#{protege.lastName}" >
+				 			</h:outputText>
+		             </rich:column>		             
+		             <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="Last Activity"/>
+			             </f:facet>
+				 			<h:outputText  value="#{protege.lastActivity}" >
+				 			<f:convertDateTime dateStyle="default" pattern="#{bundle.long_date_pattern}"/>
+				 			</h:outputText>
+		             </rich:column>
+		             	
+		             <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="Activity Logs"/>
+			             </f:facet>
+				         <h:outputLink style="font-weight:bolder;"  value="#{controllerBean.contextPath}/pages/secure/mentorLogReview.faces">
+		 					<a4j:actionparam name="MEMBER_ID" value="#{protege.memberId}"  />
+		 					<h:outputText value="View Detail"/>	
+				         </h:outputLink>	
+		             </rich:column>
+		             			             		             	  
+		             <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="#{bundle.common_label_action}"/>
+			             </f:facet>		    
+						<rich:spacer width="5"/>			                      
+		         		 <a4j:commandLink  reRender="idmemberInfoDialog" action="#{protegeProfileViewHandler.loadMember}" oncomplete="Richfaces.showModalPanel('idmemberInfoDialog')">
+				             <a4j:actionparam name="MEMBER_ID" value="#{protege.memberId}"  />
+				             <a4j:actionparam name="action" value="VIEW"  />
+			            	<h:graphicImage value="/images/member_view.png" align="middle" border="0" > 
+			            	</h:graphicImage>	
+		            		 <rich:toolTip styleClass="tooltips_style"  >
+						          <span class="tooltips_span_style">
+						              #{bundle.button_label_view}<br/>
+						          </span>
+						     </rich:toolTip>	
+						</a4j:commandLink>
+						<rich:spacer width="5"/>
+		         		 <a4j:commandLink  onclick="forceBlockUI(ajaxProcessMsg);"   oncomplete="forceUnblockUI();" reRender="idDataGrid,idDataScroller" action="#{protegeProfileViewHandler.comfirmMentorCertification}" >
+				            <a4j:actionparam name="MEMBER_ID" value="#{protege.memberId}"  />
+			            	<h:graphicImage value="/images/graduate.png" align="middle" border="0" > 
+			            	</h:graphicImage>	
+		            		 <rich:toolTip styleClass="tooltips_style"  >
+						          <span class="tooltips_span_style">
+						             Confirm member certification<br/>
+						          </span>
+						     </rich:toolTip>	
+						</a4j:commandLink>									             
+		             </rich:column>
+          	   
+			      </rich:dataTable>		
+		        <rich:datascroller id="idDataScroller" align="center"  for="idDataGrid" maxPages="5" />
+			</h:panelGrid>			         
+		</rich:panel>
+	    
+
+    </h:panelGroup>    
+  </ui:define>
+  
+  <ui:define name="modalPanels">
+    <a4j:region>
+      <ui:include src="../modals/memberInfoDialog.xhtml">
+
+      </ui:include>
+    </a4j:region>
+  </ui:define>
+</ui:composition>
+</html>
