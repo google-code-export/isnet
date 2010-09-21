@@ -49,4 +49,6 @@ public interface MemberService {
 	
 	public List<Member> getRecentlyJoinedMemberList();
 	
+	public List<Member> getLeadMentorsMentorWaitingForCertification(Long mentorId);
+	
 }

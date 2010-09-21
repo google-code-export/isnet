@@ -176,6 +176,12 @@ public class Member implements java.io.Serializable {
 	@Column(name = "MEMBER_MEMBERSHIP_EXPIRY_DATE")
 	private Date memberShipExpiryDate;
 
+	@Column(name = "IS_MENTOR_CERTIFIED")
+	private String isMemberCertified ;
+	
+	@Column(name = "HAS_COMPLETED_TUTORIAL")
+	private String hasCompletedTutorial;	
+	
 	@Column(name = "MEMBER_MENTOR_CERTIFICATION_DA")
 	private Date certificationDate;
 
@@ -198,6 +204,8 @@ public class Member implements java.io.Serializable {
 	public Member() {
 		this.childrenInd = "N";
 		this.genderInd = "M";
+		this.hasCompletedTutorial = "NO";
+		this.isMemberCertified = "NO";
 	}
 
 	public void setMemberId(Long memberId) {
@@ -638,6 +646,22 @@ public class Member implements java.io.Serializable {
 
 	public void setNearestMasjid(String nearestMasjid) {
 		this.nearestMasjid = nearestMasjid;
+	}
+
+	public String getIsMemberCertified() {
+		return isMemberCertified;
+	}
+
+	public void setIsMemberCertified(String isMemberCertified) {
+		this.isMemberCertified = isMemberCertified;
+	}
+
+	public String getHasCompletedTutorial() {
+		return hasCompletedTutorial;
+	}
+
+	public void setHasCompletedTutorial(String hasCompletedTutorial) {
+		this.hasCompletedTutorial = hasCompletedTutorial;
 	}
 
 }
