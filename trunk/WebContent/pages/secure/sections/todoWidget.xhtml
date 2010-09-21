@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:a4j="http://richfaces.org/a4j"
+   	  xmlns:rich="http://richfaces.org/rich">
+	<ui:composition>
+		<rich:panel style="width:'auto';" headerClass="container_gold_header"  bodyClass="container_body_style" >
+			<f:facet name="header"><h:outputText value="Things to do"/></f:facet>
+			<h:panelGrid columns="1" width="100%" columnClasses="column_class_left">
+			<h:outputLink  rendered="#{!memberToDoItem.completedMentorTutorial}"   styleClass="table_control_normal_style" 
+			 value="#{controllerBean.contextPath}/pages/secure/memberTutorial.faces">
+		           	<h:graphicImage value="/images/star_red.png" align="middle" border="0" />	
+		          		 <rich:toolTip styleClass="tooltips_style"  >
+				          <span class="tooltips_span_style">#{bundle.member_todo_tutorial}.<br/></span>
+				     </rich:toolTip>	
+				     <rich:spacer width="4"/>
+				     <h:outputText value="#{bundle.member_todo_tutorial}" border="0" />		
+			</h:outputLink>
+
+		     <h:outputLink rendered="#{!memberToDoItem.paidSubscription}"  styleClass="table_control_normal_style" 
+		     	value="#{controllerBean.contextPath}/pages/secure/mentorPayment.faces">
+		           	<h:graphicImage value="/images/star_red.png" align="middle" border="0" />	
+		          		 <rich:toolTip styleClass="tooltips_style"  >
+				          <span class="tooltips_span_style">#{bundle.member_todo_pay}.<br/></span>
+				     </rich:toolTip>	
+				     <rich:spacer width="4"/>
+				     <h:outputText value="#{bundle.member_todo_pay}" border="0" />			            	
+				</h:outputLink>				
+
+		      <h:outputLink rendered="#{!memberToDoItem.mentorCertified}"  styleClass="table_control_normal_style" 
+		      value="#{controllerBean.contextPath}/pages/secure/leadMentorSearch.faces">
+		           	<h:graphicImage value="/images/star_red.png" align="middle" border="0" />	
+		          		 <rich:toolTip styleClass="tooltips_style"  >
+				          <span class="tooltips_span_style">#{bundle.member_todo_certification}.<br/></span>
+				     </rich:toolTip>	
+				     <rich:spacer width="4"/>
+				     <h:outputText value="#{bundle.member_todo_certification}" border="0" />			            	
+				</h:outputLink>	
+		      <h:outputLink rendered="#{!memberToDoItem.hasProtege}"  styleClass="table_control_normal_style" 
+		        value="#{controllerBean.contextPath}/pages/secure/protegeSearch.faces">
+		           	<h:graphicImage value="/images/star_yellow.png" align="middle" border="0" />	
+		          		 <rich:toolTip styleClass="tooltips_style"  >
+				          <span class="tooltips_span_style">#{bundle.member_todo_search_protege}.<br/></span>
+				     </rich:toolTip>	
+				     <rich:spacer width="4"/>
+				     <h:outputText value="#{bundle.member_todo_search_protege}" border="0" />			            	
+				</h:outputLink>		
+		      <h:outputLink  styleClass="table_control_normal_style" 
+		        value="#{controllerBean.contextPath}/pages/secure/memberStory.faces">
+		           	<h:graphicImage value="/images/star_yellow.png" align="middle" border="0" />	
+		          		 <rich:toolTip styleClass="tooltips_style"  >
+				          <span class="tooltips_span_style">#{bundle.member_todo_post_story}.<br/></span>
+				     </rich:toolTip>	
+				     <rich:spacer width="4"/>
+				     <h:outputText value="#{bundle.member_todo_post_story}" border="0" />			            	
+				</h:outputLink>											
+			</h:panelGrid>							
+
+		</rich:panel>	
+	</ui:composition>
+
+</html>
