@@ -13,10 +13,11 @@ import org.springframework.stereotype.Component;
 import com.intrigueit.myc2i.common.CommonConstants;
 import com.intrigueit.myc2i.common.view.BasePage;
 import com.intrigueit.myc2i.common.view.CommonValidator;
+import com.intrigueit.myc2i.member.domain.Member;
+import com.intrigueit.myc2i.member.service.MemberService;
 import com.intrigueit.myc2i.story.domain.MemberStory;
 import com.intrigueit.myc2i.story.service.StoryService;
 import com.intrigueit.myc2i.tutorialtest.domain.TestResult;
-import com.intrigueit.myc2i.tutorialtest.domain.TestResultDetails;
 import com.intrigueit.myc2i.tutorialtest.service.TestResultService;
 import com.intrigueit.myc2i.udvalues.domain.UserDefinedValues;
 import com.intrigueit.myc2i.udvalues.service.UDValuesService;
@@ -58,15 +59,20 @@ public class StoryViewHandler extends BasePage implements Serializable{
 	
 	private boolean completedTutorial;
 	
+	private boolean mentorCertified;
+
+	
 	private TestResultService testResultService;
+	private MemberService memberSerivce;
 	
 
 	@Autowired
-	public StoryViewHandler(StoryService storyService,UDValuesService udService) {
+	public StoryViewHandler(StoryService storyService,UDValuesService udService,MemberService memberSerivce) {
 		this.storyService = storyService;
 		this.udService = udService;
 		this.currentStory = new MemberStory();
 		this.currStoryIndex = 0;
+		this.memberSerivce = memberSerivce;
 	}
 	
 	public void previous(){
@@ -374,6 +380,10 @@ public class StoryViewHandler extends BasePage implements Serializable{
 		this.hasError = hasError;
 	}
 
+	/**
+	 * Check if the member completed the protege tutorial module
+	 * @return
+	 */
 	public boolean isCompletedTutorial() {
 		try{
 			TestResult test = this.testResultService.loadUserModuleResult(this.getMember().getMemberId(),9L);
@@ -385,18 +395,40 @@ public class StoryViewHandler extends BasePage implements Serializable{
 			
 		}
 		catch(Exception ex){
+			log.error(ex.getMessage(),ex);
 			ex.printStackTrace();
 		}
 		return completedTutorial;
 	}
 
-	public void setCompletedTutorial(boolean completedTutorial) {
-		this.completedTutorial = completedTutorial;
-	}
 
 	@Autowired
 	public void setTestResultService(TestResultService testResultService) {
 		this.testResultService = testResultService;
 	}
+
+	public boolean isMentorCertified() {
+		try{
+			Member member = this.memberSerivce.findById(this.getMember().getMemberId());
+			if(member == null){
+				this.mentorCertified = false;
+			}else{
+				this.mentorCertified = member.getIsMemberCertified().equals("YES");
+			}
+			
+		}
+		catch(Exception ex){
+			log.error(ex.getMessage(),ex);
+			ex.printStackTrace();
+		}		
+		return this.mentorCertified;
+	}
+
+	public void setMentorCertified(boolean mentorCertified) {
+
+		this.mentorCertified = mentorCertified;
+	}
+
+
 
 }
