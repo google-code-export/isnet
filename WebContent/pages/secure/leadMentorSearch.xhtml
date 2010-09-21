@@ -56,6 +56,9 @@
 					<a4j:commandButton  onclick="forceBlockUI(ajaxProcessMsg);"   oncomplete="forceUnblockUI();" value="#{bundle.button_label_search}" action="#{memberSearchViewHandler.executeSearch}" reRender="idResultPanel,idMsgPanel">
 						<f:param name="SEARCH_TYPE" value="MENTOR"/>
 					</a4j:commandButton>
+					<a4j:commandButton   value="#{bundle.button_label_search}" action="#{memberSearchViewHandler.executeSearch}" >
+						
+					</a4j:commandButton>					
 				</td>
 				<td width="25%"></td>							      
            </tr>
