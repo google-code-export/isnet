@@ -170,8 +170,14 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 	private void updateProtege(Long protegeId,Long mentorId){
 		try{
 			Member member = this.memberService.findById(protegeId);
+			Member anotherMember = this.memberService.findById(mentorId);
+			
 			member.setMentoredByMemberId(mentorId);
 			this.memberService.update(member);
+			
+			/** Update the member known member list*/
+			this.updateMemberKnownList(member, anotherMember);
+			
 		}
 		catch(Exception ex){
 			ex.printStackTrace();
@@ -727,7 +733,16 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 		this.storyWinner = storyWinner;
 	}
 
-
+	public void updateMemberKnownList(Member srcMember, Member friend){
+		try{
+			
+			this.memberService.addToKnownMemberList(srcMember, friend);
+			this.memberService.addToKnownMemberList(friend, srcMember);
+		}
+		catch(Exception ex){
+			log.error(ex.getMessage(),ex);
+		}
+	}
 	
 	
 }
