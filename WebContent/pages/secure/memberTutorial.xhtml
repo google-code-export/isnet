@@ -42,7 +42,7 @@
           <table border="0" cellspacing="0" cellpadding="0" width="98%">
            <tr>
             <td align="right">
-		
+			
             </td>
            </tr>
           </table>
@@ -50,10 +50,25 @@
       </h:panelGroup>
       
     <rich:spacer width="100%" height="10"/>
-		<rich:panel headerClass="container_box_panel_header"  bodyClass="container_body_style" >
+    	<rich:panel rendered="#{tutorialViewHandler.completedMentorTutorial}" headerClass="container_box_panel_header"  bodyClass="container_body_style">
+    	<f:facet name="header"><h:outputText value="Congratulation" /> </f:facet>
+
+    	<h:panelGrid columns="1" width="100%" >
+
+    	<h:outputText value="You have completed all the tutorial modules, Now click on the following button to navigate into the payment page." />
+    	<h:outputText value="Once you have paid the subscription amount, you can search the lead mentor to confirm your certification. " />
+    	<h:outputText value="The lead mentor will also arrange an interview before the certification confirmation." />
+    	<h:commandButton id="idNavigate"  action="#{tutorialViewHandler.navigateToPayment}" value="Navigate Payment Page" >
+          </h:commandButton>
+    	</h:panelGrid>
+    	</rich:panel>
+    	
+		<rich:panel rendered="#{! tutorialViewHandler.completedMentorTutorial}" headerClass="container_box_panel_header"  bodyClass="container_body_style" >
 			<f:facet name="header"><h:outputText value="Tutorial Modules" /> </f:facet>
-			<h:panelGrid columns="1" width="100%" cellpadding="0" cellspacing="0" border="0">
-				<h:dataTable value="#{modulesViewHandler.modules}" var="module">
+   
+			<h:panelGrid  columns="1" width="100%" cellpadding="0" cellspacing="0" border="0">
+			
+			<h:dataTable value="#{modulesViewHandler.modules}" var="module">
            <rich:column>
            	<h:panelGroup>
            	
