@@ -55,7 +55,7 @@
 						
 						<!-- panel for protege  -->
 						<h:panelGroup rendered="#{userType eq 'P'}">
-			         		 <a4j:commandLink reRender="idDataGrid" rendered="#{storyViewHandler.completedTutorial}"  action="#{storyViewHandler.voteForStory}" >
+			         		 <a4j:commandLink reRender="idDataGrid" rendered="#{memberToDoItem.completedProtegeTutorial}"  action="#{storyViewHandler.voteForStory}" >
 					            <f:param name="storyId" value="#{story.memberStoryId}"  />
 				            	<h:graphicImage value="/images/check.png" align="middle" border="0" > 
 				            	</h:graphicImage>	
@@ -65,7 +65,7 @@
 							          </span>
 							     </rich:toolTip>	
 							</a4j:commandLink>
-			         		 <a4j:commandLink rendered="#{!storyViewHandler.completedTutorial}" >
+			         		 <a4j:commandLink rendered="#{!memberToDoItem.completedProtegeTutorial}" >
 				            	<h:graphicImage value="/images/check.png" align="middle" border="0" > 
 				            	</h:graphicImage>	
 			            		 <rich:toolTip styleClass="tooltips_style"  >
