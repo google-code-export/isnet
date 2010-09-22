@@ -14,31 +14,50 @@
   <ui:define name="body">
     <h:inputHidden value="#{authenticationViewHandler.init}" />
     <h:panelGrid width="100%"  columns="3" border="0" cellpadding="0" cellspacing="0" 
-      columnClasses="login_page_column1,login_page_column2,login_page_column3" >          
-      <h:panelGrid columns="1" width="100%" valign="center" border="0" cellpadding="0" cellspacing="0">
-        <h:panelGrid columns="1" width="100%" border="0" columnClasses="center_align_col">				  
-          <rich:spacer height="293"/>
-          <h:outputLink styleClass="alink"
-           value="#{controllerBean.contextPath}/guestRegister.faces">
-            <table>
-              <tr>
-                <td style="padding-left: 20px;"><h:graphicImage value="/images/address_book3.png"/></td>                      
-                <td class="lmenu_login_text">
-                  <h:outputText value="#{bundle.login_page_guest_signup}" /> 
-                  <rich:spacer width="3"/>
-                  <h:outputText style="font-weight: bolder;" value="( It's FREE )" />
-                </td>
-              </tr>
-            </table>
-          </h:outputLink>                
-        </h:panelGrid>
-			  <rich:spacer height="7"/>
-			  <rich:panel headerClass="login_box_panel_header"  bodyClass="login_box_panel">
+      columnClasses="login_page_column1,login_page_column2,login_page_column3" >     
+           
+      <h:panelGrid columns="1" width="100%" valign="center" border="1" cellpadding="0" cellspacing="0">
+      
+
+			  <rich:panel headerClass="login_box_panel_header"  bodyClass="login_box_panel" style="margin-right: 4px;">
 			   <f:facet name="header">
-          <h:outputText value="#{bundle.login_page_success_stories}" /> 
-         </f:facet>
-			   <h:outputText value="#{authenticationViewHandler.mentorStory}" />			         
-			  </rich:panel>            
+		          <h:outputText value="" /> 
+		        </f:facet>
+		        <h:outputText value="#{bundle.login_guest_msg1}" style="font-weight: bolder;" />
+		        <br/>
+			   <h:outputText value="#{bundle.login_guest_msg2}" />		         
+			  </rich:panel>  
+			            
+			<h:panelGrid columns="1" width="100%" border="0" columnClasses="center_align_col">
+				<h:outputLink styleClass="alink" 
+		           value="#{controllerBean.contextPath}/static/deborah_says_3.faces">
+		            <table>
+		              <tr>
+		                <td style="padding-left: 0px;"><h:graphicImage value="/images/deborah.png"/></td>                      
+		                <td class="lmenu_login_text" valign="bottom">
+		                  &#160;<h:outputText styleClass="lmenu_login_text" value=" Rev. Deborah C. Lindsay Says..." /> 
+		                </td> 
+		              </tr>
+		            </table>
+	          </h:outputLink>
+			</h:panelGrid>     
+		     
+		     <rich:spacer height="30"/>
+		     	
+	          <h:outputLink styleClass="alink"
+	           value="#{controllerBean.contextPath}/guestRegister.faces">
+	            <table>
+	              <tr>
+	                <td style="padding-left: 20px;"><h:graphicImage value="/images/guest_reg.png"/></td>                      
+	                <td class="lmenu_login_text">
+	                  <h:outputText value="#{bundle.login_page_guest_signup}" /> 
+	                  <rich:spacer width="3"/>
+	                  <h:outputText style="font-weight: bolder;" value="( It's FREE )" />
+	                </td>
+	              </tr>
+	            </table>
+	          </h:outputLink>  
+         
       </h:panelGrid>
 
      <!-- Center column -->
@@ -52,10 +71,10 @@
       <!-- Right Column -->
 				<h:panelGrid columns="1" width="100%" border="0" cellpadding="0" cellspacing="0">
           		<!-- Login Box -->
-          		<rich:panel  headerClass="login_box_panel_header"  bodyClass="login_box_panel">
+          		<rich:panel  headerClass="login_box_panel_header"  bodyClass="login_box_panel" style="margin-left: 4px;">
           			<f:facet name="header">                   
                   <h:panelGroup>  
-                  	<h:outputText value="#{bundle.login_page_login_box_title}" />
+                  	<h:outputText value="Login" />
                    </h:panelGroup> 
                 </f:facet> 
                 <rich:spacer width="100%" height="4"/>
@@ -88,16 +107,16 @@
 				 
 				<h:panelGrid columns="1" width="100%" border="0" columnClasses="center_align_col">
 					<h:outputLink styleClass="alink" 
-           value="#{controllerBean.contextPath}/static/imam_says_1.faces">
-            <table>
-              <tr>
-                <td style="padding-left: 0px;"><h:graphicImage value="/images/picture_imam_zaid.png"/></td>                      
-                <td class="lmenu_login_text" valign="bottom">
-                  &#160;<h:outputText styleClass="lmenu_login_text" value=" Imam Zaid Shakir Says..." /> 
-                </td> 
-              </tr>
-            </table>
-          </h:outputLink>
+		           value="#{controllerBean.contextPath}/static/imam_says_1.faces">
+		            <table>
+		              <tr>
+		                <td style="padding-left: 0px;"><h:graphicImage value="/images/picture_imam_zaid.png"/></td>                      
+		                <td class="lmenu_login_text" valign="bottom">
+		                  &#160;<h:outputText styleClass="lmenu_login_text" value=" Imam Zaid Shakir Says..." /> 
+		                </td> 
+		              </tr>
+		            </table>
+		          </h:outputLink>
 				</h:panelGrid>
 	
 
@@ -122,7 +141,7 @@
            value="#{controllerBean.contextPath}/mentorRegister.faces">
             <table>
               <tr>
-                <td style="padding-left: 18px;"><h:graphicImage value="/images/address_book2.png"/></td>                      
+                <td style="padding-left: 18px;"><h:graphicImage value="/images/mentor_reg.png"/></td>                      
                 <td class="lmenu_login_text">
                   <h:outputText value="#{bundle.login_page_mentor_signup}" /> 
                   <rich:spacer width="3"/>
@@ -136,7 +155,7 @@
 				</h:panelGrid>
 				
 
-          		<rich:panel  style="margin-top:7px;" headerClass="login_box_panel_header"  bodyClass="login_box_panel">
+          		<rich:panel  style="margin-top:7px; margin-left: 4px;" headerClass="login_box_panel_header"  bodyClass="login_box_panel">
           			<f:facet name="header"> <h:outputText value="#{bundle.login_page_why_register}" /></f:facet>
 					<p><h:outputText value="#{bundle.login_page_why_register_content1}" /></p>    
 					<p><h:outputText value="#{bundle.login_page_why_register_content2}" /></p>
