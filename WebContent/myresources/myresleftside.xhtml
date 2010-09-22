@@ -9,51 +9,91 @@
     <div id="sidebar" style="border:1px soid red;">      
 
         <h:panelGroup id="idAppManagePanel" rendered="${userType eq 'M'}">
-          <ul class="sidemenu">            
-            <li>
-              <h:outputLink styleClass="menu_item_clink" 
-                value="#{controllerBean.contextPath}/myresources/mentorResBooks.faces">
-                <h:outputText styleClass="leftlink_res_text" value="Books"/>
-              </h:outputLink>
-            </li>
-            <li>
-              <h:outputLink styleClass="menu_item_clink" 
-                value="#{controllerBean.contextPath}/myresources/mentorResDVDs.faces">
-                <h:outputText styleClass="leftlink_res_text" value="DVDs"/>
-              </h:outputLink>
-            </li>
-            <li>
-              <h:outputLink styleClass="menu_item_clink" 
-                value="#{controllerBean.contextPath}/myresources/mentorResCDs.faces">
-                <h:outputText styleClass="leftlink_res_text" value="Compact Discs"/>
-              </h:outputLink>
-            </li>            
-         </ul>
+           <table>
+            <tr>
+              <td class="lmenu" valign="middle">
+                <h:outputLink styleClass="alink" 
+                 value="#{controllerBean.contextPath}/myresources/mentorResBooks.faces">
+                  <table>
+                    <tr>
+                      <td><h:graphicImage value="${imagesPath}/books.png"/></td>                      
+                      <td class="lmenu_text">&#160;<h:outputText value="Books"/></td>
+                    </tr>
+                  </table>
+                </h:outputLink>                
+              </td>
+            </tr>
+            <tr>
+              <td class="lmenu" valign="middle">
+                <h:outputLink styleClass="alink" 
+                 value="#{controllerBean.contextPath}/myresources/mentorResDVDs.faces">
+                  <table>
+                    <tr>
+                      <td><h:graphicImage value="${imagesPath}/dvds.png"/></td>                      
+                      <td class="lmenu_text">&#160;<h:outputText value="DVDs"/></td>
+                    </tr>
+                  </table>
+                </h:outputLink>                
+              </td>
+            </tr>
+            <tr>
+              <td class="lmenu" valign="middle">
+                <h:outputLink styleClass="alink" 
+                 value="#{controllerBean.contextPath}/myresources/mentorResCDs.faces">
+                  <table>
+                    <tr>
+                      <td><h:graphicImage value="${imagesPath}/cds.png"/></td>                      
+                      <td class="lmenu_text">&#160;<h:outputText value="Compact Discs"/></td>
+                    </tr>
+                  </table>
+                </h:outputLink>                
+              </td>
+            </tr>
+          </table>
         </h:panelGroup>
         
         <h:panelGroup rendered="${userType eq 'P'}">
-          <ul class="sidemenu">            
-            <li>
-              <h:outputLink styleClass="menu_item_clink" 
-                value="#{controllerBean.contextPath}/myresources/protegeResBooks.faces">
-                <h:outputText styleClass="leftlink_res_text" value="Books"/>
-              </h:outputLink>
-            </li>
-            <li>
-              <h:outputLink styleClass="menu_item_clink" 
-                value="#{controllerBean.contextPath}/myresources/protegeResDVDs.faces">
-                <h:outputText styleClass="leftlink_res_text" value="DVDs"/>
-              </h:outputLink>
-            </li>
-            <li>
-              <h:outputLink styleClass="menu_item_clink" 
-                value="#{controllerBean.contextPath}/myresources/protegeResCDs.faces">
-                <h:outputText styleClass="leftlink_res_text" value="Compact Discs"/> 
-              </h:outputLink>
-            </li>            
-         </ul>
-
-        
+          <table>
+            <tr>
+              <td class="lmenu" valign="middle">
+                <h:outputLink styleClass="alink" 
+                 value="#{controllerBean.contextPath}/myresources/protegeResBooks.faces">
+                  <table>
+                    <tr>
+                      <td><h:graphicImage value="${imagesPath}/books.png"/></td>                      
+                      <td class="lmenu_text">&#160;<h:outputText value="Books"/></td>
+                    </tr>
+                  </table>
+                </h:outputLink>                
+              </td>
+            </tr>
+            <tr>
+              <td class="lmenu" valign="middle">
+                <h:outputLink styleClass="alink" 
+                 value="#{controllerBean.contextPath}/myresources/protegeResDVDs.faces">
+                  <table>
+                    <tr>
+                      <td><h:graphicImage value="${imagesPath}/dvds.png"/></td>                      
+                      <td class="lmenu_text">&#160;<h:outputText value="DVDs"/></td>
+                    </tr>
+                  </table>
+                </h:outputLink>                
+              </td>
+            </tr>
+            <tr>
+              <td class="lmenu" valign="middle">
+                <h:outputLink styleClass="alink" 
+                 value="#{controllerBean.contextPath}/myresources/protegeResCDs.faces">
+                  <table>
+                    <tr>
+                      <td><h:graphicImage value="${imagesPath}/cds.png"/></td>                      
+                      <td class="lmenu_text">&#160;<h:outputText value="Compact Discs"/></td>
+                    </tr>
+                  </table>
+                </h:outputLink>                
+              </td>
+            </tr>
+          </table>        
       </h:panelGroup>
     </div>
   </div>
