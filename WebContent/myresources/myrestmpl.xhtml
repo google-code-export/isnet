@@ -10,71 +10,132 @@
   <head>
     <meta http-equiv="Content-Type" content="text/xhtml; charset=UTF-8"/>
     <title>
-      <h:outputText value="MyC2i :: My Resources" />
-    </title>
+      <h:outputText value="MyC2i :: ${moduleTitle}" />
+    </title>  
+  
+  <c:set var="refColumns" value="3" />
+  <c:if test="${ not empty pageColumns}">
+    <c:set var="refColumns" value="${pageColumns}" />
+  </c:if>
+  
+  <c:when test="${userType eq 'A'}">
+    <c:set var="colClass" value="admin_leftside,admin_middle" />
+    <c:set var="showRightColumn" value="N" />
+  </c:when>
+  <c:choose>
+    <c:when test="${userType eq 'A'}">
+      <c:set var="colClass" value="admin_leftside,admin_middle" />
+      <c:set var="showRightColumn" value="N" />
+    </c:when>
+
+    <c:when test="${userType eq 'P' and empty pageColumns}">
+      <c:set var="colClass" value="admin_leftside,admin_middle" />
+      <c:set var="showRightColumn" value="N" />
+    </c:when>
+    
+    <c:when test="${userType eq 'P' and pageColumns eq '1'}">
+      <c:set var="colClass" value="middle" />
+      <c:set var="showRightColumn" value="N" />
+      <c:set var="showLeftColumn" value="N" />
+    </c:when>
+    
+    <c:when test="${userType eq 'MG'}">
+      <c:set var="colClass" value="middle" />
+      <c:set var="showRightColumn" value="N" />
+      <c:set var="showLeftColumn" value="N" />
+    </c:when>   
+     
+    <c:when test="${userType eq 'M'}">
+      <c:set var="colClass" value="admin_leftside,admin_middle" />
+      <c:set var="showRightColumn" value="N" />
+    </c:when>
+    
+    <c:otherwise>
+      <c:set var="colClass" value="leftside,middle,rightside" />
+    </c:otherwise>
+  </c:choose>
+
     <a4j:outputPanel id="idStyleClass">
       <link rel="STYLESHEET" type="text/css" href="#{controllerBean.contextPath}/#{controllerBean.cssPath}/myc2i.css"/>
       <link rel="STYLESHEET" type="text/css" href="#{controllerBean.contextPath}/#{controllerBean.cssPath}/richtools.css"/>
-       <link rel="STYLESHEET" type="text/css" href="#{controllerBean.contextPath}/#{controllerBean.cssPath}/common.css"/>
+      <link rel="STYLESHEET" type="text/css" href="#{controllerBean.contextPath}/#{controllerBean.cssPath}/common.css"/>
     </a4j:outputPanel>
     <a4j:loadScript src="/js/jquery/jquery-1.2.js"/>
     <a4j:loadScript src="/js/jquery/jquery.blockUI.js"/>
     <a4j:loadScript src="/js/jquery/jqconfig.js"/>
     <a4j:loadScript src="/js/common.js" />
     <script>
-
+      /* define diffrent message for ajax loading*/
+      var ajaxLoadingMsg = "Loading...";
+      var ajaxProcessMsg = "Processing...";
+      var ajaxWaitMsg = "Please wait...";
+      var ajaxUpdateMsg = "Updating...";
+      var ajaxCreateCrt = "Creating...";
+      var ajaxAddMsg = "Adding...";
+      var ajaxPrepareMsg = "Preparing...";
+      var ajaxSearchingMentor="Searching for mentors. Please wait...";
     </script>
     <ui:insert name="js"></ui:insert>
   </head>
 
-  <body>
-    <a4j:outputPanel layout="block" id="idResMainBlock">
-      <f:view id="idResMainView">
-       <f:loadBundle basename="ApplicationResources" var="bundle"/>      
-       <h:panelGroup id="idResMainForm">       
-        <c:set var="imagesPath" value="#{controllerBean.imagesPath}" />
-        <h:inputHidden id="idContextPath" value="#{controllerBean.contextPath}" />
-          <div class="viewcontainer mainBlock" id="idMainContainer">
-          <h:panelGroup id="idHContainer">
-            <ui:include src="myresheader.xhtml" />
-            </h:panelGroup>
-            <h:panelGroup id="idMenuContainer">
-              <div class="menu_container">
-                <ui:include src="myrestopnav.xhtml">
-                 <ui:param name="userType" value="${userType}"></ui:param>
-                </ui:include>
-              </div>
-            </h:panelGroup>
-         <div id="inner-container" class="clearfix" style="border: 0px solid red;">
-          <div id="content" style="border: 0px solid red;">
-          <h:panelGrid styleClass="body_content" width="99%" columns="2" border="0" cellpadding="0" 
-            cellspacing="0" columnClasses="admin_leftside,resmiddle" rowClasses="rowinput">
-            <h:column>
-            	<ui:include src="myresleftside.xhtml">
-              </ui:include>
-            </h:column>
-            <h:column>
-              <div class="form" style="border:0px solid red;margin-top:5px;" >
-                <div class="formHead"><h:outputText value="My Resources" /></div>
-                <div class="formFields formBorder wideLabels">
-                  <div style="text-align: right;">
-                    <ui:include src="viewCart.xhtml"/>
+<body>
+  <a4j:outputPanel layout="block" id="idMainBlock" style="border: 0px solid red;">
+      <f:view id="idMainView">
+       <f:loadBundle basename="ApplicationResources" var="bundle"/>
+        <h:form id="idMainForm">
+          <c:set var="imagesPath" value="#{controllerBean.imagesPath}" />
+          <c:set var="contextPath" value="#{controllerBean.contextPath}" />
+          <h:inputHidden id="idContextPath" value="#{controllerBean.contextPath}" />
+            <div class="viewcontainer mainBlock" id="idMainContainer" style="border: 0px solid green;">
+              <div id="container">
+                <h:panelGroup id="idHContainer">
+                  <ui:include src="/templates/include/header.xhtml" />
+                </h:panelGroup>
+                
+                <div id="content">
+                  <div class="row clearfix">
+                    <div class="t-100">
+                      <div class="box title heading">
+                        <div id="logo_style" style="border: 0px solid red;">     
+                          <a href="http://www.google.com/">MyC2i</a>    
+                        </div>                    
+                        <h:graphicImage title="Clouds" value="${imagesPath}/clouds00.png" styleClass="clouds"/>
+                        <div class="faith"> 
+                          <h1 style="font-style: italic;">Upgrade Your Faith</h1> 
+                        </div>
+                        <h:panelGroup id="idMenuContainer">
+                          <ui:include src="myrestopnav.xhtml">
+                            <ui:param name="userType" value="${userType}"></ui:param>
+                          </ui:include>      
+                        </h:panelGroup>                   
+                      </div>
+                    </div>
+                    <div class="box t-100 subheading">
+                      <p style="font-size: 10px;" > </p>
+                    </div>
                   </div>
-                  <ui:insert name="body">Body</ui:insert>
+            
+                  <div class="row clearfix t-100 box body_bg">
+                    <div class="t-25 last side" style="border: 0px solid red;">                  
+                      <ui:include src="myresleftside.xhtml" />
+                    </div>
+            
+                    <div class="t-75 content" style="background-color: #ffffff;">                      
+                      <div class="formHead"><h:outputText value="${headerText}" /></div>
+                      <div class="formFields formBorder wideLabels">                  
+                        <ui:insert name="body">Body</ui:insert>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+                <h:panelGroup id="idFContainer">
+                  <ui:include src="/templates/include/footer.xhtml" >
+                    <ui:param name="userType" value="${userType}"></ui:param>
+                  </ui:include>
+                </h:panelGroup>                
               </div>
-            </h:column>
-          </h:panelGrid>
-        </div>
-      </div>
-      <h:panelGroup id="idFContainer">
-        <ui:include src="/templates/include/footer.xhtml" >
-          <ui:param name="userType" value="${userType}"></ui:param>
-        </ui:include>
-      </h:panelGroup>
-        </div>
-        <ui:insert name="jsFunction"></ui:insert>
-        </h:panelGroup>
+            </div>
+        </h:form>
         <ui:insert name="modalPanels"></ui:insert>
       </f:view>
     </a4j:outputPanel>
