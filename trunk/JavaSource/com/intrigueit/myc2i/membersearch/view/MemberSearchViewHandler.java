@@ -1,6 +1,7 @@
 package com.intrigueit.myc2i.membersearch.view;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,6 @@ import com.intrigueit.myc2i.member.domain.Member;
 import com.intrigueit.myc2i.member.service.MemberService;
 import com.intrigueit.myc2i.membersearch.dao.MemberSearchDao;
 import com.intrigueit.myc2i.membersearch.domain.MemberSearch;
-import com.intrigueit.myc2i.zipcode.ZipCodeUtil;
 import com.intrigueit.myc2i.zipcode.domain.ZipCode;
 import com.intrigueit.myc2i.zipcode.service.ZipCodeService;
 
@@ -34,6 +34,9 @@ public class MemberSearchViewHandler extends BasePage {
 	private String msg;
 	private String init;
 	
+	private MemberService memberSerivce;
+	
+	private boolean mentorPaidSubscription;
 	
 	/**
 	 * 
@@ -70,10 +73,13 @@ public class MemberSearchViewHandler extends BasePage {
 				return;
 			}
 			if(searchType.equals("PROTEGE")){
-				clause = " t.mentoredByMemberId IS NULL and t.typeId ="+ CommonConstants.PROTEGE +"";
+				clause = " t.mentoredByMemberId IS NULL and t.typeId ="+ CommonConstants.PROTEGE +" ";
 			}
 			else if(searchType.equals("MENTOR")){
-				clause = " t.typeId ="+ CommonConstants.MENTOR +"";
+				clause = " t.typeId ="+ CommonConstants.MENTOR +" and upper(t.isMemberCertified) = 'YES'";
+			}
+			else if(searchType.equals("LEAD_MENTOR")){
+				clause = " t.typeId ="+ CommonConstants.MENTOR +" and t.memberId <> "+ this.getMember().getMemberId()+" and upper(t.isMemberCertified) = 'YES' ";
 			}
 			
 			String currentMemberGender = this.getMember().getGenderInd();
@@ -197,6 +203,41 @@ public class MemberSearchViewHandler extends BasePage {
 	public String getInit() {
 		if(this.members != null) reset();
 		return init;
+	}
+
+	public boolean isMentorPaidSubscription() {
+		try{
+			Member member = this.memberSerivce.findById(this.getMember().getMemberId());
+			Date expiry = member.getMemberShipExpiryDate();
+			if(expiry == null){
+				return false;
+			}
+			Date now = new Date();
+			if(expiry.before(now)){
+				this.mentorPaidSubscription = false;
+			}
+			else{
+				this.mentorPaidSubscription = true;
+			}
+			
+		}
+		catch(Exception ex){
+			log.error(ex.getMessage(),ex);
+			ex.printStackTrace();
+		}			
+		return mentorPaidSubscription;
+	}
+
+	public void setMentorPaidSubscription(boolean mentorPaidSubscription) {
+		this.mentorPaidSubscription = mentorPaidSubscription;
+	}
+
+	public MemberService getMemberSerivce() {
+		return memberSerivce;
+	}
+	@Autowired
+	public void setMemberSerivce(MemberService memberSerivce) {
+		this.memberSerivce = memberSerivce;
 	}
 
 
