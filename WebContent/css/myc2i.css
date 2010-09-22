@@ -35,6 +35,11 @@ ul.menu li aX {
 .leftlink_text{
   color: #ffffff;
 }
+.leftlink_res_text{ 
+  color: #ffffff;
+  font-size: 14px;
+}
+
 .lmenu_text{
   font-size: 13px;
   font-weight: bold;
