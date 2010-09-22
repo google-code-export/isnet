@@ -83,7 +83,7 @@
 	}
 	
 	.panel_header{
-	    background: #FFFCEF url(../images/2.jpg) 0 0 repeat-x;	
+	    background: #FFFCEF url(../images/new.jpg) 0 0 repeat-x;	
 	    height: 30px;
 	    text-align: center;
 	    font-size: 1.1em;
@@ -178,15 +178,15 @@
 		
 	.login_box_panel_header{
 	 	background-image : url();
-	    border:0;
-        height:15px;
+	    border:none;
+        height:18px;
         text-align:center;
         vertical-align:middle;
-        color:black;
-        padding:4px 0;
-		background-color:#BFAB77;
+        color: white;
+		background-color:#3E548F;
 		font-weight:bold;
 		font-size: 9pt;
+
 	        
 	
 	}
@@ -226,16 +226,16 @@
 	}	
 
 	.login_box_panel{
-	margin-bottom:0px;
-	border:1px solid #CFCAB5;
-	background-color:#EFECE0;
-    /*
-    1. #EDEFE0
-    2. #EFECE0
-    3. #FFFBF0
-    4. #FFFBF0
-    5. #EFEFEF
-    */
+		margin-bottom:0px;
+		border:0px solid #7F6500;
+		background-color:#EFEFEF;
+	    /*
+	    1. #EDEFE0
+	    2. #EFECE0
+	    3. #FFFBF0
+	    4. #FFFBF0
+	    5. #EFEFEF
+	    */
     color: black;	
 	}
 	.container_body_style{
