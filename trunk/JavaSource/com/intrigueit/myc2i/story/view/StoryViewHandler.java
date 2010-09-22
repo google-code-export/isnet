@@ -13,7 +13,6 @@ import org.springframework.stereotype.Component;
 import com.intrigueit.myc2i.common.CommonConstants;
 import com.intrigueit.myc2i.common.view.BasePage;
 import com.intrigueit.myc2i.common.view.CommonValidator;
-import com.intrigueit.myc2i.member.domain.Member;
 import com.intrigueit.myc2i.member.service.MemberService;
 import com.intrigueit.myc2i.story.domain.MemberStory;
 import com.intrigueit.myc2i.story.service.StoryService;
@@ -57,9 +56,9 @@ public class StoryViewHandler extends BasePage implements Serializable{
 	
 	private int currStoryIndex;
 	
-	private boolean completedTutorial;
+	//private boolean completedTutorial;
 	
-	private boolean mentorCertified;
+	//private boolean mentorCertified;
 
 	
 	private TestResultService testResultService;
@@ -384,7 +383,7 @@ public class StoryViewHandler extends BasePage implements Serializable{
 	 * Check if the member completed the protege tutorial module
 	 * @return
 	 */
-	public boolean isCompletedTutorial() {
+/*	public boolean isCompletedTutorial() {
 		try{
 			TestResult test = this.testResultService.loadUserModuleResult(this.getMember().getMemberId(),9L);
 			if(test == null){
@@ -399,7 +398,7 @@ public class StoryViewHandler extends BasePage implements Serializable{
 			ex.printStackTrace();
 		}
 		return completedTutorial;
-	}
+	}*/
 
 
 	@Autowired
@@ -407,7 +406,7 @@ public class StoryViewHandler extends BasePage implements Serializable{
 		this.testResultService = testResultService;
 	}
 
-	public boolean isMentorCertified() {
+/*	public boolean isMentorCertified() {
 		try{
 			Member member = this.memberSerivce.findById(this.getMember().getMemberId());
 			if(member == null){
@@ -428,7 +427,7 @@ public class StoryViewHandler extends BasePage implements Serializable{
 
 		this.mentorCertified = mentorCertified;
 	}
-
+*/
 
 
 }
