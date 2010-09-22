@@ -24,8 +24,8 @@
 		          <h:outputText value="" /> 
 		        </f:facet>
 		        <h:outputText value="#{bundle.login_guest_msg1}" style="font-weight: bolder;" />
-		        <br/>
-			   <h:outputText value="#{bundle.login_guest_msg2}" />		         
+		        
+			   <p><h:outputText value="#{bundle.login_guest_msg2}" /></p>		         
 			  </rich:panel>  
 			            
 			<h:panelGrid columns="1" width="100%" border="0" columnClasses="center_align_col">
@@ -42,7 +42,7 @@
 	          </h:outputLink>
 			</h:panelGrid>     
 		     
-		     <rich:spacer height="30"/>
+		     <rich:spacer height="20"/>
 		     	
 	          <h:outputLink styleClass="alink"
 	           value="#{controllerBean.contextPath}/guestRegister.faces">
@@ -57,11 +57,20 @@
 	              </tr>
 	            </table>
 	          </h:outputLink>  
-         
+         	 <rich:spacer height="17"/>
+          		<rich:panel  style="margin-right: 3px;" headerClass="login_box_panel_header"  bodyClass="login_box_panel">
+          			<f:facet name="header"> <h:outputText value="#{bundle.login_page_why_register_guest}" /></f:facet>
+					<p><h:outputText value="#{bundle.login_page_why_register_content1_guest}" /></p>    
+					<p><h:outputText value="#{bundle.login_page_why_register_content2_guest}" /></p>
+					<p><h:outputText value="#{bundle.login_page_why_register_content3_guest}" /></p>
+					<p><h:outputText value="#{bundle.login_page_why_register_content4_guest}" /></p>
+
+
+				</rich:panel>	         
       </h:panelGrid>
 
      <!-- Center column -->
-			<div style="height: 600px;border: 0px solid red;background-color: white;">
+			<div style="height: 610px;border: 0px solid red;background-color: white;">
 			 <iframe style="margin-right:0px;"
 			    src="http://www.myc2i.com/i/myc2i/intro_video.html" width="480" height="500"
 			    frameborder="0" scrolling="no" align="left">
@@ -87,7 +96,7 @@
           				<h:inputSecret id="idLoginPass" value="#{authenticationViewHandler.password}" styleClass="login_box_input"/>
           				<h:outputText value="" />
           				<h:panelGroup>
-          				<h:selectBooleanCheckbox value="#{authenticationViewHandler.checked}" /><h:outputText value="#{bundle.login_page_login_remember_me}" />
+          				<h:selectBooleanCheckbox value="#{authenticationViewHandler.checked}" /> &#160;<h:outputText value="#{bundle.login_page_login_remember_me}" />
           				</h:panelGroup>
           				<h:outputText value="" />
           				<h:commandButton action="#{authenticationViewHandler.loginUser}" value="#{bundle.login_page_login_button}" />
@@ -122,46 +131,45 @@
 
 				<h:panelGrid columns="1" width="100%" border="0" columnClasses="center_align_col">
 					<h:outputLink styleClass="alink" 
-           value="#{controllerBean.contextPath}/static/imam_says_2.faces">
-            <table>
-              <tr>
-                <td style="padding-left: 0px;"><h:graphicImage value="/images/picture_imam_sakr.png"/></td>                      
-                <td class="lmenu_login_text" valign="bottom">
-                  &#160;<h:outputText styleClass="lmenu_login_text" value=" Dr. Ahmad  Sakr Says ... " /> 
-                </td> 
-              </tr>
-            </table>
-          </h:outputLink>		
+			           value="#{controllerBean.contextPath}/static/imam_says_2.faces">
+			            <table>
+			              <tr>
+			                <td style="padding-left: 0px;"><h:graphicImage value="/images/picture_imam_sakr.png"/></td>                      
+			                <td class="lmenu_login_text" valign="bottom">
+			                  &#160;<h:outputText styleClass="lmenu_login_text" value=" Dr. Ahmad  Sakr Says ... " /> 
+			                </td> 
+			              </tr>
+			            </table>
+			          </h:outputLink>		
 				</h:panelGrid>
 				
 				 <rich:spacer height="20"/>
 				 
-				<h:panelGrid columns="1" width="100%" border="0" columnClasses="center_align_col">
-					<h:outputLink styleClass="alink" 
-           value="#{controllerBean.contextPath}/mentorRegister.faces">
-            <table>
-              <tr>
-                <td style="padding-left: 18px;"><h:graphicImage value="/images/mentor_reg.png"/></td>                      
-                <td class="lmenu_login_text">
-                  <h:outputText value="#{bundle.login_page_mentor_signup}" /> 
-                  <rich:spacer width="3"/>
-                  <h:outputText  style="font-weight: bolder;" value="( It's FREE )" />
-                </td> 
-              </tr>
-            </table>
-          </h:outputLink> 
-				</h:panelGrid>								
+					<h:panelGrid columns="1" width="100%" border="0" columnClasses="center_align_col">
+						<h:outputLink styleClass="alink" 
+			           		value="#{controllerBean.contextPath}/mentorRegister.faces">
+				            <table>
+				              <tr>
+				                <td style="padding-left: 18px;"><h:graphicImage value="/images/mentor_reg.png"/></td>                      
+				                <td class="lmenu_login_text">
+				                  <h:outputText value="#{bundle.login_page_mentor_signup}" /> 
+				                  <rich:spacer width="3"/>
+				                  <h:outputText  style="font-weight: bolder;" value="( It's FREE )" />
+				                </td> 
+				              </tr>
+				            </table>
+			          </h:outputLink> 
+					</h:panelGrid>								
 				
 				</h:panelGrid>
-				
+				 <rich:spacer height="50"/>
 
-          		<rich:panel  style="margin-top:7px; margin-left: 4px;" headerClass="login_box_panel_header"  bodyClass="login_box_panel">
+          		<rich:panel  style=" margin-left: 4px;" headerClass="login_box_panel_header"  bodyClass="login_box_panel">
           			<f:facet name="header"> <h:outputText value="#{bundle.login_page_why_register}" /></f:facet>
 					<p><h:outputText value="#{bundle.login_page_why_register_content1}" /></p>    
 					<p><h:outputText value="#{bundle.login_page_why_register_content2}" /></p>
 					<p><h:outputText value="#{bundle.login_page_why_register_content3}" /></p>
-					<p><h:outputText value="#{bundle.login_page_why_register_content4}" /></p>
-					<p><h:outputText value="#{bundle.login_page_why_register_content5}" /></p>
+
 				</rich:panel>				
 				
 				</h:panelGrid>			
