@@ -30,7 +30,6 @@
    <redirect/>
   </navigation-case>
  </navigation-rule>
- 
  <navigation-rule>
   <from-view-id>/mentorRegister.xhtml</from-view-id>
   <navigation-case>
@@ -77,7 +76,6 @@
    <redirect/>
   </navigation-case>
  </navigation-rule>
- 
  <navigation-rule>
   <from-view-id>/pages/secure/changePassword.xhtml</from-view-id>
   <navigation-case>
@@ -101,10 +99,6 @@
    <redirect/>
   </navigation-case>
  </navigation-rule>
-
-
-
- 
  <navigation-rule>
   <from-view-id>*</from-view-id>
   <navigation-case>
@@ -113,7 +107,6 @@
    <redirect/>
   </navigation-case>
  </navigation-rule>
- 
  <navigation-rule>
   <from-view-id>/pages/secure/memberMessage.xhtml</from-view-id>
   <navigation-case>
@@ -143,6 +136,14 @@
   <navigation-case>
    <from-outcome>BACK_TO_MSG_MAIN_PAGE</from-outcome>
    <to-view-id>/pages/secure/protegeMessage.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/pages/secure/memberTutorial.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>PAY_NOW</from-outcome>
+   <to-view-id>/pages/secure/mentorPayments.xhtml</to-view-id>
    <redirect/>
   </navigation-case>
  </navigation-rule>
