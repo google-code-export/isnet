@@ -51,4 +51,6 @@ public interface MemberService {
 	
 	public List<Member> getLeadMentorsMentorWaitingForCertification(Long mentorId);
 	
+	public void addToKnownMemberList(Member member, Member friend);
+	
 }

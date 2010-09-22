@@ -245,5 +245,14 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.getLeadMentorMentorWaitingForCertification(mentorId);
 	}
 
+	@Override
+	public void addToKnownMemberList(Member member, Member friend) {
+		KnownMember kMember = new KnownMember();
+		kMember.setFriendId(friend.getMemberId());
+		kMember.setSrcMember(member);
+		this.knownMemberDao.persist(kMember);
+		
+	}
+
 
 }
