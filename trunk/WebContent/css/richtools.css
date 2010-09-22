@@ -27,3 +27,11 @@
   font-size:11px;
   padding:4px;
 }
+.rich-panel{
+	border-color: black;
+	border-width: 0px;
+	border-style: groove;
+	margin: 0;
+
+	
+}
