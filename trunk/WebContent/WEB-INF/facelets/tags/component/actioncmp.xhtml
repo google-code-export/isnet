@@ -12,13 +12,13 @@
             <a4j:commandButton id="idUpdate" value="Update"  action="${controlBean[updateAction]}"
               oncomplete="forceUnblockUI()" onclick="forceBlockUI(ajaxProcessMsg);" 
               reRender="idErrorPanel,idErrorHead,idErrorMsg,${reRenderIds}"
-              styleClass="ibutton" style="background:#F8F3D3;">
+              styleClass="ibutton" style="background:#374E90;color: #ffffff;">
               <f:param value="${extraParam}" name="extraParam"/>
             </a4j:commandButton>
             
             <a4j:commandButton id="idCancel" value="Cancel" action="${controlBean[cancelAction]}"
             oncomplete="forceUnblockUI()" onclick="forceBlockUI(ajaxProcessMsg);" 
-            reRender="idErrorPanel,${reRenderIds}" styleClass="ibutton" style="background:#F8F3D3;"/>        
+            reRender="idErrorPanel,${reRenderIds}" styleClass="ibutton" style="background:#374E90;color: #ffffff;"/>        
         </h:panelGroup>
     </rich:panel>
   </ui:composition>
