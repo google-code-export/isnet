@@ -10,6 +10,21 @@
       <table>
         <tr>
           <td class="lmenu" valign="middle">
+            <h:outputLink styleClass="alink" 
+             value="#{controllerBean.contextPath}/pages/secure/mentorDashboard.faces">
+              <table>
+                <tr>
+                  <td><h:graphicImage value="${imagesPath}/gauge.png"/></td>                      
+                  <td class="lmenu_text">
+                    &#160;<h:outputText value="#{bundle.left_navigation_mentor_dashboard}"/>
+                  </td>
+                </tr>
+              </table>
+            </h:outputLink>                
+          </td>
+        </tr>      
+        <tr>
+          <td class="lmenu" valign="middle">
             <h:outputLink  styleClass="#{messageHanlder.unReadMessageCount ne '0'? 'menu_item_clink hight_lighted_menu' : 'menu_item_clink'}"
               value="#{controllerBean.contextPath}/pages/secure/memberMessage.faces?folder=RECEIVED">
               <table>
@@ -29,21 +44,7 @@
           </td>
         </tr>
         
-        <tr>
-          <td class="lmenu" valign="middle">
-            <h:outputLink styleClass="alink" 
-             value="#{controllerBean.contextPath}/pages/secure/mentorDashboard.faces">
-              <table>
-                <tr>
-                  <td><h:graphicImage value="${imagesPath}/gauge.png"/></td>                      
-                  <td class="lmenu_text">
-                    &#160;<h:outputText value="#{bundle.left_navigation_mentor_dashboard}"/>
-                  </td>
-                </tr>
-              </table>
-            </h:outputLink>                
-          </td>
-        </tr>
+
         
         <tr>
           <td class="lmenu" valign="middle">
