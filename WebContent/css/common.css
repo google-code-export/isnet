@@ -205,12 +205,12 @@
 	.container_silver_header{
 	 	background-image : url();
 	    border:0;
-        height:18px;
+        height:19px;
         text-align:center;
         vertical-align:middle;
-        color:black;
+        color:white;
  		padding:0px 0;
-		background-color:#EFE7A4;
+		background-color:#3E548F;
 		font-weight:bold;
 	}
 	.container_gold_header{
@@ -219,12 +219,16 @@
         height:18px;
         text-align:center;
         vertical-align:middle;
-        color:black;
+        color: white;
  		padding:0px 0;
-		background-color:#DFD0A7;
+		background-color:#3E548F;
 		font-weight:bold;
 	}	
-
+	.container_link_style{
+		font-weight: bold; 
+		padding-top: 5px; 
+		padding-bottom: 5px;
+	}
 	.login_box_panel{
 		margin-bottom:0px;
 		border:0px solid #7F6500;
@@ -241,7 +245,7 @@
 	.container_body_style{
 	margin-bottom:0px;
 	border:1px solid #CFCAB5;
-	background-color:#EFECE0;
+	background-color:#F4E8FF;
 	padding: 0;
 	padding-left: 3px;
     /*
@@ -298,20 +302,20 @@
 }
 .dashboard_report_mentor_header{
 
-	background-color: #EFE8D1;
+	background-color: #DFDFDF;
 }
 .dashboard_report_mentor_sub_header{
 	text-align: left;
 	background-color: #DFD5B5;
 }
 .dashboard_report_row_odd{
-	background-color:#EFECE0;
+	background-color:#F5EFFF;
 }
 .dashboard_report_row_even{
-	background-color: #FDFFEF;
+	background-color: #E4E0EF;
 }
 .rich-subtable-headercell{
-	background-color: #FAF8E3;
+	background-color: #DFDFDF;
 }
 .registration_header_style{
 	text-align: left;
