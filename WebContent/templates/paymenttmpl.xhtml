@@ -82,14 +82,15 @@
   <a4j:outputPanel layout="block" id="idMainBlock" style="border: 0px solid red;">
       <f:view id="idMainView">
        <f:loadBundle basename="ApplicationResources" var="bundle"/>
-        <h:form id="idMainForm">
           <c:set var="imagesPath" value="#{controllerBean.imagesPath}" />
           <c:set var="contextPath" value="#{controllerBean.contextPath}" />
           <h:inputHidden id="idContextPath" value="#{controllerBean.contextPath}" />
             <div class="viewcontainer mainBlock" id="idMainContainer" style="border: 0px solid green;">
               <div id="container">
                 <h:panelGroup id="idHContainer">
-                  <ui:include src="/templates/include/header.xhtml" />
+                  <h:form>
+                    <ui:include src="/templates/include/header.xhtml" />
+                  </h:form>
                 </h:panelGroup>
                 
                 <div id="content">
@@ -134,7 +135,6 @@
                 </h:panelGroup>                
               </div>
             </div>
-        </h:form>
         <ui:insert name="modalPanels"></ui:insert>
       </f:view>
     </a4j:outputPanel>
