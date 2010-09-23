@@ -12,21 +12,21 @@
           <a4j:commandButton rendered="${controlBean.reloadBean}" id="${modalId}Reload" value="Reload"
             action="${controlBean[reloadAction]}" reRender="${modalId}Ctrl,${modalId}ErrPan,${modalId}Container"
             onclick="forceSBlockUI(ajaxProcessMsg);" oncomplete="forceSUnblockUI();"
-            styleClass="ibutton" style="background:#F8F3D3;"/>
+            styleClass="ibutton" style="background:#374E90;color: #ffffff;"/>
             
           <a4j:commandButton rendered="${actionType eq 'A'}" id="${modalId}Add" value="Add" action="${controlBean[addAction]}"
             oncomplete="forceSUnblockUI(),Common.closeModalPanel('${controlBean.errorMessage}', '${modalId}');"
             onclick="forceSBlockUI(ajaxProcessMsg);" reRender="${modalId}Ctrl,${modalId}ErrPan,${reRenderIds}"
-            styleClass="ibutton" style="background:#F8F3D3;"/>
+            styleClass="ibutton" style="background:#374E90;color: #ffffff;"/>
         
           <a4j:commandButton rendered="${actionType eq 'U'}" id="${modalId}Update" value="Update"  action="${controlBean[updateAction]}"
             oncomplete="forceSUnblockUI(),Common.closeModalPanel('${controlBean.errorMessage}', '${modalId}');"
             onclick="forceSBlockUI(ajaxProcessMsg);" reRender="${modalId}Ctrl,${modalId}ErrPan,${reRenderIds}"
-            styleClass="ibutton" style="background:#F8F3D3;"/>
+            styleClass="ibutton" style="background:#374E90;color: #ffffff;"/>
            
            &#160; 
            <a4j:commandButton id="${modalId}Close" onclick="Richfaces.hideModalPanel('${modalId}')" 
-            ajaxSingle="true" value="Close" styleClass="ibutton" style="background:#F8F3D3;"/>
+            ajaxSingle="true" value="Close" styleClass="ibutton" style="background:#374E90;color: #ffffff;"/>
         </h:panelGroup>
     </rich:panel>
   </ui:composition>
