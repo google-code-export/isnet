@@ -15,6 +15,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.intrigueit.myc2i.common.CommonConstants;
+import com.intrigueit.myc2i.common.MyC2iConfiguration;
 import com.intrigueit.myc2i.common.utility.CryptographicUtility;
 import com.intrigueit.myc2i.common.utility.PassPhrase;
 import com.intrigueit.myc2i.common.view.BasePage;
@@ -22,12 +23,10 @@ import com.intrigueit.myc2i.common.view.CommonValidator;
 import com.intrigueit.myc2i.common.view.ViewConstant;
 import com.intrigueit.myc2i.common.view.ViewDataProvider;
 import com.intrigueit.myc2i.email.EmailTemplate;
-import com.intrigueit.myc2i.email.EmailerTask;
 import com.intrigueit.myc2i.email.HtmlEmailerTask;
 import com.intrigueit.myc2i.email.TaskExecutionPool;
 import com.intrigueit.myc2i.member.domain.Member;
 import com.intrigueit.myc2i.member.service.MemberService;
-import com.intrigueit.myc2i.utility.ContextInfo;
 import com.intrigueit.myc2i.utility.Emailer;
 
 
@@ -167,15 +166,17 @@ public class MemberViewHandler extends BasePage implements Serializable{
 	
 	/** Send confirmation email to member */
 	public void sendConfirmationEmail(String email, String password,String name)throws Exception{
-		String templateName = "email_reg.vm";
+		String templateName = "email_template_basic.vm";
 		
 		Map<String, String> templateValues = new HashMap<String, String>();
-		templateValues.put("email", email);
-		templateValues.put("pass", password);
-		templateValues.put("name", name);
+		templateValues.put("myc2i_link", MyC2iConfiguration.getInstance().getAppDomainURL());
+		templateValues.put("myc2i_link_label", MyC2iConfiguration.getInstance().getAppDomainLabel());
+		templateValues.put("member_name", name);
+		templateValues.put("message_body_text", this.getText("email_account_confirmation_body", new String[]{email,password}));
 		EmailTemplate template = new EmailTemplate(templateName,templateValues);
-		String msgBody = template.generate(); //this.getText("email_account_confirmation_body", new String[]{email,password});
+		String msgBody = template.generate(); //
 		String emailSubject = this.getText("email_account_confirmation_subject");
+		
 		/**Send email notification */
 		Emailer emailer = new Emailer(email, msgBody,emailSubject);
 		Runnable task = new HtmlEmailerTask(emailer);
