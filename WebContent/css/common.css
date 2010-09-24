@@ -84,12 +84,13 @@
 	
 	.panel_header{
 	    background: #FFFCEF url(../images/new.jpg) 0 0 repeat-x;	
-	    height: 30px;
+	    height: 32px;
 	    text-align: center;
 	    font-size: 1.1em;
 	    vertical-align:bottom;
-	    padding:1px 0;
+
 	    border: none;
+	    color: white;
 		}
 	.content_panel{
 			border-left: 1px solid #F4EDBF;
