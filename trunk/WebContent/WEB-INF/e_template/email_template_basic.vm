@@ -1,5 +1,5 @@
 <html>
-<body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0" bgcolor='#A7B4BF' >
+<body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0"  >
 
 <STYLE>
  .headerTop { background-color:#A7B4BF; border-top:0px solid #000000; border-bottom:0px solid #FFCC66; text-align:right; }
@@ -11,17 +11,21 @@
  .footerRow { background-color:#FFFFCC; border-top:10px solid #FFFFFF; }
  .footerText { font-size:10px; color:#333333; line-height:100%; font-family:verdana; }
  a { color:#FF0000; color:#FF6600; color:#FF6600; }
+ .backgroundTable{
+ background-color:#A7B4BF;
+ }
 </STYLE>
 
 
 
-<table width="100%" cellpadding="10" cellspacing="0" class="backgroundTable"  >
+<table width="100%" cellpadding="10" cellspacing="0" bgcolor="#A7B4BF" border="0"  >
+
 <tr>
 <td valign="top" align="center">
 
-<table width="550" cellpadding="0" cellspacing="0" border=0>
+<table width="550" cellpadding="0" cellspacing="0" >
 <tr>
-<td style="background-color:#638A9F;border-top:0px solid #000000;border-bottom:0px solid #FFCC66;text-align:right;" align="center"><span style="font-size:10px;color:#FFFFCC;line-height:200%;font-family:verdana;text-decoration:none;">Email not displaying correctly? <a href="*|ARCHIVE|*" style="font-size:10px;color:#FFFFCC;line-height:200%;font-family:verdana;text-decoration:none;">View it in your browser.</a></span></td>
+<td style="background-color:#638A9F;border-top:0px solid #000000;border-bottom:0px solid #FFCC66;text-align:center;" align="center"><span style="font-size:17px;color:#FFFFCC;line-height:200%;font-family:verdana;text-decoration:none;">MyC2i</span></td>
 
 </tr>
  
@@ -33,10 +37,10 @@
 <td bgcolor="#FFFFFF" valign="top" style="font-size:12px;color:#000000;line-height:150%;font-family:trebuchet ms;">
 
 <p>
-<span style="font-size:22px;font-weight:bold;color:#336600;font-family:arial;line-height:110%;"> Dear $member_name</span><br>
+<span style="font-size:15px;font-weight:bold;color:#336600;font-family:arial;line-height:110%;"> Dear $member_name</span><br>
 <br />
 <br />
-Congratulation, Your certification has been confirm by mentor, $mentor_name. You can now enjoy the full fetures of Myc2i like submit stories, search guest/protege etc. For more details please visit our site.
+$message_body_text
 </p>
 
 </td>
@@ -63,12 +67,11 @@ My2i Team
 									<td
 										style="border: 1px solid rgb(255, 226, 34); padding: 10px; background-color: rgb(255, 248, 204); color: rgb(51, 51, 51); font-size: 11px;">
 
-									To
-									confirm your account, please visit the following link:
+									Please visit our site at
 									<a style="color: rgb(59, 89, 152); text-decoration: none;"
 										href="$myc2i_link"
 										target="_blank" rel="nofollow"><span id="lw_1270461681_3"
-										class="yshortcuts">www.myc2i.org</span></a></td>
+										class="yshortcuts">$myc2i_link_label</span></a> for more details.</td>
 								</tr>
 							</tbody>
 						</table>
