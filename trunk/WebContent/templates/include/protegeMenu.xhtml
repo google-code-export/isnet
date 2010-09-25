@@ -12,14 +12,8 @@
         <td class="lmenu" valign="middle">
           <h:outputLink styleClass="alink" 
            value="#{controllerBean.contextPath}/pages/secure/protegeDashboard.faces">
-            <table>
-              <tr>
-                <td><h:graphicImage value="${imagesPath}/gauge.png"/></td>                      
-                <td class="lmenu_text">
-                  &#160;<h:outputText value="#{bundle.left_navigation_mentor_dashboard}"/>
-                </td>
-              </tr>
-            </table>
+            <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/gauge.png"/>
+            <h:outputText styleClass="lmenu_text" value="#{bundle.left_navigation_mentor_dashboard}"/>
           </h:outputLink>                
         </td>
       </tr>    
@@ -27,18 +21,12 @@
         <td class="lmenu" valign="middle">
           <h:outputLink  styleClass="#{messageHanlder.unReadMessageCount ne '0'? 'menu_item_clink hight_lighted_menu' : 'menu_item_clink'} "
            value="#{controllerBean.contextPath}/pages/secure/protegeMessage.faces?folder=RECEIVED">
-            <table>
-              <tr>
-                <td><h:graphicImage value="${imagesPath}/mail.png"/></td>                      
-                <td class="lmenu_text">
-                  <h:outputText value="My Messages"/>
-                  <rich:spacer width="2"/>
-                  <h:outputText style="color: red; font-weight: bolder;" 
-                    rendered="#{messageHanlder.unReadMessageCount ne '0'}" 
-                    value="( #{messageHanlder.unReadMessageCount} )"/>
-                </td>
-              </tr>
-            </table>
+            <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/mail.png"/>
+            <h:outputText styleClass="lmenu_text" value="My Messages"/>
+            <rich:spacer width="2"/>
+            <h:outputText styleClass="lmenu_text" style="color: red; font-weight: bolder;" 
+              rendered="#{messageHanlder.unReadMessageCount ne '0'}" 
+                value="( #{messageHanlder.unReadMessageCount} )"/>
           </h:outputLink>                
         </td>
       </tr>
@@ -48,14 +36,8 @@
         <td class="lmenu" valign="middle">
           <h:outputLink styleClass="alink" 
            value="#{controllerBean.contextPath}/pages/secure/protegeMentorProfile.faces">
-            <table>
-              <tr>
-                <td><h:graphicImage value="${imagesPath}/businessman.png"/></td>                      
-                <td class="lmenu_text">
-                  &#160;<h:outputText value="#{bundle.left_navigation_protege_mentor_profile}"/>
-                </td>
-              </tr>
-            </table>
+            <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/businessman.png"/>                      
+            <h:outputText styleClass="lmenu_text" value="#{bundle.left_navigation_protege_mentor_profile}"/>            
           </h:outputLink>                
         </td>
       </tr>
@@ -64,14 +46,8 @@
         <td class="lmenu" valign="middle">
           <h:outputLink styleClass="alink" 
            value="#{controllerBean.contextPath}/pages/secure/mentorSearch.faces">
-            <table>
-              <tr>
-                <td><h:graphicImage value="${imagesPath}/businessman_find.png"/></td>                      
-                <td class="lmenu_text">
-                  &#160;<h:outputText value="#{bundle.left_navigation_protege_mentor_search}"/>
-                </td>
-              </tr>
-            </table>
+            <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/businessman_find.png"/>
+            <h:outputText styleClass="lmenu_text" value="#{bundle.left_navigation_protege_mentor_search}"/>
           </h:outputLink>                
         </td>
       </tr>
@@ -80,14 +56,8 @@
         <td class="lmenu" valign="middle">
           <h:outputLink styleClass="alink" 
            value="#{controllerBean.contextPath}/pages/secure/protegeViewPoint.faces">
-            <table>
-              <tr>
-                <td><h:graphicImage value="${imagesPath}/note.png"/></td>                      
-                <td class="lmenu_text">
-                  &#160;<h:outputText value="#{bundle.left_navigation_protege_viewpoint}"/>
-                </td>
-              </tr>
-            </table>
+            <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/note.png"/>
+            <h:outputText styleClass="lmenu_text" value="#{bundle.left_navigation_protege_viewpoint}"/>
           </h:outputLink>                
         </td>
       </tr>
@@ -96,14 +66,8 @@
         <td class="lmenu" valign="middle">
           <h:outputLink styleClass="alink" 
            value="#{controllerBean.contextPath}/pages/secure/protegeLog.faces">
-            <table>
-              <tr>
-                <td><h:graphicImage value="${imagesPath}/calendar_preferences.png"/></td>                      
-                <td class="lmenu_text">
-                  &#160;<h:outputText value="#{bundle.left_navigation_mentor_activity_log}"/>
-                </td>
-              </tr>
-            </table>
+            <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/calendar_preferences.png"/>
+            <h:outputText styleClass="lmenu_text" value="#{bundle.left_navigation_mentor_activity_log}"/>
           </h:outputLink>                
         </td>
       </tr>
@@ -112,14 +76,8 @@
         <td class="lmenu" valign="middle">
           <h:outputLink styleClass="alink" 
            value="#{controllerBean.contextPath}/pages/secure/protegeTutorial.faces">
-            <table>
-              <tr>
-                <td><h:graphicImage value="${imagesPath}/tutorial.png"/></td>                      
-                <td class="lmenu_text">
-                  &#160;<h:outputText value="#{bundle.left_navigation_tutorial}"/>
-                </td>
-              </tr>
-            </table>
+            <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/tutorial.png"/>
+            <h:outputText styleClass="lmenu_text" value="#{bundle.left_navigation_tutorial}"/>
           </h:outputLink>                
         </td>
       </tr>
@@ -132,14 +90,8 @@
           <td class="lmenu" valign="middle">
             <h:outputLink styleClass="alink" 
              value="#{controllerBean.contextPath}/pages/secure/protegeProfile.faces">
-              <table>
-                <tr>
-                  <td><h:graphicImage value=""/></td>                      
-                  <td class="lmenu_text">
-                    &#160;<h:outputText value="#{bundle.page_header_myaccount_profile}"/>
-                  </td>
-                </tr>
-              </table>
+              <h:graphicImage styleClass="lmenu_img" value=""/>
+              <h:outputText styleClass="lmenu_text" value="#{bundle.page_header_myaccount_profile}"/>
             </h:outputLink>                
           </td>
         </tr>
@@ -148,14 +100,8 @@
           <td class="lmenu" valign="middle">
             <h:outputLink styleClass="alink" 
              value="#{controllerBean.contextPath}/pages/secure/protegeChangePassword.faces">
-              <table>
-                <tr>
-                  <td><h:graphicImage value=""/></td>                      
-                  <td class="lmenu_text">
-                    &#160;<h:outputText value="#{bundle.page_header_myaccount_change_password}"/>
-                  </td>
-                </tr>
-              </table>
+              <h:graphicImage styleClass="lmenu_img" value=""/>
+              <h:outputText styleClass="lmenu_text" value="#{bundle.page_header_myaccount_change_password}"/>
             </h:outputLink>                
           </td>
         </tr>
@@ -167,14 +113,8 @@
           <td class="lmenu" valign="middle">
             <h:outputLink styleClass="alink" 
              value="#{controllerBean.contextPath}/pages/secure/protegeMessage.faces?folder=RECEIVED">
-              <table>
-                <tr>
-                  <td><h:graphicImage value=""/></td>                      
-                  <td class="lmenu_text">
-                    &#160;<h:outputText value="Inbox"/>
-                  </td>
-                </tr>
-              </table>
+              <h:graphicImage styleClass="lmenu_img" value=""/>
+              <h:outputText styleClass="lmenu_text" value="Inbox"/>
             </h:outputLink>                
           </td>
         </tr>
@@ -183,14 +123,8 @@
           <td class="lmenu" valign="middle">
             <h:outputLink styleClass="alink" 
              value="#{controllerBean.contextPath}/pages/secure/protegeMessage.faces?folder=SENT">
-              <table>
-                <tr>
-                  <td><h:graphicImage value=""/></td>                      
-                  <td class="lmenu_text">
-                    &#160;<h:outputText value="Sent Items"/>
-                  </td>
-                </tr>
-              </table>
+              <h:graphicImage styleClass="lmenu_img" value=""/>
+              <h:outputText styleClass="lmenu_text" value="Sent Items"/>
             </h:outputLink>                
           </td>
         </tr>
