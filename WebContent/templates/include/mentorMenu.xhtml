@@ -12,14 +12,8 @@
           <td class="lmenu" valign="middle">
             <h:outputLink styleClass="alink" 
              value="#{controllerBean.contextPath}/pages/secure/mentorDashboard.faces">
-              <table>
-                <tr>
-                  <td><h:graphicImage value="${imagesPath}/gauge.png"/></td>                      
-                  <td class="lmenu_text">
-                    &#160;<h:outputText value="#{bundle.left_navigation_mentor_dashboard}"/>
-                  </td>
-                </tr>
-              </table>
+             <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/gauge.png"/>
+             <h:outputText styleClass="lmenu_text" value="#{bundle.left_navigation_mentor_dashboard}"/>
             </h:outputLink>                
           </td>
         </tr>      
@@ -27,37 +21,23 @@
           <td class="lmenu" valign="middle">
             <h:outputLink  styleClass="#{messageHanlder.unReadMessageCount ne '0'? 'menu_item_clink hight_lighted_menu' : 'menu_item_clink'}"
               value="#{controllerBean.contextPath}/pages/secure/memberMessage.faces?folder=RECEIVED">
-              <table>
-                <tr>
-                  <td><h:graphicImage value="${imagesPath}/mail.png"/></td>                      
-                  <td class="lmenu_text">
-                    <rich:spacer width="2"/>
-                    <h:outputText value="My Messages"/>
-                    <rich:spacer width="2"/>
-                    <h:outputText style="color: red; font-weight: bolder;" 
-                      rendered="#{messageHanlder.unReadMessageCount ne '0'}" 
-                      value="( #{messageHanlder.unReadMessageCount} )"/>
-                  </td>
-                </tr>
-              </table>
+              <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/mail.png"/>
+              <rich:spacer width="2"/>
+              <h:outputText styleClass="lmenu_text" value="My Messages"/>
+              <rich:spacer width="2"/>
+              <h:outputText styleClass="lmenu_text" style="color: red; font-weight: bolder;" 
+                rendered="#{messageHanlder.unReadMessageCount ne '0'}" 
+                value="( #{messageHanlder.unReadMessageCount} )"/>
             </h:outputLink>                
           </td>
         </tr>
-        
-
         
         <tr>
           <td class="lmenu" valign="middle">
             <h:outputLink styleClass="alink" 
              value="#{controllerBean.contextPath}/pages/secure/memberProtegeProfile.faces">
-              <table>
-                <tr>
-                  <td><h:graphicImage value="${imagesPath}/businessman.png"/></td>                      
-                  <td class="lmenu_text">
-                    &#160;<h:outputText value="#{bundle.page_header_protege_profile}"/>
-                  </td>
-                </tr>
-              </table>
+              <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/businessman.png"/>
+              <h:outputText styleClass="lmenu_text" value="#{bundle.page_header_protege_profile}"/>
             </h:outputLink>                
           </td>
         </tr>
@@ -66,14 +46,8 @@
           <td class="lmenu" valign="middle">
             <h:outputLink styleClass="alink" 
              value="#{controllerBean.contextPath}/pages/secure/protegeSearch.faces">
-              <table>
-                <tr>
-                  <td><h:graphicImage value="${imagesPath}/businessman_find.png"/></td>                      
-                  <td class="lmenu_text">
-                    &#160;<h:outputText value="#{bundle.page_header_protege_search}"/>
-                  </td>
-                </tr>
-              </table>
+              <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/businessman_find.png"/>
+              <h:outputText styleClass="lmenu_text" value="#{bundle.page_header_protege_search}"/>
             </h:outputLink>                
           </td>
         </tr>
@@ -82,14 +56,8 @@
           <td class="lmenu" valign="middle">
             <h:outputLink styleClass="alink" 
              value="#{controllerBean.contextPath}/pages/secure/memberPendingMentorCertification.faces">
-              <table>
-                <tr>
-                  <td><h:graphicImage value="${imagesPath}/graduate.png"/></td>                      
-                  <td class="lmenu_text">
-                    &#160;<h:outputText value="Approve Certification"/>
-                  </td>
-                </tr>
-              </table>
+              <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/graduate.png"/>
+              <h:outputText styleClass="lmenu_text" value="Approve Certification"/>
             </h:outputLink>                
           </td>
         </tr>
@@ -97,14 +65,8 @@
           <td class="lmenu" valign="middle">
             <h:outputLink styleClass="alink" 
              value="#{controllerBean.contextPath}/pages/secure/leadMentorSearch.faces">
-              <table>
-                <tr>
-                  <td><h:graphicImage value="${imagesPath}/businessman_view.png"/></td>                      
-                  <td class="lmenu_text">
-                    &#160;<h:outputText value="#{bundle.page_header_lead_mentor_search}"/>
-                  </td>
-                </tr>
-              </table>
+              <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/businessman_view.png"/>
+              <h:outputText styleClass="lmenu_text" value="#{bundle.page_header_lead_mentor_search}"/>
             </h:outputLink>                
           </td>
         </tr>        
@@ -112,14 +74,8 @@
           <td class="lmenu" valign="middle">
             <h:outputLink styleClass="alink" 
              value="#{controllerBean.contextPath}/pages/secure/memberLog.faces">
-              <table>
-                <tr>
-                  <td><h:graphicImage value="${imagesPath}/calendar_preferences.png"/></td>                      
-                  <td class="lmenu_text">
-                    &#160;<h:outputText value="#{bundle.left_navigation_mentor_activity_log}"/>
-                  </td>
-                </tr>
-              </table>
+              <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/calendar_preferences.png"/>
+              <h:outputText styleClass="lmenu_text" value="#{bundle.left_navigation_mentor_activity_log}"/>
             </h:outputLink>                
           </td>
         </tr>
@@ -128,14 +84,8 @@
           <td class="lmenu" valign="middle">
             <h:outputLink styleClass="alink" 
              value="#{controllerBean.contextPath}/pages/secure/memberStory.faces">
-              <table>
-                <tr>
-                  <td><h:graphicImage value="${imagesPath}/note.png"/></td>                      
-                  <td class="lmenu_text">
-                    &#160;<h:outputText value="#{bundle.left_navigation_mentor_success_story}"/>
-                  </td>
-                </tr>
-              </table>
+              <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/note.png"/>
+              <h:outputText styleClass="lmenu_text" value="#{bundle.left_navigation_mentor_success_story}"/>
             </h:outputLink>                
           </td>
         </tr> 
@@ -144,14 +94,8 @@
           <td class="lmenu" valign="middle">
             <h:outputLink styleClass="alink" 
              value="#{controllerBean.contextPath}/pages/secure/memberTutorial.faces">
-              <table>
-                <tr>
-                  <td><h:graphicImage value="${imagesPath}/certificate_new.png"/></td>                      
-                  <td class="lmenu_text">
-                    &#160;<h:outputText value="#{bundle.left_navigation_dawah_certification_training}"/>
-                  </td>
-                </tr>
-              </table>
+              <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/certificate_new.png"/>
+              <h:outputText styleClass="lmenu_text" value="#{bundle.left_navigation_dawah_certification_training}"/>
             </h:outputLink>                
           </td>
         </tr>
@@ -165,14 +109,8 @@
         <td class="lmenu" valign="middle">
           <h:outputLink styleClass="alink" 
            value="#{controllerBean.contextPath}/pages/secure/mentorProfile.faces">
-            <table>
-              <tr>
-                <td><h:graphicImage value=""/></td>                      
-                <td class="lmenu_text">
-                  &#160;<h:outputText value="#{bundle.page_header_myaccount_profile}"/>
-                </td>
-              </tr>
-            </table>
+           <h:graphicImage styleClass="lmenu_img" value=""/>
+           <h:outputText styleClass="lmenu_text" value="#{bundle.page_header_myaccount_profile}"/>
           </h:outputLink>                
         </td>
       </tr>
@@ -181,14 +119,8 @@
         <td class="lmenu" valign="middle">
           <h:outputLink styleClass="alink" 
            value="#{controllerBean.contextPath}/pages/secure/mentorChangePassword.faces">
-            <table>
-              <tr>
-                <td><h:graphicImage value=""/></td>                      
-                <td class="lmenu_text">
-                  &#160;<h:outputText value="#{bundle.page_header_myaccount_change_password}"/>
-                </td>
-              </tr>
-            </table>
+            <h:graphicImage styleClass="lmenu_img" value=""/>
+            <h:outputText styleClass="lmenu_text" value="#{bundle.page_header_myaccount_change_password}"/>
           </h:outputLink>                
         </td>
       </tr>
@@ -201,14 +133,8 @@
         <td class="lmenu" valign="middle">
           <h:outputLink styleClass="alink" 
            value="#{controllerBean.contextPath}/pages/secure/memberMessage.faces?folder=RECEIVED">
-            <table>
-              <tr>
-                <td><h:graphicImage value=""/></td>                      
-                <td class="lmenu_text">
-                  &#160;<h:outputText value="Inbox"/>
-                </td>
-              </tr>
-            </table>
+            <h:graphicImage styleClass="lmenu_img" value=""/>
+            <h:outputText styleClass="lmenu_text" value="Inbox"/>
           </h:outputLink>                
         </td>
       </tr>
@@ -217,14 +143,8 @@
         <td class="lmenu" valign="middle">
           <h:outputLink styleClass="alink" 
            value="#{controllerBean.contextPath}/pages/secure/memberMessage.faces?folder=SENT">
-            <table>
-              <tr>
-                <td><h:graphicImage value=""/></td>                      
-                <td class="lmenu_text">
-                  &#160;<h:outputText value="Sent Items"/>
-                </td>
-              </tr>
-            </table>
+            <h:graphicImage styleClass="lmenu_img" value=""/>
+            <h:outputText styleClass="lmenu_text" value="Sent Items"/>
           </h:outputLink>                
         </td>
       </tr>
