@@ -40,42 +40,7 @@ ul.menu li aX {
   font-size: 14px;
 }
 
-.lmenu_text{
-  font-size: 13px;
-  font-weight: bold;
-  color: white;
-  line-height: 31px;
-  vertical-align: middle;
-}
-.lmenu_login_text{
-  font-size: 11px;
-  font-weight: bold;
-  color: white;
-}
-.lmenu_img{  
-  padding: 0px;
-  margin: 3px;
-  line-height: 31px;
-  vertical-align: middle;
-}
 
-.lmenu{
-  background: url(../images/light.jpg) 0 0 no-repeat;
-  width:194px;
-  height:31px;
-}
-
-.lmenu:hover{
-  background: url(../images/dark.jpg) 0 0 no-repeat;
-  width:194px;
-  height:31px;
-  padding:0;
-}
-
-ul.menu li:hover { 
-  background: url(../images/dark.jpg) 0 0 no-repeat;
-}
- 
 * {
   margin: 0;
   padding: 0;
@@ -471,6 +436,7 @@ div.index div.box,div.page div.box {
   padding-top: 1px !important;
 }
 
+/*
 div.content ul {
   margin-left: 20px;
   list-style-type: none;
@@ -493,7 +459,7 @@ div.content ul li ul li {
   color: #666;
   padding-left: 0 !important;
 }
-
+*/
 div.content tt {
   color: #082D3F;
   font: bold 14px Helvetica, Arial, sans-serif;
@@ -973,4 +939,46 @@ div.example-request {
   color: #ffffff;
   font-size: 13px;
 }
+#sidebar ul.sidemenu {
+  list-style:none;
+  margin:1px 3px 1px 0px;
+  padding:0;
+}
+#sidebar ul.sidemenu li {
+  margin-bottom:0px;
+  border: 0px solid #EFEBE0;
+}
+#sidebar ul.sidemenu a {
+  display:block;  
+  background: url(../images/light.jpg) 0 0 no-repeat;
+  width:194px;
+  height:31px;
+  padding:0;
+}
+#sidebar ul.sidemenu a:hover {  
+  background: url(../images/dark.jpg) 0 0 no-repeat;
+  width:194px;
+  height:31px;
+  padding:0;
+}
+.lmenu_text{
+  font-size: 13px;
+  font-weight: bold;
+  color: white;
+  line-height: 31px;
+  vertical-align: middle;
+  width: 100%;
+}
+.lmenu_login_text{
+  font-size: 11px;
+  font-weight: bold;
+  color: white;
+}
+.lmenu_img{  
+  padding: 0px;
+  margin: 3px;
+  line-height: 31px;
+  vertical-align: middle;
+}
+ 
 /* @@@ end of old myc2i @@@*/
