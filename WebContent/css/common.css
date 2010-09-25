@@ -197,9 +197,9 @@
         height:15px;
         text-align:center;
         vertical-align:middle;
-        color:black;
+        color:white;
         padding:5px 0;
-		background-color:#BFAB77;
+		background-color:#3E548F;
 		font-weight:bold;
 		font-size: 9pt;
 	}
@@ -292,10 +292,10 @@
  .table_column_style{
  	color: black;
  	text-align: left;
- 	background-color: #EFE4C2;
+ 	background-color: #DFDFDF;
  }
  .container_even_row_style{
-	background-color: #EFE8D1;
+	background-color: #EFEFEF;
 }
 .col_half{
 	width: 50%;
