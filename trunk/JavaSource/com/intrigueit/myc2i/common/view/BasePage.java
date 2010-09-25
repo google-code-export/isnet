@@ -9,7 +9,9 @@ package com.intrigueit.myc2i.common.view;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import javax.faces.application.FacesMessage;
@@ -24,7 +26,12 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.intrigueit.myc2i.common.CommonConstants;
+import com.intrigueit.myc2i.common.MyC2iConfiguration;
+import com.intrigueit.myc2i.email.EmailTemplate;
+import com.intrigueit.myc2i.email.HtmlEmailerTask;
+import com.intrigueit.myc2i.email.TaskExecutionPool;
 import com.intrigueit.myc2i.member.domain.Member;
+import com.intrigueit.myc2i.utility.Emailer;
 
 
 /**
@@ -433,6 +440,24 @@ public class BasePage {
 			return cookie.getValue();
 		}
 		return null;
+	}
+	protected void sendEmail(String email,String emailSubject,String body,String name) throws Exception{
+		String templateName = "email_template_basic.vm";
+		
+		Map<String, String> templateValues = new HashMap<String, String>();
+		templateValues.put("myc2i_link", MyC2iConfiguration.getInstance().getAppDomainURL());
+		templateValues.put("myc2i_link_label", MyC2iConfiguration.getInstance().getAppDomainLabel());
+		templateValues.put("member_name", name);
+		templateValues.put("message_body_text", body);
+		EmailTemplate template = new EmailTemplate(templateName,templateValues);
+		String msgBody = template.generate(); //
+		
+		/**Send email notification */
+		Emailer emailer = new Emailer(email, msgBody,emailSubject);
+		Runnable task = new HtmlEmailerTask(emailer);
+		TaskExecutionPool pool =  (TaskExecutionPool) this.getBean("taskPool");
+		pool.addTaskToPool(task);
+		
 	}
 
 }
