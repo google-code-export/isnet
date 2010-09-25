@@ -318,10 +318,11 @@ public class MemberLogViewHandler extends BasePageExtended implements Serializab
 			this.memberLogService.save(this.currentLog);
 			
 			log.debug("Sending email notification");
-			//String proteemail = this.memberService.findById(this.currentLog.getToMemberId()).getEmail();
+
+			String protegeName = memberTo.getFirstName() + " "+ memberTo.getLastName();
 			String emailSub = this.udService.loadById(this.currentLog.getMemberActivityType()).getUdValuesValue();
 
-			this.sendConfirmationEmail(emailSub, memberTo.getEmail());
+			this.sendConfirmationEmail(emailSub, memberTo.getEmail(), protegeName);
 			this.currentLog = new MemberLog();
 
 		} catch (Exception ex) {
@@ -374,10 +375,12 @@ public class MemberLogViewHandler extends BasePageExtended implements Serializab
 			this.memberLogService.save(this.currentLog);
 			
 			log.debug("Sending email notification");
-			String proteemail = this.memberService.findById(this.currentLog.getToMemberId()).getEmail();
+			Member protege = this.memberService.findById(this.currentLog.getToMemberId());
+			String proteemail =protege.getEmail();
+			String protegeName = protege.getFirstName() + " "+ protege.getLastName();
 			String emailSub = this.udService.loadById(this.currentLog.getMemberActivityType()).getUdValuesValue();
 
-			this.sendConfirmationEmail(emailSub, proteemail);
+			this.sendConfirmationEmail(emailSub, proteemail,protegeName);
 			this.currentLog = new MemberLog();
 
 		} catch (Exception ex) {
@@ -390,17 +393,15 @@ public class MemberLogViewHandler extends BasePageExtended implements Serializab
 	}
 
 	/** Send confirmation email to member */
-	private void sendConfirmationEmail(String type, String email)
+	private void sendConfirmationEmail(String type, String email,String name)
 			throws Exception {
 
 		String msgBody = this.getText("email_activity_log_body",
 				new String[] { type });
 		String emailSubject = this.getText("email_activity_log_subject",
 				new String[] { type });
-		/** Send email notification */
-		Emailer emailer = new Emailer(email, msgBody, emailSubject);
-		emailer.setContentType("text/html");
-		emailer.sendEmail();
+		this.sendEmail(email, emailSubject, msgBody, name);
+
 	}
 
 	private void validate() {
