@@ -26,7 +26,8 @@
 			<h:inputText value="#{questionViewHandler.term}" styleClass="form_input_text_medium"/>
 			<h:outputText value=""/>
 			<h:panelGroup>
-				<a4j:commandButton  onclick="forceBlockUI(ajaxQuestionsAns);"   oncomplete="forceUnblockUI();" value="#{bundle.button_label_search}" action="#{questionViewHandler.executeSearch}" reRender="idContainer,idSearchPanel"/>
+				<a4j:commandButton  onclick="forceBlockUI(ajaxWaitMsg);"   oncomplete="forceUnblockUI();" value="#{bundle.button_label_search}" action="#{questionViewHandler.executeSearch}" reRender="idContainer,idSearchPanel"/>
+				<rich:spacer width="10"/>
 				<a4j:commandButton  value="#{bundle.button_clear}" action="#{questionViewHandler.resetFields}" reRender="idSearchPanel,idContainer"/>
 			</h:panelGroup>						
 		</h:panelGrid>	
