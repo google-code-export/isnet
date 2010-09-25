@@ -101,10 +101,11 @@ public class ChangePasswordViewHandler extends BasePage  implements Serializable
 		
 		String msgBody = this.getText("email_password_change_confirmation_body", new String[]{email,password});
 		String emailSubject = this.getText("email_password_change_confirmation_subject");
+		
 		/**Send email notification */
-		Emailer emailer = new Emailer(email, msgBody,emailSubject);
-		emailer.setContentType("text/html");
-		emailer.sendEmail();		
+		String name = this.getMember().getFirstName() +" "+ this.getMember().getLastName();
+		
+		this.sendEmail(email, emailSubject, msgBody, name);
 	}	
 	/**
 	 * Update the member object with new information
