@@ -538,12 +538,16 @@ public class ModulePlayer extends BasePage {
 			}
 			Integer questionEnd = tutorials.size() -1;
 			int questionStart = PlayerHelper.getModuleQuestionStartIndex(tutorials);
-			if(this.pageIndex > questionStart){
-				this.pageIndex = questionStart;
-			}
+			questionParticipated = 0;
+			
 			log.debug(questionStart + " "+ questionEnd + " "+ moduleQuestionSize);
 			questionsIndexList = PlayerHelper.createRandomQuestionList(questionStart, questionEnd, moduleQuestionSize);
-			questionParticipated = 0;
+			
+			if(this.pageIndex > questionStart){
+				this.pageIndex = questionsIndexList.get(0);
+				questionParticipated = 1;
+			}
+			
 			
 			tutorialLastIndex = questionStart-1  ;
 			
