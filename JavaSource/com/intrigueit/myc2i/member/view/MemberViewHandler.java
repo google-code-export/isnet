@@ -95,7 +95,7 @@ public class MemberViewHandler extends BasePage implements Serializable{
 			this.memberService.save(this.currentMember);
 			
 			
-			this.sendConfirmationEmail(this.currentMember.getEmail(), plainPassword, this.currentMember.getFirstName() + ""+ this.currentMember.getLastName());
+			this.sendConfirmationEmail(this.currentMember.getEmail(), plainPassword, this.currentMember.getFirstName() + " "+ this.currentMember.getLastName());
 			
 			logger.debug("Mentor added: "+ this.currentMember.getMemberId());
 			this.currentMember= new Member();
