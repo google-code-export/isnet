@@ -43,7 +43,7 @@
           <c:set var="imagesPath" value="#{controllerBean.imagesPath}" />
           <c:set var="contextPath" value="#{controllerBean.contextPath}" />
           <h:inputHidden id="idContextPath" value="#{controllerBean.contextPath}" />
-  
+          <div class="viewcontainer mainBlock" id="idMainContainer">
           <div id="container">
             <h:panelGroup id="idHContainer">
               <ui:include src="/templates/include/header.xhtml" />
@@ -86,7 +86,7 @@
               </ui:include>
              </h:panelGroup> 
           </div>
-
+          </div>
         </h:form>
         <ui:insert name="modalPanels"></ui:insert>
       </f:view>
