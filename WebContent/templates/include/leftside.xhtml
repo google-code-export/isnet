@@ -14,174 +14,145 @@
       
     <h:panelGroup id="ltop_gdbsectionG" rendered="${userType eq 'P'}">
       <ui:include src="/templates/include/protegeMenu.xhtml" />       
-      </h:panelGroup>
+    </h:panelGroup>
       
       <h:panelGroup id="ltop_gdbsectionA" rendered="${userType eq 'A'}">
         <h:panelGroup id="idAppManagePanel" rendered="${moduleType eq 'AM'}">
-          <table>
-            <tr>
-              <td class="lmenu" valign="middle">
-                <h:outputLink styleClass="alink" 
-                 value="#{controllerBean.contextPath}/pages/secure/udValueView.faces">                  
-                  <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/user_define_value.png"/>                      
-                  <h:outputText styleClass="lmenu_text" value=" #{bundle.left_navigation_user_defined_values}"/>                    
-                </h:outputLink>                
-              </td>
-            </tr>
+          <ul class="sidemenu">            
+           <li>
+              <h:outputLink styleClass="menu_item_clink" 
+                value="#{controllerBean.contextPath}/pages/secure/udValueView.faces">
+                <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/user_define_value.png"/>                      
+                <h:outputText styleClass="lmenu_text" value=" #{bundle.left_navigation_user_defined_values}"/>
+              </h:outputLink>
+            </li>
             
-            <tr>
-              <td class="lmenu" valign="middle">
-                <h:outputLink styleClass="alink" 
-                 value="#{controllerBean.contextPath}/pages/secure/vendorView.faces">
-                  <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/vendor.png"/>                      
-                  <h:outputText styleClass="lmenu_text" value=" #{bundle.left_navigation_item_vendor}"/>
-                </h:outputLink>                
-              </td>
-            </tr>
+            <li>
+              <h:outputLink styleClass="menu_item_clink" 
+                value="#{controllerBean.contextPath}/pages/secure/vendorView.faces">
+                <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/vendor.png"/>                      
+                <h:outputText styleClass="lmenu_text" value="#{bundle.left_navigation_item_vendor}"/>
+              </h:outputLink>
+            </li>
             
-            <tr>
-              <td class="lmenu" valign="middle">
-                <h:outputLink styleClass="alink" 
+            <li>
+              <h:outputLink styleClass="alink" 
                  value="#{controllerBean.contextPath}/pages/secure/trainingItemView.faces">
-                  <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/training_item.png"/>
-                  <h:outputText styleClass="lmenu_text" value=" #{bundle.left_navigation_training_material}"/>
-                </h:outputLink>                
-              </td>
-            </tr>
+                <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/training_item.png"/>
+                <h:outputText styleClass="lmenu_text" value=" #{bundle.left_navigation_training_material}"/>
+              </h:outputLink>
+            </li>
             
-            <tr>
-              <td class="lmenu" valign="middle">
-                <h:outputLink styleClass="alink" 
-                 value="#{controllerBean.contextPath}/pages/secure/documentView.faces">
-                  <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/document.png"/>                      
-                  <h:outputText styleClass="lmenu_text" value=" #{bundle.left_navigation_document_manage}"/>
-                </h:outputLink>                
-              </td>
-            </tr>
+            <li>
+              <h:outputLink styleClass="alink" 
+               value="#{controllerBean.contextPath}/pages/secure/documentView.faces">
+                <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/document.png"/>                      
+                <h:outputText styleClass="lmenu_text" value=" #{bundle.left_navigation_document_manage}"/>
+              </h:outputLink> 
+            </li>
             
-            <tr>
-              <td class="lmenu" valign="middle">
-                <h:outputLink styleClass="alink" 
+            <li>
+              <h:outputLink styleClass="alink" 
                  value="#{controllerBean.contextPath}/pages/secure/modulesView.faces">
                   <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/tutorial_modules.png"/>
                   <h:outputText styleClass="lmenu_text" value=" #{bundle.left_navigation_tutorial_modules}"/>
-                </h:outputLink>                
-              </td>
-            </tr>
-            
-            <tr>
-              <td class="lmenu" valign="middle">
-                <h:outputLink styleClass="alink" 
+                </h:outputLink>    
+            </li>
+              
+            <li>
+              <h:outputLink styleClass="alink" 
                  value="#{controllerBean.contextPath}/pages/secure/qustionAnsView.faces">
-                 <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/tutorial_qa.png"/>
-                 <h:outputText styleClass="lmenu_text" value=" #{bundle.left_navigation_tutorial_qa}"/>
-                </h:outputLink>                
-              </td>
-            </tr>
-            
-            <tr>
-              <td class="lmenu" valign="middle">
-                <h:outputLink styleClass="alink" 
+               <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/tutorial_qa.png"/>
+               <h:outputText styleClass="lmenu_text" value=" #{bundle.left_navigation_tutorial_qa}"/>
+              </h:outputLink> 
+            </li>
+              
+            <li>
+              <h:outputLink styleClass="alink" 
                  value="#{controllerBean.contextPath}/pages/secure/adminStory.faces">
-                  <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/approve_story.png"/>
-                  <h:outputText styleClass="lmenu_text" value=" #{bundle.left_navigation_approve_story}"/>
-                </h:outputLink>                
-              </td>
-            </tr>            
-          </table>         
+                <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/approve_story.png"/>
+                <h:outputText styleClass="lmenu_text" value=" #{bundle.left_navigation_approve_story}"/>
+              </h:outputLink>   
+            </li>            
+          </ul>         
         </h:panelGroup>
-        <h:panelGroup id="idUserManagePanel" rendered="${moduleType eq 'UM'}">
-          <table>
-            <tr>
-              <td class="lmenu" valign="middle">
-                <h:outputLink styleClass="alink" 
+        <h:panelGroup id="idUserManagePanel" rendered="${moduleType eq 'UM'}">           
+          <ul class="sidemenu">  
+            <li>
+              <h:outputLink styleClass="alink" 
                  value="#{controllerBean.contextPath}/pages/secure/manageUsersView.faces">
-                  <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/manage_user.png"/>
-                  <h:outputText styleClass="lmenu_text" value=" #{bundle.left_navigation_manage_user}"/>
-                </h:outputLink>                
-              </td>
-            </tr>
+                <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/manage_user.png"/>
+                <h:outputText styleClass="lmenu_text" value=" #{bundle.left_navigation_manage_user}"/>
+              </h:outputLink> 
+            </li>
             
-            <tr>
-              <td class="lmenu" valign="middle">
-                <h:outputLink styleClass="alink" 
+            <li>
+              <h:outputLink styleClass="alink" 
                  value="#{controllerBean.contextPath}/pages/secure/resetUserPasswordView.faces">
-                  <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/reset_user_password.png"/>
-                  <h:outputText styleClass="lmenu_text" value=" #{bundle.left_navigation_reset_user_password}"/>
-                </h:outputLink>                
-              </td>
-            </tr>
+                <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/reset_user_password.png"/>
+                <h:outputText styleClass="lmenu_text" value=" #{bundle.left_navigation_reset_user_password}"/>
+              </h:outputLink>   
+            </li>
             
-            <tr>
-              <td class="lmenu" valign="middle">
-                <h:outputLink styleClass="alink" 
+            <li>
+              <h:outputLink styleClass="alink" 
                  value="#{controllerBean.contextPath}/pages/secure/updatePaymentView.faces">
-                  <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/update_payment.png"/>
-                  <h:outputText styleClass="lmenu_text" value=" #{bundle.left_navigation_update_payment}"/>
-                </h:outputLink>                
-              </td>
-            </tr>           
-            
-          </table>         
+                <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/update_payment.png"/>
+                <h:outputText styleClass="lmenu_text" value=" #{bundle.left_navigation_update_payment}"/>
+              </h:outputLink>    
+            </li>            
+          </ul>      
         </h:panelGroup>
         <h:panelGroup id="idReletionManagePanel" rendered="${moduleType eq 'RM'}">
-          <table>
-            <tr>
-              <td class="lmenu" valign="middle">
-                <h:outputLink styleClass="alink" 
+          <ul class="sidemenu">
+            <li>
+              <h:outputLink styleClass="alink" 
                  value="#{controllerBean.contextPath}/pages/secure/chapterView.faces">
-                 <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/manage_chapter.png"/>                 
-                 <h:outputText styleClass="lmenu_text" style="font-size:12px" value="#{bundle.left_chapter_manage_chapter}"/>                 
-                </h:outputLink>                
-              </td>
-            </tr>
+               <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/manage_chapter.png"/>                 
+               <h:outputText styleClass="lmenu_text" style="font-size:12px" value="#{bundle.left_chapter_manage_chapter}"/>                 
+              </h:outputLink>
+            </li>
             
-            <tr>
-              <td class="lmenu" valign="middle">
-                <h:outputLink styleClass="alink" 
+            <li>
+              <h:outputLink styleClass="alink" 
                  value="#{controllerBean.contextPath}/pages/secure/protegeWithoutMentor.faces">
-                 <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/proteges_without_mentor.png"/>
-                 <h:outputText styleClass="lmenu_text" style="font-size:12px" value="#{bundle.left_chapter_proteges_without_mentor}"/>
-                </h:outputLink>                
-              </td>
-            </tr>            
-          </table>         
+               <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/proteges_without_mentor.png"/>
+               <h:outputText styleClass="lmenu_text" style="font-size:12px" value="#{bundle.left_chapter_proteges_without_mentor}"/>
+              </h:outputLink>  
+            </li>
+          </ul>                
         </h:panelGroup>
+        
         <h:panelGroup id="idMyProfileManagePanel" rendered="${moduleType eq 'AMA'}">
-          <table>
-            <tr>
-              <td class="lmenu" valign="middle">
-                <h:outputLink styleClass="alink" 
+          <ul class="sidemenu">
+            <li>
+              <h:outputLink styleClass="alink" 
                  value="#{controllerBean.contextPath}/pages/secure/adminProfile.faces">
-                  <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/my_profile.png"/>
-                  <h:outputText styleClass="lmenu_text" value="#{bundle.left_my_profile}"/>
-                </h:outputLink>                
-              </td>
-            </tr>
+                <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/my_profile.png"/>
+                <h:outputText styleClass="lmenu_text" value="#{bundle.left_my_profile}"/>
+              </h:outputLink>  
+            </li>
             
-            <tr>
-              <td class="lmenu" valign="middle">
-                <h:outputLink styleClass="alink" 
+            <li>
+              <h:outputLink styleClass="alink" 
                  value="#{controllerBean.contextPath}/pages/secure/adminChgPassword.faces">
-                 <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/change_password.png"/>
-                 <h:outputText styleClass="lmenu_text" value="#{bundle.left_my_change_password}"/>
-                </h:outputLink>                
-              </td>
-            </tr>
-          </table>
+               <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/change_password.png"/>
+               <h:outputText styleClass="lmenu_text" value="#{bundle.left_my_change_password}"/>
+              </h:outputLink>  
+            </li>            
+          </ul>
         </h:panelGroup>
+        
         <h:panelGroup id="idContactUsManagePanel" rendered="${moduleType eq 'CU'}">
-          <table>
-            <tr>
-              <td class="lmenu" valign="middle">
-                <h:outputLink styleClass="alink" 
-                 value="#{controllerBean.contextPath}/pages/secure/contactUsView.faces">
-                 <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/contact_us.png"/>
-                 <h:outputText styleClass="lmenu_text" value="#{bundle.left_manage_contact_us}"/>
-                </h:outputLink>                
-              </td>
-            </tr>
-          </table>          
+          <ul class="sidemenu">
+            <li>
+              <h:outputLink styleClass="alink" 
+               value="#{controllerBean.contextPath}/pages/secure/contactUsView.faces">
+               <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/contact_us.png"/>
+               <h:outputText styleClass="lmenu_text" value="#{bundle.left_manage_contact_us}"/>
+              </h:outputLink>  
+            </li>
+          </ul>                    
         </h:panelGroup>
       </h:panelGroup>
     </div>

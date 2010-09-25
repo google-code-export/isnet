@@ -7,148 +7,125 @@
 <ui:composition>
  	<!-- Mentor Home Menu -->
    <h:panelGroup id="idMentorDashboardPanel" rendered="${moduleType eq 'MH'}">
-      <table>
-        <tr>
-          <td class="lmenu" valign="middle">
-            <h:outputLink styleClass="alink" 
+      <ul class="sidemenu">
+        <li>
+           <h:outputLink styleClass="alink" 
              value="#{controllerBean.contextPath}/pages/secure/mentorDashboard.faces">
-             <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/gauge.png"/>
-             <h:outputText styleClass="lmenu_text" value="#{bundle.left_navigation_mentor_dashboard}"/>
-            </h:outputLink>                
-          </td>
-        </tr>      
-        <tr>
-          <td class="lmenu" valign="middle">
-            <h:outputLink  styleClass="#{messageHanlder.unReadMessageCount ne '0'? 'menu_item_clink hight_lighted_menu' : 'menu_item_clink'}"
+            <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/gauge.png"/>
+            <h:outputText styleClass="lmenu_text" value="#{bundle.left_navigation_mentor_dashboard}"/>
+          </h:outputLink>    
+        </li>
+        
+        <li>
+          <h:outputLink  styleClass="#{messageHanlder.unReadMessageCount ne '0'? 'menu_item_clink hight_lighted_menu' : 'menu_item_clink'}"
               value="#{controllerBean.contextPath}/pages/secure/memberMessage.faces?folder=RECEIVED">
-              <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/mail.png"/>
-              <rich:spacer width="2"/>
-              <h:outputText styleClass="lmenu_text" value="My Messages"/>
-              <rich:spacer width="2"/>
-              <h:outputText styleClass="lmenu_text" style="color: red; font-weight: bolder;" 
-                rendered="#{messageHanlder.unReadMessageCount ne '0'}" 
-                value="( #{messageHanlder.unReadMessageCount} )"/>
-            </h:outputLink>                
-          </td>
-        </tr>
+            <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/mail.png"/>
+            <rich:spacer width="2"/>
+            <h:outputText styleClass="lmenu_text" value="My Messages"/>
+            <rich:spacer width="2"/>
+            <h:outputText styleClass="lmenu_text" style="color: red; font-weight: bolder;" 
+              rendered="#{messageHanlder.unReadMessageCount ne '0'}" 
+              value="( #{messageHanlder.unReadMessageCount} )"/>
+          </h:outputLink>
+        </li>        
         
-        <tr>
-          <td class="lmenu" valign="middle">
-            <h:outputLink styleClass="alink" 
+        <li>
+          <h:outputLink styleClass="alink" 
              value="#{controllerBean.contextPath}/pages/secure/memberProtegeProfile.faces">
-              <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/businessman.png"/>
-              <h:outputText styleClass="lmenu_text" value="#{bundle.page_header_protege_profile}"/>
-            </h:outputLink>                
-          </td>
-        </tr>
+            <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/businessman.png"/>
+            <h:outputText styleClass="lmenu_text" value="#{bundle.page_header_protege_profile}"/>
+          </h:outputLink> 
+        </li>
         
-        <tr>
-          <td class="lmenu" valign="middle">
-            <h:outputLink styleClass="alink" 
+        <li>
+          <h:outputLink styleClass="alink" 
              value="#{controllerBean.contextPath}/pages/secure/protegeSearch.faces">
-              <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/businessman_find.png"/>
-              <h:outputText styleClass="lmenu_text" value="#{bundle.page_header_protege_search}"/>
-            </h:outputLink>                
-          </td>
-        </tr>
+            <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/businessman_find.png"/>
+            <h:outputText styleClass="lmenu_text" value="#{bundle.page_header_protege_search}"/>
+          </h:outputLink> 
+        </li>
         
-        <tr>
-          <td class="lmenu" valign="middle">
-            <h:outputLink styleClass="alink" 
+        <li>
+          <h:outputLink styleClass="alink" 
              value="#{controllerBean.contextPath}/pages/secure/memberPendingMentorCertification.faces">
-              <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/graduate.png"/>
-              <h:outputText styleClass="lmenu_text" value="Approve Certification"/>
-            </h:outputLink>                
-          </td>
-        </tr>
-        <tr>
-          <td class="lmenu" valign="middle">
-            <h:outputLink styleClass="alink" 
+            <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/graduate.png"/>
+            <h:outputText styleClass="lmenu_text" value="Approve Certification"/>
+          </h:outputLink>   
+        </li>
+        
+        <li>
+          <h:outputLink styleClass="alink" 
              value="#{controllerBean.contextPath}/pages/secure/leadMentorSearch.faces">
-              <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/businessman_view.png"/>
-              <h:outputText styleClass="lmenu_text" value="#{bundle.page_header_lead_mentor_search}"/>
-            </h:outputLink>                
-          </td>
-        </tr>        
-        <tr>
-          <td class="lmenu" valign="middle">
-            <h:outputLink styleClass="alink" 
+            <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/businessman_view.png"/>
+            <h:outputText styleClass="lmenu_text" value="#{bundle.page_header_lead_mentor_search}"/>
+          </h:outputLink>    
+        </li>
+        
+        <li>
+          <h:outputLink styleClass="alink" 
              value="#{controllerBean.contextPath}/pages/secure/memberLog.faces">
-              <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/calendar_preferences.png"/>
-              <h:outputText styleClass="lmenu_text" value="#{bundle.left_navigation_mentor_activity_log}"/>
-            </h:outputLink>                
-          </td>
-        </tr>
+            <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/calendar_preferences.png"/>
+            <h:outputText styleClass="lmenu_text" value="#{bundle.left_navigation_mentor_activity_log}"/>
+          </h:outputLink> 
+        </li>
         
-        <tr>
-          <td class="lmenu" valign="middle">
-            <h:outputLink styleClass="alink" 
-             value="#{controllerBean.contextPath}/pages/secure/memberStory.faces">
-              <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/note.png"/>
-              <h:outputText styleClass="lmenu_text" value="#{bundle.left_navigation_mentor_success_story}"/>
-            </h:outputLink>                
-          </td>
-        </tr> 
+        <li>
+          <h:outputLink styleClass="alink" 
+           value="#{controllerBean.contextPath}/pages/secure/memberStory.faces">
+            <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/note.png"/>
+            <h:outputText styleClass="lmenu_text" value="#{bundle.left_navigation_mentor_success_story}"/>
+          </h:outputLink> 
+        </li>
         
-        <tr>
-          <td class="lmenu" valign="middle">
-            <h:outputLink styleClass="alink" 
+        <li>
+          <h:outputLink styleClass="alink" 
              value="#{controllerBean.contextPath}/pages/secure/memberTutorial.faces">
-              <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/certificate_new.png"/>
-              <h:outputText styleClass="lmenu_text" value="#{bundle.left_navigation_dawah_certification_training}"/>
-            </h:outputLink>                
-          </td>
-        </tr>
-      </table>
+            <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/certificate_new.png"/>
+            <h:outputText styleClass="lmenu_text" value="#{bundle.left_navigation_dawah_certification_training}"/>
+          </h:outputLink>  
+        </li>       
+      </ul>      
    </h:panelGroup>
    
    
    <h:panelGroup id="idMentorAccountPanel" rendered="${moduleType eq 'MA'}">
-    <table>
-      <tr>
-        <td class="lmenu" valign="middle">
+      <ul class="sidemenu">
+        <li>
           <h:outputLink styleClass="alink" 
            value="#{controllerBean.contextPath}/pages/secure/mentorProfile.faces">
            <h:graphicImage styleClass="lmenu_img" value=""/>
            <h:outputText styleClass="lmenu_text" value="#{bundle.page_header_myaccount_profile}"/>
-          </h:outputLink>                
-        </td>
-      </tr>
-      
-      <tr>
-        <td class="lmenu" valign="middle">
+          </h:outputLink>   
+        </li>
+        
+        <li>
           <h:outputLink styleClass="alink" 
            value="#{controllerBean.contextPath}/pages/secure/mentorChangePassword.faces">
             <h:graphicImage styleClass="lmenu_img" value=""/>
             <h:outputText styleClass="lmenu_text" value="#{bundle.page_header_myaccount_change_password}"/>
-          </h:outputLink>                
-        </td>
-      </tr>
-    </table>     
+          </h:outputLink>   
+        </li>
+      </ul>
    </h:panelGroup>
       
    <h:panelGroup id="idMentorMessagePanel" rendered="${moduleType eq 'MM'}">
-     <table>
-      <tr>
-        <td class="lmenu" valign="middle">
-          <h:outputLink styleClass="alink" 
-           value="#{controllerBean.contextPath}/pages/secure/memberMessage.faces?folder=RECEIVED">
-            <h:graphicImage styleClass="lmenu_img" value=""/>
-            <h:outputText styleClass="lmenu_text" value="Inbox"/>
-          </h:outputLink>                
-        </td>
-      </tr>
-      
-      <tr>
-        <td class="lmenu" valign="middle">
+     <ul class="sidemenu">
+      <li>
+        <h:outputLink styleClass="alink" 
+         value="#{controllerBean.contextPath}/pages/secure/memberMessage.faces?folder=RECEIVED">
+          <h:graphicImage styleClass="lmenu_img" value=""/>
+          <h:outputText styleClass="lmenu_text" value="Inbox"/>
+        </h:outputLink> 
+      </li>
+        
+       <li>
           <h:outputLink styleClass="alink" 
            value="#{controllerBean.contextPath}/pages/secure/memberMessage.faces?folder=SENT">
             <h:graphicImage styleClass="lmenu_img" value=""/>
             <h:outputText styleClass="lmenu_text" value="Sent Items"/>
-          </h:outputLink>                
-        </td>
-      </tr>
-    </table>
+          </h:outputLink>   
+      </li>
+     </ul>     
    </h:panelGroup>          
 </ui:composition>
 </html>
