@@ -9,8 +9,14 @@
 
 	<ui:composition template="/templates/basictemplate.xhtml">
 	<ui:param name="moduleTitle" value="#{bundle.dashboard_mentor_page_title}"></ui:param>
- 		<ui:param name="userType" value="P"/>
- 		<ui:param name="moduleType" value="PH"/>
+ 	<ui:param name="userType" value="P"/>
+ 	<ui:param name="moduleType" value="PH"/>
+	<ui:define name="js">
+		<script type="text/javascript"
+				src="#{controllerBean.contextPath}/js/Modalhelper.js"> 
+		</script>
+	</ui:define>
+
 	<ui:define name="body">
 		<h:panelGrid columns="2" cellpadding="0" cellspacing="0" border="0" columnClasses="dashboard_page_column1,dashboard_page_column2" width="100%">
 			
@@ -38,7 +44,9 @@
        <ui:include src="../modals/memberLogViewDialog.xhtml" ></ui:include>
        <ui:include src="../modals/StoryViewDialog.xhtml"></ui:include>
         <ui:include src="../modals/requestNoteDialog.xhtml"></ui:include>      
-         <ui:include src="../modals/memberLogDialog.xhtml"></ui:include>      
+         <ui:include src="../modals/memberLogDialog.xhtml"></ui:include>     
+           <ui:include src="../modals/attachFileDialog.xhtml"></ui:include>
+			 <ui:include src="../modals/messageDialog.xhtml"></ui:include> 
     </a4j:region>
   </ui:define>
 	</ui:composition>
