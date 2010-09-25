@@ -432,11 +432,18 @@ public class ProtegeProfileViewHandler extends BasePage{
 			member.setCertificationDate(cal.getTime());
 			this.memberService.update(member);
 			
+			String emailSub = this.getText("email_mentor_certification_sub");
+			String emailBody = this.getText("email_mentor_certification_body");
+			String emailAddress = member.getEmail();
+			String name = member.getFirstName() + " "+ member.getLastName();
+			
+			this.sendEmail(emailAddress, emailSub, emailBody, name);
 		}
 		catch(Exception ex){
 			log.error(ex.getMessage(),ex);
 		}
 	}
+	
 	
 	
 	
