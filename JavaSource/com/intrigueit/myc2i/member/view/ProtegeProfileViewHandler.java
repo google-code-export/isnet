@@ -51,10 +51,10 @@ public class ProtegeProfileViewHandler extends BasePage{
 		this.zipCodeService = zipCodeService;
 		this.currentMember = new Member();
 	}
-	
-	private void loadMentorAroundMe(){
+
+	public void loadMentorAroundMe(){
 		String clause = null;
-		clause = " t.typeId ="+CommonConstants.MENTOR+"";
+		clause = " t.typeId ="+CommonConstants.MENTOR+" and upper(t.isMemberCertified) = 'YES'";
 		
 		String currentMemberGender = this.getMember().getGenderInd();
 		clause = clause + " and t.genderInd='"+ currentMemberGender + "'"; 
@@ -76,6 +76,7 @@ public class ProtegeProfileViewHandler extends BasePage{
 			log.error(ex.getMessage());
 		}
 	}
+
 	private List<String> getZipCodes(){
 		List<String> zipCodes = new ArrayList<String>();
 		
@@ -353,16 +354,11 @@ public class ProtegeProfileViewHandler extends BasePage{
 	}
 
 	public List<Member> getMentorsAraoundProtege() {
-		if(mentorsAraoundProtege == null){
-			this.loadMentorAroundMe();
-		}
-		
+
 		return mentorsAraoundProtege;
 	}
 
-	public void setMentorsAraoundProtege(List<Member> mentorsAraoundProtege) {
-		this.mentorsAraoundProtege = mentorsAraoundProtege;
-	}
+
 
 	private void loadLogs(){
 		try{
