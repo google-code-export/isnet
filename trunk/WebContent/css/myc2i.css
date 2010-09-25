@@ -44,6 +44,8 @@ ul.menu li aX {
   font-size: 13px;
   font-weight: bold;
   color: white;
+  line-height: 31px;
+  vertical-align: middle;
 }
 .lmenu_login_text{
   font-size: 11px;
@@ -51,13 +53,16 @@ ul.menu li aX {
   color: white;
 }
 .lmenu_img{  
+  padding: 0px;
+  margin: 3px;
+  line-height: 31px;
+  vertical-align: middle;
 }
 
 .lmenu{
   background: url(../images/light.jpg) 0 0 no-repeat;
   width:194px;
   height:31px;
-  padding:0;
 }
 
 .lmenu:hover{
