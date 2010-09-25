@@ -211,7 +211,25 @@ public class MessageViewHanlder extends BasePageExtended {
 		this.resetMessage();
 
 	}
+	/**
+	 * Initialize message dialog
+	 */
+	public void initMessageDialog2() {
+		this.initMessageDialog();
+		String memberid = this.getParameter("MEMBER_ID");
+		if(memberid == null || memberid.equals("")){
+			return;
+		}
+		try{
+			Member member = this.memberService.findById(Long.parseLong(memberid));
+			this.toMemberList.put(Long.parseLong(memberid), member.getEmail());
+			this.toMemberNameList = member.getFirstName() + " "+ member.getLastName();
+		}
+		catch(Exception ex){
+			log.error(ex.getMessage(),ex);
+		}
 
+	}
 	/**
 	 * 
 	 */
