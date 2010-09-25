@@ -460,4 +460,7 @@ public class BasePage {
 		
 	}
 
+	protected String getMemberName(){
+		return  this.getMember().getFirstName() + " "+ this.getMember().getLastName();
+	}
 }
