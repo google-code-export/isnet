@@ -204,15 +204,13 @@ public class ModulePlayer extends BasePage {
 					: this.getText("tutorial_fail_status");
 			String msgSub = this.getText("tutorial_test_email_sub",
 					new String[] { "" + module.getModuleName() + "" });
-			String memberName = this.getMember().getFirstName() + " "
-					+ this.getMember().getLastName();
+			
+
 			String msgBody = this.getText("tutorial_test_email_body",
-					new String[] { memberName, "" + totalQuestions,
-							"" + totalCorrectAnswer, "" + percentOfCorrect,
-							"" + passStatus });
+					new String[] {"" + totalQuestions,	"" + totalCorrectAnswer, "" + percentOfCorrect,	"" + passStatus });
 
 			/** Send email message */
-			this.sendNotification(this.getMember().getEmail(), msgSub, msgBody);
+			this.sendNotification(this.getMember().getEmail(), msgSub, msgBody, this.getMemberName());
 
 		} catch (Exception ex) {
 			log.error("Error occured during creating test result. "
@@ -257,17 +255,12 @@ public class ModulePlayer extends BasePage {
 
 	/** Send confirmation email to member */
 	private void sendNotification(String email, String emailSubject,
-			String msgBody) throws Exception {
+			String msgBody,String name) throws Exception {
 		/** Send email notification */
 		try {
-			Emailer emailer = new Emailer(email, msgBody, emailSubject);
-			//emailer.setContentType("text/html");
-			//emailer.sendEmail();
-			/**Send email notification */
 
-			Runnable task = new HtmlEmailerTask(emailer);
-			TaskExecutionPool pool =  (TaskExecutionPool) this.getBean("taskPool");
-			pool.addTaskToPool(task);
+			
+			this.sendEmail(email, emailSubject, msgBody, name);
 			
 		} catch (Exception e) {
 			log.debug("Failed to sending notification email");
