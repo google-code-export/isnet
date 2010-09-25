@@ -81,6 +81,21 @@
         <tr>
           <td class="lmenu" valign="middle">
             <h:outputLink styleClass="alink" 
+             value="#{controllerBean.contextPath}/pages/secure/memberPendingMentorCertification.faces">
+              <table>
+                <tr>
+                  <td><h:graphicImage value="${imagesPath}/graduate.png"/></td>                      
+                  <td class="lmenu_text">
+                    &#160;<h:outputText value="Approve Certification"/>
+                  </td>
+                </tr>
+              </table>
+            </h:outputLink>                
+          </td>
+        </tr>
+        <tr>
+          <td class="lmenu" valign="middle">
+            <h:outputLink styleClass="alink" 
              value="#{controllerBean.contextPath}/pages/secure/leadMentorSearch.faces">
               <table>
                 <tr>
@@ -92,8 +107,7 @@
               </table>
             </h:outputLink>                
           </td>
-        </tr>
-        
+        </tr>        
         <tr>
           <td class="lmenu" valign="middle">
             <h:outputLink styleClass="alink" 
