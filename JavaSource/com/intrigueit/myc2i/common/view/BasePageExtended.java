@@ -13,6 +13,7 @@ public class BasePageExtended extends BasePage {
 
 	protected String toMemberNameList = "";
 	
+	/** Contains member id and their email address */
 	protected Map<Long, String> toMemberList = new HashMap<Long, String>();
 	
 	
