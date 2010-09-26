@@ -237,7 +237,7 @@ public class AuthenticationViewHandler extends BasePage implements Serializable 
 				
 				int memberShipExpiry = 30;
 				
-				System.out.println(memberShipExpiry);
+				//System.out.println(memberShipExpiry);
 				
 				try{
 					memberShipExpiry = Integer.parseInt(this.getText("membership_expiry_period"));
