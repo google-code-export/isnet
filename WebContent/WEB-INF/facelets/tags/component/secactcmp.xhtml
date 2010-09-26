@@ -7,6 +7,10 @@
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:c="http://java.sun.com/jstl/core">
   <ui:composition>    
+      <c:set var="_updateLabel" value="Update" />
+      <c:if test="${ not empty updateLabel}">
+        <c:set var="_updateLabel" value="${updateLabel}" />
+      </c:if>
       <rich:panel styleClass="action_panel" id="${modalId}Ctrl">              
         <h:panelGroup>
           <a4j:commandButton rendered="${controlBean.reloadBean}" id="${modalId}Reload" value="Reload"
@@ -19,7 +23,7 @@
             onclick="forceSBlockUI(ajaxProcessMsg);" reRender="${modalId}Ctrl,${modalId}ErrPan,${reRenderIds}"
             styleClass="ibutton" style="background:#374E90;color: #ffffff;"/>
         
-          <a4j:commandButton rendered="${actionType eq 'U'}" id="${modalId}Update" value="Update"  action="${controlBean[updateAction]}"
+          <a4j:commandButton rendered="${actionType eq 'U'}" id="${modalId}Update" value="${_updateLabel}"  action="${controlBean[updateAction]}"
             oncomplete="forceSUnblockUI(),Common.closeModalPanel('${controlBean.errorMessage}', '${modalId}');"
             onclick="forceSBlockUI(ajaxProcessMsg);" reRender="${modalId}Ctrl,${modalId}ErrPan,${reRenderIds}"
             styleClass="ibutton" style="background:#374E90;color: #ffffff;"/>
