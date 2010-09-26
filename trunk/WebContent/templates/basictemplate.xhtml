@@ -54,7 +54,9 @@
                 <div class="t-100">
                   <div class="box title heading">
                     <div id="logo_style" style="border: 0px solid red;">     
-                      <a href="http://www.google.com/">MyC2i</a>    
+                      <h:outputLink
+                        value="#{controllerBean.contextPath}#{authenticationViewHandler.homePageUrl}">
+                      </h:outputLink>   
                     </div>                    
                     <h:graphicImage title="Clouds" value="${imagesPath}/clouds00.png" styleClass="clouds"/>
                     <div class="faith"> 
