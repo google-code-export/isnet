@@ -12,49 +12,14 @@
     <title>
       <h:outputText value="MyC2i :: ${moduleTitle}" />
     </title>  
-  
-  <c:set var="refColumns" value="3" />
-  <c:if test="${ not empty pageColumns}">
-    <c:set var="refColumns" value="${pageColumns}" />
-  </c:if>
-  
-  <c:when test="${userType eq 'A'}">
-    <c:set var="colClass" value="admin_leftside,admin_middle" />
-    <c:set var="showRightColumn" value="N" />
-  </c:when>
-  <c:choose>
-    <c:when test="${userType eq 'A'}">
-      <c:set var="colClass" value="admin_leftside,admin_middle" />
-      <c:set var="showRightColumn" value="N" />
-    </c:when>
-
-    <c:when test="${userType eq 'P' and empty pageColumns}">
-      <c:set var="colClass" value="admin_leftside,admin_middle" />
-      <c:set var="showRightColumn" value="N" />
-    </c:when>
     
-    <c:when test="${userType eq 'P' and pageColumns eq '1'}">
-      <c:set var="colClass" value="middle" />
-      <c:set var="showRightColumn" value="N" />
+    <c:set var="showLeftColumn" value="Y" />
+    <c:set var="bodyClass" value="t-75" />
+    <c:if test="${pageColumns eq 1}">
       <c:set var="showLeftColumn" value="N" />
-    </c:when>
-    
-    <c:when test="${userType eq 'MG'}">
-      <c:set var="colClass" value="middle" />
-      <c:set var="showRightColumn" value="N" />
-      <c:set var="showLeftColumn" value="N" />
-    </c:when>   
-     
-    <c:when test="${userType eq 'M'}">
-      <c:set var="colClass" value="admin_leftside,admin_middle" />
-      <c:set var="showRightColumn" value="N" />
-    </c:when>
-    
-    <c:otherwise>
-      <c:set var="colClass" value="leftside,middle,rightside" />
-    </c:otherwise>
-  </c:choose>
-
+      <c:set var="bodyClass" value="t-99" />
+    </c:if>
+  
     <a4j:outputPanel id="idStyleClass">
       <link rel="STYLESHEET" type="text/css" href="#{controllerBean.contextPath}/#{controllerBean.cssPath}/myc2i.css"/>
       <link rel="STYLESHEET" type="text/css" href="#{controllerBean.contextPath}/#{controllerBean.cssPath}/richtools.css"/>
@@ -116,11 +81,13 @@
                   </div>
             
                   <div class="row clearfix t-100 box body_bg">
-                    <div class="t-25 last side" style="border: 0px solid red;">                  
-                      <ui:include src="/templates/include/leftside.xhtml"/>
-                    </div>
+                    <h:panelGroup rendered="${showLeftColumn ne 'N'}">
+                      <div class="t-25 last side" style="border: 0px solid red;">                  
+                        <ui:include src="/templates/include/leftside.xhtml"/>
+                      </div>
+                    </h:panelGroup>
             
-                    <div class="t-75 content" style="background-color: #ffffff;">
+                    <div class="${bodyClass} content" style="background-color: #ffffff;">
                       <h:panelGroup id="idErrorPanelCon">
                         <ui:include src="/templates/include/messagePanel.xhtml"></ui:include>
                       </h:panelGroup>
