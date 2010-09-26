@@ -8,7 +8,7 @@
   xmlns:c="http://java.sun.com/jstl/core"
   xmlns:rich="http://richfaces.org/rich">
 
-<ui:composition template="/templates/maintmpl.xhtml">
+<ui:composition template="/templates/maintmpl.xhtml"> 
   <ui:param name="moduleTitle" value="#{bundle.page_header_protege_evaluat_mentor}"></ui:param>
   <ui:param name="userType" value="P"></ui:param>
   <ui:param name="moduleType" value="MG"></ui:param>
@@ -131,7 +131,7 @@
           styleClass="text_align_center" columns="1" width="90%">
         <h:panelGroup>
           <a4j:commandButton value="#{bundle.button_submit_label}" action="#{proEvalManViewHandler.doSave}" 
-            onclick="forceSBlockUI(ajaxProcessMsg);" styleClass="ibutton" style="background:#F8F3D3;" 
+            onclick="forceSBlockUI(ajaxProcessMsg);" styleClass="ibutton" style="background:#374E90;color: #ffffff;" 
             oncomplete="forceSUnblockUI();"
             reRender="idErrorPanel">
             <f:param value="#{facesContext.externalContext.request.parameterMap['mentorId'][0]}" 
@@ -139,7 +139,7 @@
           </a4j:commandButton>
           &#160;&#160;
            <a4j:commandButton value="#{bundle.button_clear}" action="#{proEvalManViewHandler.doClear}" 
-            onclick="forceSBlockUI(ajaxProcessMsg);" styleClass="ibutton" style="background:#F8F3D3;" 
+            onclick="forceSBlockUI(ajaxProcessMsg);" styleClass="ibutton" style="background:#374E90;color: #ffffff;" 
             oncomplete="forceSUnblockUI();" reRender="idErrorPanel,idSectionsCon">
             <f:param value="#{facesContext.externalContext.request.parameterMap['mentorId'][0]}" 
               name="mentorId"/> 
