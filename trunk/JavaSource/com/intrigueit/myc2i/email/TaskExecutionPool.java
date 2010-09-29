@@ -20,7 +20,7 @@ public class TaskExecutionPool {
  
     ThreadPoolExecutor threadPool = null;
     
-    final ArrayBlockingQueue<Runnable> queue = new ArrayBlockingQueue<Runnable>(5);
+    final ArrayBlockingQueue<Runnable> queue = new ArrayBlockingQueue<Runnable>(15);
     
 	protected static final Logger logger = Logger.getLogger( TaskExecutionPool.class );
 	
@@ -29,11 +29,15 @@ public class TaskExecutionPool {
     }
     public void addTaskToPool(Runnable task)
     {
-    	logger.debug("Task count.."+threadPool.getTaskCount() );
+    	/*
+    	logger.debug("Task count in pool .."+threadPool.getTaskCount() );
         threadPool.execute(task);
         logger.debug("Task addded");
-    	logger.debug("Task count.."+threadPool.getTaskCount() );
-        logger.debug("Task count.." + queue.size());
+    	logger.debug("Task in pool: .."+threadPool.getTaskCount() );
+        logger.debug("Queue size: .." + queue.size());
+        */
+    	Thread thd = new Thread(task);
+    	thd.start();
  
     }
 
