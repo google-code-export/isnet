@@ -100,7 +100,6 @@ a:hover {
   position: absolute;
   margin-top: 17px;
   margin-left: 5px;
-  border: 1p px solid red;
 }
 #header #logo a:hover {
   opacity: .9;
@@ -523,7 +522,6 @@ div.faith {
 div.main-menu {
   margin-top: 50px;
   position: absolute;
-  border: 0px solid red;
 }
 img.clouds {
   margin-left: 750px;
@@ -799,7 +797,6 @@ div.example-request {
 }
 .default_edit td[class="prompt"]{
   width: 140px;
-  border: 0px solid red;
   vertical-align: top;
 }
 .default_edit table.itext{
@@ -824,7 +821,6 @@ div.example-request {
 }
 .onecolumn_edit td[class="prompt"]{
   width: 140px;
-  border: 0px solid red;
   vertical-align: top;
 }
 .onecolumn_edit table.itext{
@@ -909,7 +905,6 @@ div.example-request {
   vertical-align: middle;
 }
 .body_bg {
-  border: 0px solid red;
   padding-top: 5px;
   /* background-color: #9EA9C9; */
   background:url(../images/body-text-bg_n.png);
