@@ -11,21 +11,21 @@
       <ul>
         <li class="first">
           <h:commandLink action="#{authenticationViewHandler.logOutUser}"
-            value="#{bundle.top_navigation_sign_out}"
+            value="#{bundle.top_navigation_sign_out}  |"
             rendered="#{authenticationViewHandler.isLogged}">
-          </h:commandLink>
+          </h:commandLink>          
         </li>
         <li>
           <h:outputLabel style="text-decoration:none;"
             rendered="#{authenticationViewHandler.isLogged}">
-            <h:outputText styleClass="toplink_text" value="#{authenticationViewHandler.userEmailId}" />
+            <h:outputText styleClass="toplink_text" value="#{authenticationViewHandler.userEmailId}  |" />
           </h:outputLabel>
         </li>
         <li>
           <h:outputLink styleClass="" style="text-decoration:none;"
             value="#{controllerBean.contextPath}/privacyPolicy.faces">
             <h:outputText id="idPrivacyPolicy"
-              value="#{bundle.top_navigation_privacy_policy}" />
+              value="#{bundle.top_navigation_privacy_policy}  |" />
           </h:outputLink>
         </li>
         <li class="last">
