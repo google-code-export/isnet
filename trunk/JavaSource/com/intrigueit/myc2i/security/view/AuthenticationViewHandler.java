@@ -47,6 +47,7 @@ public class AuthenticationViewHandler extends BasePage implements Serializable 
 	private String init;
 	private String mentorStory;
 	private String protegeStory;
+	private String styleNL;
 
 	private UDValuesService udService;
 
@@ -421,6 +422,17 @@ public class AuthenticationViewHandler extends BasePage implements Serializable 
 
 	public void setMentorTopMenu(MentorTopMenu mentorTopMenu) {
 		this.mentorTopMenu = mentorTopMenu;
+	}
+
+	public String getStyleNL() {
+		if(this.getIsLogged()){
+			return "";
+		}
+		return "display: none;";
+	}
+
+	public void setStyleNL(String styleNL) {
+		this.styleNL = styleNL;
 	}
 
 }
