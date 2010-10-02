@@ -8,32 +8,38 @@
   <div id="header">              
     <div id="nav">
       <ul>
-        <li class="first">
+        <li class="first" style="${authenticationViewHandler.styleNL}">
           <h:commandLink action="#{authenticationViewHandler.logOutUser}"
-            value="#{bundle.top_navigation_sign_out}  |"
+            value="#{bundle.top_navigation_sign_out}"
             rendered="#{authenticationViewHandler.isLogged}">
           </h:commandLink>          
         </li>
-        <li>
+        <li style="${authenticationViewHandler.styleNL}">
           <h:outputLabel style="text-decoration:none;"
             rendered="#{authenticationViewHandler.isLogged}">
-            <h:outputText styleClass="toplink_text" value="#{authenticationViewHandler.userEmailId}  |" />
+            <h:outputText styleClass="toplink_text" value="#{authenticationViewHandler.userEmailId}" />
           </h:outputLabel>
         </li>
         <li>
           <h:outputLink styleClass="" style="text-decoration:none;"
             value="#{controllerBean.contextPath}/privacyPolicy.faces">
             <h:outputText id="idPrivacyPolicy"
-              value="#{bundle.top_navigation_privacy_policy}  |" />
+              value="#{bundle.top_navigation_privacy_policy}" />
           </h:outputLink>
         </li>
-        <li class="last">
-          <h:outputLink styleClass="" style="text-decoration:none;"
+        <li >
+          <h:outputLink style="text-decoration:none;"
             value="#{controllerBean.contextPath}/contactUs.faces">
             <h:outputText id="idContactus"
               value="#{bundle.top_navigation_contact_us}" />
           </h:outputLink>
         </li>
+        <li class="last">
+          <h:outputLink styleClass="" style="text-decoration:none;"  target="_blank"
+            value="${help_doc}">
+            <h:outputText value="Help" />
+          </h:outputLink>
+        </li>        
       </ul>
     </div>
   </div>
