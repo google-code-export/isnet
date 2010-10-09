@@ -9,11 +9,12 @@
  	 xmlns:rich="http://richfaces.org/rich">
 
 <ui:composition template="/templates/paymenttmpl.xhtml">
- <ui:param name="moduleTitle" value="#{bundle.page_title_donate}"></ui:param>
- <ui:param name="userType" value="M"></ui:param>
+  <ui:param name="moduleTitle" value="#{bundle.page_title_donate}"></ui:param>
+  <ui:param name="userType" value="M"></ui:param>
   <ui:param name="moduleType" value="MGs"></ui:param>
- <ui:param name="headerText" value="#{bundle.page_title_donate}"></ui:param>
+  <ui:param name="headerText" value="#{bundle.page_title_donate}"></ui:param>
   <ui:param name="refManageBean" value="#{udvViewHandler}"></ui:param>
+  <ui:param name="help_doc" value="#{controllerBean.contextPath}/online_help/mentor_donate_help.htm"></ui:param>
  
   <ui:define name="body">    
 
