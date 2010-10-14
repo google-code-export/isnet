@@ -27,12 +27,13 @@ import com.intrigueit.myc2i.memberlog.domain.MemberLog;
 import com.intrigueit.myc2i.memberlog.service.MemberLogService;
 import com.intrigueit.myc2i.udvalues.domain.UserDefinedValues;
 import com.intrigueit.myc2i.udvalues.service.UDValuesService;
-import com.intrigueit.myc2i.utility.Emailer;
 
 @Component("memberLogViewHandler")
 @Scope("session")
-public class MemberLogViewHandler extends BasePageExtended implements Serializable {
-	
+public class MemberLogViewHandler extends BasePageExtended
+		implements
+			Serializable {
+
 	private static final long serialVersionUID = 3248335429408226984L;
 	/** Initialize the Logger */
 	protected static final Logger logger = Logger
@@ -43,7 +44,7 @@ public class MemberLogViewHandler extends BasePageExtended implements Serializab
 	private List<MemberLog> memberLogs;
 	private List<MemberLog> memberLogsOld;
 	private List<MemberLog> memberLastWeekLogs;
-	//private List<SelectItem> mentorList;
+	// private List<SelectItem> mentorList;
 	private MemberLog currentLog;
 	private MemberLog currentLog2;
 	private ViewDataProvider viewDataProvider;
@@ -54,186 +55,197 @@ public class MemberLogViewHandler extends BasePageExtended implements Serializab
 	private boolean isActivityTypeReadOnly;
 	private String memberName;
 	private String ddDay = "0";
-	
+
 	@Autowired
 	public MemberLogViewHandler(MemberLogService memberLogService,
-			MemberService memberService,UDValuesService udService) {
+			MemberService memberService, UDValuesService udService) {
 		this.memberLogService = memberLogService;
 		this.memberService = memberService;
 		this.udService = udService;
 	}
 
-	public void initMemberLogViewDialog(){
+	public void initMemberLogViewDialog() {
 		String activityId = this.getRequest().getParameter("LOG_ID");
-		if(activityId == null){
+		if (activityId == null) {
 			return;
 		}
-		try{
-			this.currentLog2 = this.memberLogService.findById(Long.parseLong(activityId));
-		}
-		catch(Exception ex){
+		try {
+			this.currentLog2 = this.memberLogService.findById(Long
+					.parseLong(activityId));
+		} catch (Exception ex) {
 			log.error(ex.getMessage());
 		}
 	}
-	public void itemChanged(){
-		try{
-			UserDefinedValues ud = udService.loadById(this.currentLog.getMemberActivityType());
+	public void itemChanged() {
+		try {
+			UserDefinedValues ud = udService.loadById(this.currentLog
+					.getMemberActivityType());
 			this.currentLog.setTopic(ud.getUdValuesDesc());
 			this.currentLog.setMemberLogEntryDescription(ud.getUdValuesDesc());
-			
-		}
-		catch(Exception ex){
+
+		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
 
 	}
 	public void initMemberLog() {
 		this.currentLog = new MemberLog();
-		
+
 		this.resetMessage();
-		
+
 		this.showSearchBox = true;
 		this.isActivityTypeReadOnly = false;
-		
+
 		this.toMemberList.clear();
 		this.toMemberNameList = "";
 
 	}
-	public void initRecentLog(){
+	public void initRecentLog() {
 		String memberId = this.getRequest().getParameter("MEMBER_ID");
-		if(memberId == null){
+		if (memberId == null) {
 			return;
-		}		
-		try{
-			
-			this.memberLastWeekLogs = this.memberLogService.getRecentConversation(Long.parseLong(memberId));
-			if(this.memberLastWeekLogs == null){
+		}
+		try {
+
+			this.memberLastWeekLogs = this.memberLogService
+					.getRecentConversation(Long.parseLong(memberId));
+			if (this.memberLastWeekLogs == null) {
 				this.memberLastWeekLogs = new ArrayList<MemberLog>();
 			}
-		}
-		catch(Exception ex){
+		} catch (Exception ex) {
 			log.error(ex.getMessage());
 		}
 	}
-	private UserDefinedValues getMyUserDefinedValue(){
-		List<UserDefinedValues> types = udService.findByProperty("udValuesValue", CommonConstants.ACTIVITY_TYPE_PROTEGE_REQUEST);
-		for(UserDefinedValues val: types){
-			if(this.getMember().getTypeId().equals(CommonConstants.PROTEGE)){
-				if(val.getUdValuesCategory().equals(CommonConstants.ACTIVITY_LOG_PROTEGE)){
+	private UserDefinedValues getMyUserDefinedValue() {
+		List<UserDefinedValues> types = udService.findByProperty(
+				"udValuesValue", CommonConstants.ACTIVITY_TYPE_PROTEGE_REQUEST);
+		for (UserDefinedValues val : types) {
+			if (this.getMember().getTypeId().equals(CommonConstants.PROTEGE)) {
+				if (val.getUdValuesCategory().equals(
+						CommonConstants.ACTIVITY_LOG_PROTEGE)) {
 					return val;
 				}
 			}
-			if(this.getMember().getTypeId().equals(CommonConstants.MENTOR)){
-				if(val.getUdValuesCategory().equals(CommonConstants.ACTIVITY_LOG_MENTOR)){
+			if (this.getMember().getTypeId().equals(CommonConstants.MENTOR)) {
+				if (val.getUdValuesCategory().equals(
+						CommonConstants.ACTIVITY_LOG_MENTOR)) {
 					return val;
 				}
-			}			
+			}
 		}
 		return null;
 	}
-	private UserDefinedValues getMentorRequestUserDefinedValue(){
-		List<UserDefinedValues> types = udService.findByProperty("udValuesValue", CommonConstants.ACTIVITY_TYPE_MENTOR_REQUEST);
-		for(UserDefinedValues val: types){
-			if(this.getMember().getTypeId().equals(CommonConstants.PROTEGE)){
-				if(val.getUdValuesCategory().equals(CommonConstants.ACTIVITY_LOG_PROTEGE)){
+	private UserDefinedValues getMentorRequestUserDefinedValue() {
+		List<UserDefinedValues> types = udService.findByProperty(
+				"udValuesValue", CommonConstants.ACTIVITY_TYPE_MENTOR_REQUEST);
+		for (UserDefinedValues val : types) {
+			if (this.getMember().getTypeId().equals(CommonConstants.PROTEGE)) {
+				if (val.getUdValuesCategory().equals(
+						CommonConstants.ACTIVITY_LOG_PROTEGE)) {
 					return val;
 				}
 			}
-			if(this.getMember().getTypeId().equals(CommonConstants.MENTOR)){
-				if(val.getUdValuesCategory().equals(CommonConstants.ACTIVITY_LOG_MENTOR)){
+			if (this.getMember().getTypeId().equals(CommonConstants.MENTOR)) {
+				if (val.getUdValuesCategory().equals(
+						CommonConstants.ACTIVITY_LOG_MENTOR)) {
 					return val;
 				}
-			}			
+			}
 		}
 		return null;
-	}	
+	}
 	public void initMemberLogForProtegeRequest() {
-		try{
+		try {
 			this.memberName = this.getRequest().getParameter("MEMBER_NAME");
 			String memberId = this.getRequest().getParameter("MEMBER_ID");
-			if(memberId == null){
+			if (memberId == null) {
 				return;
 			}
 
 			UserDefinedValues actType = this.getMyUserDefinedValue();
-			this.log.debug(actType.getUdValuesDesc()+ ""+ actType.getUdValuesCategory());
-			
+			this.log.debug(actType.getUdValuesDesc() + ""
+					+ actType.getUdValuesCategory());
+
 			this.currentLog = new MemberLog();
 			this.currentLog.setToMemberId(Long.parseLong(memberId));
 			this.currentLog.setMemberActivityType(actType.getUdValuesId());
-			this.currentLog.setTopic(this.getText("acitivity_log_protege_request_sub"));
+			this.currentLog.setTopic(this
+					.getText("acitivity_log_protege_request_sub"));
 			this.errMsgs.clear();
 			this.hasError = false;
 			this.showSearchBox = false;
 			this.isActivityTypeReadOnly = true;
-			
-			
-		}
-		catch(Exception ex){
+
+		} catch (Exception ex) {
 			log.error(ex.getMessage());
 		}
 	}
 	public void initMemberLogForProtegeRequestForLeadMentor() {
-		try{
+		try {
 			this.memberName = this.getRequest().getParameter("MEMBER_NAME");
 			String memberId = this.getRequest().getParameter("MEMBER_ID");
-			if(memberId == null){
+			if (memberId == null) {
 				return;
 			}
-			List<UserDefinedValues> types = udService.findByProperty("udValuesValue", CommonConstants.ACTIVITY_TYPE_LEAD_MENTOR_REQUEST);
+			List<UserDefinedValues> types = udService.findByProperty(
+					"udValuesValue",
+					CommonConstants.ACTIVITY_TYPE_LEAD_MENTOR_REQUEST);
 			UserDefinedValues actType = types.get(0);
-			this.log.debug(actType.getUdValuesDesc()+ ""+ actType.getUdValuesCategory());
-			
+			this.log.debug(actType.getUdValuesDesc() + ""
+					+ actType.getUdValuesCategory());
+
 			this.currentLog = new MemberLog();
 			this.currentLog.setToMemberId(Long.parseLong(memberId));
 			this.currentLog.setMemberActivityType(actType.getUdValuesId());
-			this.currentLog.setTopic(this.getText("acitivity_log_mentor_request_to_lead_mentor_sub"));
-			this.currentLog.setMemberLogEntryDescription(this.getText("acitivity_log_protege_request_formentor_body"));
+			this.currentLog
+					.setTopic(this
+							.getText("acitivity_log_mentor_request_to_lead_mentor_sub"));
+			this.currentLog.setMemberLogEntryDescription(this
+					.getText("acitivity_log_protege_request_formentor_body"));
 			this.errMsgs.clear();
 			this.hasError = false;
 			this.showSearchBox = false;
 			this.isActivityTypeReadOnly = true;
-			
-			
-		}
-		catch(Exception ex){
+
+		} catch (Exception ex) {
 			log.error(ex.getMessage());
 		}
-	}	
+	}
 	public void initMemberLogForMentorRequestxxxx() {
-		try{
+		try {
 			this.memberName = this.getRequest().getParameter("MEMBER_NAME");
 			String memberId = this.getRequest().getParameter("MEMBER_ID");
-			if(memberId == null){
+			if (memberId == null) {
 				return;
 			}
 			UserDefinedValues actType = null;
-			List<UserDefinedValues> types = udService.findByProperty("udValuesValue", CommonConstants.ACTIVITY_TYPE_PROTEGE_REQUEST);
-			if(types != null && types.size() > 0){
-				
+			List<UserDefinedValues> types = udService.findByProperty(
+					"udValuesValue",
+					CommonConstants.ACTIVITY_TYPE_PROTEGE_REQUEST);
+			if (types != null && types.size() > 0) {
+
 				actType = types.get(0);
 			}
-			
+
 			this.currentLog = new MemberLog();
 			this.currentLog.setToMemberId(Long.parseLong(memberId));
 			this.currentLog.setMemberActivityType(actType.getUdValuesId());
-			this.currentLog.setTopic(this.getText("acitivity_log_mentor_request_sub"));
+			this.currentLog.setTopic(this
+					.getText("acitivity_log_mentor_request_sub"));
 			this.errMsgs.clear();
 			this.hasError = false;
 			this.showSearchBox = false;
 			this.isActivityTypeReadOnly = true;
-			
-			
-		}
-		catch(Exception ex){
+
+		} catch (Exception ex) {
 			log.error(ex.getMessage());
 		}
-	}	
+	}
 	public void initMemberLogForMentorRequest2() {
-		try{
+		try {
 			this.memberName = this.getRequest().getParameter("MEMBER_NAME");
 			String memberId = this.getRequest().getParameter("MEMBER_ID");
-			if(memberId == null){
+			if (memberId == null) {
 				return;
 			}
 			UserDefinedValues actType = getMentorRequestUserDefinedValue();
@@ -241,23 +253,22 @@ public class MemberLogViewHandler extends BasePageExtended implements Serializab
 			this.currentLog = new MemberLog();
 			this.currentLog.setToMemberId(Long.parseLong(memberId));
 			this.currentLog.setMemberActivityType(actType.getUdValuesId());
-			this.currentLog.setTopic(this.getText("acitivity_log_mentor_request_sub"));
+			this.currentLog.setTopic(this
+					.getText("acitivity_log_mentor_request_sub"));
 			this.errMsgs.clear();
 			this.hasError = false;
 			this.showSearchBox = false;
 			this.isActivityTypeReadOnly = true;
-			
-			
-		}
-		catch(Exception ex){
+
+		} catch (Exception ex) {
 			log.error(ex.getMessage());
 		}
-	}	
+	}
 	public void initMemberLogForContact() {
-		try{
+		try {
 			this.memberName = this.getRequest().getParameter("MEMBER_NAME");
 			String memberId = this.getRequest().getParameter("MEMBER_ID");
-			if(memberId == null){
+			if (memberId == null) {
 				return;
 			}
 			this.currentLog = new MemberLog();
@@ -266,13 +277,11 @@ public class MemberLogViewHandler extends BasePageExtended implements Serializab
 			this.hasError = false;
 			this.showSearchBox = false;
 			this.isActivityTypeReadOnly = false;
-			
-			
-		}
-		catch(Exception ex){
+
+		} catch (Exception ex) {
 			log.error(ex.getMessage());
 		}
-	}	
+	}
 	public void addNewMemberLog() {
 		String action = "";
 		try {
@@ -280,49 +289,57 @@ public class MemberLogViewHandler extends BasePageExtended implements Serializab
 				action = (String) this.getParameter(ServiceConstants.ACTION);
 				log.debug(action);
 			}
-			
+
 			this.resetMessage();
-			
+
 			this.checkError();
-			
+
 			if (this.errMsgs.size() > 0) {
 				this.hasError = true;
 				return;
 			}
 			Member memberTo = null;
 			Set<Member> receivers = this.getReceivers(memberService);
-			
-			for(Member mem: receivers){
+
+			for (Member mem : receivers) {
 				memberTo = mem;
 				break;
 			}
-			
+
 			this.currentLog.setToMember(memberTo);
 			this.currentLog.setToMemberId(memberTo.getMemberId());
-			
-			UserDefinedValues udLogType = udService.loadById(this.currentLog.getMemberActivityType());
+
+			UserDefinedValues udLogType = udService.loadById(this.currentLog
+					.getMemberActivityType());
 			this.currentLog.setUserDefinedValues(udLogType);
-			
+
 			/** Set audit fields */
-			this.currentLog.setRecordCreatorId(this.getMember().getMemberId()+ "");
+			this.currentLog.setRecordCreatorId(this.getMember().getMemberId()
+					+ "");
 			this.currentLog.setRecordCreatedDate(new Date());
 			this.currentLog.setRecordLastUpdatedDate(new Date());
-			this.currentLog.setRecordLastUpdaterId(this.getMember().getMemberId()+ "");
-			this.currentLog.setStatus(CommonConstants.ACTIVITY_STATUS.PENDING.toString());
+			this.currentLog.setRecordLastUpdaterId(this.getMember()
+					.getMemberId()
+					+ "");
+			this.currentLog.setStatus(CommonConstants.ACTIVITY_STATUS.PENDING
+					.toString());
 			this.currentLog.setFromMemberId(this.getMember().getMemberId());
 			this.currentLog.setFromMember(this.getMember());
 
 			Date dt = new Date();
 			this.currentLog.setMemberLogDateTime(new Timestamp(dt.getTime()));
-			
+
 			this.memberLogService.save(this.currentLog);
-			
+
 			log.debug("Sending email notification");
 
-			String protegeName = memberTo.getFirstName() + " "+ memberTo.getLastName();
-			String emailSub = this.udService.loadById(this.currentLog.getMemberActivityType()).getUdValuesValue();
+			String protegeName = memberTo.getFirstName() + " "
+					+ memberTo.getLastName();
+			String emailSub = this.udService.loadById(
+					this.currentLog.getMemberActivityType()).getUdValuesValue();
 
-			this.sendConfirmationEmail(emailSub, memberTo.getEmail(), protegeName);
+			this.sendConfirmationEmail(emailSub, memberTo.getEmail(),
+					protegeName);
 			this.currentLog = new MemberLog();
 
 		} catch (Exception ex) {
@@ -332,7 +349,7 @@ public class MemberLogViewHandler extends BasePageExtended implements Serializab
 		}
 		this.resetMessage();
 
-	}	
+	}
 	@SuppressWarnings("unchecked")
 	public void saveMemberLog() {
 		String action = "";
@@ -347,40 +364,51 @@ public class MemberLogViewHandler extends BasePageExtended implements Serializab
 				this.hasError = true;
 				return;
 			}
-			Member memberTo = memberService.findById(this.currentLog.getToMemberId());
-			
+			Member memberTo = memberService.findById(this.currentLog
+					.getToMemberId());
+
 			this.currentLog.setToMember(memberTo);
-			
-			UserDefinedValues udLogType = udService.loadById(this.currentLog.getMemberActivityType());
+
+			UserDefinedValues udLogType = udService.loadById(this.currentLog
+					.getMemberActivityType());
 			this.currentLog.setUserDefinedValues(udLogType);
-			
+
 			/** Set audit fields */
-			this.currentLog.setRecordCreatorId(this.getMember().getMemberId()+ "");
+			this.currentLog.setRecordCreatorId(this.getMember().getMemberId()
+					+ "");
 			this.currentLog.setRecordCreatedDate(new Date());
 			this.currentLog.setRecordLastUpdatedDate(new Date());
-			this.currentLog.setRecordLastUpdaterId(this.getMember().getMemberId()+ "");
-			this.currentLog.setStatus(CommonConstants.ACTIVITY_STATUS.PENDING.toString());
+			this.currentLog.setRecordLastUpdaterId(this.getMember()
+					.getMemberId()
+					+ "");
+			this.currentLog.setStatus(CommonConstants.ACTIVITY_STATUS.PENDING
+					.toString());
 			this.currentLog.setFromMemberId(this.getMember().getMemberId());
 			this.currentLog.setFromMember(this.getMember());
 
 			Date dt = new Date();
 			this.currentLog.setMemberLogDateTime(new Timestamp(dt.getTime()));
-			
+
 			if (action.equals("replay")) {
-				this.currentLog.setStatus(CommonConstants.ACTIVITY_STATUS.COMPLETED.toString());
+				this.currentLog
+						.setStatus(CommonConstants.ACTIVITY_STATUS.COMPLETED
+								.toString());
 				List<MemberLog> lines = (List<MemberLog>) getMessageLines()
 						.getWrappedData();
 				lines.add(this.currentLog);
 			}
 			this.memberLogService.save(this.currentLog);
-			
-			log.debug("Sending email notification");
-			Member protege = this.memberService.findById(this.currentLog.getToMemberId());
-			String proteemail =protege.getEmail();
-			String protegeName = protege.getFirstName() + " "+ protege.getLastName();
-			String emailSub = this.udService.loadById(this.currentLog.getMemberActivityType()).getUdValuesValue();
 
-			this.sendConfirmationEmail(emailSub, proteemail,protegeName);
+			log.debug("Sending email notification");
+			Member protege = this.memberService.findById(this.currentLog
+					.getToMemberId());
+			String proteemail = protege.getEmail();
+			String protegeName = protege.getFirstName() + " "
+					+ protege.getLastName();
+			String emailSub = this.udService.loadById(
+					this.currentLog.getMemberActivityType()).getUdValuesValue();
+
+			this.sendConfirmationEmail(emailSub, proteemail, protegeName);
 			this.currentLog = new MemberLog();
 
 		} catch (Exception ex) {
@@ -393,13 +421,13 @@ public class MemberLogViewHandler extends BasePageExtended implements Serializab
 	}
 
 	/** Send confirmation email to member */
-	private void sendConfirmationEmail(String type, String email,String name)
+	private void sendConfirmationEmail(String type, String email, String name)
 			throws Exception {
 
 		String msgBody = this.getText("email_activity_log_body",
-				new String[] { type });
+				new String[]{type});
 		String emailSubject = this.getText("email_activity_log_subject",
-				new String[] { type });
+				new String[]{type});
 		this.sendEmail(email, emailSubject, msgBody, name);
 
 	}
@@ -410,10 +438,10 @@ public class MemberLogViewHandler extends BasePageExtended implements Serializab
 		}
 
 	}
-	private boolean checkError(){
-		
+	private boolean checkError() {
+
 		/** Check to member is empty */
-		if(this.toMemberNameList == null || this.toMemberNameList.equals("")){
+		if (this.toMemberNameList == null || this.toMemberNameList.equals("")) {
 			this.errMsgs.add("Destination is empty");
 		}
 		/** Check subject fields */
@@ -421,20 +449,22 @@ public class MemberLogViewHandler extends BasePageExtended implements Serializab
 			this.errMsgs.add(this.getText("activity_log_validation_subject"));
 		}
 		/** Check subject fields */
-		if (CommonValidator.isEmpty(this.currentLog.getMemberLogEntryDescription())) {
+		if (CommonValidator.isEmpty(this.currentLog
+				.getMemberLogEntryDescription())) {
 			this.errMsgs.add("Body is empty");
 		}
-		return this.errMsgs.size()> 0;
+		return this.errMsgs.size() > 0;
 	}
 	public void loadAllMemberLog() {
 		try {
-		  Long recordId = this.getMember().getMemberId();
-		  if ( recordId != null ) {
-  		  logger.debug(" Load All Member Log");
-  			List<MemberLog> recordList = memberLogService.loadMemberLogByActivityType(recordId);
-  			this.getMessageLines().setWrappedData(recordList);
-  			this.setActionType(ServiceConstants.UPDATE);
-		  }	
+			Long recordId = this.getMember().getMemberId();
+			if (recordId != null) {
+				logger.debug(" Load All Member Log");
+				List<MemberLog> recordList = memberLogService
+						.loadMemberLogByActivityType(recordId);
+				this.getMessageLines().setWrappedData(recordList);
+				this.setActionType(ServiceConstants.UPDATE);
+			}
 		} catch (Exception ex) {
 			logger.error("Unable to load Members:" + ex.getMessage());
 			ex.printStackTrace();
@@ -444,13 +474,15 @@ public class MemberLogViewHandler extends BasePageExtended implements Serializab
 	public void loadMessagesByCriteria() {
 		try {
 			logger.debug(" Load message by search critariya ");
-			String DATE_FORMAT = "yyyyMMdd";
-			SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
-			String fromDate = sdf.format(this.getFromDate());
-			String toDate = sdf.format(this.getToDate());
-			List<MemberLog> recordList = memberLogService.findMemberLogByDate(
-					fromDate, toDate);
-			getMessageLines().setWrappedData(recordList);
+			if (this.getFromDate() != null && this.getToDate() != null) {
+				String DATE_FORMAT = "yyyyMMdd";
+				SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
+				String fromDate = sdf.format(this.getFromDate());
+				String toDate = sdf.format(this.getToDate());
+				List<MemberLog> recordList = memberLogService
+						.findMemberLogByDate(fromDate, toDate);
+				getMessageLines().setWrappedData(recordList);
+			}
 		} catch (Exception ex) {
 			logger.error("Message by search critariya:" + ex.getMessage());
 			ex.printStackTrace();
@@ -466,10 +498,12 @@ public class MemberLogViewHandler extends BasePageExtended implements Serializab
 					.getParameter(ServiceConstants.RECORD_ID);
 			try {
 				int rowIndex = getMessageLines().getRowIndex();
-				MemberLog memberLog = memberLogService.findById(Long.parseLong(recordId));
+				MemberLog memberLog = memberLogService.findById(Long
+						.parseLong(recordId));
 				memberLogService.delete(memberLog);
-				List<MemberLog> list = (List<MemberLog>) getMessageLines().getWrappedData();
-				if(list != null && list.size() > 0){
+				List<MemberLog> list = (List<MemberLog>) getMessageLines()
+						.getWrappedData();
+				if (list != null && list.size() > 0) {
 					list.remove(rowIndex);
 				}
 			} catch (Exception e) {
@@ -489,19 +523,20 @@ public class MemberLogViewHandler extends BasePageExtended implements Serializab
 
 				this.showSearchBox = false;
 				this.isActivityTypeReadOnly = true;
-				MemberLog mLog = (MemberLog) this.getMessageLines()
-						.getRowData();
+				MemberLog _mLog = (MemberLog) this.getMessageLines().getRowData();
+				MemberLog mLog = this.memberLogService.findById(_mLog.getMemberLogId());
+				
 				this.currentLog = new MemberLog();
 				this.currentLog.setFromMemberId(mLog.getToMemberId());
-				this.setMemberName(mLog.getToMember().getFirstName());
+				this.setMemberName(mLog.getToMember().getFirstName() +" "+mLog.getToMember().getLastName());
 				this.currentLog.setTopic("Ref : " + mLog.getTopic());
 				this.setActionType(ServiceConstants.UPDATE);
 				this.setReRenderIds("MESSAGE_LINES");
 				this.currentLog.setMemberActivityType(CommonConstants.ACTIVITY_TYPE_MESSAGE);
 				this.errMsgs.clear();
-	      this.hasError = false;
-	      this.showSearchBox = false;
-	      this.isActivityTypeReadOnly = true;
+				this.hasError = false;
+				this.showSearchBox = false;
+				this.isActivityTypeReadOnly = true;
 				setSecHeaderMsg(this.getText("header_msg_contact_us") + " "
 						+ this.getText("header_msg_update"));
 			} catch (Exception e) {
@@ -551,14 +586,15 @@ public class MemberLogViewHandler extends BasePageExtended implements Serializab
 			int dayCount = Integer.parseInt(this.ddDay);
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(new Date());
-			if(dayCount == 0){
+			if (dayCount == 0) {
 				cal.set(Calendar.HOUR, 0);
 				cal.set(Calendar.MINUTE, 1);
-			}else{
+			} else {
 				cal.add(Calendar.DATE, dayCount);
 			}
-			
-			this.memberLogsOld = this.memberLogService.getAllCompletedLog(this.getMember().getMemberId(),cal.getTime());
+
+			this.memberLogsOld = this.memberLogService.getAllCompletedLog(this
+					.getMember().getMemberId(), cal.getTime());
 		} catch (Exception ex) {
 			log.error(ex.getMessage());
 		}
