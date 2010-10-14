@@ -52,7 +52,7 @@
             <a4j:commandButton value="#{bundle.contact_us_search}" styleClass="ibutton" 
               style="background:#374E90;color: #ffffff;"
               action="#{memberLogViewHandler.loadMessagesByCriteria}" reRender="MESSAGE_LINES"
-              onclick="forceSBlockUI(ajaxProcessMsg);" oncomplete="forceSUnblockUI();"/>             
+              onclick="forceBlockUI(ajaxProcessMsg);" oncomplete="forceUnblockUI();"/>             
            </h:panelGroup>
           </h:panelGrid>
         </h:panelGroup>      
