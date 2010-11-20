@@ -32,24 +32,6 @@
 			</h:dataTable>			
 		</rich:panel>
 		
-		<!-- Winning stories -->
-		<rich:panel style="width:'auto';margin-top: 3px;" headerClass="container_gold_header"  bodyClass="container_body_style" >
-		  <f:facet name="header"><h:outputText value="#{bundle.dashboard_mentor_winning_story}" /></f:facet>
-			<p><h:outputText value="#{dashboardViewHandler.storyWinner}" /></p>
-			<p><h:outputText value="#{dashboardViewHandler.winningStoryPreview}" /></p>
-			
-			<a4j:commandLink styleClass="container_link_style" value="Show full story..." action="#{storyViewHandler.initializeDialog}"  
-		        reRender="idStoryDialog"  oncomplete="Richfaces.showModalPanel('idStoryDialog')">
-		       <a4j:actionparam name="storyId" value="#{dashboardViewHandler.winningStoryId}"  />
-		       <a4j:actionparam name="action" value="VIEW"/>
-		       <rich:toolTip styleClass="tooltips_style">
-		          <span class="tooltips_span_style">
-		            View wining story details<br/>
-		          </span>
-		        </rich:toolTip>  
-	      	</a4j:commandLink>
-		</rich:panel>
-		
 		<!-- Winning viewpoint -->
 		<rich:panel style="width:'auto';margin-top: 3px;" headerClass="container_gold_header"  bodyClass="container_body_style" >
 		  <f:facet name="header"><h:outputText value="Winning viewpoint" /></f:facet>
@@ -85,7 +67,7 @@
 			</h:dataTable>	
          <h:outputLink style="font-weight:bolder; font-size: 14px;"  value="#{controllerBean.contextPath}/pages/secure/protegeStoryVote.faces">
             <a4j:actionparam name="STORY_TYPE" value="PROTEGE"  />
-           <h:outputText value=" Browse more stories... "/>
+           <h:outputText value="Browse more viewpoints"/>
          </h:outputLink>				
 		</rich:panel>		
 				
