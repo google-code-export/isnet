@@ -452,8 +452,14 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 			UserDefinedValues dayFrom = this.udService.getUDValue("udValuesCategory", "STORY_RANGE");
 			
 			int range = CommonValidator.isEmpty(dayFrom.getUdValuesValue())? 7 : Integer.parseInt(dayFrom.getUdValuesValue());
-						
-			this.topTenStories = this.storyService.findTopTenStories(range);
+			
+			if(this.getMember().getTypeId().equals(CommonConstants.MENTOR)){
+				this.topTenStories = this.storyService.findTopTenStories(range,CommonConstants.STORY_MENTOR);
+			}
+			else{
+				this.topTenStories = this.storyService.findTopTenStories(range,CommonConstants.STORY_PROTEGE);
+			}
+			
 		}
 		catch(Exception ex){
 			log.error(ex.getMessage());
