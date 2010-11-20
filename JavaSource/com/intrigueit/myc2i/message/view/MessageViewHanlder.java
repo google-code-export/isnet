@@ -403,6 +403,8 @@ public class MessageViewHanlder extends BasePageExtended {
 
 			this.messageService.save(this.currentMessage);
 			
+			this.sendEmailNotificationtoReceiver(receivers,this.getMemberName());
+			
 			this.messages = this.getMessage();
 			
 		} catch (Exception ex) {
@@ -433,6 +435,18 @@ public class MessageViewHanlder extends BasePageExtended {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
+	}
+	private void sendEmailNotificationtoReceiver(Set<Member> receivers,String sender){
+		
+		for(Member member: receivers){
+			try{
+				this.sendEmail(member.getEmail(), "MyC2i new message notification", " You got a new message from member, "+ sender +". Please login into the MyC2i system to see your message details.", member.getFirstName() +" "+ member.getLastName());
+			}
+			catch(Exception ex){
+				log.error(ex.getMessage(),ex);
+			}
+		}
+		//
 	}
 
 	private Set<Member> getReceiversList(Message message) {
@@ -487,6 +501,9 @@ public class MessageViewHanlder extends BasePageExtended {
 			this.addAuditField();
 
 			this.messageService.save(this.currentMessage);
+			
+			this.sendEmailNotificationtoReceiver(receivers, this.getMemberName());
+			
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -501,6 +518,7 @@ public class MessageViewHanlder extends BasePageExtended {
 		return attachment;
 	}
 
+	
 	public void attachFile() {
 
 		if (this.attachmentHandler == null
