@@ -122,6 +122,7 @@ public class PayPalTxnListener extends HttpServlet {
 		String txtResponse = in.readLine();
 		in.close();
 				
+		// For testing. un comment it after testing
 		//txtResponse = "VERIFIED";
 				
 		String itemName = request.getParameter("item_name");
@@ -178,7 +179,7 @@ public class PayPalTxnListener extends HttpServlet {
 				cal.setTime(new Date());
 				cal.add(Calendar.YEAR, 1);
 				member.setMemberShipExpiryDate(cal.getTime());
-				bean.getMemberService().save(member);
+				bean.getMemberService().update(member);
 				
 				
 				
