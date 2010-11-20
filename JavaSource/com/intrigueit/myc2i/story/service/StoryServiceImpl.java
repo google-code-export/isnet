@@ -54,10 +54,10 @@ public class StoryServiceImpl implements StoryService{
 	}
 
 	@Override
-	public List<MemberStory> findTopTenStories(int range) {
+	public List<MemberStory> findTopTenStories(int range,String type) {
 		Date date = this.getWeekFirstDay(range);
-		String clause = " where lower(t.approvedForPublishInd)=?1 and t.approvalDate > ?2 ORDER BY t.numberOfVotesReceived DESC";
-		List<MemberStory> stories  = this.stroyDao.loadTopResultsByConditions(10, clause, new Object[]{"yes",date});
+		String clause = " where lower(t.approvedForPublishInd)=?1 and t.approvalDate > ?2 and t.category=?3 ORDER BY t.numberOfVotesReceived DESC";
+		List<MemberStory> stories  = this.stroyDao.loadTopResultsByConditions(10, clause, new Object[]{"yes",date,type});
 		return stories;
 	}
 

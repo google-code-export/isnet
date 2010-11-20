@@ -19,7 +19,7 @@ public interface StoryService {
 	
 	public List<MemberStory> findMyAllStories(Long memberId);
 	
-	public List<MemberStory> findTopTenStories(int range);
+	public List<MemberStory> findTopTenStories(int range,String type);
 	
 	public MemberStory getWiningStory(String type);
 	
