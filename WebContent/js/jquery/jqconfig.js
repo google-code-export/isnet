@@ -29,7 +29,21 @@ function forceBlockUI(msg, divClass){
 			blockDivClass = divClass;
 		}
 	}
-	jQuery(blockDivClass).block();
+	//jQuery(blockDivClass).block();
+	jQuery(blockDivClass).block({ message: '<h1><img border=2 src="/myc2i/images/busy.gif" /> '+ msg +'</h1>' });
+	return true;
+}
+function forceBlock(msg, imgPath){
+
+	// show the msg if it sent as param
+	if (typeof msg != 'undefined' ){
+		if ( msg.length > 0){
+			jQuery.blockUI.defaults.elementMessage = msg;
+		}
+	}
+	var blockDivClass = "div.mainBlock";
+
+	jQuery(blockDivClass).block({ message: '<h1><img border=2 src="/images/busy.gif" /> Just a moment...</h1>' });
 	return true;
 }
 function forceUnblockUI(divClass){
