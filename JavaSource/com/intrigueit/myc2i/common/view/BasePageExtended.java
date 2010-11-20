@@ -23,7 +23,7 @@ public class BasePageExtended extends BasePage {
 			log.debug("Item selected event :");
 			String prm1 = this.getParameter("PRM1");
 			String prm2 = this.getParameter("PRM2");
-			log.debug("++++"+prm1 + " ++++++++ "+ prm2);
+			//log.debug("++++"+prm1 + " ++++++++ "+ prm2);
 			if(prm1 == null || prm1.equals("")){
 				return;
 			}
