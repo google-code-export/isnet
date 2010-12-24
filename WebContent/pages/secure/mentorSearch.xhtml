@@ -52,7 +52,7 @@
 					<h:outputText value="#{bundle.protege_search_distance1}" />	      
 	      		</td>
 				<td>
-					<h:inputText value="#{memberSearchViewHandler.srcZipCode}" />
+					<h:inputText value="#{memberSearchViewHandler.srcZipCode}" disabled="#{!memberToDoItem.completedProtegeTutorial}"/>
 				</td>	
 				<td>
 					<a4j:commandButton rendered="#{memberToDoItem.completedProtegeTutorial}" onclick="forceBlockUI(ajaxSearchingMentor);"   oncomplete="forceUnblockUI();" value="#{bundle.button_label_search}" action="#{memberSearchViewHandler.executeSearch}" reRender="idResultPanel,idMsgPanel">
