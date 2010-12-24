@@ -53,7 +53,7 @@ public class Emailer {
 		}		
 		return props;
 	}
-	public void sendEmail() throws Exception
+	private void sendEmail() throws Exception
 	{
 		Properties conf = loadProps();
 		String host = conf.getProperty("mail.host");
