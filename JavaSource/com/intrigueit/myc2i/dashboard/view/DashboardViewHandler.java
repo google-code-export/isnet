@@ -76,17 +76,7 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 	private String action;
 	
 	
-	
 
-	/** Send release email to protege */
-	private void sendConfirmationEmail(String email,String msgBody,String emailSubject)throws Exception{
-		
-		/**Send email notification */
-		Emailer emailer = new Emailer(email, msgBody,emailSubject);
-		emailer.setContentType("text/html");
-		emailer.sendEmail();		
-	}
-	
 	private void populateIdleMentorList(){
 		this.idleMentors = new ArrayList<Member>();
 		if(this.mentorReport == null){
@@ -239,7 +229,10 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 			String msgBody = this.getText("email_other_request_accept_body",new String[]{ log.getUserDefinedValues().getUdValuesDesc(),this.getMember().getFirstName() +" "+ this.getMember().getLastName(), this.getNote()});
 			String emailSubject = this.getText("email_other_request_subject", new String[]{ log.getUserDefinedValues().getUdValuesDesc()});
 			
-			this.sendConfirmationEmail(log.getFromMember().getEmail(), msgBody,emailSubject);
+			String name = log.getFromMember().getFirstName() + " "+ log.getFromMember().getLastName();
+			this.sendEmail(log.getFromMember().getEmail(), emailSubject, msgBody, name);
+			
+			//this.sendConfirmationEmail(, msgBody,emailSubject);
 			
 		}
 		catch(Exception ex){
@@ -252,7 +245,10 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 			MemberLog log = this.updateRequestStatus(CommonConstants.ACTIVITY_STATUS.ACCEPTED.toString());
 			
 			int memberProtege = this.memberService.getMentorProtegeCout(log.getFromMemberId());
-			if (memberProtege >= 5) return;
+			if (memberProtege > CommonConstants.MAX_PROTEGE_ALLOWED) {
+				this.log.error("Member already has 5 members: "+ log.getToMemberId());
+				return;
+			}
 			
 			if(this.isProtegeAlreadyAssociated(log.getToMember())){
 				return;
@@ -262,8 +258,10 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 			}		
 			String msgBody = this.getText("email_mentor_request_accept_body",new String[]{ this.getMember().getFirstName() +" "+ this.getMember().getLastName(), this.getNote()});
 			String emailSubject = this.getText("email_mentor_request_accepted_subject");
+			String name = log.getFromMember().getFirstName() + " "+ log.getFromMember().getLastName();
 			
-			this.sendConfirmationEmail(log.getFromMember().getEmail(), msgBody,emailSubject);
+			this.sendEmail(log.getFromMember().getEmail(), emailSubject, msgBody, name);
+			
 			
 		}
 		catch(Exception ex){
@@ -280,7 +278,7 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 	public void acceptLeadMentorRequest(){
 		try{
 			int memberProtege = this.memberService.getMentorProtegeCout(this.getMember().getMemberId());
-			if (memberProtege >= 5) return;
+			if (memberProtege > CommonConstants.MAX_PROTEGE_ALLOWED) return;
 			
 			MemberLog log = this.updateRequestStatus(CommonConstants.ACTIVITY_STATUS.ACCEPTED.toString());
 			
@@ -294,7 +292,11 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 			String emailSubject = this.getText("email_lead_mentor_request_accepted_subject");
 			
 			this.log.debug(log.getFromMember().getEmail());
-			this.sendConfirmationEmail(log.getFromMember().getEmail(), msgBody,emailSubject);			
+			//this.sendConfirmationEmail(log.getFromMember().getEmail(), msgBody,emailSubject);
+			
+			String name = log.getFromMember().getFirstName() + " "+ log.getFromMember().getLastName();
+			this.sendEmail(log.getFromMember().getEmail(), emailSubject, msgBody, name);
+			
 		}
 		catch(Exception ex){
 			log.error(ex.getMessage());
@@ -304,7 +306,7 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 	public void acceptProtegeRequest(){
 		try{
 			int memberProtege = this.memberService.getMentorProtegeCout(this.getMember().getMemberId());
-			if (memberProtege >= 5) return;
+			if (memberProtege > CommonConstants.MAX_PROTEGE_ALLOWED) return;
 			
 			MemberLog log = this.updateRequestStatus(CommonConstants.ACTIVITY_STATUS.ACCEPTED.toString());
 			
@@ -318,7 +320,10 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 			String emailSubject = this.getText("email_protege_request_accepted_subject");
 			
 			this.log.debug(log.getFromMember().getEmail());
-			this.sendConfirmationEmail(log.getFromMember().getEmail(), msgBody,emailSubject);			
+			//this.sendConfirmationEmail(log.getFromMember().getEmail(), msgBody,emailSubject);
+			String name = log.getFromMember().getFirstName() + " "+ log.getFromMember().getLastName();
+			this.sendEmail(log.getFromMember().getEmail(), emailSubject, msgBody, name);
+			
 		}
 		catch(Exception ex){
 			log.error(ex.getMessage());
@@ -332,7 +337,10 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 			String msgBody = this.getText("email_request_reject_body",new String[]{log.getUserDefinedValues().getUdValuesDesc(), this.getMember().getFirstName() +" "+ this.getMember().getLastName(),this.getNote()});
 			String emailSubject = this.getText("email_request_rejected_subject", new String[]{log.getUserDefinedValues().getUdValuesDesc()});
 			
-			this.sendConfirmationEmail(log.getFromMember().getEmail(), msgBody,emailSubject);					
+			//this.sendConfirmationEmail(log.getFromMember().getEmail(), msgBody,emailSubject);
+			String name = log.getFromMember().getFirstName() + " "+ log.getFromMember().getLastName();
+			this.sendEmail(log.getFromMember().getEmail(), emailSubject, msgBody, name);
+			
 		}
 		catch(Exception ex){
 			log.error(ex.getMessage());
@@ -345,7 +353,10 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 			String msgBody = this.getText("email_protege_request_accept_body",new String[]{ this.getMember().getFirstName() +" "+ this.getMember().getLastName(),this.getNote()});
 			String emailSubject = this.getText("email_protege_request_accepted_subject");
 			
-			this.sendConfirmationEmail(log.getToMember().getEmail(), msgBody,emailSubject);					
+			//this.sendConfirmationEmail(log.getToMember().getEmail(), msgBody,emailSubject);
+			String name = log.getFromMember().getFirstName() + " "+ log.getFromMember().getLastName();
+			this.sendEmail(log.getFromMember().getEmail(), emailSubject, msgBody, name);
+						
 		}
 		catch(Exception ex){
 			log.error(ex.getMessage());
@@ -358,7 +369,10 @@ public class DashboardViewHandler extends BasePage implements Serializable{
 			String msgBody = this.getText("email_mentor_request_reject_body",new String[]{ this.getMember().getFirstName() +" "+ this.getMember().getLastName(),this.getNote()});
 			String emailSubject = this.getText("email_mentor_request_rejected_subject");
 			
-			this.sendConfirmationEmail(log.getToMember().getEmail(), msgBody,emailSubject);					
+			//this.sendConfirmationEmail(log.getToMember().getEmail(), msgBody,emailSubject);
+			String name = log.getFromMember().getFirstName() + " "+ log.getFromMember().getLastName();
+			this.sendEmail(log.getFromMember().getEmail(), emailSubject, msgBody, name);
+						
 		}
 		catch(Exception ex){
 			log.error(ex.getMessage());
