@@ -65,11 +65,14 @@ public class StoryTriggerViewHandler extends BasePage{
 				/** Send member email */
 				String sub = "MyC2i weekly story competition winning notification";
 				String winner = this.mentorStory.getMember().getFirstName()+" "+ this.mentorStory.getMember().getLastName();
-				String body = "MyC2i weekly story competition result: <br/><br/>Winner Name: "+ winner +" <br/><br/>Prize Money:<br/><br/>$500<br/><br/>Thanks <br/>MyC2i support team.";
+				String body = "MyC2i weekly story competition result: <br/><br/>Winner Name: "+ winner +" <br/><br/>Prize Money:<br/><br/>$500<br/><br/>.";
 
-				this.sendConfirmationEmail(sub, body, this.mentorStory.getMember().getEmail());
+				//this.sendConfirmationEmail(sub, body, this.mentorStory.getMember().getEmail());
+				this.sendEmail(this.mentorStory.getMember().getEmail(), sub, body, winner);
+				
 				/** Send account email */
-				this.sendConfirmationEmail(sub, body, accountEmail);
+				//this.sendConfirmationEmail(sub, body, accountEmail);
+				this.sendEmail(accountEmail, sub, body, " Accountant");
 			}
 
 			this.protegeStory = this.storyService.getWeeklyProtegeWiningStory(range);
@@ -81,11 +84,14 @@ public class StoryTriggerViewHandler extends BasePage{
 				/** Send member email */
 				String sub = "MyC2i weekly story competition winning notification";
 				String winner = this.protegeStory.getMember().getFirstName()+" "+ this.protegeStory.getMember().getLastName();
-				String body = "MyC2i weekly story competition result: <br/><br/>Winner Name: "+ winner +" <br/><br/>Prize Money:<br/><br/>$500<br/><br/>Thanks <br/>MyC2i support team.";
+				String body = "MyC2i weekly story competition result: <br/><br/>Winner Name: "+ winner +" <br/><br/>Prize Money:<br/><br/>$500<br/><br/>.";
 
-				this.sendConfirmationEmail(sub, body, this.protegeStory.getMember().getEmail());
+				//this.sendConfirmationEmail(sub, body, );
+				this.sendEmail(this.protegeStory.getMember().getEmail(), sub, body, winner);
+				
 				/** Send account email */
-				this.sendConfirmationEmail(sub, body, accountEmail);			
+				//this.sendConfirmationEmail(sub, body, accountEmail);	
+				this.sendEmail(accountEmail, sub, body, " Accountant");
 				
 			}
 
@@ -97,15 +103,7 @@ public class StoryTriggerViewHandler extends BasePage{
 			ex.printStackTrace();
 		}
 	}
-	/** Send confirmation email to member */
-	private void sendConfirmationEmail(String emailSubject,String msgBody, String email)
-			throws Exception {
 
-		/** Send email notification */
-		Emailer emailer = new Emailer(email, msgBody, emailSubject);
-		emailer.setContentType("text/html");
-		emailer.sendEmail();
-	}
 	public String getMyc2iAccountEmailAccount() {
 		try{
 			List<UserDefinedValues> values = this.udService.findByProperty("udValuesCategory", "MYC2I_ACCOUNT_EMAIL");

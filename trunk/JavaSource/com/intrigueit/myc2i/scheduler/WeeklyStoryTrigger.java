@@ -50,18 +50,7 @@ public class WeeklyStoryTrigger extends QuartzJobBean {
 		}
 		
 	}
-	/** Send confirmation email to member */
-	private void sendConfirmationEmail(String type, String email)
-			throws Exception {
 
-		String msgBody = "";
-		String emailSubject = "";
-		/** Send email notification */
-		Emailer emailer = new Emailer(email, msgBody, emailSubject);
-		emailer.setContentType("text/html");
-		emailer.sendEmail();
-	}
-	
 	public UDValuesService getUdService() {
 		return udService;
 	}
