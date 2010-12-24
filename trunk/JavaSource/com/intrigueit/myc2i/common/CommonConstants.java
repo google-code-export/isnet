@@ -52,4 +52,8 @@ public class CommonConstants {
     public static final String LAST = "LAST";
     
     public static final String BACK_TO_LOGIN = "TO_LOGIN";
+    
+    public static final Long MENTOR_TUTORIAL_LAST_MODULE = 7L;
+    public static final Long PROTEGE_TUTORIAL_LAST_MODULE = 9L;
+    
 }
