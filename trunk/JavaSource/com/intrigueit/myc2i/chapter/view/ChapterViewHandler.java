@@ -275,19 +275,6 @@ public class ChapterViewHandler extends BasePage implements Serializable {
 		}
 	}
 
-	/** Send confirmation email to member */
-	public void sendNotification(String email, String emailSubject,
-			String msgBody) throws Exception {
-		/** Send email notification */
-		try {
-			Emailer emailer = new Emailer(email, msgBody, emailSubject);
-			emailer.setContentType("text/html");
-			emailer.sendEmail();
-		} catch (Exception e) {
-			logger.debug("Failed to sending notification email");
-			e.printStackTrace();
-		}
-	}
 
 	@SuppressWarnings("unchecked")
 	private void putObjInList(int idx, Object fetchObj) {
