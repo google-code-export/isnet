@@ -114,7 +114,12 @@ public class ProtegeProfileViewHandler extends BasePage{
 			if( log != null){
 				String msgBody = this.getText("email_mentor_release_body",new String[]{ this.getMember().getFirstName() +" "+ this.getMember().getLastName()});
 				String emailSubject = this.getText("email_mentor_release_subject");
-				this.sendConfirmationEmail(mentor.getEmail(),msgBody,emailSubject);				
+				
+				String name = mentor.getFirstName()+" "+ mentor.getLastName();
+				//this.sendConfirmationEmail(protege.getEmail(), msgBody,emailSubject);
+				this.sendEmail(mentor.getEmail(), emailSubject, msgBody, name);
+				
+				//this.sendConfirmationEmail(mentor.getEmail(),msgBody,emailSubject);				
 			}
 
 			
@@ -195,7 +200,9 @@ public class ProtegeProfileViewHandler extends BasePage{
 			if(log != null){
 				String msgBody = this.getText("email_protege_release_body",new String[]{ this.getMember().getFirstName() +" "+ this.getMember().getLastName()});
 				String emailSubject = this.getText("email_protege_release_subject");
-				this.sendConfirmationEmail(protege.getEmail(), msgBody,emailSubject);
+				String name = protege.getFirstName()+" "+ protege.getLastName();
+				//this.sendConfirmationEmail(protege.getEmail(), msgBody,emailSubject);
+				this.sendEmail(protege.getEmail(), emailSubject, msgBody, name);
 			}
 			
 		}
@@ -232,15 +239,7 @@ public class ProtegeProfileViewHandler extends BasePage{
 		}
 		return null;
 	}
-	/** Send release email to protege */
-	private void sendConfirmationEmail(String email,String msgBody,String emailSubject)throws Exception{
-		
-		/**Send email notification */
-		Emailer emailer = new Emailer(email, msgBody,emailSubject);
-		emailer.setContentType("text/html");
-		emailer.sendEmail();		
-	}
-	
+
 	/** Load the selected member */
 	public void loadMember(){
 		try{

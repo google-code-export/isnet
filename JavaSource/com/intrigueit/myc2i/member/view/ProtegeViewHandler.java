@@ -189,16 +189,23 @@ public class ProtegeViewHandler extends BasePage implements Serializable {
 						itemList.remove(rowIndex);						
 					}
 					/* Send notification to protege */
-					sendNotification(this.currentProtege.getEmail(),
-			  		        this.getText("assign_mentor_to_protege_sub"),
-			  		        this.getText("assign_mentor_to_protege_bodytoprotege",
-			                  new String[]{this.currentProtege.getFirstName()+ " " + this.currentProtege.getLastName(),mentor.getFirstName()+ " " + mentor.getLastName()}));
+					//sendNotification(this.currentProtege.getEmail(),
+			  		//        this.getText("assign_mentor_to_protege_sub"),
+					//);
+					String pBody = this.getText("assign_mentor_to_protege_bodytoprotege", new String[]{mentor.getFirstName()+ " " + mentor.getLastName()});
+					String name1 = this.currentProtege.getFirstName()+ " " + this.currentProtege.getLastName();
+					this.sendEmail(this.currentProtege.getEmail(),  this.getText("assign_mentor_to_protege_sub"), pBody, name1);
 					
 					/* Send notification email to mentor */
-					sendNotification(mentor.getEmail(),
+					String mBody = this.getText("assign_mentor_to_protege_bodytomentor", new String[]{mentor.getFirstName()+ " " + mentor.getLastName()});
+					String name2 = mentor.getFirstName()+ " " + mentor.getLastName();
+					this.sendEmail(mentor.getEmail(),  this.getText("assign_mentor_to_protege_sub"), mBody, name2);
+										
+/*					sendNotification(mentor.getEmail(),
 			  		        this.getText("assign_mentor_to_protege_sub"),
 			  		        this.getText("assign_mentor_to_protege_bodytomentor",
-			                  new String[]{mentor.getFirstName()+ " " + mentor.getLastName(),this.currentProtege.getFirstName()+ " " + this.currentProtege.getLastName()}));
+			                  new String[]{this.currentProtege.getFirstName()+ " " + this.currentProtege.getLastName()}));*/
+					
 					logger.debug(" Protege assigned to mentor ");
 				}
 			}
@@ -209,19 +216,7 @@ public class ProtegeViewHandler extends BasePage implements Serializable {
 		}
 	}
 	
-	/** Send confirmation email to member */
-	public void sendNotification(String email, String emailSubject,
-			String msgBody) throws Exception {
-		/** Send email notification */
-		try {
-			Emailer emailer = new Emailer(email, msgBody, emailSubject);
-			emailer.setContentType("text/html");
-			emailer.sendEmail();
-		} catch (Exception e) {
-			logger.debug("Failed to sending notification email");
-			e.printStackTrace();
-		}
-	}
+
 	/**
 	 * @return the currentProtege
 	 */

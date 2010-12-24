@@ -166,13 +166,8 @@ public class ResetPasswordViewHandler extends BasePage implements Serializable {
 			this.currentMember.setPassword(crpUtil.getEncryptedText(plainPassword));
 			memberService.update(this.currentMember);
 			if (this.currentMember.getEmail() != null) {
-				/*sendNotification(this.currentMember.getEmail(), this
-						.getText("password_change_notification_subject"),
-						this.getText("password_change_notification_body",
-								new String[]{
-										this.currentMember.getFirstName(),
-										plainPassword}));*/
-				sendNotification(this.currentMember.getEmail(),
+
+			this.sendNotification(this.currentMember.getEmail(),
 						this.currentMember.getFirstName()+this.currentMember.getLastName(),plainPassword);
 			}
 			
@@ -203,19 +198,6 @@ public class ResetPasswordViewHandler extends BasePage implements Serializable {
 		pool.addTaskToPool(task);
 	}
 	
-	/** Send confirmation email to member */
-	public void XsendNotification(String email, String emailSubject,
-			String msgBody) throws Exception {
-		/** Send email notification */
-		try {
-			Emailer emailer = new Emailer(email, msgBody, emailSubject);
-			emailer.setContentType("text/html");
-			emailer.sendEmail();
-		} catch (Exception e) {
-			logger.debug("Failed to sending notification email");
-			e.printStackTrace();
-		}
-	}
 	public List<SelectItem> getStatesList() {
 		return viewDataProvider.getStateList();
 	}

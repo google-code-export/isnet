@@ -288,13 +288,13 @@ public class UserManageViewHandler extends BasePage implements Serializable {
           List<Member> itemList = (List<Member>) getMemberLines()
               .getWrappedData();
           itemList.add(this.memberService.findById(this.currentMember.getMemberId()));
+          
           if (this.currentMember.getEmail()!=null) {
-            sendNotification(this.currentMember.getEmail(),
-                this.getText("admin_new_user_creation_notify_sub"),
-                this.getText("admin_new_user_creation_notify_body",
-                    new String[]{this.currentMember.getFirstName(),
-                    this.currentMember.getEmail(),
-                    this.getConfirmPass()}));
+            
+            String msgBody = this.getText("admin_new_user_creation_notify_body",
+                    new String[]{this.currentMember.getEmail(),this.getConfirmPass()});
+            String name = this.currentMember.getFirstName() + " "+  this.currentMember.getLastName();
+            this.sendEmail(this.currentMember.getEmail(),  this.getText("admin_new_user_creation_notify_sub"), msgBody, name);
           }
           logger.debug("Member added: " + this.currentMember.getMemberId());
         }
@@ -309,18 +309,7 @@ public class UserManageViewHandler extends BasePage implements Serializable {
     }
   }
 
-  /** Send confirmation email to member */
-  public void sendNotification(String email, String emailSubject,String msgBody)throws Exception {
-    /**Send email notification */
-    try {
-      Emailer emailer = new Emailer(email, msgBody,emailSubject);
-      emailer.setContentType("text/html");
-      emailer.sendEmail();
-    } catch (Exception e) {
-      logger.debug("Failed to sending notification email");
-      e.printStackTrace();
-    }
-  }
+
   public void preUpdateUser() {
     logger.debug(" Prepare user for update :: "
         + this.getParameter(ServiceConstants.RECORD_ID));
