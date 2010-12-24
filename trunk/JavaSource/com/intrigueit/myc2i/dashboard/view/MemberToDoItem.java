@@ -57,7 +57,7 @@ public class MemberToDoItem extends BasePage{
 
 	public boolean isCompletedMentorTutorial() {
 		try{
-			TestResult test = this.testResultService.loadUserModuleResult(this.getMember().getMemberId(),8L);
+			TestResult test = this.testResultService.loadUserModuleResult(this.getMember().getMemberId(),CommonConstants.MENTOR_TUTORIAL_LAST_MODULE);
 			if(test == null){
 				this.isCompletedMentorTutorial= false;
 			}else{
@@ -79,7 +79,7 @@ public class MemberToDoItem extends BasePage{
 	public boolean isCompletedProtegeTutorial() {
 		
 		try{
-			TestResult test = this.testResultService.loadUserModuleResult(this.getMember().getMemberId(),9L);
+			TestResult test = this.testResultService.loadUserModuleResult(this.getMember().getMemberId(),CommonConstants.PROTEGE_TUTORIAL_LAST_MODULE);
 			if(test == null){
 				this.isCompletedProtegeTutorial= false;
 			}else{
