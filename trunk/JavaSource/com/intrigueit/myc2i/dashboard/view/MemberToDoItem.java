@@ -57,11 +57,12 @@ public class MemberToDoItem extends BasePage{
 
 	public boolean isCompletedMentorTutorial() {
 		try{
-			this.isCompletedProtegeTutorial= false;
+			this.isCompletedMentorTutorial= false;
 			
 			TestResult test = this.testResultService.loadUserModuleResult(this.getMember().getMemberId(),CommonConstants.MENTOR_TUTORIAL_LAST_MODULE);
 			if(test != null && test.getIsCompleted()){
-				this.isCompletedProtegeTutorial = true;
+				log.debug("--::"+test.getIsCompleted());
+				this.isCompletedMentorTutorial = true;
 			}
 
 			
