@@ -51,6 +51,7 @@ public class TutorialViewHandler extends BasePage {
 			TestResult test = this.testResultService.loadUserModuleResult(this.getMember().getMemberId(),CommonConstants.MENTOR_TUTORIAL_LAST_MODULE);
 			
 			if(test != null && test.getIsCompleted()){
+				log.debug("--::"+test.getIsCompleted());
 				this.completedMentorTutorial = true;
 			}
 			
