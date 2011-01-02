@@ -29,7 +29,7 @@ public class TutorialViewHandler extends BasePage {
 	public String navigateToPayment() {
 		try{
 			TestResult test = this.testResultService.loadUserModuleResult(this.getMember().getMemberId(),CommonConstants.MENTOR_TUTORIAL_LAST_MODULE);
-			if(test != null){
+			if(test != null && test.getIsCompleted()){
 				//navigate to payment page
 				return "PAY_NOW";
 			}
