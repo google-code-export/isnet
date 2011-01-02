@@ -29,7 +29,7 @@ public class TutorialViewHandler extends BasePage {
 	public String navigateToPayment() {
 		try{
 			TestResult test = this.testResultService.loadUserModuleResult(this.getMember().getMemberId(),CommonConstants.MENTOR_TUTORIAL_LAST_MODULE);
-			if(test != null && test.getIsCompleted()){
+			if(test != null ){
 				//navigate to payment page
 				return "PAY_NOW";
 			}
@@ -47,12 +47,13 @@ public class TutorialViewHandler extends BasePage {
 	  
 	public boolean isCompletedMentorTutorial() {
 		try{
-			TestResult test = this.testResultService.loadUserModuleResult(this.getMember().getMemberId(),8L);
-			if(test == null){
-				this.completedMentorTutorial = false;
-			}else{
+			this.completedMentorTutorial = false;
+			TestResult test = this.testResultService.loadUserModuleResult(this.getMember().getMemberId(),CommonConstants.MENTOR_TUTORIAL_LAST_MODULE);
+			
+			if(test != null && test.getIsCompleted()){
 				this.completedMentorTutorial = true;
 			}
+			
 			log.debug("User completed all the mentor tutorials nnow, save this information");
 			/** If the tutorial is completed then update the member */
 			if(this.completedMentorTutorial){
