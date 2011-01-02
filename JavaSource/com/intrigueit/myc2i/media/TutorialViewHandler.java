@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.intrigueit.myc2i.common.CommonConstants;
 import com.intrigueit.myc2i.common.view.BasePage;
 import com.intrigueit.myc2i.member.domain.Member;
 import com.intrigueit.myc2i.member.service.MemberService;
@@ -27,7 +28,7 @@ public class TutorialViewHandler extends BasePage {
 	  
 	public String navigateToPayment() {
 		try{
-			TestResult test = this.testResultService.loadUserModuleResult(this.getMember().getMemberId(),8L);
+			TestResult test = this.testResultService.loadUserModuleResult(this.getMember().getMemberId(),CommonConstants.MENTOR_TUTORIAL_LAST_MODULE);
 			if(test != null){
 				//navigate to payment page
 				return "PAY_NOW";
