@@ -79,13 +79,13 @@ public class MemberToDoItem extends BasePage{
 	public boolean isCompletedProtegeTutorial() {
 		
 		try{
+			this.isCompletedProtegeTutorial= false;
+			
 			TestResult test = this.testResultService.loadUserModuleResult(this.getMember().getMemberId(),CommonConstants.PROTEGE_TUTORIAL_LAST_MODULE);
-			if(test == null){
-				this.isCompletedProtegeTutorial= false;
-			}else{
+			
+			if(test != null && test.getIsCompleted()){
 				this.isCompletedProtegeTutorial = true;
 			}
-			
 		}
 		catch(Exception ex){
 			log.error(ex.getMessage(),ex);
