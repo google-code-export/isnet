@@ -1,24 +1,69 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:a4j="http://richfaces.org/a4j"
-      xmlns:rich="http://richfaces.org/rich"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	 xmlns:ui="http://java.sun.com/jsf/facelets"
+	 xmlns:h="http://java.sun.com/jsf/html"
+	 xmlns:f="http://java.sun.com/jsf/core"
+	 xmlns:a4j="http://richfaces.org/a4j"
+ 	xmlns:c="http://java.sun.com/jstl/core"
+ 	xmlns:rich="http://richfaces.org/rich">
 
-	    
-      	<title></title>
-    </head>
-    <body id="idPageBody" >
-        <div >
-    	<h:form id="actionbarForm"  acceptcharset="UTF-8">
+	<ui:composition template="/templates/basictemplate.xhtml">
+	<ui:param name="moduleTitle" value="#{bundle.page_title_password_recovery}"></ui:param>
+ 		<ui:param name="userType" value="Public">
+ 	</ui:param>
+
+	<ui:define name="body">
+	<h:panelGrid columns="3" columnClasses="reg_page_column1,reg_page_column2,reg_page_column3" width="100%">
+					<h:outputText value="" />
+					<h:panelGroup>
+					<rich:panel style="width:'auto'"  id="idPanelContainer" headerClass="panel_header" bodyClass="panel_content_body" styleClass="content_panel">
+
 			
 
-  
-    	</h:form>  		
-	</div>
 
-	</body>
+		     <rich:spacer height="50" width="100%"></rich:spacer>
+		    <h:panelGrid columns="1" cellpadding="0" cellspacing="0" border="0" width="100%" columnClasses="grid_col_centered_align">
+		    	<h:outputText styleClass="header_large_text" value="An error has occured during processing request"></h:outputText>
+		    	<h:outputText styleClass="header_medium_text" value="Please read the following information carefully and take the necessary action"></h:outputText>
+		    </h:panelGrid>
+		    <rich:spacer width="100%" height="50"></rich:spacer>
+		    
+			<h:panelGrid columns="1" width="100%" columnClasses="grid_col_left_align">
+				<h:outputLabel styleClass="paragraph_start header_medium_text">
+					<h:outputText value="Possible Causes:"></h:outputText>
+				</h:outputLabel >
+				<h:outputText styleClass="paragraph_start" value="#{errorBean.errorMsg}"></h:outputText>				
+			
+			</h:panelGrid>
+			<rich:spacer width="100%" height="20"></rich:spacer>
+			<h:panelGrid columns="1" width="100%" columnClasses="grid_col_left_align">
+				<h:outputLabel styleClass="paragraph_start header_medium_text" >
+					<h:outputText value="Possible remedies:"></h:outputText>					
+				</h:outputLabel>
+				<h:outputText styleClass="paragraph_start" value="#{errorBean.errorRemedy}"></h:outputText>		    	
+		    	<h:outputText styleClass="paragraph_start" rendered="#{(errorBean.errorLevel == '3')}" value="Please contact with system administrator"></h:outputText>
+			</h:panelGrid>
+			<rich:spacer width="100%" height="20"></rich:spacer>
+			<h:panelGrid rendered="false" columns="1" width="100%" columnClasses="grid_col_left_align">
+				<h:outputLabel styleClass="paragraph_start" >
+					<h:outputText value="#{localeBean.bundle['error.page.send.report']}"></h:outputText>					
+				</h:outputLabel>
+				<a4j:commandButton rendered="false" styleClass="paragraph_start" value="Send"></a4j:commandButton>			
+			</h:panelGrid>						
+				
+  				
+
+
+						
+
+				</rich:panel>
+				
+						
+				</h:panelGroup>
+				<h:outputText value="" />			
+	</h:panelGrid>	   
+  </ui:define>
+   	
+	</ui:composition>
+
 </html>
