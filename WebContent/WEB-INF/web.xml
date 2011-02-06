@@ -141,7 +141,7 @@
   <url-pattern>*.faces</url-pattern>
  </servlet-mapping>
  <session-config>
-  <session-timeout>180</session-timeout>
+  <session-timeout>60</session-timeout>
  </session-config>
  <login-config>
   <auth-method>BASIC</auth-method>
@@ -185,5 +185,9 @@
     <servlet-name>PayPalNavigator</servlet-name>
     <url-pattern>/PayPalNavigator</url-pattern>
   </servlet-mapping>
-  
+  <error-page>
+	<exception-type>javax.faces.application.ViewExpiredException</exception-type>
+	 <location>/login.faces</location>
+	  
+  </error-page>
 </web-app>
