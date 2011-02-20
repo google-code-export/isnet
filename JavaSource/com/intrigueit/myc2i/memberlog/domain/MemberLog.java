@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -53,8 +54,7 @@ public class MemberLog implements java.io.Serializable {
 
 	@Id
 	@Column(name = "MEMBER_LOG_ID")
-	@GeneratedValue(generator = "MemberLogSeq")
-	@SequenceGenerator(name = "MemberLogSeq", sequenceName = "MEMBER_LOG_ID_SEQ", allocationSize = 1, initialValue = 1)
+	@GeneratedValue(strategy=GenerationType.AUTO) 
 	public Long getMemberLogId() {
 		return memberLogId;
 	}
