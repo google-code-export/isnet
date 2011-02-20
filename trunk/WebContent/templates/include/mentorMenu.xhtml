@@ -9,6 +9,14 @@
    <h:panelGroup id="idMentorDashboardPanel" rendered="${moduleType eq 'MH'}">
       <ul class="sidemenu">
         <li>
+          <h:outputLink styleClass="alink" 
+             value="#{controllerBean.contextPath}/pages/secure/memberTutorial.faces">
+            <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/certificate_new.png"/>
+            <h:outputText styleClass="lmenu_text" value="#{bundle.left_navigation_dawah_certification_training}"/>
+          </h:outputLink>  
+        </li>  
+              
+        <li>
            <h:outputLink styleClass="alink" 
              value="#{controllerBean.contextPath}/pages/secure/mentorDashboard.faces">
             <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/gauge.png"/>
@@ -77,13 +85,7 @@
           </h:outputLink> 
         </li>
         
-        <li>
-          <h:outputLink styleClass="alink" 
-             value="#{controllerBean.contextPath}/pages/secure/memberTutorial.faces">
-            <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/certificate_new.png"/>
-            <h:outputText styleClass="lmenu_text" value="#{bundle.left_navigation_dawah_certification_training}"/>
-          </h:outputLink>  
-        </li>       
+     
       </ul>      
    </h:panelGroup>
    
