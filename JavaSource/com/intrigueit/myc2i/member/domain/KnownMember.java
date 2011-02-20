@@ -4,12 +4,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
-
-import com.intrigueit.myc2i.member.domain.Member;
 
 
 @Entity(name = "KNOWN_MEMBER")
@@ -23,8 +21,7 @@ public class KnownMember implements java.io.Serializable {
 	/** Known Member Id */
 	@Id
 	@Column(name = "KNOWN_ID")
-	@GeneratedValue(generator = "KnownMemberSeq")
-	@SequenceGenerator(name = "KnownMemberSeq", sequenceName = "KNOWN_MEMBER_ID_SEQ", allocationSize = 1, initialValue = 1)
+	@GeneratedValue(strategy=GenerationType.AUTO) 
 	private Long knownId;
 	
 	
