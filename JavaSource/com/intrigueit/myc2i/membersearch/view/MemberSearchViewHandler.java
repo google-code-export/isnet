@@ -98,7 +98,7 @@ public class MemberSearchViewHandler extends BasePage {
 				if(srcZip == null){
 					throw new Exception("Not a valid zip code.");
 				}
-				List<String> zipCodes = this.memberSearchDao.fetchZipCode(srcZip.getLatitude(), srcZip.getLongitude(), this.dist);
+				List<String> zipCodes = this.memberSearchDao.fetchZipCodes(zipcode, this.dist);
 				
 				conditions = this.getClause(zipCodes,clause);				
 			}
