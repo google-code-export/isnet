@@ -8,9 +8,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 
@@ -25,8 +25,7 @@ public class TestResult implements java.io.Serializable{
 
     @Id
 	@Column(name = "TUTORIAL_TEST_ID")
-	@GeneratedValue(generator = "TutorialTestSeq")
-	@SequenceGenerator(name = "TutorialTestSeq", sequenceName = "TUTORIAL_TEST_ID_SEQ", allocationSize = 1, initialValue = 1)
+	@GeneratedValue(strategy=GenerationType.AUTO) 
 	private Long tutorialTestId;
 
 	@OneToMany(mappedBy="testResult",targetEntity=TestResultDetails.class,fetch=FetchType.LAZY,cascade=CascadeType.ALL)
