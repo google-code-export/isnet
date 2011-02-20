@@ -81,8 +81,8 @@ public class ProtegeProfileViewHandler extends BasePage{
 		List<String> zipCodes = new ArrayList<String>();
 		
 		try{
-			ZipCode srcZip = this.zipCodeService.findById(this.getMember().getZip()+"");
-			zipCodes = this.memberSearchDao.fetchZipCode(srcZip.getLatitude(), srcZip.getLongitude(), 20.0);
+			//ZipCode srcZip = this.zipCodeService.findById(this.getMember().getZip()+"");
+			zipCodes = this.memberSearchDao.fetchZipCodes(this.getMember().getZip(), 20.0);
 		}
 		catch(Exception ex){
 			log.error(ex.getMessage());
