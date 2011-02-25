@@ -37,11 +37,14 @@
 
 				</rich:panel>
 				
-				<rich:panel id="actionBox" bodyClass="panel_content_body">
+
+					<rich:panel id="actionBox" bodyClass="panel_content_body">
 						<h:panelGrid columns="1" columnClasses="column_class_center" width="100%">
 
+								<h:commandButton action="#{navigationBean.backToLogin}"  value="#{bundle.common_label_back}"  />
+	
 						</h:panelGrid>				
-				</rich:panel>							
+				</rich:panel>										
 				</h:panelGroup>
 				<h:outputText value="" />			
 	</h:panelGrid>	   
