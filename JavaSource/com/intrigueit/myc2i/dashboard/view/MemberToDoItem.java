@@ -1,6 +1,7 @@
 package com.intrigueit.myc2i.dashboard.view;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -17,8 +18,6 @@ import com.intrigueit.myc2i.tutorialtest.service.TestResultService;
 @Component("memberToDoItem")
 @Scope("session")
 public class MemberToDoItem extends BasePage{
-
-	private boolean isMentor;
 	
 	private boolean isCompletedMentorTutorial;
 	
@@ -29,6 +28,7 @@ public class MemberToDoItem extends BasePage{
 	private boolean isMentorCertified;
 	
 	private boolean hasProtege;
+
 	
 	/** Services ref */
 	private StoryService storyService;
@@ -49,10 +49,6 @@ public class MemberToDoItem extends BasePage{
 			return true;
 		}
 		return false;
-	}
-
-	public void setMentor(boolean isMentor) {
-		this.isMentor = isMentor;
 	}
 
 	public boolean isCompletedMentorTutorial() {
@@ -157,6 +153,20 @@ public class MemberToDoItem extends BasePage{
 	public void setHasProtege(boolean hasProtege) {
 		this.hasProtege = hasProtege;
 	}
+
+	public boolean isHasMentor() {
+		return this.getMember().getMentoredByMemberId() == null ? false : true;
+	}
+
+	public boolean isShowNearestMentorsList() {
+		boolean isCompletedProtegeTutorial = this.isCompletedProtegeTutorial();
+		boolean hasMentor = this.isHasMentor();
+		if(isCompletedProtegeTutorial && !hasMentor ){
+			return true;
+		}
+		return false;
+	}
+
 	
 	
 	
