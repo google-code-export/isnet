@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import com.intrigueit.myc2i.common.CommonConstants;
 import com.intrigueit.myc2i.common.view.BasePage;
+import com.intrigueit.myc2i.dashboard.view.MemberToDoItem;
 import com.intrigueit.myc2i.member.domain.Member;
 import com.intrigueit.myc2i.member.service.MemberService;
 import com.intrigueit.myc2i.memberlog.domain.MemberLog;
@@ -39,6 +40,7 @@ public class ProtegeProfileViewHandler extends BasePage{
 	private UDValuesService udService;
 	private List<Member> mentorWaitingCertification;
 	
+	private MemberToDoItem memberToDoItem;
 	/**
 	 * 
 	 */
@@ -353,7 +355,13 @@ public class ProtegeProfileViewHandler extends BasePage{
 	}
 
 	public List<Member> getMentorsAraoundProtege() {
-
+		
+		if(this.getMemberToDoItem().isShowNearestMentorsList()){
+			this.loadMentorAroundMe();
+		}
+		else{
+			this.mentorsAraoundProtege = new ArrayList<Member>();
+		}
 		return mentorsAraoundProtege;
 	}
 
@@ -442,7 +450,17 @@ public class ProtegeProfileViewHandler extends BasePage{
 			log.error(ex.getMessage(),ex);
 		}
 	}
+
+	public MemberToDoItem getMemberToDoItem() {
+		return memberToDoItem;
+	}
 	
+	@Autowired
+	public void setMemberToDoItem(MemberToDoItem memberToDoItem) {
+		this.memberToDoItem = memberToDoItem;
+	}
+
+
 	
 	
 	
