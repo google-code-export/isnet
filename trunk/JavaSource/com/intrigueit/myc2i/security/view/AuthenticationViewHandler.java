@@ -155,14 +155,15 @@ public class AuthenticationViewHandler extends BasePage implements Serializable 
 		try {
 			List<RolePageAccess> privilegePagesList = this.memberService.loadUserPrivilegePages(memberTypeId);
 			if (privilegePagesList != null) {
-				ArrayList<String> privilegePages = new ArrayList<String>();
+				ArrayList<String> userPrivilegePages = new ArrayList<String>();
 				for (RolePageAccess rolePageAccess : privilegePagesList) {
 					if (rolePageAccess.getApplicationPages() != null) {
-						privilegePages.add(rolePageAccess.getApplicationPages().getPageUrl());
+						userPrivilegePages.add(rolePageAccess.getApplicationPages().getPageUrl());
 					}
+					log.debug(rolePageAccess.getApplicationPages().getPageUrl());
 				}
 				HttpSession session = getRequest().getSession(true);
-				session.setAttribute(CommonConstants.USER_PRIVILEGE_PAGES,privilegePages);
+				session.setAttribute(CommonConstants.USER_PRIVILEGE_PAGES,userPrivilegePages);
 			}
 		} catch (Exception e) {
 			log.error(e.getMessage());
