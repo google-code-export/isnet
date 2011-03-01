@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -44,8 +45,7 @@ public class MemberStory implements java.io.Serializable {
 
 	@Id
 	@Column(name = "MEMBER_STORY_ID")
-	@GeneratedValue(generator = "StorySeq")
-	@SequenceGenerator(name = "StorySeq", sequenceName = "MEMBER_STORY_ID_SEQ", allocationSize = 1, initialValue = 1)
+	@GeneratedValue(strategy=GenerationType.AUTO) 
 	public Long getMemberStoryId() {
 		return memberStoryId;
 	}
