@@ -55,36 +55,36 @@ public class TestTutorialQuestionAns implements Serializable {
   @Column(name="VIDEO_FILE_NAME")
   private String videoFileName;
   
-  @Length(max=150)
-  @Column(name="QUESTION",length = 150)
+  @Length(max=500)
+  @Column(name="QUESTION",length = 500)
   private String question;
 
-  @Length(max=100)
-  @Column(name="QUESTION_CORRECT_ANSWER",length = 100)
+  @Length(max=200)
+  @Column(name="QUESTION_CORRECT_ANSWER",length = 200)
   private String questionCorrectAnswer;  
   
-  @Length(max=100)
-  @Column(name="QUESTION_OPTION_ANSWER_A",length = 100)
+  @Length(max=200)
+  @Column(name="QUESTION_OPTION_ANSWER_A",length = 200)
   private String questionOptionAnswerA;  
   
-  @Length(max=100)
-  @Column(name="QUESTION_OPTION_ANSWER_B",length = 100)
+  @Length(max=200)
+  @Column(name="QUESTION_OPTION_ANSWER_B",length = 200)
   private String questionOptionAnswerB;  
   
-  @Length(max=100)
-  @Column(name="QUESTION_OPTION_ANSWER_C",length = 100)
+  @Length(max=200)
+  @Column(name="QUESTION_OPTION_ANSWER_C",length = 200)
   private String questionOptionAnswerC;  
   
-  @Length(max=100)
-  @Column(name="QUESTION_OPTION_ANSWER_D",length = 100)
+  @Length(max=200)
+  @Column(name="QUESTION_OPTION_ANSWER_D",length = 200)
   private String questionOptionAnswerD;  
   
-  @Length(max=100)
-  @Column(name="QUESTION_OPTION_ANSWER_E",length = 100)
+  @Length(max=200)
+  @Column(name="QUESTION_OPTION_ANSWER_E",length = 200)
   private String questionOptionAnswerE;  
   
-  @Length(max=100)
-  @Column(name="QUESTION_OPTION_ANSWER_F",length = 100)
+  @Length(max=200)
+  @Column(name="QUESTION_OPTION_ANSWER_F",length = 200)
   private String questionOptionAnswerF;
 
   @Column(name="RECORD_CREATOR_ID")
