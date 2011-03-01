@@ -15,7 +15,8 @@
 		         </h:outputLink>				
 			</h:panelGroup>
 			</f:facet>
-			<p>	<h:outputText value="Please click the the 'Load' button to see the mentors list around you. It may take some time to find the list." /> <br/>
+			
+			<p style="display: none;">	<h:outputText value="Please click the the 'Load' button to see the mentors list around you. It may take some time to find the list." /> <br/>
 			<a4j:commandButton onclick="forceBlockUI(ajaxProcessMsg);"   oncomplete="forceUnblockUI();" action="#{protegeProfileViewHandler.loadMentorAroundMe}" value="Load..." reRender="idMentorAroundMeGrid"/>
 			</p>
 			
