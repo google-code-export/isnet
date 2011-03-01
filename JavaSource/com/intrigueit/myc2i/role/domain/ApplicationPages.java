@@ -8,47 +8,49 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="APPLICATION_PAGES")
+@Table(name = "APPLICATION_PAGES")
 public class ApplicationPages implements Serializable {
-  
-  /**
+
+	/**
    * 
    */
-  private static final long serialVersionUID = 5196784922719881536L;
+	private static final long serialVersionUID = 5196784922719881536L;
 
-  @Id
-	@Column(name="PAGE_ID")
+	@Id
+	@Column(name = "PAGE_ID")
 	private Long pageId;
-  
-  @Column(name="PAGE_URL")
-  private String pageUrl;
 
-  /**
-   * @return the pageId
-   */
-  public Long getPageId() {
-    return pageId;
-  }
+	@Column(name = "PAGE_URL")
+	private String pageUrl;
 
-  /**
-   * @param pageId the pageId to set
-   */
-  public void setPageId(Long pageId) {
-    this.pageId = pageId;
-  }
+	/**
+	 * @return the pageId
+	 */
+	public Long getPageId() {
+		return pageId;
+	}
 
-  /**
-   * @return the pageUrl
-   */
-  public String getPageUrl() {
-    return pageUrl;
-  }
+	/**
+	 * @param pageId
+	 *            the pageId to set
+	 */
+	public void setPageId(Long pageId) {
+		this.pageId = pageId;
+	}
 
-  /**
-   * @param pageUrl the pageUrl to set
-   */
-  public void setPageUrl(String pageUrl) {
-    this.pageUrl = pageUrl;
-  }
-  
+	/**
+	 * @return the pageUrl
+	 */
+	public String getPageUrl() {
+		return pageUrl;
+	}
+
+	/**
+	 * @param pageUrl
+	 *            the pageUrl to set
+	 */
+	public void setPageUrl(String pageUrl) {
+		this.pageUrl = pageUrl;
+	}
+
 }
