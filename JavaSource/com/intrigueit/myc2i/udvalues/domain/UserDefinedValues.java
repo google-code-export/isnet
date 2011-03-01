@@ -6,8 +6,8 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.hibernate.validator.Length;
@@ -32,22 +32,23 @@ public class UserDefinedValues implements Serializable {
 
   @Id
 	@Column(name="USER_DEFINED_VALUES_ID")
-	@GeneratedValue(generator="UDValueSeq")
-	@SequenceGenerator(name="UDValueSeq",sequenceName="UDVALUE_ID_SEQ", allocationSize=1,initialValue=1)
+	//@GeneratedValue(generator="UDValueSeq")
+	//@SequenceGenerator(name="UDValueSeq",sequenceName="UDVALUE_ID_SEQ", allocationSize=1,initialValue=1)
+	@GeneratedValue(strategy=GenerationType.IDENTITY) 
 	private Long udValuesId;
 
 	@Length(max=500)
 	@Column(name="USER_DEFINED_VALUES_DESCRIPTIO",nullable = true, length = 500)	
 	private String udValuesDesc;
 
-	@Column(name="RECORD_CREATOR_ID",nullable = false, length = 20)
+	@Column(name="RECORD_CREATOR_ID",nullable = true, length = 20)
 	private String recordCreatorId;
 	
 	@Column(name="RECORD_CREATED_DATE")
 	private Date recordCreatedDate;
 
 	@Length(min=1, max=20)
-	@Column(name="RECORD_LAST_UPDATER_ID",nullable = false, length = 20)
+	@Column(name="RECORD_LAST_UPDATER_ID",nullable = true, length = 20)
 	private String recordLastUpdaterId;
 
 	@Column(name="RECORD_LAST_UPDATED_DATE")
