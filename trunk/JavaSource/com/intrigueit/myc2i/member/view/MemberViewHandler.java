@@ -2,6 +2,7 @@ package com.intrigueit.myc2i.member.view;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -84,7 +85,15 @@ public class MemberViewHandler extends BasePage implements Serializable{
 			CryptographicUtility crpUtil = CryptographicUtility.getInstance();
 			String plainPassword = PassPhrase.getNext();
 			this.currentMember.setPassword( crpUtil.getEncryptedText(plainPassword));
+
 			Date dt = new Date();
+			
+			/** Add 30 days as membership expiry date*/
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(dt);
+			cal.add(Calendar.DATE, 30);
+			this.currentMember.setMemberShipExpiryDate(cal.getTime());
+			
 			this.currentMember.setRecordCreate(dt);
 			this.currentMember.setLastUpdated(dt);
 			this.currentMember.setRecordCreatorId("-1");
