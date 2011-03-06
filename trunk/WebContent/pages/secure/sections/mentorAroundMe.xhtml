@@ -73,7 +73,20 @@
 						     </rich:toolTip>	
 						</a4j:commandLink>			             
 		             </rich:column>		
-		             		             	             		             		             
+		             <rich:column>
+			             <f:facet name="header">
+			               <h:outputText value="#{bundle.protege_search_add_mentor}" />
+			             </f:facet>
+		         		 <a4j:commandLink value="#{bundle.button_label_send_request}"  reRender="idmemberLogDialog" action="#{memberLogViewHandler.initMemberLogForProtegeRequest}" oncomplete="Richfaces.showModalPanel('idmemberLogDialog')">
+				             <a4j:actionparam name="MEMBER_ID" value="#{member.memberId}"  />
+				              <a4j:actionparam name="MEMBER_NAME" value="#{member.firstName} #{member.lastName} "  />
+		            		 <rich:toolTip styleClass="tooltips_style"  >
+						          <span class="tooltips_span_style">
+						              Send Protege request<br/>
+						          </span>
+						     </rich:toolTip>	
+						</a4j:commandLink>
+		             </rich:column>				             		             	             		             		             
 		             		                      	   
 			      </rich:dataTable>		
 		        <rich:datascroller id="idMentorAroundMeScroller" align="center"  for="idMentorAroundMeGrid" maxPages="5" />
