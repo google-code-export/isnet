@@ -9,6 +9,7 @@
  	<!-- Mentor Top navigation Menu -->
         <ul>
 
+        <c:if test="${authenticationViewHandler.mentorTopMenu.dashBoard}">
           <li>
             <h:outputLink styleClass="menu_item_clink" 
               value="#{controllerBean.contextPath}/pages/secure/mentorDashboard.faces">
@@ -16,8 +17,8 @@
             </h:outputLink>
           </li>
           <li><a href="" >|</a></li>        
-
-
+        </c:if>
+        
           <li>
             <h:outputLink styleClass="menu_item_clink" 
               value="#{controllerBean.contextPath}/pages/secure/mentorProfile.faces">
