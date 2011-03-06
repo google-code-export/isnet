@@ -39,6 +39,8 @@ public class ProtegeProfileViewHandler extends BasePage{
 	private MemberSearchDao memberSearchDao;
 	private UDValuesService udService;
 	private List<Member> mentorWaitingCertification;
+
+	private List<String> cachedZipCode = null;
 	
 	private MemberToDoItem memberToDoItem;
 	/**
@@ -80,17 +82,20 @@ public class ProtegeProfileViewHandler extends BasePage{
 	}
 
 	private List<String> getZipCodes(){
-		List<String> zipCodes = new ArrayList<String>();
+		//List<String> zipCodes = new ArrayList<String>();
 		
 		try{
 			//ZipCode srcZip = this.zipCodeService.findById(this.getMember().getZip()+"");
-			zipCodes = this.memberSearchDao.fetchZipCodes(this.getMember().getZip(), 20.0);
+			if(cachedZipCode == null){
+				cachedZipCode = this.memberSearchDao.fetchZipCodes(this.getMember().getZip(), 20.0);
+			}
+			
 		}
 		catch(Exception ex){
 			log.error(ex.getMessage());
 			ex.printStackTrace();
 		}
-		return zipCodes;
+		return cachedZipCode;
 	}
 	
 	/**
@@ -356,7 +361,7 @@ public class ProtegeProfileViewHandler extends BasePage{
 
 	public List<Member> getMentorsAraoundProtege() {
 		
-		if(this.getMemberToDoItem().isShowNearestMentorsList()){
+		if( this.getMemberToDoItem().isShowNearestMentorsList()){
 			this.loadMentorAroundMe();
 		}
 		else{
@@ -461,7 +466,5 @@ public class ProtegeProfileViewHandler extends BasePage{
 	}
 
 
-	
-	
 	
 }
