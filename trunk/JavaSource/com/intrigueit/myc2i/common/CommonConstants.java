@@ -58,4 +58,6 @@ public class CommonConstants {
     
     public static final int MAX_PROTEGE_ALLOWED = 5;
     
+    public static final String [] MENTOR_HOME_PAGES = new String[]{"mentorDashboard.faces","memberProtegeProfile.faces","protegeSearch.faces","leadMentorSearch.faces","memberLog.faces","memberStory.faces","memberTutorial.faces","memberMessage.faces","messageDetail.faces"};
+    
 }
