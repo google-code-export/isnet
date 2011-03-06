@@ -11,6 +11,8 @@ import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -226,6 +228,15 @@ public class AuthenticationViewHandler extends BasePage implements Serializable 
 		return member;
 	}
 
+	private boolean isItemExistInArray(String item, String [] items){
+		
+		for(String itm: items){
+			if(itm.trim().toLowerCase().equals(item.trim().toLowerCase())){
+				return true;
+			}
+		}
+		return false;
+	}
 	/**
 	 * */
 	public String getHomePageAddress(Member member) {
@@ -253,6 +264,16 @@ public class AuthenticationViewHandler extends BasePage implements Serializable 
 					this.mentorTopMenu.setDashBoard(false);
 					this.mentorTopMenu.setMyResource(false);
 					this.mentorTopMenu.setAskQuestion(false);
+					
+					ArrayList<String> userPrivilegePages = (ArrayList<String>) this.getSession().getAttribute(CommonConstants.USER_PRIVILEGE_PAGES);
+					ArrayList<String> compactPageList = new ArrayList<String>();
+					for(String page: userPrivilegePages){
+						if(!isItemExistInArray(page, CommonConstants.MENTOR_HOME_PAGES)){
+							compactPageList.add(page.trim());
+							log.debug(page);
+						}
+					}
+					this.getSession().setAttribute(CommonConstants.USER_PRIVILEGE_PAGES, compactPageList);
 					
 					return ViewConstant.TO_MENTOR_PAYMENT_PAGE;
 				}
