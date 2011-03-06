@@ -19,6 +19,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import com.intrigueit.myc2i.common.CommonConstants;
 
 /**
@@ -31,6 +34,8 @@ import com.intrigueit.myc2i.common.CommonConstants;
 public class UserPrivilegeCheckFilter implements Filter {
     
     private static final String PRIVILEGE_URL = "/userPrivilegeErrorMsg.faces";
+    private static final String FILE_EXTENTION = ".faces";
+    protected final Log log = LogFactory.getLog(getClass());
     
     public UserPrivilegeCheckFilter() { 
     }
@@ -60,17 +65,18 @@ public class UserPrivilegeCheckFilter implements Filter {
         String[] data = url.split("/");        
         String page = data[data.length -1];
         
-        if(session.getAttribute(CommonConstants.USER_PRIVILEGE_PAGES) != null){
-          Object obj =session.getAttribute(CommonConstants.USER_PRIVILEGE_PAGES);
-          ArrayList privilegePages = (ArrayList) obj;
-          if (!privilegePages.contains(page)) {                
-            hres.sendRedirect(path);
-            return;
-          }          
-        } else {
-          hres.sendRedirect(path);
-          return;
+        boolean isFaces = url.endsWith(FILE_EXTENTION);
+        
+        Object pageAccess = session.getAttribute(CommonConstants.USER_PRIVILEGE_PAGES);
+        if(isFaces && pageAccess != null){
+        	 ArrayList privilegePages = (ArrayList) pageAccess;
+             if (!privilegePages.contains(page)) {   
+            	 log.debug("User has no right to acess page: "+ page);
+                 hres.sendRedirect(path);
+                 return;
+             }         	 
         }
+        
         /** deliver request to next filter */
         chain.doFilter(request, response);
       }
