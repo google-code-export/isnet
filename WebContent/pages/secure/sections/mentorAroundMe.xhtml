@@ -61,7 +61,7 @@
 			             <f:facet name="header">
 			               <h:outputText value="#{bundle.protege_search_profile}" />
 			             </f:facet>
-		         		 <a4j:commandLink  reRender="idmemberInfoDialog" action="#{protegeProfileViewHandler.loadMember}" oncomplete="Richfaces.showModalPanel('idmemberInfoDialog')">
+		         		 <a4j:commandLink  reRender="idmemberInfoDialog"  action="#{protegeProfileViewHandler.loadMember}" oncomplete="Richfaces.showModalPanel('idmemberInfoDialog')">
 				             <a4j:actionparam name="MEMBER_ID" value="#{member.memberId}"  />
 				             <a4j:actionparam name="action" value="VIEW"  />
 			            	<h:graphicImage value="/images/member_view.png" align="middle" border="0" > 
@@ -77,7 +77,7 @@
 			             <f:facet name="header">
 			               <h:outputText value="#{bundle.protege_search_add_mentor}" />
 			             </f:facet>
-		         		 <a4j:commandLink value="#{bundle.button_label_send_request}"  reRender="idmemberLogDialog" action="#{memberLogViewHandler.initMemberLogForProtegeRequest}" oncomplete="Richfaces.showModalPanel('idmemberLogDialog')">
+		         		 <a4j:commandLink value="#{bundle.button_label_send_request}"  reRender="idmemberLogDialog"   action="#{memberLogViewHandler.initMemberLogForProtegeRequest}" oncomplete="Richfaces.showModalPanel('idmemberLogDialog')">
 				             <a4j:actionparam name="MEMBER_ID" value="#{member.memberId}"  />
 				              <a4j:actionparam name="MEMBER_NAME" value="#{member.firstName} #{member.lastName} "  />
 		            		 <rich:toolTip styleClass="tooltips_style"  >
