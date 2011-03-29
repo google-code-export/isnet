@@ -106,6 +106,21 @@
    <to-view-id>/login.xhtml</to-view-id>
    <redirect/>
   </navigation-case>
+  <navigation-case>
+   <from-outcome>TO_MENTOR_DASHBOARD</from-outcome>
+   <to-view-id>/pages/secure/mentorDashboard.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>TO_PROTEGE_DASHBOARD</from-outcome>
+   <to-view-id>/pages/secure/protegeDashboard.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>TO_ADMIN_HOME</from-outcome>
+   <to-view-id>/pages/secure/udValueView.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
  </navigation-rule>
  <navigation-rule>
   <from-view-id>/pages/secure/memberMessage.xhtml</from-view-id>
@@ -146,6 +161,15 @@
    <to-view-id>/pages/secure/mentorPayments.xhtml</to-view-id>
    <redirect/>
   </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/pages/secure/mentorDashboard.xhtml</from-view-id>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/pages/secure/protegeDashboard.xhtml</from-view-id>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/pages/secure/udValueView.xhtml</from-view-id>
  </navigation-rule>
  <application>
   <view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
