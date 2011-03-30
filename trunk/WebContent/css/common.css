@@ -188,8 +188,18 @@
 		font-weight:bold;
 		font-size: 9pt;
 
-	        
-	
+	}
+		.login_box_panel_header2{
+	 	background-image : url();
+	    border:none;
+        height:22px;
+        text-align:center;
+        vertical-align:middle;
+        color: white;
+		background-color:#3E548F;
+		font-weight:bold;
+		font-size: 8pt;
+
 	}
 	.container_box_panel_header{
 	 	background-image : url();
