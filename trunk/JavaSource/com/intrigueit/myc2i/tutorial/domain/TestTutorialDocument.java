@@ -6,29 +6,27 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.hibernate.validator.Length;
 import org.hibernate.validator.NotEmpty;
 import org.hibernate.validator.NotNull;
 
-
 @Entity
 @Table(name = "TEST_TUTORIAL_DOCUMENT")
 public class TestTutorialDocument implements Serializable {
-	
-	/**
-   * Generated serial version ID
-   */
-  private static final long serialVersionUID = 4010264359945000674L;
 
-  @Id
+	/**
+	 * Generated serial version ID
+	 */
+	private static final long serialVersionUID = 4010264359945000674L;
+
+	@Id
 	@Column(name = "TEST_TUTORIAL_DOCUMENT_ID")
-	@GeneratedValue(generator = "documentSeq")
-	@SequenceGenerator(name = "documentSeq", sequenceName = "DOCUMENT_ID_SEQ", allocationSize = 1, initialValue = 1)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long documentId;
 
 	@NotNull
