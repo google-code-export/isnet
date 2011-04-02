@@ -26,13 +26,13 @@ import com.intrigueit.myc2i.trainingitem.service.VendorService;
 @Component("trainingItemViewHandler")
 @Scope("session")
 public class TrainingItemViewHandler extends BasePage implements Serializable {
-	
-	/**
-   * Generated serial version ID
-   */
-  private static final long serialVersionUID = 6912747403326406124L;
 
-  /** Initialize the Logger */
+	/**
+	 * Generated serial version ID
+	 */
+	private static final long serialVersionUID = 6912747403326406124L;
+
+	/** Initialize the Logger */
 	protected static final Logger logger = Logger
 			.getLogger(TrainingItemViewHandler.class);
 
@@ -57,8 +57,8 @@ public class TrainingItemViewHandler extends BasePage implements Serializable {
 	}
 
 	public void initializeTrainingItem() {
-	  setSecHeaderMsg("");
-	  getTrainingItemsByCategory();
+		setSecHeaderMsg("");
+		getTrainingItemsByCategory();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -248,10 +248,10 @@ public class TrainingItemViewHandler extends BasePage implements Serializable {
 						+ this.currentTrainingItem.getItemId());
 			}
 		} catch (Exception e) {
-		  if (this.currentTrainingItem.getItemId() != null) {
-        this.currentTrainingItem.setItemId(null);
-      }
-		  setErrorMessage(this.getText("common_system_error"));
+			if (this.currentTrainingItem.getItemId() != null) {
+				this.currentTrainingItem.setItemId(null);
+			}
+			setErrorMessage(this.getText("common_system_error"));
 			logger.error(e.getMessage());
 			e.printStackTrace();
 		}
