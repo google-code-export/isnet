@@ -6,9 +6,9 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.hibernate.validator.Length;
@@ -18,16 +18,15 @@ import org.hibernate.validator.NotNull;
 @Entity
 @Table(name = "TRAINING_ITEM")
 public class TrainingItem implements Serializable {
-	
-	/**
-   * Generated serial version ID
-   */
-  private static final long serialVersionUID = 1942081746949649346L;
 
-  @Id
+	/**
+	 * Generated serial version ID
+	 */
+	private static final long serialVersionUID = 1942081746949649346L;
+
+	@Id
 	@Column(name = "ITEM_ID")
-	@GeneratedValue(generator = "trainingItemSeq")
-	@SequenceGenerator(name = "trainingItemSeq", sequenceName = "TRAINING_ITEM_SEQ", allocationSize = 1, initialValue = 1)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long itemId;
 
 	@NotNull
@@ -98,10 +97,10 @@ public class TrainingItem implements Serializable {
 	@Column(name = "ITEM_IMAGE")
 	@Lob
 	private byte[] itemImage;
-	
+
 	@Column(name = "IMAGE_FILE_NAME")
-  private String imageFileName;
-	
+	private String imageFileName;
+
 	@Column(name = "VENDOR_ID")
 	private Long vendorId;
 
@@ -246,18 +245,19 @@ public class TrainingItem implements Serializable {
 		this.vendorId = vendorId;
 	}
 
-  /**
-   * @return the imageFileName
-   */
-  public String getImageFileName() {
-    return imageFileName;
-  }
+	/**
+	 * @return the imageFileName
+	 */
+	public String getImageFileName() {
+		return imageFileName;
+	}
 
-  /**
-   * @param imageFileName the imageFileName to set
-   */
-  public void setImageFileName(String imageFileName) {
-    this.imageFileName = imageFileName;
-  }
-	
+	/**
+	 * @param imageFileName
+	 *            the imageFileName to set
+	 */
+	public void setImageFileName(String imageFileName) {
+		this.imageFileName = imageFileName;
+	}
+
 }

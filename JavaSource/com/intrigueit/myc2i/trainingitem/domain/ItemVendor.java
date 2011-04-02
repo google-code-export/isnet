@@ -1,12 +1,13 @@
 package com.intrigueit.myc2i.trainingitem.domain;
+
 import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.hibernate.validator.Email;
@@ -15,55 +16,54 @@ import org.hibernate.validator.NotEmpty;
 import org.hibernate.validator.NotNull;
 
 @Entity
-@Table(name="ITEM_VENDOR")
+@Table(name = "ITEM_VENDOR")
 public class ItemVendor implements Serializable {
-	
-  /**
-   * Generated serial version id
-   */
-  private static final long serialVersionUID = -2080629454595731508L;
 
-  @Id
-	@Column(name="VENDOR_ID")
-	@GeneratedValue(generator="vendorSeq")
-  @SequenceGenerator(name="vendorSeq",sequenceName="VENDOR_ID_SEQ", allocationSize=1,initialValue=1)
+	/**
+	 * Generated serial version id
+	 */
+	private static final long serialVersionUID = -2080629454595731508L;
+
+	@Id
+	@Column(name = "VENDOR_ID")
+	@GeneratedValue(strategy=GenerationType.IDENTITY) 
 	private Long vendorId;
 
 	@NotNull
-  @NotEmpty
-  @Length(min=1,max=50)
-	@Column(name="VENDOR_NAME",nullable = false, length = 50)
+	@NotEmpty
+	@Length(min = 1, max = 50)
+	@Column(name = "VENDOR_NAME", nullable = false, length = 50)
 	private String vendorName;
-	
+
 	@NotNull
-  @NotEmpty
-  @Length(min=1,max=50)
-  @Email
-  @Column(name="VENDOR_EMAIL",nullable = false, length = 50)
+	@NotEmpty
+	@Length(min = 1, max = 50)
+	@Email
+	@Column(name = "VENDOR_EMAIL", nullable = false, length = 50)
 	private String vendorEmail;
 
 	@NotNull
-  @NotEmpty
-  @Length(min=1,max=100)
-	@Column(name="VENDOR_ADDRESS",nullable = false, length = 100)
+	@NotEmpty
+	@Length(min = 1, max = 100)
+	@Column(name = "VENDOR_ADDRESS", nullable = false, length = 100)
 	private String vendorAddress;
-	
+
 	@Length(max = 20)
-	@Column(name="VENDOR_PHONE",nullable = true, length = 20)
+	@Column(name = "VENDOR_PHONE", nullable = true, length = 20)
 	private String vendorPhone;
 
-	@Column(name="RECORD_CREATOR_ID")
+	@Column(name = "RECORD_CREATOR_ID")
 	private String recordCreatorId;
 
-	@Column(name="RECORD_CREATE_DATE")
+	@Column(name = "RECORD_CREATE_DATE")
 	private Date recordCreateDate;
 
-	@Column(name="RECORD_LAST_UPDATER_ID")
+	@Column(name = "RECORD_LAST_UPDATER_ID")
 	private String recordLastUpdaterId;
 
-	@Column(name="RECORD_LAST_UPDATED_DATE")
-	private Date recordLastUpdatedDate;	
-	
+	@Column(name = "RECORD_LAST_UPDATED_DATE")
+	private Date recordLastUpdatedDate;
+
 	public ItemVendor() {
 		super();
 	}
@@ -139,5 +139,5 @@ public class ItemVendor implements Serializable {
 	public void setRecordLastUpdatedDate(Date recordLastUpdatedDate) {
 		this.recordLastUpdatedDate = recordLastUpdatedDate;
 	}
-	
+
 }
