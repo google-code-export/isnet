@@ -15,7 +15,6 @@ import com.intrigueit.myc2i.common.dao.GenericDaoImpl;
 public class ChapterDaoImpl extends GenericDaoImpl<LocalChapter,Long> implements ChapterDao{
   
   @SuppressWarnings("unchecked")
-  @Override
   public List<LocalChapter> findByProperties(String hsql) {
     Query query = entityManager.createQuery(hsql);
     return query.getResultList();

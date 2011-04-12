@@ -45,7 +45,6 @@ public class ChapterServiceImpl implements ChapterService {
     return chapterDao.loadByClause(clause, new Object[]{value});
   }
 	
-	 @Override
 	  public List<LocalChapter> findByProperties(SearchBean searchBean) {
 	    List<Object> value = new ArrayList<Object>();
 	    StringBuffer clause = new StringBuffer();
