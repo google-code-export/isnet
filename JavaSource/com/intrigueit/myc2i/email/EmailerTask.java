@@ -21,7 +21,7 @@ public class EmailerTask implements Runnable{
 		this.emailer = emailer;
 	}
 
-	@Override
+
 	public void run() {
 		try{
 			Properties conf = EmailConfiguration.getEmailConfiguration().getEmailProperty();
