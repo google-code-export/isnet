@@ -21,23 +21,23 @@ public class ZipCodeServiceImpl implements ZipCodeService{
 		this.zipCodeDao = zipCodeDao;
 	}
 
-	@Override
+
 	public List<ZipCode> findAll() {
 		return this.zipCodeDao.loadAll();
 	}
 
-	@Override
+
 	public List<ZipCode> findByCity(String city) {
 		String clause = " upper(t.city) = ?1 ";
 		return zipCodeDao.loadByClause(clause, new Object[]{city});
 	}
 
-	@Override
+
 	public ZipCode findById(String id) {
 		return this.zipCodeDao.loadById(id);
 	}
 
-	@Override
+
 	public List<ZipCode> findByState(String state) {
 		String clause = " upper(t.state) = ?1 ";
 		return zipCodeDao.loadByClause(clause, new Object[]{state});
