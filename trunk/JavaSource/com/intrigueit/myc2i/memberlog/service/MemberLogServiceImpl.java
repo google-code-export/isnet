@@ -69,13 +69,13 @@ public class MemberLogServiceImpl implements MemberLogService{
 		String clause = " upper(t.status) <> ?1 and t.fromMemberId=?2 and t.memberLogDateTime >= ?3 ";
 		return memberLogDao.loadByClause(clause, new Object[]{CommonConstants.ACTIVITY_STATUS.PENDING.toString(),memberId,date});
 	}
-	@Override
+
 	public List<MemberLog> getAllPendingLog(Long memberId) {
 		String clause = " upper(t.status) = ?1 and t.fromMemberId=?2";
 		return memberLogDao.loadByClause(clause, new Object[]{CommonConstants.ACTIVITY_STATUS.PENDING.toString(),memberId});
 	}
 	
-	@Override
+
 	public List<MemberLog> findMemberLogByDate (String fromDate, String toDate ) {
 		StringBuffer clause = new StringBuffer();    
 		clause.append(" to_char(memberLogDateTime,'yyyyMMdd') >= "+fromDate);
@@ -85,7 +85,7 @@ public class MemberLogServiceImpl implements MemberLogService{
 	  return memberLogDao.loadByClause(clause.toString(), null);
 	}
 	
-	@Override
+
 	public List<MemberLog> loadMemberLogByActivityType( Long memberId ) {
 	  StringBuffer clause = new StringBuffer();
     clause.append(" toMemberId = "+memberId);
@@ -93,7 +93,7 @@ public class MemberLogServiceImpl implements MemberLogService{
     return memberLogDao.loadByClause(clause.toString(), null);
 	}
 	
-	@Override
+
 	public Boolean isInActiveMember(Long memberId) {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(new Date());
@@ -104,7 +104,7 @@ public class MemberLogServiceImpl implements MemberLogService{
 	}
 
 
-	@Override
+
 	public List<MemberLog> getAllProtegePendingRequest(Long memberId) {
 		String clause = " upper(t.status) = ?1 and t.toMemberId=?2";
 		return memberLogDao.loadByClause(clause, new Object[]{CommonConstants.ACTIVITY_STATUS.PENDING.toString(),memberId});
@@ -212,28 +212,28 @@ public class MemberLogServiceImpl implements MemberLogService{
 		return logs;
 	}
 	
-	@Override
+
 	public List<MemberLog> getAllMentorReleaseLog(Long memberId,Long logTypeId) {
 		String clause = " t.memberActivityType = ?1 and t.fromMemberId=?2";
 		return memberLogDao.loadByClause(clause, new Object[]{logTypeId,memberId});
 	}
 
 
-	@Override
+
 	public List<MemberLog> getAllProtegeReleaseLog(Long memberId,Long logTypeId) {
 		String clause = " t.memberActivityType = ?1 and t.toMemberId=?2";
 		return memberLogDao.loadByClause(clause, new Object[]{logTypeId,memberId});
 	}
 
 
-	@Override
+
 	public List<MemberLog> getMemberConversation(Long memberId) {
 		String clause = " t.fromMemberId=?1  OR t.toMemberId=?2 ORDER BY t.memberLogDateTime DESC ";
 		return memberLogDao.loadByClause(clause, new Object[]{memberId,memberId});
 	}
 
 
-	@Override
+
 	public List<MemberLog> getRecentConversation(Long memberId) {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(new Date());
@@ -243,13 +243,13 @@ public class MemberLogServiceImpl implements MemberLogService{
 		return logs;
 	}
 	
-	@Override
+
   public Integer deleteMemLogByFrMemId(Long memberId) {
     String clause = " t.fromMemberId=?1 ";
     return memberLogDao.deleteByClause(clause, new Object[] {memberId}); 
   }
 	
-	@Override
+
   public Integer deleteMemLogByToMemId(Long memberId) {
     String clause = " t.toMemberId=?1 ";
     return memberLogDao.deleteByClause(clause, new Object[] {memberId}); 
