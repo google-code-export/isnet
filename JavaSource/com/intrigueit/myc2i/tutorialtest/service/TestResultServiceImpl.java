@@ -24,45 +24,45 @@ public class TestResultServiceImpl implements TestResultService{
 		this.testResultDao = testResultDao;
 	}
 	
-	@Override
+
 	public void delete(TestResult entity) {
 		this.testResultDao.delete(entity);
 		
 	}
 
-	@Override
+
 	public TestResult findById(Long id) {
 		return this.testResultDao.loadById(id);
 	}
 
-	@Override
+
 	public void save(TestResult entity) {
 		this.testResultDao.persist(entity);
 		
 	}
 
-	@Override
+
 	public void update(TestResult entity) {
 		this.testResultDao.update(entity);
 		
 	}
 
-	@Override
+
 	public List<TestResult> findUserTestResult(Long userId) {
 		return this.testResultDao.findUserTestResult(userId);
 	}
 
-	@Override
+
 	public List<TestResult> findAll() {
 		return testResultDao.loadAll();
 	}
 
-	@Override
+
 	public TestResult loadUserModuleResult(Long userId, Long moduleId) {
 		return testResultDao.loadUserModuleResult(userId, moduleId);
 	}
 
-	@Override
+
 	public int deleteResultDetails(Long testId) {
 		// TODO Auto-generated method stub
 		return this.testResultDetailDao.deleteResults(testId);
