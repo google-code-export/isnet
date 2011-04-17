@@ -22,40 +22,40 @@ public class PayPalLogServiceImpl implements PayPalLogService{
 		this.payPalLogDao = payPalLogDao;
 	}
 
-	@Override
+
 	public void delete(PayPalLog entity) {
 		this.payPalLogDao.delete(entity);
 	}
 
-	@Override
+
 	public PayPalLog findById(Long id) {
 		return this.payPalLogDao.loadById(id);
 	}
 
-	@Override
+
 	public List<PayPalLog> findByProperty(String propertyName, Object value) {
 		String clause = " t."+propertyName+" = ?1 ";
 		return payPalLogDao.loadByClause(clause, new Object[]{value});
 	}
 
-	@Override
+
 	public void save(PayPalLog entity) {
 		payPalLogDao.persist(entity);
 		
 	}
 
-	@Override
+
 	public PayPalLog update(PayPalLog entity) {
 		payPalLogDao.update(entity);
 		 return entity;
 	}
 
-	@Override
+
 	public Boolean IsTxnExist(String txnId, String payerEmail) {
 		return payPalLogDao.IsTxnExist(txnId,payerEmail);
 	}
 	
-	@Override
+
 	public PayPalLog getLastPayPalLogById(Long memberId) {
 	  StringBuffer clause = new StringBuffer();
 	  clause.append(" from PayPalLog ")
