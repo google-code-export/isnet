@@ -64,22 +64,22 @@ public class MemberServiceImpl implements MemberService {
 		return entity;
 	}
 
-	@Override
+
 	public Boolean isMemberExist(String email) {
 		return memberDao.isMemberExist(email);
 	}
 
-	@Override
+
 	public List<Member> getMentorProtege(Long mentorId) {
 		return memberDao.getMentorProteges(mentorId);
 	}
 
-	@Override
+
 	public List<Member> getMemberByDynamicHsql(String hsql) {
 		return memberDao.loadByClause(hsql, new Object[]{});
 	}
 
-	@Override
+
 	public List<Member> findByProperties(SearchBean searchBean) {
 		List<Object> value = new ArrayList<Object>();
 		StringBuffer clause = new StringBuffer();
@@ -150,7 +150,7 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.findByClause(clause);
 	}
 
-	@Override
+
 	public List<Member> findMentorByIds(List<String> idList) {
 		String ids = null;
 		for (String str : idList) {
@@ -161,7 +161,7 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.loadByClause(clause, new Object[]{});
 	}
 
-	@Override
+
 	public int getMentorProtegeCout(Long memberId) {
 		String clause = " t.mentoredByMemberId =?1 ";
 
@@ -177,7 +177,7 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.loadUserPrivilegePages(memberTypeId);
 	}
 
-	@Override
+
 	public boolean isMembershipExpired(Long memberId, int expiryDateLimit) {
 		Member member = memberDao.loadById(memberId);
 		Calendar cal = Calendar.getInstance();
@@ -208,13 +208,13 @@ public class MemberServiceImpl implements MemberService {
 		return false;
 	}
 
-	@Override
+
 	public List<Member> findUnVerifiedMember() {
 		String clause = "from MEMBER where memberId in (select distinct(memberId) from PayPalLog where verifyStatus is null)";
 		return memberDao.loadByQuery(clause.toString(), new Object[]{});
 	}
 
-	@Override
+
 	public List<Member> getMyFriendList(Long memberId) {
 		String clause = " t.srcMember.memberId =?1 ";
 
@@ -231,7 +231,7 @@ public class MemberServiceImpl implements MemberService {
 		this.knownMemberDao = knownMemberDao;
 	}
 
-	@Override
+
 	public List<Member> getRecentlyJoinedMemberList() {
 		String clause = " t.mentoredByMemberId =?1 ";
 
@@ -240,12 +240,12 @@ public class MemberServiceImpl implements MemberService {
 		return members;
 	}
 
-	@Override
+
 	public List<Member> getLeadMentorsMentorWaitingForCertification(Long mentorId) {
 		return memberDao.getLeadMentorMentorWaitingForCertification(mentorId);
 	}
 
-	@Override
+
 	public void addToKnownMemberList(Member member, Member friend) {
 		KnownMember kMember = new KnownMember();
 		kMember.setFriendId(friend.getMemberId());
