@@ -10,14 +10,14 @@ import com.intrigueit.myc2i.tutorialtest.domain.TestResult;
 @Repository
 public class TestResultDaoImpl extends GenericDaoImpl<TestResult,Long> implements TestResultDao{
 
-	@Override
+
 	public List<TestResult> findUserTestResult(Long userId) {
 		String clause = "t.memberId = ?1";
 		List<TestResult> results = loadByClause(clause, new Object[] { userId });
 		return results;
 	}
 
-	@Override
+
 	public TestResult loadUserModuleResult(Long userId, Long moduleId) {
 		
 		String clause = "t.memberId = ?1 and t.moduleId= ?2";
