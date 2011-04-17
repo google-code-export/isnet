@@ -21,23 +21,23 @@ public class StoryServiceImpl implements StoryService{
 		this.stroyDao = stroyDao;
 	}
 
-	@Override
+
 	public void delete(MemberStory entity) {
 		 stroyDao.delete(entity);
 		
 	}
 
-	@Override
+
 	public List<MemberStory> findAll() {
 		return this.stroyDao.loadAll();
 	}
 
-	@Override
+
 	public MemberStory findById(Long id) {
 		return this.stroyDao.loadById(id);
 	}
 
-	@Override
+
 	public void save(MemberStory entity) {
 		this.stroyDao.persist(entity);
 		
@@ -47,13 +47,13 @@ public class StoryServiceImpl implements StoryService{
 		 stroyDao.update(entity);
 	}
 
-	@Override
+
 	public List<MemberStory> findMyAllStories(Long memberId) {
 		String clause = " upper(t.member.memberId) = ?1 and lower(t.approvedForPublishInd) <> ?2 and t.weekWinnerIndicator IS NULL ";
 		return stroyDao.loadByClause(clause, new Object[]{memberId,"yes"});
 	}
 
-	@Override
+
 	public List<MemberStory> findTopTenStories(int range,String type) {
 		Date date = this.getWeekFirstDay(range);
 		String clause = " where lower(t.approvedForPublishInd)=?1 and t.approvalDate > ?2 and t.category=?3 ORDER BY t.numberOfVotesReceived DESC";
@@ -66,7 +66,7 @@ public class StoryServiceImpl implements StoryService{
 		return this.stroyDao.loadById(7L);
 	}*/
 
-	@Override
+
 	public MemberStory getWiningStory(String type) {
 		String clause = " where t.weekWinnerIndicator IS NOT NULL and t.category=?1 ORDER BY t.weekWinnerIndicator DESC ";
 		List<MemberStory> stories  = this.stroyDao.loadTopResultsByConditions(1, clause, new Object[]{type});
@@ -84,7 +84,7 @@ public class StoryServiceImpl implements StoryService{
 
 		return cal.getTime();
 	}
-	@Override
+
 	public List<MemberStory> findMostVotedAndLatestStories(int range) {
 		Date date = this.getWeekFirstDay(range);
 		String clause = " where lower(t.approvedForPublishInd)=?1 and t.approvalDate > ?2 ORDER BY t.approvalDate DESC ";
@@ -92,14 +92,13 @@ public class StoryServiceImpl implements StoryService{
 		return stories;
 	}
 
-	@Override
 	public List<MemberStory> findUnpublishProtegeStories(Date date) {
 		String clause = "  lower(t.memberPermissionToPublish)=?1 and t.memberStoryDate >= ?2 and lower(t.approvedForPublishInd) <> ?3 ORDER BY t.memberStoryDate DESC ";
 		List<MemberStory> stories  = this.stroyDao.loadByClause(clause, new Object[]{"yes",date,"yes"});
 		return stories;
 	}
 
-	@Override
+
 	public MemberStory getWeeklyMentorWiningStory(int range) {
 		Date date = this.getWeekFirstDay(range);
 		String clause = " where t.numberOfVotesReceived IS NOT NULL and t.weekWinnerIndicator IS NULL and lower(t.approvedForPublishInd)=?1 and t.category=?2 and t.approvalDate > ?3  ORDER BY t.numberOfVotesReceived DESC t.approvalDate DESC ";
@@ -112,7 +111,7 @@ public class StoryServiceImpl implements StoryService{
 		return null;
 	}
 
-	@Override
+
 	public MemberStory getWeeklyProtegeWiningStory(int range) {
 		Date date = this.getWeekFirstDay(range);
 		String clause = " where t.numberOfVotesReceived IS NOT NULL and t.weekWinnerIndicator IS NULL and lower(t.approvedForPublishInd)=?1 and t.category=?2 and t.approvalDate > ?3 ORDER BY t.numberOfVotesReceived DESC t.approvalDate DESC ";
