@@ -12,19 +12,20 @@ import com.intrigueit.myc2i.udvalues.domain.UserDefinedValues;
 
 @Repository
 @Transactional
-public class UDValuesDaoImpl extends GenericDaoImpl<UserDefinedValues,Long> implements UDValuesDao{
-  
-  @SuppressWarnings("unchecked")
-  @Override
-  public ArrayList<String> getCategories() {
-    String hsql = "select distinct(udValuesCategory) from UserDefinedValues ";
-    log.debug(hsql);
-    Query query = entityManager.createQuery(hsql);
-    ArrayList<String> categoryList = (ArrayList<String>)query.getResultList();
-    if ( categoryList == null ) {
-      return new ArrayList<String>();
-    }
-    return categoryList;
-  }
-	
+public class UDValuesDaoImpl extends GenericDaoImpl<UserDefinedValues, Long>
+		implements UDValuesDao {
+
+	@SuppressWarnings("unchecked")
+	public ArrayList<String> getCategories() {
+		String hsql = "select distinct(udValuesCategory) from UserDefinedValues ";
+		log.debug(hsql);
+		Query query = entityManager.createQuery(hsql);
+		ArrayList<String> categoryList = (ArrayList<String>) query
+				.getResultList();
+		if (categoryList == null) {
+			return new ArrayList<String>();
+		}
+		return categoryList;
+	}
+
 }
