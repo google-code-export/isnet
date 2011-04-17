@@ -17,7 +17,7 @@ public class ModulesDaoImpl extends GenericDaoImpl<TestTutorialModules, Long>
 		implements ModulesDao {
 
 	@SuppressWarnings("unchecked")
-	@Override
+
 	public ArrayList<String> getCategories() {
 		String hsql = "select distinct(itemEIndicator) from TrainingItem ";
 		log.debug(hsql);
@@ -31,13 +31,13 @@ public class ModulesDaoImpl extends GenericDaoImpl<TestTutorialModules, Long>
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override
+
 	public List<TestTutorialModules> findByProperties(String hsql) {
 		Query query = entityManager.createQuery(hsql);
 		return query.getResultList();
 	}
 
-	@Override
+
 	public List<TestTutorialModules> findModulesByUserType(Long type) {
 	  	String clause = " t.memberTypeIndicator =?1 ORDER BY t.serial ASC";
 	  	List<TestTutorialModules> modules =  loadByClause(clause, new Object[] {type});

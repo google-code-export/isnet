@@ -17,7 +17,7 @@ public class QuestionAnsDaoImpl extends
 		GenericDaoImpl<TestTutorialQuestionAns, Long> implements QuestionAnsDao {
 
 	@SuppressWarnings("unchecked")
-	@Override
+
 	public ArrayList<String> getCategories() {
 		String hsql = "select distinct(itemEIndicator) from TrainingItem ";
 		log.debug(hsql);
@@ -31,7 +31,7 @@ public class QuestionAnsDaoImpl extends
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override
+
 	public List<TestTutorialQuestionAns> findByProperties(String hsql) {
 		Query query = entityManager.createQuery(hsql);
 		return query.getResultList();
