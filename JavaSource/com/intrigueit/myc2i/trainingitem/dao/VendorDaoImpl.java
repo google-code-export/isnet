@@ -15,7 +15,7 @@ import com.intrigueit.myc2i.trainingitem.domain.ItemVendor;
 public class VendorDaoImpl extends GenericDaoImpl<ItemVendor,Long> implements VendorDao{
   
   @SuppressWarnings("unchecked")
-  @Override
+
   public ArrayList<String> getCategories() {
     String hsql = "select distinct(itemEIndicator) from TrainingItem ";
     log.debug(hsql);
