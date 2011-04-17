@@ -35,27 +35,27 @@ public final class MessageServiceImpl implements MessageService {
 	/** Message Dao Reference */
 	private MessageDao messageDao;
 	
-	@Override
+
 	public void delete(Message entity) {
 		this.messageDao.delete(entity);
 	}
 
-	@Override
+
 	public Message findById(Long messageId) {
 		return this.messageDao.loadById(messageId);
 	}
 
-	@Override
+
 	public List<Message> getConversation(Long senderId) {
 		return this.messageDao.getConversation(senderId);
 	}
 
-	@Override
+
 	public List<Message> getConversationByReferenceMessage(Long ownerId,Long refMessageId) {
 		return this.messageDao.getConversationByReferenceMessage(ownerId,refMessageId);
 	}
 
-	@Override
+
 	public void save(Message entity) {
 		/** Save the first copy of this message */
 		this.messageDao.persist(entity);
@@ -73,7 +73,7 @@ public final class MessageServiceImpl implements MessageService {
 		}
 	}
 
-	@Override
+
 	public void update(Message entity) {
 		this.messageDao.update(entity);
 	}
@@ -83,24 +83,24 @@ public final class MessageServiceImpl implements MessageService {
 		this.messageDao = messageDao;
 	}
 
-	@Override
+
 	public Boolean removeMessage(Long messageId) {
 		int rowEffected = this.messageDao.deleteMessageById(messageId);
 		return rowEffected > 0;
 	}
 
-	@Override
+
 	public List<Message> getConversationByOwner(Long ownerId,String status,int startIndex) {
 		return this.messageDao.getConversationByOwnerId(ownerId,status,startIndex,MessageConstant.MESSAGE_PER_PAGE);
 	}
 
-	@Override
+
 	public List<Message> getUnReadConversationByOwner(Long ownerId,
 			String status,int startIndex) {
 		return this.messageDao.getUnReadConversationByOwnerId(ownerId,status,MessageReadingStatus.UNREAD.toString(),startIndex,MessageConstant.MESSAGE_PER_PAGE);
 	}
 
-	@Override
+
 	public int getUnReadMessageByOwner(Long ownerId) {
 		return this.messageDao.getMessageCount(ownerId, MessageReadingStatus.UNREAD.toString());
 	}
