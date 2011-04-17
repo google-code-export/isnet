@@ -61,11 +61,11 @@ public class ModulesServiceImpl implements ModulesService {
 				.append(" FROM TestTutorialModules tm");
 
 		boolean useWhere = true;
-		if (docTypeId != null && !docTypeId.isEmpty()) {
+		if (docTypeId != null && !docTypeId.equals("")) {
 			clause.append(" where tm.documentId =" + docTypeId);
 			useWhere = false;
 		}
-		if (userId != null && !userId.isEmpty()) {
+		if (userId != null && !userId.equals("")) {
 			if (useWhere) {
 				clause.append(" where ");
 			} else {
@@ -76,7 +76,7 @@ public class ModulesServiceImpl implements ModulesService {
 		return modulesDao.findByProperties(clause.toString());
 	}
 
-	@Override
+
 	public boolean isModuleExist(Long recordId, Long docId, String moduleName) {
 		List<Object> value = new ArrayList<Object>();
 		StringBuffer clause = new StringBuffer();
@@ -90,7 +90,7 @@ public class ModulesServiceImpl implements ModulesService {
 		return modulesDao.isDuplicateRecord(clause.toString(), value.toArray());
 	}
 
-	@Override
+
 	public List<TestTutorialModules> findModulesByUserType(Long type) {
 		List<TestTutorialModules> modules = modulesDao.findModulesByUserType(type);
 		return modules;

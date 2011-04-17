@@ -70,7 +70,7 @@ public class QuesAnsServiceImpl implements QuestionAnsService {
     return questionAnsDao.getMaxNumber(hsql);
   }
 
-  @Override
+
   public boolean isQuestionExist(Long recordId, Long moduleId, String question) {
     List<Object> value = new ArrayList<Object>();
     StringBuffer clause = new StringBuffer();
@@ -84,7 +84,7 @@ public class QuesAnsServiceImpl implements QuestionAnsService {
     return questionAnsDao.isDuplicateRecord(clause.toString(), value.toArray());
   }
 
-  @Override
+
   public boolean isPageNoExist(Long recordId, Long moduleId, Long pageNo) {
     List<Object> value = new ArrayList<Object>();
     StringBuffer clause = new StringBuffer();
@@ -98,7 +98,7 @@ public class QuesAnsServiceImpl implements QuestionAnsService {
     return questionAnsDao.isDuplicateRecord(clause.toString(), value.toArray());
   }
 
-  @Override
+
   public List<TestTutorialQuestionAns> getTutorialByModule(Long mdouleId) {
     String clause = " t.modulesId" + " =?1 order by pageNumber asc";
     return questionAnsDao.loadByClause(clause, new Object[] { mdouleId });
