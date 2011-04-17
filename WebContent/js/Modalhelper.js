@@ -19,7 +19,19 @@ var ModalHelper =  {
 	hide:function(){
 		 document.getElementById('wait').style.visibility = "hidden";
 	}		
-  
+	,
+	blockMentorSearch:function(){
+
+		$("idMainForm:idRenderMentorList").value = '0';
+
+		alert($("idMainForm:idRenderMentorList").value);
+	},
+	unBlockMentorSearch:function(){
+
+		$("idMainForm:idRenderMentorList").value = '1';
+
+		alert($("idMainForm:idRenderMentorList").value);
+	}
   };
 
 function wordCounter(count){
