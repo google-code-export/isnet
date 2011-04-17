@@ -13,7 +13,6 @@ public class StoryCollator implements Job {
 	
 	protected static final Logger log = Logger.getLogger( StoryCollator.class );
 	
-	@Override
 	public void execute(JobExecutionContext context) throws JobExecutionException {
 		// TODO Auto-generated method stub
 		log.debug("In SimpleQuartzJob - executing its JOB at " + new Date() + " by " + context.getTrigger().getName());
