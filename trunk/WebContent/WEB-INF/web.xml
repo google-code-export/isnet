@@ -120,7 +120,7 @@
  </filter-mapping>
  <filter-mapping>
   <filter-name>privilegeFilter</filter-name>
-  <url-pattern>/test/</url-pattern>
+  <url-pattern>/pages/*</url-pattern>
  </filter-mapping>
  <listener>
   <listener-class>com.intrigueit.myc2i.utility.ContextProvider</listener-class>
