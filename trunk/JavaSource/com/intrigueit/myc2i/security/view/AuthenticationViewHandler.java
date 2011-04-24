@@ -162,7 +162,7 @@ public class AuthenticationViewHandler extends BasePage implements Serializable 
 					if (rolePageAccess.getApplicationPages() != null) {
 						userPrivilegePages.add(rolePageAccess.getApplicationPages().getPageUrl());
 					}
-					log.debug(rolePageAccess.getApplicationPages().getPageUrl());
+					//log.debug(rolePageAccess.getApplicationPages().getPageUrl());
 				}
 				HttpSession session = getRequest().getSession(true);
 				session.setAttribute(CommonConstants.USER_PRIVILEGE_PAGES,userPrivilegePages);
