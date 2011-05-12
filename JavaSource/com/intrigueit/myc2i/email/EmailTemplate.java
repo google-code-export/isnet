@@ -38,13 +38,14 @@ public class EmailTemplate {
 		
 		String realPath = servletContext.getRealPath("/");
 		String path = realPath +  "WEB-INF"+ System.getProperty("file.separator") +"e_template"+ System.getProperty("file.separator");
-		
+		String velocityLog = realPath +  "WEB-INF"+ System.getProperty("file.separator") +"logs"+ System.getProperty("file.separator");
 		logger.debug("Generating velocity content for file:" + path +" : "+ this.name);
 		Properties p = new Properties();
 
 		p.setProperty( "resource.loader", "file" );
 		p.setProperty("class.resource.loader.class","org.apache.velocity.runtime.resource.loader.FileResourceLoader" );
 		p.setProperty("file.resource.loader.path",path);
+		p.setProperty("runtime.log",velocityLog+ "velocity.log");
 		
 		/*  first, get and initialize an engine  */
         VelocityEngine ve = new VelocityEngine();
