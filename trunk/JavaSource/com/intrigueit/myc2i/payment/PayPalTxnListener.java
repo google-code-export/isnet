@@ -39,7 +39,7 @@ import com.intrigueit.myc2i.udvalues.domain.UserDefinedValues;
 public class PayPalTxnListener extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
-	private String tmpFile = null;
+
 	private String filePath = null;
 	
 	protected static final Logger log = Logger.getLogger( PayPalTxnListener.class );   
@@ -202,8 +202,10 @@ public class PayPalTxnListener extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {
 		// TODO Auto-generated method stub
 		super.init(config);
-		this.tmpFile = this.getInitParameter("TMP_FILE");
-		this.filePath = this.getInitParameter("TMP_PATH");
+		String realPath = config.getServletContext().getRealPath("/");
+		String path = realPath +  "WEB-INF"+ System.getProperty("file.separator") +"logs"+ System.getProperty("file.separator")+"payments"+ System.getProperty("file.separator");
+
+		this.filePath = path;// this.getInitParameter("TMP_PATH");
 	}
 
 
