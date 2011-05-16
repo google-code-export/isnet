@@ -25,17 +25,17 @@
 						<h:outputLabel >
 							  <h:outputText value="#{bundle.member_first_name}"/>
 						</h:outputLabel>	
-						<h:inputText readonly="true"  id="idFirstName" value="#{protegeProfileViewHandler.currentMember.firstName}" styleClass="form_input_text_medium "/>
+						<h:inputText  id="idFirstName" value="#{protegeProfileViewHandler.currentMember.firstName}" styleClass="form_input_text_medium "/>
 						
 						<h:outputLabel >
 							  <h:outputText value="#{bundle.member_last_name}"/>
 						</h:outputLabel>	
-						<h:inputText readonly="true" id="idLastName" value="#{protegeProfileViewHandler.currentMember.lastName}" styleClass="form_input_text_medium "/>
+						<h:inputText  id="idLastName" value="#{protegeProfileViewHandler.currentMember.lastName}" styleClass="form_input_text_medium "/>
 						
             			<h:outputLabel rendered="false">
 							  <h:outputText value="#{bundle.member_address}"/>
 						</h:outputLabel>	
-						<h:inputText rendered="false" readonly="true" id="idStreetAddress" value="#{protegeProfileViewHandler.currentMember.streetAddress}" styleClass="form_input_text_medium "/>
+						<h:inputText rendered="false" id="idStreetAddress" value="#{protegeProfileViewHandler.currentMember.streetAddress}" styleClass="form_input_text_medium "/>
 
 						<h:outputLabel >
 							  <h:outputText value="#{bundle.member_state}"/>
@@ -47,18 +47,18 @@
 						<h:outputLabel >
 							  <h:outputText value="#{bundle.member_city}"/>
 						</h:outputLabel>	
-						<h:inputText   readonly="true" id="idCity" value="#{protegeProfileViewHandler.currentMember.city}" styleClass="form_input_text_medium"/>
+						<h:inputText   id="idCity" value="#{protegeProfileViewHandler.currentMember.city}" styleClass="form_input_text_medium"/>
 						
 						<h:outputLabel >
 							  <h:outputText value="#{bundle.member_zip}"/>
 						</h:outputLabel>	
-						<h:inputText   readonly="true" id="idStreetZip" value="#{protegeProfileViewHandler.currentMember.zip}" styleClass="form_input_text_medium"/>
+						<h:inputText    id="idStreetZip" value="#{protegeProfileViewHandler.currentMember.zip}" styleClass="form_input_text_medium"/>
 						
 
 						<h:outputLabel >
 							  <h:outputText value="#{bundle.member_country}"/>
 						</h:outputLabel>
-						<h:selectOneMenu disabled="true" value="#{protegeProfileViewHandler.currentMember.country}"  styleClass="form_input_text_medium"> 
+						<h:selectOneMenu  value="#{protegeProfileViewHandler.currentMember.country}"  styleClass="form_input_text_medium"> 
 							<f:selectItems value="#{memberViewHandler.countryList}"/>
 						</h:selectOneMenu>
 						
@@ -84,7 +84,7 @@
 							<h:inputText rendered="false" readonly="true" id="idEmail" value="#{protegeProfileViewHandler.currentMember.email}" styleClass="form_input_text_medium"/>
 													
 							<h:outputLabel >
-							<h:outputText readonly="true" value="#{bundle.member_linked_in_URL}"/><h:outputText styleClass="required_field" value="" />
+							<h:outputText  value="#{bundle.member_linked_in_URL}"/><h:outputText styleClass="required_field" value="" />
 							</h:outputLabel>	
 							<h:inputText  id="idLinkedInURL" value="#{protegeProfileViewHandler.currentMember.linkedInURL}" styleClass="form_input_text_medium"/>
 			
@@ -99,14 +99,14 @@
 							<h:outputLabel>
 								  <h:outputText value="#{bundle.member_ethinicity}"/>
 							</h:outputLabel>
-							<h:selectOneMenu disabled="true" value="#{protegeProfileViewHandler.currentMember.ethinicity}"  styleClass="form_input_text_medium"> 
+							<h:selectOneMenu value="#{protegeProfileViewHandler.currentMember.ethinicity}"  styleClass="form_input_text_medium"> 
 								<f:selectItems value="#{memberViewHandler.ethinicityList}"/>
 							</h:selectOneMenu>
 							
 							<h:outputLabel>
 								  <h:outputText value="#{bundle.member_marital_status}"/><h:outputText styleClass="required_field" value="*" />
 							</h:outputLabel>
-							<h:selectOneMenu disabled="true" value="#{protegeProfileViewHandler.currentMember.maritalStatus}"  styleClass="form_input_text_medium"> 
+							<h:selectOneMenu  value="#{protegeProfileViewHandler.currentMember.maritalStatus}"  styleClass="form_input_text_medium"> 
 								<f:selectItems value="#{memberViewHandler.martialStatusList}"/>
 							</h:selectOneMenu>	
 							
@@ -114,22 +114,22 @@
 							<h:outputLabel>
 								  <h:outputText value="#{bundle.member_gender}" />
 							</h:outputLabel>							
-							<h:selectOneRadio disabled="true" id="idGenderIndicator" style="width: 150px;" value="#{protegeProfileViewHandler.currentMember.genderInd}">
-							  <f:selectItem  itemLabel="#{bundle.member_gender_male}" itemValue="Y"  />
-							  <f:selectItem  itemLabel="#{bundle.member_gender_female}" itemValue="N"  />
+							<h:selectOneRadio id="idGenderIndicator" style="width: 150px;" value="#{protegeProfileViewHandler.currentMember.genderInd}">
+							  <f:selectItem  itemLabel="#{bundle.member_gender_male}" itemValue="M"  />
+							  <f:selectItem  itemLabel="#{bundle.member_gender_female}" itemValue="F"  />
 							</h:selectOneRadio>	
 
 							<h:outputLabel>
 								  <h:outputText value="#{bundle.member_birth_year}"/>
 							</h:outputLabel>
-							<h:selectOneMenu disabled="true" value="#{protegeProfileViewHandler.currentMember.birthYear}"  styleClass="form_input_text_medium"> 
+							<h:selectOneMenu value="#{protegeProfileViewHandler.currentMember.birthYear}"  styleClass="form_input_text_medium"> 
 								<f:selectItems value="#{memberViewHandler.birthYearlist}"/>
 							</h:selectOneMenu>	
 																											
 							<h:outputLabel>
 								  <h:outputText value="#{bundle.member_children_ind}" />
 							</h:outputLabel>							
-							<h:selectOneRadio disabled="true" style="width: 150px;" value="#{protegeProfileViewHandler.currentMember.childrenInd}">
+							<h:selectOneRadio style="width: 150px;" value="#{protegeProfileViewHandler.currentMember.childrenInd}">
 							  <f:selectItem  itemLabel="#{bundle.yes_label}" itemValue="Y" />
 							  <f:selectItem  itemLabel="#{bundle.no_label}" itemValue="N" />
 							</h:selectOneRadio>
@@ -137,14 +137,14 @@
 							<h:outputLabel>
 								  <h:outputText value="#{bundle.member_profession}"/>
 							</h:outputLabel>
-							<h:selectOneMenu disabled="true" value="#{protegeProfileViewHandler.currentMember.profession}"  styleClass="form_input_text_medium"> 
+							<h:selectOneMenu  value="#{protegeProfileViewHandler.currentMember.profession}"  styleClass="form_input_text_medium"> 
 								<f:selectItems value="#{memberViewHandler.professionList}"/>
 							</h:selectOneMenu>	
 							
 							<h:outputLabel >
 							<h:outputText value="#{bundle.member_company_name}"/>
 							</h:outputLabel>	
-							<h:inputText readonly="true"  id="idCompanyName" value="#{protegeProfileViewHandler.currentMember.company}" styleClass="form_input_text_medium"/>
+							<h:inputText  id="idCompanyName" value="#{protegeProfileViewHandler.currentMember.company}" styleClass="form_input_text_medium"/>
 																						
 							<h:outputLabel>
 								  <h:outputText value="#{bundle.member_madhab}"/><h:outputText styleClass="required_field" value="*" />
