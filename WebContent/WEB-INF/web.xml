@@ -15,7 +15,7 @@
  </context-param>
  <context-param>
   <param-name>facelets.DEVELOPMENT</param-name>
-  <param-value>true</param-value>
+  <param-value>false</param-value>
  </context-param>
  <context-param>
   <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
@@ -76,6 +76,16 @@
   <param-value>/WEB-INF/facelets/tags/rowToolBar/taglib.xml;
       /WEB-INF/facelets/tags/component/cmptaglib.xml;</param-value>
  </context-param>
+ 
+ <context-param>
+  <param-name>log4jConfigLocation</param-name>
+  <param-value>/WEB-INF/classes/log4j-myc2i.properties</param-value>
+</context-param>
+ <context-param>
+  <param-name>webAppRootKey</param-name>
+  <param-value>myc2i-instance-root</param-value>
+</context-param>
+ 
  <filter>
   <display-name>Ajax4jsf Filter</display-name>
   <filter-name>ajax4jsf</filter-name>
@@ -131,6 +141,10 @@
  <listener>
   <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
  </listener>
+ <listener>
+  <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+</listener>
+ 
  <servlet>
   <servlet-name>Faces Servlet</servlet-name>
   <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -163,11 +177,11 @@
     <servlet-class>com.intrigueit.myc2i.payment.PayPalTxnListener</servlet-class>
     <init-param>
       <param-name>TMP_FILE</param-name>
-      <param-value>C:\\tmp\\data.tmp</param-value>
+      <param-value>//data//23/2//54//79//2217242//user//2435932//data.tmp</param-value>
     </init-param>   
     <init-param>
       <param-name>TMP_PATH</param-name>
-      <param-value>C:\\tmp\\</param-value>
+      <param-value>//data//23//2//54//79//2217242//user//2435932//</param-value>
     </init-param>  
   </servlet>
   <servlet-mapping>
