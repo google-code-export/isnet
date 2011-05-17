@@ -17,18 +17,22 @@
 					<!-- What new list -->
 					<rich:panel style="width:'auto';margin-top: 0px; text-align: left;" headerClass="container_gold_header"  bodyClass="container_body_style" >
 						<f:facet name="header"><h:outputText value="#{bundle.dashboard_mentor_what_new}" /></f:facet>
-							<h:outputLink   styleClass="table_control_normal_style" 
-								 		value="#{controllerBean.contextPath}/pages/secure/doc/Procedure_and_Rules_for_Weekly_spokes_person_on_MyC2i.org.pdf">
-							           	<h:graphicImage value="/images/star_red.png" align="middle" border="0" />	
-									     <rich:spacer width="4"/>
-									     <h:outputText value="Become the Home Page Spokesperson for a week" border="0" />		
-							</h:outputLink>
-							<h:outputLink styleClass="table_control_normal_style" 
-								 		value="#{controllerBean.contextPath}/pages/secure/doc/Myc2i_credits.pdf">
-							           	<h:graphicImage value="/images/star_red.png" align="middle" border="0" />	
-									     <rich:spacer width="4"/>
-									     <h:outputText value="MyC2i Credits" border="0" />		
-							</h:outputLink>								
+						
+							<h:panelGrid columns="1" width="100%" columnClasses="column_class_left">
+								<h:outputLink   styleClass="table_control_normal_style" 
+									 		value="#{controllerBean.contextPath}/pages/secure/doc/Procedure_and_Rules_for_Weekly_spokes_person_on_MyC2i.org.pdf">
+								           	<h:graphicImage value="/images/star_red.png" align="middle" border="0" />	
+										     <rich:spacer width="4"/>
+										     <h:outputText value="Become the Home Page Spokesperson for a week" border="0" />		
+								</h:outputLink>
+								<h:outputLink styleClass="table_control_normal_style" 
+									 		value="#{controllerBean.contextPath}/pages/secure/doc/Myc2i_credits.pdf">
+								           	<h:graphicImage value="/images/star_red.png" align="middle" border="0" />	
+										     <rich:spacer width="4"/>
+										     <h:outputText value="MyC2i Credits" border="0" />		
+								</h:outputLink>								
+							</h:panelGrid>
+							
 						<h:dataTable rendered="false" border="0" value="#{dashboardViewHandler.whatNewList}" var="whatNew" 
 					    	columnClasses="" cellpadding="0" cellspacing="0" width="100%">
 							<h:column>
