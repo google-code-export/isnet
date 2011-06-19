@@ -14,7 +14,6 @@ import com.intrigueit.myc2i.common.ServiceConstants;
 import com.intrigueit.myc2i.common.view.BasePage;
 import com.intrigueit.myc2i.member.domain.Member;
 import com.intrigueit.myc2i.member.service.MemberService;
-import com.intrigueit.myc2i.memberlog.domain.MemberLog;
 import com.intrigueit.myc2i.protegeevalmentor.domain.ProtegeEvaluationOfMentor;
 import com.intrigueit.myc2i.protegeevalmentor.service.ProtegeEvalMentorService;
 

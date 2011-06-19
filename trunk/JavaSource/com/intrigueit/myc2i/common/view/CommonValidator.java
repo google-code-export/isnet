@@ -99,106 +99,144 @@ public class CommonValidator extends BasePage {
 				  this.appendErrorMessage(errorMessage,"member_validation_email_address");
 				}				
 				if (!CommonValidator.isValidPassword(member.getPassword())) {
-				  if(selTabName.isEmpty()) selTabName = "idLoginInfoTab";
+					if(isEmpty(selTabName)){
+						selTabName = "idLoginInfoTab";
+					}
 		      this.appendErrorMessage(errorMessage,"member_validation_password");
 		    }		    
 		    if(!member.getPassword().equals(confirmPass)){
-		      if(selTabName.isEmpty()) selTabName = "idLoginInfoTab";
+		    	if(isEmpty(selTabName)){
+		    		selTabName = "idLoginInfoTab";
+		    	}
 		      this.appendErrorMessage(errorMessage,"member_validation_password_dont_match");
 		    }
 			}
 			if (member.getTypeId() == null || member.getTypeId() == 0) {
-			  if(selTabName.isEmpty()) selTabName = "idBasicInformation";
+				if(isEmpty(selTabName)){
+					selTabName = "idBasicInformation";
+				}
 			  this.appendErrorMessage(errorMessage,"validation_msg_usertype_required");
 			}
 			if (CommonValidator.isEmpty(member.getFirstName())) {
-			  if(selTabName.isEmpty()) selTabName = "idBasicInformation";
+				if(isEmpty(selTabName)){
+					selTabName = "idBasicInformation";
+				}
 			  this.appendErrorMessage(errorMessage,"member_validation_first_name");
 			}
 			/** Check the last name */
 			if (CommonValidator.isEmpty(member.getLastName())) {
-			  if(selTabName.isEmpty()) selTabName = "idBasicInformation";
+				if(isEmpty(selTabName)){
+					selTabName = "idBasicInformation";
+				}
 			  this.appendErrorMessage(errorMessage,"member_validation_last_name");
 			}
 			
 			if (CommonValidator.isEmpty(member.getCity())) {
-			  if(selTabName.isEmpty()) selTabName = "idBasicInformation";
+				if(isEmpty(selTabName)){
+					selTabName = "idBasicInformation";
+				}
 			  this.appendErrorMessage(errorMessage,"member_validation_city");
 			}
 			if (member.getState().equals("-1")) {
-			  if(selTabName.isEmpty()) selTabName = "idBasicInformation";
+				if(isEmpty(selTabName)){
+					selTabName = "idBasicInformation";
+				}
 			  this.appendErrorMessage(errorMessage,"member_validation_state");
 			}
 			/** Check the Zip code */
 			if (!CommonValidator.isValidZipCode(member.getZip())) {
-			  if(selTabName.isEmpty()) selTabName = "idBasicInformation";
+				if(isEmpty(selTabName)){
+					selTabName = "idBasicInformation";
+				}
 			  this.appendErrorMessage(errorMessage,"member_validation_zip_code");
 			}		
 			if (member.getEthinicity()==-1) {
-			  if(selTabName.isEmpty()) selTabName = "idDetailsInfoTab";
+				if(isEmpty(selTabName)){
+					selTabName = "idDetailsInfoTab";
+				}
 			  this.appendErrorMessage(errorMessage,"member_validation_ethinicity");
       }			
 			if (member.getMaritalStatus()!=null && member.getMaritalStatus().equals("-1") 
 			    && !memberType.equals(ServiceConstants.PROTEGE)) {
-			  if(selTabName.isEmpty()) selTabName = "idDetailsInfoTab";
+				if(isEmpty(selTabName)){
+					selTabName = "idDetailsInfoTab";
+				}
 			  this.appendErrorMessage(errorMessage,"member_validation_marital_status");
       }			
 			
 			/** Check the member gender */
 			if (CommonValidator.isEmpty(member.getGenderInd())) {
-			  if(selTabName.isEmpty()) selTabName = "idDetailsInfoTab";
+				if(isEmpty(selTabName)){
+					selTabName = "idDetailsInfoTab";
+				}
 			  this.appendErrorMessage(errorMessage,"member_validation_gender");
       }
 			
       /** Check the Year of birth */
       if (CommonValidator.isNotValidNumber(member.getBirthYear())) {
-        if(selTabName.isEmpty()) selTabName = "idDetailsInfoTab";
+    	  if(isEmpty(selTabName)){
+    		  selTabName = "idDetailsInfoTab";
+    	  }
         this.appendErrorMessage(errorMessage,"member_validation_birth_year");
       }
       
       /** Check the member profession */
       if (member.getProfession().equals("-1")) {
-        if(selTabName.isEmpty()) selTabName = "idDetailsInfoTab";
+    	  if(isEmpty(selTabName)){
+    		  selTabName = "idDetailsInfoTab";
+    	  }
         this.appendErrorMessage(errorMessage,"member_validation_profession");
 			}			
 			
       if (!memberType.equals(ServiceConstants.PROTEGE)
           && member.getMazhab().equals("-1")) {
-        if(selTabName.isEmpty()) selTabName = "idDetailsInfoTab";
+    	  if(isEmpty(selTabName)){
+    		  selTabName = "idDetailsInfoTab";
+    	  }
         this.appendErrorMessage(errorMessage,"member_validation_madhab");
       }
       
 			if (action.equals(ServiceConstants.ADD)) {
-				if (CommonValidator.isEmpty(member.getAgreePrivacyPolicy())
-						|| member.getAgreePrivacyPolicy().equals("false")) {
-				  if(selTabName.isEmpty()) selTabName = "idDetailsInfoTab";
+				if (CommonValidator.isEmpty(member.getAgreePrivacyPolicy())	|| member.getAgreePrivacyPolicy().equals("false")) {
+					if(isEmpty(selTabName)){
+						selTabName = "idDetailsInfoTab";
+					}
 				  this.appendErrorMessage(errorMessage,"member_validation_licence_agree");
 				}
 			}
 
 			if (CommonValidator.isEmpty(member.getSecurityQuestion1())) {
-			  if(selTabName.isEmpty()) selTabName = "seqQueTab";
+				if(isEmpty(selTabName)){
+					selTabName = "seqQueTab";
+				}
 			  this.appendErrorMessage(errorMessage,"change_password_security_question1_chose");
 			}
 			if (CommonValidator.isEmpty(member.getSecurityQuestionAns1())) {
-			  if(selTabName.isEmpty()) selTabName = "seqQueTab";
+				if(isEmpty(selTabName)) {
+					selTabName = "seqQueTab";
+				}
 			  this.appendErrorMessage(errorMessage,"change_password_security_question1_empty");				
 			}
 			if (CommonValidator.isEmpty(member.getSecurityQuestion2())) {
-			  if(selTabName.isEmpty()) selTabName = "seqQueTab";
+				if(isEmpty(selTabName)) {
+					selTabName = "seqQueTab";
+				}
 			  this.appendErrorMessage(errorMessage,"change_password_security_question2_chose");
 			}
 			if (CommonValidator.isEmpty(member.getSecurityQuestionAns2())) {
-			  if(selTabName.isEmpty()) selTabName = "seqQueTab";
+			  if(isEmpty(selTabName)) {
+				  selTabName = "seqQueTab";
+			  }
 			  this.appendErrorMessage(errorMessage,"change_password_security_question2_empty");
 			}
 		}
 	  
-	  if(profile.equals("P") && !selTabName.isEmpty() && !selTabName.equals("seqQueTab")) {
+	  if(profile.equals("P") && !isEmpty(selTabName) && !selTabName.equals("seqQueTab")) {
       selTabName = "idBasicInformation";
     }
 	  
-	  extraParam.append(selTabName);
-		return errorMessage.toString().isEmpty();
+	  	extraParam.append(selTabName);
+	  
+		return isEmpty(errorMessage.toString());
 	}
 }

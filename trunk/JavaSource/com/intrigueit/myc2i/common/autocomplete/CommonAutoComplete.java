@@ -59,7 +59,7 @@ public class CommonAutoComplete extends ContextInfo implements Serializable {
     	ArrayList<CommonSearchDataTmp> resultList = new ArrayList<CommonSearchDataTmp>();
   		if(suggest!=null && tableCode!=null) {
   			String searchText = (String)suggest;
-    		if(searchText!=null && !searchText.isEmpty()) {
+    		if(searchText!=null && !searchText.equals("")) {
     			try {
       			resultList = commonSearchDao.requestProcess(tableCode,searchText,extConds);
       			if(resultList == null || resultList.isEmpty()) {
