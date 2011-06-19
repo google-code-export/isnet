@@ -140,7 +140,7 @@ public class FileUploadBean implements Serializable {
 		ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
 		String imagePath = servletContext.getRealPath("");
 		String filePath = imagePath +""+DEFAULT_FILE_LOCATION+fileName;
-		System.out.println(filePath);
+		//System.out.println(filePath);
 		File theFile = new File(filePath);
 		if(!this.imageUrls.containsKey(DEFAULT_FILE_LOCATION+fileName)){
 			this.imageUrls.put(fileName, DEFAULT_FILE_LOCATION+fileName);

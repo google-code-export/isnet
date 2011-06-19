@@ -58,7 +58,8 @@ public class QuesAnsServiceImpl implements QuestionAnsService {
             "SELECT NEW TestTutorialQuestionAns(tq.questionAnsId,tq.pageNumber,tq.pageTitle)")
         .append(" FROM TestTutorialQuestionAns tq ");
 
-    if (moduleId != null && !moduleId.isEmpty()) {
+    
+    if (moduleId != null && !moduleId.equals("")) {
       clause.append(" where tq.modulesId =" + moduleId+" order by tq.pageNumber asc");
     }
     return questionAnsDao.findByProperties(clause.toString());
