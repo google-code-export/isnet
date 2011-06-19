@@ -1,0 +1,1 @@
+ALTER TABLE MEMBER ADD UNIQUE (member_email)
