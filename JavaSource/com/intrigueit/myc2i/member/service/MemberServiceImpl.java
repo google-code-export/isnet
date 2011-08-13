@@ -91,7 +91,7 @@ public class MemberServiceImpl implements MemberService {
 			useAnd = true;
 		}
 
-		if (searchBean.getEmail() != null && !searchBean.getEmail().isEmpty()) {
+		if (searchBean.getEmail() != null && !searchBean.getEmail().equals("")) {
 			clause = (useAnd)
 					? clause.append(" and upper(email) like ?" + i++)
 					: clause.append(" upper(email) like ?" + i++);
@@ -100,7 +100,7 @@ public class MemberServiceImpl implements MemberService {
 		}
 
 		if (searchBean.getFirstName() != null
-				&& !searchBean.getFirstName().isEmpty()) {
+				&& !searchBean.getFirstName().equals("")) {
 			clause = (useAnd) ? clause.append(" and upper(firstName) like ?"
 					+ i++) : clause.append(" upper(firstName) like ?" + i++);
 			value.add("%" + searchBean.getFirstName().toUpperCase() + "%");
@@ -108,14 +108,14 @@ public class MemberServiceImpl implements MemberService {
 		}
 
 		if (searchBean.getLastName() != null
-				&& !searchBean.getLastName().isEmpty()) {
+				&& !searchBean.getLastName().equals("")) {
 			clause = (useAnd) ? clause.append(" and upper(lastName) like ?"
 					+ i++) : clause.append(" upper(lastName) like ?" + i++);
 			value.add("%" + searchBean.getLastName().toUpperCase() + "%");
 			useAnd = true;
 		}
 
-		if (searchBean.getCity() != null && !searchBean.getCity().isEmpty()) {
+		if (searchBean.getCity() != null && !searchBean.getCity().equals("")) {
 			clause = (useAnd)
 					? clause.append(" and upper(city) like ?" + i++)
 					: clause.append(" upper(city) like ?" + i++);
@@ -131,7 +131,7 @@ public class MemberServiceImpl implements MemberService {
 			useAnd = true;
 		}
 		if (searchBean.getExtraProps() != null
-				&& !searchBean.getExtraProps().isEmpty()) {
+				&& !searchBean.getExtraProps().equals("")) {
 			clause = (useAnd) ? clause
 					.append(" and "+searchBean.getExtraProps()) : clause
 					.append(searchBean.getExtraProps());

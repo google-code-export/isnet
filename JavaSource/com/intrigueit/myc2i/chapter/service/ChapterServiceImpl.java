@@ -50,7 +50,7 @@ public class ChapterServiceImpl implements ChapterService {
 	    StringBuffer clause = new StringBuffer();
 	    boolean useAnd = false;
 	    int i = 1;
-	    if (searchBean.getChapterName() != null && !searchBean.getChapterName().isEmpty()) {
+	    if (searchBean.getChapterName() != null && !searchBean.getChapterName().equals("")) {
 	      clause.append(" upper(chapterName) like ?" + i++);
 	      value.add("%" + searchBean.getChapterName().toUpperCase() + "%");
 	      useAnd = true;
@@ -62,7 +62,7 @@ public class ChapterServiceImpl implements ChapterService {
         useAnd = true;
       }
 	    
-	    if (searchBean.getCity() != null && !searchBean.getCity().isEmpty()) {
+	    if (searchBean.getCity() != null && !searchBean.getCity().equals("")) {
 	      clause = (useAnd) ? clause.append(" and upper(chapterCity) like ?" + i++)
 	          : clause.append(" upper(chapterCity) like ?" + i++);
 	      value.add("%" + searchBean.getCity().toUpperCase() + "%");

@@ -60,7 +60,7 @@ public class QuestionAnsViewHandler extends BasePage implements Serializable {
 		logger.debug(" Load Question and answer items ");
 		String moduleId = "";
 		try {
-			if (getModulesId() != null && !getModulesId().isEmpty()) {
+			if (getModulesId() != null && !getModulesId().equals("")) {
 				moduleId = getModulesId();
 			}
 			List<TestTutorialQuestionAns> recordList = questionAnsService
@@ -134,7 +134,7 @@ public class QuestionAnsViewHandler extends BasePage implements Serializable {
 		boolean flag = true;
 		StringBuffer errorMessage = new StringBuffer();
 		System.out.println(this.getModulesId());
-		if (this.getModulesId() == null || this.getModulesId().isEmpty()) {
+		if (this.getModulesId() == null || this.getModulesId().equals("")) {
 			errorMessage.append(this.getText("common_error_prefix"))
 					.append(" ").append(
 							this.getText("error_msg_modules_notselect"));
@@ -211,7 +211,7 @@ public class QuestionAnsViewHandler extends BasePage implements Serializable {
 
 	public void setCommonData(String action) {
 		setSecHeaderMsg("");
-		if (getModulesId() != null && !getModulesId().isEmpty()) {
+		if (getModulesId() != null && !getModulesId().equals("")) {
 			this.currentQuestionAns.setModulesId(Long.parseLong(modulesId));
 		}
 		try {
@@ -234,7 +234,7 @@ public class QuestionAnsViewHandler extends BasePage implements Serializable {
 	public Long getMaxPageNo() {
 		Long maxPageNo = new Long(0);
 		try {
-			if (getModulesId() != null && !getModulesId().isEmpty()) {
+			if (getModulesId() != null && !getModulesId().equals("")) {
 				maxPageNo = this.questionAnsService.getMaxPageNo(Long
 						.parseLong(getModulesId()));
 				maxPageNo = (maxPageNo == null) ? 1 : maxPageNo + 1;

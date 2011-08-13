@@ -126,10 +126,10 @@ public class ResetPasswordViewHandler extends BasePage implements Serializable {
 						"member_validation_password_dont_match");
 			}
 		}
-		if (!errorMessage.toString().isEmpty())
+		if (!errorMessage.toString().equals(""))
 			setErrorMessage(this.getText("common_error_header")
 					+ errorMessage.toString());
-		return errorMessage.toString().isEmpty();
+		return errorMessage.toString().equals("");
 	}
 
 	public void preResetPassword() {

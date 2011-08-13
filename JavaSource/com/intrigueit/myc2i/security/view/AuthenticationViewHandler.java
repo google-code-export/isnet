@@ -132,7 +132,7 @@ public class AuthenticationViewHandler extends BasePage implements Serializable 
 	}
 
 	public String loginUser() {
-		String navOutCome = "";
+		String navOutCome = "EMPTY";
 		try {
 			Member member = this.getValidUser();
 			if (member != null) {

@@ -49,7 +49,7 @@ public class CommonSearchDaoImpl extends GenericDaoImpl<CommonSearchDataTmp,Long
     StringBuffer clause = new StringBuffer();
     clause.append(" upper(t.firstName) like ?1");
     value.add("%"+searchText.toUpperCase()+"%");
-    if (extConds != null && !extConds.isEmpty()) clause.append(" and "+extConds);
+    if (extConds != null && !extConds.equals("")) clause.append(" and "+extConds);
       
     List recordList = this.loadByClause("MEMBER", clause.toString(), value.toArray()); 
     if (recordList!= null && !recordList.isEmpty()) {
