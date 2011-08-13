@@ -29,6 +29,10 @@
    <to-view-id>/accountSuccessMessage.xhtml</to-view-id>
    <redirect/>
   </navigation-case>
+  <navigation-case>
+   <from-outcome>REGISTER_FAIL</from-outcome>
+   <to-view-id>/guestRegister.xhtml</to-view-id>
+  </navigation-case>
  </navigation-rule>
  <navigation-rule>
   <from-view-id>/mentorRegister.xhtml</from-view-id>
@@ -41,6 +45,10 @@
    <from-outcome>REGISTER_SUCCESSFULL</from-outcome>
    <to-view-id>/accountSuccessMessage.xhtml</to-view-id>
    <redirect/>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>REGISTER_FAIL</from-outcome>
+   <to-view-id>/mentorRegister.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
  <navigation-rule>
@@ -78,7 +86,6 @@
   <navigation-case>
    <from-outcome>EMPTY</from-outcome>
    <to-view-id>/login.xhtml</to-view-id>
-   <redirect/>
   </navigation-case>
  </navigation-rule>
  <navigation-rule>
