@@ -76,7 +76,7 @@ public class UDValuesViewHandler extends BasePage implements Serializable {
 		Object value = "%";
 		//logger.debug(" Load User define values ");
 		try {
-			if (getCategoryName() != null && !getCategoryName().isEmpty()) {
+			if (getCategoryName() != null && !getCategoryName().equals("")) {
 				value = getCategoryName();
 			}
 			List<UserDefinedValues> udValuesList = udvService.findByProperty(
@@ -111,7 +111,7 @@ public class UDValuesViewHandler extends BasePage implements Serializable {
 
 	public void setCommonData(String action) {
 		setSecHeaderMsg("");
-		if (getCategoryName() != null && !getCategoryName().isEmpty()) {
+		if (getCategoryName() != null && !getCategoryName().equals("")) {
 			this.currentUDValues.setUdValuesCategory(getCategoryName());
 		}
 		try {

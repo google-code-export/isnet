@@ -30,8 +30,8 @@ public class ControllerBean extends BasePage implements Serializable {
 	}
 
 	public String getSkin() {
-		if (skin == null) {
-			skin = defaultSkin;
+		if (this.skin == null) {
+			this.skin = this.defaultSkin;
 		}
 		return skin;
 	}
@@ -60,11 +60,11 @@ public class ControllerBean extends BasePage implements Serializable {
 	}
 
 	public String getContextPath() {
-		if(contextPath == null) {
+		if(this.contextPath == null) {
 			FacesContext facesContext = FacesContext.getCurrentInstance();
-			contextPath = (String) facesContext.getExternalContext().getRequestContextPath();
+			this.contextPath = (String) facesContext.getExternalContext().getRequestContextPath();
 		}
-		return contextPath;
+		return this.contextPath;
 	}
 	public void setContextPath(String contextPath) {
 		this.contextPath = contextPath;

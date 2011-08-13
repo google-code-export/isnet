@@ -19,7 +19,6 @@ import com.intrigueit.myc2i.common.view.ViewConstant;
 import com.intrigueit.myc2i.common.view.ViewDataProvider;
 import com.intrigueit.myc2i.member.domain.Member;
 import com.intrigueit.myc2i.member.service.MemberService;
-import com.intrigueit.myc2i.utility.Emailer;
 
 @Component("changePassViewHandler")
 @Scope("session")

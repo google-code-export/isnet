@@ -18,6 +18,7 @@ import com.intrigueit.myc2i.common.CommonConstants;
 import com.intrigueit.myc2i.common.ServiceConstants;
 import com.intrigueit.myc2i.common.domain.SearchBean;
 import com.intrigueit.myc2i.common.view.BasePage;
+import com.intrigueit.myc2i.common.view.CommonValidator;
 import com.intrigueit.myc2i.common.view.ViewDataProvider;
 import com.intrigueit.myc2i.member.domain.Member;
 import com.intrigueit.myc2i.member.service.MemberService;
@@ -68,7 +69,7 @@ public class ProtegeViewHandler extends BasePage implements Serializable {
 			errorMessage.append(this.getText("common_system_error"));
 			flag = false;
 		} else {
-			if (getMentorId() == null || getMentorId().isEmpty()) {
+			if (CommonValidator.isEmpty(getMentorId())) {
 				errorMessage.append(this.getText("mentor_notselect"));
 				flag = false;
 			}

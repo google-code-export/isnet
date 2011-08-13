@@ -40,7 +40,7 @@ public class AutoComplateStyle implements Serializable {
     }
     
     public String getCellpadding() {
-        return cellpadding;
+        return this.cellpadding;
     }
 
     public void setCellpadding(String cellpadding) {

@@ -160,12 +160,12 @@ public class ModulesViewHandler extends BasePage implements Serializable {
     logger.debug("Validating tutorial modules");
     boolean flag = true;
     StringBuffer errorMessage = new StringBuffer();
-    if (this.getDocumentId() == null || this.getDocumentId().isEmpty()) {
+    if (this.getDocumentId() == null || this.getDocumentId().equals("")) {
       errorMessage.append(this.getText("common_error_prefix")).append(" ")
           .append(this.getText("tutorial_module_doc_notselect"));
       flag = false;
     }
-    if (this.getUserType() == null || this.getUserType().isEmpty()) {
+    if (this.getUserType() == null || this.getUserType().equals("")) {
       if (!flag)
         errorMessage.append("<br />");
       errorMessage.append(this.getText("common_error_prefix")).append(" ")
@@ -207,7 +207,7 @@ public class ModulesViewHandler extends BasePage implements Serializable {
           flag = false;
         }
         if (this.currentModules.getModuleText() == null
-            || this.currentModules.getModuleText().isEmpty()) {
+            || this.currentModules.getModuleText().equals("")) {
           errorMessage.append(this.getText("common_error_prefix")).append(" ")
               .append(this.getText("module_content_cant_empty"));
           flag = false;
@@ -225,10 +225,10 @@ public class ModulesViewHandler extends BasePage implements Serializable {
     String docTypeId = "";
     String userId = "";
     try {
-      if (getDocumentId() != null && !getDocumentId().isEmpty()) {
+      if (getDocumentId() != null && !getDocumentId().equals("")) {
         docTypeId = getDocumentId();
       }
-      if (getUserType() != null && !getUserType().isEmpty()) {
+      if (getUserType() != null && !getUserType().equals("")) {
         userId = getUserType();
       }
       List<TestTutorialModules> recordList = modulesService.findByProperties(
@@ -241,10 +241,10 @@ public class ModulesViewHandler extends BasePage implements Serializable {
 
   public void setCommonData(String action) {
     setSecHeaderMsg("");
-    if (getDocumentId() != null && !getDocumentId().isEmpty()) {
+    if (getDocumentId() != null && !getDocumentId().equals("")) {
       this.currentModules.setDocumentId(Long.parseLong(getDocumentId()));
     }
-    if (getUserType() != null && !getUserType().isEmpty()) {
+    if (getUserType() != null && !getUserType().equals("")) {
       this.currentModules.setMemberTypeIndicator(Long.parseLong(getUserType()));
     }
     try {

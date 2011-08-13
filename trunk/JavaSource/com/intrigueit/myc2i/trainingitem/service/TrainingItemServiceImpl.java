@@ -65,11 +65,11 @@ public class TrainingItemServiceImpl implements TrainingItemService {
 				.append(" t.itemSalesPrice,t.itemVersion,t.itemLanguage,")
 				.append(" t.itemAvailability)").append(" FROM TrainingItem t");
 		boolean useWhere = true;
-		if (vendorId != null && !vendorId.isEmpty()) {
+		if (vendorId != null && !vendorId.equals("")) {
 			clause.append(" where t.vendorId =" + vendorId);
 			useWhere = false;
 		}
-		if (itemEnd != null && !itemEnd.isEmpty()) {
+		if (itemEnd != null && !itemEnd.equals("")) {
 			if (useWhere) {
 				clause.append(" where ");
 			} else {

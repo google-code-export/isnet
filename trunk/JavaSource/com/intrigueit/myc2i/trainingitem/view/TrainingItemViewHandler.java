@@ -135,7 +135,7 @@ public class TrainingItemViewHandler extends BasePage implements Serializable {
 		logger.debug("Validating Training items");
 		boolean flag = true;
 		StringBuffer errorMessage = new StringBuffer();
-		if (this.getVendorId() == null || this.getVendorId().isEmpty()) {
+		if (this.getVendorId() == null || this.getVendorId().equals("")) {
 			errorMessage.append(this.getText("common_error_prefix"))
 					.append(" ").append(this.getText("vendor_notselect"));
 			flag = false;
@@ -171,10 +171,10 @@ public class TrainingItemViewHandler extends BasePage implements Serializable {
 		String itemEnd = "";
 		String vendor = "";
 		try {
-			if (getCategoryName() != null && !getCategoryName().isEmpty()) {
+			if (getCategoryName() != null && !getCategoryName().equals("")) {
 				itemEnd = getCategoryName();
 			}
-			if (getVendorId() != null && !getVendorId().isEmpty()) {
+			if (getVendorId() != null && !getVendorId().equals("")) {
 				vendor = getVendorId();
 			}
 			List<TrainingItem> recordList = trainingItemService
@@ -189,10 +189,10 @@ public class TrainingItemViewHandler extends BasePage implements Serializable {
 
 	public void setCommonData(String action) {
 		setSecHeaderMsg("");
-		if (getCategoryName() != null && !getCategoryName().isEmpty()) {
+		if (getCategoryName() != null && !getCategoryName().equals("")) {
 			this.currentTrainingItem.setItemEIndicator(getCategoryName());
 		}
-		if (getVendorId() != null && !getVendorId().isEmpty()) {
+		if (getVendorId() != null && !getVendorId().equals("")) {
 			this.currentTrainingItem.setVendorId(Long.parseLong(vendorId));
 		}
 		try {
