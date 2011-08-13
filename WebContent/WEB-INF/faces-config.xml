@@ -75,6 +75,11 @@
    <to-view-id>/pages/secure/mentorPayment.xhtml</to-view-id>
    <redirect/>
   </navigation-case>
+  <navigation-case>
+   <from-outcome>EMPTY</from-outcome>
+   <to-view-id>/login.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
  </navigation-rule>
  <navigation-rule>
   <from-view-id>/pages/secure/changePassword.xhtml</from-view-id>
