@@ -195,4 +195,36 @@ Common.ajaxReqContainsErrs = function(errMag,panelId) {
     }
   }
   return false;
-}
+};
+
+Common.createCookie = function (name,value,days) {
+	if (days) {
+		var date = new Date();
+		date.setTime(date.getTime()+(days*24*60*60*1000));
+		var expires = "; expires="+date.toGMTString();
+	}
+	else var expires = "";
+	document.cookie = name+"="+value+expires+"; path=/";
+};
+
+Common.readCookie = function (name) {
+	var nameEQ = name + "=";
+	var ca = document.cookie.split(';');
+	var len = ca.length;
+	
+	for(var i=0;i<len;i++) {
+		
+		var c = ca[i];
+		while (c.charAt(0)==' ') {
+			c = c.substring(1,c.length);
+		}
+		//alert(c);
+		if (c.indexOf(nameEQ) == 0) {
+			return c.substring(nameEQ.length,c.length);
+		}
+	}
+	return null;
+};
+Common.eraseCookie = function (name) {
+	Common.createCookie(name,"",-1);
+};
