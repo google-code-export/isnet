@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.intrigueit.myc2i.common.CommonConstants;
 import com.intrigueit.myc2i.common.dao.GenericDaoImpl;
 import com.intrigueit.myc2i.member.domain.Member;
+import com.intrigueit.myc2i.role.domain.ApplicationPages;
 import com.intrigueit.myc2i.role.domain.RolePageAccess;
 
 @Repository
@@ -52,7 +53,10 @@ public class MemberDaoImpl extends GenericDaoImpl<Member, Long> implements
 	public List<RolePageAccess> loadUserPrivilegePages(Long memberTypeId) {
 	  return entityManager.createQuery("from RolePageAccess where memberTypeId="+memberTypeId).getResultList();
 	}
-
+	@SuppressWarnings("unchecked")
+	public List<ApplicationPages> getUserPrivilegePages(Long memberTypeId) {
+		  return entityManager.createQuery(" select p from com.intrigueit.myc2i.role.domain.ApplicationPages p join com.intrigueit.myc2i.role.domain.RolePageAccess rp where rp.memberTypeId="+memberTypeId).getResultList();
+		}
 
 	public List<Member> getLeadMentorMentorWaitingForCertification(Long mentorId) {
 		Long typeId = CommonConstants.MENTOR;

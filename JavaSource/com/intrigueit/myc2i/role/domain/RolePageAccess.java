@@ -91,7 +91,7 @@ public class RolePageAccess implements Serializable {
 		this.pageId = pageId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "PAGE_ID", nullable = false, insertable = false, updatable = false)
 	private ApplicationPages applicationPages;
 

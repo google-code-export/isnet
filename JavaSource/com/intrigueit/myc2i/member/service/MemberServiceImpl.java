@@ -14,6 +14,7 @@ import com.intrigueit.myc2i.member.dao.KnownMemberDao;
 import com.intrigueit.myc2i.member.dao.MemberDao;
 import com.intrigueit.myc2i.member.domain.KnownMember;
 import com.intrigueit.myc2i.member.domain.Member;
+import com.intrigueit.myc2i.role.domain.ApplicationPages;
 import com.intrigueit.myc2i.role.domain.RolePageAccess;
 
 @Service
@@ -175,6 +176,9 @@ public class MemberServiceImpl implements MemberService {
 
 	public List<RolePageAccess> loadUserPrivilegePages(Long memberTypeId) {
 		return memberDao.loadUserPrivilegePages(memberTypeId);
+	}
+	public List<ApplicationPages> getUserPrivilegePage(Long memberTypeId){
+		return memberDao.getUserPrivilegePages(memberTypeId);
 	}
 
 

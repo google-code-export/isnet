@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.intrigueit.myc2i.common.dao.GenericDao;
 import com.intrigueit.myc2i.member.domain.Member;
+import com.intrigueit.myc2i.role.domain.ApplicationPages;
 import com.intrigueit.myc2i.role.domain.RolePageAccess;
 
 
@@ -22,5 +23,7 @@ public interface MemberDao extends GenericDao<Member,Long>{
 	public List<RolePageAccess> loadUserPrivilegePages(Long memberTypeId);
 	
 	public List<Member> getLeadMentorMentorWaitingForCertification(Long mentorId);
+	
+	public List<ApplicationPages> getUserPrivilegePages(Long memberTypeId);
 	
 }

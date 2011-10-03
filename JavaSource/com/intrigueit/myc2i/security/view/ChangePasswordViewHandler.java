@@ -66,7 +66,7 @@ public class ChangePasswordViewHandler extends BasePage  implements Serializable
 			this.validate();
 			if(this.errMsgs.size()>0){
 				this.hasError = true;
-				return "";
+				return ViewConstant.CHANGE_PASS_FAIL;
 			}			
 			Member dbMember = this.memberService.findById(member.getMemberId());
 			this.modifyMember(dbMember);
@@ -92,7 +92,7 @@ public class ChangePasswordViewHandler extends BasePage  implements Serializable
 			log.error(ex.getMessage());
 			ex.printStackTrace();
 		}
-		return "";
+		return  ViewConstant.CHANGE_PASS_FAIL;
 	}
 	
 	/** Send confirmation email to member */
