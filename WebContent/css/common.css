@@ -373,3 +373,38 @@
 .dashboard_center_header{
 	margin-right: 220px;
 }
+
+#container {
+
+}
+#left {
+	margin-left:-219px;/* must be 1 pixel less than width*/
+	float:left;
+	width:220px;/* must be same as left margin on #middle*/
+	position:relative;
+	left:-2px;/* line up exactly */
+	display:inline;/* ie fix*/
+}
+#right {
+	margin-right:-229px;/* must be 1 pixel less than width*/
+	float:right;
+	width:230px;/* must be same as right margin on #middle*/
+	position:relative;
+	right:0px;/* line up */
+	display:inline;/* ie fix*/
+}
+* html #left{margin-right:-3px;}/* 3 pixel jog*/
+* html #right{margin-left:-3px;}/* 3 pixel jog*/
+
+#middle {
+	border-left:0px solid red;
+	border-right:0px solid red;
+	margin-left:220px;
+	margin-right:230px;
+}
+.clearer{
+	height:1px;
+	overflow:hidden;	
+	margin-top:-1px;
+	clear:both;
+}
