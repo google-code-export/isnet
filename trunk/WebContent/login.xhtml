@@ -13,38 +13,23 @@
   <ui:param name="userType" value="Public"></ui:param>
   <ui:param name="help_doc" value="#{controllerBean.contextPath}/online_help/login_help.htm"></ui:param>
   <ui:define name="body">
-    <h:inputHidden value="#{authenticationViewHandler.init}" />
-    <h:panelGrid width="100%"  columns="3" border="0" cellpadding="0" cellspacing="0" 
-      columnClasses="login_page_column1,login_page_column2,login_page_column3" >     
-           
-      <h:panelGrid columns="1" width="100%" valign="left" border="1" cellpadding="0" cellspacing="0">
-      
+    
+<div id="container"> 
 
-			  <rich:panel headerClass="login_box_panel_header"  bodyClass="login_box_panel" style="margin-right: 4px;">
-			   <f:facet name="header">
-		          <h:outputText value="" /> 
-		        </f:facet>
-		        <h:outputText value="#{bundle.login_guest_msg1}" style="font-weight: bolder;" />
-		        
-			   <p><h:outputText value="#{bundle.login_guest_msg2}" /></p>		         
-			  </rich:panel>  
-			  
-			 <rich:spacer height="10"/>
-			
-		
-		     <h:panelGrid columns="2" valign="center">
-				<h:outputLink value="#{controllerBean.contextPath}/static/deborah_says_3.faces"> 
-					<h:graphicImage value="/images/deborah.png" /> 
-				</h:outputLink>	
-				<h:outputLink value="#{controllerBean.contextPath}/static/deborah_says_3.faces"> 
-					<h:outputText value="Rev. Deborah C. Lindsay" style="font-weight: bolder;color: white;"/> 
-				</h:outputLink>				
-		     </h:panelGrid>
-		     						
-	  
-		     <rich:spacer height="20"/>
+  <div id="middle"> 
+    <div id="left"> 
+		  <rich:panel headerClass="login_box_panel_header"  bodyClass="login_box_panel" style="margin-right: 4px;">
+		   <f:facet name="header">
+	          <h:outputText value="" /> 
+	        </f:facet>
+	        <h:outputText value="#{bundle.login_guest_msg1}" style="font-weight: bolder;" />
+
+		   <p><h:outputText value="#{bundle.login_guest_msg2}" /></p>		         
+		  </rich:panel>  
+		  
+		 <rich:spacer height="25"/>
 		     	
-		     <h:panelGrid columns="2" valign="center">
+		     <h:panelGrid width="100%" columns="2" valign="center" columnClasses="col_2,col_left">
 				<h:outputLink value="#{controllerBean.contextPath}/guestRegister.faces"> 
 					<h:graphicImage value="/images/guest_reg.png" /> 
 				</h:outputLink>	
@@ -54,30 +39,24 @@
 		     </h:panelGrid>
 	
 						     	
-         	 <rich:spacer height="17"/>
-          		<rich:panel   headerClass="login_box_panel_header2"  bodyClass="login_box_panel">
-          			<f:facet name="header"> <h:outputText value="#{bundle.login_page_why_register_guest}" /></f:facet>
-					<p><h:outputText value="#{bundle.login_page_why_register_content1_guest}" /></p>    
-					<p><h:outputText value="#{bundle.login_page_why_register_content2_guest}" /></p>
-					<p><h:outputText value="#{bundle.login_page_why_register_content3_guest}" /></p>
-					<p><h:outputText value="#{bundle.login_page_why_register_content4_guest}" /></p>
-
-
-				</rich:panel>	         
-      </h:panelGrid>
-
-     <!-- Center column -->
-			<div style="height: 633px;border: 0px solid red;background-color: white;">
-			 <iframe style="margin-right:0px;"
-			    src="#{controllerBean.contextPath}/static/intro.html" width="480" height="500"
-			    frameborder="0" scrolling="no" align="left">
-			 </iframe>
-			</div> 
-            
-      <!-- Right Column -->
-				<h:panelGrid columns="1" width="100%" border="0" cellpadding="0" cellspacing="0">
-          		<!-- Login Box -->
-          		<rich:panel  headerClass="login_box_panel_header"  bodyClass="login_box_panel" style="margin-left: 4px;">
+         	 <rich:spacer height="40"/>
+         	 
+         	<rich:panel   headerClass="login_box_panel_header2"  bodyClass="login_box_panel">
+         			<f:facet name="header"> <h:outputText value="#{bundle.login_page_why_register_guest}" /></f:facet>
+				<p><h:outputText value="#{bundle.login_page_why_register_content1_guest}" /></p>    
+				<p><h:outputText value="#{bundle.login_page_why_register_content2_guest}" /></p>
+				<p><h:outputText value="#{bundle.login_page_why_register_content3_guest}" /></p>
+				<p><h:outputText value="#{bundle.login_page_why_register_content4_guest}" /></p>
+			</rich:panel>	
+				
+    </div>
+    
+    <!-- Right column  -->
+    <div id="right"> 
+		<div style="margin-left: 2px; margin-right: 5px; border: 0px solid black;">
+		
+		          		<!-- Login Box -->
+          		<rich:panel  headerClass="login_box_panel_header"  bodyClass="login_box_panel" style="margin-left: 1px;">
           			<f:facet name="header">                   
                   <h:panelGroup>  
                   	<h:outputText value="Login" />
@@ -99,43 +78,21 @@
           				<h:commandButton action="#{authenticationViewHandler.loginUser}" value="#{bundle.login_page_login_button}" />
          			</h:panelGrid>
          			
-         			<h:panelGrid columns="2" columnClasses="col_1,col_2" border="0" width="100%">
+         			<h:panelGrid columns="2" columnClasses="col_1,col_1" border="0" width="100%">
          				<h:outputText value="" />
          				<h:commandLink  value="#{bundle.login_page_forget_your_pass}" action="#{authenticationViewHandler.recoverPassword}"/>
          			</h:panelGrid>
          			<h:panelGrid columns="1" columnClasses="center_align_col" border="0" width="100%">
          				<h:outputText styleClass="error_message" value="#{authenticationViewHandler.errMessage}" />
-         			</h:panelGrid>         			
+         			</h:panelGrid> 
+         		 <rich:spacer height="40"/>	        			
 				</rich:panel>
-				<h:panelGrid columns="1"  width="100%" border="0" >
 				
-				 <rich:spacer height="50"/>
-
-		     <h:panelGrid columns="2" valign="center">
-				<h:outputLink value="#{controllerBean.contextPath}/static/imam_says_1.faces"> 
-					<h:graphicImage value="/images/picture_imam_zaid.png" /> 
-				</h:outputLink>	
-				<h:outputLink value="#{controllerBean.contextPath}/static/imam_says_1.faces"> 
-					<h:outputText value="Imam Zaid Shakir" style="font-weight: bolder;color: white;"/> 
-				</h:outputLink>				
-		     </h:panelGrid>
-		     					
-		     									 
-		     <h:panelGrid columns="2" valign="center">
-				<h:outputLink value="#{controllerBean.contextPath}/static/imam_says_2.faces"> 
-					<h:graphicImage value="/images/picture_imam_sakr.png" /> 
-				</h:outputLink>	
-				<h:outputLink value="#{controllerBean.contextPath}/static/imam_says_2.faces"> 
-					<h:outputText value="Dr. Ahmad  Sakr" style="font-weight: bolder;color: white;"/> 
-				</h:outputLink>				
-		     </h:panelGrid>
-		     				
-	
-				
+								
 				 <rich:spacer height="25"/>
 				 
 		     									 
-		     <h:panelGrid columns="2" valign="center">
+		     <h:panelGrid columns="2" valign="center" columnClasses="col_2,col_left" width="100%" border="1">
 				<h:outputLink value="#{controllerBean.contextPath}/mentorRegister.faces"> 
 					<h:graphicImage value="/images/mentor_reg.png" /> 
 				</h:outputLink>	
@@ -143,25 +100,132 @@
 					<h:outputText value="#{bundle.login_page_mentor_signup}" style="font-weight: bolder;color: white;"/> 
 				</h:outputLink>				
 		     </h:panelGrid>
-		     				 							
-				
-				</h:panelGrid>
-				
-				 <rich:spacer height="33"/>
+			 <rich:spacer height="30"/>
 
-          		<rich:panel   headerClass="login_box_panel_header2"  bodyClass="login_box_panel">
-          			<f:facet name="header"> <h:outputText value="#{bundle.login_page_why_register}" /></f:facet>
-					<p><h:outputText value="#{bundle.login_page_why_register_content1}" /></p>    
-					<p><h:outputText value="#{bundle.login_page_why_register_content2}" /></p>
-					<p><h:outputText value="#{bundle.login_page_why_register_content3}" /></p>
+         	<rich:panel   headerClass="login_box_panel_header2"  bodyClass="login_box_panel">
+         			<f:facet name="header"> <h:outputText value="#{bundle.login_page_why_register}" /></f:facet>
+				<p><h:outputText value="#{bundle.login_page_why_register_content1}" /></p>    
+				<p><h:outputText value="#{bundle.login_page_why_register_content2}" /></p>
+				<p><h:outputText value="#{bundle.login_page_why_register_content3}" /></p>
+			   <br /> <br />
+			    <br /> <br /> <br /> 
+			     <br />
+			   
+			</rich:panel>	
+						     				 		
+		     				 		
+		</div>
 
-				</rich:panel>				
 				
-				</h:panelGrid>			
-					
-            <!-- End right column -->
-          
-          </h:panelGrid>   
-  </ui:define>
+    </div>
+    <div id="centre"> 
+
+        <div style="height:420px;border: 1px solid white;background-color: white;">
+			<!-- player container  -->
+			<a href="./resources/video/intro.flv" id="player"
+				style="display:block;width:510px;height:420px"> 
+			</a>
+		</div> 
+      <p style="margin-left: 10px;">Video Endorsements and Recommendations</p>
+  	  
+  	  <div style="text-align: left;	margin: 0px auto; padding: 0px; border:0; width: 510px;"> 
+  	   <div  style="float: left; width: 250px;">
+		     <h:panelGrid columns="2" valign="center">
+				<h:outputLink value="#{controllerBean.contextPath}/static/deborah_says_3.faces"> 
+					<h:graphicImage value="/images/deborah.png" /> 
+				</h:outputLink>	
+				<h:outputLink value="#{controllerBean.contextPath}/static/deborah_says_3.faces"> 
+					<h:outputText value="Rev. Deborah Lindsay-”Talk TO Muslims, rather than ABOUT them”" style="font-weight: bolder;color: black;"/> 
+				</h:outputLink>				
+		     </h:panelGrid>
+  	   </div>
+  	   
+  	   <div style="	margin: 0;	float: left;	width: 250px;">
+		     <h:panelGrid columns="2" valign="left">
+				<h:outputLink value="#{controllerBean.contextPath}/static/imam_says_2.faces"> 
+					<h:graphicImage value="/images/picture_imam_sakr.png" /> 
+				</h:outputLink>	
+				<h:outputLink value="#{controllerBean.contextPath}/static/imam_says_2.faces"> 
+					<h:outputText value="Dr. Ahmad Sakr-Basic responsibility of ALL Muslims" style="font-weight: bolder;color: black;"/> 
+				</h:outputLink>				
+		     </h:panelGrid>
+  	   </div>
+      <rich:spacer height="40" width="150"/>
+      
+       <div  style="float: left; width: 250px;">
+			<h:panelGrid columns="2" valign="left">
+					<h:outputLink value="#{controllerBean.contextPath}/static/imam_says_1.faces"> 
+						<h:graphicImage value="/images/picture_imam_zaid.png" /> 
+					</h:outputLink>	
+					<h:outputLink value="#{controllerBean.contextPath}/static/imam_says_1.faces"> 
+						<h:outputText value="Imam Zaid Shakir-Why this is IMPORTANT" style="font-weight: bolder;color: black;"/> 
+					</h:outputLink>				
+			</h:panelGrid>
+  	   </div>
+
+  	   <div  style="float: left; width: 250px;">
+		     <h:panelGrid columns="2" valign="center">
+				<h:outputLink value="http://www.facebook.com/MyC2i"> 
+					<h:graphicImage value="/images/facebook.png" /> 
+				</h:outputLink>	
+				<h:outputLink value="http://www.facebook.com/MyC2i"> 
+					<h:outputText value="Connect with us" style="font-weight: bolder;color: black;"/> 
+				</h:outputLink>				
+		     </h:panelGrid>
+  	   </div>
+  	   
+  	   <div style="	margin: 0;	float: left;	width: 250px;">
+		     <h:panelGrid columns="2" valign="left">
+				<h:outputLink value="http://twitter.com/myc2i"> 
+					<h:graphicImage value="/images/twitter.png" /> 
+				</h:outputLink>	
+				<h:outputLink value="http://twitter.com/myc2i"> 
+					<h:outputText value="Follow us" style="font-weight: bolder;color: black;"/> 
+				</h:outputLink>				
+		     </h:panelGrid>
+  	   </div>
+  	   
+	</div>
+
+    </div>
+    <div class="clearer"></div>
+  </div>
+
+</div>
+
+</ui:define>
+
+    <ui:define name="morescript">
+    <script  type="text/javascript">
+
+
+	$f("player", "./resources/swf/flowplayer-3.1.5.swf", {
+	    clip: {
+	        url: './static/MyC2I_MovieFlash.flv',
+	        autoPlay: false,
+	        autoBuffering: true
+	    },
+	    plugins: {
+	        controls: null
+	    },
+	    onLoad: function(){
+	        
+	    }
+	});
+
+	var state = Common.readCookie('state');
+	//alert(state);
+	if(state == null){
+		Common.createCookie('state',1,30);
+	}
+	if(state == null){
+		$f(0).play();
+	}
+
+	
+
+</script>
+
+    </ui:define>
 </ui:composition>
 </html>
