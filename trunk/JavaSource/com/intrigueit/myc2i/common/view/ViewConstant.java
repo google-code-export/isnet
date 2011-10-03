@@ -11,5 +11,7 @@ public class ViewConstant {
 	public final static String  BACK_TO_LOGIN = "BACK_TO_LOGIN";
 	public final static String  MENTOR_PAGE_TO_SUCCESS_PAGE = "MENTOR_PAGE_TO_SUCCESS_PAGE";
 	public final static String  REGISTER_SUCCESSFULL = "REGISTER_SUCCESSFULL";
+	public final static String REGISTER_FAIL = "REGISTER_FAIL";
+	public final static String CHANGE_PASS_FAIL ="CHANGE_FAIL";
 	
 }

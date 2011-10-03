@@ -63,6 +63,8 @@ public class SecurityCheckFilter implements Filter {
         boolean notLoginPage = url.endsWith(LOGIN_PAGNE) == false;
         boolean isFaces = url.endsWith(FILE_EXTENTION);
          
+        ((HttpServletResponse) response).setHeader("X-UA-Compatible", "IE=EmulateIE7"); 
+        
         /** Don't filter login page because otherwise an endless loop.
         * & only filter .faces otherwise it will filter all images etc as well.
         *

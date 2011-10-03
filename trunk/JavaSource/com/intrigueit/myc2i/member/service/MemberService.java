@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.intrigueit.myc2i.common.domain.SearchBean;
 import com.intrigueit.myc2i.member.domain.Member;
+import com.intrigueit.myc2i.role.domain.ApplicationPages;
 import com.intrigueit.myc2i.role.domain.RolePageAccess;
 
 
@@ -52,5 +53,7 @@ public interface MemberService {
 	public List<Member> getLeadMentorsMentorWaitingForCertification(Long mentorId);
 	
 	public void addToKnownMemberList(Member member, Member friend);
+	
+	public List<ApplicationPages> getUserPrivilegePage(Long memberTypeId);
 	
 }

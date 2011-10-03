@@ -6,7 +6,8 @@ import javax.servlet.ServletContextListener;
 import com.intrigueit.myc2i.common.view.BasePage;
 
 public class ContextProvider implements ServletContextListener {
-	 private static ServletContext theServletContext;
+	 
+	private static ServletContext theServletContext;
 
 	 public void contextInitialized(ServletContextEvent arg0) {
 	     theServletContext = arg0.getServletContext();

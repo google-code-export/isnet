@@ -79,7 +79,7 @@ public class MemberViewHandler extends BasePage implements Serializable{
 			
 			if(this.errMsgs.size()>0){
 				this.hasError = true;
-				return "";
+				return ViewConstant.REGISTER_FAIL;
 			}
 			
 			CryptographicUtility crpUtil = CryptographicUtility.getInstance();
@@ -120,7 +120,8 @@ public class MemberViewHandler extends BasePage implements Serializable{
 			log.error(ex.getMessage());
 		}
 		this.resetPassword();
-		return "";
+		
+		return ViewConstant.REGISTER_FAIL;
 		
 	}
 	private void resetPassword(){
@@ -138,7 +139,7 @@ public class MemberViewHandler extends BasePage implements Serializable{
 			this.validationPhase2();
 			if(this.errMsgs.size()>0){
 				this.hasError = true;
-				return "";
+				return ViewConstant.REGISTER_FAIL;
 			}
 
 			CryptographicUtility crpUtil = CryptographicUtility.getInstance();
@@ -170,7 +171,8 @@ public class MemberViewHandler extends BasePage implements Serializable{
 			this.setSuccessMessage("");
 		}		
 		this.resetPassword();
-		return "";
+		
+		return ViewConstant.REGISTER_FAIL;
 	}
 	
 	/** Send confirmation email to member */

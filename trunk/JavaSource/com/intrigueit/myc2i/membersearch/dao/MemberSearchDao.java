@@ -36,7 +36,7 @@ public class MemberSearchDao {
 			conn = dataSource.getConnection();
 			log.debug(SQL);
 			stmt = conn.prepareStatement( SQL );
-			stmt.setMaxRows(200);
+			//stmt.setMaxRows(200);
 			rs = stmt.executeQuery();
 			String zip = null;
 			while(rs.next()) {
