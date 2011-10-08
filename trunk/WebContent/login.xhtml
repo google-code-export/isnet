@@ -41,13 +41,14 @@
 						     	
          	 <rich:spacer height="40"/>
          	 
-         	<rich:panel   headerClass="login_box_panel_header2"  bodyClass="login_box_panel">
-         			<f:facet name="header"> <h:outputText value="#{bundle.login_page_why_register_guest}" /></f:facet>
-				<p><h:outputText value="#{bundle.login_page_why_register_content1_guest}" /></p>    
-				<p><h:outputText value="#{bundle.login_page_why_register_content2_guest}" /></p>
-				<p><h:outputText value="#{bundle.login_page_why_register_content3_guest}" /></p>
-				<p><h:outputText value="#{bundle.login_page_why_register_content4_guest}" /></p>
-			</rich:panel>	
+         	 <h:panelGrid columns="1" width="100%"  valign="center" columnClasses="center_align_col">
+         	 	<h:outputLink value="#" id="link1" >
+			       <h:outputText value="#{bundle.login_page_why_register_guest}" style="font-weight: bolder;color: white;"/>
+			        <rich:componentControl for="idWhyRegisterAsGuestDialog" attachTo="link1" operation="show" event="onclick"/>
+			    </h:outputLink>
+         	 </h:panelGrid>
+			
+
 				
     </div>
     
@@ -102,16 +103,13 @@
 		     </h:panelGrid>
 			 <rich:spacer height="30"/>
 
-         	<rich:panel   headerClass="login_box_panel_header2"  bodyClass="login_box_panel">
-         			<f:facet name="header"> <h:outputText value="#{bundle.login_page_why_register}" /></f:facet>
-				<p><h:outputText value="#{bundle.login_page_why_register_content1}" /></p>    
-				<p><h:outputText value="#{bundle.login_page_why_register_content2}" /></p>
-				<p><h:outputText value="#{bundle.login_page_why_register_content3}" /></p>
-			   <br /> <br />
-			    <br /> <br /> <br /> 
-			     <br />
-			   
-			</rich:panel>	
+         	 <h:panelGrid columns="1" width="100%"  valign="center" columnClasses="center_align_col">
+         	 	<h:outputLink value="#" id="link2" >
+			       <h:outputText value="#{bundle.login_page_why_register}" style="font-weight: bolder;color: white;"/>
+			        <rich:componentControl for="idWhyRegisterAsMentorDialog" attachTo="link2" operation="show" event="onclick"/>
+			    </h:outputLink>
+         	 </h:panelGrid>
+         	 
 						     				 		
 		     				 		
 		</div>
@@ -123,7 +121,7 @@
         <div style="height:420px;border: 1px solid white;background-color: white;">
 			<!-- player container  -->
 			<a href="./resources/video/intro.flv" id="player"
-				style="display:block;width:510px;height:420px"> 
+				style="display:block;width:527px;height:420px"> 
 			</a>
 		</div> 
       <p style="margin-left: 10px;">Video Endorsements and Recommendations</p>
@@ -227,5 +225,11 @@
 </script>
 
     </ui:define>
+    
+    <ui:define name="modalPanels">
+    	<ui:include src="./whyRegisterAsGuest.xhtml" />	
+    	<ui:include src="./whyRegisterAsMentor.xhtml" />	
+    </ui:define>
+    
 </ui:composition>
 </html>
