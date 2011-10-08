@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:rich="http://richfaces.org/rich"
+    xmlns:f="http://java.sun.com/jsf/core">
+	<ui:composition>
+
+		<rich:modalPanel style="background-color: #F7F9F9;" id="idWhyRegisterAsGuestDialog" minHeight="250" minWidth="350" >
+			<f:facet name="header"><h:outputText value="#{bundle.login_page_why_register_guest}" /></f:facet>
+			<f:facet name="controls">
+              	<h:graphicImage value="/images/close.png" style="cursor:pointer" onclick="Richfaces.hideModalPanel('idWhyRegisterAsGuestDialog')" />
+       		</f:facet>
+				<rich:panel style="background-color: #F7F9F9;"  styleClass="popup_window_outer_panel_style" >
+					<p><h:outputText value="#{bundle.login_page_why_register_content1_guest}" /></p>  <br />    
+					<p><h:outputText value="#{bundle.login_page_why_register_content2_guest}" /></p> <br /> 
+					<p><h:outputText value="#{bundle.login_page_why_register_content3_guest}" /></p> <br /> 
+					<p><h:outputText value="#{bundle.login_page_why_register_content4_guest}" /></p>	
+				</rich:panel>		
+							
+		</rich:modalPanel>
+	
+	</ui:composition>
+</html>
