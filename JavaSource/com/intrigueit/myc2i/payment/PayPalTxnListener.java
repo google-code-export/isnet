@@ -206,6 +206,7 @@ public class PayPalTxnListener extends HttpServlet {
 		String path = realPath +  "WEB-INF"+ System.getProperty("file.separator") +"logs"+ System.getProperty("file.separator")+"payments"+ System.getProperty("file.separator");
 
 		this.filePath = path;// this.getInitParameter("TMP_PATH");
+		log.debug("Initializing payment log file at loc: "+ this.filePath);
 	}
 
 
