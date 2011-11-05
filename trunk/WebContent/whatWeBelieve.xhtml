@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	 xmlns:ui="http://java.sun.com/jsf/facelets"
+	 xmlns:h="http://java.sun.com/jsf/html"
+	 xmlns:f="http://java.sun.com/jsf/core"
+	 xmlns:a4j="http://richfaces.org/a4j"
+ 	xmlns:c="http://java.sun.com/jstl/core"
+ 	xmlns:rich="http://richfaces.org/rich">
+
+	<ui:composition template="/templates/basictemplate.xhtml">
+	<ui:param name="moduleTitle" value="What We Believe"></ui:param>
+ 		<ui:param name="userType" value="Public">
+ 	</ui:param>
+
+	<ui:define name="body">
+	<h:panelGrid columns="3" columnClasses="reg_page_column1,reg_page_column2,reg_page_column3" width="100%">
+					<h:outputText value="" />
+					<h:panelGroup>
+					<rich:panel style="width:'auto'"  id="idPanelContainer" headerClass="panel_header" bodyClass="panel_content_body" styleClass="content_panel">
+						<f:facet name="header">
+							<h:outputLabel id="idHeaderMessage" >
+							  	<h:outputText    value="What We Believe"/>
+							</h:outputLabel>
+						</f:facet>
+						
+						<a4j:outputPanel layout="block">
+						<h2>We believe in…</h2>
+						<h3>One God, the God of Abraham, Moses, Jesus, and Muhammad, peace be upon them all.</h3>
+						<h3>All of the Holy Scriptures, i.e., the Scrolls of Abraham, those Psalms written by David, the Torah revealed to Prophet Moses, the Gospel given to Prophet Jesus, and the Qur’an revealed to Prophet Muhammad, as they appeared in their original forms.
+						</h3>
+
+						<h3>All of the prophets listed in the Qur’an, of which at least 20 are also mentioned in either the Tanakh (Jewish scriptures) or the Bible, starting with Adam and ending with Muhammad, peace be upon them all.
+						</h3>
+
+						<h3>All of the angels listed in the Tanakh, Bible, and Qur’an.
+						</h3>
+						
+						<h3>Heaven and Hell, eternal life after death, and personal accountability on Judgment Day after resurrection.
+						</h3>
+
+						<h3>Peaceful co-existence with people of ALL other faiths, by promoting personal understanding, interaction, and engagement in America and throughout the world.
+						</h3>
+
+						<h3>Extending the maximum co-operation possible to inter-faith agencies who share the same values.
+						</h3>
+
+						
+						</a4j:outputPanel>
+
+					
+
+				</rich:panel>
+				
+
+					<rich:panel id="actionBox" bodyClass="panel_content_body">
+						<h:panelGrid columns="1" columnClasses="column_class_center" width="100%">
+
+								<h:commandButton action="#{navigationBean.backToHome}"  value="#{bundle.common_label_back}"  />
+	
+						</h:panelGrid>				
+				</rich:panel>										
+				</h:panelGroup>
+				<h:outputText value="" />			
+	</h:panelGrid>	   
+  </ui:define>
+   	
+	</ui:composition>
+
+</html>
