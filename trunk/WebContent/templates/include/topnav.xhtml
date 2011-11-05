@@ -7,7 +7,7 @@
     xmlns:rich="http://richfaces.org/rich"
     xmlns:ui="http://java.sun.com/jsf/facelets">
   <ui:composition>
-    <div id="navigation" class="main-menu" style="margin-left: 60px; border:1px;solid red"> 
+    <div id="navigation" class="main-menu" style="margin-left: 60px; border:0px solid red"> 
       <h:panelGroup rendered="${userType eq 'Public'}">
         <h:panelGrid columns="1" border="0">
 
@@ -17,15 +17,30 @@
               value="Home"/>
         </h:outputLink>
          
-         <h:outputLabel rendered="false"  styleClass="top_panel_psep">
+         <h:outputLabel  rendered="false"  styleClass="top_panel_psep">
             <h:outputText 
               value="|"/>
-        </h:outputLabel>
-                  
+        </h:outputLabel> 
          <h:outputLink  styleClass="orange_link "  value="#{controllerBean.contextPath}/aboutUs.faces">
           <h:outputText styleClass="navlink_text" id="idrole" value="About Us"/>
         </h:outputLink>
+        
+         <h:outputLabel rendered="true"  styleClass="top_panel_psep" style="color:white;">
+            <h:outputText 
+              value="|"/>
+        </h:outputLabel>
+         <h:outputLink  styleClass="orange_link "  value="#{controllerBean.contextPath}/whatWeBelieve.faces">
+          <h:outputText styleClass="navlink_text"  value="What We Believe"/>
+        </h:outputLink>
                           
+         <h:outputLabel rendered="true"  styleClass="top_panel_psep" style="color:white;">
+            <h:outputText 
+              value="|"/>
+        </h:outputLabel>
+         <h:outputLink  styleClass="orange_link "  value="#{controllerBean.contextPath}/howitworks.faces">
+          <h:outputText styleClass="navlink_text" value="How MyC2i Works"/>
+        </h:outputLink>
+                                                         
           </h:panelGroup>
           </h:panelGrid>
       </h:panelGroup>
