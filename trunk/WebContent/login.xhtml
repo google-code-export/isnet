@@ -26,10 +26,8 @@
 
 		   <p><h:outputText value="#{bundle.login_guest_msg2}" /></p>		         
 		  </rich:panel>  
-		  
-		 <rich:spacer height="25"/>
 		     	
-		     <h:panelGrid width="100%" columns="2" valign="center" columnClasses="col_2,col_left">
+		     <h:panelGrid width="100%" columns="2" valign="center" columnClasses="col_2,col_left" style="margin-top: 40px;">
 				<h:outputLink value="#{controllerBean.contextPath}/guestRegister.faces"> 
 					<h:graphicImage value="/images/guest_reg.png" /> 
 				</h:outputLink>	
@@ -40,9 +38,9 @@
 		     </h:panelGrid>
 	
 						     	
-         	 <rich:spacer height="40"/>
+         	<!-- <rich:spacer height="40"/> -->
          	 
-         	 <h:panelGrid columns="1" width="100%"  valign="center" columnClasses="center_align_col">
+         	 <h:panelGrid columns="1" width="100%"  valign="center" columnClasses="center_align_col" style="margin-top: 40px;">
          	 	<h:outputLink value="#" id="link1" >
 			       <h:outputText value="#{bundle.login_page_why_register_guest}" style="font-weight: bolder;color: white;"/>
 			        <rich:componentControl for="idWhyRegisterAsGuestDialog" attachTo="link1" operation="show" event="onclick"/>
@@ -64,9 +62,8 @@
                   	<h:outputText value="Login" />
                    </h:panelGroup> 
                 </f:facet> 
-                <rich:spacer width="100%" height="4"/>
                 
-                <h:panelGrid columns="2" width="100%">          				                     
+                <h:panelGrid columns="2" width="100%" style="margin-top: 4px;">          				                     
                   <h:outputText value="#{bundle.login_page_login_email}" />
           				<h:inputText id="idLoginEamilId" value="#{authenticationViewHandler.userEmailId}" styleClass="login_box_input"/>
                   
@@ -87,14 +84,12 @@
          			<h:panelGrid columns="1" columnClasses="center_align_col" border="0" width="100%">
          				<h:outputText styleClass="error_message" value="#{authenticationViewHandler.errMessage}" />
          			</h:panelGrid> 
-         		 <rich:spacer height="40"/>	        			
+
+         		 	<div style="margin-top: 37px;border: 0px solid red;"></div>        			
 				</rich:panel>
-				
-								
-				 <rich:spacer height="25"/>
 				 
 		     									 
-		     <h:panelGrid columns="2" valign="center" columnClasses="col_2,col_left" width="100%" border="1">
+		     <h:panelGrid columns="2" valign="center" columnClasses="col_2,col_left" width="100%" border="1" style="margin-top: 42px;">
 				<h:outputLink value="#{controllerBean.contextPath}/mentorRegister.faces"> 
 					<h:graphicImage value="/images/mentor_reg.png" /> 
 				</h:outputLink>	
@@ -102,9 +97,8 @@
 					<h:outputText value="#{bundle.login_page_mentor_signup}" style="font-weight: bolder;color: white;"/> 
 				</h:outputLink>				
 		     </h:panelGrid>
-			 <rich:spacer height="30"/>
 
-         	 <h:panelGrid columns="1" width="100%"  valign="center" columnClasses="center_align_col">
+         	 <h:panelGrid columns="1" width="100%"  valign="center" columnClasses="center_align_col" style="margin-top: 38px;">
          	 	<h:outputLink value="#" id="link2" >
 			       <h:outputText value="#{bundle.login_page_why_register}" style="font-weight: bolder;color: white;"/>
 			        <rich:componentControl for="idWhyRegisterAsMentorDialog" attachTo="link2" operation="show" event="onclick"/>
@@ -164,10 +158,10 @@
 
   	   <div  style="float: left; width: 250px;">
 		     <h:panelGrid columns="2" valign="center">
-				<h:outputLink value="http://www.facebook.com/MyC2i"> 
+				<h:outputLink value="http://www.facebook.com/pages/DINA-MyC2i/241061242617115"  target="_blank"> 
 					<h:graphicImage value="/images/facebook.png" /> 
 				</h:outputLink>	
-				<h:outputLink value="http://www.facebook.com/MyC2i"> 
+				<h:outputLink value="http://www.facebook.com/pages/DINA-MyC2i/241061242617115" target="_blank"> 
 					<h:outputText value="Connect with us" style="font-weight: bolder;color: black;"/> 
 				</h:outputLink>				
 		     </h:panelGrid>
@@ -175,10 +169,10 @@
   	   
   	   <div style="	margin: 0;	float: left;	width: 250px;">
 		     <h:panelGrid columns="2" valign="left">
-				<h:outputLink value="http://twitter.com/myc2i"> 
+				<h:outputLink value="http://twitter.com/myc2i" target="_blank"> 
 					<h:graphicImage value="/images/twitter.png" /> 
 				</h:outputLink>	
-				<h:outputLink value="http://twitter.com/myc2i"> 
+				<h:outputLink value="http://twitter.com/myc2i" target="_blank"> 
 					<h:outputText value="Follow us" style="font-weight: bolder;color: black;"/> 
 				</h:outputLink>				
 		     </h:panelGrid>

@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	 xmlns:ui="http://java.sun.com/jsf/facelets"
+	 xmlns:h="http://java.sun.com/jsf/html"
+	 xmlns:f="http://java.sun.com/jsf/core"
+	 xmlns:a4j="http://richfaces.org/a4j"
+ 	xmlns:c="http://java.sun.com/jstl/core"
+ 	xmlns:rich="http://richfaces.org/rich">
+
+<ui:composition template="/templates/basictemplate.xhtml">
+<f:loadBundle basename="ApplicationResources" var="bundle"/>
+  <ui:param name="moduleTitle" value="#{bundle.login_page_title}"></ui:param>
+  <ui:param name="userType" value="Public"></ui:param>
+  <ui:param name="help_doc" value="#{controllerBean.contextPath}/online_help/login_help.htm"></ui:param>
+  <ui:define name="body">
+    <h:inputHidden value="#{authenticationViewHandler.init}" />
+    <h:panelGrid width="100%"  columns="3" border="0" cellpadding="0" cellspacing="0" 
+      columnClasses="login_page_column1,login_page_column2,login_page_column3" >     
+           
+      <h:panelGrid columns="1" width="100%" valign="left" border="1" cellpadding="0" cellspacing="0">
+      
+
+			  <rich:panel headerClass="login_box_panel_header"  bodyClass="login_box_panel" style="margin-right: 4px;">
+			   <f:facet name="header">
+		          <h:outputText value="" /> 
+		        </f:facet>
+		        <h:outputText value="#{bundle.login_guest_msg1}" style="font-weight: bolder;" />
+		        
+			   <p><h:outputText value="#{bundle.login_guest_msg2}" /></p>		         
+			  </rich:panel>  
+			  
+			 <rich:spacer height="10"/>
+			
+		
+		     <h:panelGrid columns="2" valign="center">
+				<h:outputLink value="#{controllerBean.contextPath}/static/deborah_says_3.faces"> 
+					<h:graphicImage value="/images/deborah.png" /> 
+				</h:outputLink>	
+				<h:outputLink value="#{controllerBean.contextPath}/static/deborah_says_3.faces"> 
+					<h:outputText value="Rev. Deborah C. Lindsay" style="font-weight: bolder;color: white;"/> 
+				</h:outputLink>				
+		     </h:panelGrid>
+		     						
+	  
+		     <rich:spacer height="20"/>
+		     	
+		     <h:panelGrid columns="2" valign="center">
+				<h:outputLink value="#{controllerBean.contextPath}/guestRegister.faces"> 
+					<h:graphicImage value="/images/guest_reg.png" /> 
+				</h:outputLink>	
+				<h:outputLink value="#{controllerBean.contextPath}/guestRegister.faces"> 
+					<h:outputText value="#{bundle.login_page_guest_signup}" style="font-weight: bolder;color: white;"/> 
+				</h:outputLink>				
+		     </h:panelGrid>
+	
+						     	
+         	 <rich:spacer height="17"/>
+          		<rich:panel   headerClass="login_box_panel_header2"  bodyClass="login_box_panel">
+          			<f:facet name="header"> <h:outputText value="#{bundle.login_page_why_register_guest}" /></f:facet>
+					<p><h:outputText value="#{bundle.login_page_why_register_content1_guest}" /></p>    
+					<p><h:outputText value="#{bundle.login_page_why_register_content2_guest}" /></p>
+					<p><h:outputText value="#{bundle.login_page_why_register_content3_guest}" /></p>
+					<p><h:outputText value="#{bundle.login_page_why_register_content4_guest}" /></p>
+
+
+				</rich:panel>	         
+      </h:panelGrid>
+
+     <!-- Center column -->
+			<div style="height: 633px;border: 0px solid red;background-color: white;">
+			 <iframe style="margin-right:0px;"
+			    src="#{controllerBean.contextPath}/static/intro.html" width="480" height="500"
+			    frameborder="0" scrolling="no" align="left">
+			 </iframe>
+			</div> 
+            
+      <!-- Right Column -->
+				<h:panelGrid columns="1" width="100%" border="0" cellpadding="0" cellspacing="0">
+          		<!-- Login Box -->
+          		<rich:panel  headerClass="login_box_panel_header"  bodyClass="login_box_panel" style="margin-left: 4px;">
+          			<f:facet name="header">                   
+                  <h:panelGroup>  
+                  	<h:outputText value="Login" />
+                   </h:panelGroup> 
+                </f:facet> 
+                <rich:spacer width="100%" height="4"/>
+                
+                <h:panelGrid columns="2" width="100%">          				                     
+                  <h:outputText value="#{bundle.login_page_login_email}" />
+          				<h:inputText id="idLoginEamilId" value="#{authenticationViewHandler.userEmailId}" styleClass="login_box_input"/>
+                  
+                  <h:outputText value="#{bundle.login_page_login_password}" />
+          				<h:inputSecret id="idLoginPass" value="#{authenticationViewHandler.password}" styleClass="login_box_input"/>
+          				<h:outputText value="" />
+          				<h:panelGroup>
+          				<h:selectBooleanCheckbox value="#{authenticationViewHandler.checked}" /> &#160;<h:outputText value="#{bundle.login_page_login_remember_me}" />
+          				</h:panelGroup>
+          				<h:outputText value="" />
+          				<h:commandButton action="#{authenticationViewHandler.loginUser}" value="#{bundle.login_page_login_button}" />
+         			</h:panelGrid>
+         			
+         			<h:panelGrid columns="2" columnClasses="col_1,col_2" border="0" width="100%">
+         				<h:outputText value="" />
+         				<h:commandLink  value="#{bundle.login_page_forget_your_pass}" action="#{authenticationViewHandler.recoverPassword}"/>
+         			</h:panelGrid>
+         			<h:panelGrid columns="1" columnClasses="center_align_col" border="0" width="100%">
+         				<h:outputText styleClass="error_message" value="#{authenticationViewHandler.errMessage}" />
+         			</h:panelGrid>         			
+				</rich:panel>
+				<h:panelGrid columns="1"  width="100%" border="0" >
+				
+				 <rich:spacer height="50"/>
+
+		     <h:panelGrid columns="2" valign="center">
+				<h:outputLink value="#{controllerBean.contextPath}/static/imam_says_1.faces"> 
+					<h:graphicImage value="/images/picture_imam_zaid.png" /> 
+				</h:outputLink>	
+				<h:outputLink value="#{controllerBean.contextPath}/static/imam_says_1.faces"> 
+					<h:outputText value="Imam Zaid Shakir" style="font-weight: bolder;color: white;"/> 
+				</h:outputLink>				
+		     </h:panelGrid>
+		     					
+		     									 
+		     <h:panelGrid columns="2" valign="center">
+				<h:outputLink value="#{controllerBean.contextPath}/static/imam_says_2.faces"> 
+					<h:graphicImage value="/images/picture_imam_sakr.png" /> 
+				</h:outputLink>	
+				<h:outputLink value="#{controllerBean.contextPath}/static/imam_says_2.faces"> 
+					<h:outputText value="Dr. Ahmad  Sakr" style="font-weight: bolder;color: white;"/> 
+				</h:outputLink>				
+		     </h:panelGrid>
+		     				
+	
+				
+				 <rich:spacer height="25"/>
+				 
+		     									 
+		     <h:panelGrid columns="2" valign="center">
+				<h:outputLink value="#{controllerBean.contextPath}/mentorRegister.faces"> 
+					<h:graphicImage value="/images/mentor_reg.png" /> 
+				</h:outputLink>	
+				<h:outputLink value="#{controllerBean.contextPath}/mentorRegister.faces"> 
+					<h:outputText value="#{bundle.login_page_mentor_signup}" style="font-weight: bolder;color: white;"/> 
+				</h:outputLink>				
+		     </h:panelGrid>
+		     				 							
+				
+				</h:panelGrid>
+				
+				 <rich:spacer height="33"/>
+
+          		<rich:panel   headerClass="login_box_panel_header2"  bodyClass="login_box_panel">
+          			<f:facet name="header"> <h:outputText value="#{bundle.login_page_why_register}" /></f:facet>
+					<p><h:outputText value="#{bundle.login_page_why_register_content1}" /></p>    
+					<p><h:outputText value="#{bundle.login_page_why_register_content2}" /></p>
+					<p><h:outputText value="#{bundle.login_page_why_register_content3}" /></p>
+
+				</rich:panel>				
+				
+				</h:panelGrid>			
+					
+            <!-- End right column -->
+          
+          </h:panelGrid>   
+  </ui:define>
+</ui:composition>
+</html>
