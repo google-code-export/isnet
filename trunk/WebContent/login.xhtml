@@ -119,7 +119,7 @@
         <div style="height:420px;border: 1px solid white;background-color: white;">
 			<!-- player container  -->
 			<a href="./resources/video/intro.flv" id="player"
-				style="display:block;width:527px;height:420px;z-index: -1;"> 
+				style="display:block;width:527px;height:420px;"> 
 			</a>
 		</div> 
       <p style="margin-left: 10px;">Video Endorsements and Recommendations</p>
@@ -178,7 +178,7 @@
     <script  type="text/javascript">
 
 
-	$f("player", "./resources/swf/flowplayer-3.1.5.swf", {
+	$f("player", {src: "./resources/swf/flowplayer-3.2.7.swf", wmode: 'opaque'}, {
 	    clip: {
 	        url: './static/MyC2I_MovieFlash.flv',
 	        autoPlay: false,
