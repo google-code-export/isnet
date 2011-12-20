@@ -24,14 +24,17 @@
 	        </f:facet>
 	        <h:outputText value="#{bundle.login_guest_msg1}" style="font-weight: bolder;" />
 
-		   <p><h:outputText value="#{bundle.login_guest_msg2}" /></p>		         
+		   <p style="font-style:normal;"><h:outputText  value="#{bundle.login_guest_msg2}" />
+		   <h:outputText  value="#{bundle.login_guest_msg3}" />
+		   <h:outputText  value="#{bundle.login_guest_msg4}" />
+		   <h:outputText  value="#{bundle.login_guest_msg5}" /></p>		         
 		  </rich:panel>  
 		     	
-		     <h:panelGrid width="100%" columns="2" valign="center" columnClasses="col_2,col_left" style="margin-top: 40px;">
+		     <h:panelGrid width="100%" columns="2" valign="center" columnClasses="col_2,col_left" style="margin-top: 20px;">
 				<h:outputLink value="#{controllerBean.contextPath}/guestRegister.faces"> 
 					<h:graphicImage value="/images/guest_reg.png" /> 
 				</h:outputLink>	
-				<h:outputLink value="#{controllerBean.contextPath}/guestRegister.faces"> 
+				<h:outputLink value="#{controllerBean.contextPath}/guestRegister.faces" > 
 					<h:outputText value="#{bundle.login_page_guest_signup}" style="font-weight: bolder;color: white;"/> <br />
 					<h:outputText value="[Non-Muslims]" style="font-weight: bolder;color: white;"/> 
 				</h:outputLink>				
@@ -116,7 +119,7 @@
         <div style="height:420px;border: 1px solid white;background-color: white;">
 			<!-- player container  -->
 			<a href="./resources/video/intro.flv" id="player"
-				style="display:block;width:527px;height:420px"> 
+				style="display:block;width:527px;height:420px;z-index: -1;"> 
 			</a>
 		</div> 
       <p style="margin-left: 10px;">Video Endorsements and Recommendations</p>
@@ -134,27 +137,10 @@
   	   </div>
   	   
   	   <div style="	margin: 0;	float: left;	width: 250px;">
-		     <h:panelGrid columns="2" valign="left">
-				<h:outputLink value="#{controllerBean.contextPath}/static/imam_says_2.faces"> 
-					<h:graphicImage value="/images/picture_imam_sakr.png" /> 
-				</h:outputLink>	
-				<h:outputLink value="#{controllerBean.contextPath}/static/imam_says_2.faces"> 
-					<h:outputText value="Dr. Ahmad Sakr-Basic responsibility of ALL Muslims" style="font-weight: bolder;color: black;"/> 
-				</h:outputLink>				
-		     </h:panelGrid>
+
   	   </div>
       <rich:spacer height="40" width="150"/>
-      
-       <div  style="float: left; width: 250px;">
-			<h:panelGrid columns="2" valign="left">
-					<h:outputLink value="#{controllerBean.contextPath}/static/imam_says_1.faces"> 
-						<h:graphicImage value="/images/picture_imam_zaid.png" /> 
-					</h:outputLink>	
-					<h:outputLink value="#{controllerBean.contextPath}/static/imam_says_1.faces"> 
-						<h:outputText value="Imam Zaid Shakir-Why this is IMPORTANT" style="font-weight: bolder;color: black;"/> 
-					</h:outputLink>				
-			</h:panelGrid>
-  	   </div>
+
 
   	   <div  style="float: left; width: 250px;">
 		     <h:panelGrid columns="2" valign="center">
@@ -196,8 +182,10 @@
 	    clip: {
 	        url: './static/MyC2I_MovieFlash.flv',
 	        autoPlay: false,
-	        autoBuffering: true
+	        autoBuffering: true,
+
 	    },
+
 	    plugins: {
 	        controls: null
 	    },
