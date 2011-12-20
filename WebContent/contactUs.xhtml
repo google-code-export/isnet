@@ -8,8 +8,10 @@
  	xmlns:rich="http://richfaces.org/rich">
 
 	<ui:composition template="/templates/basictemplate.xhtml">
+	<f:loadBundle basename="ApplicationResources" var="bundle"/>
 	<ui:param name="moduleTitle" value="Contact Us"></ui:param>
- 		<ui:param name="userType" value="Public">
+ 	<ui:param name="userType" value="Public">
+   <ui:param name="help_doc" value="#{controllerBean.contextPath}/online_help/login_help.htm"></ui:param>
  	</ui:param>
 
 	<ui:define name="body">
@@ -24,13 +26,11 @@
 						</f:facet>
 						
 						<a4j:outputPanel layout="block">
-						<a href="mailto:admin@myc2i.com?">admin@myc2i.com</a>
-						
-						
-						 <br/>
-							<h:outputText value="#{bundle.contact_us_line2}" /><br/>
-							<h:outputText value="#{bundle.contact_us_line3}" /><br/>
-						
+											
+						<h:outputText value="DINA-Da'wah Institute of North America" /><br/>
+						<h:outputText value="888.575.5464" /><br/>
+						<a href="mailto:admin@myc2i.com?">admin@myc2i.com</a> <br/>
+						<h:outputText value="IRS 501 3( c ) Registered. EIN 26-4069607" /><br/>
 						</a4j:outputPanel>
 
 					
