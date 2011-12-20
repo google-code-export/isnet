@@ -79,8 +79,8 @@
       function enabledButton(){
         var nextBtn = document.getElementById("idTModuleForm:idNext");
         var lastBtn = document.getElementById("idTModuleForm:idLast");
-        if ( nextBtn ) nextBtn.disabled = false;
-        if ( lastBtn ) lastBtn.disabled = false;
+        if ( nextBtn ) nextBtn.disabled = '';
+        if ( lastBtn ) lastBtn.disabled = '';
       }                  
     </script>
 	<script language = "javascript">
@@ -262,14 +262,14 @@
     				</td>          
     				<td>
     					<h:commandButton id="idNext" action="#{modulePlayer.playNextPage}" value="Next" 
-                disabled="#{modulePlayer.disabledNext}" 
+
                 rendered="#{modulePlayer.notEndPlay}" styleClass="ibutton" title="Next page">						
     					</h:commandButton>				
     				</td>
             
     				<td>
     					<h:commandButton id="idLast" action="#{modulePlayer.playLastPage}" value="Last"
-                disabled="#{modulePlayer.disabledLast}" 
+
                 rendered="#{!modulePlayer.hasQuestionAns and modulePlayer.notEndPlay}" styleClass="ibutton"
                 title="Last viewed page in the proper timeout order">
     					</h:commandButton>				
@@ -290,6 +290,10 @@
     </table>
   </h:form>
   <script type="text/javascript" >
+  var nextBtn = document.getElementById("idTModuleForm:idNext");
+  var lastBtn = document.getElementById("idTModuleForm:idLast");
+  if ( nextBtn ) nextBtn.disabled = true;
+  if ( lastBtn ) lastBtn.disabled =  true;
     setTimeout("enabledButton();",10000);
   </script>
   </body>		
