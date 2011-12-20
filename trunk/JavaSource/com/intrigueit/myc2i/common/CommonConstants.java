@@ -24,6 +24,8 @@ public class CommonConstants {
     public static final Long PROTEGE = 17L;
     public static final Long ADMIN = 18L;
     
+    public static final int DEFAULT_EXPIRY_DATE = 60;
+    
     public static final Long ROLE_ADMINISTRATOR = 19L;
     public static final Long ROLE_SUPERVISOR = 20L;
     public static final Long ROLE_OPERATOR = 21L;
