@@ -168,6 +168,9 @@ public class Member implements java.io.Serializable {
 
 	@Transient
 	private String agreePrivacyPolicy;
+	
+	@Transient
+	private String captchaText;
 
 	@Column(name = "ADMIN_USER_INDICATOR", length = 20)
 	private String adminUserIndicator;
@@ -661,6 +664,20 @@ public class Member implements java.io.Serializable {
 
 	public void setHasCompletedTutorial(String hasCompletedTutorial) {
 		this.hasCompletedTutorial = hasCompletedTutorial;
+	}
+
+	/**
+	 * @return the captchaText
+	 */
+	public String getCaptchaText() {
+		return captchaText;
+	}
+
+	/**
+	 * @param captchaText the captchaText to set
+	 */
+	public void setCaptchaText(String captchaText) {
+		this.captchaText = captchaText;
 	}
 
 }
