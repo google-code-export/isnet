@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.intrigueit.myc2i.common.Captcha;
 import com.intrigueit.myc2i.common.CommonConstants;
 import com.intrigueit.myc2i.common.MyC2iConfiguration;
 import com.intrigueit.myc2i.common.utility.CryptographicUtility;
@@ -33,7 +34,7 @@ import com.intrigueit.myc2i.utility.Emailer;
 
 
 @Component("memberViewHandler")
-@Scope("request")
+@Scope("session")
 public class MemberViewHandler extends BasePage implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -47,6 +48,9 @@ public class MemberViewHandler extends BasePage implements Serializable{
 	private ViewDataProvider viewDataProvider;
 	private String confirmPass;
 	private Boolean agree = false;
+	
+	private Captcha captcha;
+	private String cText = "";
 
 	/** Initialize the Logger */
 	protected static final Logger logger = Logger.getLogger( MemberViewHandler.class );
@@ -56,6 +60,11 @@ public class MemberViewHandler extends BasePage implements Serializable{
 	public MemberViewHandler(MemberService memberService) {
 		this.memberService = memberService;
 		this.currentMember = new Member();
+		this.captcha = new Captcha();
+		this.captcha.generateCaptcha();
+		this.cText = this.captcha.getText();
+		InitCaptcha();
+		
 	}
 
 	public void update(){
@@ -79,6 +88,7 @@ public class MemberViewHandler extends BasePage implements Serializable{
 			
 			if(this.errMsgs.size()>0){
 				this.hasError = true;
+				InitCaptcha();
 				return ViewConstant.REGISTER_FAIL;
 			}
 			
@@ -120,6 +130,8 @@ public class MemberViewHandler extends BasePage implements Serializable{
 			log.error(ex.getMessage());
 		}
 		this.resetPassword();
+
+		InitCaptcha();
 		
 		return ViewConstant.REGISTER_FAIL;
 		
@@ -139,6 +151,7 @@ public class MemberViewHandler extends BasePage implements Serializable{
 			this.validationPhase2();
 			if(this.errMsgs.size()>0){
 				this.hasError = true;
+				InitCaptcha();
 				return ViewConstant.REGISTER_FAIL;
 			}
 
@@ -171,7 +184,8 @@ public class MemberViewHandler extends BasePage implements Serializable{
 			this.setSuccessMessage("");
 		}		
 		this.resetPassword();
-		
+
+
 		return ViewConstant.REGISTER_FAIL;
 	}
 	
@@ -262,12 +276,19 @@ public class MemberViewHandler extends BasePage implements Serializable{
 		}
 		if(this.getAgree() == false){
 			this.errMsgs.add(this.getText("member_validation_licence_agree"));
-		}		
+		}
+		String capCode = this.currentMember.getCaptchaText().toLowerCase();
+		String tt  = this.captcha.getText();
+		if(! capCode.equals(this.cText.toLowerCase())){
+			this.errMsgs.add(this.getText("member_validation_word_verification_invalid"));
+		}
 	}
 	private void validationPhase3(){
 /*		if(CommonValidator.isInvalidListItem(this.getCurrentMember().getMazhab())){
 			this.errMsgs.add( this.getText("member_validation_madhab"));
 		}*/
+		
+
 	
 	}
 	public Member getCurrentMember() {
@@ -351,5 +372,66 @@ public class MemberViewHandler extends BasePage implements Serializable{
 	public void setAgree(Boolean agree) {
 		this.agree = agree;
 	}
+
+
+	/**
+	 * @return the captcha
+	 */
+	public Captcha getCaptcha() {
+		return captcha;
+	}
+
+	/**
+	 * @param captcha the captcha to set
+	 */
+	public void setCaptcha(Captcha captcha) {
+		this.captcha = captcha;
+	}
+
+	/**
+	 * @return the cText
+	 */
+	public String getcText() {
+		return cText;
+	}
+
+	/**
+	 * @param cText the cText to set
+	 */
+	public void setcText(String cText) {
+		this.cText = cText;
+	}
+
+
+
+	/**
+	 * @return the initCaptcha
+	 */
+	public void InitCaptcha() {
+		
+			this.captcha.generateCaptcha();
+			this.cText = this.captcha.getText();
 	
+
+	}
+	private String encCaptcha;
+
+
+	/**
+	 * @return the encCaptcha
+	 */
+	public String getEncCaptcha() {
+		return encCaptcha;
+	}
+
+	/**
+	 * @param encCaptcha the encCaptcha to set
+	 */
+	public void setEncCaptcha(String encCaptcha) {
+		this.encCaptcha = encCaptcha;
+	}
+	
+	
+
+
 }
