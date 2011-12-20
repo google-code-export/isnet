@@ -110,6 +110,10 @@
    <to-view-id>/pages/secure/protegeDashboard.xhtml</to-view-id>
    <redirect/>
   </navigation-case>
+  <navigation-case>
+   <from-outcome>CHANGE_FAIL</from-outcome>
+   <to-view-id>/pages/secure/changePassword.xhtml</to-view-id>
+  </navigation-case>
  </navigation-rule>
  <navigation-rule>
   <from-view-id>*</from-view-id>
