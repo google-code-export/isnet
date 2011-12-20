@@ -6,7 +6,7 @@
     xmlns:f="http://java.sun.com/jsf/core">
 	<ui:composition>
 
-		<rich:modalPanel style="background-color: #F7F9F9;" id="idWhyRegisterAsGuestDialog" minHeight="250" minWidth="350" >
+		<rich:modalPanel style="background-color: #F7F9F9;" id="idWhyRegisterAsGuestDialog" minHeight="250" minWidth="350" zindex="9999" >
 			<f:facet name="header"><h:outputText value="#{bundle.login_page_why_register_guest}" /></f:facet>
 			<f:facet name="controls">
               	<h:graphicImage value="/images/close.png" style="cursor:pointer" onclick="Richfaces.hideModalPanel('idWhyRegisterAsGuestDialog')" />
