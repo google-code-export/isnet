@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:a4j="http://richfaces.org/a4j"
+   	  xmlns:rich="http://richfaces.org/rich">
+	<ui:composition>
+		<rich:panel style="width:'auto';" headerClass="container_gold_header"  bodyClass="container_body_style" >
+			<f:facet name="header"><h:outputText value="Video Links"/></f:facet>
+			<h:panelGrid columns="1" width="100%" columnClasses="column_class_left">
+
+		     <h:panelGrid columns="2" valign="left">
+				<h:outputLink value="#{controllerBean.contextPath}/static/imam_says_2.faces"> 
+					<h:graphicImage value="/images/picture_imam_sakr.png" /> 
+				</h:outputLink>	
+				<h:outputLink value="#{controllerBean.contextPath}/static/imam_says_2.faces"> 
+					<h:outputText value="Dr. Ahmad Sakr-Basic responsibility of ALL Muslims" style="font-weight: bolder;color: black;"/> 
+				</h:outputLink>				
+		     </h:panelGrid>
+		     
+			<h:panelGrid columns="2" valign="left">
+					<h:outputLink value="#{controllerBean.contextPath}/static/imam_says_1.faces"> 
+						<h:graphicImage value="/images/picture_imam_zaid.png" /> 
+					</h:outputLink>	
+					<h:outputLink value="#{controllerBean.contextPath}/static/imam_says_1.faces"> 
+						<h:outputText value="Imam Zaid Shakir-Why this is IMPORTANT" style="font-weight: bolder;color: black;"/> 
+					</h:outputLink>				
+			</h:panelGrid>			
+										
+			</h:panelGrid>							
+
+		</rich:panel>	
+	</ui:composition>
+
+</html>
