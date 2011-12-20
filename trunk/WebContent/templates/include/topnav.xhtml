@@ -21,8 +21,8 @@
             <h:outputText 
               value="|"/>
         </h:outputLabel> 
-         <h:outputLink  styleClass="orange_link "  value="#{controllerBean.contextPath}/aboutUs.faces">
-          <h:outputText styleClass="navlink_text" id="idrole" value="About Us"/>
+         <h:outputLink  styleClass="orange_link "  value="#{controllerBean.contextPath}/login.faces">
+          <h:outputText styleClass="navlink_text" value="Home"/>
         </h:outputLink>
         
          <h:outputLabel rendered="true"  styleClass="top_panel_psep" style="color:white;">
@@ -39,6 +39,14 @@
         </h:outputLabel>
          <h:outputLink  styleClass="orange_link "  value="#{controllerBean.contextPath}/howitworks.faces">
           <h:outputText styleClass="navlink_text" value="How MyC2i Works"/>
+        </h:outputLink>
+
+         <h:outputLabel rendered="true"  styleClass="top_panel_psep" style="color:white;">
+            <h:outputText 
+              value="|"/>
+        </h:outputLabel>
+         <h:outputLink  styleClass="orange_link "  value="#{controllerBean.contextPath}/aboutUs.faces">
+          <h:outputText styleClass="navlink_text" id="idrole" value="About Us"/>
         </h:outputLink>
                                                          
           </h:panelGroup>
