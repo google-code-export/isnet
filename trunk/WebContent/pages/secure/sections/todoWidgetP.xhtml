@@ -10,15 +10,6 @@
 			<f:facet name="header"><h:outputText value="Things to do"/></f:facet>
 			<h:panelGrid columns="1" width="100%" columnClasses="column_class_left">
 			
-			<h:outputLink    styleClass="table_control_normal_style" 
-			 value="#{controllerBean.contextPath}/pages/secure/doc/JUST ACCEPTED ISLAM-WHAT NOW.doc">
-		           	<h:graphicImage value="/images/star_red.png" align="middle" border="0" />	
-		          		 <rich:toolTip styleClass="tooltips_style"  >
-				          <span class="tooltips_span_style">#{bundle.member_todo_tutorial}.<br/></span>
-				     </rich:toolTip>	
-				     <rich:spacer width="4"/>
-				     <h:outputText value="JUST ACCEPTED ISLAM- WHAT NOW?" border="0" />		
-			</h:outputLink>
 
 		     <h:outputLink rendered="#{!memberToDoItem.completedProtegeTutorial}"  styleClass="table_control_normal_style" 
 		     	value="#{controllerBean.contextPath}/pages/secure/protegeTutorial.faces">
@@ -35,10 +26,10 @@
 		        value="#{controllerBean.contextPath}/pages/secure/mentorSearch.faces">
 		           	<h:graphicImage value="/images/star_yellow.png" align="middle" border="0" />	
 		          		 <rich:toolTip styleClass="tooltips_style"  >
-				          <span class="tooltips_span_style">Mentor Search.<br/></span>
+				          <span class="tooltips_span_style">Mentor-Buddy Search.<br/></span>
 				     </rich:toolTip>	
 				     <rich:spacer width="4"/>
-				     <h:outputText value="Mentor Search" border="0" />			            	
+				     <h:outputText value="Mentor-Buddy Search" border="0" />			            	
 				</h:outputLink>	
 					
 		      <h:outputLink  styleClass="table_control_normal_style" 
@@ -48,7 +39,7 @@
 				          <span class="tooltips_span_style">#{bundle.protege_todo_post_story}.<br/></span>
 				     </rich:toolTip>	
 				     <rich:spacer width="4"/>
-				     <h:outputText value="#{bundle.protege_todo_post_story}" border="0" />			            	
+				     <h:outputText value="Post Viewpoint" border="0" />			            	
 				</h:outputLink>											
 			</h:panelGrid>							
 
