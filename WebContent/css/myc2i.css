@@ -964,6 +964,14 @@ div.example-request {
   vertical-align: middle;
   width: 100%;
 }
+.lmenu_text_2{
+  font-size: 11px;
+  font-weight: bold;
+  color: white;
+  line-height: 31px;
+  vertical-align: middle;
+  width: 100%;
+}
 .lmenu_login_text{
   font-size: 11px;
   font-weight: bold;
