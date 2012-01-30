@@ -14,7 +14,7 @@
  <ui:param name="moduleType" value="PH"></ui:param>
   <ui:param name="refManageBean" value="#{udvViewHandler}"></ui:param>
  <ui:param name="headerText" value="#{bundle.left_navigation_protege_mentor_profile}"></ui:param>
- <ui:param name="help_doc" value="#{controllerBean.contextPath}/online_help/protege_mentor_profile_help.htm"></ui:param>
+ <ui:param name="help_doc" value="#{controllerBean.contextPath}/online_help/mentor_buddy_profile_for_non_muslim.pdf"></ui:param>
 
   <ui:define name="body">    
     <h:panelGroup id="idSectionsCon">
@@ -32,7 +32,7 @@
       
 
 		<rich:panel id="idCurrentMentorPanel" headerClass="container_box_panel_header"  bodyClass="container_body_style" >
-			<f:facet name="header"><h:outputText value="Current mentor details" /> </f:facet>
+			<f:facet name="header"><h:outputText value="Current mentor-buddy details" /> </f:facet>
 			<h:panelGrid columns="1" width="100%" cellpadding="0" cellspacing="0" border="0">
 				<rich:dataTable  width="100%" id="idDataGrid"  rowClasses=",container_even_row_style" rows="5" 
 			                value="#{protegeProfileViewHandler.protegeCurrentMentor}" var="member" headerClass="table_column_style" cellpadding="0" cellspacing="0">
@@ -106,7 +106,7 @@
 		</rich:panel>
 		
 		<rich:panel id="idPreviousMentorPanel" headerClass="container_box_panel_header"  bodyClass="container_body_style" >
-			<f:facet name="header"><h:outputText value="Previous mentor details" /> </f:facet>
+			<f:facet name="header"><h:outputText value="Previous mentor-buddy details" /> </f:facet>
 			<h:panelGrid columns="1" width="100%" cellpadding="0" cellspacing="0" border="0">
 				<rich:dataTable  width="100%" id="idDataGrid2"  rowClasses=",container_even_row_style" rows="10" 
 			                value="#{protegeProfileViewHandler.previousMentor}" var="member" headerClass="table_column_style" cellpadding="0" cellspacing="0">
