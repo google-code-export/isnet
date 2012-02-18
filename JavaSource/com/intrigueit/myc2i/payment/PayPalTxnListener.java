@@ -105,6 +105,8 @@ public class PayPalTxnListener extends HttpServlet {
 			str = str + "&" + paramName + "=" + URLEncoder.encode(paramValue);
 		}
 		
+		log.debug(str);
+		
 		fw.append(str);
 		if(fw != null){
 			fw.close();
@@ -139,7 +141,7 @@ public class PayPalTxnListener extends HttpServlet {
 		String paymentDate = request.getParameter("payment_date");
 		String notifyVersion = request.getParameter("notify_version");
 		
-		
+		log.debug("Txt response status: "+ txtResponse);
 		if(txtResponse.equals("VERIFIED")) {
 			// check that paymentStatus=Completed
 			// check that txnId has not been previously processed
@@ -147,12 +149,15 @@ public class PayPalTxnListener extends HttpServlet {
 			// check that paymentAmount/paymentCurrency are correct
 			// process payment
 			if(paymentStatus == null || !paymentStatus.toLowerCase().equals("completed")){
+				log.debug("invalid response status : "+ paymentStatus);
 				return;
 			}
 			if(bean.getPayPalLogService().IsTxnExist(txnId, payerEmail)){
+				log.debug("Txn already exist : id "+ txnId + ", email "+ payerEmail);
 				return;
 			}
 			if(!receiverEmail.equals(merchantEmail)){
+				log.debug("Invlid merchant email "+ merchantEmail );
 				return;
 			}
 			PayPalLog plog = new PayPalLog();
@@ -170,8 +175,10 @@ public class PayPalTxnListener extends HttpServlet {
 				plog.setTxnType(txn_type);
 				
 				/** Save the transaction log */
+				log.debug("Saving IPN table " );
 				bean.getPayPalLogService().save(plog);
 				
+				log.debug("Loading the member " );
 				/** Update member expiry date for 1 years */
 				Member member = bean.getMemberService().findById(plog.getMemberId());
 				
@@ -179,12 +186,16 @@ public class PayPalTxnListener extends HttpServlet {
 				cal.setTime(new Date());
 				cal.add(Calendar.YEAR, 1);
 				member.setMemberShipExpiryDate(cal.getTime());
+				
+				log.debug("Updating membership " );
 				bean.getMemberService().update(member);
 				
-				
+				log.debug("Membership updated  "+ txtResponse);
 				
 			}
 			catch(Exception ex){
+				log.error(ex.getMessage(), ex);
+				
 				ex.printStackTrace();
 			}
 
