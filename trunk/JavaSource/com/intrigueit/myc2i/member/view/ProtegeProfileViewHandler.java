@@ -1,6 +1,10 @@
 package com.intrigueit.myc2i.member.view;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -20,9 +24,11 @@ import com.intrigueit.myc2i.memberlog.service.MemberLogService;
 import com.intrigueit.myc2i.membersearch.dao.MemberSearchDao;
 import com.intrigueit.myc2i.udvalues.domain.UserDefinedValues;
 import com.intrigueit.myc2i.udvalues.service.UDValuesService;
-import com.intrigueit.myc2i.utility.Emailer;
-import com.intrigueit.myc2i.zipcode.domain.ZipCode;
 import com.intrigueit.myc2i.zipcode.service.ZipCodeService;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.pdf.AcroFields;
+import com.itextpdf.text.pdf.PdfReader;
+import com.itextpdf.text.pdf.PdfStamper;
 
 @Component("protegeProfileViewHandler")
 @Scope("session")
@@ -449,12 +455,66 @@ public class ProtegeProfileViewHandler extends BasePage{
 			String emailAddress = member.getEmail();
 			String name = member.getFirstName() + " "+ member.getLastName();
 			
-			this.sendEmail(emailAddress, emailSub, emailBody, name);
+			String certificatePath = this.generateMentorCertificate(name, cal.getTime());
+			
+			//this.sendEmail(emailAddress, emailSub, emailBody, name);
+			
+			this.sendEmailWithAttachment(emailAddress, emailSub, emailBody, name, certificatePath);
 		}
 		catch(Exception ex){
 			log.error(ex.getMessage(),ex);
 		}
 	}
+	private String generateMentorCertificate(String mentorName,Date expireOn){
+		
+		String realPath = this.getServletContext().getRealPath("/");
+		String templatePath = realPath +  "WEB-INF"+ System.getProperty("file.separator") +"reports_template"+ System.getProperty("file.separator");
+		templatePath = templatePath + "Certificate.pdf";
+		String reportPath = realPath +  "WEB-INF"+ System.getProperty("file.separator") +"reports"+ System.getProperty("file.separator");
+		String fileName = mentorName.replaceAll(" ", "_");
+		Date now = new Date();
+		reportPath = reportPath + fileName +"_"+ dateformat.format(now)+ ".pdf";
+		try {
+			this.generateCertificateFile(templatePath, reportPath, mentorName, now, expireOn);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (DocumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return reportPath;
+	}
+	
+	  
+    private void generateCertificateFile(final String src,final String dest,String mentorName,Date issuedate, Date expiryDate) throws IOException, DocumentException {
+    	
+        PdfReader reader = new PdfReader(src);
+        PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
+        AcroFields form = stamper.getAcroFields();
+        DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
+        /*      
+  		Map<String, Item>  formItems = form.getFields();  
+  		for(Entry<String, Item> entry: formItems.entrySet()){
+        	System.out.println(entry.getKey());
+        }*/
+        
+        /** Certificate mentor name */
+        form.setField("MentorName", mentorName);
+
+        /** Certificate Expire date */
+        String expireOn = dateFormat.format(expiryDate);
+        form.setField("expireon", expireOn);
+        
+        /** Certificate Issue date */
+        String issueDate = dateFormat.format(issuedate);
+        form.setField("awardedDate", issueDate);
+        
+        stamper.setFormFlattening(true);
+        stamper.close();
+        
+    }
 
 	public MemberToDoItem getMemberToDoItem() {
 		return memberToDoItem;
@@ -466,5 +526,6 @@ public class ProtegeProfileViewHandler extends BasePage{
 	}
 
 
+	private static DateFormat dateformat = new SimpleDateFormat("dd_MM_yyy_HH_mm");
 	
 }
