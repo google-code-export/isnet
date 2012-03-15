@@ -23,6 +23,7 @@ public class Emailer {
 	private String messageBody;
 	private String to;
 	private String contentType;
+	private String attachmentFilePath = null;
 	
 	protected static final Logger logger = Logger.getLogger( Emailer.class );
 	
@@ -31,6 +32,10 @@ public class Emailer {
 		this.subject = subject;
 		this.messageBody = messageBody;
 		this.contentType = "text/plain";
+	}
+	public Emailer attachFile(String filePath){
+		this.attachmentFilePath = filePath;
+		return this;
 	}
 	private Properties loadProps(){
 		Boolean setProperties = true;
@@ -129,6 +134,12 @@ public class Emailer {
 	}
 	public void setContentType(String contentType) {
 		this.contentType = contentType;
+	}
+	/**
+	 * @return the attachmentFilePath
+	 */
+	public String getAttachmentFilePath() {
+		return attachmentFilePath;
 	}
 
 }
