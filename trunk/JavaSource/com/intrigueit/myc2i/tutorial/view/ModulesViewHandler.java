@@ -64,15 +64,22 @@ public class ModulesViewHandler extends BasePage implements Serializable {
 			if (modules == null) {
 				modules = modulesService.findModulesByUserType(this.getMember().getTypeId());
 			}
-			this.modules.get(0).setTestStatus(true);
-			for(int index= 1;index < modules.size() ;index++){
-				if(isModulePassed(results, modules.get(index-1))){
-					modules.get(index).setTestStatus(true);
-				}
-				else{
-					modules.get(index).setTestStatus(false);
+			
+			int totalModule = this.modules.size();
+			
+			/** Make all module enable except last one */
+			for(int index= 0;index < totalModule -1 ;index++){
+				modules.get(index).setTestStatus(true);
+			}
+			/** Check if all the modules have passed, then enable the last one */
+			boolean enableLastOne = true;
+			for(int index= 0;index < totalModule -1 ;index++){
+				if(!isModulePassed(results, modules.get(index))){
+					enableLastOne = false;
+					break;
 				}
 			}
+			modules.get(totalModule-1).setTestStatus(enableLastOne);
 
 
 		} catch (Exception ex) {
