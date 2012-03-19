@@ -119,7 +119,20 @@
            <h:inputText  id="idCellPhone" value="#{currentEBean.cellPhoneNumber}" 
             styleClass="form_input_text_medium"/>
          </h:panelGroup>
-                          
+         
+         <h:outputLabel>
+           <h:outputText value="Membership expiry date"/>
+         </h:outputLabel>  
+        
+
+          <a4j:outputPanel id="idExpiryDate">
+            <rich:calendar value="#{currentEBean.memberShipExpiryDate}"
+              locale="en/US"
+              popup="true"
+              datePattern="MM-dd-yyyy" label="Expiry date"/>
+          </a4j:outputPanel>
+         
+                                   
           <h:outputLabel rendered="#{userManageViewHandler.userType ne 'PROTEGE'}">
           <h:outputText value="#{bundle.member_linked_in_URL}"/><h:outputText styleClass="required_field" value="" />
           </h:outputLabel>  
