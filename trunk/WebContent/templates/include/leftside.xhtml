@@ -66,7 +66,13 @@
                <h:outputText styleClass="lmenu_text" value=" #{bundle.left_navigation_tutorial_qa}"/>
               </h:outputLink> 
             </li>
-              
+            <li>
+              <h:outputLink styleClass="alink" 
+                 value="#{controllerBean.contextPath}/pages/secure/masjidmanagement.faces">
+               <h:graphicImage styleClass="lmenu_img" value="${imagesPath}/tutorial_qa.png"/>
+               <h:outputText styleClass="lmenu_text" value=" Masjid Management"/>
+              </h:outputLink> 
+            </li>              
             <li>
               <h:outputLink styleClass="alink" 
                  value="#{controllerBean.contextPath}/pages/secure/adminStory.faces">
