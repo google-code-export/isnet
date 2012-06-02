@@ -24,25 +24,32 @@
 						</f:facet>
 						
 						<a4j:outputPanel layout="block">
-
-						<h3> 
-							<h:outputLink styleClass="table_control_normal_style" 
-								 		value="#{controllerBean.contextPath}/resources/Mentor_Buddy_Training_at_IANT_v2.pdf">
-							           	<h:graphicImage value="/images/star_red.png" align="middle" border="0" />	
-									     <rich:spacer width="4"/>
-									     <h:outputText value="Classroom Training at IANT" border="0" />		
-							</h:outputLink>							
-						</h3>
-						
-						<h3> 
-							<h:outputLink styleClass="table_control_normal_style" 
-								 		value="#{controllerBean.contextPath}/resources/Meet_a_Muslim_Event_Flyer_for_Muslims.pdf">
-							           	<h:graphicImage value="/images/star_red.png" align="middle" border="0" />	
-									     <rich:spacer width="4"/>
-									     <h:outputText value="Meet-a-Muslim Day American Airlines Center, June 16, 2012 2:00-10:00pm" border="0" />		
-							</h:outputLink>							
-						</h3>
 							
+			<h:dataTable value="#{eventViewHandler.events}" var="event">
+	             
+		        <rich:column>
+				 			
+						<h3> 
+							<h:outputLink styleClass="table_control_normal_style" 
+								 		value="#{controllerBean.contextPath}/resources/#{event.fileName}">
+							           	<h:graphicImage value="/images/star_red.png" align="middle" border="0" />	
+									     <rich:spacer width="4"/>
+									     <h:outputText value="#{event.name}" border="0" />		
+							</h:outputLink>							
+						</h3>				 			
+		            </rich:column>
+		             <rich:column>
+				 			<h:outputText value="::" />
+		             </rich:column>		             
+		             <rich:column>
+				 		<h3> 
+				         <h:outputLink style="font-weight:bolder;"  value="#{controllerBean.contextPath}/registrationOption.faces">
+		 					<a4j:actionparam name="EVENT_ID" value="#{event.id}"  />
+		 					<h:outputText value="Register"/>	
+				         </h:outputLink>				 			
+				 		</h3>
+		        </rich:column>	             
+				</h:dataTable>							
 						</a4j:outputPanel>
 
 					
