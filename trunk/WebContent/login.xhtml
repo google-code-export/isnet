@@ -76,7 +76,9 @@
           				<h:selectBooleanCheckbox value="#{authenticationViewHandler.checked}" /> &#160;<h:outputText value="#{bundle.login_page_login_remember_me}" />
           				</h:panelGroup>
           				<h:outputText value="" />
-          				<h:commandButton action="#{authenticationViewHandler.loginUser}" value="#{bundle.login_page_login_button}" />
+          				<h:commandButton action="#{authenticationViewHandler.loginUser}" value="#{bundle.login_page_login_button}" >
+          				<a4j:actionparam name="event" value="#{eventViewHandler.eventId}"  />
+          				</h:commandButton>
          			</h:panelGrid>
          			
          			<h:panelGrid columns="2" columnClasses="col_1,col_1" border="0" width="100%">
@@ -122,7 +124,7 @@
 
         <div style="height:420px;border: 1px solid white;background-color: white;">
 			<!-- player container  -->
-			<a href="./resources/video/intro.flv" id="player"
+			<a href="" id="player"
 				style="display:block;width:527px;height:420px;"> 
 			</a>
 		</div> 
@@ -184,7 +186,7 @@
 
 	$f("player", {src: "./resources/swf/flowplayer-3.2.7.swf", wmode: 'opaque'}, {
 	    clip: {
-	        url: './static/homepageclip.flv',
+	        url: './static/home.flv',
 	        autoPlay: false,
 	        autoBuffering: true,
 
