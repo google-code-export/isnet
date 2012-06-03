@@ -30,11 +30,15 @@
 
 							<h:panelGrid columns="1" columnClasses="column_class_left" width="100%" style="margin-left: 30px;">
 									<br />
-									<h:outputText value="If you already a mentor please click on the login button" />
+									<h:outputText value="If you already a mentor please click on the following link" />
 									<h:outputText value="After the successful login, you will be forwarded to payment page." />
 									<br />
-									<h:commandButton action="#{navigationBean.backToHome}"  value="Login"  />
-		
+							
+							         <h:outputLink style="font-weight:bolder;"  value="#{controllerBean.contextPath}/login.faces">
+					 					<a4j:actionparam name="EVENT_ID" value="#{eventViewHandler.eventId}"  />
+					 					<h:outputText value="Login and continue to event payment"/>	
+							         </h:outputLink>				 			
+	
 							</h:panelGrid>				
 
 						<h2>Not a Mentor-Buddy yet?</h2>
@@ -45,8 +49,10 @@
 									<h:outputText value="If you are not a Mentor-Buddy yet. Please become a Mentor-Buddy" />
 									<h:outputText value="After becoming a Mentor-Buddy, you will be eligible to participate any Myc2I event." />
 									<br />
-									<h:commandButton action="#{navigationBean.backToMentorRegister}"  value="Mentor-Buddy"  />
-		
+							         <h:outputLink style="font-weight:bolder;"  value="#{controllerBean.contextPath}/mentorRegister.faces">
+					 					<a4j:actionparam name="EVENT_ID" value="#{eventViewHandler.eventId}"  />
+					 					<h:outputText value="Register as Mentor-Buddy"/>	
+							         </h:outputLink>	
 							</h:panelGrid>
 
 						</a4j:outputPanel>
@@ -55,9 +61,7 @@
 
 					<rich:panel id="actionBox" bodyClass="panel_content_body">
 						<h:panelGrid columns="1" columnClasses="column_class_center" width="100%">
-
 								<h:commandButton action="#{navigationBean.backToHome}"  value="#{bundle.common_label_back}"  />
-	
 						</h:panelGrid>				
 				</rich:panel>										
 				</h:panelGroup>
