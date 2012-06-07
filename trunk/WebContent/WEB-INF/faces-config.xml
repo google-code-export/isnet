@@ -58,6 +58,13 @@
    <to-view-id>/pages/secure/changePassword.xhtml</to-view-id>
    <redirect/>
   </navigation-case>
+  
+  <navigation-case>
+   <from-outcome>TO_EVENT_PAYMENT</from-outcome>
+   <to-view-id>/pages/secure/memberEventPayment.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+    
   <navigation-case>
    <from-outcome>TO_MENTOR_DASHBOARD</from-outcome>
    <to-view-id>/pages/secure/mentorDashboard.xhtml</to-view-id>
@@ -187,6 +194,25 @@
  <navigation-rule>
   <from-view-id>/pages/secure/udValueView.xhtml</from-view-id>
  </navigation-rule>
+ 
+  <navigation-rule>
+  <from-view-id>/registrationOption.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>TO_LOGIN</from-outcome>
+   <to-view-id>/login.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ 
+ <navigation-rule>
+  <from-view-id>/registrationOption.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>TO_MENTOR</from-outcome>
+   <to-view-id>/mentorRegister.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ 
  <application>
   <view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
   <el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
