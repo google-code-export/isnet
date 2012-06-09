@@ -11,8 +11,6 @@ import org.springframework.stereotype.Component;
 
 import com.intrigueit.myc2i.common.CommonConstants;
 import com.intrigueit.myc2i.common.view.BasePage;
-import com.intrigueit.myc2i.email.HtmlEmailerTask;
-import com.intrigueit.myc2i.email.TaskExecutionPool;
 import com.intrigueit.myc2i.tutorial.domain.TestTutorialModules;
 import com.intrigueit.myc2i.tutorial.domain.TestTutorialQuestionAns;
 import com.intrigueit.myc2i.tutorial.service.ModulesService;
@@ -20,7 +18,6 @@ import com.intrigueit.myc2i.tutorial.service.QuestionAnsService;
 import com.intrigueit.myc2i.tutorialtest.domain.TestResult;
 import com.intrigueit.myc2i.tutorialtest.domain.TestResultDetails;
 import com.intrigueit.myc2i.tutorialtest.service.TestResultService;
-import com.intrigueit.myc2i.utility.Emailer;
 
 /**
  * @author Shamim Ahmmed
@@ -141,8 +138,7 @@ public class ModulePlayer extends BasePage {
 	 */
 	private boolean isValidAnswer(TestTutorialQuestionAns tQuestionAns) {
 
-		log.debug(""+tQuestionAns.getQuestionAnsId()+ " right ans:" + tQuestionAns.getQuestionCorrectAnswer()
-				+ "  user answer: " + tQuestionAns.getExamineeAns());
+		//log.debug(""+tQuestionAns.getQuestionAnsId()+ " right ans:" + tQuestionAns.getQuestionCorrectAnswer()				+ "  user answer: " + tQuestionAns.getExamineeAns());
 
 		if ((tQuestionAns.getQuestionCorrectAnswer() != null && tQuestionAns
 				.getExamineeAns() != null)
@@ -215,7 +211,6 @@ public class ModulePlayer extends BasePage {
 		} catch (Exception ex) {
 			log.error("Error occured during creating test result. "
 					+ ex.getMessage());
-			ex.printStackTrace();
 		}
 		return true;
 	}
@@ -264,7 +259,7 @@ public class ModulePlayer extends BasePage {
 			
 		} catch (Exception e) {
 			log.debug("Failed to sending notification email");
-			e.printStackTrace();
+			log.error(e.getMessage(), e);
 		}
 	}
 
@@ -275,7 +270,7 @@ public class ModulePlayer extends BasePage {
 			this.setFlashSlidePath(this.currentPage.getAudioFileName());
 
 		} catch (Exception ex) {
-			ex.printStackTrace();
+			log.error(ex.getMessage(), ex);
 		}
 	}
 
@@ -283,10 +278,10 @@ public class ModulePlayer extends BasePage {
 		this.currentAction = CommonConstants.PREVIOUS;
 		try {
 			this.notEndPlay = true;
-			log.debug("Playing previous page");
+			//log.debug("Playing previous page");
 			if (pageIndex > 0) {
 				pageIndex -= 1;
-				log.debug("index:" + pageIndex);
+				//log.debug("index:" + pageIndex);
 				this.currentPage = this.tutorials.get(pageIndex);
 				this.renderPage();
 
@@ -298,7 +293,7 @@ public class ModulePlayer extends BasePage {
 					+ ex.getMessage());
 			ex.getStackTrace();
 		}
-		log.debug("index:" + pageIndex);
+		//log.debug("index:" + pageIndex);
 	}
 
 	public void playFirstPage() {
@@ -317,7 +312,7 @@ public class ModulePlayer extends BasePage {
 		this.currentAction = CommonConstants.NEXT;
 		try {
 			
-			log.debug("Last: "+tutorialLastIndex);
+			//log.debug("Last: "+tutorialLastIndex);
 			
 			/** Play only tutorial not question answer */
 			if (pageIndex < tutorialLastIndex) {
@@ -330,7 +325,7 @@ public class ModulePlayer extends BasePage {
 				if (lastViewedPageIndex <= pageIndex) {
 					lastViewedPageIndex = pageIndex;
 				}
-				log.debug("index:" + pageIndex);
+				//log.debug("index:" + pageIndex);
 					
 				this.currentPage = this.tutorials.get(pageIndex);
 				
@@ -343,7 +338,7 @@ public class ModulePlayer extends BasePage {
 
 			}
 			else if(pageIndex >= tutorialLastIndex && questionParticipated < questionsIndexList.size()){
-				log.debug("playing question : "+questionParticipated);
+				//log.debug("playing question : "+questionParticipated);
 				// if current page is question answer, then select any random question which is not provided earlier
 				// and count the question which always less then module max question no
 
@@ -384,7 +379,7 @@ public class ModulePlayer extends BasePage {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-		log.debug("index:" + pageIndex);
+		//log.debug("index:" + pageIndex);
 	}
 
 	public void playLastPage() {
@@ -442,8 +437,7 @@ public class ModulePlayer extends BasePage {
 
 			/** Adding question answer */
 			if (this.hasQuestion(this.currentPage)) {
-				Set<TestResultDetails> testDetailsList = result
-						.getTestResultDetails();
+				Set<TestResultDetails> testDetailsList = result.getTestResultDetails();
 				if (testDetailsList == null) {
 
 					testDetailsList = new HashSet<TestResultDetails>();
@@ -455,9 +449,7 @@ public class ModulePlayer extends BasePage {
 					 */
 					result.setStartTime(new Date());
 				}
-				TestResultDetails detail = this.getTestResultDetails(
-						this.currentPage.getQuestionAnsId(), result
-								.getTestResultDetails());
+				TestResultDetails detail = this.getTestResultDetails(this.currentPage.getQuestionAnsId(), result.getTestResultDetails());
 				if (detail == null) {
 					detail = createTestResultDetails(this.currentPage);
 					detail.setTestResult(result);
@@ -472,7 +464,7 @@ public class ModulePlayer extends BasePage {
 		} catch (Exception ex) {
 			log.error("Error occur during saving question answer: "
 					+ ex.getMessage());
-			ex.printStackTrace();
+			//ex.printStackTrace();
 		}
 	}
 
@@ -490,7 +482,7 @@ public class ModulePlayer extends BasePage {
 			}
 			this.testService.update(result);
 
-			log.debug(result.getLastAccessPage());
+			//log.debug(result.getLastAccessPage());
 		} catch (Exception ex) {
 			log.error(" Error occur while storing tutorial current state: "
 					+ ex.getMessage());
@@ -551,10 +543,10 @@ public class ModulePlayer extends BasePage {
 			
 			tutorialLastIndex = questionStart-1  ;
 			
-			log.debug(questionStart + " "+ questionEnd + " "+ moduleQuestionSize);
-			for(Integer i: questionsIndexList){
+			//log.debug(questionStart + " "+ questionEnd + " "+ moduleQuestionSize);
+/*			for(Integer i: questionsIndexList){
 				log.debug(i +" "+ tutorials.get(i).getQuestionAnsId() +" "+ tutorials.get(i).getQuestionCorrectAnswer());
-			}
+			}*/
 			this.hasQuestionAns = false;
 
 			this.currentPage = this.tutorials.get(pageIndex);
@@ -574,7 +566,8 @@ public class ModulePlayer extends BasePage {
 			this.testService.deleteResultDetails(result.getTutorialTestId());
 
 		} catch (Exception ex) {
-			ex.printStackTrace();
+			//ex.printStackTrace();
+			log.error(ex.getMessage(), ex);
 		}
 	}
 
@@ -772,7 +765,7 @@ public class ModulePlayer extends BasePage {
 						.getQuestion().equals(""))) {
 			this.hasQuestionAns = false;
 		}
-		log.debug(this.hasQuestionAns);
+		//log.debug(this.hasQuestionAns);
 	}
 
 	public TestResultService getTestService() {
