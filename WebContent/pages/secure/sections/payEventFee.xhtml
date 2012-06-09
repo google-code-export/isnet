@@ -1,0 +1,34 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:a4j="http://richfaces.org/a4j"
+   xmlns:rich="http://richfaces.org/rich">
+<ui:composition>
+       	<f:verbatim>
+			<form action="#{paymentViewHandler.payPalActionURL}" method="post">
+			<input type="hidden" name="cmd" value="_xclick"/>
+			<input type="hidden" name="business" value="#{paymentViewHandler.merchantEmailAccount}"/>
+			<input type="hidden" name="item_name" value="#{eventViewHandler.eventName}"/>
+			<input type="hidden" name="currency_code" value="USD"/>
+			<input type="hidden" name="custom" value="#{paymentViewHandler.member.memberId}"/>
+			<table >		
+			<tr>
+			<td><input  type="radio" name="amount" value="20.00" />&#160;$20 for Students ONLY Will need to show ID at Registration Desk</td>
+			</tr>
+			<tr>
+			<td>	<br/></td>
+			</tr>					
+			<tr>
+			<td><input  type="radio" name="amount" value="35.00"  checked="checked"/>&#160;$35 for Non-Students</td>			
+			</tr>
+			<tr>
+			<td>	<br/></td>
+			</tr>
+			</table>
+			<input type="image" src="https://www.paypal.com/en_US/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="Make payments with PayPal - it's fast, free and secure!"/>
+			<img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1"/>
+			</form>       	
+       	</f:verbatim>
+</ui:composition>
+</html>
