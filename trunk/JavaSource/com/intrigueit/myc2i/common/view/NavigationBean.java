@@ -27,4 +27,7 @@ public class NavigationBean extends BasePage{
 		}		
 		return ViewConstant.BACK_TO_LOGIN;
 	}
+	public String backToMentorRegister(){
+		return "TO_MENTOR";
+	}
 }
