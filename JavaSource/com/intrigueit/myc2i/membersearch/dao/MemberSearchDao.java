@@ -42,7 +42,7 @@ public class MemberSearchDao {
 			while(rs.next()) {
 				zip = rs.getString("zipcode");
 				codes.add(zip);
-				log.debug(zip);
+				//log.debug(zip);
 			}
 			rs.close();
 			stmt.close();
@@ -90,7 +90,7 @@ public class MemberSearchDao {
 			while(rs.next()) {
 				zip = rs.getString("zipcode");
 				codes.add(zip);
-				log.debug(zip);
+				//log.debug(zip);
 			}
 			rs.close();
 			stmt.close();
