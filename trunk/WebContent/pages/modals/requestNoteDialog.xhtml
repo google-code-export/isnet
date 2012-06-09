@@ -29,6 +29,8 @@
               <a4j:commandButton onclick="forceBlockUI(ajaxProcessMsg);"    action="#{dashboardViewHandler.execute}"  value="Confirm" oncomplete="forceUnblockUI();Richfaces.hideModalPanel('idRequestNoteDialog')" 
                 reRender="idRequestGrid1,idRequestGrid2,idRequestGrid3,idReportGrid,idMentorAroundMePanel,idMentorHierchy">
                       </a4j:commandButton>
+              <rich:spacer width="5" />
+               <rich:spacer width="5" />
               <a4j:commandButton value="#{bundle.button_close_label}" onclick="Richfaces.hideModalPanel('idRequestNoteDialog')" />    
             </h:panelGroup>       
           </h:panelGrid>
