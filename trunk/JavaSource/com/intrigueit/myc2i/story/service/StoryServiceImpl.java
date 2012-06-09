@@ -131,6 +131,7 @@ public class StoryServiceImpl implements StoryService{
 		
 		String clause = " where  to_char(t.weekWinnerIndicator,'yyyy')  =?1 and t.member.memberId=?2 ";
 		List<MemberStory> stories  = this.stroyDao.loadTopResultsByConditions(1, clause, new Object[]{dateStr,memberId});
+		
 		if(stories == null){
 			return false;
 		}
