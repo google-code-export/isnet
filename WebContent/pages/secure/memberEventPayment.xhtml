@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	 xmlns:ui="http://java.sun.com/jsf/facelets"
+	 xmlns:h="http://java.sun.com/jsf/html"
+	 xmlns:f="http://java.sun.com/jsf/core"
+	 xmlns:a4j="http://richfaces.org/a4j"
+ 	 xmlns:c="http://java.sun.com/jstl/core"
+ 	 xmlns:rich="http://richfaces.org/rich">
+
+<ui:composition template="/templates/paymenttmpl.xhtml">
+  <ui:param name="moduleTitle" value="#{bundle.page_title_donate}"></ui:param>
+  <ui:param name="userType" value="M"></ui:param>
+  <ui:param name="moduleType" value="MGs"></ui:param>
+  <ui:param name="headerText" value="Event Registration"></ui:param>
+  <ui:param name="refManageBean" value="#{udvViewHandler}"></ui:param>
+<!--   <ui:param name="help_doc" value="#{controllerBean.contextPath}/online_help/mentor_donate_help.htm"></ui:param> -->
+ 
+  <ui:define name="body">    
+
+	<h:panelGrid columns="1">
+       	<h:outputText value="#{bundle.member_donate_text1}" />
+       	<h:outputText value="All your payments are tax deductible as applicable under law." />
+       	<h:outputText value="Select a payment amount and click on the Pay Now button." />
+		<br/>
+		<ui:include src="/pages/secure/sections/payEventFee.xhtml" />   
+		<br/>
+		<h:outputText value="#{bundle.member_donate_text4}" />
+		<h:outputText value="#{bundle.member_donate_text5}" />   	      	
+          
+	</h:panelGrid>
+  
+  </ui:define>
+  
+
+</ui:composition>
+</html>
