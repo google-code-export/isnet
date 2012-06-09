@@ -65,7 +65,7 @@ public class MemberToDoItem extends BasePage{
 		}
 		catch(Exception ex){
 			log.error(ex.getMessage(),ex);
-			ex.printStackTrace();
+			//ex.printStackTrace();
 		}		
 		return isCompletedMentorTutorial;
 	}
@@ -87,7 +87,7 @@ public class MemberToDoItem extends BasePage{
 		}
 		catch(Exception ex){
 			log.error(ex.getMessage(),ex);
-			ex.printStackTrace();
+			//ex.printStackTrace();
 		}		
 		return isCompletedProtegeTutorial;
 	}
@@ -135,7 +135,7 @@ public class MemberToDoItem extends BasePage{
 		}
 		catch(Exception ex){
 			log.error(ex.getMessage(),ex);
-			ex.printStackTrace();
+			//ex.printStackTrace();
 		}			
 		return isMentorCertified;
 	}
