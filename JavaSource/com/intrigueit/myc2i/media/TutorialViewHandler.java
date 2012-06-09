@@ -55,7 +55,8 @@ public class TutorialViewHandler extends BasePage {
 				this.completedMentorTutorial = true;
 			}
 			
-			log.debug("User completed all the mentor tutorials nnow, save this information");
+			//log.debug("User completed all the mentor tutorials nnow, save this information");
+			
 			/** If the tutorial is completed then update the member */
 			if(this.completedMentorTutorial){
 				Member member = this.memberService.findById(this.getMember().getMemberId());
@@ -84,7 +85,6 @@ public class TutorialViewHandler extends BasePage {
 		}
 		catch(Exception ex){
 			log.error(ex.getMessage(),ex);
-			ex.printStackTrace();
 		}		
 		return false;
 	}
