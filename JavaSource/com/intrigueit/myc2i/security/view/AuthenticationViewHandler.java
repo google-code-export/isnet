@@ -134,6 +134,7 @@ public class AuthenticationViewHandler extends BasePage implements Serializable 
 	public String loginUser() {
 		String navOutCome = "EMPTY";
 		try {
+			
 			Member member = this.getValidUser();
 			if (member != null) {
 				this.setMemberinSession(member);
@@ -277,8 +278,14 @@ public class AuthenticationViewHandler extends BasePage implements Serializable 
 					
 					return ViewConstant.TO_MENTOR_PAYMENT_PAGE;
 				}
-				
 				this.homePageUrl = "/pages/secure/mentorDashboard.faces";
+				
+				String event = this.getParameter("event");
+				if(event!= null && !event.equals("")){
+					this.getSession().setAttribute("event", event);
+					return "TO_EVENT_PAYMENT";
+				}
+
 				return ViewConstant.TO_MENTOR_DASHBOARD;
 				
 			} else if (member.getTypeId().equals(CommonConstants.ADMIN)) {
