@@ -43,10 +43,10 @@
 		             </rich:column>		             
 		             <rich:column>
 				 		<h3> 
-				         <h:outputLink style="font-weight:bolder;"  value="#{controllerBean.contextPath}/registrationOption.faces">
-		 					<a4j:actionparam name="EVENT_ID" value="#{event.id}"  />
-		 					<h:outputText value="Register"/>	
-				         </h:outputLink>				 			
+				         <h:outputLink style="font-weight:bolder;" rendered="#{event.active}" value="#{event.registrationURL}">
+		 					<h:outputText value="Register now"/>	
+				         </h:outputLink>
+				         <h:outputText rendered="#{!event.active}"  value="Comming soon"/>				 			
 				 		</h3>
 		        </rich:column>	             
 				</h:dataTable>							
