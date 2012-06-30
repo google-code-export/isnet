@@ -30,7 +30,7 @@
 		   <h:outputText  value="#{bundle.login_guest_msg5}" /></p>		         
 		  </rich:panel>  
 		     	
-		     <h:panelGrid width="100%" columns="2" valign="center" columnClasses="col_2,col_left" style="margin-top: 20px;">
+		     <h:panelGrid width="100%" columns="2" valign="center" columnClasses="col_2,col_left" style="margin-top: 33px;">
 				<h:outputLink value="#{controllerBean.contextPath}/guestRegister.faces"> 
 					<h:graphicImage value="/images/guest_reg.png" /> 
 				</h:outputLink>	
@@ -102,18 +102,11 @@
 				</h:outputLink>				
 		     </h:panelGrid>
 
-         	 <h:panelGrid columns="1" width="100%"  valign="center" columnClasses="center_align_col" style="margin-top: 48px;">
+         	 <h:panelGrid columns="1" width="100%"  valign="center" columnClasses="center_align_col" style="margin-top: 40px;">
          	 	<h:outputLink value="#" id="link2" >
 			       <h:outputText value="#{bundle.login_page_why_register}" style="font-weight: bolder;color: white;"/>
 			        <rich:componentControl for="idWhyRegisterAsMentorDialog" attachTo="link2" operation="show" event="onclick"/>
 			    </h:outputLink>
-         	 </h:panelGrid>
-         	 
-						     				 		
-         	 <h:panelGrid columns="1" width="100%"  valign="center" columnClasses="center_align_col" style="margin-top: 38px;">
-				<h:outputLink value="#{controllerBean.contextPath}/upcoming-myc2i-events.faces">
-					<h:outputText value="MyC2i Events" style="font-weight: bolder;color: white;"/> 
-				</h:outputLink>	
          	 </h:panelGrid>
          	 		     				 		
 		</div>
