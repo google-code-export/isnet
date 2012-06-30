@@ -3,6 +3,7 @@ package com.intrigueit.myc2i.membersearch.view;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -38,6 +39,18 @@ public class MemberSearchViewHandler extends BasePage {
 	
 	private boolean mentorPaidSubscription;
 	
+	@Autowired 
+	Properties appProperties;
+	
+	private String defaultFemaleMentorIds(){
+		return appProperties.getProperty("app.default.female.mentors");
+	}
+	
+
+	private String defaultMaleMentorIds(){
+		return appProperties.getProperty("app.default.male.mentors");
+	}
+	
 	/**
 	 * 
 	 */
@@ -65,6 +78,7 @@ public class MemberSearchViewHandler extends BasePage {
 	}
 	public void executeSearch(){
 		try{
+			
 			this.reset();
 
 			String searchType = this.getRequest().getParameter("SEARCH_TYPE");
@@ -109,6 +123,15 @@ public class MemberSearchViewHandler extends BasePage {
 				if(this.members != null){
 					this.recordCount = this.members.size();
 				}
+				/**If not protege search and We did not find any result, try setup default mentors */
+				if(!searchType.equals("PROTEGE") && (this.members == null || this.members.size() < 1)){
+					String queryDefault = " t.email IN ("+ this.defaultFemaleMentorIds() + ", "+ this.defaultMaleMentorIds() + ") "+ " and t.genderInd='"+ currentMemberGender + "'"; 
+					this.members = this.memberService.getMemberByDynamicHsql(queryDefault);
+					if(this.members != null){
+						this.recordCount = this.members.size();
+					}					
+				}
+
 			}
 
 		}
