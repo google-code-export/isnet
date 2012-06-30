@@ -32,6 +32,12 @@ public class Event implements Serializable {
 	@Column(name = "file_name", length = 255)
 	private String fileName;
 
+	@Column(name = "active")
+	private Boolean active;
+	
+	@Column(name = "reg_url", length = 255)
+	private String registrationURL;
+	
 	public Long getId() {
 		return id;
 	}
@@ -62,6 +68,22 @@ public class Event implements Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+
+	public String getRegistrationURL() {
+		return registrationURL;
+	}
+
+	public void setRegistrationURL(String registrationURL) {
+		this.registrationURL = registrationURL;
 	}
 		
 		
