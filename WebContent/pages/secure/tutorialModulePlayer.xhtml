@@ -151,9 +151,18 @@
                     </script>
                   </div>
     						</h:panelGroup>
-    					</rich:panel>
-              <h:panelGroup rendered="#{modulePlayer.hasQuestionAns}">
-      					<rich:panel id="idQuestionPanel" rendered="#{modulePlayer.notEndPlay}" 
+    		</rich:panel>
+             <h:panelGroup rendered="#{modulePlayer.hasQuestionAns}">
+              
+                <rich:panel id="idQuestionPanelTitle" rendered="#{modulePlayer.notEndPlay}" style="border: 0px solid red;margin-top: 10px;"
+                  headerClass="qaHeader"  bodyClass="quBody">
+                  <h:panelGrid cellpadding="0" cellspacing="0" width="50%" columns="2">
+                  	<h:outputText value="Your question/answer progress  " />
+                  	<h:outputText value="#{modulePlayer.questionsProgress}" />
+                  </h:panelGrid>
+                </rich:panel>
+      		
+      			<rich:panel id="idQuestionPanel" rendered="#{modulePlayer.notEndPlay}" style="border: 0px solid red;margin-top: 10px;"
                   headerClass="qaHeader"  bodyClass="quBody">
       						<f:facet name="header"><h:outputText value="#{modulePlayer.currentPage.question}" /> </f:facet>
       						<h:message showSummary="true" showDetail="false" style="color: red; font-weight: bold;" for="idQuestion" />
@@ -165,7 +174,7 @@
       						  <f:selectItem itemLabel="#{modulePlayer.currentPage.questionOptionAnswerE}" itemValue="E" />
       						  <f:selectItem itemLabel="#{modulePlayer.currentPage.questionOptionAnswerF}" itemValue="F" />
       						</h:selectOneRadio>						
-      					</rich:panel>
+      			</rich:panel>
                 
                 <rich:panel id="idResultPanel" rendered="#{!modulePlayer.notEndPlay}"> 
                   <f:facet name="header">
@@ -294,7 +303,7 @@
   var lastBtn = document.getElementById("idTModuleForm:idLast");
   if ( nextBtn ) nextBtn.disabled = true;
   if ( lastBtn ) lastBtn.disabled =  true;
-    setTimeout("enabledButton();",10000);
+    setTimeout("enabledButton();",100);
   </script>
   </body>		
 </html>
