@@ -146,7 +146,7 @@ public class MemberToDoItem extends BasePage{
 
 	public boolean isHasProtege() {
 		int protegeCount = this.memberService.getMentorProtegeCout(this.getMember().getMemberId());
-		this.hasProtege =  protegeCount > 5;
+		this.hasProtege =  protegeCount >= CommonConstants.MAX_PROTEGE_ALLOWED;
 		return this.hasProtege;
 	}
 
