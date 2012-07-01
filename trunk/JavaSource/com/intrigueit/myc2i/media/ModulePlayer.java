@@ -149,6 +149,15 @@ public class ModulePlayer extends BasePage {
 		return false;
 	}
 
+	public String getQuestionsProgress(){
+		
+		String status = "";
+		status = questionParticipated+"/"+ questionsIndexList.size();
+		
+		log.debug(status);
+		
+		return status;
+	}
 	private boolean isCompletedTest() {
 		try {
 			TestResult result = getUserModuleTestResult(this.getMember()
