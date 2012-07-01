@@ -58,7 +58,7 @@ public class CommonConstants {
     public static final Long MENTOR_TUTORIAL_LAST_MODULE = 8L;
     public static final Long PROTEGE_TUTORIAL_LAST_MODULE = 9L;
     
-    public static final int MAX_PROTEGE_ALLOWED = 5;
+    public static final int MAX_PROTEGE_ALLOWED = 10;
     
     public static final String [] MENTOR_HOME_PAGES = new String[]{"mentorDashboard.faces","memberProtegeProfile.faces","protegeSearch.faces","leadMentorSearch.faces","memberLog.faces","memberStory.faces","memberTutorial.faces","memberMessage.faces","messageDetail.faces"};
     
