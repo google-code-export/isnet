@@ -188,7 +188,6 @@
         
         <h:outputLabel rendered="#{userManageViewHandler.userType ne 'PROTEGE'}">
           <h:outputText value="#{bundle.member_marital_status}"/>
-          <h:outputText styleClass="required_field" value="*" />
         </h:outputLabel>
         <h:selectOneMenu id="idMaritalStatus" value="#{currentEBean.maritalStatus}"  
           styleClass="form_input_text_medium" rendered="#{userManageViewHandler.userType ne 'PROTEGE'}"> 
@@ -253,7 +252,6 @@
                                             
         <h:outputLabel rendered="#{userManageViewHandler.userType ne 'PROTEGE'}">
             <h:outputText value="#{bundle.member_madhab}"/>
-            <h:outputText styleClass="required_field" value="*" />
         </h:outputLabel>
         <h:selectOneMenu id="idMazhab" value="#{currentEBean.mazhab}"  styleClass="form_input_text_medium"
           rendered="#{userManageViewHandler.userType ne 'PROTEGE'}"> 
