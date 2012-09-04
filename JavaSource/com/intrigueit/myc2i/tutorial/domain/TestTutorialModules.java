@@ -95,6 +95,17 @@ public class TestTutorialModules implements Serializable {
   @Transient
   private Boolean testStatus;
 
+  public Boolean getFinished() {
+	return finished;
+}
+
+public void setFinished(Boolean finished) {
+	this.finished = finished;
+}
+
+@Transient
+  private Boolean finished;
+  
   public TestTutorialModules() {
     super();
   }
