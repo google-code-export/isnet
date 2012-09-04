@@ -76,7 +76,11 @@ public class ModulesViewHandler extends BasePage implements Serializable {
 			for(int index= 0;index < totalModule -1 ;index++){
 				if(!isModulePassed(results, modules.get(index))){
 					enableLastOne = false;
-					break;
+					//break;
+					modules.get(index).setFinished(false);
+				}
+				else{
+					modules.get(index).setFinished(true);
 				}
 			}
 			modules.get(totalModule-1).setTestStatus(enableLastOne);
