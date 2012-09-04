@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import com.intrigueit.myc2i.common.CommonConstants;
 import com.intrigueit.myc2i.common.view.BasePage;
+import com.intrigueit.myc2i.member.view.ProtegeProfileViewHandler;
 import com.intrigueit.myc2i.tutorial.domain.TestTutorialModules;
 import com.intrigueit.myc2i.tutorial.domain.TestTutorialQuestionAns;
 import com.intrigueit.myc2i.tutorial.service.ModulesService;
@@ -61,6 +62,10 @@ public class ModulePlayer extends BasePage {
 	private Integer tutorialLastIndex;
 
 	private TestResult testResult;
+	
+	@Autowired
+	ProtegeProfileViewHandler protegeProfileViewHandler;
+	
 
 	/**
 	 * @return the lastViewedPageIndex
