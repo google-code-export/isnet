@@ -233,40 +233,17 @@ public class MemberViewHandler extends BasePage implements Serializable{
 		if(!CommonValidator.isValidZipCode(this.currentMember.getZip())){
 			this.errMsgs.add( this.getText("member_validation_zip_code"));
 		}		
+		if(CommonValidator.isEmpty(this.currentMember.getCellPhoneNumber())){
+			this.errMsgs.add( this.getText("member_validation_cell_phone"));
+		}
 		/** Check email address */
 		if(!CommonValidator.isValidEmail(this.getCurrentMember().getEmail())){
 			this.errMsgs.add( this.getText("member_validation_email_address"));
-		}
-		/** Check the member profession */
-		if(CommonValidator.isInvalidListItem(this.getCurrentMember().getProfession())){
-			this.errMsgs.add( this.getText("member_validation_profession"));
-		}	
-		/** Check the Year of birth*/
-		if(CommonValidator.isNotValidNumber(this.getCurrentMember().getBirthYear())){
-			this.errMsgs.add( this.getText("member_validation_birth_year"));
 		}
 		/** Check the member gender */
 		if(CommonValidator.isEmpty(this.getCurrentMember().getGenderInd())){
 			this.errMsgs.add( this.getText("member_validation_gender"));
 		}		
-/*		if(!this.confirmPass.equals(this.currentMember.getPassword())){
-			this.errMsgs.add( this.getText("member_validation_password_dont_match"));
-		}*/
-		/** Check the member profession */
-		if(CommonValidator.isInvalidListItem(this.getCurrentMember().getEthinicity())){
-			this.errMsgs.add( this.getText("member_validation_ethinicity"));
-		}
-		
-/*		if (this.getCurrentMember().getMaritalStatus()!=null 
-		    && this.getCurrentMember().getMaritalStatus().equals("-1") 
-        && this.getCurrentMember().getTypeId() != CommonConstants.PROTEGE) {
-		  this.errMsgs.add( this.getText("member_validation_marital_status"));
-    } */  
-/*		*//** Check the valid password *//*
-		if(!CommonValidator.isValidPassword(this.getCurrentMember().getPassword())){
-			this.errMsgs.add( this.getText("member_validation_password"));
-		}			
-		*/
 		
 	}
 	
