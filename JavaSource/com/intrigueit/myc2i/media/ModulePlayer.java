@@ -35,7 +35,7 @@ public class ModulePlayer extends BasePage {
 	private QuestionAnsService questionService;
 
 	private static int PERCENT_MULTIPLIER = 100;
-	private static int DEFAULT_PASS_MARKS = 60;
+	private static int DEFAULT_PASS_MARKS = 80;
 
 	/** Flash slide path */
 	private String flashSlidePath;
@@ -65,6 +65,9 @@ public class ModulePlayer extends BasePage {
 	
 	@Autowired
 	ProtegeProfileViewHandler protegeProfileViewHandler;
+	
+	@Autowired
+	TutorialViewHandler tutorialViewHandler;
 	
 
 	/**
@@ -143,7 +146,7 @@ public class ModulePlayer extends BasePage {
 	 */
 	private boolean isValidAnswer(TestTutorialQuestionAns tQuestionAns) {
 
-		//log.debug(""+tQuestionAns.getQuestionAnsId()+ " right ans:" + tQuestionAns.getQuestionCorrectAnswer()				+ "  user answer: " + tQuestionAns.getExamineeAns());
+		log.debug(""+tQuestionAns.getQuestionAnsId()+ " right ans:" + tQuestionAns.getQuestionCorrectAnswer()				+ "  user answer: " + tQuestionAns.getExamineeAns());
 
 		if ((tQuestionAns.getQuestionCorrectAnswer() != null && tQuestionAns
 				.getExamineeAns() != null)
@@ -174,7 +177,8 @@ public class ModulePlayer extends BasePage {
 			}
 			
 			int totalCorrectAnswer = this.getTotalCorrectAnswer(result);
-			int totalQuestions = questionsIndexList.size();//result.getTestResultDetails().size();
+			int totalQuestions = result.getTestResultDetails().size();
+			//int totalQuestions = questionsIndexList.size();//result.getTestResultDetails().size();
 			int percentOfCorrect = this.getExamPercenetOfMark(result);
 
 			int passMark = DEFAULT_PASS_MARKS;
@@ -238,6 +242,7 @@ public class ModulePlayer extends BasePage {
 	private int getTotalCorrectAnswer(TestResult result) {
 		int correctAnswer = 0;
 		for (TestResultDetails detail : result.getTestResultDetails()) {
+			log.debug("calculating total questions: "+ detail.getQuestionId() + " "+ detail.getIsCorrect());
 			if (detail.getIsCorrect()) {
 				correctAnswer = correctAnswer + 1;
 			}
@@ -326,7 +331,7 @@ public class ModulePlayer extends BasePage {
 		this.currentAction = CommonConstants.NEXT;
 		try {
 			
-			//log.debug("Last: "+tutorialLastIndex);
+			log.debug("Last: "+tutorialLastIndex);
 			
 			/** Play only tutorial not question answer */
 			if (pageIndex < tutorialLastIndex) {
@@ -352,7 +357,7 @@ public class ModulePlayer extends BasePage {
 
 			}
 			else if(pageIndex >= tutorialLastIndex && questionParticipated < questionsIndexList.size()){
-				//log.debug("playing question : "+questionParticipated);
+				log.debug("playing question : "+questionParticipated);
 				// if current page is question answer, then select any random question which is not provided earlier
 				// and count the question which always less then module max question no
 
@@ -387,6 +392,11 @@ public class ModulePlayer extends BasePage {
 				if(!isCompleted){
 					this.pageIndex  = 0;
 					this.saveCurrentStage();
+				}
+				
+				/** If completed all the module certify mentor **/
+				if(tutorialViewHandler.isCompletedMentorTutorial()){
+					protegeProfileViewHandler.comfirmMentorCertification(this.getMember().getMemberId().toString());
 				}
 			}
 
@@ -557,10 +567,10 @@ public class ModulePlayer extends BasePage {
 			
 			tutorialLastIndex = questionStart-1  ;
 			
-			//log.debug(questionStart + " "+ questionEnd + " "+ moduleQuestionSize);
-/*			for(Integer i: questionsIndexList){
+			log.debug(questionStart + " "+ questionEnd + " "+ moduleQuestionSize);
+			for(Integer i: questionsIndexList){
 				log.debug(i +" "+ tutorials.get(i).getQuestionAnsId() +" "+ tutorials.get(i).getQuestionCorrectAnswer());
-			}*/
+			}
 			this.hasQuestionAns = false;
 
 			this.currentPage = this.tutorials.get(pageIndex);
