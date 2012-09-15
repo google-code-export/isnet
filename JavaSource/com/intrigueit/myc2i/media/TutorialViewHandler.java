@@ -17,7 +17,7 @@ import com.intrigueit.myc2i.tutorialtest.service.TestResultService;
 
 
 @Component("tutorialViewHandler")
-@Scope("request")
+@Scope("session")
 public class TutorialViewHandler extends BasePage {
 	
 	private MemberService memberService;
@@ -78,7 +78,9 @@ public class TutorialViewHandler extends BasePage {
 			
 			
 			/** Member did not paid subscription fee but completed tutorial */
-			if(this.completedMentorTutorial && exp.before(today)){
+			//if(this.completedMentorTutorial && exp.after(today)){
+			if(this.completedMentorTutorial ){
+				log.debug("Member completed tutorial");
 				return true;
 			}
 			
