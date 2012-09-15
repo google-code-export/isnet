@@ -465,6 +465,33 @@ public class ProtegeProfileViewHandler extends BasePage{
 			log.error(ex.getMessage(),ex);
 		}
 	}
+	public void comfirmMentorCertification(String memberId){
+		try{
+
+			Member member = this.memberService.findById(Long.parseLong(memberId));
+			member.setIsMemberCertified("YES");
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(new Date());
+			/** Set membership certification expiry for 1 year*/
+			cal.add(Calendar.YEAR, 1);
+			member.setCertificationDate(cal.getTime());
+			this.memberService.update(member);
+			
+			String emailSub = this.getText("email_mentor_certification_sub");
+			String emailBody = this.getText("email_mentor_certification_body");
+			String emailAddress = member.getEmail();
+			String name = member.getFirstName() + " "+ member.getLastName();
+			
+			String certificatePath = this.generateMentorCertificate(name, cal.getTime());
+			
+			//this.sendEmail(emailAddress, emailSub, emailBody, name);
+			
+			this.sendEmailWithAttachment(emailAddress, emailSub, emailBody, name, certificatePath);
+		}
+		catch(Exception ex){
+			log.error(ex.getMessage(),ex);
+		}
+	}
 	private String generateMentorCertificate(String mentorName,Date expireOn){
 		
 		String realPath = this.getServletContext().getRealPath("/");
