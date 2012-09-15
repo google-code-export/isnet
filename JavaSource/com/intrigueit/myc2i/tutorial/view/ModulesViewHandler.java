@@ -74,7 +74,7 @@ public class ModulesViewHandler extends BasePage implements Serializable {
 			/** Check if all the modules have passed, then enable the last one */
 			boolean enableLastOne = true;
 			for(int index= 0;index < totalModule -1 ;index++){
-				if(!isModulePassed(results, modules.get(index))){
+				if(!isCompleted(results, modules.get(index))){
 					enableLastOne = false;
 					//break;
 					modules.get(index).setFinished(false);
@@ -84,6 +84,10 @@ public class ModulesViewHandler extends BasePage implements Serializable {
 				}
 			}
 			modules.get(totalModule-1).setTestStatus(enableLastOne);
+			
+			if(isCompleted(results, modules.get(totalModule-1))){
+				modules.get(totalModule-1).setFinished(true);
+			}
 
 
 		} catch (Exception ex) {
@@ -92,14 +96,14 @@ public class ModulesViewHandler extends BasePage implements Serializable {
 		return modules;
 	}
    
-    private Boolean isModulePassed(List<TestResult> results,TestTutorialModules module ){
+    private Boolean isCompleted(List<TestResult> results,TestTutorialModules module ){
     	/** If test result empty then no tutorial is completed. */
     	if(results == null || results.size()== 0){
     		return false;
     	}
     	/** If module name found in result set then this module is passed */
     	for(TestResult res: results){
-    		if(res.getModuleId().equals(module.getModulesId()) && res.getIsPassed()){
+    		if(res.getModuleId().equals(module.getModulesId()) && res.getIsCompleted()){
     			return true;
     		}
     	}
