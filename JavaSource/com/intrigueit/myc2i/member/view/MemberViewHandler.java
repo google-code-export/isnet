@@ -93,9 +93,11 @@ public class MemberViewHandler extends BasePage implements Serializable{
 			}
 			
 			CryptographicUtility crpUtil = CryptographicUtility.getInstance();
-			String plainPassword = PassPhrase.getNext();
+
+			String plainPassword = this.currentMember.getPassword();
 			this.currentMember.setPassword( crpUtil.getEncryptedText(plainPassword));
 
+			
 			Date dt = new Date();
 			
 			/** Add 30 days as membership expiry date*/
@@ -148,6 +150,7 @@ public class MemberViewHandler extends BasePage implements Serializable{
 		this.hasError = false;
 		try{
 			this.validateMember();
+			this.validationPhase3();
 			this.validationPhase2();
 			if(this.errMsgs.size()>0){
 				this.hasError = true;
@@ -156,8 +159,10 @@ public class MemberViewHandler extends BasePage implements Serializable{
 			}
 
 			CryptographicUtility crpUtil = CryptographicUtility.getInstance();
-			String plainPassword = PassPhrase.getNext();
+
+			String plainPassword = this.currentMember.getPassword();
 			this.currentMember.setPassword( crpUtil.getEncryptedText(plainPassword));
+			
 			Date dt = new Date();
 			this.currentMember.setRecordCreate(dt);
 			this.currentMember.setLastUpdated(dt);
@@ -243,7 +248,8 @@ public class MemberViewHandler extends BasePage implements Serializable{
 		/** Check the member gender */
 		if(CommonValidator.isEmpty(this.getCurrentMember().getGenderInd())){
 			this.errMsgs.add( this.getText("member_validation_gender"));
-		}		
+		}
+
 		
 	}
 	
@@ -265,7 +271,10 @@ public class MemberViewHandler extends BasePage implements Serializable{
 			this.errMsgs.add( this.getText("member_validation_madhab"));
 		}*/
 		
-
+		
+		if(!confirmPass.equals(this.currentMember.getPassword())){
+			this.errMsgs.add("Passwords doesn't match");
+		}
 	
 	}
 	public Member getCurrentMember() {
