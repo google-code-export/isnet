@@ -1,217 +1,295 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	 xmlns:ui="http://java.sun.com/jsf/facelets"
-	 xmlns:h="http://java.sun.com/jsf/html"
-	 xmlns:f="http://java.sun.com/jsf/core"
-	 xmlns:a4j="http://richfaces.org/a4j"
- 	xmlns:c="http://java.sun.com/jstl/core"
- 	xmlns:rich="http://richfaces.org/rich">
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:c="http://java.sun.com/jstl/core">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml; charset=UTF-8"/>
+    <title>
+      <h:outputText value="MyC2i :: ${moduleTitle}" />
+    </title>
 
-<ui:composition template="/templates/basictemplate.xhtml">
-<f:loadBundle basename="ApplicationResources" var="bundle"/>
-  <ui:param name="moduleTitle" value="#{bundle.login_page_title}"></ui:param>
-  <ui:param name="userType" value="Public"></ui:param>
-  <ui:param name="help_doc" value="#{controllerBean.contextPath}/online_help/login_help.pdf"></ui:param>
-  <ui:define name="body">
+      <link rel="STYLESHEET" type="text/css" href="#{controllerBean.contextPath}/#{controllerBean.cssPath}/main.css"/>
+
+    <!-- Le styles -->
+    <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet"/>
+    <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet"/>
+
+    <link rel="stylesheet" href="resources/themes/default/default.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="resources/themes/light/light.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="resources/themes/dark/dark.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="resources/themes/bar/bar.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="css/nivo-slider.css" type="text/css" media="screen" />
     
-<div id="container"> 
 
-  <div id="middle"> 
-    <div id="left"> 
-		  <rich:panel headerClass="login_box_panel_header"  bodyClass="login_box_panel" style="margin-right: 4px;">
-		   <f:facet name="header">
-	          <h:outputText value="" /> 
-	        </f:facet>
-	        <h:outputText value="#{bundle.login_guest_msg1}" style="font-weight: bolder;" />
+    <script >
+      /* define diffrent message for ajax loading*/
+      var ajaxLoadingMsg = "Loading...";
 
-		   <p style="font-style:normal;"><h:outputText  value="#{bundle.login_guest_msg2}" />
-		   <h:outputText  value="#{bundle.login_guest_msg3}" />
-		   <h:outputText  value="#{bundle.login_guest_msg4}" />
-		   <h:outputText  value="#{bundle.login_guest_msg5}" /></p>		         
-		  </rich:panel>  
-		     	
-		     <h:panelGrid width="100%" columns="2" valign="center" columnClasses="col_2,col_left" style="margin-top: 33px;">
-				<h:outputLink value="#{controllerBean.contextPath}/guestRegister.faces"> 
-					<h:graphicImage value="/images/guest_reg.png" /> 
-				</h:outputLink>	
-				<h:outputLink value="#{controllerBean.contextPath}/guestRegister.faces" > 
-					<h:outputText value="#{bundle.login_page_guest_signup}" style="font-weight: bolder;color: white;"/> 
-				</h:outputLink>				
-		     </h:panelGrid>
-	
-						     	
-         	<!-- <rich:spacer height="40"/> -->
-         	 
-         	 <h:panelGrid columns="1" width="100%"  valign="center" columnClasses="center_align_col" style="margin-top: 40px;">
-         	 	<h:outputLink value="#" id="link1" >
-			       <h:outputText value="#{bundle.login_page_why_register_guest}" style="font-weight: bolder;color: white;"/>
-			        <rich:componentControl for="idWhyRegisterAsGuestDialog" attachTo="link1" operation="show" event="onclick"/>
-			    </h:outputLink>
-         	 </h:panelGrid>
-			
+    </script>
+		<script  >
+  		function process() {
+    		document.getElementById("flogin:idLoginEamilId").value = document.getElementById("__email").value
+    		document.getElementById("flogin:idLoginPass").value = document.getElementById("__password").value
+  		}
+	</script>
+	    
+    <ui:insert name="js"></ui:insert>
+  </head>
 
-				
-    </div>
-    
-    <!-- Right column  -->
-    <div id="right"> 
-		<div style="margin-left: 2px; margin-right: 5px; border: 0px solid black;">
-		
-		          		<!-- Login Box -->
-          		<rich:panel  headerClass="login_box_panel_header"  bodyClass="login_box_panel" style="margin-left: 1px;">
-          			<f:facet name="header">                   
-                  <h:panelGroup>  
-                  	<h:outputText value="Login" />
-                   </h:panelGroup> 
-                </f:facet> 
-                
-                <h:panelGrid columns="2" width="100%" style="margin-top: 4px;">          				                     
-                  <h:outputText value="#{bundle.login_page_login_email}" />
-          				<h:inputText id="idLoginEamilId" value="#{authenticationViewHandler.userEmailId}" styleClass="login_box_input"/>
-                  
-                  <h:outputText value="#{bundle.login_page_login_password}" />
-          				<h:inputSecret id="idLoginPass" value="#{authenticationViewHandler.password}" styleClass="login_box_input"/>
-          				<h:outputText value="" />
-          				<h:panelGroup>
-          				<h:selectBooleanCheckbox value="#{authenticationViewHandler.checked}" /> &#160;<h:outputText value="#{bundle.login_page_login_remember_me}" />
-          				</h:panelGroup>
-          				<h:outputText value="" />
-          				<h:commandButton action="#{authenticationViewHandler.loginUser}" value="#{bundle.login_page_login_button}" >
-          				<a4j:actionparam name="event" value="#{eventViewHandler.eventId}"  />
-          				</h:commandButton>
-         			</h:panelGrid>
-         			
-         			<h:panelGrid columns="2" columnClasses="col_1,col_1" border="0" width="100%">
-         				<h:outputText value="" />
-         				<h:commandLink  value="#{bundle.login_page_forget_your_pass}" action="#{authenticationViewHandler.recoverPassword}"/>
-         			</h:panelGrid>
-         			<h:panelGrid columns="1" columnClasses="center_align_col" border="0" width="100%">
-         				<h:outputText styleClass="error_message" value="#{authenticationViewHandler.errMessage}" />
-         			</h:panelGrid> 
-
-         		 	<div style="margin-top: 37px;border: 0px solid red;"></div>        			
-				</rich:panel>
-				 
-		     									 
-		     <h:panelGrid columns="2" valign="center" columnClasses="col_2,col_left" width="100%" border="1" style="margin-top: 42px;">
-				<h:outputLink value="#{controllerBean.contextPath}/mentorRegister.faces"> 
-					<h:graphicImage value="/images/mentor_reg.png" /> 
-				</h:outputLink>	
-				<h:outputLink value="#{controllerBean.contextPath}/mentorRegister.faces"> 
-					<h:outputText value="#{bundle.login_page_mentor_signup}" style="font-weight: bolder;color: white;"/> 
-				</h:outputLink>				
-		     </h:panelGrid>
-
-         	 <h:panelGrid columns="1" width="100%"  valign="center" columnClasses="center_align_col" style="margin-top: 40px;">
-         	 	<h:outputLink value="#" id="link2" >
-			       <h:outputText value="#{bundle.login_page_why_register}" style="font-weight: bolder;color: white;"/>
-			        <rich:componentControl for="idWhyRegisterAsMentorDialog" attachTo="link2" operation="show" event="onclick"/>
-			    </h:outputLink>
-         	 </h:panelGrid>
-         	 		     				 		
+<body>
+ <f:view id="idMainView">
+<div id="wrapper">
+	<div id="main-container">
+		<div class="header">
+			<div class="social-links">
+				<div class="fb-like">
+					<a href="#" title=""><img title="" alt="" src="images/fb-icon.png" border="0" /></a>
+				</div>
+				<div class="social-icons">
+					<a href="#" title=""><img title="Twitter" alt="Twitter" src="images/twitter-icon.png" border="0" /></a>
+					<a href="#" title=""><img title="Youtube" alt="Youtube" src="images/youtube-icon.png" border="0" /></a>
+					<a href="#" title=""><img title="RSS" alt="RSS" src="images/rss-icon.png" border="0" /></a>
+				</div>
+				<div class="top-btn"><a href="#" title="">About Us</a></div>
+				<div class="clear"></div>
+			</div>
+			<div class="clear"></div>
+			<div class="logo">
+			<a href="#" title=""><img title="Connect Your Faith" alt="Connect Your Faith" src="images/connect-logo.png" border="0" /></a>
+			</div>
+			<div class="slogan">
+			<a href="#" title=""><img title="Connect Your Faith" alt="Connect Your Faith" src="images/connect-slogan.png" border="0" /></a></div>
+			<div class="login" style="border:0px solid red;">
+			    <h:form id="flogin">
+			    <fieldset>
+				<span class="user-id"> <input class="user-id" id="__email" type="text" placeholder="Email"/></span>			    
+			    <span class="pass"><input  type="password" placeholder="Password" id="__password"/></span>
+				<span class="btn-login">
+			    	<h:commandButton type="submit" action="#{authenticationViewHandler.loginUser}" id="btnSignIn" value="SignIn" class="btn"  onclick="process();"/>
+				</span>    
+			    </fieldset>		
+			     <h:inputHidden value="#{authenticationViewHandler.userEmailId}" id="idLoginEamilId" />
+			     <h:inputHidden value="#{authenticationViewHandler.password}" id="idLoginPass" />			    	
+				</h:form>
+				<div class="clear"></div>
+				<div class="signup-text">Dont have an account? <a href="#" title="">SIGN UP</a> for free!</div>
+			</div>
+			<div class="clear"></div>
 		</div>
+		<div class="menu">
+			<ul>
+				<li><a href="#" title="">HOME</a></li>
+				<li><a href="#" title="">WHAT WE BELIEVE</a></li>
+				<li><a href="#" title="">HOW MyC2i WORKS</a></li>
+				<li><a href="#" title="">COMING EVENTS</a></li>
+				<li><a href="#" title="">ABOUT US</a></li>
+			</ul>
+		</div>
+		<div class="video-block">
+			<div class="video-player" >
 
-				
-    </div>
-    <div id="centre"> 
-
-        <div style="height:420px;border: 1px solid white;background-color: white;">
-			<!-- player container  -->
-			<a href="" id="player"
-				style="display:block;width:527px;height:420px;"> 
-			</a>
-		</div> 
-      <p style="margin-left: 10px;">Video Endorsements and Recommendations</p>
-  	  
-  	  <div style="text-align: left;	margin: 0px auto; padding: 0px; border:0; width: 510px;"> 
-  	   <div  style="float: left; width: 250px;">
-		     <h:panelGrid columns="2" valign="center">
-				<h:outputLink value="#{controllerBean.contextPath}/static/deborah_says_3.faces"> 
-					<h:graphicImage value="/images/deborah.png" /> 
-				</h:outputLink>	
-				<h:outputLink value="#{controllerBean.contextPath}/static/deborah_says_3.faces"> 
-					<h:outputText value="Rev. Deborah Lindsay-”Talk TO Muslims, rather than ABOUT them”" style="font-weight: bolder;color: black;"/> 
-				</h:outputLink>				
-		     </h:panelGrid>
-  	   </div>
-  	   
-  	   <div style="	margin: 0;	float: left;	width: 250px;">
-
-  	   </div>
-      <rich:spacer height="40" width="150"/>
-
-
-  	   <div  style="float: left; width: 250px;">
-		     <h:panelGrid columns="2" valign="center">
-				<h:outputLink value="http://www.facebook.com/DeenInstituteofNorthAmerica"  target="_blank"> 
-					<h:graphicImage value="/images/facebook.png" /> 
-				</h:outputLink>	
-				<h:outputLink value="http://www.facebook.com/DeenInstituteofNorthAmerica" target="_blank"> 
-					<h:outputText value="Connect with us" style="font-weight: bolder;color: black;"/> 
-				</h:outputLink>				
-		     </h:panelGrid>
-  	   </div>
-  	   
-  	   <div style="	margin: 0;	float: left;	width: 250px;">
-		     <h:panelGrid columns="2" valign="left">
-				<h:outputLink value="https://twitter.com/MeetAMuslimDay" target="_blank"> 
-					<h:graphicImage value="/images/twitter.png" /> 
-				</h:outputLink>	
-				<h:outputLink value="https://twitter.com/MeetAMuslimDay" target="_blank"> 
-					<h:outputText value="Follow us" style="font-weight: bolder;color: black;"/> 
-				</h:outputLink>				
-		     </h:panelGrid>
-  	   </div>
-  	   
+        <div class="slider-wrapper theme-default" style="width: 570px;">
+            <div id="slider" class="nivoSlider">
+                <img src="images/image1.jpg" data-thumb="images/image1.jpg" alt="" title="Connect Your Faith"/>
+                <img src="images/image2.jpg" data-thumb="images/image2.jpg" alt="" />
+                <img src="images/image3.jpg" data-thumb="images/image3.jpg" alt="" />
+                <img src="images/image4.jpg" data-thumb="images/image4.jpg" alt="" />
+                <img src="images/image5.jpg" data-thumb="images/image5.jpg" alt="" />                           
+            </div>
+        </div>
+			</div>
+			<div class="video-list">
+				<div class="video-list-title">Selected Video</div>
+				<div class="video-list-holder">
+					<div class="video-thumb">
+						<h:outputLink value="http://www.youtube.com/watch?v=WiXYlO4Fbzk" target="_blank"> 
+							<h:graphicImage value="/images/australia.png" style="width:110px;height: 60px;"/> 
+						</h:outputLink>	
+					</div>
+					<div class="video-publish-by">				
+					<h:outputLink value="http://www.youtube.com/watch?v=WiXYlO4Fbzk" target="_blank"> 
+						<h:outputText value="Turning Muslim in Australia" style="color: black;"/> 
+					</h:outputLink>		
+					</div>
+					<div class="video-publish-by">by 336muslim</div>
+					<div class="video-date">82,589 views</div>					
+					<div class="clear"></div>
+				</div>
+				<div class="video-list-holder">
+					<div class="video-thumb">
+						<h:outputLink value="http://www.youtube.com/watch?v=b1WRf8p41o4" target="_blank"> 
+							<h:graphicImage value="/images/japan.png" style="width:110px;height: 60px;"/> 
+						</h:outputLink>	
+					</div>
+					<div class="video-publish-by">				
+						<h:outputLink value="http://www.youtube.com/watch?v=b1WRf8p41o4" target="_blank"> 
+							<h:outputText value="The Rise of Islam in Japan" style="color: black;"/> 
+						</h:outputLink>		
+					</div>
+					<div class="video-publish-by">by lugzlebo</div>
+					<div class="video-date">272,537 views</div>					
+					<div class="clear"></div>
+				</div>
+				<div class="video-list-holder">
+					<div class="video-thumb">
+						<h:outputLink value="http://www.youtube.com/watch?v=p27TGA1oJYo" target="_blank"> 
+							<h:graphicImage value="/images/norway.png" style="width:110px;height: 60px;"/> 
+						</h:outputLink>	
+					</div>
+					<div class="video-publish-by">				
+						<h:outputLink value="http://www.youtube.com/watch?v=p27TGA1oJYo" target="_blank"> 
+							<h:outputText value="A Christian accepts Islam" style="color: black;"/> 
+						</h:outputLink>		
+					</div>
+					<div class="video-publish-by">by TheGuidances</div>
+					<div class="video-date">189 views</div>					
+					<div class="clear"></div>
+				</div>
+				<div class="video-list-holder">
+					<div class="video-thumb">
+						<h:outputLink value="http://www.youtube.com/watch?v=JBFJfpG3aac" target="_blank"> 
+							<h:graphicImage value="/images/britain.jpg" style="width:110px;height: 60px;"/> 
+						</h:outputLink>	
+					</div>
+					<div class="video-publish-by">				
+						<h:outputLink value="http://www.youtube.com/watch?v=JBFJfpG3aac" target="_blank"> 
+							<h:outputText value="Islam The Fastest Growing Religion In Britain" style="color: black;"/> 
+						</h:outputLink>		
+					</div>
+					<div class="video-publish-by">by 786Resistance869</div>
+					<div class="video-date">32,537 views</div>					
+					<div class="clear"></div>
+				</div>				
+				<div class="video-list-holder">
+					<div class="video-thumb">
+						<h:outputLink value="http://www.youtube.com/watch?v=MH2RZfNXGdA" target="_blank"> 
+							<h:graphicImage value="/images/yousuf.jpg" style="width:110px;height: 60px;"/> 
+						</h:outputLink>	
+					</div>
+					<div class="video-publish-by">				
+						<h:outputLink value="http://www.youtube.com/watch?v=MH2RZfNXGdA" target="_blank"> 
+							<h:outputText value="A Christian takes down in tears..." style="color: black;"/> 
+						</h:outputLink>		
+					</div>
+					<div class="video-publish-by">by ELnaser2012</div>
+					<div class="video-date">476,372 views</div>					
+					<div class="clear"></div>
+				</div>	
+												
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="body-container">
+			<div class="left-panel">
+				<div class="featured-block">
+					<h3>Featured</h3>
+					<div class="featured-block-padding" >
+						<a href="#" title=""><img title="" alt="" src="images/sample-img-01.png" style="width: 150px;height: 97px;" border="0" /></a>
+						<h2>”Start talking TO Muslims rather than ABOUT them”</h2>
+						<div class="featured-ref">
+						-:Rev. Deborah C. Lindsay:-
+						</div>
+						<div class="featured-text">
+						 Polls indicate increasing levels of Islamophobia. Knowledge of Islam [Based on Gallup 2010 poll]: 63% said they have very little or none at all, 53% said opinion of the faith is not favorable or not favorable at all
+						</div>
+					</div>
+				</div>
+				<div class="latest-block">
+					<h3>Latest Stories</h3>
+					<div class="clear"></div>
+					<ul>
+						<li>
+							<div class="latest-block-padding">
+								<a href="#" title=""><img title="" alt="" src="images/wou.jpg" border="0" style="width: 150px;height: 97px;" /></a>
+								<h2>WAVES OF UNITY SEEKS TO BRING POSITIVE CHANGE TO PUBLIC PERCEPTION OF MUSLIMS IN AMERICA</h2>
+								<div class="latest-ref">
+								</div>
+								<div class="latest-text">
+								<p>Mr. Peter Stewart, Founder Thanksgiving Square Foundation will receive Lifetime Achievement Award at the DINA WOU Event on 11/11 DCC Arena.</p>
+								 <a href="#" title="">READ MORE</a>
+								</div>
+							</div>
+						</li>
+						<li class="last">
+							<div class="latest-block-padding">
+								<a href="#" title=""><img title="" alt="" src="images/pastor.jpg" border="0" style="width: 150px;height: 97px;"/></a>
+								<h2>“18 Pastors in the DFW Area endorse the Waves Of Unity Event”</h2>
+								<div class="latest-ref">
+								</div>
+								<div class="latest-text">
+								
+								</div>
+							</div>
+						</li>
+					</ul>
+					<div class="clear"></div>
+				</div>
+			</div>
+			<div class="right-panel">
+				<div class="search-block" style="display: none;">
+					<input type="text" value="" class="search" name=""/>
+					<a href="#" title=""><img title="Search" alt="Search" src="images/btn-search.png" border="0" /></a>
+					<div class="clear"></div>
+				</div>
+				<div class="testimonial-block">
+					<div class="testimonial-title">TESTIMONIALS</div>
+					<div class="testimonial-text">
+					<p>Senator McCain in his speech, referring to Congresswoman Bachman’s comments about Secretary Clinton’s aid sums it up very well.</p>
+					<p>
+“When anyone, not least a member of Congress, launches vicious and degrading attacks against fellow Americans on the basis of nothing more than fear of who they are, in ignorance of what they stand for, it defames the spirit of our nation, and we all grow poor because of it. Our reputations, our character, are the only things we leave behind when we depart this earth. And unjust acts that malign the good name of a decent and honorable person, is not only wrong, it is contrary to everything we hold dear.”
+					</p>  
+					</div>
+				</div>
+				<div class="useful-links-block" style="display:none;">
+					<div class="useful-title">USEFUL LINKS</div>
+					<div class="useful-text">
+						<a href="#" title="">http://www.google.com/</a>
+						<a href="#" title="">http://www.google.com/</a>
+						<a href="#" title="">http://www.google.com/</a>
+					</div>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
 	</div>
-
-    </div>
-    <div class="clearer"></div>
-  </div>
-
+	<div class="clear"></div>
+	<div class="main-container-bottom"></div>
+	<div class="footer">
+		<ul>
+			<li>&copy; Copyright 2012 MyC2i</li>
+			<li><a href="#" title="">Privacy</a></li>
+			<li><a href="#" title="">Graphics by Peter-Gould.com</a></li>
+			<li class="last"><a href="#" title="">Sitemap</a></li>
+		</ul>
+	</div>
 </div>
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="http://twitter.github.com/bootstrap/assets/js/jquery.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-transition.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-alert.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-modal.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-dropdown.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-scrollspy.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tab.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tooltip.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-popover.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-button.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-carousel.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-typeahead.js"></script>
 
-</ui:define>
-
-    <ui:define name="morescript">
-    <script  type="text/javascript">
-
-
-	$f("player", {src: "./resources/swf/flowplayer-3.2.7.swf", wmode: 'opaque'}, {
-	    clip: {
-	        url: './static/home.flv',
-	        autoPlay: false,
-	        autoBuffering: true,
-
-	    },
-
-	    plugins: {
-	        controls: null
-	    },
-	    onLoad: function(){
-	        
-	    }
-	});
-
-	var state = Common.readCookie('state');
-	//alert(state);
-	if(state == null){
-		Common.createCookie('state',1,30);
-	}
-	if(state == null){
-		$f(0).play();
-	}
-
+    <script type="text/javascript" src="js/jquery.nivo.slider.js"></script>
+    <script type="text/javascript">
+	    $(window).load(function() {
+	        $('#slider').nivoSlider();
+	    });
+    </script>
+    
 	
-
-</script>
-
-    </ui:define>
-    
-    <ui:define name="modalPanels">
-    	<ui:include src="./whyRegisterAsGuest.xhtml" />	
-    	<ui:include src="./whyRegisterAsMentor.xhtml" />	
-    </ui:define>
-    
-</ui:composition>
+        </f:view>
+</body>
 </html>
