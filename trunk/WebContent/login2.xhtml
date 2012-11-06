@@ -1,0 +1,217 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	 xmlns:ui="http://java.sun.com/jsf/facelets"
+	 xmlns:h="http://java.sun.com/jsf/html"
+	 xmlns:f="http://java.sun.com/jsf/core"
+	 xmlns:a4j="http://richfaces.org/a4j"
+ 	xmlns:c="http://java.sun.com/jstl/core"
+ 	xmlns:rich="http://richfaces.org/rich">
+
+<ui:composition template="/templates/basictemplate.xhtml">
+<f:loadBundle basename="ApplicationResources" var="bundle"/>
+  <ui:param name="moduleTitle" value="#{bundle.login_page_title}"></ui:param>
+  <ui:param name="userType" value="Public"></ui:param>
+  <ui:param name="help_doc" value="#{controllerBean.contextPath}/online_help/login_help.pdf"></ui:param>
+  <ui:define name="body">
+    
+<div id="container"> 
+
+  <div id="middle"> 
+    <div id="left"> 
+		  <rich:panel headerClass="login_box_panel_header"  bodyClass="login_box_panel" style="margin-right: 4px;">
+		   <f:facet name="header">
+	          <h:outputText value="" /> 
+	        </f:facet>
+	        <h:outputText value="#{bundle.login_guest_msg1}" style="font-weight: bolder;" />
+
+		   <p style="font-style:normal;"><h:outputText  value="#{bundle.login_guest_msg2}" />
+		   <h:outputText  value="#{bundle.login_guest_msg3}" />
+		   <h:outputText  value="#{bundle.login_guest_msg4}" />
+		   <h:outputText  value="#{bundle.login_guest_msg5}" /></p>		         
+		  </rich:panel>  
+		     	
+		     <h:panelGrid width="100%" columns="2" valign="center" columnClasses="col_2,col_left" style="margin-top: 33px;">
+				<h:outputLink value="#{controllerBean.contextPath}/guestRegister.faces"> 
+					<h:graphicImage value="/images/guest_reg.png" /> 
+				</h:outputLink>	
+				<h:outputLink value="#{controllerBean.contextPath}/guestRegister.faces" > 
+					<h:outputText value="#{bundle.login_page_guest_signup}" style="font-weight: bolder;color: white;"/> 
+				</h:outputLink>				
+		     </h:panelGrid>
+	
+						     	
+         	<!-- <rich:spacer height="40"/> -->
+         	 
+         	 <h:panelGrid columns="1" width="100%"  valign="center" columnClasses="center_align_col" style="margin-top: 40px;">
+         	 	<h:outputLink value="#" id="link1" >
+			       <h:outputText value="#{bundle.login_page_why_register_guest}" style="font-weight: bolder;color: white;"/>
+			        <rich:componentControl for="idWhyRegisterAsGuestDialog" attachTo="link1" operation="show" event="onclick"/>
+			    </h:outputLink>
+         	 </h:panelGrid>
+			
+
+				
+    </div>
+    
+    <!-- Right column  -->
+    <div id="right"> 
+		<div style="margin-left: 2px; margin-right: 5px; border: 0px solid black;">
+		
+		          		<!-- Login Box -->
+          		<rich:panel  headerClass="login_box_panel_header"  bodyClass="login_box_panel" style="margin-left: 1px;">
+          			<f:facet name="header">                   
+                  <h:panelGroup>  
+                  	<h:outputText value="Login" />
+                   </h:panelGroup> 
+                </f:facet> 
+                
+                <h:panelGrid columns="2" width="100%" style="margin-top: 4px;">          				                     
+                  <h:outputText value="#{bundle.login_page_login_email}" />
+          				<h:inputText id="idLoginEamilId" value="#{authenticationViewHandler.userEmailId}" styleClass="login_box_input"/>
+                  
+                  <h:outputText value="#{bundle.login_page_login_password}" />
+          				<h:inputSecret id="idLoginPass" value="#{authenticationViewHandler.password}" styleClass="login_box_input"/>
+          				<h:outputText value="" />
+          				<h:panelGroup>
+          				<h:selectBooleanCheckbox value="#{authenticationViewHandler.checked}" /> &#160;<h:outputText value="#{bundle.login_page_login_remember_me}" />
+          				</h:panelGroup>
+          				<h:outputText value="" />
+          				<h:commandButton action="#{authenticationViewHandler.loginUser}" value="#{bundle.login_page_login_button}" >
+          				<a4j:actionparam name="event" value="#{eventViewHandler.eventId}"  />
+          				</h:commandButton>
+         			</h:panelGrid>
+         			
+         			<h:panelGrid columns="2" columnClasses="col_1,col_1" border="0" width="100%">
+         				<h:outputText value="" />
+         				<h:commandLink  value="#{bundle.login_page_forget_your_pass}" action="#{authenticationViewHandler.recoverPassword}"/>
+         			</h:panelGrid>
+         			<h:panelGrid columns="1" columnClasses="center_align_col" border="0" width="100%">
+         				<h:outputText styleClass="error_message" value="#{authenticationViewHandler.errMessage}" />
+         			</h:panelGrid> 
+
+         		 	<div style="margin-top: 37px;border: 0px solid red;"></div>        			
+				</rich:panel>
+				 
+		     									 
+		     <h:panelGrid columns="2" valign="center" columnClasses="col_2,col_left" width="100%" border="1" style="margin-top: 42px;">
+				<h:outputLink value="#{controllerBean.contextPath}/mentorRegister.faces"> 
+					<h:graphicImage value="/images/mentor_reg.png" /> 
+				</h:outputLink>	
+				<h:outputLink value="#{controllerBean.contextPath}/mentorRegister.faces"> 
+					<h:outputText value="#{bundle.login_page_mentor_signup}" style="font-weight: bolder;color: white;"/> 
+				</h:outputLink>				
+		     </h:panelGrid>
+
+         	 <h:panelGrid columns="1" width="100%"  valign="center" columnClasses="center_align_col" style="margin-top: 40px;">
+         	 	<h:outputLink value="#" id="link2" >
+			       <h:outputText value="#{bundle.login_page_why_register}" style="font-weight: bolder;color: white;"/>
+			        <rich:componentControl for="idWhyRegisterAsMentorDialog" attachTo="link2" operation="show" event="onclick"/>
+			    </h:outputLink>
+         	 </h:panelGrid>
+         	 		     				 		
+		</div>
+
+				
+    </div>
+    <div id="centre"> 
+
+        <div style="height:420px;border: 1px solid white;background-color: white;">
+			<!-- player container  -->
+			<a href="" id="player"
+				style="display:block;width:527px;height:420px;"> 
+			</a>
+		</div> 
+      <p style="margin-left: 10px;">Video Endorsements and Recommendations</p>
+  	  
+  	  <div style="text-align: left;	margin: 0px auto; padding: 0px; border:0; width: 510px;"> 
+  	   <div  style="float: left; width: 250px;">
+		     <h:panelGrid columns="2" valign="center">
+				<h:outputLink value="#{controllerBean.contextPath}/static/deborah_says_3.faces"> 
+					<h:graphicImage value="/images/deborah.png" /> 
+				</h:outputLink>	
+				<h:outputLink value="#{controllerBean.contextPath}/static/deborah_says_3.faces"> 
+					<h:outputText value="Rev. Deborah Lindsay-”Talk TO Muslims, rather than ABOUT them”" style="font-weight: bolder;color: black;"/> 
+				</h:outputLink>				
+		     </h:panelGrid>
+  	   </div>
+  	   
+  	   <div style="	margin: 0;	float: left;	width: 250px;">
+
+  	   </div>
+      <rich:spacer height="40" width="150"/>
+
+
+  	   <div  style="float: left; width: 250px;">
+		     <h:panelGrid columns="2" valign="center">
+				<h:outputLink value="http://www.facebook.com/DeenInstituteofNorthAmerica"  target="_blank"> 
+					<h:graphicImage value="/images/facebook.png" /> 
+				</h:outputLink>	
+				<h:outputLink value="http://www.facebook.com/DeenInstituteofNorthAmerica" target="_blank"> 
+					<h:outputText value="Connect with us" style="font-weight: bolder;color: black;"/> 
+				</h:outputLink>				
+		     </h:panelGrid>
+  	   </div>
+  	   
+  	   <div style="	margin: 0;	float: left;	width: 250px;">
+		     <h:panelGrid columns="2" valign="left">
+				<h:outputLink value="https://twitter.com/MeetAMuslimDay" target="_blank"> 
+					<h:graphicImage value="/images/twitter.png" /> 
+				</h:outputLink>	
+				<h:outputLink value="https://twitter.com/MeetAMuslimDay" target="_blank"> 
+					<h:outputText value="Follow us" style="font-weight: bolder;color: black;"/> 
+				</h:outputLink>				
+		     </h:panelGrid>
+  	   </div>
+  	   
+	</div>
+
+    </div>
+    <div class="clearer"></div>
+  </div>
+
+</div>
+
+</ui:define>
+
+    <ui:define name="morescript">
+    <script  type="text/javascript">
+
+
+	$f("player", {src: "./resources/swf/flowplayer-3.2.7.swf", wmode: 'opaque'}, {
+	    clip: {
+	        url: './static/home.flv',
+	        autoPlay: false,
+	        autoBuffering: true,
+
+	    },
+
+	    plugins: {
+	        controls: null
+	    },
+	    onLoad: function(){
+	        
+	    }
+	});
+
+	var state = Common.readCookie('state');
+	//alert(state);
+	if(state == null){
+		Common.createCookie('state',1,30);
+	}
+	if(state == null){
+		$f(0).play();
+	}
+
+	
+
+</script>
+
+    </ui:define>
+    
+    <ui:define name="modalPanels">
+    	<ui:include src="./whyRegisterAsGuest.xhtml" />	
+    	<ui:include src="./whyRegisterAsMentor.xhtml" />	
+    </ui:define>
+    
+</ui:composition>
+</html>
