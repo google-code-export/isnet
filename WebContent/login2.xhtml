@@ -18,7 +18,7 @@
 
   <div id="middle"> 
     <div id="left"> 
-		  <rich:panel headerClass="login_box_panel_header"  bodyClass="login_box_panel" style="margin-right: 4px;">
+		  <rich:panel headerClass="login_box_panel_header"  bodyClass="login_box_panel" style="margin-right: 4px; display: none;">
 		   <f:facet name="header">
 	          <h:outputText value="" /> 
 	        </f:facet>
@@ -30,7 +30,7 @@
 		   <h:outputText  value="#{bundle.login_guest_msg5}" /></p>		         
 		  </rich:panel>  
 		     	
-		     <h:panelGrid width="100%" columns="2" valign="center" columnClasses="col_2,col_left" style="margin-top: 33px;">
+		     <h:panelGrid width="100%" columns="2" valign="center" columnClasses="col_2,col_left" style="margin-top: 180px;">
 				<h:outputLink value="#{controllerBean.contextPath}/guestRegister.faces"> 
 					<h:graphicImage value="/images/guest_reg.png" /> 
 				</h:outputLink>	
@@ -58,7 +58,7 @@
 		<div style="margin-left: 2px; margin-right: 5px; border: 0px solid black;">
 		
 		          		<!-- Login Box -->
-          		<rich:panel  headerClass="login_box_panel_header"  bodyClass="login_box_panel" style="margin-left: 1px;">
+          		<rich:panel  headerClass="login_box_panel_header"  bodyClass="login_box_panel" style="margin-left: 1px; display:none;">
           			<f:facet name="header">                   
                   <h:panelGroup>  
                   	<h:outputText value="Login" />
@@ -93,7 +93,7 @@
 				</rich:panel>
 				 
 		     									 
-		     <h:panelGrid columns="2" valign="center" columnClasses="col_2,col_left" width="100%" border="1" style="margin-top: 42px;">
+		     <h:panelGrid columns="2" valign="center" columnClasses="col_2,col_left" width="100%" border="1" style="margin-top: 180px;">
 				<h:outputLink value="#{controllerBean.contextPath}/mentorRegister.faces"> 
 					<h:graphicImage value="/images/mentor_reg.png" /> 
 				</h:outputLink>	
@@ -121,25 +121,9 @@
 				style="display:block;width:527px;height:425px;"> 
 			</a>
 		</div> 
-      <p style="margin-left: 10px;">Video Endorsements and Recommendations</p>
+      
   	  
-  	  <div style="text-align: left;	margin: 0px auto; padding: 0px; border:0; width: 510px;"> 
-  	   <div  style="float: left; width: 250px;">
-		     <h:panelGrid columns="2" valign="center">
-				<h:outputLink value="#{controllerBean.contextPath}/static/deborah_says_3.faces"> 
-					<h:graphicImage value="/images/deborah.png" /> 
-				</h:outputLink>	
-				<h:outputLink value="#{controllerBean.contextPath}/static/deborah_says_3.faces"> 
-					<h:outputText value="Rev. Deborah Lindsay-”Talk TO Muslims, rather than ABOUT them”" style="font-weight: bolder;color: black;"/> 
-				</h:outputLink>				
-		     </h:panelGrid>
-  	   </div>
-  	   
-  	   <div style="	margin: 0;	float: left;	width: 250px;">
-
-  	   </div>
-      <rich:spacer height="40" width="150"/>
-
+  	  <div style="text-align: left;	margin: 0px auto; padding-top: 10px; border:0; width: 510px;"> 
 
   	   <div  style="float: left; width: 250px;">
 		     <h:panelGrid columns="2" valign="center">
@@ -152,7 +136,7 @@
 		     </h:panelGrid>
   	   </div>
   	   
-  	   <div style="	margin: 0;	float: left;	width: 250px;">
+  	   <div style="	margin-top: 0;	float: left;	width: 250px;">
 		     <h:panelGrid columns="2" valign="left">
 				<h:outputLink value="https://twitter.com/MeetAMuslimDay" target="_blank"> 
 					<h:graphicImage value="/images/twitter.png" /> 
