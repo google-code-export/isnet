@@ -19,12 +19,21 @@
 					<rich:panel style="width:'auto'"  id="idPanelContainer" headerClass="panel_header" bodyClass="panel_content_body" styleClass="content_panel">
 						<f:facet name="header">
 							<h:outputLabel id="idHeaderMessage" >
-							  	<h:outputText    value="Upcoming Events"/>
+							  	<h:outputText    value="Latest Events"/>
 							</h:outputLabel>
 						</f:facet>
 						
 						<a4j:outputPanel layout="block">
-							
+						<table border="1" width="100%">
+							<tr>
+								<td align="center"><h2>What's Happening Now...</h2>	
+								<a href="http://www.wavesofunity.com" target="_blank" title=""><img title="" alt="" src="images/wou.jpg" border="0" style="width: 150px;height: 97px;" /></a>
+								</td>
+							</tr>
+						</table>
+				
+			
+					
 			<h:dataTable value="#{eventViewHandler.events}" var="event">
 	             
 		        <rich:column>
