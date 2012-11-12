@@ -223,6 +223,11 @@ h1, h2, h3, h4, h5, h6 {
 	float: left;
 	padding-top: 10px;
 }
+.center_t_panel {
+	width: 100%;
+	float: left;
+	padding-top: 10px;
+}
 .featured-block {
 	width: 182px;
 	float: left;
