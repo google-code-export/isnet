@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:c="http://java.sun.com/jstl/core">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml; charset=UTF-8"/>
+    <title>
+      <h:outputText value="MyC2i :: ${moduleTitle}" />
+    </title>
+
+      <link rel="STYLESHEET" type="text/css" href="#{controllerBean.contextPath}/#{controllerBean.cssPath}/main.css"/>
+
+    <!-- Le styles -->
+    <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet"/>
+
+
+
+    <script >
+      /* define diffrent message for ajax loading*/
+      var ajaxLoadingMsg = "Loading...";
+
+    </script>
+	    
+    <ui:insert name="js"></ui:insert>
+  </head>
+
+<body>
+ <f:view id="idMainView">
+<div id="wrapper">
+	<div id="main-container">
+		<div class="header">
+			<div class="social-links">
+				<div class="fb-like">
+					<a href="#" title=""><img title="" alt="" src="images/fb-icon.png" border="0" /></a>
+				</div>
+				<div class="social-icons">
+					<a href="#" title=""><img title="Twitter" alt="Twitter" src="images/twitter-icon.png" border="0" /></a>
+					<a href="#" title=""><img title="Youtube" alt="Youtube" src="images/youtube-icon.png" border="0" /></a>
+					<a href="#" title=""><img title="RSS" alt="RSS" src="images/rss-icon.png" border="0" /></a>
+				</div>
+				<div class="top-btn">
+			         <h:outputLink   value="#{controllerBean.contextPath}/aboutUs.faces">
+			          <h:outputText id="idrole" value="About Us"/>
+			        </h:outputLink>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="clear"></div>
+			<div class="logo">
+			<a href="#{controllerBean.contextPath}#{authenticationViewHandler.homePageUrl}" title=""><img title="Connect Your Faith" alt="Connect Your Faith" src="images/connect-logo.png" border="0" /></a>
+			</div>
+			<div class="slogan">
+			<a href="#{controllerBean.contextPath}#{authenticationViewHandler.homePageUrl}" title=""><img title="Connect Your Faith" alt="Connect Your Faith" src="images/connect-slogan.png" border="0" /></a></div>
+
+			<div class="clear"></div>
+		</div>
+		<div class="menu">			<ul>
+				<li><a href="#{controllerBean.contextPath}#{authenticationViewHandler.homePageUrl}" title="">HOME</a></li>
+				<li><a href="#{controllerBean.contextPath}/whatWeBelieve.faces" title="">WHAT WE BELIEVE</a></li>
+				<li><a href="#{controllerBean.contextPath}/howitworks.faces" title="">HOW MyC2i WORKS</a></li>
+				<li><a href="#{controllerBean.contextPath}/upcoming-myc2i-events.faces" title="">COMING EVENTS</a></li>
+				<li><a href="#{controllerBean.contextPath}/aboutUs.faces" title="">ABOUT US</a></li>
+			</ul>
+		</div>
+
+		<div class="body-container">
+				
+			<div class="center_t_panel">
+ 				<ui:insert name="body">Body</ui:insert>
+			</div>
+		
+
+		</div>
+		<div class="clear"></div>
+		
+	</div>
+	<div class="clear"></div>
+	<div class="main-container-bottom"></div>
+	<div class="footer">
+		<ul>
+			<li>&copy; Copyright 2012 MyC2i</li>
+			<li><a href="#" title="">Privacy</a></li>
+			<li>Designed and Developed by  <a target="_blank" style="font-size: 10pt;" href="http://www.intrigueit.com/">Intrigue IT</a></li>
+			<li class="last"><a href="#" title="">Sitemap</a></li>
+		</ul>
+	</div>
+</div>
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="http://twitter.github.com/bootstrap/assets/js/jquery.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-transition.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-alert.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-modal.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-dropdown.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-scrollspy.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tab.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tooltip.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-popover.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-button.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-carousel.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-typeahead.js"></script>
+
+
+	
+        </f:view>
+</body>
+</html>
