@@ -41,16 +41,6 @@ ul.menu li aX {
 }
 
 
-* {
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
-
-.btn {
-  font-family: Arial, Helvetica, sans-serif !important;
-}
-
 a,a:visited,a:link {
   color: #437792;
   text-decoration: none;
