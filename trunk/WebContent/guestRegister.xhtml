@@ -3,28 +3,21 @@
 	 xmlns:ui="http://java.sun.com/jsf/facelets"
 	 xmlns:h="http://java.sun.com/jsf/html"
 	 xmlns:f="http://java.sun.com/jsf/core"
-	 xmlns:a4j="http://richfaces.org/a4j"
- 	xmlns:c="http://java.sun.com/jstl/core"
- 	xmlns:rich="http://richfaces.org/rich">
+	 xmlns:rich="http://richfaces.org/rich">
 
-<ui:composition template="/templates/basictemplate.xhtml">
-<f:loadBundle basename="ApplicationResources" var="bundle"/>
+<ui:composition template="/templates/basictemplate_n.xhtml">
+
+
 	<ui:param name="moduleTitle" value="#{bundle.guest_registration_title}"></ui:param>
  	<ui:param name="userType" value="Public"></ui:param>
  	<ui:param name="help_doc" value="#{controllerBean.contextPath}/online_help/guest_reg_help.htm"></ui:param>
+ 	
 	<ui:define name="body">
-	<h:panelGrid columns="3" columnClasses="reg_page_column1,reg_page_column2,reg_page_column3" width="100%">
-					<h:outputText value="" />
-					<h:panelGroup>
-					<rich:panel style="width:'auto'"  id="idPanelContainer" headerClass="panel_header" bodyClass="panel_content_body" styleClass="content_panel">
-						<f:facet name="header" >
-							<h:outputLabel id="idHeaderMessage">
-							  	<h:outputText    value="#{bundle.page_header_guest_registration}"/>
-							</h:outputLabel>
-						</f:facet>
+	<div style="margin-left: 100px;">
 
-						<h:outputText styleClass="registration_header_style" value="#{bundle.guest_registration_header}" />
-						<br/>
+    <fieldset>
+    <legend>Non-Muslim Buddy sign up</legend>
+
 						<h:panelGrid rendered="#{!memberViewHandler.hasError}" columns="1" width="100%" columnClasses="column_class_center">
 							<h:outputText value="#{memberViewHandler.successMessage}" />
 						</h:panelGrid>
@@ -39,7 +32,6 @@
 							</h:column>
 						
 						</h:dataTable>
-
 						
 						<h:panelGrid  columns="2" columnClasses="internal_content_grid_column1,internal_content_grid_column2" width="100%">
 
@@ -239,20 +231,21 @@
 																																																																																																																														
 						</h:panelGrid>
 
-				</rich:panel>
+
+  					<table border="0" width="80%" cellpadding="0" cellspacing="0">
+						 <tr>
+						 	<td align="center">
+						 		<h:commandButton    action="#{memberViewHandler.registerGuest}" value="#{bundle.common_label_signup}" />
+								<h:commandButton styleClass="bottom_button_spacing" action="#{navigationBean.backToLogin}"  value="#{bundle.common_label_back}"  />
+						 	</td>
+						 </tr>
+  					</table>
+
 				
-				<rich:panel id="actionBox" bodyClass="panel_content_body">
-						<h:panelGrid columns="1" columnClasses="column_class_center" width="100%">
-							<h:panelGroup>
-								<h:commandButton onclick="forceBlockUI(ajaxWaitMsg);"   oncomplete="forceUnblockUI();"  action="#{memberViewHandler.registerGuest}" value="#{bundle.common_label_signup}" />
-								<rich:spacer width="10"></rich:spacer>	
-								<h:commandButton action="#{navigationBean.backToLogin}"  value="#{bundle.common_label_back}"  />
-							</h:panelGroup>		
-						</h:panelGrid>				
-				</rich:panel>	
-				</h:panelGroup>
-				<h:outputText value="" />			
-	</h:panelGrid>			  
+    </fieldset>
+
+	</div>
+	
   </ui:define>
 </ui:composition>
 </html>
