@@ -1,9 +1,4 @@
-body {
-  color: #082D3F;
-  background: #BEC3C6;
-  font: 14px Arial, sans-serif;
-  text-shadow: 0 0 1px rgba(0, 0, 0, 0.01);
-}
+
 table.menu {
   margin:0;
   overflow:hidden;
@@ -40,16 +35,6 @@ ul.menu li aX {
   font-size: 14px;
 }
 
-
-* {
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
-
-.btn {
-  font-family: Arial, Helvetica, sans-serif !important;
-}
 
 a,a:visited,a:link {
   color: #437792;
@@ -236,7 +221,7 @@ a:hover {
 .box h1,.box h2,.box h3 {
   background: #ECF6FA;
   font-weight: normal;
-  font-size: 18px;
+  font-size: 16px;
   padding: 10px 20px;
   clear: both;
   display: block;
