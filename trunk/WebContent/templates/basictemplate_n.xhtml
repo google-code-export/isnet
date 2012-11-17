@@ -11,8 +11,9 @@
       <h:outputText value="MyC2i :: ${moduleTitle}" />
     </title>
 
-      <link rel="STYLESHEET" type="text/css" href="#{controllerBean.contextPath}/#{controllerBean.cssPath}/main.css"/>
-
+    <link rel="STYLESHEET" type="text/css" href="#{controllerBean.contextPath}/#{controllerBean.cssPath}/main.css"/>
+      <link rel="STYLESHEET" type="text/css" href="#{controllerBean.contextPath}/#{controllerBean.cssPath}/myc2i_n.css"/>
+      <link rel="STYLESHEET" type="text/css" href="#{controllerBean.contextPath}/#{controllerBean.cssPath}/styles.css"/>
     <!-- Le styles -->
     <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet"/>
 
@@ -29,24 +30,12 @@
 
 <body>
  <f:view id="idMainView">
+ <f:loadBundle basename="ApplicationResources" var="bundle"/>
 <div id="wrapper">
 	<div id="main-container">
 		<div class="header">
 			<div class="social-links">
-				<div class="fb-like">
-					<a href="#" title=""><img title="" alt="" src="images/fb-icon.png" border="0" /></a>
-				</div>
-				<div class="social-icons">
-					<a href="#" title=""><img title="Twitter" alt="Twitter" src="images/twitter-icon.png" border="0" /></a>
-					<a href="#" title=""><img title="Youtube" alt="Youtube" src="images/youtube-icon.png" border="0" /></a>
-					<a href="#" title=""><img title="RSS" alt="RSS" src="images/rss-icon.png" border="0" /></a>
-				</div>
-				<div class="top-btn">
-			         <h:outputLink   value="#{controllerBean.contextPath}/aboutUs.faces">
-			          <h:outputText id="idrole" value="About Us"/>
-			        </h:outputLink>
-				</div>
-				<div class="clear"></div>
+ 				<ui:include src="/templates/include/header.xhtml" />
 			</div>
 			<div class="clear"></div>
 			<div class="logo">
@@ -69,7 +58,9 @@
 		<div class="body-container">
 				
 			<div class="center_t_panel">
+				<h:form>
  				<ui:insert name="body">Body</ui:insert>
+ 				</h:form>
 			</div>
 		
 
@@ -102,9 +93,12 @@
     <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
     <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-carousel.js"></script>
     <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-typeahead.js"></script>
-
-
+ 	<script src="#{controllerBean.contextPath}/js/flowplayer-3.2.6.min.js" />
+ 	<script src="#{controllerBean.contextPath}/js/common.js" />
+ 	
+ <ui:insert name="modalPanels"></ui:insert>
 	
         </f:view>
+         <ui:insert name="morescript"></ui:insert>
 </body>
 </html>
