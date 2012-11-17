@@ -7,7 +7,7 @@
  	xmlns:c="http://java.sun.com/jstl/core"
  	xmlns:rich="http://richfaces.org/rich">
 
-	<ui:composition template="/templates/basictemplate.xhtml">
+	<ui:composition template="/templates/basictemplate_n.xhtml">
 	<ui:param name="moduleTitle" value="MyC2i Events"></ui:param>
  		<ui:param name="userType" value="Public">
  	</ui:param>
@@ -24,16 +24,7 @@
 						</f:facet>
 						
 						<a4j:outputPanel layout="block">
-						<table border="1" width="100%">
-							<tr>
-								<td align="center"><h2>What's Happening Now...</h2>	
-								<a href="http://www.wavesofunity.com" target="_blank" title=""><img title="" alt="" src="images/wou.jpg" border="0" style="width: 150px;height: 97px;" /></a>
-								</td>
-							</tr>
-						</table>
 				
-			
-					
 			<h:dataTable value="#{eventViewHandler.events}" var="event">
 	             
 		        <rich:column>
