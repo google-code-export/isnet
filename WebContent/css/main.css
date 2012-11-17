@@ -223,6 +223,11 @@ h1, h2, h3, h4, h5, h6 {
 	float: left;
 	padding-top: 10px;
 }
+.intro_left-panel {
+	width: 620px;
+	float: left;
+	padding-top: 10px;
+}
 .center_t_panel {
 	width: 100%;
 	float: left;
@@ -232,6 +237,11 @@ h1, h2, h3, h4, h5, h6 {
 	width: 182px;
 	float: left;
 	background-color: #f2f2f2;
+	margin: 0 12px;
+}
+.intro_featured-block {
+	width: 162px;
+	float: left;
 	margin: 0 12px;
 }
 .featured-block h3 {
@@ -335,6 +345,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 .right-panel {
 	width: 246px;
+	float: left;
+	padding-top: 20px;
+}
+.intro_right-panel {
+	width: 200px;
 	float: left;
 	padding-top: 20px;
 }
