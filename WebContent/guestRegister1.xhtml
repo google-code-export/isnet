@@ -14,7 +14,7 @@
  	
 	<ui:define name="body">
 	<div style="margin-left: 100px;">
-	<h:form>
+
     <fieldset>
     <legend>Non-Muslim Buddy sign up</legend>
 
@@ -232,21 +232,19 @@
 						</h:panelGrid>
 
 
-  
-    
-    				<rich:panel id="actionBox" bodyClass="panel_content_body" style="width: 600px; text-align: center">
-						<h:panelGrid columns="1" columnClasses="column_class_center" width="80%">
-							<h:panelGroup>
-								<h:commandButton styleClass="btn btn-warning" onclick="forceBlockUI(ajaxWaitMsg);"   oncomplete="forceUnblockUI();"  action="#{memberViewHandler.registerGuest}" value="#{bundle.common_label_signup}" />
-								<rich:spacer width="10"></rich:spacer>	
-								<h:commandButton action="#{navigationBean.backToLogin}"  value="#{bundle.common_label_back}"  />
-							</h:panelGroup>		
-						</h:panelGrid>				
-				</rich:panel>	
+  					<table border="0" width="80%" cellpadding="0" cellspacing="0">
+						 <tr>
+						 	<td align="center">
+						 		<h:commandButton  action="#{memberViewHandler.registerGuest}" value="#{bundle.common_label_signup}" />
+								<h:commandButton styleClass="bottom_button_spacing" action="#{navigationBean.backToLogin}"  value="#{bundle.common_label_back}"  />
+						 	</td>
+						 </tr>
+  					</table>
+
 				
     </fieldset>
     
-    </h:form>	
+
 
 	</div>
 	
