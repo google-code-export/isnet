@@ -173,7 +173,7 @@ a:hover {
 }
 
 .row {
-  width: 980px;
+  width: 965px;
 }
 
 .t-100 {
@@ -193,7 +193,8 @@ a:hover {
 }
 
 .t-75 {
-  width: 780px;
+  /**width: 780px; */
+  width: 765px;
   margin-right: 3px;
   float: left;
 }
