@@ -1,0 +1,67 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:c="http://java.sun.com/jstl/core"
+	  xmlns:rich="http://richfaces.org/rich">
+<ui:composition>
+ 	<!-- Mentor Top navigation Menu -->
+        <ul>
+
+        <c:if test="${authenticationViewHandler.mentorTopMenu.dashBoard}">
+          <li>
+            <h:outputLink styleClass="menu_item_clink" 
+              value="#{controllerBean.contextPath}/pages/secure/mentorDashboard.faces">
+              <h:outputText value="#{bundle.top_navigation_home}"/>
+            </h:outputLink>
+          </li>      
+        </c:if>
+        
+          <li>
+            <h:outputLink styleClass="menu_item_clink" 
+              value="#{controllerBean.contextPath}/pages/secure/mentorProfile.faces">
+              <h:outputText value="#{bundle.top_navigation_mentor_account}"/>
+            </h:outputLink>
+          </li>
+      
+	          <li>
+	            <h:outputLink styleClass="menu_item_clink" 
+	              value="#{controllerBean.contextPath}/myresources/mentorResBooks.faces">
+	              <h:outputText value="#{bundle.top_navigation_mentor_resource}"/>
+	            </h:outputLink>
+	          </li>
+
+   
+          <li>
+            <h:outputLink styleClass="menu_item_clink" 
+              value="#{controllerBean.contextPath}/pages/secure/mentorPayment.faces">
+              <h:outputText value="Subscription"/>
+            </h:outputLink>
+          </li>    
+                  
+
+          <li>
+            <h:outputLink styleClass="menu_item_clink" 
+              value="#{controllerBean.contextPath}/pages/secure/memberDonate.faces">
+              <h:outputText value="#{bundle.top_navigation_mentor_donate}"/>
+            </h:outputLink>
+          </li>  
+
+          <li>
+            <h:outputLink styleClass="menu_item_clink" 
+              value="#{controllerBean.contextPath}/upcoming-myc2i-events.faces">
+              <h:outputText value="Coming Events"/>
+            </h:outputLink>
+          </li>                 
+
+          <li>
+            <h:outputLink styleClass="menu_item_clink" 
+              value="#{controllerBean.contextPath}/mentorhowitworks.faces">
+              <h:outputText value="How MyC2i Works"/>
+            </h:outputLink>
+          </li>                                  
+        </ul>
+       
+</ui:composition>
+</html>
