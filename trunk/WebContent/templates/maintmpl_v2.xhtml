@@ -1,41 +1,45 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-  xmlns:ui="http://java.sun.com/jsf/facelets"
-  xmlns:h="http://java.sun.com/jsf/html"
-  xmlns:f="http://java.sun.com/jsf/core"
-  xmlns:a4j="http://richfaces.org/a4j"
-  xmlns:c="http://java.sun.com/jstl/core"
-  xmlns:rich="http://richfaces.org/rich">
-  <head>
-    <meta http-equiv="Content-Type" content="text/xhtml; charset=UTF-8"/>
-    <title>
-      <h:outputText value="MyC2i :: ${moduleTitle}" />
-    </title>
-    <c:set var="showLeftColumn" value="Y" />
-    <c:set var="bodyClass" value="t-75" />
-    <c:if test="${pageColumns eq 1}">
-      <c:set var="showLeftColumn" value="N" />
-      <c:set var="bodyClass" value="t-99" />
-    </c:if>
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:rich="http://richfaces.org/rich">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml; charset=UTF-8" />
+<title><h:outputText value="MyC2i :: ${moduleTitle}" /></title>
+<c:set var="showLeftColumn" value="Y" />
+<c:set var="bodyClass" value="t-75" />
+<c:if test="${pageColumns eq 1}">
+	<c:set var="showLeftColumn" value="N" />
+	<c:set var="bodyClass" value="t-99" />
+</c:if>
 
-    <a4j:outputPanel id="idStyleClass">
-    <link rel="STYLESHEET" type="text/css" href="#{controllerBean.contextPath}/#{controllerBean.cssPath}/main.css"/>
-      <link rel="STYLESHEET" type="text/css" href="#{controllerBean.contextPath}/#{controllerBean.cssPath}/myc2i_n.css"/>
-      <link rel="STYLESHEET" type="text/css" href="#{controllerBean.contextPath}/#{controllerBean.cssPath}/richtools.css"/>
-      <link rel="STYLESHEET" type="text/css" href="#{controllerBean.contextPath}/#{controllerBean.cssPath}/common.css"/>
-      <link rel="STYLESHEET" type="text/css" href="#{controllerBean.contextPath}/#{controllerBean.cssPath}/styles.css"/>
+<a4j:outputPanel id="idStyleClass">
+	<link rel="STYLESHEET" type="text/css"
+		href="#{controllerBean.contextPath}/#{controllerBean.cssPath}/main.css" />
+	<link rel="STYLESHEET" type="text/css"
+		href="#{controllerBean.contextPath}/#{controllerBean.cssPath}/myc2i_n.css" />
+	<link rel="STYLESHEET" type="text/css"
+		href="#{controllerBean.contextPath}/#{controllerBean.cssPath}/richtools.css" />
+	<link rel="STYLESHEET" type="text/css"
+		href="#{controllerBean.contextPath}/#{controllerBean.cssPath}/common.css" />
+	<link rel="STYLESHEET" type="text/css"
+		href="#{controllerBean.contextPath}/#{controllerBean.cssPath}/styles.css" />
 
-    </a4j:outputPanel>
-    
-    <a4j:loadScript src="http://twitter.github.com/bootstrap/assets/js/jquery.js"/>
-    <a4j:loadScript src="/js/jquery/jquery.blockUI.js"/>
-    <a4j:loadScript src="/js/jquery/jqconfig.js"/>
-    <a4j:loadScript src="/js/common.js" />
-    <a4j:loadScript src="/js/flowplayer-3.2.6.min.js" />
-    
+</a4j:outputPanel>
 
-    <script >
+<a4j:loadScript
+	src="http://twitter.github.com/bootstrap/assets/js/jquery.js" />
+<a4j:loadScript src="/js/jquery/jquery.blockUI.js" />
+<a4j:loadScript src="/js/jquery/jqconfig.js" />
+<a4j:loadScript src="/js/common.js" />
+<a4j:loadScript src="/js/flowplayer-3.2.6.min.js" />
+
+
+<script type="">
       /* define diffrent message for ajax loading*/
       var ajaxLoadingMsg = "Loading...";
       var ajaxProcessMsg = "Processing...";
@@ -46,92 +50,103 @@
       var ajaxPrepareMsg = "Preparing...";
       var ajaxSearchingMentor="Searching for mentors. Please wait...";
     </script>
-    <ui:insert name="js"></ui:insert>
-  </head>
+<ui:insert name="js"></ui:insert>
+</head>
 
 <body>
- <f:view id="idMainView">
-       <f:loadBundle basename="ApplicationResources" var="bundle"/>
-        <h:form id="idMainForm">
-          <c:set var="imagesPath" value="#{controllerBean.imagesPath}" />
-          <c:set var="contextPath" value="#{controllerBean.contextPath}" />
-          <h:inputHidden id="idContextPath" value="#{controllerBean.contextPath}" />
-<div id="wrapper">
-	<div id="main-container_v2">
-		<div class="header">
-			<div class="social-links">
- 				<ui:include src="/templates/include/header.xhtml" />
+	<f:view id="idMainView">
+		<f:loadBundle basename="ApplicationResources" var="bundle" />
+		<h:form id="idMainForm">
+			<c:set var="imagesPath" value="#{controllerBean.imagesPath}" />
+			<c:set var="contextPath" value="#{controllerBean.contextPath}" />
+			<h:inputHidden id="idContextPath"
+				value="#{controllerBean.contextPath}" />
+			<div id="wrapper">
+				<div id="main-container_v2">
+					<div class="header">
+						<div class="social-links">
+							<ui:include src="/templates/include/header.xhtml" />
+						</div>
+						<div class="clear"></div>
+						<div class="logo">
+							<a
+								href="#{controllerBean.contextPath}#{authenticationViewHandler.homePageUrl}"
+								title=""><img title="Connect Your Faith"
+								alt="Connect Your Faith"
+								src="#{controllerBean.contextPath}/images/connect-logo.png"
+								border="0" /></a>
+						</div>
+						<div class="slogan">
+							<a
+								href="#{controllerBean.contextPath}#{authenticationViewHandler.homePageUrl}"
+								title=""><img title="Connect Your Faith"
+								alt="Connect Your Faith"
+								src="#{controllerBean.contextPath}/images/connect-slogan.png"
+								border="0" /></a>
+						</div>
+
+						<div class="clear"></div>
+					</div>
+					<div class="menu_v2">
+						<ui:include src="/templates/include/topnav_v2.xhtml">
+							<ui:param name="userType" value="${userType}"></ui:param>
+						</ui:include>
+					</div>
+
+					<div class="body-container">
+
+						<div class="center_t_panel">
+							<h:form>
+								<div id="container">
+
+
+									<div id="content">
+										<div class="row clearfix">
+
+
+											<div class="row clearfix t-100 box">
+												<h:panelGroup rendered="${showLeftColumn ne 'N'}">
+													<div class="t-25 last side" style="border: 0px solid red;">
+														<ui:include src="/templates/include/leftside.xhtml" />
+													</div>
+												</h:panelGroup>
+
+												<div class="${bodyClass} content"
+													style="background-color: #ffffff;">
+													<h:panelGroup id="idErrorPanelCon">
+														<ui:include src="/templates/include/messagePanel.xhtml"></ui:include>
+													</h:panelGroup>
+													<div class="panel_header">
+														<h:outputText value="${headerText}"
+															style="color: #808081;" />
+													</div>
+													<div class="formFields formBorder wideLabels">
+														<ui:insert name="body">Body</ui:insert>
+													</div>
+												</div>
+
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</h:form>
+						</div>
+
+
+					</div>
+					<div class="clear"></div>
+
+				</div>
+				<div class="clear"></div>
+				<div class="main-container-bottom_v2"></div>
+				<ui:include src="/templates/include/footer_v2.xhtml" />	
 			</div>
-			<div class="clear"></div>
-			<div class="logo">
-			<a href="#{controllerBean.contextPath}#{authenticationViewHandler.homePageUrl}" title=""><img title="Connect Your Faith" alt="Connect Your Faith" src="#{controllerBean.contextPath}/images/connect-logo.png" border="0" /></a>
-			</div>
-			<div class="slogan">
-			<a href="#{controllerBean.contextPath}#{authenticationViewHandler.homePageUrl}" title=""><img title="Connect Your Faith" alt="Connect Your Faith" src="#{controllerBean.contextPath}/images/connect-slogan.png" border="0" /></a></div>
 
-			<div class="clear"></div>
-		</div>
-		<div class="menu_v2">			
-                      <ui:include src="/templates/include/topnav_v2.xhtml">
-                        <ui:param name="userType" value="${userType}"></ui:param>
-                      </ui:include>  
-		</div>
+		</h:form>
+		<ui:insert name="modalPanels"></ui:insert>
+	</f:view>
 
-		<div class="body-container">
-				
-			<div class="center_t_panel">
-				<h:form>
-<div id="container">
-
-                
-                <div id="content">
-                  <div class="row clearfix">
-
-            
-                  <div class="row clearfix t-100 box">
-                    <h:panelGroup rendered="${showLeftColumn ne 'N'}">
-                      <div class="t-25 last side" style="border: 0px solid red;">                  
-                        <ui:include src="/templates/include/leftside.xhtml"/>
-                      </div>
-                    </h:panelGroup>
-            
-                    <div class="${bodyClass} content" style="background-color: #ffffff;">
-                      <h:panelGroup id="idErrorPanelCon">
-                        <ui:include src="/templates/include/messagePanel.xhtml"></ui:include>
-                      </h:panelGroup>
-                      <div class="panel_header"><h:outputText value="${headerText}" style="color: #808081;"/></div>
-                      <div class="formFields formBorder wideLabels">   <ui:insert name="body">Body</ui:insert>  </div>
-                    </div>
-                    
-                  </div>
-                </div>
-              
-              </div>
-                </div>  
- 				</h:form>
-			</div>
-		
-
-		</div>
-		<div class="clear"></div>
-		
-	</div>
-	<div class="clear"></div>
-	<div class="main-container-bottom_v2"></div>
-	<div class="footer">
-		<ul>
-			<li>&copy; Copyright 2012 MyC2i</li>
-			<li><a href="#" title="">Privacy</a></li>
-			<li>Designed and Developed by  <a target="_blank" style="font-size: 10pt;" href="http://www.intrigueit.com/">Intrigue IT</a></li>
-			<li class="last"><a href="#" title="">Sitemap</a></li>
-		</ul>
-	</div>
-</div>
-
-</h:form>
-	     <ui:insert name="modalPanels"></ui:insert>
-        </f:view>
-        
-         <ui:insert name="morescript"></ui:insert>
+	<ui:insert name="morescript"></ui:insert>
 </body>
 </html>
