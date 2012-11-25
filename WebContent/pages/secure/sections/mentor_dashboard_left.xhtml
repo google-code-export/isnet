@@ -20,7 +20,7 @@
 			</div>
 		</h:panelGroup>
 		<!-- Top ten stories -->
-		<rich:panel style="width:'auto';margin-top: 3px;" headerClass="container_gold_header"  bodyClass="container_body_style" >
+		<rich:panel style="width:'auto';margin-top: 3px;" headerClass="container_silver_header"  bodyClass="container_body_style" >
 			<f:facet name="header"><h:outputText value="#{bundle.dashboard_mentor_top_ten_stories}" /></f:facet>
 			<h:dataTable value="#{dashboardViewHandler.topTenStories}" var="story">
 				<h:column>
@@ -40,7 +40,7 @@
 		</rich:panel>
 		
 		<!-- Winning stories -->
-		<rich:panel style="width:'auto';margin-top: 3px;" headerClass="container_gold_header"  bodyClass="container_body_style" >
+		<rich:panel style="width:'auto';margin-top: 3px;" headerClass="container_silver_header"  bodyClass="container_body_style" >
 		  <f:facet name="header"><h:outputText value="#{bundle.dashboard_mentor_winning_story}" /></f:facet>
 			<p><h:outputText value="#{dashboardViewHandler.storyWinner}" /></p>
 			<p><h:outputText value="#{dashboardViewHandler.winningStoryPreview}" /></p>
@@ -58,7 +58,7 @@
 		</rich:panel>
 		
 		<!-- Winning stories -->
-		<rich:panel style="width:'auto';margin-top: 3px;" headerClass="container_gold_header"  bodyClass="container_body_style" >
+		<rich:panel style="width:'auto';margin-top: 3px;" headerClass="container_silver_header"  bodyClass="container_body_style" >
 		  <f:facet name="header"><h:outputText value="Winning viewpoint" /></f:facet>
 			<p><h:outputText value="#{dashboardViewHandler.viewPointWinner}" /></p>
 			<p><h:outputText value="#{dashboardViewHandler.winningViewPointPreview}" /></p>
@@ -75,7 +75,7 @@
 		</rich:panel>		
 		
 		<!-- Mentor success stories -->
-		<rich:panel style="width:'auto';margin-top: 3px;" headerClass="container_gold_header"  bodyClass="container_body_style" >
+		<rich:panel style="width:'auto';margin-top: 3px;" headerClass="container_silver_header"  bodyClass="container_body_style" >
 			<f:facet name="header"><h:outputText value="#{bundle.dashboard_mentor_mentor_sucess}" /></f:facet>
 			<h:dataTable id="idDataGridStory"  rows="5"  value="#{storyViewHandler.voteStoryList}" var="story">
 				<h:column>
