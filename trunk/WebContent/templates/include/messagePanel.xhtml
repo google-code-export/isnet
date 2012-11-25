@@ -21,7 +21,7 @@
         <h:outputText value="Error Panel"/>        
       </h:panelGrid>
       
-      <h:panelGrid columns="2" border="1" id="idinfoHead" columnClasses="infohead_icon,infohead_text"
+      <h:panelGrid columns="2" border="0" id="idinfoHead" columnClasses="infohead_icon,infohead_text"
         rendered="${refManageBean.msgType eq 'INFO'}">
         <a4j:commandLink  action="${refManageBean.hideErrorPanel}" reRender="idErrorPanel" styleClass="menu_item_clink">
           <h:panelGroup>
