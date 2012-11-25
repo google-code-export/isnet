@@ -7,7 +7,7 @@
 <ui:composition>
 
 				<h:panelGrid columns="1" width="100%" border="0" cellpadding="0" cellspacing="0" columnClasses="column_class_left">
-					<rich:panel style="width:'auto';margin-top: 0px; text-align: center;" headerClass="container_gold_header"  bodyClass="container_body_style" >
+					<rich:panel style="width:'auto';margin-top: 0px; text-align: center;" headerClass="container_silver_header"  bodyClass="container_body_style" >
 						<f:facet name="header"><h:outputText value="#{bundle.dashboard_mentor_membership_expiry}" /></f:facet>
 						<h:outputText value="#{dashboardViewHandler.member.memberShipExpiryDate}" > 
 							<f:convertDateTime dateStyle="default" pattern="#{bundle.short_date_pattern}"/>
@@ -15,7 +15,7 @@
 					</rich:panel>
 					<ui:include src="./todoWidget.xhtml" />	
 					<!-- What new list -->
-					<rich:panel style="width:'auto';margin-top: 0px; text-align: left;" headerClass="container_gold_header"  bodyClass="container_body_style" >
+					<rich:panel style="width:'auto';margin-top: 0px; text-align: left;" headerClass="container_silver_header"  bodyClass="container_body_style" >
 						<f:facet name="header"><h:outputText value="#{bundle.dashboard_mentor_what_new}" /></f:facet>
 						
 							<h:panelGrid columns="1" width="100%" columnClasses="column_class_left">
@@ -41,7 +41,7 @@
 						</h:dataTable>	
 					</rich:panel>
 					<!-- Common Islamic terms -->
-					<rich:panel rendered="false" style="width:'auto';" headerClass="container_gold_header"  bodyClass="container_body_style" >
+					<rich:panel rendered="false" style="width:'auto';" headerClass="container_silver_header"  bodyClass="container_body_style" >
 						<f:facet name="header"><h:outputText value="#{bundle.dashboard_mentor_common_islamic_term}" /></f:facet>
 						<h:dataTable border="0" value="#{dashboardViewHandler.islamicTerms}" var="ud" 
 					    	columnClasses="," cellpadding="0" cellspacing="0" width="100%">
@@ -56,7 +56,7 @@
 						</h:dataTable>		
 					</rich:panel>
 					<!-- Important links -->
-					<rich:panel style="width:'auto';" headerClass="container_gold_header"  bodyClass="container_body_style" >
+					<rich:panel style="width:'auto';" headerClass="container_silver_header"  bodyClass="container_body_style" >
 						<f:facet name="header"><h:outputText value="#{bundle.dashboard_mentor_common_important_links}"/></f:facet>
 						<h:dataTable border="0" value="#{dashboardViewHandler.importantLinks}" var="ud" 
 					    	columnClasses="," cellpadding="0" cellspacing="0" width="100%">
