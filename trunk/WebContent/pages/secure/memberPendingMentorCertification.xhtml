@@ -8,7 +8,7 @@
  	 xmlns:c="http://java.sun.com/jstl/core"
  	 xmlns:rich="http://richfaces.org/rich">
 
-<ui:composition template="/templates/maintmpl.xhtml">
+<ui:composition template="/templates/maintmpl_v2.xhtml">
  <ui:param name="moduleTitle" value="Mentor Certification"></ui:param>
  <ui:param name="userType" value="M"></ui:param>
  <ui:param name="moduleType" value="MH"></ui:param>
@@ -31,7 +31,7 @@
       </h:panelGroup>
       
       <rich:spacer width="100%" height="10"/>
-		<rich:panel headerClass="container_box_panel_header"  bodyClass="container_body_style" >
+		<rich:panel headerClass="container_silver_header"  bodyClass="container_body_style" >
 			<f:facet name="header"><h:outputText value="Mentor List" /> </f:facet>
 			<h:panelGrid columns="1" width="100%" cellpadding="0" cellspacing="0" border="0">
 				<rich:dataTable  width="100%" id="idDataGrid"  rowClasses=",container_even_row_style" rows="5"  columnsWidth="150,"
