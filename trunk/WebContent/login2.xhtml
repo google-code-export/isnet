@@ -19,9 +19,9 @@
 			<div class="intro_left-panel">
 				<div class="intro_featured-block">
 				
-		     <h:panelGrid width="100%" columns="2" valign="center" columnClasses="col_2,col_left" style="margin-top: 160px;">
+		     <h:panelGrid width="100%" columns="1" valign="center" columnClasses="column_class_center" style="margin-top: 160px;">
 				<h:outputLink value="#{controllerBean.contextPath}/guestRegister.faces"> 
-					<h:graphicImage value="/images/guest_reg.png" /> 
+					<h:graphicImage value="/images/guest_reg.png" style="width: 70px;"/> 
 				</h:outputLink>	
 				<h:outputLink value="#{controllerBean.contextPath}/guestRegister.faces" > 
 					<h:outputText value="#{bundle.login_page_guest_signup}" style="font-weight: bolder;"/> 
@@ -69,9 +69,9 @@
 			
 			<!-- Right Content Area -->
 			<div class="intro_right-panel">
-			     <h:panelGrid columns="2" valign="center" columnClasses="col_2,col_left" width="100%" border="0" style="margin-top: 150px;">
+			     <h:panelGrid columns="1" valign="center" columnClasses="column_class_center" width="100%" border="0" style="margin-top: 150px;">
 					<h:outputLink value="#{controllerBean.contextPath}/mentorRegister.faces"> 
-						<h:graphicImage value="/images/mentor_reg.png" /> 
+						<h:graphicImage value="/images/mentor_reg.png" style="width: 70px;"/> 
 					</h:outputLink>	
 					<h:outputLink value="#{controllerBean.contextPath}/mentorRegister.faces"> 
 						<h:outputText value="#{bundle.login_page_mentor_signup}" style="font-weight: bolder;"/> 
