@@ -127,7 +127,7 @@
  </filter-mapping>
  <filter-mapping>
   <filter-name>pageFilter</filter-name>
-  <url-pattern>/pagesxxx/*</url-pattern>
+  <url-pattern>/pages/*</url-pattern>
  </filter-mapping>
  <filter-mapping>
   <filter-name>privilegeFilter</filter-name>
