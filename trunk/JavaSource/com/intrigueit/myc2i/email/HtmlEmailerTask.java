@@ -2,6 +2,8 @@ package com.intrigueit.myc2i.email;
 
 import java.util.Properties;
 
+import javax.mail.Session;
+
 import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.HtmlEmail;
 
@@ -42,9 +44,8 @@ public class HtmlEmailerTask extends EmailerTask{
 		    email.setSmtpPort(Integer.parseInt(port));
 	        email.setAuthenticator(new DefaultAuthenticator(username, password));
 		    email.setDebug(false);		
-		    email.setTLS(true);
+		    email.setTLS(false);
 
-			// send the email
 		    email.send();
 
 
