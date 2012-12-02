@@ -243,7 +243,7 @@ public class AuthenticationViewHandler extends BasePage implements Serializable 
 	public String getHomePageAddress(Member member) {
 		this.mentorTopMenu = new MentorTopMenu();
 		if (isFirstTimeLogin(member)) {
-			return ViewConstant.OUT_COME_PASSWORD_CHANGE;
+			return ViewConstant.TO_SECURITY_SETTINGS;
 		} 
 		else{
 			if (member.getTypeId().equals(CommonConstants.MENTOR)) {
