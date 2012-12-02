@@ -4,6 +4,7 @@
   xmlns:ui="http://java.sun.com/jsf/facelets"
   xmlns:h="http://java.sun.com/jsf/html"
   xmlns:f="http://java.sun.com/jsf/core"
+  	 xmlns:a4j="http://richfaces.org/a4j"
   xmlns:c="http://java.sun.com/jstl/core">
   <head>
     <meta http-equiv="Content-Type" content="text/xhtml; charset=UTF-8"/>
@@ -73,7 +74,9 @@
 				<span class="user-id"> <input class="user-id" id="__email" type="text" placeholder="Email"/></span>			    
 			    <span class="pass"><input  type="password" placeholder="Password" id="__password"/></span>
 				<span class="btn-login">
-			    	<h:commandButton type="submit" action="#{authenticationViewHandler.loginUser}" id="btnSignIn" value="SignIn" class="btn"  onclick="process();"/>
+			    	<h:commandButton type="submit" action="#{authenticationViewHandler.loginUser}" id="btnSignIn" value="SignIn" class="btn"  onclick="process();">
+			    	<a4j:actionparam name="event" value="#{eventViewHandler.eventId}"  />
+			    	</h:commandButton>
 				</span>    
 			    </fieldset>		
 			     <h:inputHidden value="#{authenticationViewHandler.userEmailId}" id="idLoginEamilId" />
