@@ -13,5 +13,7 @@ public class ViewConstant {
 	public final static String  REGISTER_SUCCESSFULL = "REGISTER_SUCCESSFULL";
 	public final static String REGISTER_FAIL = "REGISTER_FAIL";
 	public final static String CHANGE_PASS_FAIL ="CHANGE_FAIL";
+	public final static String SECURITY_SETTINGS_FAIL ="SECURITY_SETTINGS_FAIL";
+	public final static String TO_SECURITY_SETTINGS = "TO_SECURITY_SETTINGS";
 	
 }
