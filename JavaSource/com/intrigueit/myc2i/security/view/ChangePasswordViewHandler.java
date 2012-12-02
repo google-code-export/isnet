@@ -52,7 +52,67 @@ public class ChangePasswordViewHandler extends BasePage  implements Serializable
 		super();
 		this.memberService = memberService;
 	}
+	public void validateSettings(){
+		if(CommonValidator.isEmpty(this.securityQuestion1)){
+			this.errMsgs.add( this.getText("change_password_security_question1_chose"));
+		}		
+		if(CommonValidator.isEmpty(this.securityQuestionAns1)){
+			this.errMsgs.add( this.getText("change_password_security_question1_empty"));
+		}	
+		if(CommonValidator.isEmpty(this.securityQuestion2)){
+			this.errMsgs.add( this.getText("change_password_security_question2_chose"));
+		}		
+		if(CommonValidator.isEmpty(this.securityQuestionAns2)){
+			this.errMsgs.add( this.getText("change_password_security_question2_empty"));
+		}	
+	}
+	
+	private void updateMember(Member member)throws Exception{
 
+		member.setLastUpdated(new Date());
+		member.setSecurityQuestion1(this.getSecurityQuestion1());
+		member.setSecurityQuestion2(this.getSecurityQuestion2());
+		member.setSecurityQuestionAns1(this.getSecurityQuestionAns1());
+		member.setSecurityQuestionAns2(this.getSecurityQuestionAns2());
+		
+		this.memberService.save(member);
+	}
+	
+	public String changeSecuritySettings(){
+		try{
+			this.errMsgs.clear();
+			Member member = this.getMember();
+			this.validateSettings();
+			if(this.errMsgs.size()>0){
+				this.hasError = true;
+				return ViewConstant.SECURITY_SETTINGS_FAIL;
+			}			
+			Member dbMember = this.memberService.findById(member.getMemberId());
+			this.updateMember(dbMember);
+
+			if(member.getTypeId().equals(CommonConstants.MENTOR)){
+				return ViewConstant.TO_MENTOR_DASHBOARD;
+			}
+			else if(member.getTypeId().equals(CommonConstants.ADMIN)){
+				return ViewConstant.TO_ADMIN_HOME;
+			}
+			else if(member.getTypeId().equals(CommonConstants.PROTEGE)){
+				return ViewConstant.TO_PROTEGE_DASHBOARD;
+			}			
+		}
+		catch(Myc2iException ex){
+			this.errMsgs.add(ex.getMessage());
+			log.error(ex.getMessage());
+			ex.printStackTrace();
+		}		
+		catch(Exception ex){
+			this.errMsgs.add(this.getText("change_password_unable_to_update"));
+			log.error(ex.getMessage());
+			ex.printStackTrace();
+		}
+		return  ViewConstant.SECURITY_SETTINGS_FAIL;
+	}
+	
 	/**
 	 * Change user password
 	 * @return
