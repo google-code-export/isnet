@@ -54,17 +54,15 @@
  <navigation-rule>
   <from-view-id>/login.xhtml</from-view-id>
   <navigation-case>
-   <from-outcome>TO_PASSWORD_CHANGE</from-outcome>
-   <to-view-id>/pages/secure/changePassword.xhtml</to-view-id>
+   <from-outcome>TO_SECURITY_SETTINGS</from-outcome>
+   <to-view-id>/pages/secure/securitysettings.xhtml</to-view-id>
    <redirect/>
   </navigation-case>
-  
   <navigation-case>
    <from-outcome>TO_EVENT_PAYMENT</from-outcome>
    <to-view-id>/pages/secure/memberEventPayment.xhtml</to-view-id>
    <redirect/>
   </navigation-case>
-    
   <navigation-case>
    <from-outcome>TO_MENTOR_DASHBOARD</from-outcome>
    <to-view-id>/pages/secure/mentorDashboard.xhtml</to-view-id>
@@ -96,7 +94,7 @@
   </navigation-case>
  </navigation-rule>
  <navigation-rule>
-  <from-view-id>/pages/secure/changePassword.xhtml</from-view-id>
+  <from-view-id>/pages/secure/securitysettings.xhtml</from-view-id>
   <navigation-case>
    <from-outcome>TO_MENTOR_DASHBOARD</from-outcome>
    <to-view-id>/pages/secure/mentorDashboard.xhtml</to-view-id>
@@ -118,8 +116,8 @@
    <redirect/>
   </navigation-case>
   <navigation-case>
-   <from-outcome>CHANGE_FAIL</from-outcome>
-   <to-view-id>/pages/secure/changePassword.xhtml</to-view-id>
+   <from-outcome>SECURITY_SETTINGS_FAIL</from-outcome>
+   <to-view-id>/pages/secure/securitysettings.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
  <navigation-rule>
@@ -194,8 +192,7 @@
  <navigation-rule>
   <from-view-id>/pages/secure/udValueView.xhtml</from-view-id>
  </navigation-rule>
- 
-  <navigation-rule>
+ <navigation-rule>
   <from-view-id>/registrationOption.xhtml</from-view-id>
   <navigation-case>
    <from-outcome>TO_LOGIN</from-outcome>
@@ -203,7 +200,6 @@
    <redirect/>
   </navigation-case>
  </navigation-rule>
- 
  <navigation-rule>
   <from-view-id>/registrationOption.xhtml</from-view-id>
   <navigation-case>
@@ -212,7 +208,6 @@
    <redirect/>
   </navigation-case>
  </navigation-rule>
- 
  <application>
   <view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
   <el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
