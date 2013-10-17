@@ -15,8 +15,8 @@
       <link rel="STYLESHEET" type="text/css" href="#{controllerBean.contextPath}/#{controllerBean.cssPath}/main.css"/>
 
     <!-- Le styles -->
-    <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet"/>
-    <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet"/>
+    <link href="http://getbootstrap.com/2.3.2/assets/css/bootstrap.css" rel="stylesheet"/>
+    <link href="http://getbootstrap.com/2.3.2/assets/css/bootstrap-responsive.css" rel="stylesheet"/>
 
     <link rel="stylesheet" href="resources/themes/default/default.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="resources/themes/light/light.css" type="text/css" media="screen" />
@@ -68,7 +68,7 @@
 			</div>
 			<div class="slogan">
 			<a href="#{controllerBean.contextPath}#{authenticationViewHandler.homePageUrl}" title=""><img title="Connect Your Faith" alt="Connect Your Faith" src="images/connect-slogan.png" border="0" /></a></div>
-			<div class="login" style="border:0px solid red;">
+			<div class="login" >
 			    <h:form id="flogin">
 			    <fieldset>
 				<span class="user-id"> <input class="user-id" id="__email" type="text" placeholder="Email"/></span>			    
@@ -81,9 +81,19 @@
 			    </fieldset>		
 			     <h:inputHidden value="#{authenticationViewHandler.userEmailId}" id="idLoginEamilId" />
 			     <h:inputHidden value="#{authenticationViewHandler.password}" id="idLoginPass" />			    	
+				<div class="signup-text">
+					<table>
+						<tr>
+							<td>Dont have an account? <a href="#{controllerBean.contextPath}/login2.faces" title="">SIGN UP</a> for free!
+							</td>
+						</tr>
+						<tr>
+							<td><a href="#{controllerBean.contextPath}/retrievePassword.faces" title="">Forgot your password?</a>
+							</td>
+						</tr>						
+					</table>
+				</div>
 				</h:form>
-				<div class="clear"></div>
-				<div class="signup-text">Dont have an account? <a href="#{controllerBean.contextPath}/login2.faces" title="">SIGN UP</a> for free!</div>
 			</div>
 			<div class="clear"></div>
 		</div>
@@ -275,19 +285,19 @@
 	</div>
 </div>
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="http://twitter.github.com/bootstrap/assets/js/jquery.js"></script>
-    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-transition.js"></script>
-    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-alert.js"></script>
-    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-modal.js"></script>
-    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-dropdown.js"></script>
-    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-scrollspy.js"></script>
-    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tab.js"></script>
-    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tooltip.js"></script>
-    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-popover.js"></script>
-    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-button.js"></script>
-    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
-    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-carousel.js"></script>
-    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-typeahead.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/jquery.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-transition.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-alert.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-modal.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-dropdown.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-scrollspy.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-tab.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-tooltip.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-popover.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-button.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-collapse.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-carousel.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-typeahead.js"></script>
 
     <script type="text/javascript" src="js/jquery.nivo.slider.js"></script>
     <script type="text/javascript">
