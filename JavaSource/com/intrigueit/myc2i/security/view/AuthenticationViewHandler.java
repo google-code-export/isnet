@@ -259,7 +259,7 @@ public class AuthenticationViewHandler extends BasePage implements Serializable 
 				catch(NumberFormatException nEx){
 					log.error("Fail to load free evaluation period time from resource file: "+ nEx.getMessage());
 				}
-				if(this.memberService.isMembershipExpired(member.getMemberId(), memberShipExpiry)){
+/*				if(this.memberService.isMembershipExpired(member.getMemberId(), memberShipExpiry)){
 					this.homePageUrl = "/pages/secure/mentorPayment.faces";
 		
 					this.mentorTopMenu.setDashBoard(false);
@@ -267,6 +267,7 @@ public class AuthenticationViewHandler extends BasePage implements Serializable 
 					this.mentorTopMenu.setAskQuestion(false);
 					
 					ArrayList<String> userPrivilegePages = (ArrayList<String>) this.getSession().getAttribute(CommonConstants.USER_PRIVILEGE_PAGES);
+					
 					ArrayList<String> compactPageList = new ArrayList<String>();
 					for(String page: userPrivilegePages){
 						if(!isItemExistInArray(page, CommonConstants.MENTOR_HOME_PAGES)){
@@ -277,7 +278,7 @@ public class AuthenticationViewHandler extends BasePage implements Serializable 
 					this.getSession().setAttribute(CommonConstants.USER_PRIVILEGE_PAGES, compactPageList);
 					
 					return ViewConstant.TO_MENTOR_PAYMENT_PAGE;
-				}
+				}*/
 				this.homePageUrl = "/pages/secure/mentorDashboard.faces";
 				
 				String event = this.getParameter("event");
